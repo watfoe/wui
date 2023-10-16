@@ -2,7 +2,10 @@
 	"name": "@watfoe/watfoe-ui",
 	"author": "Watfoe Team",
 	"version": "0.0.1",
-	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/watfoe/watfoe-ui.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
