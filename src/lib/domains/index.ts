@@ -1,9 +1,6 @@
-import Email from "./_/email";
-import Phone from "./_/phone";
-import Pin from "./_/pin";
-import ParseError from "./_/parse-error";
-import type { CountryCode } from 'libphonenumber-js';
+export { default as Email } from "./_/email.js";
+export { default as Phone } from "./_/phone.js";
+export { default as Pin } from "./_/pin.js";
+export { default as ParseError } from "./_/parse-error.js";
 
-export { Email, Phone, Pin, ParseError };
-
-export type { CountryCode }
+export * as libphonenumber from 'libphonenumber-js';
