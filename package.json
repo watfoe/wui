@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Watfoe Team",
-	"version": "0.0.1-b",
+	"version": "0.0.1-c",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -77,12 +77,11 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^4.0.0",
+		"sass": "^1.69.0"
 	},
 	"devDependencies": {
 		"sass": "^1.69.0",
-		"svelte-preprocess-cssmodules": "^2.2.4",
-		"svelte-preprocess-delegate-events": "^0.4.2",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
@@ -103,7 +102,9 @@
 		"vitest": "^0.32.2"
 	},
 	"dependencies": {
-		"libphonenumber-js": "^1.10.47"
+		"libphonenumber-js": "^1.10.47",
+		"svelte-preprocess-cssmodules": "^2.2.4",
+		"svelte-preprocess-delegate-events": "^0.4.2"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
