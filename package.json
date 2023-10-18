@@ -1,17 +1,17 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Watfoe Team",
-	"version": "0.0.1-d",
+	"version": "0.0.1-e",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
 	},
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && npm run package",
+		"build": "vite build && npm run package:app",
 		"build:app": "vite build && npm run package:app",
 		"preview": "vite preview",
-		"package": "svelte-kit sync && svelte-package && publint && rsync -av --progress src/lib/* dist/ --exclude '*.ts'",
+		"package": "svelte-kit sync && svelte-package && publint",
 		"package:app": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
 		"test": "npm run test:integration && npm run test:unit",

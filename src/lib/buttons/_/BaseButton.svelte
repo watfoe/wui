@@ -28,7 +28,7 @@
   <slot />
 </Clickable>
 
-<style lang="scss">
+<style lang="scss" module>
   .base-button {
     border: none;
     outline: none;

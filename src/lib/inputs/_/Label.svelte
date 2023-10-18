@@ -22,7 +22,7 @@
   {/if}
 </Col>
 
-<style lang="scss">
+<style lang="scss" module>
   .label-cont {
     width: 100% !important;
 

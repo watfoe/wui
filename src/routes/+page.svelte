@@ -25,7 +25,7 @@
   <Anchor for="feedback" class="button">Continue</Anchor>
 </Col>
 
-<style lang="scss">
+<style lang="scss" module>
   .header {
     width: 100px;
     height: 100px;

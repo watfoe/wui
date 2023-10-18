@@ -31,7 +31,7 @@
   <slot />
 </button>
 
-<style lang="scss">
+<style lang="scss" module>
   .clickable {
     align-items: var(--align, center);
     background-color: transparent;

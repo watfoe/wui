@@ -9,8 +9,6 @@ const config = {
 		vitePreprocess(),
 		cssModules({
 			mode: 'mixed',
-			useAsDefaultScoping: true,
-    	includePaths: ['./src'],
 		}),
 		delegateEvents()
 	]),

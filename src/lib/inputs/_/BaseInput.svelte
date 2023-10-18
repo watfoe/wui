@@ -25,13 +25,7 @@
   export let validateon: $$Props['validateon'] = 'blur';
   // Capture the required prop so that we can add it to the rules
   export let required: $$Props['required'] = false;
-  export let autofocus: $$Props['autofocus'] = undefined;
 
-  onMount(() => {
-    if (autofocus) {
-      input?.dispatchEvent(new InputEvent('focus'));
-    }
-  });
 
   export const clearError = () => {
     error = null;
@@ -89,7 +83,6 @@
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    autofocus={autofocus}
     class="input {error ? 'errored' : ''} {prefix ? 'prefixed' : ''} {suffix ? 'suffixed' : ''}"
     on:input={change}
     on:blur={blur}
@@ -101,7 +94,7 @@
   {/if}
 </Row>
 
-<style lang="scss">
+<style lang="scss" module>
   .input-cont {
     // border: 1.3px solid var(--color-hairline);
     // border-radius: var(--border-radius);

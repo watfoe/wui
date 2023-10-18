@@ -38,7 +38,7 @@
   <slot/>
 </div>
 
-<style>
+<style module>
   .flex {
     display: flex !important;
     flex-direction: var(--direction, row);

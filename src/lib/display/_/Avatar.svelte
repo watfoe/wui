@@ -25,7 +25,7 @@
   {/if}
 </Anchor>
 
-<style lang="scss">
+<style lang="scss" module>
   .cs-avatar {
     background-color: var(--color-primary);
     color: var(--color-on-primary);

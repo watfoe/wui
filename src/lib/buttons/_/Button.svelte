@@ -67,7 +67,7 @@
   </Clickable>
 {/if}
 
-<style lang="scss">
+<style lang="scss" module>
   .button-primary {
     background-color: var(--color-primary);
     color: var(--color-on-primary);

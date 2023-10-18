@@ -24,7 +24,7 @@
   <slot />
 </Row>
 
-<style lang="scss">
+<style lang="scss" module>
   .cs-menu-item {
     border-radius: var(--border-radius);
     min-height: 32px;

@@ -28,7 +28,7 @@
   <slot />
 </dialog>
 
-<style lang="scss">
+<style lang="scss" module>
   dialog {
     background-color: var(--bg);
     border: 0;

@@ -50,7 +50,7 @@
   </Col>
 </Feedback>
 
-<style lang="scss">
+<style lang="scss" module>
   .cs-menu {
     border: 1px solid var(--color-outline);
     min-width: 200px;

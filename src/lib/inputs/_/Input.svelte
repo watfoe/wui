@@ -38,7 +38,7 @@
 
   export let description: $$Props['description'] = undefined;
   export let label: $$Props['label'] = undefined;
-  export let hidden: $$Props['hidden'] = false;
+  // export let hidden: $$Props['hidden'] = false;
   export let type: $$Props['type'] = 'text';
 
   let error: string = '';
@@ -99,7 +99,7 @@
   </Col>
 </Col>
 
-<style>
+<style module>
   .cs-input {
     width: 100%;
     /* This is to cater for the error text */
