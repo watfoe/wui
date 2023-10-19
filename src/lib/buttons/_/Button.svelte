@@ -69,8 +69,8 @@
 
 <style lang="scss" module>
   .button-primary {
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
+    background-color: var(--color-primary) !important;
+    color: var(--color-on-primary) !important;
 
     &:hover {
       opacity: 0.9;
@@ -91,7 +91,7 @@
   }
 
   .button-secondary {
-    background-color: var(--color-primary-container);
+    background-color: var(--color-primary-container) !important;
     color: var(--color-on-primary-container);
 
     &:hover {

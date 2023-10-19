@@ -7,10 +7,10 @@ import delegateEvents from 'svelte-preprocess-delegate-events/preprocess';
 const config = {
 	preprocess: linearPreprocess([
 		vitePreprocess(),
+		delegateEvents(),
 		cssModules({
-			mode: 'mixed',
+			mode: 'native',
 		}),
-		delegateEvents()
 	]),
 
 	kit: {

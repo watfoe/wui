@@ -96,9 +96,6 @@
 
 <style lang="scss" module>
   .input-cont {
-    // border: 1.3px solid var(--color-hairline);
-    // border-radius: var(--border-radius);
-    height: var(--input-height);
     width: 100% !important;
     position: relative !important;
 
@@ -119,7 +116,7 @@
     border: 1.3px solid var(--color-hairline);
     border-radius: var(--border-radius);
     width: 100% !important;
-    height: 100% !important;
+    height: var(--input-height);
     // prevent the input margin from being overridden
     margin: 0 !important;
     outline: none !important;
