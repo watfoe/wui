@@ -1,1 +1,1 @@
-export { default as Feedback } from './_/Feedback.svelte';
+export { default as Feedback } from './feedback/index.svelte';

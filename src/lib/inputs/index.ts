@@ -1,1 +1,1 @@
-export { default as Input, type InputProps } from './_/Input.svelte';
+export { default as Input, type InputProps } from './input/index.svelte';

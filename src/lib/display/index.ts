@@ -1,3 +1,5 @@
-export {default as Avatar, type AvatarProps} from './_/Avatar.svelte';
-export {default as Divider} from './_/Divider.svelte';
-export {default as Icon, type IconProps} from './_/Icon.svelte';
+export {default as Avatar, type AvatarProps} from './avatar/index.svelte';
+export {default as Divider} from './divider/index.svelte';
+export {default as Icon, type IconProps} from './icon/index.svelte';
+export {default as Tooltip} from './tooltip/index.svelte';
+export {default as Badge} from './badge/index.svelte';

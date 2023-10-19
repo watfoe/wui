@@ -1,5 +1,3 @@
-export {default as Col} from './_/Col.svelte';
-export {default as Flex} from './_/Flex.svelte';
-export {default as Row} from './_/Row.svelte';
-
-export type {FlexKeys, FlexProps} from './_/Flex.svelte';
+export {default as Col} from './col/index.svelte';
+export {default as Flex, type FlexKeys, type FlexProps} from './flex/index.svelte';
+export {default as Row} from './row/index.svelte';

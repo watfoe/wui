@@ -1,0 +1,82 @@
+.tooltip {
+  position: relative;
+  display: contents;
+
+  &:hover {
+    &::after {
+      display: block;
+    }
+  }
+
+  &::after {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--color-on-primary);
+    border-radius: var(--border-radius);
+    content: attr(data-tooltip-title);
+    font-size: 12px;
+    position: absolute;
+    padding: var(--space-xs) var(--space-sm);
+    // prevent text wrapping
+    white-space: nowrap;
+    z-index: 1000;
+    display: none;
+  }
+
+  &.pos-left {
+    &::after {
+      left: calc(100% + var(--space-xs));
+      top: auto;
+      bottom: auto
+    }
+  }
+
+  &.pos-right {
+    &::after {
+      right: calc(100% + var(--space-xs));
+      top: auto;
+      bottom: auto
+    }
+  }
+
+  &.pos-top {
+    &::after {
+      top: var(--top);
+      left: var(--left);
+      // bottom: calc(100% + var(--space-xs));
+    }
+  }
+
+  &.pos-bottom {
+    &::after {
+      top: calc(100% + var(--space-xs));
+    }
+  }
+
+  &.pos-top-left {
+    &::after {
+      bottom: calc(100% + var(--space-xs));
+      left: 0;
+    }
+  }
+
+  &.pos-top-right {
+    &::after {
+      bottom: calc(100% + var(--space-xs));
+      right: 0;
+    }
+  }
+
+  &.pos-bottom-left {
+    &::after {
+      top: calc(100% + var(--space-xs));
+      left: 0;
+    }
+  }
+
+  &.pos-bottom-right {
+    &::after {
+      top: calc(100% + var(--space-xs));
+      right: 0;
+    }
+  }
+}

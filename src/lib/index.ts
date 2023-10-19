@@ -14,5 +14,3 @@ export * as navigation from './navigation';
 export * from './navigation';
 export * as typography from './typography';
 export * from './typography';
-export * as utils from './utils';
-export * from './utils';

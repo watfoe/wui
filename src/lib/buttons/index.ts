@@ -6,7 +6,7 @@ export {
   type IconButtonProps,
   type TextButtonProps,
   type NoneButtonProps,
-} from './_/Button.svelte';
+} from './button/index.svelte';
 
 export {
   default as Anchor,
@@ -16,6 +16,6 @@ export {
   type IconAnchorProps,
   type TextAnchorProps,
   type NoneAnchorProps,
-} from './_/Anchor.svelte';
+} from './anchor/index.svelte';
 
-export { default as Clickable, type ClickableProps } from './_/Clickable.svelte';
+export { default as Clickable, type ClickableProps } from './clickable/index.svelte';

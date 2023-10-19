@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Watfoe Team",
-	"version": "0.0.1-f",
+	"version": "0.0.1-g",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -56,10 +56,6 @@
 		"./typography": {
 			"types": "./dist/typography/index.d.ts",
 			"svelte": "./dist/typography/index.js"
-		},
-		"./utils": {
-			"types": "./dist/utils/index.d.ts",
-			"svelte": "./dist/utils/index.js"
 		}
 	},
 	"typesVersions": {
@@ -67,12 +63,11 @@
 			"buttons": ["./dist/buttons/index.d.ts"],
 			"display": ["./dist/display/index.d.ts"],
 			"domains": ["./dist/domains/index.d.ts"],
-			"fedback": ["./dist/fedback/index.d.ts"],
+			"feedback": ["./dist/feedback/index.d.ts"],
 			"inputs": ["./dist/inputs/index.d.ts"],
 			"layout": ["./dist/layout/index.d.ts"],
 			"navigation": ["./dist/navigation/index.d.ts"],
-			"typography": ["./dist/typography/index.d.ts"],
-			"utils": ["./dist/utils/index.d.ts"]
+			"typography": ["./dist/typography/index.d.ts"]
 		}
 	},
 	"files": [
@@ -99,7 +94,6 @@
 		"publint": "^0.1.9",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
-		"svelte-preprocess-cssmodules": "^2.2.4",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2",
