@@ -39,5 +39,5 @@
 </div>
 
 <style>
-  @import './style.scss';
+  @import './style.css';
 </style>

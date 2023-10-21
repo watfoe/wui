@@ -2,7 +2,7 @@
   import {Button, Anchor} from '$lib/buttons';
   import {Badge, Icon, Tooltip} from '$lib/display';
   import {Col} from '$lib/layout';
-  import {Menu} from '$lib/navigation';
+  import {Menu, Tabs, Tab} from '$lib/navigation';
   import {Input} from '$lib/inputs';
 </script>
 
@@ -27,8 +27,14 @@
   <Badge count="1" position="top">
     <Icon name="menu" size={20} />
   </Badge>
+
+  <Tabs for="some-tab">
+    <Tab active icon="search">Search</Tab>
+    <Tab icon="mail">Unread</Tab>
+    <Tab icon="settings">Settings</Tab>
+  </Tabs>
 </Col>
 
 <style>
-  @import './style.scss';
+  @import './style.css';
 </style>

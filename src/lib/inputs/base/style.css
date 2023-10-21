@@ -1,0 +1,59 @@
+.cs-input-field-cont {
+  width: 100% !important;
+  position: relative !important;
+}
+
+.cs-input-field {
+  border: 1.3px solid var(--color-hairline);
+  border-radius: var(--border-radius);
+  width: 100% !important;
+  height: var(--input-height);
+  margin: 0 !important;
+  outline: none !important;
+  padding: 0 calc(var(--space-nm) - 0.8px) !important;
+}
+
+.cs-input-field::placeholder {
+  color: var(--color-on-surface-variant);
+}
+
+.cs-input-field:focus {
+  border: 1.8px solid var(--color-primary);
+  padding: 0 var(--space-nm) 0 calc(var(--space-nm) - 1.3px) !important;
+}
+
+.cs-input-field.errored {
+  border: 1.8px solid var(--color-status-error) !important;
+  padding: 0 var(--space-nm) 0 calc(var(--space-nm) - 1.3px) !important;
+}
+
+.cs-input-field.prefixed:focus {
+  padding-left: calc(var(--space-xs) + var(--input-height) - 1.6px) !important;
+}
+
+.cs-input-field.suffixed:focus {
+  padding-right: calc(var(--space-xs) + var(--input-height) - 1.6px) !important;
+}
+
+.cs-input-field.prefixed {
+  padding-left: calc(var(--space-xs) + var(--input-height) - 1.3px) !important;
+}
+
+.cs-input-field.suffixed {
+  padding-right: calc(var(--space-xs) + var(--input-height) - 1.3px) !important;
+}
+
+.input-prefix, .input-suffix {
+  border-radius: calc(var(--border-radius) - 1px);
+  height: calc(100% - (1.3px * 2)) !important;
+  width: calc(var(--input-height) - (2.3px * 2));
+  position: absolute;
+}
+
+.input-prefix {
+  left: 1.3px;
+}
+
+.input-suffix {
+  right: 1.3px;
+}

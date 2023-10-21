@@ -13,7 +13,7 @@
 </script>
 
 <Col justify="flex-start" align="flex-start" class="label-cont">
-  <label class="{focused ? 'focused' : ''} {errored ? 'errored' : ''}">
+  <label class="label {focused ? 'focused' : ''} {errored ? 'errored' : ''}">
     <slot />
   </label>
 
@@ -23,5 +23,5 @@
 </Col>
 
 <style>
-  @import "./style.scss";
+  @import "./style.css";
 </style>

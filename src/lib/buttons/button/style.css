@@ -1,0 +1,47 @@
+.cs-base-button {
+  border: none;
+  outline: none;
+  border-radius: var(--border-radius);
+  height: var(--button-height);
+  width: auto;
+  padding: 0 13px;
+  white-space: nowrap;
+}
+
+.button-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.button-icon {
+  border-radius: 50%;
+  color: var(--color-on-surface-variant);
+  width: var(--button-height) !important;
+  height: var(--button-height) !important;
+}
+
+.button-icon:hover {
+  background-color: var(--color-hover);
+  color: var(--color-on-surface);
+}
+
+.button-secondary {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+}
+
+.button-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.button-text:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}

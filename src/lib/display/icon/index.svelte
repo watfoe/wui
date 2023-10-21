@@ -28,6 +28,6 @@
   span {
     color: inherit;
     font-size: var(--size);
-    font-variation-settings: 'FILL' var(--fill), 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings: 'FILL' var(--fill);
   }
 </style>

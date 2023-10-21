@@ -18,7 +18,7 @@
 
 <dialog
   {...$$restProps}
-  class={$$restProps.class}
+  class="cs-feedback {$$restProps.class}"
   on:open={open}
   style="--bg:{transparent ? 'transparent' : 'var(--color-scrim)'}"
   on:*
@@ -27,5 +27,5 @@
 </dialog>
 
 <style>
-  @import './style.scss';
+  @import './style.css';
 </style>

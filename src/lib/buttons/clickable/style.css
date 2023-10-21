@@ -13,8 +13,8 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.cs-clickable:hover {
+  cursor: pointer;
 }
