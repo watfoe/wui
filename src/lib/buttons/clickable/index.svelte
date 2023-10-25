@@ -17,7 +17,7 @@
 
 <button
   {...$$restProps}
-  class="cs-clickable {$$restProps.class || ''}"
+  class="Wui-clickable {$$restProps.class || ''}"
   style="
     --direction:{direction};
     --justify:{justify};

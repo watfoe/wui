@@ -16,7 +16,7 @@
   }
 
   export interface IconButtonProps extends Omit<ClickableProps, 'class' | 'color'>, IconProps {
-    name: IconProps['name'];
+    name: string;
     color?: IconProps['color'];
     size?: IconProps['size'];
     appearance: 'icon';
@@ -55,7 +55,7 @@
   </BaseButton>
 {:else if appearance == 'icon'}
   <Clickable {...$$restProps} class="button-icon {$$restProps.class || ''}" on:*>
-    <Icon name={$$restProps.name} fill={$$restProps.fill} size={$$restProps.size || 24} />
+    <Icon fill={$$restProps.fill} size={$$restProps.size || "md"} >{$$restProps.name}</Icon>
   </Clickable>
 {:else if appearance == 'text'}
   <Clickable {...$$restProps} class="button-text {$$restProps.class || ''}" on:*>

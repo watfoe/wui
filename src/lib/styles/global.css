@@ -54,7 +54,7 @@
   --color-primary-inverse: #8ab4f8;
   --color-on-primary-inverse: #202124;
 
-  --color-surface: #FFF;
+  --color-surface: #fff;
   --color-on-surface: #000;
   --color-on-surface-variant: #5f6368;
 
@@ -78,7 +78,7 @@
   --color-scrim: rgba(0,0,0,0.54);
 
   --color-shadow: #3c4043;
-  --color-outline: #E5E5E5;
+  --color-outline: #e5e5e5;
   --color-hairline: #dadce0;
 
   --color-selection: #0092CC;

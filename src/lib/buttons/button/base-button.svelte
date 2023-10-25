@@ -3,7 +3,7 @@
   import type { IconProps } from '$lib/display';
 
   export interface BaseButtonProps extends ClickableProps {
-    'iconname'?: IconProps['name'];
+    'iconname'?: string;
     'iconfill'?: IconProps['fill'];
     'iconclass'?: IconProps['class'];
   }
@@ -17,13 +17,13 @@
 </script>
 
 
-<Clickable direction="row" {...$$restProps} class="cs-base-button {$$restProps.class || ''}" on:*>
+<Clickable direction="row" {...$$restProps} class="Wui-base-button {$$restProps.class || ''}" on:*>
   {#if $$restProps['iconname']}
     <Icon
-      name={$$restProps['iconname']}
       fill={$$restProps['iconfill']}
       class="{$$restProps['iconclass'] || ''}"
-    />
+      size="sm"
+    >{$$restProps['iconname']}</Icon>
   {/if}
   <slot />
 </Clickable>

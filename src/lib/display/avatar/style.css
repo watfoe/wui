@@ -1,36 +1,63 @@
-.cs-avatar {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  border: 0.5px solid var(--color-outline);
+.Wui-avatar {
+  border-radius: 50%;
   flex: 0 0 auto;
 }
 
-.cs-avatar:hover {
-  outline: 2px solid var(--color-selection-container);
+.Wui-avatar-solid {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
-.cs-avatar.small {
+.Wui-avatar-outline {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-outline) !important;
+}
+
+.Wui-avatar-soft {
+  background-color: var(--color-selection-container);
+  color: var(--color-on-selection-container);
+}
+
+.Wui-avatar-plain {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+.Wui-avatar-alt {
+  font-weight: 600;
+}
+
+.Wui-avatar-sm {
   height: 30px;
   width: 30px;
   font-size: 11px;
 }
-.cs-avatar.medium {
+.Wui-avatar-md {
   height: var(--button-height);
   width: var(--button-height);
 }
-.cs-avatar.large {
+.Wui-avatar-lg {
   height: 60px;
   width: 60px;
   font-size: 18px;
 }
 
-.cs-avatar.square {
-  border-radius: var(--border-radius);
-}
-.cs-avatar.circle {
-  border-radius: 50%;
+.Wui-avatar-img {
+  border-radius: inherit;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-.cs-avatar-image {
-  border-radius: inherit;
+.Wui-avatar-group {
+  width: auto;
+}
+
+.Wui-avatar-group .Wui-avatar + .Wui-avatar {
+  outline: 1px solid var(--color-surface) !important;
+}
+
+.Wui-avatar-group > *:not(:first-child) {
+  margin-left: -10px;
+  z-index: 1;
 }

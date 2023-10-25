@@ -1,7 +1,16 @@
+.cs-tabs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .cs-tab {
   background-color: transparent;
   color: var(--color-on-surface-variant);
   height: 34px;
+}
+
+.cs-tab + .cs-tab {
   margin-left: var(--space-xs);
 }
 
@@ -13,4 +22,12 @@
 .cs-tab.active {
   background-color: var(--color-selection-container);
   color: var(--color-on-selection-container);
+}
+
+.cs-tab-panels {
+  display: contents;
+}
+
+.cs-tab-panels > *:not(.active) {
+  display: none !important;
 }

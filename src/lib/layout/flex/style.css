@@ -1,4 +1,4 @@
-.flex {
+.Wui-flex {
   display: flex !important;
   flex-direction: var(--direction, row);
   justify-content: var(--justify, flex-start);

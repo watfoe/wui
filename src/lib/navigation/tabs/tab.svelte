@@ -4,13 +4,14 @@
   interface $$Props {
     active?: boolean;
     icon?: string;
+    class?: string;
   }
 
   export let active: $$Props['active'] = false;
   export let icon: $$Props['icon'] = undefined;
 </script>
 
-<Button appearance="secondary" iconname={icon} class="cs-tab {$$restProps.class} {active ? 'active' : ''}">
+<Button role="tab" appearance="secondary" iconname={icon} class="cs-tab {$$restProps.class} {active ? 'active' : ''}">
   <slot />
 </Button>
 
