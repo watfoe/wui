@@ -24,9 +24,34 @@
     <Anchor for="feedback" class="button">Continue</Anchor>
   </Tooltip>
 
-  <Badge count="1" position="top">
-    <Icon>menu</Icon>
-  </Badge>
+  <Row gap="40" justify="center">
+    <Badge position="top-left">
+      <Icon>mail</Icon>
+    </Badge>
+
+    <Badge content="JL" color="neutral">
+      <Icon>person</Icon>
+    </Badge>
+
+    <Badge content="200" color="success" position="bottom-left">
+      <Icon>mail</Icon>
+    </Badge>
+
+    <Tooltip title="mail settings">
+      <Badge color="warning">
+        <Icon slot="content" size="sm">settings</Icon>
+        <Icon>mail</Icon>
+      </Badge>
+    </Tooltip>
+
+    <Badge content="200" max={99} color="danger">
+      <Icon>mail</Icon>
+    </Badge>
+  </Row>
+
+  <Tooltip title="This a menu" position="bottom">
+    <Icon>person</Icon>
+  </Tooltip>
 
   <Tabs for="tab-panels-0">
     <Tab icon="search">Search</Tab>

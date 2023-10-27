@@ -1,11 +1,12 @@
 <script lang="ts">
   interface $$Props {
     title: string;
-    position?: 'top' | 'bottom' | 'left' | 'right';
+    position?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    variant?: 'solid' | 'outline' | 'plain' | 'soft';
   }
 
   export let title: string;
-  export let position: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
+  export let position: $$Props['position'] = 'bottom';
 
   let top: number = 0;
   let left: number = 0;
@@ -20,13 +21,12 @@
 </script>
 
 <div
-  aria-label="tooltip"
+  aria-label={title}
   role="tooltip"
   bind:this={tooltip}
-  class="tooltip pos-{position}"
+  class="WuiTooltip WuiTooltip-{position} "
   data-tooltip-title={title}
-  on:mouseenter={mouseenter}
-  style="--top:{top}px;--left:{left}px">
+  on:mouseenter={mouseenter}>
   <slot />
 </div>
 

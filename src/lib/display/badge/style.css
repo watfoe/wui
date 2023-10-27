@@ -1,20 +1,47 @@
-.cs-badge {
-  position: relative;
-  display: contents;
+.WuiBadge {
+  position: relative !important;
+  --WuiBadge-height: 1rem;
+  --WuiBadge-paddingX: var(--space-xs);
+  --WuiBadge-radius: 1rem;
 }
 
-.cs-badge::before {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  border-radius: 10px;
-  content: attr(data-badge-count);
-  font-size: 11px;
-  min-height: 18px;
-  line-height: 18px;
-  min-width: 12px ;
+.WuiBadge-no-content {
+  --WuiBadge-height: 0.75rem;
+  --WuiBadge-paddingX: 0;
+  --WuiBadge-radius: 0.75rem;
+}
+
+.WuiBadge-content {
+  align-items: center;
+  border-radius: var(--WuiBadge-radius);
+  box-sizing: border-box;
+  box-shadow: 2px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  place-content: center;
+  -webkit-box-align: center;
   position: absolute;
-  padding: 0 3px;
-  bottom: calc(100% - 18px);
-  left: calc(100% - 15px);
-  white-space: nowrap;
+  padding: 0 var(--WuiBadge-paddingX);
+  min-height: var(--WuiBadge-height);
+  line-height: 1.2;
+  min-width: var(--WuiBadge-height);
+  z-index: 10;
+}
+
+.WuiBadge-top-left .WuiBadge-content {
+  bottom: calc(100% - calc(var(--WuiBadge-height)) / 2);
+  right: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+}
+.WuiBadge-top-right .WuiBadge-content {
+  bottom: calc(100% - calc(var(--WuiBadge-height)) / 2);
+  left: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+}
+.WuiBadge-bottom-left .WuiBadge-content {
+  top: calc(100% - calc(var(--WuiBadge-height)) / 2);
+  right: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+}
+.WuiBadge-bottom-right .WuiBadge-content {
+  top: calc(100% - calc(var(--WuiBadge-height)) / 2);
+  left: calc(100% - calc(var(--WuiBadge-height) * 0.5));
 }

@@ -1,14 +1,15 @@
 <script lang="ts">
   interface $$Props {
-    count: string;
-    position?: 'top' | 'bottom' | 'left' | 'right';
+    content?: string | number;
+    position?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | string;
+    max?: number;
   }
 
-  export let count: string;
-  export let position: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
-
-  let top: number = 0;
-  let left: number = 0;
+  export let content: $$Props['content'] = undefined;
+  export let position: $$Props['position'] = 'top-right';
+  export let color: $$Props['color'] = 'primary';
+  export let max: $$Props['max'] = undefined;
 
   let badge: HTMLDivElement;
 </script>
@@ -16,10 +17,24 @@
 <div
   aria-label="badge"
   bind:this={badge}
-  class="badge pos-{position}"
-  data-badge-count={count}
-  style="--top:{top}px;--left:{left}px">
+  class="WuiBadge WuiBadge-{position} {!$$slots.content && !content ? 'WuiBadge-no-content' : ''}">
   <slot />
+
+  <div class="WuiBadge-content WuiBg-{color}">
+    {#if $$slots.content}
+      <slot name="content" />
+    {:else if content}
+      <span class="Wui-badge-content">
+        {
+          typeof !isNaN(Number(content)) && max
+            ? Number(content) > max
+              ? `${max}+`
+              : content
+            : content
+        }
+      </span>
+    {/if}
+  </div>
 </div>
 
 <style>
