@@ -1,4 +1,6 @@
 <script lang="ts">
+  import './style.css';
+
   interface $$Props {
     content?: string | number;
     position?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -36,7 +38,3 @@
     {/if}
   </div>
 </div>
-
-<style>
-  @import './style.css';
-</style>

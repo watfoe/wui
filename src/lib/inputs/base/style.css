@@ -54,12 +54,13 @@
   -webkit-box-pack: center;
   justify-content: center;
   height: calc(100% - (1.3px * 2)) !important;
-  width: calc(var(--input-height) - (2.3px * 2));
+  width: calc(var(--input-height) - (1.3px * 2));
   position: absolute;
   text-decoration: none;
 }
 
 .input-prefix > *, .input-suffix > * {
+  border-radius: inherit !important;
   width: 100% !important;
   height: 100% !important;
 }

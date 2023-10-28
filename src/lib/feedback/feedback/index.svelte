@@ -1,4 +1,6 @@
 <script lang="ts">
+  import './style.css';
+
   import type { HTMLDialogAttributes } from "svelte/elements";
 
   interface $$Props extends HTMLDialogAttributes {
@@ -25,7 +27,3 @@
 >
   <slot />
 </dialog>
-
-<style>
-  @import './style.css';
-</style>

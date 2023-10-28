@@ -1,5 +1,4 @@
+<script>
+  import '$lib/styles/global.css';
+</script>
 <slot />
-
-<style>
-  @import '$lib/styles/global.css';
-</style>

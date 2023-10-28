@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+  import './style.css';
   import { Col } from '$lib/layout';
   import Label from '../label/index.svelte';
   import ErrorText from '../error/index.svelte';
@@ -98,7 +99,3 @@
     {/if}
   </Col>
 </Col>
-
-<style>
-  @import './style.css';
-</style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './style.css';
   import { Col } from "$lib/layout";
 
   interface $$Props {
@@ -21,7 +22,3 @@
     <span class="description">{description}</span>
   {/if}
 </Col>
-
-<style>
-  @import "./style.css";
-</style>

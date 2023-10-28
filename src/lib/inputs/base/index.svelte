@@ -6,6 +6,7 @@
 </script>
 
 <script lang="ts">
+  import './style.css';
   import { Row } from '$lib/layout';
 
   import { validate, mask, ValidationError } from '../_common_';
@@ -97,7 +98,3 @@
     <Icon class="input-suffix">{suffix}</Icon>
   {/if}
 </Row>
-
-<style>
-  @import './style.css';
-</style>

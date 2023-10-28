@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './style.css';
   import { Icon, type AvatarProps } from '$lib/display';
   import { Row } from '$lib/layout';
 
@@ -15,12 +16,8 @@
   {#if $$slots.avatar}
     <slot name="avatar"></slot>
   {:else if icon}
-      <Icon name={icon} size={20} class="cs-menu-item-icon" />
+      <Icon class="cs-menu-item-icon">{name}</Icon>
   {/if}
 
   <slot />
 </Row>
-
-<style>
-  @import './style.css';
-</style>

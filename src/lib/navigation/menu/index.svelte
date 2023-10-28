@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './style.css';
   import { Feedback } from '$lib/feedback';
   import { Col } from '$lib/layout';
 
@@ -49,7 +50,3 @@
     <slot />
   </Col>
 </Feedback>
-
-<style>
-  @import './style.css';
-</style>

@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+  import './style.css';
   import {Icon} from '$lib/display';
 
   interface $$Props extends ButtonProps {}
@@ -35,7 +36,3 @@
 
   <slot />
 </button>
-
-<style>
-  @import './style.css';
-</style>

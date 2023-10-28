@@ -13,6 +13,8 @@
 </script>
 
 <script lang="ts">
+  import './style.css';
+
   interface $$Props extends FlexProps {};
 
   export let direction: $$Props['direction'] = 'row';
@@ -37,7 +39,3 @@
 >
   <slot/>
 </div>
-
-<style>
-  @import './style.css';
-</style>

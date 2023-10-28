@@ -1,4 +1,6 @@
 <script lang="ts">
+  import './style.css';
+
   interface $$Props {
     title: string;
     position?: 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -29,7 +31,3 @@
   on:mouseenter={mouseenter}>
   <slot />
 </div>
-
-<style>
-  @import './style.css';
-</style>

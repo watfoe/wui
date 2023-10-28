@@ -1,4 +1,5 @@
 <script lang="ts">
+  import './style.css';
 	import { onMount } from 'svelte';
 
   interface $$Props {
@@ -70,7 +71,3 @@
 <div bind:this={tabs} class="WuiTabs">
   <slot />
 </div>
-
-<style>
-  @import './style.css';
-</style>

@@ -9,6 +9,8 @@
 </script>
 
 <script lang="ts">
+  import './style.css';
+
 	interface $$Props extends AvatarProps {}
 
   export let size: $$Props['size'] = 'md';
@@ -32,7 +34,3 @@
     <span class="WuiAvatar-alt"><slot /></span>
   {/if}
 </Col>
-
-<style>
-  @import './style.css';
-</style>
