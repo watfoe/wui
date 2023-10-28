@@ -2,6 +2,10 @@
 	import { Row } from "$lib/layout";
 </script>
 
-<Row class="Wui-avatar-group">
+<Row class="WuiAvatarGroup">
   <slot />
 </Row>
+
+<style>
+  @import './style.css';
+</style>

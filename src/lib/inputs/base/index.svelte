@@ -6,10 +6,10 @@
 </script>
 
 <script lang="ts">
-  import { Anchor } from '$lib/buttons';
   import { Row } from '$lib/layout';
 
   import { validate, mask, ValidationError } from '../_common_';
+	import { Icon } from '$lib/display';
 
   type $$Props = BaseInputProps;
 
@@ -67,29 +67,34 @@
       _validate(_value);
     }
   }
-
-  const handleAnchorClick = () => {
-    // Prevent the input from losing focus or focus it
-    input.focus();
-  }
 </script>
 
-<Row class="cs-input-field-cont">
-  {#if prefix}
-    <Anchor appearance="icon" {...prefix} on:click={handleAnchorClick} class="input-prefix" on:* />
+<Row class="WuiInput-field-cont">
+  {#if $$slots.prefix}
+    <div class="input-prefix">
+      <slot name="prefix" />
+    </div>
+  {:else if prefix}
+    <Icon class="input-prefix">{prefix}</Icon>
   {/if}
+
   <input
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    class="cs-input-field {error ? 'errored' : ''} {prefix ? 'prefixed' : ''} {suffix ? 'suffixed' : ''}"
+    class="WuiInput-field {error ? 'errored' : ''} {prefix ? 'prefixed' : ''} {suffix ? 'suffixed' : ''}"
     on:input={change}
     on:blur={blur}
     bind:value={value}
     on:validate on:input on:change on:click on:dblclick on:blur on:focus
   />
-  {#if suffix}
-    <Anchor appearance="icon" on:click={handleAnchorClick} {...suffix} class="input-suffix" on:* />
+
+  {#if $$slots.suffix}
+    <div class="input-suffix">
+      <slot name="suffix" />
+    </div>
+  {:else if suffix}
+    <Icon class="input-suffix">{suffix}</Icon>
   {/if}
 </Row>
 

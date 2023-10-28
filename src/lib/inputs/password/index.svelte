@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '$lib/buttons';
 	import BaseInput, { type BaseInputProps } from "../base/index.svelte";
 
   interface $$Props extends BaseInputProps {
@@ -7,7 +8,7 @@
 
   export let secure = true;
 
-  function toggleSecure() {
+  function toggle() {
     secure = !secure;
   }
 </script>
@@ -16,10 +17,15 @@
   autocomplete="password"
   {...$$restProps}
   type={secure ? 'password' : 'text'}
-  suffix={{
-    name: secure ? 'visibility_off' : 'visibility',
-    size: 20,
-    "on:click": toggleSecure,
-  }}
+  suffix="visibility"
   on:*
-/>
+>
+  <Button
+    variant="plain"
+    color="neutral"
+    size="sm"
+    slot="suffix"
+    icon={secure ? 'visibility' : 'visibility_off'}
+    on:click={toggle}
+  />
+</BaseInput>

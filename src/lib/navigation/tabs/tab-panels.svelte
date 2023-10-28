@@ -1,15 +1,20 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+
   interface $$Props {
     id: string;
     class?: string;
     style?: string;
   }
-  let _class: $$Props['class'] = '';
   export let id: $$Props['id'];
-  export let style: $$Props['style'] = '';
-  export { _class as class };
+
+  onMount(() => {
+    if (!id) {
+      throw new Error('TabPanels must have an id attribute');
+    }
+  })
 </script>
 
-<div id={id} class="cs-tab-panels {_class}" style="{style}">
+<div id={id} class="WuiTabPanels {$$restProps.class}" style="{$$restProps.style}">
   <slot />
 </div>

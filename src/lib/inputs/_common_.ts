@@ -1,5 +1,3 @@
-import type { IconAnchorProps } from '../buttons';
-
 export interface InputMasks {
   cast?: 'string' | 'number';
   number?: boolean;
@@ -34,8 +32,8 @@ export interface InputRules {
 }
 
 export type BaseProps<T> = T & {
-  prefix?: Omit<IconAnchorProps, 'appearance'>;
-  suffix?: Omit<IconAnchorProps, 'appearance'>;
+  prefix?: string;
+  suffix?: string;
   masks?: InputMasks;
   rules?: InputRules;
   validateon?: 'change' | 'blur';

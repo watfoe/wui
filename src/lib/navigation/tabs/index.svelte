@@ -12,8 +12,8 @@
   let activeIndex = 0;
 
   onMount(() => {
-    const tabPanelsParent = document.getElementById(_for) as HTMLDivElement;
-    const tabButtons = tabs.querySelectorAll('.cs-tab');
+    const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
+    const tabButtons = tabs.querySelectorAll('.WuiTab');
 
     if (!tabPanelsParent) {
       throw new Error(`No tabpanels found for ${_for}`);
@@ -21,8 +21,8 @@
 
     const tabPanels = tabPanelsParent.children;
 
-    function dispatchEvent(tabpanel: Element, active: boolean) {
-      tabpanel.dispatchEvent(new CustomEvent('active', {
+    function dispatchEvent(elem: Element, active: boolean) {
+      return elem.dispatchEvent(new CustomEvent('select', {
         detail: {
           active,
         },
@@ -31,7 +31,8 @@
 
     tabButtons.forEach((tabButton, index) => {
       if (index === activeIndex) {
-        tabButton.classList.add('active');
+        dispatchEvent(tabButton, true);
+
         if (tabPanels[index]) {
           tabPanels[index].classList.add('active');
           dispatchEvent(tabPanels[index], true);
@@ -42,14 +43,18 @@
       tabPanels[index]?.setAttribute('role', 'tabpanel');
 
       tabButton.addEventListener('click', () => {
-        tabButtons[activeIndex].classList.remove('active');
+        if (index === activeIndex) {
+          return;
+        }
+
+        dispatchEvent(tabButtons[activeIndex], false);
 
         if (tabPanels[activeIndex]) {
           tabPanels[activeIndex].classList.remove('active');
           dispatchEvent(tabPanels[activeIndex], false);
         }
 
-        tabButton.classList.add('active');
+        dispatchEvent(tabButton, true);
 
         if (tabPanels[index]) {
           tabPanels[index].classList.add('active');
@@ -62,7 +67,7 @@
   });
 </script>
 
-<div bind:this={tabs} justify="flex-start" class="cs-tabs">
+<div bind:this={tabs} class="WuiTabs">
   <slot />
 </div>
 

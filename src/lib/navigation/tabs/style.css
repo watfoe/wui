@@ -1,33 +1,15 @@
-.cs-tabs {
+.WuiTabs {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  gap: var(--space-sm);
+  margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
+  width: auto;
 }
 
-.cs-tab {
-  background-color: transparent;
-  color: var(--color-on-surface-variant);
-  height: 34px;
-}
-
-.cs-tab + .cs-tab {
-  margin-left: var(--space-xs);
-}
-
-.cs-tab:hover {
-  background-color: var(--color-hover);
-  color: var(--color-on-hover);
-}
-
-.cs-tab.active {
-  background-color: var(--color-selection-container);
-  color: var(--color-on-selection-container);
-}
-
-.cs-tab-panels {
+.WuiTabPanels {
   display: contents;
 }
 
-.cs-tab-panels > *:not(.active) {
+.WuiTabPanels > *:not(.active) {
   display: none !important;
 }

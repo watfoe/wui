@@ -1,4 +1,5 @@
 .WuiBadge {
+  display: inline-flex !important;
   position: relative !important;
   --WuiBadge-height: 1rem;
   --WuiBadge-paddingX: var(--space-xs);

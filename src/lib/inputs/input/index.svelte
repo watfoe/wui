@@ -69,7 +69,7 @@
   }
 </script>
 
-<Col align="flex-start" justify="flex-start" class="cs-input {$$restProps.class}">
+<Col role="textbox" aria-label={label || type} align="flex-start" justify="flex-start" class="cs-input {$$restProps.class}">
   {#if label}
     <Label focused={focused} errored={errored} description={description}>{label}</Label>
   {/if}

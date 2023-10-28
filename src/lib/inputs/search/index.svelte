@@ -1,26 +1,29 @@
 <script lang="ts">
+	import { Button } from "$lib/buttons";
 	import BaseInput, { type BaseInputProps } from "../base/index.svelte";
 
   type $$Props = BaseInputProps;
 
   let value: string = '';
-  function clearSearch() {
+  function clear() {
     value = ''
   }
 </script>
 
 <BaseInput
-  autocomplete="search"
   {...$$restProps}
-  class="cs-input-search {$$restProps.class}"
+  autocomplete="search"
+  prefix="search"
   type="text"
-  suffix={{
-    ...$$restProps.suffix,
-    appearance: 'icon',
-    name: 'clear',
-    size: 20,
-    onClick: clearSearch,
-  }}
-  bind:value={value}
   on:*
-/>
+>
+  <Button
+    variant="plain"
+    color="neutral"
+    size="sm"
+    slot="suffix"
+    icon="clear"
+    bind:value={value}
+    on:click={clear}
+  />
+</BaseInput>

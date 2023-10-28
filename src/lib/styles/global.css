@@ -65,8 +65,8 @@
   --color-primary-container: #e8f0fe;
   --color-on-primary-container: #0092CC;
 
-  --color-neutral-container: #f8f9fa;
-  --color-on-neutral-container: rgba(0,0,0,1);
+  --color-neutral-container: #636B74;
+  --color-on-neutral-container: #fff;
 
   --color-container: #f8f9fa;
   --color-on-container: #202124;
@@ -108,7 +108,9 @@
   --space-md: 21px;
   --space-lg: 34px;
 
-  --button-height: 38px;
+  --button-height-sm: 34px;
+  --button-height-md: 38px;
+  --button-height-lg: 42px;
 
   --input-height: 38px;
 
@@ -181,4 +183,12 @@ a {color: inherit;text-decoration: none;}
 .WuiBg-danger {
   background-color: var(--color-status-error);
   color: var(--color-status-on-error);
+}
+
+.Wui-disabled {
+  pointer-events: none;
+  cursor: default;
+  --Icon-color: currentColor;
+  color: var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));
+  background-color: var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));
 }

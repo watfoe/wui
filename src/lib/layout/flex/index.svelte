@@ -24,7 +24,7 @@
 
 <div
   {...$$restProps}
-  class="Wui-flex {$$restProps.class || ''}"
+  class="WuiFlex {$$restProps.class || ''}"
   style="
     {$$restProps.style || ''};
     --direction:{direction};

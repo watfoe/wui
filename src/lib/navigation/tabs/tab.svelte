@@ -9,12 +9,21 @@
 
   export let active: $$Props['active'] = false;
   export let icon: $$Props['icon'] = undefined;
+
+  function select(e: CustomEvent) {
+    active = e.detail.active;
+  }
 </script>
 
-<Button role="tab" appearance="secondary" iconname={icon} class="cs-tab {$$restProps.class} {active ? 'active' : ''}">
+<Button
+  role="tab"
+  aria-selected={active}
+  variant={active ? 'soft' : 'plain'}
+  color={active ? 'primary' : 'neutral'}
+  size="sm"
+  icon={icon}
+  class="WuiTab"
+  on:select={select}
+>
   <slot />
 </Button>
-
-<style>
-  @import './style.css';
-</style>

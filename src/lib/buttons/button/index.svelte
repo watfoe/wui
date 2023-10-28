@@ -1,71 +1,40 @@
 <script context="module" lang="ts">
-  import type { BaseButtonProps } from './base-button.svelte';
-  import type { ClickableProps } from '../clickable/index.svelte';
-  import type { IconProps } from '$lib/display';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-  export interface NoneButtonProps extends ClickableProps {
-    appearance: 'none';
+  export interface ButtonProps extends HTMLButtonAttributes {
+    icon?: string;
+    variant?: 'solid' | 'outline' | 'soft' | 'plain';
+    color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+    size?: 'sm' | 'md' | 'lg';
+    gap?: string;
   }
-
-  export interface PrimaryButtonProps extends BaseButtonProps {
-    appearance?: 'primary';
-  }
-
-  export interface SecondaryButtonProps extends BaseButtonProps {
-    appearance: 'secondary';
-  }
-
-  export interface IconButtonProps extends Omit<ClickableProps, 'class' | 'color'>, IconProps {
-    name: string;
-    color?: IconProps['color'];
-    size?: IconProps['size'];
-    appearance: 'icon';
-    class?: string;
-  }
-
-  export interface TextButtonProps extends ClickableProps {
-    appearance: 'text';
-  }
-
-  export type ButtonProps =
-    | PrimaryButtonProps
-    | SecondaryButtonProps
-    | IconButtonProps
-    | TextButtonProps
-    | NoneButtonProps;
 </script>
 
 <script lang="ts">
-  import BaseButton from './base-button.svelte';
-  import Clickable from '../clickable/index.svelte';
-  import { Icon } from '$lib/display';
+  import {Icon} from '$lib/display';
 
-  type $$Props = ButtonProps;
-
-  export let appearance: $$Props['appearance'] = 'primary';
+  interface $$Props extends ButtonProps {}
+  export let gap: $$Props['gap'] = undefined;
+  export let size: $$Props['size'] = 'md';
+  export let variant: $$Props['variant'] = 'solid';
+  export let color: $$Props['color'] = 'primary';
+  export let icon: $$Props['icon'] = undefined;
 </script>
 
-{#if appearance == 'primary'}
-  <BaseButton {...$$restProps} class="button-primary {$$restProps.class || ''}" on:*>
-    <slot />
-  </BaseButton>
-{:else if appearance == 'secondary'}
-  <BaseButton {...$$restProps} class="button-secondary {$$restProps.class || ''}" on:*>
-    <slot />
-  </BaseButton>
-{:else if appearance == 'icon'}
-  <Clickable {...$$restProps} class="button-icon {$$restProps.class || ''}" on:*>
-    <Icon fill={$$restProps.fill} size={$$restProps.size || "md"} >{$$restProps.name}</Icon>
-  </Clickable>
-{:else if appearance == 'text'}
-  <Clickable {...$$restProps} class="button-text {$$restProps.class || ''}" on:*>
-    <slot />
-  </Clickable>
-{:else if appearance == 'none'}
-  <Clickable {...$$restProps} class="{$$restProps.class || ''}" on:*>
-    <slot />
-  </Clickable>
-{/if}
+<button
+  {...$$restProps}
+  class="WuiButton WuiButton-{variant} WuiButton-{size} WuiButton-{color} {!$$slots.default ? 'WuiButton-only-icon' : ''} {$$restProps.class || ''}"
+  style="{gap && `--WuiButton-flex-gap: ${gap}`}"
+  on:*
+>
+  {#if $$slots.icon}
+    <slot name="icon" />
+  {:else if icon}
+    <Icon size="sm">{icon}</Icon>
+  {/if}
+
+  <slot />
+</button>
 
 <style>
   @import './style.css';

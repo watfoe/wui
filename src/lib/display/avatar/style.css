@@ -1,63 +1,63 @@
-.Wui-avatar {
+.WuiAvatar {
   border-radius: 50%;
   flex: 0 0 auto;
 }
 
-.Wui-avatar-solid {
+.WuiAvatar-solid {
   background-color: var(--color-primary);
   color: var(--color-on-primary);
 }
 
-.Wui-avatar-outline {
+.WuiAvatar-outline {
   background-color: var(--color-surface);
   color: var(--color-on-surface);
   border: 1px solid var(--color-outline) !important;
 }
 
-.Wui-avatar-soft {
+.WuiAvatar-soft {
   background-color: var(--color-selection-container);
   color: var(--color-on-selection-container);
 }
 
-.Wui-avatar-plain {
+.WuiAvatar-plain {
   background-color: var(--color-surface);
   color: var(--color-on-surface);
 }
 
-.Wui-avatar-alt {
+.WuiAvatar-alt {
   font-weight: 600;
 }
 
-.Wui-avatar-sm {
+.WuiAvatar-sm {
   height: 30px;
   width: 30px;
   font-size: 11px;
 }
-.Wui-avatar-md {
+.WuiAvatar-md {
   height: var(--button-height);
   width: var(--button-height);
 }
-.Wui-avatar-lg {
+.WuiAvatar-lg {
   height: 60px;
   width: 60px;
   font-size: 18px;
 }
 
-.Wui-avatar-img {
+.WuiAvatar-img {
   border-radius: inherit;
   width: 100% !important;
   height: 100% !important;
 }
 
-.Wui-avatar-group {
+.WuiAvatarGroup {
   width: auto;
 }
 
-.Wui-avatar-group .Wui-avatar + .Wui-avatar {
+.WuiAvatarGroup .WuiAvatar + .WuiAvatar {
   outline: 1px solid var(--color-surface) !important;
 }
 
-.Wui-avatar-group > *:not(:first-child) {
+.WuiAvatarGroup > *:not(:first-child) {
   margin-left: -10px;
   z-index: 1;
 }

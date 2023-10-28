@@ -1,9 +1,9 @@
-.cs-input-field-cont {
+.WuiInput-field-cont {
   width: 100% !important;
   position: relative !important;
 }
 
-.cs-input-field {
+.WuiInput-field {
   border: 1.3px solid var(--color-hairline);
   border-radius: var(--border-radius);
   width: 100% !important;
@@ -13,41 +13,55 @@
   padding: 0 calc(var(--space-nm) - 0.8px) !important;
 }
 
-.cs-input-field::placeholder {
+.WuiInput-field::placeholder {
   color: var(--color-on-surface-variant);
 }
 
-.cs-input-field:focus {
+.WuiInput-field:focus {
   border: 1.8px solid var(--color-primary);
   padding: 0 var(--space-nm) 0 calc(var(--space-nm) - 1.3px) !important;
 }
 
-.cs-input-field.errored {
+.WuiInput-field.errored {
   border: 1.8px solid var(--color-status-error) !important;
   padding: 0 var(--space-nm) 0 calc(var(--space-nm) - 1.3px) !important;
 }
 
-.cs-input-field.prefixed:focus {
+.WuiInput-field.prefixed:focus {
   padding-left: calc(var(--space-xs) + var(--input-height) - 1.6px) !important;
 }
 
-.cs-input-field.suffixed:focus {
+.WuiInput-field.suffixed:focus {
   padding-right: calc(var(--space-xs) + var(--input-height) - 1.6px) !important;
 }
 
-.cs-input-field.prefixed {
+.WuiInput-field.prefixed {
   padding-left: calc(var(--space-xs) + var(--input-height) - 1.3px) !important;
 }
 
-.cs-input-field.suffixed {
+.WuiInput-field.suffixed {
   padding-right: calc(var(--space-xs) + var(--input-height) - 1.3px) !important;
 }
 
 .input-prefix, .input-suffix {
+  -webkit-box-align: center;
+  align-items: center;
   border-radius: calc(var(--border-radius) - 1px);
+  cursor: default;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  justify-content: center;
   height: calc(100% - (1.3px * 2)) !important;
   width: calc(var(--input-height) - (2.3px * 2));
   position: absolute;
+  text-decoration: none;
+}
+
+.input-prefix > *, .input-suffix > * {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .input-prefix {
