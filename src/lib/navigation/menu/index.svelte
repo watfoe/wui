@@ -42,11 +42,11 @@
 
 <Feedback id={$$restProps.id} on:open={handleOpen} transparent>
   <Col
-    class="cs-menu {$$restProps.class || ''}"
+    class="WuiMenu {$$restProps.class || ''}"
     style="--left:{position.left}px;--top:{position.top}px"
     on:click={handleClick}
   >
-    <div class="cs-menu-arrow" style="--arrow:{position.arrow}px;" />
+    <div class="WuiMenu-arrow" style="--arrow:{position.arrow}px;" />
     <slot />
   </Col>
 </Feedback>

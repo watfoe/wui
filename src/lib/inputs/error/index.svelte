@@ -2,10 +2,10 @@
   export let error: string;
 </script>
 
-<span {...$$restProps}>{error}</span>
+<span class="WuiInputError" {...$$restProps}>{error}</span>
 
 <style>
-  span {
+  .WuiInputError {
     background-color: var(--color-surface);
     color: var(--color-status-error) !important;
     font-size: 11px;

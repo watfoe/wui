@@ -1,8 +1,9 @@
 <script lang="ts">
   import './style.css';
   import { Col } from "$lib/layout";
+	import type { HTMLLabelAttributes } from 'svelte/elements';
 
-  interface $$Props {
+  interface $$Props extends HTMLLabelAttributes {
     focused: boolean;
     errored: boolean;
     description?: string;
@@ -13,12 +14,15 @@
   export let description: $$Props['description'] = undefined;
 </script>
 
-<Col justify="flex-start" align="flex-start" class="label-cont">
-  <label class="label {focused ? 'focused' : ''} {errored ? 'errored' : ''}">
+<Col justify="flex-start" align="flex-start" class="WuiLabel-root">
+  <label
+    {...$$restProps}
+    class="WuiLabel WuiLabel-{focused ? 'focused' : ''} WuiLabel-{errored ? 'errored' : ''}"
+  >
     <slot />
   </label>
 
   {#if description}
-    <span class="description">{description}</span>
+    <span class="WuiLabel-desc">{description}</span>
   {/if}
 </Col>

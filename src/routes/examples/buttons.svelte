@@ -63,4 +63,28 @@ import { Col, Row } from "$lib/layout";
     <Button variant="soft" color="danger" icon="person" />
     <Button variant="plain" color="danger" icon="person" />
   </Row>
+
+  <Row justify="center" gap="13">
+    <Button variant="solid" class="button" disabled>Disabled Solid</Button>
+    <Button variant="outline" class="button" disabled>Disabled Outline</Button>
+    <Button variant="soft" class="button" disabled>Disabled Soft</Button>
+    <Button variant="plain" class="button" disabled>Disabled Plain</Button>
+
+    <Button variant="solid" icon="person" disabled />
+    <Button variant="outline" icon="person" disabled />
+    <Button variant="soft" icon="person" disabled />
+    <Button variant="plain" icon="person" disabled />
+  </Row>
+
+  <Row justify="center" gap="13">
+    <Button variant="solid" class="button" loading>Danger Solid</Button>
+    <Button variant="outline" class="button" loading>Danger Outline</Button>
+    <Button variant="soft" class="button" loading>Danger Soft</Button>
+    <Button variant="plain" class="button" loading>Danger Plain</Button>
+
+    <Button variant="solid" icon="person" loading />
+    <Button variant="outline" icon="person" loading />
+    <Button variant="soft" icon="person" loading />
+    <Button variant="plain" icon="person" loading />
+  </Row>
 </Col>

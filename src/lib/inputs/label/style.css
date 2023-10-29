@@ -1,10 +1,11 @@
-.label-cont {
+.WuiLabel-root {
   width: 100% !important;
 }
 
-.label {
+.WuiLabel {
   color: var(--color-on-surface-variant);
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 13px;
   margin: 0 0 1px var(--space-nm);
   max-width: calc(100% - (2*var(--space-nm)));
@@ -12,17 +13,17 @@
   z-index: 10;
 }
 
-.label.focused {
+.WuiLabel-focused {
   color: var(--color-primary);
 }
 
-.label.errored {
+.WuiLabel-errored {
   color: var(--color-status-error) !important;
 }
 
-.label-cont .description {
+.WuiLabel-desc {
   color: var(--color-on-surface-variant);
-  font-size: 10px;
+  font-size: 11px;
   margin: 0 0 1px var(--space-nm);
   max-width: calc(100% - (2*var(--space-nm)));
   overflow: hidden;

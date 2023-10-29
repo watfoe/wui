@@ -1,15 +1,15 @@
-.cs-menu {
+.WuiMenu {
   border: 1px solid var(--color-outline);
   min-width: 200px;
   min-height: 50px;
   width: 260px;
-  padding: var(--space-nm);
+  padding: var(--space-sm) 0;
   position: absolute;
   top: var(--top);
   left: var(--left);
 }
 
-.cs-menu .cs-menu-arrow {
+.WuiMenu .WuiMenu-arrow {
   position: absolute;
   top: -8px;
   left: var(--arrow);
@@ -21,7 +21,7 @@
   border-bottom: 8px solid var(--color-outline);
 }
 
-.cs-menu .cs-menu-arrow::after {
+.WuiMenu .WuiMenu-arrow::after {
   content: '';
   position: absolute;
   top: 1.5px;
@@ -33,37 +33,15 @@
   border-bottom: 8px solid var(--color-surface);
 }
 
-.cs-menu-item {
-  border-radius: var(--border-radius);
-  min-height: 32px;
-  padding: var(--space-xxs) 0;
-  width: 100%;
+.WuiMenuItem {
+  border-radius: 0 !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.cs-menu-item + .cs-menu-item {
-  margin-top: var(--space-sm);
-}
-
-.cs-menu-item .cs-menu-item-avatar {
+.WuiMenuItem .WuiMenuItem-avatar {
   margin: 0 var(--space-sm) 0 0;
-}
-
-.cs-menu-item .cs-menu-item-icon {
-  color: var(--color-on-surface-variant);
-  width: 30px;
-  margin-right: var(--space-sm);
-  text-align: center;
-}
-
-.cs-menu-item .cs-menu-item:hover {
-  background-color: var(--color-hover);
-  color: var(--color-on-surface);
-  cursor: pointer;
-}
-
-.cs-menu-item .cs-menu-item:hover .--icon {
-  color: var(--color-on-surface);
 }

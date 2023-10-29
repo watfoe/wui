@@ -1,19 +1,9 @@
 <script context="module" lang="ts">
-  import type {
-    ButtonProps, IconButtonProps, NoneButtonProps, PrimaryButtonProps,
-    SecondaryButtonProps, TextButtonProps
-  } from "../button/index.svelte";
+  import type {ButtonProps} from "../button/index.svelte";
 
-  interface _AnchorProps {
+  interface AnchorProps extends ButtonProps {
     for?: string;
   }
-
-  export interface NoneAnchorProps extends NoneButtonProps, _AnchorProps {}
-  export interface PrimaryAnchorProps extends PrimaryButtonProps, _AnchorProps {}
-  export interface SecondaryAnchorProps extends SecondaryButtonProps, _AnchorProps {}
-  export interface IconAnchorProps extends IconButtonProps , _AnchorProps {}
-  export interface TextAnchorProps extends TextButtonProps , _AnchorProps {}
-  export type AnchorProps = ButtonProps & _AnchorProps;
 </script>
 
 <script lang="ts">
@@ -29,7 +19,15 @@
 
   onMount(() => {
     if (_for) {
-      feedback = document.getElementById(_for) as HTMLDialogElement;
+      const _feedback = document.getElementById(_for);
+
+      if (_feedback instanceof HTMLDialogElement) {
+        feedback = _feedback;
+      } else {
+        throw new Error(`Anchor button "for" attribute must be a valid dialog id`);
+      }
+    } else {
+      throw new Error('Anchor button must have a "for" attribute');
     }
   });
 

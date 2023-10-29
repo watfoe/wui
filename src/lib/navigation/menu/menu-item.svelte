@@ -1,23 +1,20 @@
 <script lang="ts">
   import './style.css';
-  import { Icon, type AvatarProps } from '$lib/display';
-  import { Row } from '$lib/layout';
+	import { Button, type ButtonProps } from '$lib/buttons';
 
-  interface $$Props {
-    avatar?: AvatarProps;
-    icon?: string;
+  interface $$Props extends ButtonProps {
+    // avatar?: AvatarProps;
+    selected?: boolean;
   }
 
-  export let icon: $$Props['icon'] = undefined
+  export let selected: boolean = false;
 </script>
 
 
-<Row align="center" justify="flex-start" class="cs-menu-item">
-  {#if $$slots.avatar}
-    <slot name="avatar"></slot>
-  {:else if icon}
-      <Icon class="cs-menu-item-icon">{name}</Icon>
-  {/if}
-
+<Button
+  variant={selected ? 'soft' : 'plain'}
+  color={selected ? 'primary' : 'neutral'}
+  class="WuiMenuItem"
+  {...$$restProps}>
   <slot />
-</Row>
+</Button>

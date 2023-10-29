@@ -31,6 +31,7 @@
   import PinInput from '../pin/index.svelte';
   import SearchInput from '../search/index.svelte';
 	import type { ValidationError } from '$lib/domains/_/phone';
+	import { onMount } from 'svelte';
 
   type $$Props = InputProps;
 
@@ -41,8 +42,15 @@
   export let label: $$Props['label'] = undefined;
   // export let hidden: $$Props['hidden'] = false;
   export let type: $$Props['type'] = 'text';
+  export let id: $$Props['id'] = undefined;
 
   let error: string = '';
+
+  onMount(() => {
+    if (!id) {
+      id = Math.random().toString(36).substring(2, 15);
+    }
+  });
 
   function validate(e: CustomEvent) {
     const detail = e.detail;
@@ -72,26 +80,26 @@
 
 <Col role="textbox" aria-label={label || type} align="flex-start" justify="flex-start" class="cs-input {$$restProps.class}">
   {#if label}
-    <Label focused={focused} errored={errored} description={description}>{label}</Label>
+    <Label for={id} focused={focused} errored={errored} description={description}>{label}</Label>
   {/if}
 
   <Col align="flex-start" justify="flex-start" class="cs-input-body">
     {#if type === 'date'}
-      <DateInput {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <DateInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
     {:else if type === 'email'}
-      <EmailInput {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur} on:* />
+      <EmailInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} on:* />
     {:else if type === 'name'}
-      <BaseInput {...$$restProps} autocomplete="name" autocapitalize="words" on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <BaseInput {...$$restProps} id={id} autocomplete="name" autocapitalize="words" on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
     {:else if type === 'password'}
-      <PasswordInput secure {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <PasswordInput secure {...$$restProps} id={id}  on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
     {:else if type === 'phone'}
-      <PhoneInput {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <PhoneInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
     {:else if type === 'pin'}
-      <PinInput {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <PinInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
     {:else if type === 'search'}
-      <SearchInput {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <SearchInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
     {:else}
-      <BaseInput {...$$restProps} on:validate={validate} on:focus={focus} on:blur={blur} on:* />
+      <BaseInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} on:* />
     {/if}
 
     {#if errored}
