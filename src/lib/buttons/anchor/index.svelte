@@ -40,5 +40,7 @@
 </script>
 
 <Button {...$$restProps} on:click={click} on:*>
-  <slot />
+  {#if $$slots.default}
+    <slot />
+  {/if}
 </Button>

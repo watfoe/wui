@@ -1,5 +1,5 @@
 <script>
-	import { Anchor } from "$lib/buttons";
+	import { Anchor, Button } from "$lib/buttons";
 	import { Col } from "$lib/layout";
 	import { Menu } from "$lib/navigation";
 	import MenuItem from "$lib/navigation/menu/menu-item.svelte";
@@ -7,6 +7,7 @@
 
 <Col>
 	<Anchor for="feedback" icon="home" class="button">Something better</Anchor>
+	<Button icon="home"></Button>
 	<Menu id="feedback">
 		<MenuItem icon="home">Home</MenuItem>
 		<MenuItem icon="apps" selected>Dashboard</MenuItem>

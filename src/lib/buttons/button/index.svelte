@@ -38,9 +38,8 @@
     {#if $$slots.icon}
       <slot name="icon" />
     {:else if icon}
-      <Icon size="sm">{icon}</Icon>
+      <Icon size={size}>{icon}</Icon>
     {/if}
-
     <slot />
   {/if}
 </button>
