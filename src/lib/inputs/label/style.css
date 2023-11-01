@@ -4,8 +4,8 @@
 
 .WuiLabel {
   color: var(--color-on-surface-variant);
-  font-size: 12px;
-  line-height: 13px;
+  font-size: 0.75rem;
+  line-height: 0.8125rem;
   margin: 0 0 1px var(--space-md);
   max-width: calc(100% - (2*var(--space-md)));
   overflow: hidden;
@@ -22,7 +22,7 @@
 
 .WuiLabel-desc {
   color: var(--color-on-surface-variant);
-  font-size: 11px;
+  font-size: 0.6875rem;
   margin: 0 0 1px var(--space-md);
   max-width: calc(100% - (2*var(--space-md)));
   overflow: hidden;

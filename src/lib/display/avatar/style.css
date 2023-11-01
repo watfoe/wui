@@ -32,19 +32,20 @@
 }
 
 .WuiAvatar-alt {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .WuiAvatar-sm {
   --WuiAvatar-size: var(--button-height-sm);
-  font-size: 11px;
+  font-size: 0.75rem;
 }
 .WuiAvatar-md {
   --WuiAvatar-size: var(--button-height-md);
+  font-size: 0.875rem;
 }
 .WuiAvatar-lg {
   --WuiAvatar-size: var(--button-height-lg);
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .WuiAvatar-img {

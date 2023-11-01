@@ -41,7 +41,7 @@
 }
 
 .WuiInput-errored {
-  --input-border-color: var(--color-status-error);
+  --input-border-color: var(--color-status-error) !important;
 }
 
 .WuiInput-prefixed {

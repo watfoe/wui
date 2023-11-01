@@ -5,7 +5,7 @@
 
 </script>
 
-<Col>
+<Col gap="lg">
   <Row gap="lg" justify="center">
     <Badge position="top-left">
       <Icon>mail</Icon>
@@ -19,6 +19,22 @@
       <Icon>mail</Icon>
     </Badge>
 
+    <Badge color="warning" position="bottom-right">
+      <Icon slot="content" size="sm">settings</Icon>
+      <Icon>mail</Icon>
+    </Badge>
+
+    <Badge color="warning">
+      <Icon slot="content" size="sm">settings</Icon>
+      <Icon>mail</Icon>
+    </Badge>
+
+    <Badge content="200" max={99} color="danger">
+      <Icon>mail</Icon>
+    </Badge>
+  </Row>
+
+  <Row gap="lg" justify="center">
     <Tooltip title="Please click me" position="top">
       <Button class="button">Continue</Button>
     </Tooltip>
@@ -33,9 +49,5 @@
         <Icon>mail</Icon>
       </Badge>
     </Tooltip>
-
-    <Badge content="200" max={99} color="danger">
-      <Icon>mail</Icon>
-    </Badge>
   </Row>
 </Col>

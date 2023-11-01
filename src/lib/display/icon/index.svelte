@@ -50,12 +50,12 @@
   }
 
   .WuiIcon-sm {
-    --WuiIcon-size: 18px;
+    --WuiIcon-size: 1.125rem;
   }
   .WuiIcon-md {
-    --WuiIcon-size: 20px;
+    --WuiIcon-size: 1.25rem;
   }
   .WuiIcon-lg {
-    --WuiIcon-size: 24px;
+    --WuiIcon-size: 1.5rem;
   }
 </style>

@@ -8,7 +8,7 @@
   .WuiInputError {
     background-color: var(--color-surface);
     color: var(--color-status-error) !important;
-    font-size: 11px;
+    font-size: 0.6875rem;
     padding: 0 var(--space-xs);
     position: absolute;
     left: calc(var(--space-md) - var(--space-xs));

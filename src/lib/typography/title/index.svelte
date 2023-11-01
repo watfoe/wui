@@ -1,1 +1,1 @@
-<h6 class="cs-title {$$restProps.class}"><slot /></h6>
+<h6 class="WuiTitle {$$restProps.class}"><slot /></h6>

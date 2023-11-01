@@ -4,6 +4,8 @@
   --WuiBadge-height: 1rem;
   --WuiBadge-paddingX: var(--space-xs);
   --WuiBadge-radius: 1rem;
+  --WuiBadge-translateX: 50%;
+  --WuiBadge-translateY: -50%;
 }
 
 .WuiBadge-no-content {
@@ -16,9 +18,10 @@
   align-items: center;
   border-radius: var(--WuiBadge-radius);
   box-sizing: border-box;
-  box-shadow: 2px;
+  box-shadow: 0 0 0 2px;
   display: inline-flex;
   flex-wrap: wrap;
+  font-size: 0.75rem;
   -webkit-box-pack: center;
   place-content: center;
   -webkit-box-align: center;
@@ -27,22 +30,35 @@
   min-height: var(--WuiBadge-height);
   line-height: 1.2;
   min-width: var(--WuiBadge-height);
-  z-index: 1000;
+  -webkit-transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  -moz-transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  -ms-transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  transform-origin: 100% 0%;
+  z-index: 10000;
 }
 
 .WuiBadge-top-left .WuiBadge-content {
-  bottom: calc(100% - calc(var(--WuiBadge-height)) / 2);
-  right: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+  top: 0;
+  left: 0;
+  --WuiBadge-translateX: -50%;
+  --WuiBadge-translateY: -50%;
 }
 .WuiBadge-top-right .WuiBadge-content {
-  bottom: calc(100% - calc(var(--WuiBadge-height)) / 2);
-  left: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+  top: 0;
+  right: 0;
+  --WuiBadge-translateX: 50%;
+  --WuiBadge-translateY: -50%;
 }
 .WuiBadge-bottom-left .WuiBadge-content {
-  top: calc(100% - calc(var(--WuiBadge-height)) / 2);
-  right: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+  bottom: 0;
+  left: 0;
+  --WuiBadge-translateX: -50%;
+  --WuiBadge-translateY: 50%;
 }
 .WuiBadge-bottom-right .WuiBadge-content {
-  top: calc(100% - calc(var(--WuiBadge-height)) / 2);
-  left: calc(100% - calc(var(--WuiBadge-height) * 0.5));
+  bottom: 0;
+  right: 0;
+  --WuiBadge-translateX: 50%;
+  --WuiBadge-translateY: 50%;
 }
