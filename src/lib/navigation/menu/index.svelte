@@ -43,10 +43,10 @@
 <Feedback id={$$restProps.id} on:open={handleOpen} transparent>
   <Col
     class="WuiMenu {$$restProps.class || ''}"
-    style="--left:{position.left}px;--top:{position.top}px"
+    style="--WuiMenu-posX:{position.left}px;--WuiMenu-posY:{position.top}px"
     on:click={handleClick}
   >
-    <div class="WuiMenu-arrow" style="--arrow:{position.arrow}px;" />
+    <div class="WuiMenu-arrow" style="--WuiMenu-arrow-posX:{position.arrow}px;" />
     <slot />
   </Col>
 </Feedback>

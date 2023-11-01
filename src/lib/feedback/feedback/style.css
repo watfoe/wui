@@ -1,5 +1,4 @@
-.cs-feedback {
-  background-color: var(--bg);
+.WuiFeedback {
   border: 0;
   max-width: 100vw !important;
   max-height: 100vh !important;
@@ -10,14 +9,20 @@
   padding: var(--space-xs);
   z-index: 10000;
 }
+.WuiFeedback-transparent-true {
+  background-color: transparent;
+}
+.WuiFeedback-transparent-false {
+  background-color: var(--color-scrim);
+}
 
-.cs-feedback > * {
+.WuiFeedback > * {
   background-color: var(--color-surface);
   border-radius: var(--border-radius);
   max-width: 60vw !important;
 }
 
-.cs-feedback::backdrop {
+.WuiFeedback::backdrop {
   background-color: transparent;
 }
 

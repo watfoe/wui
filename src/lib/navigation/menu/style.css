@@ -3,16 +3,16 @@
   min-width: 200px;
   min-height: 50px;
   width: 260px;
-  padding: var(--space-sm) 0;
+  padding: var(--space-nm) 0;
   position: absolute;
-  top: var(--top);
-  left: var(--left);
+  top: var(--WuiMenu-posY);
+  left: var(--WuiMenu-posX);
 }
 
 .WuiMenu .WuiMenu-arrow {
   position: absolute;
   top: -8px;
-  left: var(--arrow);
+  left: var(--WuiMenu-arrow-posX);
   transform: translateX(-50%);
   width: 0;
   height: 0;
@@ -21,7 +21,7 @@
   border-bottom: 8px solid var(--color-outline);
 }
 
-.WuiMenu .WuiMenu-arrow::after {
+.WuiMenu-arrow::after {
   content: '';
   position: absolute;
   top: 1.5px;
@@ -43,5 +43,5 @@
 }
 
 .WuiMenuItem .WuiMenuItem-avatar {
-  margin: 0 var(--space-sm) 0 0;
+  margin: 0 var(--space-nm) 0 0;
 }

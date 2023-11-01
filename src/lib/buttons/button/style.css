@@ -7,17 +7,17 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  font-weight: 500;
-  gap: var(--WuiButton-flex-gap, var(--space-sm));
+  gap: var(--WuiButton-flex-gap, var(--space-nm));
   height: var(--WuiButton-height, var(--button-height));
   line-height: var(--WuiButton-height, var(--button-height));
   -webkit-box-pack: center;
   justify-content: center;
   outline: none;
-  padding: 0 var(--WuiButton-paddingX, var(--space-nm));
+  padding: 0 var(--WuiButton-paddingX, var(--space-md));
   position: relative;
   text-decoration: none;
   white-space: nowrap;
+  text-overflow: ellipsis;
   width: var(--WuiButton-width, auto);
 }
 .WuiButton:disabled {
@@ -25,17 +25,33 @@
   cursor: default;
 }
 
+.WuiButton-gap-sm {
+  --WuiButton-flex-gap: var(--space-sm);
+}
+.WuiButton-gap-nm {
+  --WuiButton-flex-gap: var(--space-md);
+}
+.WuiButton-gap-md {
+  --WuiButton-flex-gap: var(--space-md);
+}
+.WuiButton-gap-lg {
+  --WuiButton-flex-gap: var(--space-lg);
+}
+
 .WuiButton-sm {
   --WuiButton-height: var(--button-height-sm);
-  --WuiButton-paddingX: var(--space-sm);
+  --WuiButton-paddingX: var(--space-nm);
+  --WuiButton-flex-gap: var(--space-sm);
 }
 .WuiButton-md {
   --WuiButton-height: var(--button-height-md);
-  --WuiButton-paddingX: var(--space-nm);
+  --WuiButton-paddingX: var(--space-md);
+  --WuiButton-flex-gap: var(--space-nm);
 }
 .WuiButton-lg {
   --WuiButton-height: var(--button-height-lg);
-  --WuiButton-paddingX: var(--space-md);
+  --WuiButton-paddingX: var(--space-lg);
+  --WuiButton-flex-gap: var(--space-md);
 }
 
 .WuiButton-primary {

@@ -2,7 +2,7 @@
   import type { HTMLInputAttributes } from 'svelte/elements';
   import type { BaseProps } from '../_common_';
 
-  export type BaseInputProps = BaseProps<Omit<HTMLInputAttributes, 'prefix'>>;
+  export type BaseInputProps = BaseProps<Omit<HTMLInputAttributes, 'prefix' | 'size'>>;
 </script>
 
 <script lang="ts">
@@ -22,10 +22,9 @@
   export let masks: $$Props['masks'] = undefined;
   export let prefix: $$Props['prefix'] = undefined;
   export let suffix: $$Props['suffix'] = undefined;
+  export let size: $$Props['size'] = 'md';
   export let validateon: $$Props['validateon'] = 'blur';
-  // Capture the required prop so that we can add it to the rules
   export let required: $$Props['required'] = false;
-
 
   export const clearError = () => {
     error = null;
@@ -72,18 +71,20 @@
 
 <Row class="WuiInput-field-cont">
   {#if $$slots.prefix}
-    <div class="input-prefix">
+    <div class="WuiInput-prefix">
       <slot name="prefix" />
     </div>
   {:else if prefix}
-    <Icon class="input-prefix">{prefix}</Icon>
+    <div class="WuiInput-prefix">
+      <Icon>{prefix}</Icon>
+    </div>
   {/if}
 
   <input
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    class="WuiInput-field {error ? 'errored' : ''} {prefix ? 'prefixed' : ''} {suffix ? 'suffixed' : ''}"
+    class="WuiInput WuiInput-{size} {error ? 'WuiInput-errored' : ''} {prefix ? 'WuiInput-prefixed' : ''} {suffix ? 'WuiInput-suffixed' : ''}"
     on:input={change}
     on:blur={blur}
     bind:value={value}
@@ -91,10 +92,10 @@
   />
 
   {#if $$slots.suffix}
-    <div class="input-suffix">
+    <div class="WuiInput-suffix">
       <slot name="suffix" />
     </div>
   {:else if suffix}
-    <Icon class="input-suffix">{suffix}</Icon>
+    <Icon class="WuiInput-suffix">{suffix}</Icon>
   {/if}
 </Row>

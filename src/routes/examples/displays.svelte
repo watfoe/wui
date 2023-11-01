@@ -6,7 +6,7 @@
 </script>
 
 <Col>
-  <Row gap="40" justify="center">
+  <Row gap="lg" justify="center">
     <Badge position="top-left">
       <Icon>mail</Icon>
     </Badge>

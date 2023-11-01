@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
   import type { BaseInputProps } from '../base/index.svelte';
-  export type InputProps = BaseInputProps & {
+  export type InputProps = Omit<BaseInputProps, 'id'> & {
     label?: string;
     name?: string;
     description?: string;
@@ -40,16 +40,15 @@
 
   export let description: $$Props['description'] = undefined;
   export let label: $$Props['label'] = undefined;
-  // export let hidden: $$Props['hidden'] = false;
+  export let hidden: $$Props['hidden'] = undefined;
   export let type: $$Props['type'] = 'text';
-  export let id: $$Props['id'] = undefined;
+
+  let id: string | undefined = undefined;
 
   let error: string = '';
 
   onMount(() => {
-    if (!id) {
-      id = Math.random().toString(36).substring(2, 15);
-    }
+    id = Math.random().toString(36).substring(2, 15);
   });
 
   function validate(e: CustomEvent) {
@@ -78,31 +77,31 @@
   }
 </script>
 
-<Col role="textbox" aria-label={label || type} align="flex-start" justify="flex-start" class="cs-input {$$restProps.class}">
-  {#if label}
+<Col role="textbox" aria-label={label || type} align="flex-start" justify="flex-start" class="WuiInput-root {$$restProps.class}">
+  {#if label && !hidden}
     <Label for={id} focused={focused} errored={errored} description={description}>{label}</Label>
   {/if}
 
-  <Col align="flex-start" justify="flex-start" class="cs-input-body">
+  <Col align="flex-start" justify="flex-start" class="WuiInput-root-body">
     {#if type === 'date'}
-      <DateInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <DateInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else if type === 'email'}
-      <EmailInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} on:* />
+      <EmailInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else if type === 'name'}
-      <BaseInput {...$$restProps} id={id} autocomplete="name" autocapitalize="words" on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <BaseInput {...$$restProps} id={id} autocomplete="name" autocapitalize="words" on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else if type === 'password'}
-      <PasswordInput secure {...$$restProps} id={id}  on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <PasswordInput secure {...$$restProps} id={id}  on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else if type === 'phone'}
-      <PhoneInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <PhoneInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else if type === 'pin'}
-      <PinInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <PinInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else if type === 'search'}
-      <SearchInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur}  on:* />
+      <SearchInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {:else}
-      <BaseInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} on:* />
+      <BaseInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
     {/if}
 
-    {#if errored}
+    {#if errored && !hidden}
       <ErrorText error={error} />
     {/if}
   </Col>

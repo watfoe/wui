@@ -1,9 +1,23 @@
 .WuiFlex {
   display: flex !important;
-  flex-direction: var(--direction, row);
-  justify-content: var(--justify, flex-start);
-  align-items: var(--align, center);
-  flex-wrap: var(--wrap, nowrap);
+  flex-direction: var(--WuiFlex-direction, row);
+  justify-content: var(--WuiFlex-justify, flex-start);
+  align-items: var(--WuiFlex-align, center);
+  flex-wrap: var(--WuiFlex-wrap, nowrap);
   width: 100%;
-  gap: var(--gap);
+}
+.WuiFlex-gap-xs {
+  gap: var(--space-xs);
+}
+.WuiFlex-gap-sm {
+  gap: var(--space-sm);
+}
+.WuiFlex-gap-nm {
+  gap: var(--space-nm);
+}
+.WuiFlex-gap-md {
+  gap: var(--space-md);
+}
+.WuiFlex-gap-lg {
+  gap: var(--space-lg);
 }

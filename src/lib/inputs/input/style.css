@@ -1,10 +1,12 @@
-.cs-input {
+.WuiInput-root {
+  border-radius: var(--border-radius);
   width: 100%;
   /* This is to cater for the error text */
   padding-bottom: 4px;
 }
 
-.cs-input-body {
-  width: 100% !important;
+.WuiInput-root-body {
+  border-radius: inherit;
+  width: 100%;
   position: relative;
 }

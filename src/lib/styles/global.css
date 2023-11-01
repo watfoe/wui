@@ -101,18 +101,19 @@
   --color-status-on-error: #fff;
   --color-status-error-container: #fbe9e7;
 
-  --space-xxs: 3px;
-  --space-xs: 05px;
-  --space-sm: 08px;
-  --space-nm: 13px;
-  --space-md: 21px;
-  --space-lg: 34px;
+  --space-xs: 03px;
+  --space-sm: 05px;
+  --space-nm: 08px;
+  --space-md: 13px;
+  --space-lg: 21px;
 
   --button-height-sm: 34px;
-  --button-height-md: 38px;
-  --button-height-lg: 42px;
+  --button-height-md: 40px;
+  --button-height-lg: 48px;
 
-  --input-height: 38px;
+  --input-height-sm: 34px;
+  --input-height-md: 40px;
+  --input-height-lg: 48px;
 
   --border-radius: 4px;
 

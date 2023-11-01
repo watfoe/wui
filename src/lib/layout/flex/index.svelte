@@ -6,7 +6,7 @@
     justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
     align?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
     wrap?: 'wrap' | 'nowrap';
-    gap?: string;
+    gap?: 'xs' | 'sm' | 'nm' | 'md' | 'lg';
   }
 
   export interface FlexProps extends HTMLAttributes<HTMLDivElement>,  FlexKeys {}
@@ -26,14 +26,13 @@
 
 <div
   {...$$restProps}
-  class="WuiFlex {$$restProps.class || ''}"
+  class="WuiFlex {gap ? 'WuiFlex-gap-' + gap : ''} {$$restProps.class || ''}"
   style="
     {$$restProps.style || ''};
-    --direction:{direction};
-    --justify:{justify};
-    --align:{align};
-    --wrap:{wrap};
-    --gap:{gap || '0'}px;
+    --WuiFlex-direction:{direction};
+    --WuiFlex-justify:{justify};
+    --WuiFlex-align:{align};
+    --WuiFlex-wrap:{wrap};
   "
   on:*
 >

@@ -20,9 +20,8 @@
 
 <dialog
   {...$$restProps}
-  class="cs-feedback {$$restProps.class}"
+  class="WuiFeedback WuiFeedback-transparent-{transparent} {$$restProps.class}"
   on:open={open}
-  style="--bg:{transparent ? 'transparent' : 'var(--color-scrim)'}"
   on:*
 >
   <slot />

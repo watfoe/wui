@@ -27,7 +27,7 @@
   min-height: var(--WuiBadge-height);
   line-height: 1.2;
   min-width: var(--WuiBadge-height);
-  z-index: 10;
+  z-index: 1000;
 }
 
 .WuiBadge-top-left .WuiBadge-content {

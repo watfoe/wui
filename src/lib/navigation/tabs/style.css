@@ -1,7 +1,7 @@
 .WuiTabs {
   display: flex;
   flex-direction: row;
-  gap: var(--space-sm);
+  gap: var(--space-nm);
   margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
   width: auto;
 }

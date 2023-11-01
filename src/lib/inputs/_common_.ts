@@ -36,6 +36,7 @@ export type BaseProps<T> = T & {
   suffix?: string;
   masks?: InputMasks;
   rules?: InputRules;
+  size?: 'sm' | 'md' | 'lg';
   validateon?: 'change' | 'blur';
 };
 

@@ -6,7 +6,7 @@
     variant?: 'solid' | 'outline' | 'soft' | 'plain';
     color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
     size?: 'sm' | 'md' | 'lg';
-    gap?: string;
+    gap?: 'sm' | 'nm' | 'md' | 'lg';
     loading?: boolean;
   }
 </script>
@@ -16,7 +16,8 @@
   import {Icon} from '$lib/display';
 
   interface $$Props extends ButtonProps {}
-  export let gap: $$Props['gap'] = undefined;
+
+  export let gap: $$Props['gap'] = 'nm';
   export let size: $$Props['size'] = 'md';
   export let variant: $$Props['variant'] = 'solid';
   export let color: $$Props['color'] = 'primary';
@@ -27,8 +28,7 @@
 
 <button
   {...$$restProps}
-  class="WuiButton WuiButton-{variant} WuiButton-{size} WuiButton-{color} {!$$slots.default ? 'WuiButton-only-icon' : ''} {$$restProps.class || ''}"
-  style="{gap && `--WuiButton-flex-gap: ${gap}`}"
+  class="WuiButton WuiButton-{variant} WuiButton-{size} WuiButton-{color} WuiButton-gap-{gap} {!$$slots.default ? 'WuiButton-only-icon' : ''} {$$restProps.class || ''}"
   disabled="{loading || disabled}"
   on:*
 >
