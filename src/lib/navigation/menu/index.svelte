@@ -6,7 +6,6 @@
   let position = {
     top: 0,
     left: 0,
-    arrow: 0,
   };
 
   function handleClick(e: CustomEvent) {
@@ -24,18 +23,15 @@
 
     let left = anchorRect.left;
     let top = anchorRect.top;
-    let arrow = anchorRect.width / 2;
 
     // If the menu is too close to the right edge of the screen, move it to the left
     if (anchorRect.left + 260 > innerWidth) {
       left = anchorRect.left - 260 + anchorRect.width;
-      arrow = 260 - arrow;
     }
 
     position = {
-      top: top + anchorRect.height + 7,
+      top: top + anchorRect.height + 2,
       left,
-      arrow,
     };
   }
 </script>
@@ -46,7 +42,6 @@
     style="--WuiMenu-posX:{position.left}px;--WuiMenu-posY:{position.top}px"
     on:click={handleClick}
   >
-    <div class="WuiMenu-arrow" style="--WuiMenu-arrow-posX:{position.arrow}px;" />
     <slot />
   </Col>
 </Feedback>

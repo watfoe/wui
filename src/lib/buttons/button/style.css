@@ -116,6 +116,12 @@
 .WuiButton-plain:not(:disabled):hover {
   background-color: var(--WuiButton-bg-soft);
 }
+.WuiButton-none, .WuiButton-none:hover {
+  background-color: transparent;
+  color: var(--color-on-surface);
+  --WuiButton-height: auto !important;
+  --WuiButton-paddingX: 0 !important;
+}
 
 .WuiButton-only-icon {
   --WuiButton-border-radius: 50%;

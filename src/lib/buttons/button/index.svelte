@@ -3,7 +3,7 @@
 
   export interface ButtonProps extends HTMLButtonAttributes {
     icon?: string;
-    variant?: 'solid' | 'outline' | 'soft' | 'plain';
+    variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
     color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
     size?: 'sm' | 'md' | 'lg';
     gap?: 'sm' | 'nm' | 'md' | 'lg';
