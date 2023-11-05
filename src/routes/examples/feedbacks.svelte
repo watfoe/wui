@@ -5,7 +5,7 @@
 	import MenuItem from "$lib/navigation/menu/menu-item.svelte";
 </script>
 
-<Col>
+<Col gap="md">
 	<Anchor for="feedback" icon="home" class="button">Something better</Anchor>
 	<Button icon="home"></Button>
 	<Menu id="feedback">

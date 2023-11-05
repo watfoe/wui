@@ -14,9 +14,12 @@
 </script>
 
 <BaseInput
-  autocomplete="password"
   {...$$restProps}
+  autocomplete="password"
   type={secure ? 'password' : 'text'}
+  autocapitalize="off"
+  autocorrect="off"
+  spellcheck="false"
   suffix="visibility"
   on:*
 >

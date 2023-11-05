@@ -15,6 +15,6 @@
   })
 </script>
 
-<div id={id} class="WuiTabPanels {$$restProps.class}" style="{$$restProps.style}">
+<div id={id} class="WuiTabPanels {$$restProps.class || ''}" style="{$$restProps.style}">
   <slot />
 </div>

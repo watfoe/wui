@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: row;
   gap: var(--space-nm);
-  margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
   width: auto;
 }
 
 .WuiTabPanels {
   display: contents;
+  margin-top: var(--WuiTab-marginBottom, var(--space-md));
 }
 
-.WuiTabPanels > *:not(.active) {
+.WuiTabPanels > *:not([tabindex="0"]) {
   display: none !important;
 }

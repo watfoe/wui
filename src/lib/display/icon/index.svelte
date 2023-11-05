@@ -17,7 +17,7 @@
 
 <span
   role="img"
-  aria-label="icon"
+  aria-label="Icon"
   class="material-symbols-rounded WuiIcon WuiIcon-{size} WuiIcon-{color} {$$restProps.class || ''}"
   on:*>
   <slot />

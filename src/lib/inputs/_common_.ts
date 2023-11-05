@@ -69,6 +69,7 @@ export function mask(_value: string, masks: InputMasks) {
 }
 
 export function validate(_value: string, rules: InputRules) {
+  console.log('validate', _value, rules);
   if (rules?.required && _value.length === 0) {
     throw new ValidationError(
       rules?.required && typeof rules.required === 'string' ?

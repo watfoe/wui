@@ -3,7 +3,7 @@
 }
 
 .WuiLabel {
-  color: var(--color-on-surface-variant);
+  color: var(--WuiLabel-color, --color-on-surface-variant);
   font-size: 0.75rem;
   line-height: 0.8125rem;
   margin: 0 0 1px var(--space-md);

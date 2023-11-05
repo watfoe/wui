@@ -193,3 +193,14 @@ a {color: inherit;text-decoration: none;}
   color: var(--variant-solidDisabledColor, var(--joy-palette-primary-solidDisabledColor, var(--joy-palette-neutral-400, #9FA6AD)));
   background-color: var(--variant-solidDisabledBg, var(--joy-palette-primary-solidDisabledBg, var(--joy-palette-neutral-100, #F0F4F8)));
 }
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

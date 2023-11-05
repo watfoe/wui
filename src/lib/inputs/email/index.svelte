@@ -13,6 +13,9 @@
   {...$$restProps}
   type="email"
   autocomplete="email"
+  autocapitalize="off"
+  autocorrect="off"
+  spellcheck="false"
   rules={{
     rule,
     ...$$restProps.rules,

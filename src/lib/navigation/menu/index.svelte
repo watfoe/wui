@@ -38,6 +38,8 @@
 
 <Feedback id={$$restProps.id} on:open={handleOpen} transparent>
   <Col
+    role="menu"
+    aria-label="Menu"
     class="WuiMenu {$$restProps.class || ''}"
     style="--WuiMenu-posX:{position.left}px;--WuiMenu-posY:{position.top}px"
     on:click={handleClick}

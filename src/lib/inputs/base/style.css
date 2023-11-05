@@ -2,60 +2,57 @@
   border-radius: inherit;
   width: 100% !important;
   position: relative;
-  --input-height: var(--input-height-md);
-  --input-color: var(--color-on-surface);
-  --input-border-color: var(--color-hairline);
-  --input-paddingX: calc(var(--space-md) - 0.8px);
-  --input-paddingY: var(--space-xs);
+  --WuiInput-height: var(--input-height-md);
+  --WuiInput-color: var(--color-on-surface);
+  --WuiInput-border-color: var(--color-hairline);
+  --WuiInput-paddingX: calc(var(--space-md) - 0.8px);
+  --WuiInput-paddingY: var(--space-xs);
 }
 
 .WuiInput {
-  border: 1.3px solid var(--input-border-color);
+  border: 1.3px solid var(--WuiInput-border-color);
   border-radius: inherit;
-  color: var(--input-color);
+  color: var(--WuiInput-color);
   width: 100%;
-  height: var(--input-height);
+  height: var(--WuiInput-height);
   margin: 0;
   outline: none;
-  padding: 0 var(--input-paddingY) 0 var(--input-paddingX);
+  padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
 }
-
-.WuiInput-sm {
-  --input-height: var(--input-height-sm);
-}
-.WuiInput-md {
-  --input-height: var(--input-height-md);
-}
-.WuiInput-lg {
-  --input-height: var(--input-height-lg);
-}
-
 .WuiInput::placeholder {
   color: var(--color-on-surface-variant);
 }
-
 .WuiInput:focus {
   border-width: 1.8px !important;
-  --input-border-color: var(--color-primary);
-  --input-paddingX: calc(var(--space-md) - 1.3px);
+  --WuiInput-border-color: var(--color-primary);
+  --WuiInput-paddingX: calc(var(--space-md) - 1.3px);
+}
+.WuiInput:invalid {
+  --WuiInput-border-color: var(--color-status-error) !important;
 }
 
-.WuiInput-errored {
-  --input-border-color: var(--color-status-error) !important;
+.WuiInput-sm {
+  --WuiInput-height: var(--input-height-sm);
+}
+.WuiInput-md {
+  --WuiInput-height: var(--input-height-md);
+}
+.WuiInput-lg {
+  --WuiInput-height: var(--input-height-lg);
 }
 
 .WuiInput-prefixed {
-  --input-paddingX: calc(var(--space-xs) + var(--input-height) - 1.3px);
+  --WuiInput-paddingX: calc(var(--space-xs) + var(--WuiInput-height) - 1.3px);
 }
 .WuiInput-prefixed:focus {
-  --input-paddingX: calc(var(--space-xs) + var(--input-height) - 1.6px);
+  --WuiInput-paddingX: calc(var(--space-xs) + var(--WuiInput-height) - 1.6px);
 }
 
 .WuiInput-suffixed {
-  --input-paddingY: calc(var(--space-xs) + var(--input-height) - 1.3px);
+  --WuiInput-paddingY: calc(var(--space-xs) + var(--WuiInput-height) - 1.3px);
 }
 .WuiInput-suffixed:focus {
-  --input-paddingY: calc(var(--space-xs) + var(--input-height) - 1.6px)
+  --WuiInput-paddingY: calc(var(--space-xs) + var(--WuiInput-height) - 1.6px)
 }
 
 .WuiInput-prefix, .WuiInput-suffix {
@@ -69,7 +66,7 @@
   -webkit-box-pack: center;
   justify-content: center;
   height: calc(100% - (1.3px * 2)) !important;
-  width: calc(var(--input-height) - (1.3px * 2));
+  width: calc(var(--WuiInput-height) - (1.3px * 2));
   position: absolute;
   text-decoration: none;
   overflow: hidden;

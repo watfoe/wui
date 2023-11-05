@@ -1,4 +1,4 @@
-<div></div>
+<div role="separator"></div>
 
 <style>
   div {

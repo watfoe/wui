@@ -15,6 +15,7 @@
   variant={selected ? 'soft' : 'plain'}
   color={selected ? 'primary' : 'neutral'}
   class="WuiMenuItem"
-  {...$$restProps}>
+  {...$$restProps}
+  role="menuitem">
   <slot />
 </Button>

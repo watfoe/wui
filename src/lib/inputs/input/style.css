@@ -1,8 +1,17 @@
 .WuiInput-root {
+  border: 0;
   border-radius: var(--border-radius);
   width: 100%;
   /* This is to cater for the error text */
   padding-bottom: 4px;
+}
+
+.WuiInput-root:invalid {
+  --WuiLabel-color: var(--color-status-error) !important;
+}
+
+.WuiInput-root:focus-within {
+  --WuiLabel-color: var(--color-primary);
 }
 
 .WuiInput-root-body {

@@ -36,7 +36,6 @@
   type $$Props = InputProps;
 
   let errored = false;
-  let focused = false;
 
   export let description: $$Props['description'] = undefined;
   export let label: $$Props['label'] = undefined;
@@ -44,7 +43,6 @@
   export let type: $$Props['type'] = 'text';
 
   let id: string | undefined = undefined;
-
   let error: string = '';
 
   onMount(() => {
@@ -67,42 +65,34 @@
     message = message.charAt(0).toUpperCase() + message.slice(1);
     return message;
   };
-
-  function focus() {
-    focused = true;
-  }
-
-  function blur() {
-    focused = false;
-  }
 </script>
 
-<Col role="textbox" aria-label={label || type} align="flex-start" justify="flex-start" class="WuiInput-root {$$restProps.class}">
+<fieldset class="WuiInput-root {$$restProps.class}" hidden={hidden}>
   {#if label && !hidden}
-    <Label for={id} focused={focused} errored={errored} description={description}>{label}</Label>
+    <Label for={id} description={description}>{label}</Label>
   {/if}
 
   <Col align="flex-start" justify="flex-start" class="WuiInput-root-body">
     {#if type === 'date'}
-      <DateInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <DateInput {...$$restProps} id={id} on:validate={validate} on:* />
     {:else if type === 'email'}
-      <EmailInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <EmailInput {...$$restProps} id={id} on:validate={validate} on:* />
     {:else if type === 'name'}
-      <BaseInput {...$$restProps} id={id} autocomplete="name" autocapitalize="words" on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <BaseInput {...$$restProps} id={id} autocomplete="name" autocapitalize="words" on:validate={validate} on:* />
     {:else if type === 'password'}
-      <PasswordInput secure {...$$restProps} id={id}  on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <PasswordInput secure {...$$restProps} id={id}  on:validate={validate} on:* />
     {:else if type === 'phone'}
-      <PhoneInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <PhoneInput {...$$restProps} id={id} on:validate={validate} on:* />
     {:else if type === 'pin'}
-      <PinInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <PinInput {...$$restProps} id={id} on:validate={validate} on:* />
     {:else if type === 'search'}
-      <SearchInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <SearchInput {...$$restProps} id={id} on:validate={validate} on:* />
     {:else}
-      <BaseInput {...$$restProps} id={id} on:validate={validate} on:focus={focus} on:blur={blur} hidden={hidden} on:* />
+      <BaseInput {...$$restProps} id={id} on:validate={validate} on:* />
     {/if}
 
-    {#if errored && !hidden}
+    {#if errored}
       <ErrorText error={error} />
     {/if}
   </Col>
-</Col>
+</fieldset>

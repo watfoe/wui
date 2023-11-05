@@ -1,6 +1,7 @@
 <script lang="ts">
   import './style.css';
 	import { onMount } from 'svelte';
+	import Tab from './tab.svelte';
 
   interface $$Props {
     for: string;
@@ -31,17 +32,26 @@
     }
 
     tabButtons.forEach((tabButton, index) => {
+      const tabId  = `${_for}-tab-${index}`;
+      const tabPanelId = `${_for}-tabpanel-${index}`;
+
+      tabButton.setAttribute('id', tabId);
+      tabButton.setAttribute('aria-controls', tabPanelId);
+
+      // Add aria role tab to each tabpanel
+      tabPanels[index]?.setAttribute('role', 'tabpanel');
+      tabPanels[index]?.setAttribute('id', tabPanelId);
+      tabPanels[index]?.setAttribute('tabindex', '-1');
+      tabPanels[index]?.setAttribute('aria-labelledby', tabId);
+
       if (index === activeIndex) {
         dispatchEvent(tabButton, true);
 
         if (tabPanels[index]) {
-          tabPanels[index].classList.add('active');
+          tabPanels[index].setAttribute('tabindex', '0');
           dispatchEvent(tabPanels[index], true);
         }
       }
-
-      // Add aria role tab to each tabpanel
-      tabPanels[index]?.setAttribute('role', 'tabpanel');
 
       tabButton.addEventListener('click', () => {
         if (index === activeIndex) {
@@ -51,14 +61,14 @@
         dispatchEvent(tabButtons[activeIndex], false);
 
         if (tabPanels[activeIndex]) {
-          tabPanels[activeIndex].classList.remove('active');
+          tabPanels[activeIndex].setAttribute('tabindex', '-1');
           dispatchEvent(tabPanels[activeIndex], false);
         }
 
         dispatchEvent(tabButton, true);
 
         if (tabPanels[index]) {
-          tabPanels[index].classList.add('active');
+          tabPanels[index].setAttribute('tabindex', '0');
           dispatchEvent(tabPanels[index], true);
         }
 
@@ -68,6 +78,6 @@
   });
 </script>
 
-<div bind:this={tabs} class="WuiTabs">
+<div bind:this={tabs} role="tablist" class="WuiTabs">
   <slot />
 </div>

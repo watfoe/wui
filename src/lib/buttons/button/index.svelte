@@ -12,7 +12,7 @@
 </script>
 
 <script lang="ts">
-  import './style.css';
+  import css from './style.module.css';
   import {Icon} from '$lib/display';
 
   interface $$Props extends ButtonProps {}
@@ -28,12 +28,20 @@
 
 <button
   {...$$restProps}
-  class="WuiButton WuiButton-{variant} WuiButton-{size} WuiButton-{color} WuiButton-gap-{gap} {!$$slots.default ? 'WuiButton-only-icon' : ''} {$$restProps.class || ''}"
+  class="
+    {css['WuiButton']}
+    {css[`WuiButton-${variant}`]}
+    {css[`WuiButton-${size}`]}
+    {css[`WuiButton-${color}`]}
+    {css[`WuiButton-gap-${gap}`]}
+    {!$$slots.default ? css['WuiButton-only-icon'] : ''}
+    {$$restProps.class || ''}
+  "
   disabled="{loading || disabled}"
   on:*
 >
   {#if loading}
-    <span class="WuiButton-loader" />
+    <span class="{css['WuiButton-loader']}" />
   {:else}
     {#if $$slots.icon}
       <slot name="icon" />

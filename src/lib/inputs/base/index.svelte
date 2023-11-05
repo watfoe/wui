@@ -11,6 +11,7 @@
 
   import { validate, mask, ValidationError } from '../_common_';
 	import { Icon } from '$lib/display';
+	import { onMount } from 'svelte';
 
   type $$Props = BaseInputProps;
 
@@ -24,17 +25,22 @@
   export let suffix: $$Props['suffix'] = undefined;
   export let size: $$Props['size'] = 'md';
   export let validateon: $$Props['validateon'] = 'blur';
-  export let required: $$Props['required'] = false;
+  export let required: $$Props['required'] = undefined;
+
+  onMount(() => {
+    if (required && !rules?.required) {
+      rules = rules || {};
+      rules.required = true;
+    }
+  });
 
   export const clearError = () => {
     error = null;
+    input?.setCustomValidity('');
   };
 
   function _validate(_value: string) {
     try {
-      if (required && !rules?.required) {
-        rules!.required = true;
-      }
       validate(_value, rules!);
       clearError();
       input.dispatchEvent(new CustomEvent('validate', {
@@ -42,6 +48,7 @@
       }));
     } catch (e) {
       error = e as ValidationError;
+      input?.setCustomValidity(error.message);
       input?.dispatchEvent(new CustomEvent('validate', {
         detail: { error }
       }));
@@ -84,7 +91,7 @@
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    class="WuiInput WuiInput-{size} {error ? 'WuiInput-errored' : ''} {prefix ? 'WuiInput-prefixed' : ''} {suffix ? 'WuiInput-suffixed' : ''}"
+    class="WuiInput WuiInput-{size} {prefix ? 'WuiInput-prefixed' : ''} {suffix ? 'WuiInput-suffixed' : ''}"
     on:input={change}
     on:blur={blur}
     bind:value={value}
