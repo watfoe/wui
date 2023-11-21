@@ -1,8 +1,8 @@
 .WuiFlex {
-  display: flex !important;
+  display: flex;
   flex-direction: var(--WuiFlex-direction, row);
   justify-content: var(--WuiFlex-justify, flex-start);
-  align-items: var(--WuiFlex-align, center);
+  align-items: var(--WuiFlex-align, flex-start);
   flex-wrap: var(--WuiFlex-wrap, nowrap);
   width: 100%;
 }

@@ -21,6 +21,7 @@
 <Col
   role="img"
   aria-label={alt || 'Avatar'}
+  align="center"
   justify="center"
   class="WuiAvatar WuiAvatar-{size} WuiAvatar-{variant} {$$restProps.class || ''}"
   {...$$restProps}

@@ -1,4 +1,4 @@
-.WuiInput-root {
+.WuiInput__root {
   border: 0;
   border-radius: var(--border-radius);
   width: 100%;
@@ -6,15 +6,15 @@
   padding-bottom: 4px;
 }
 
-.WuiInput-root:invalid {
+.WuiInput__root:invalid {
   --WuiLabel-color: var(--color-status-error) !important;
 }
 
-.WuiInput-root:focus-within {
+.WuiInput__root:focus-within {
   --WuiLabel-color: var(--color-primary);
 }
 
-.WuiInput-root-body {
+.WuiInput__root__body {
   border-radius: inherit;
   width: 100%;
   position: relative;

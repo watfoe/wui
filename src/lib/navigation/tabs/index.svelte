@@ -1,14 +1,14 @@
 <script lang="ts">
-  import './style.css';
 	import { onMount } from 'svelte';
-	import Tab from './tab.svelte';
 
   interface $$Props {
     for: string;
+    bottomrule?: 'true' | 'false';
   }
 
   let _for: $$Props['for'];
   export { _for as for };
+  export let bottomrule: $$Props['bottomrule'] = 'true';
 
   let tabs: HTMLDivElement;
   let activeIndex = 0;
@@ -78,6 +78,23 @@
   });
 </script>
 
-<div bind:this={tabs} role="tablist" class="WuiTabs">
+<div bind:this={tabs} role="tablist" class="WuiTabs {bottomrule === 'true' ? 'WuiTabs--bottom-ruled' : ''}">
   <slot />
 </div>
+
+<style>
+  .WuiTabs {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+    width: 100%;
+  }
+  .WuiTabs--bottom-ruled {
+    border-bottom: 1px solid var(--color-outline);
+    margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
+  }
+  .WuiTabs--bottom-ruled > :global(.WuiTab) {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+</style>

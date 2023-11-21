@@ -1,0 +1,33 @@
+.WuiModal {
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  min-width: var(--WuiMenu-minWidth);
+  min-height: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto !important;
+}
+
+.WuiModal__header {
+  border-bottom: 1px solid var(--color-outline);
+  flex-shrink: 0;
+  max-height: fit-content;
+  margin-bottom: var(--space-nm);
+  padding: var(--space-nm);
+  width: 100%;
+}
+
+.WuiModal__close-button {
+  border-radius: 50% !important;
+  flex-shrink: 0;
+  margin-left: auto;
+  user-select: none;
+}
+
+.WuiModal__body {
+  padding: var(--space-nm);
+  width: 100%;
+  overflow-y: auto;
+}

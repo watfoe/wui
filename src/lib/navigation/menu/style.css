@@ -1,9 +1,12 @@
 .WuiMenu {
+  --WuiMenu-minWidth: 200px;
+  --WuiMenu-posY: 0;
+  --WuiMenu-posX: 0;
   border: 1px solid var(--color-outline);
-  min-width: 200px;
+  min-width: var(--WuiMenu-minWidth);
   min-height: 50px;
-  width: 260px;
-  padding: var(--space-nm) 0;
+  width: auto !important;
+  padding: var(--space-xs) 0;
   position: absolute;
   top: var(--WuiMenu-posY);
   left: var(--WuiMenu-posX);

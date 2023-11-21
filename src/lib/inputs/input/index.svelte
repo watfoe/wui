@@ -67,12 +67,12 @@
   };
 </script>
 
-<fieldset class="WuiInput-root {$$restProps.class}" hidden={hidden}>
+<fieldset class="WuiInput__root {$$restProps.class}" hidden={hidden}>
   {#if label && !hidden}
     <Label for={id} description={description}>{label}</Label>
   {/if}
 
-  <Col align="flex-start" justify="flex-start" class="WuiInput-root-body">
+  <Col align="flex-start" justify="flex-start" class="WuiInput__root__body">
     {#if type === 'date'}
       <DateInput {...$$restProps} id={id} on:validate={validate} on:* />
     {:else if type === 'email'}

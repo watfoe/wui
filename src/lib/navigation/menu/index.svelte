@@ -1,11 +1,12 @@
 <script lang="ts">
   import './style.css';
-  import { Feedback } from '$lib/feedback';
+  import { Backdrop } from '$lib/feedback';
   import { Col } from '$lib/layout';
 
-  let position = {
+  let rect = {
     top: 0,
     left: 0,
+    width: 0,
   };
 
   function handleClick(e: CustomEvent) {
@@ -15,35 +16,31 @@
   function handleOpen(e: CustomEvent) {
     const { innerWidth } = window;
     const anchor = e.detail.anchor as HTMLElement;
-    let anchorRect = { width: 0, height: 0 } as DOMRect;
 
     if (anchor) {
-      anchorRect = anchor.getBoundingClientRect();
+      let {top, left, width, height} = anchor.getBoundingClientRect();
+
+      if (left + 260 > innerWidth) {
+        left = left - 260 + width;
+      }
+
+      rect = {
+        top: top + height + 2,
+        left,
+        width,
+      };
     }
-
-    let left = anchorRect.left;
-    let top = anchorRect.top;
-
-    // If the menu is too close to the right edge of the screen, move it to the left
-    if (anchorRect.left + 260 > innerWidth) {
-      left = anchorRect.left - 260 + anchorRect.width;
-    }
-
-    position = {
-      top: top + anchorRect.height + 2,
-      left,
-    };
   }
 </script>
 
-<Feedback id={$$restProps.id} on:open={handleOpen} transparent>
+<Backdrop id={$$restProps.id} on:open={handleOpen} transparent>
   <Col
     role="menu"
     aria-label="Menu"
     class="WuiMenu {$$restProps.class || ''}"
-    style="--WuiMenu-posX:{position.left}px;--WuiMenu-posY:{position.top}px"
+    style="--WuiMenu-posX:{rect.left}px;--WuiMenu-posY:{rect.top}px;--WuiMenu-minWidth:{rect.width}px"
     on:click={handleClick}
   >
     <slot />
   </Col>
-</Feedback>
+</Backdrop>

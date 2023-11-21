@@ -1,6 +1,6 @@
 <script lang="ts">
   import './style.css';
-	import { Button, type ButtonProps } from '$lib/buttons';
+	import { Button, type ButtonProps } from '$lib/button';
 
   interface $$Props extends ButtonProps {
     // avatar?: AvatarProps;

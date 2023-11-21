@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-  import { Anchor } from '$lib/buttons';
+  import { Anchor } from '$lib/button';
   import { Row } from '$lib/layout';
 
   import { validate, mask, ValidationError } from '../_common_';

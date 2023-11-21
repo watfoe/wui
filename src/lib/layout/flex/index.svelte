@@ -14,7 +14,6 @@
 
 <script lang="ts">
   import './style.css';
-
   interface $$Props extends FlexProps {};
 
   export let direction: $$Props['direction'] = 'row';

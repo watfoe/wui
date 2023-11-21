@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from '$lib/buttons';
+  import { Button } from '$lib/button';
 
   interface $$Props {
     active?: boolean;
@@ -21,7 +21,6 @@
   tabindex={active ? 0 : -1}
   variant={active ? 'soft' : 'plain'}
   color={active ? 'primary' : 'neutral'}
-  size="sm"
   icon={icon}
   class="WuiTab"
   on:select={select}

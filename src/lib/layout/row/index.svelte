@@ -8,6 +8,6 @@
   interface $$Props extends RowProps {};
 </script>
 
-<Flex direction="row" {...$$restProps} on:*>
+<Flex align="center" {...$$restProps} direction="row" on:*>
   <slot/>
 </Flex>

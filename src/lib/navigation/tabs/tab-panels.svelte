@@ -18,3 +18,12 @@
 <div id={id} class="WuiTabPanels {$$restProps.class || ''}" style="{$$restProps.style}">
   <slot />
 </div>
+
+<style>
+  .WuiTabPanels {
+    display: contents;
+  }
+  .WuiTabPanels > :global(*:not([tabindex="0"])) {
+    display: none !important;
+  }
+</style>

@@ -1,4 +1,4 @@
-.WuiInput-field-cont {
+.WuiInput__field-cont {
   border-radius: inherit;
   width: 100% !important;
   position: relative;
@@ -31,31 +31,31 @@
   --WuiInput-border-color: var(--color-status-error) !important;
 }
 
-.WuiInput-sm {
+.WuiInput--sm {
   --WuiInput-height: var(--input-height-sm);
 }
-.WuiInput-md {
+.WuiInput--md {
   --WuiInput-height: var(--input-height-md);
 }
-.WuiInput-lg {
+.WuiInput--lg {
   --WuiInput-height: var(--input-height-lg);
 }
 
-.WuiInput-prefixed {
+.WuiInput--prefixed {
   --WuiInput-paddingX: calc(var(--space-xs) + var(--WuiInput-height) - 1.3px);
 }
-.WuiInput-prefixed:focus {
+.WuiInput--prefixed:focus {
   --WuiInput-paddingX: calc(var(--space-xs) + var(--WuiInput-height) - 1.6px);
 }
 
-.WuiInput-suffixed {
+.WuiInput--suffixed {
   --WuiInput-paddingY: calc(var(--space-xs) + var(--WuiInput-height) - 1.3px);
 }
-.WuiInput-suffixed:focus {
+.WuiInput--suffixed:focus {
   --WuiInput-paddingY: calc(var(--space-xs) + var(--WuiInput-height) - 1.6px)
 }
 
-.WuiInput-prefix, .WuiInput-suffix {
+.WuiInput__prefix, .WuiInput__suffix {
   -webkit-box-align: center;
   align-items: center;
   border-radius: inherit !important;
@@ -72,12 +72,12 @@
   overflow: hidden;
 }
 
-.WuiInput-prefix > *, .WuiInput-suffix > * {
+.WuiInput__prefix > *, .WuiInput__suffix > * {
   border-radius: inherit !important;
 }
-.WuiInput-prefix {
+.WuiInput__prefix {
   left: 1.3px;
 }
-.WuiInput-suffix {
+.WuiInput__suffix {
   right: 1.3px;
 }

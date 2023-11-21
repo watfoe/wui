@@ -1,12 +1,12 @@
 <script>
-	import { Button } from "$lib/buttons";
+	import { Button } from "$lib/button";
 	import { Badge, Icon, Tooltip } from "$lib/display";
 	import { Col, Row } from "$lib/layout";
 
 </script>
 
 <Col gap="lg">
-  <Row gap="lg" justify="center">
+  <Row gap="lg">
     <Badge position="top-left">
       <Icon>mail</Icon>
     </Badge>
@@ -34,7 +34,7 @@
     </Badge>
   </Row>
 
-  <Row gap="lg" justify="center">
+  <Row gap="lg">
     <Tooltip title="Please click me" position="top">
       <Button class="button">Continue</Button>
     </Tooltip>

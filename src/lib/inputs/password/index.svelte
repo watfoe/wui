@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from '$lib/buttons';
+  import { Button } from '$lib/button';
 	import BaseInput, { type BaseInputProps } from "../base/index.svelte";
 
   interface $$Props extends BaseInputProps {

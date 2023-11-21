@@ -8,6 +8,6 @@
   interface $$Props extends ColProps {};
 </script>
 
-<Flex {...$$restProps} direction="column" on:*>
+<Flex {...$$restProps} direction="column" on:click on:dblclick>
   <slot/>
 </Flex>

@@ -74,7 +74,7 @@
   --color-hover: #e8eaed;
   --color-on-hover: #202124;
 
-  --color-scrim: rgba(0,0,0,0.54);
+  --color-scrim: rgba(50,56,62,.25);
 
   --color-shadow: #3c4043;
   --color-outline: #e5e5e5;
@@ -115,7 +115,7 @@
   --input-height-md: 2.5rem;
   --input-height-lg: 3rem;
 
-  --border-radius: 4px;
+  --border-radius: 3px;
 
   --line-rule: 0.9px solid var(--color-outline);
 }

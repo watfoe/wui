@@ -6,15 +6,14 @@
 	import Displays from "./displays.svelte";
 	import Feedbacks from "./feedbacks.svelte";
 	import Inputs from "./inputs.svelte";
-
 </script>
-<Tabs for="tab-panels-0">
-  <Tab icon="search">buttons</Tab>
-  <Tab icon="mail">inputs</Tab>
-  <Tab icon="settings">feedbacks</Tab>
-  <Tab icon="settings">badges & tooltips</Tab>
-  <Tab icon="person">avatars</Tab>
 
+<Tabs for="tab-panels-0">
+  <Tab icon="search">Buttons</Tab>
+  <Tab icon="mail">Inputs</Tab>
+  <Tab icon="settings">Feedbacks</Tab>
+  <Tab icon="settings">Badges & tooltips</Tab>
+  <Tab icon="person">Avatars</Tab>
 </Tabs>
 
 <TabPanels id="tab-panels-0">
@@ -23,5 +22,4 @@
   <Feedbacks />
   <Displays />
   <Avatars />
-
 </TabPanels>

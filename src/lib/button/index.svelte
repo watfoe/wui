@@ -8,12 +8,14 @@
     size?: 'sm' | 'md' | 'lg';
     gap?: 'sm' | 'nm' | 'md' | 'lg';
     loading?: boolean;
+    anchorfor?: string;
   }
 </script>
 
 <script lang="ts">
-  import css from './style.module.css';
+  import './style.css';
   import {Icon} from '$lib/display';
+	import { onMount } from 'svelte';
 
   interface $$Props extends ButtonProps {}
 
@@ -24,24 +26,38 @@
   export let icon: $$Props['icon'] = undefined;
   export let loading: $$Props['loading'] = false;
   export let disabled: $$Props['disabled'] = false;
+  export let anchorfor: $$Props['anchorfor'] = undefined;
+
+  let feedback: HTMLDialogElement;
+
+  onMount(() => {
+    if (anchorfor) {
+      const _feedback = document.getElementById(anchorfor);
+
+      if (_feedback instanceof HTMLDialogElement) {
+        feedback = _feedback;
+      } else {
+        throw new Error(`button "anchorfor" attribute must be a valid dialog id`);
+      }
+    }
+  });
+
+  function click(e: CustomEvent<HTMLButtonElement>) {
+    feedback?.dispatchEvent(new CustomEvent('open', { detail: {
+      anchor: e.currentTarget,
+    }}));
+  };
 </script>
 
 <button
   {...$$restProps}
-  class="
-    {css['WuiButton']}
-    {css[`WuiButton-${variant}`]}
-    {css[`WuiButton-${size}`]}
-    {css[`WuiButton-${color}`]}
-    {css[`WuiButton-gap-${gap}`]}
-    {!$$slots.default ? css['WuiButton-only-icon'] : ''}
-    {$$restProps.class || ''}
-  "
+  class="WuiButton WuiButton-{variant} WuiButton-{size} WuiButton-{color} WuiButton-gap-{gap} {!$$slots.default ? 'WuiButton-only-icon' : ''} {$$restProps.class || ''}"
   disabled="{loading || disabled}"
+  on:click={click}
   on:*
 >
   {#if loading}
-    <span class="{css['WuiButton-loader']}" />
+    <span class="WuiButton-loader" />
   {:else}
     {#if $$slots.icon}
       <slot name="icon" />

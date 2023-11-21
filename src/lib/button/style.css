@@ -7,6 +7,7 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  font-weight: 500;
   gap: var(--WuiButton-flex-gap, var(--space-nm));
   height: var(--WuiButton-height, var(--button-height));
   line-height: var(--WuiButton-height, var(--button-height));
@@ -124,18 +125,18 @@
 }
 
 .WuiButton-only-icon {
-  --WuiButton-border-radius: 50%;
   --WuiButton-width: var(--WuiButton-height);
   --WuiButton-paddingX: 0;
 }
 
 .WuiButton-loader {
-  border: 3px solid var(--WuiButton-bg);
+  border: 2px solid var(--WuiButton-bg);
   border-radius: 50%;
   border-top-color: var(--color-primary);
   width: 20px;
   height: 20px;
   -webkit-animation: spin 0.8s linear infinite; /* Safari */
+  -moz-animation: spin 0.8s linear infinite;
   animation: spin 0.8s linear infinite;
 }
 

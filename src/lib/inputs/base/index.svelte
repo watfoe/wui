@@ -76,13 +76,13 @@
   }
 </script>
 
-<Row class="WuiInput-field-cont">
+<Row class="WuiInput__field-cont">
   {#if $$slots.prefix}
-    <div class="WuiInput-prefix">
+    <div class="WuiInput__prefix">
       <slot name="prefix" />
     </div>
   {:else if prefix}
-    <div class="WuiInput-prefix">
+    <div class="WuiInput__prefix">
       <Icon>{prefix}</Icon>
     </div>
   {/if}
@@ -91,7 +91,7 @@
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    class="WuiInput WuiInput-{size} {prefix ? 'WuiInput-prefixed' : ''} {suffix ? 'WuiInput-suffixed' : ''}"
+    class="WuiInput WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''}"
     on:input={change}
     on:blur={blur}
     bind:value={value}
@@ -99,10 +99,10 @@
   />
 
   {#if $$slots.suffix}
-    <div class="WuiInput-suffix">
+    <div class="WuiInput__suffix">
       <slot name="suffix" />
     </div>
   {:else if suffix}
-    <Icon class="WuiInput-suffix">{suffix}</Icon>
+    <Icon class="WuiInput__suffix">{suffix}</Icon>
   {/if}
 </Row>

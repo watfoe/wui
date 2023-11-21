@@ -1,10 +1,10 @@
 <script>
-	import { Button } from "$lib/buttons";
+	import { Button } from "$lib/button";
 import { Col, Row } from "$lib/layout";
 </script>
 
 <Col gap="md">
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" class="button">Primary Solid</Button>
     <Button variant="outline" class="button">Primary Outline</Button>
     <Button variant="soft" class="button">Primary Soft</Button>
@@ -16,7 +16,7 @@ import { Col, Row } from "$lib/layout";
     <Button variant="plain" icon="person" />
   </Row>
 
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" color="neutral" class="button">Neutral Solid</Button>
     <Button variant="outline" color="neutral" class="button">Neutral Outline</Button>
     <Button variant="soft" color="neutral" class="button">Neutral Soft</Button>
@@ -28,7 +28,7 @@ import { Col, Row } from "$lib/layout";
     <Button variant="plain" color="neutral" icon="person" />
   </Row>
 
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" color="success" class="button">Success Solid</Button>
     <Button variant="outline" color="success" class="button">Success Outline</Button>
     <Button variant="soft" color="success" class="button">Success Soft</Button>
@@ -40,7 +40,7 @@ import { Col, Row } from "$lib/layout";
     <Button variant="plain" color="success" icon="person" />
   </Row>
 
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" color="warning" class="button">Warning Solid</Button>
     <Button variant="outline" color="warning" class="button">Warning Outline</Button>
     <Button variant="soft" color="warning" class="button">Warning Soft</Button>
@@ -52,7 +52,7 @@ import { Col, Row } from "$lib/layout";
     <Button variant="plain" color="warning" icon="person" />
   </Row>
 
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" color="danger" class="button">Danger Solid</Button>
     <Button variant="outline" color="danger" class="button">Danger Outline</Button>
     <Button variant="soft" color="danger" class="button">Danger Soft</Button>
@@ -64,7 +64,7 @@ import { Col, Row } from "$lib/layout";
     <Button variant="plain" color="danger" icon="person" />
   </Row>
 
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" class="button" disabled>Disabled Solid</Button>
     <Button variant="outline" class="button" disabled>Disabled Outline</Button>
     <Button variant="soft" class="button" disabled>Disabled Soft</Button>
@@ -76,7 +76,7 @@ import { Col, Row } from "$lib/layout";
     <Button variant="plain" icon="person" disabled />
   </Row>
 
-  <Row justify="center" gap="md">
+  <Row gap="md">
     <Button variant="solid" class="button" loading>Danger Solid</Button>
     <Button variant="outline" class="button" loading>Danger Outline</Button>
     <Button variant="soft" class="button" loading>Danger Soft</Button>
