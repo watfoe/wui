@@ -116,7 +116,7 @@
 
   --color-shadow: var(--color-grey-6);
   --color-outline: var(--color-grey-3);
-  --color-hairline: var(--color-grey-5);
+  --color-hairline: var(--color-grey-3);
 
   --color-selection: var(--color-blue-5);
   --color-on-selection: #fff;
@@ -141,7 +141,7 @@
   --input-height-md: 2.5rem;
   --input-height-lg: 3rem;
 
-  --radius: 4px;
+  --radius: 3px;
 
   --line: 0.9px solid var(--color-outline);
 }

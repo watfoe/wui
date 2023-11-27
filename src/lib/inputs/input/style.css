@@ -27,10 +27,6 @@
   --WuiLabel-color: var(--color-neutral);
 }
 .WuiInput--neutral:focus-within {
-  --WuiInput-color-plain: var(--color-blue-1);
-  --WuiInput-color-on-bg: var(--color-on-primary);
-  --WuiInput-color-bg-soft: var(--color-selection-container);
-  --WuiInput-color-outline: var(--color-primary);
   --WuiLabel-color: var(--color-primary);
 }
 .WuiInput--success {
@@ -57,4 +53,17 @@
   --WuiInput-color-on-bg-soft: var(--color-error);
   --WuiInput-color-outline: var(--color-error);
   --WuiLabel-color: var(--color-error);
+}
+
+.WuiInput--primary:disabled,
+.WuiInput--neutral:disabled,
+.WuiInput--success:disabled,
+.WuiInput--warning:disabled {
+  --WuiInput-color-plain: var(--color-disabled);
+  --WuiInput-color-bg: var(--color-disabled);
+  --WuiInput-color-on-bg: var(--color-on-disabled);
+  --WuiInput-color-bg-soft: var(--color-disabled);
+  --WuiInput-color-on-bg-soft: var(--color-on-disabled);
+  --WuiInput-color-outline: var(--color-disabled);
+  --WuiLabel-color: var(--color-disabled);
 }

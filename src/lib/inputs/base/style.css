@@ -8,7 +8,7 @@
 }
 
 .WuiInput {
-  border: 0;
+  border: 1.3px solid var(--WuiInput-color-outline);
   border-radius: inherit;
   height: var(--WuiInput-height);
   margin: 0;
@@ -16,6 +16,19 @@
   padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
   width: 100%;
 }
+.WuiInput:not(:disabled):focus {
+  border-width: 1.8px;
+}
+.WuiInput--primary .WuiInput:not(:disabled):focus,
+.WuiInput--success .WuiInput:not(:disabled):focus,
+.WuiInput--warning .WuiInput:not(:disabled):focus,
+.WuiInput--danger .WuiInput:not(:disabled):focus {
+  --WuiInput-color-outline: var(--WuiInput-color-bg) !important;
+}
+.WuiInput--neutral .WuiInput:not(:disabled):focus {
+  --WuiInput-color-outline: var(--color-primary) !important;
+}
+
 .WuiInput::placeholder {
   color: var(--color-on-surface-variant);
 }
@@ -52,7 +65,7 @@
 }
 
 .WuiInput__prefix > *, .WuiInput__suffix > * {
-  border-radius: inherit !important;
+  border-radius: calc(inherit - 1px) !important;
 }
 .WuiInput__prefix {
   left: 1.3px;
@@ -74,36 +87,29 @@
   /* --WuiInput-paddingX: var(--space-md); */
 }
 
-.WuiInput--primary:disabled,
-.WuiInput--neutral:disabled,
-.WuiInput--success:disabled,
-.WuiInput--warning:disabled {
-  --WuiInput-color-bg: #9FA6AD;
-  --WuiInput-color-on-bg: var(--color-on-surface-inverse);
-  --WuiInput-color-bg-soft: var(--color-hover);
-  --WuiInput-color-on-bg-soft: var(--color-on-surface-inverse);
-}
-
 .WuiInput--solid {
+  --WuiInput-color-outline: var(--WuiInput-color-bg);
   background-color: var(--WuiInput-color-bg, var(--color-primary));
   color: var(--WuiInput-color-on-bg, var(--color-on-primary));
 }
 .WuiInput--outline {
   background-color: transparent;
   color: var(--color-on-surface);
-  border: 1.3px solid var(--WuiInput-color-outline);
-}
-.WuiInput--outline:focus {
-  border-width: 1.8px !important;
 }
 .WuiInput--soft {
+  --WuiInput-color-outline: transparent;
   background-color: var(--WuiInput-color-bg-soft, var(--color-selection-container));
   color: var(--WuiInput-color-bg, var(--color-on-selection-container));
 }
 .WuiInput--plain {
+  --WuiInput-color-outline: transparent;
   background-color: var(--WuiInput-color-plain);
   color: var(--WuiInput-color-bg, var(--color-primary));
 }
-.WuiInput--plain:not(:disabled):hover {
-  background-color: var(--WuiInput-color-bg-soft);
+
+.WuiInput--none {
+  background-color: transparent;
+  color: var(--color-on-surface);
+  --WuiInput-paddingX: 0;
+  --WuiInput-paddingY: 0;
 }
