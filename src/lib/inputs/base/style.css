@@ -3,42 +3,21 @@
   width: 100% !important;
   position: relative;
   --WuiInput-height: var(--input-height-md);
-  --WuiInput-color: var(--color-on-surface);
-  --WuiInput-border-color: var(--color-hairline);
-  --WuiInput-paddingX: calc(var(--space-md) - 0.8px);
+  --WuiInput-paddingX: calc(var(--space-nm) - 0.8px);
   --WuiInput-paddingY: var(--space-xs);
 }
 
 .WuiInput {
-  border: 1.3px solid var(--WuiInput-border-color);
+  border: 0;
   border-radius: inherit;
-  color: var(--WuiInput-color);
-  width: 100%;
   height: var(--WuiInput-height);
   margin: 0;
   outline: none;
   padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
+  width: 100%;
 }
 .WuiInput::placeholder {
   color: var(--color-on-surface-variant);
-}
-.WuiInput:focus {
-  border-width: 1.8px !important;
-  --WuiInput-border-color: var(--color-primary);
-  --WuiInput-paddingX: calc(var(--space-md) - 1.3px);
-}
-.WuiInput:invalid {
-  --WuiInput-border-color: var(--color-status-error) !important;
-}
-
-.WuiInput--sm {
-  --WuiInput-height: var(--input-height-sm);
-}
-.WuiInput--md {
-  --WuiInput-height: var(--input-height-md);
-}
-.WuiInput--lg {
-  --WuiInput-height: var(--input-height-lg);
 }
 
 .WuiInput--prefixed {
@@ -80,4 +59,51 @@
 }
 .WuiInput__suffix {
   right: 1.3px;
+}
+
+.WuiInput--sm {
+  --WuiInput-height: var(--input-height-sm);
+  /* --WuiInput-paddingX: var(--space-nm); */
+}
+.WuiInput--md {
+  --WuiInput-height: var(--input-height-md);
+  /* --WuiInput-paddingX: var(--space-nm); */
+}
+.WuiInput--lg {
+  --WuiInput-height: var(--input-height-lg);
+  /* --WuiInput-paddingX: var(--space-md); */
+}
+
+.WuiInput--primary:disabled,
+.WuiInput--neutral:disabled,
+.WuiInput--success:disabled,
+.WuiInput--warning:disabled {
+  --WuiInput-color-bg: #9FA6AD;
+  --WuiInput-color-on-bg: var(--color-on-surface-inverse);
+  --WuiInput-color-bg-soft: var(--color-hover);
+  --WuiInput-color-on-bg-soft: var(--color-on-surface-inverse);
+}
+
+.WuiInput--solid {
+  background-color: var(--WuiInput-color-bg, var(--color-primary));
+  color: var(--WuiInput-color-on-bg, var(--color-on-primary));
+}
+.WuiInput--outline {
+  background-color: transparent;
+  color: var(--color-on-surface);
+  border: 1.3px solid var(--WuiInput-color-outline);
+}
+.WuiInput--outline:focus {
+  border-width: 1.8px !important;
+}
+.WuiInput--soft {
+  background-color: var(--WuiInput-color-bg-soft, var(--color-selection-container));
+  color: var(--WuiInput-color-bg, var(--color-on-selection-container));
+}
+.WuiInput--plain {
+  background-color: var(--WuiInput-color-plain);
+  color: var(--WuiInput-color-bg, var(--color-primary));
+}
+.WuiInput--plain:not(:disabled):hover {
+  background-color: var(--WuiInput-color-bg-soft);
 }

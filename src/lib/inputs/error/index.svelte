@@ -6,13 +6,11 @@
 
 <style>
   .WuiInputError {
-    background-color: var(--color-surface);
-    color: var(--color-status-error) !important;
+    color: var(--color-error) !important;
     font-size: 0.6875rem;
-    padding: 0 var(--space-xs);
     position: absolute;
-    left: calc(var(--space-md) - var(--space-xs));
-    bottom: -6px;
+    left: var(--space-nm);
+    bottom: -13px;
     z-index: 1000;
   }
 </style>

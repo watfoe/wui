@@ -13,7 +13,6 @@
 <BaseInput
   {...$$restProps}
   autocomplete="search"
-  prefix="search"
   type="text"
   on:*
 >

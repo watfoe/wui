@@ -42,7 +42,7 @@
   .WuiTooltip::after {
     background-color: rgba(0, 0, 0, 0.6);
     color: var(--color-on-primary);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius);
     content: attr(data-tooltip-title);
     font-size: 0.75rem;
     position: absolute;

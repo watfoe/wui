@@ -51,13 +51,13 @@
 
 <button
   {...$$restProps}
-  class="WuiButton WuiButton-{variant} WuiButton-{size} WuiButton-{color} WuiButton-gap-{gap} {!$$slots.default ? 'WuiButton-only-icon' : ''} {$$restProps.class || ''}"
+  class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {!$$slots.default ? 'WuiButton--only-icon' : ''} {$$restProps.class || ''}"
   disabled="{loading || disabled}"
   on:click={click}
   on:*
 >
   {#if loading}
-    <span class="WuiButton-loader" />
+    <span class="WuiButton__loader" />
   {:else}
     {#if $$slots.icon}
       <slot name="icon" />

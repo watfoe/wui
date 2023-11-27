@@ -56,7 +56,7 @@
 
   .WuiBackdrop > :global(*) {
     background-color: var(--color-surface);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius);
     max-width: 60vw !important;
   }
 

@@ -22,8 +22,8 @@
 <style>
   :global(.WuiLabel__root) {
     width: 100% !important;
-    max-width: calc(100% - (2*var(--space-md)));
-    margin-left: var(--space-md);
+    max-width: calc(100% - (2*var(--space-nm)));
+    margin-left: var(--space-nm);
   }
 
   .WuiLabel {

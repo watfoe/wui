@@ -37,6 +37,7 @@
 
   let errored = false;
 
+  export let color: $$Props['color'] = 'neutral';
   export let description: $$Props['description'] = undefined;
   export let label: $$Props['label'] = undefined;
   export let hidden: $$Props['hidden'] = undefined;
@@ -67,7 +68,7 @@
   };
 </script>
 
-<fieldset class="WuiInput__root {$$restProps.class}" hidden={hidden}>
+<fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class}" hidden={hidden}>
   {#if label && !hidden}
     <Label for={id} description={description}>{label}</Label>
   {/if}

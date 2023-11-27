@@ -19,11 +19,12 @@
   let value: string | null = null;
   let error: ValidationError | null = null;
 
+  export let size: $$Props['size'] = 'md';
+  export let variant: $$Props['variant'] = 'outline';
   export let rules: $$Props['rules'] = undefined;
   export let masks: $$Props['masks'] = undefined;
   export let prefix: $$Props['prefix'] = undefined;
   export let suffix: $$Props['suffix'] = undefined;
-  export let size: $$Props['size'] = 'md';
   export let validateon: $$Props['validateon'] = 'blur';
   export let required: $$Props['required'] = undefined;
 
@@ -91,7 +92,7 @@
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    class="WuiInput WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''}"
+    class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''}"
     on:input={change}
     on:blur={blur}
     bind:value={value}

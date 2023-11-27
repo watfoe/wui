@@ -1,5 +1,4 @@
 <script>
-	import { Icon } from "$lib/display";
   import { Tabs, Tab, TabPanels } from "$lib/navigation";
 	import Avatars from "./avatars.svelte";
 	import Buttons from "./buttons.svelte";
@@ -9,7 +8,7 @@
 </script>
 
 <Tabs for="tab-panels-0">
-  <Tab icon="search">Buttons</Tab>
+  <Tab icon="search" active>Buttons</Tab>
   <Tab icon="mail">Inputs</Tab>
   <Tab icon="settings">Feedbacks</Tab>
   <Tab icon="settings">Badges & tooltips</Tab>

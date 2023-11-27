@@ -32,11 +32,13 @@ export interface InputRules {
 }
 
 export type BaseProps<T> = T & {
+  variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
+  color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
   prefix?: string;
   suffix?: string;
   masks?: InputMasks;
   rules?: InputRules;
-  size?: 'sm' | 'md' | 'lg';
   validateon?: 'change' | 'blur';
 };
 
