@@ -7,6 +7,7 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  font-weight: 400;
   gap: var(--WuiButton-flex-gap, var(--space-nm));
   height: var(--WuiButton-height, var(--button-height));
   line-height: var(--WuiButton-height, var(--button-height));
@@ -118,7 +119,6 @@
 }
 .WuiButton--none, .WuiButton--none:hover {
   background-color: transparent;
-  color: var(--color-on-surface);
   --WuiButton-height: auto !important;
   --WuiButton-paddingX: 0 !important;
 }
