@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Watfoe Team",
-	"version": "0.0.1-s",
+	"version": "0.0.1-t",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -57,7 +57,8 @@
 	},
 	"dependencies": {
 		"libphonenumber-js": "^1.10.47",
-		"svelte-preprocess-delegate-events": "^0.4.2"
+		"svelte-preprocess-delegate-events": "^0.4.2",
+		"@sveltejs/enhanced-img": "^0.1.5"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

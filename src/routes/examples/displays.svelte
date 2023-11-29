@@ -1,6 +1,6 @@
 <script>
 	import { Button } from "$lib/button";
-	import { Badge, Icon, Tooltip } from "$lib/display";
+	import { Badge, Icon, Logo, Tooltip } from "$lib/display";
 	import { Col, Row } from "$lib/layout";
 
 </script>
@@ -49,5 +49,11 @@
         <Icon>mail</Icon>
       </Badge>
     </Tooltip>
+  </Row>
+
+  <Row gap="lg">
+    <Logo size={200} />
+    <Logo size={100} />
+    <Logo size={60} />
   </Row>
 </Col>

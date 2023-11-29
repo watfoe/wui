@@ -119,6 +119,7 @@
 }
 .WuiButton--none, .WuiButton--none:hover {
   background-color: transparent;
+  color: var(--WuiButton-bg, var(--color-primary));
   --WuiButton-height: auto !important;
   --WuiButton-paddingX: 0 !important;
 }
