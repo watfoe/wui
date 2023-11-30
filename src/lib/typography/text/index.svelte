@@ -74,7 +74,7 @@
     --WuiText-color: var(--color-primary);
   }
   .WuiText--neutral {
-    --WuiText-color: var(--color-neutral);
+    --WuiText-color: var(--color-black-1);
   }
   .WuiText--success {
     --WuiText-color: var(--color-success);

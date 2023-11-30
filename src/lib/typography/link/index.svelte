@@ -10,11 +10,16 @@
   export let underline: $$Props['underline'] = true;
 </script>
 
-<a href="{$$restProps.href}" class="WuiAnchor--{color} {underline ? 'WuiAnchor--underline' : ''} {$$restProps.class || ''}" {...$$restProps}>
+<a href="{$$restProps.href}" class="WuiAnchor WuiAnchor--{color} {underline ? 'WuiAnchor--underline' : ''} {$$restProps.class || ''}" {...$$restProps}>
   <slot />
 </a>
 
 <style>
+  .WuiAnchor {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
   .WuiAnchor--inherit {
     color: inherit;
   }

@@ -63,7 +63,7 @@
 .WuiButton--neutral {
   --WuiButton-bg: var(--color-neutral);
   --WuiButton-bg-soft: var(--color-neutral-container);
-  --WuiButton-color-on-bg-soft: var(--color-black-2);
+  --WuiButton-color-on-bg-soft: var(--color-black-3);
 }
 .WuiButton--success {
   --WuiButton-bg: var(--color-success);
