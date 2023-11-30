@@ -13,42 +13,38 @@
   width: var(--WuiAvatar-size) !important;
 }
 
-.WuiAvatar-solid {
+.WuiAvatar--solid {
   --WuiAvatar-bg: var(--color-primary);
   --WuiAvatar-color: var(--color-on-primary);
 }
-.WuiAvatar-outline {
+.WuiAvatar--outline {
   --WuiAvatar-bg: var(--color-surface);
   --WuiAvatar-color: var(--color-on-surface);
   --WuiAvatar-outline-color: var(--color-outline);
 }
-.WuiAvatar-soft {
+.WuiAvatar--soft {
   --WuiAvatar-bg: var(--color-selection-container);
   --WuiAvatar-color: var(--color-on-selection-container);
 }
-.WuiAvatar-plain {
+.WuiAvatar--plain {
   --WuiAvatar-bg: var(--color-surface);
   --WuiAvatar-color: var(--color-on-surface);
 }
 
-.WuiAvatar-alt {
-  font-weight: 500;
-}
-
-.WuiAvatar-sm {
+.WuiAvatar--sm {
   --WuiAvatar-size: var(--button-height-sm);
   font-size: 0.75rem;
 }
-.WuiAvatar-md {
+.WuiAvatar--md {
   --WuiAvatar-size: var(--button-height-md);
   font-size: 0.875rem;
 }
-.WuiAvatar-lg {
+.WuiAvatar--lg {
   --WuiAvatar-size: var(--button-height-lg);
   font-size: 1rem;
 }
 
-.WuiAvatar-img {
+.WuiAvatar__img {
   border-radius: inherit;
   width: 100% !important;
   height: 100% !important;

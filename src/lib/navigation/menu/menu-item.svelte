@@ -16,6 +16,7 @@
   color={selected ? 'primary' : 'neutral'}
   class="WuiMenuItem"
   {...$$restProps}
-  role="menuitem">
+  role="menuitem"
+  bold={false}>
   <slot />
 </Button>

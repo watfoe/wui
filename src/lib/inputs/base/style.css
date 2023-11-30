@@ -19,14 +19,14 @@
 .WuiInput:not(:disabled):focus {
   border-width: 1.8px;
 }
-.WuiInput--primary .WuiInput:not(:disabled):focus,
-.WuiInput--success .WuiInput:not(:disabled):focus,
-.WuiInput--warning .WuiInput:not(:disabled):focus,
-.WuiInput--danger .WuiInput:not(:disabled):focus {
-  --WuiInput-color-outline: var(--WuiInput-color-bg) !important;
+.WuiInput--primary .WuiInput:not(:disabled):not(:invalid):focus,
+.WuiInput--success .WuiInput:not(:disabled):not(:invalid):focus,
+.WuiInput--warning .WuiInput:not(:disabled):not(:invalid):focus,
+.WuiInput--danger .WuiInput:not(:disabled):not(:invalid):focus {
+  --WuiInput-color-outline: var(--WuiInput-color-bg);
 }
-.WuiInput--neutral .WuiInput:not(:disabled):focus {
-  --WuiInput-color-outline: var(--color-primary) !important;
+.WuiInput--neutral .WuiInput:not(:disabled):not(:invalid):focus {
+  --WuiInput-color-outline: var(--color-primary);
 }
 
 .WuiInput::placeholder {

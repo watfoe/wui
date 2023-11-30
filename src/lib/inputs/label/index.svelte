@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Col } from "$lib/layout";
+  import { Text } from "$lib/typography";
 	import type { HTMLLabelAttributes } from 'svelte/elements';
 
   interface $$Props extends HTMLLabelAttributes {
@@ -9,34 +10,25 @@
   export let description: $$Props['description'] = undefined;
 </script>
 
-<Col justify="flex-start" align="flex-start" class="WuiLabel__root">
-  <label {...$$restProps} class="WuiLabel">
+<Col justify="flex-start" align="flex-start" gap="sm" class="WuiInput__label__root">
+  <Text variant="label" size="md" bold class="WuiInput__label" {...$$restProps} >
     <slot />
-  </label>
+  </Text>
 
   {#if description}
-    <span class="WuiLabel__desc">{description}</span>
+    <Text variant="label" size="md" class="WuiInput__label__desc">{description}</Text>
   {/if}
 </Col>
 
 <style>
-  :global(.WuiLabel__root) {
+  :global(.WuiInput__label__root) {
     width: 100% !important;
     max-width: calc(100% - (2*var(--space-nm)));
     margin-left: var(--space-nm);
   }
 
-  .WuiLabel {
-    color: var(--WuiLabel-color, var(--color-on-surface-variant));
-    font-size: 0.75rem;
-    line-height: 0.75rem;
-    overflow: hidden;
-  }
-
-  .WuiLabel__desc {
-    color: var(--color-on-surface-variant);
-    font-size: 0.75rem;
-    margin: 1px 0;
+  :global(.WuiInput__label), :global(.WuiInput__label__desc) {
+    color: var(--WuiLabel-color, var(--color-on-surface-variant)) !important;
     overflow: hidden;
   }
 </style>

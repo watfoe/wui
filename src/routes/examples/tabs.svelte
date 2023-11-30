@@ -5,6 +5,7 @@
 	import Displays from "./displays.svelte";
 	import Feedbacks from "./feedbacks.svelte";
 	import Inputs from "./inputs.svelte";
+  import Typography from "./typography.svelte";
 </script>
 
 <Tabs for="tab-panels-0">
@@ -13,6 +14,7 @@
   <Tab icon="settings">Feedbacks</Tab>
   <Tab icon="settings">Badges & tooltips</Tab>
   <Tab icon="person">Avatars</Tab>
+  <Tab icon="text_fields">Typography</Tab>
 </Tabs>
 
 <TabPanels id="tab-panels-0">
@@ -21,4 +23,5 @@
   <Feedbacks />
   <Displays />
   <Avatars />
+  <Typography />
 </TabPanels>

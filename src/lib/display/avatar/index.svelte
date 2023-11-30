@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
-	import { Col } from '$lib/layout';
   import type { HTMLImgAttributes } from 'svelte/elements';
-	import { Icon } from '..';
+
   export interface AvatarProps extends HTMLImgAttributes {
     size?: 'sm' | 'md' | 'lg';
     variant?: 'solid' | 'outline' | 'soft' | 'plain';
@@ -10,6 +9,9 @@
 
 <script lang="ts">
   import './style.css';
+  import { Col } from '$lib/layout';
+  import { Text } from '$lib/typography';
+  import { Icon } from '..';
 
 	interface $$Props extends AvatarProps {}
 
@@ -23,17 +25,17 @@
   aria-label={alt || 'Avatar'}
   align="center"
   justify="center"
-  class="WuiAvatar WuiAvatar-{size} WuiAvatar-{variant} {$$restProps.class || ''}"
+  class="WuiAvatar WuiAvatar--{size} WuiAvatar--{variant} {$$restProps.class || ''}"
   {...$$restProps}
   on:*
 >
   {#if $$restProps.src}
-    <img src={$$restProps.src} {...$$restProps} alt={alt} class="WuiAvatar-img"  />
+    <img src={$$restProps.src} {...$$restProps} alt={alt} class="WuiAvatar__img"  />
   {:else if alt}
-    <span class="WuiAvatar-alt">{alt[0].toUpperCase()}</span>
+    <Text variant="title" size={size}>{alt[0].toUpperCase()}</Text>
   {:else if !$$slots.default}
     <Icon>person</Icon>
   {:else}
-    <span class="WuiAvatar-alt"><slot /></span>
+    <Text variant="title" size={size}><slot /></Text>
   {/if}
 </Col>

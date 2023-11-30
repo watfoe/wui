@@ -2,6 +2,7 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
   export interface ButtonProps extends HTMLButtonAttributes {
+    bold?: boolean;
     icon?: string;
     variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
     color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
@@ -19,6 +20,7 @@
 
   interface $$Props extends ButtonProps {}
 
+  export let bold: $$Props['bold'] = true;
   export let gap: $$Props['gap'] = 'nm';
   export let size: $$Props['size'] = 'md';
   export let variant: $$Props['variant'] = 'solid';
@@ -51,7 +53,7 @@
 
 <button
   {...$$restProps}
-  class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {!$$slots.default ? 'WuiButton--only-icon' : ''} {$$restProps.class || ''}"
+  class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {bold ? 'WuiButton--bold' : ''} {!$$slots.default ? 'WuiButton--only-icon' : ''} {$$restProps.class || ''}"
   disabled="{loading || disabled}"
   on:click={click}
   on:*

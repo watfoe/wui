@@ -1,16 +1,17 @@
 <script lang="ts">
+  import { Text } from '$lib/typography';
   export let error: string;
 </script>
 
-<span class="WuiInputError" {...$$restProps}>{error}</span>
+<Text variant="label" size="sm" color="danger" class="WuiInput__error">{error}</Text>
 
 <style>
-  .WuiInputError {
-    color: var(--color-error) !important;
-    font-size: 0.6875rem;
+  :global(.WuiInput__error) {
+    background-color: var(--color-surface);
+    left: calc(var(--space-nm) - var(--space-xs));
+    padding: 0 var(--space-xs);
     position: absolute;
-    left: var(--space-nm);
-    bottom: -13px;
+    bottom: -6px;
     z-index: 1000;
   }
 </style>

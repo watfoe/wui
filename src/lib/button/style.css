@@ -7,7 +7,6 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  font-weight: 400;
   gap: var(--WuiButton-flex-gap, var(--space-nm));
   height: var(--WuiButton-height, var(--button-height));
   line-height: var(--WuiButton-height, var(--button-height));
@@ -122,6 +121,10 @@
   color: var(--WuiButton-bg, var(--color-primary));
   --WuiButton-height: auto !important;
   --WuiButton-paddingX: 0 !important;
+}
+
+.WuiButton--bold {
+  font-weight: 500;
 }
 
 .WuiButton--only-icon {

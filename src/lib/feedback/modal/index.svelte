@@ -4,7 +4,7 @@
   import { Backdrop } from '$lib/feedback';
   import { Col, Row } from '$lib/layout';
 	import { Button } from '$lib/button';
-  import { Title } from '$lib/typography';
+  import { Text } from '$lib/typography';
 	import { onMount } from 'svelte';
 
   interface $$Props {
@@ -50,7 +50,7 @@
         {#if $$slots.header}
           <slot name="header" />
         {:else if title}
-          <Title>{title}</Title>
+          <Text variant="title" size="sm">{title}</Text>
         {/if}
         {#if showclose === 'true'}
           <Button variant="soft" color="neutral" size="sm" icon="close" class="WuiModal__close-button" on:click={close} />

@@ -23,8 +23,8 @@
   --WuiInput-color-bg: var(--color-neutral);
   --WuiInput-color-on-bg: var(--color-on-neutral);
   --WuiInput-color-bg-soft: var(--color-neutral-container);
-  --WuiInput-color-outline: var(--color-hairline);
-  --WuiLabel-color: var(--color-neutral);
+  --WuiInput-color-outline: var(--color-grey-5);
+  --WuiLabel-color: var(--color-grey-6);
 }
 .WuiInput--neutral:focus-within {
   --WuiLabel-color: var(--color-primary);
@@ -51,7 +51,7 @@
   --WuiInput-color-on-bg: var(--color-on-error);
   --WuiInput-color-bg-soft: var(--color-error-container);
   --WuiInput-color-on-bg-soft: var(--color-error);
-  --WuiInput-color-outline: var(--color-error);
+  --WuiInput-color-outline: var(--color-error) !important;
   --WuiLabel-color: var(--color-error);
 }
 

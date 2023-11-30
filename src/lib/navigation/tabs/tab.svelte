@@ -24,6 +24,7 @@
   icon={icon}
   class="WuiTab"
   on:select={select}
+  bold={false}
 >
   <slot />
 </Button>
