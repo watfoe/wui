@@ -6,6 +6,7 @@
     secure: boolean
   }
 
+  export let color: $$Props['color'] = 'neutral';
   export let secure = true;
 
   function toggle() {
@@ -25,7 +26,7 @@
 >
   <Button
     variant="plain"
-    color="neutral"
+    {color}
     size="sm"
     slot="suffix"
     icon={secure ? 'visibility' : 'visibility_off'}

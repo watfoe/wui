@@ -36,14 +36,14 @@
       lg: 'h4',
     },
     body: {
-      sm: 'p',
-      md: 'p',
-      lg: 'p',
-    },
-    label: {
       sm: 'span',
       md: 'span',
       lg: 'span',
+    },
+    label: {
+      sm: 'label',
+      md: 'label',
+      lg: 'label',
     },
     code: {
       sm: 'code',

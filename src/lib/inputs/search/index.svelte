@@ -5,6 +5,8 @@
   type $$Props = BaseInputProps;
 
   let value: string = '';
+  export let color: $$Props['color'] = 'neutral';
+
   function clear() {
     value = ''
   }
@@ -18,7 +20,7 @@
 >
   <Button
     variant="plain"
-    color="neutral"
+    {color}
     size="sm"
     slot="suffix"
     icon="clear"

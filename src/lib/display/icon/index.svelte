@@ -11,14 +11,14 @@
   interface $$Props extends IconProps {}
 
   export let size: $$Props['size'] = 'md';
-  export let fill: $$Props['fill'] = '0';
+  export const fill: $$Props['fill'] = '0';
   export let color: $$Props['color'] = 'inherit';
 </script>
 
 <span
   role="img"
   aria-label="Icon"
-  class="material-symbols-rounded WuiIcon WuiIcon-{size} WuiIcon-{color} {$$restProps.class || ''}"
+  class="material-symbols-rounded WuiIcon WuiIcon--{size} WuiIcon--{color} {$$restProps.class || ''}"
   on:*>
   <slot />
 </span>
@@ -30,32 +30,32 @@
     font-variation-settings: 'FILL' var(--fill);
   }
 
-  .WuiIcon-primary {
+  .WuiIcon--primary {
     --WuiIcon-color: var(--color-primary);
   }
-  .WuiIcon-neutral {
+  .WuiIcon--neutral {
     --WuiIcon-color: var(--color-neutral);
   }
-  .WuiIcon-success {
+  .WuiIcon--success {
     --WuiIcon-color: var(--color-success);
   }
-  .WuiIcon-warning {
+  .WuiIcon--warning {
     --WuiIcon-color: var(--color-warning);
   }
-  .WuiIcon-danger {
+  .WuiIcon--danger {
     --WuiIcon-color: var(--color-danger);
   }
-  .WuiIcon-inherit {
+  .WuiIcon--inherit {
     --WuiIcon-color: inherit;
   }
 
-  .WuiIcon-sm {
+  .WuiIcon--sm {
     --WuiIcon-size: 1.125rem;
   }
-  .WuiIcon-md {
+  .WuiIcon--md {
     --WuiIcon-size: 1.25rem;
   }
-  .WuiIcon-lg {
+  .WuiIcon--lg {
     --WuiIcon-size: 1.5rem;
   }
 </style>

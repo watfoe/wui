@@ -3,6 +3,7 @@
   align-items: center;
   border: 1px solid var(--WuiButton-border-color, transparent);
   border-radius: var(--WuiButton-border-radius, var(--radius));
+  color: var(--WuiButton-color-on-bg-soft);
   cursor: pointer;
   display: inline-flex;
   flex-direction: row;
@@ -56,27 +57,26 @@
 
 .WuiButton--primary {
   --WuiButton-bg: var(--color-primary);
-  --WuiButton-color-on-bg: var(--color-on-primary);
   --WuiButton-bg-soft: var(--color-selection-container);
+  --WuiButton-color-on-bg-soft: var(--color-primary);
 }
 .WuiButton--neutral {
   --WuiButton-bg: var(--color-neutral);
-  --WuiButton-color-on-bg: var(--color-on-neutral);
   --WuiButton-bg-soft: var(--color-neutral-container);
+  --WuiButton-color-on-bg-soft: var(--color-black-2);
 }
 .WuiButton--success {
   --WuiButton-bg: var(--color-success);
-  --WuiButton-color-on-bg: var(--color-on-success);
   --WuiButton-bg-soft: var(--color-success-container);
+  --WuiButton-color-on-bg-soft: var(--color-success);
 }
 .WuiButton--warning {
   --WuiButton-bg: var(--color-warning);
-  --WuiButton-color-on-bg: var(--color-on-warning);
   --WuiButton-bg-soft: var(--color-warning-container);
+  --WuiButton-color-on-bg-soft: var(--color-warning);
 }
 .WuiButton--danger {
   --WuiButton-bg: var(--color-error);
-  --WuiButton-color-on-bg: var(--color-on-error);
   --WuiButton-bg-soft: var(--color-error-container);
   --WuiButton-color-on-bg-soft: var(--color-error);
 }
@@ -84,41 +84,36 @@
 .WuiButton--neutral:disabled,
 .WuiButton--success:disabled,
 .WuiButton--warning:disabled {
-  --WuiButton-bg: #9FA6AD;
-  --WuiButton-color-on-bg: var(--color-on-surface-inverse);
+  --WuiButton-bg: var(--color-disabled);
   --WuiButton-bg-soft: var(--color-hover);
-  --WuiButton-color-on-bg-soft: var(--color-on-surface-inverse);
+  --WuiButton-color-on-bg-soft: var(--color-black-1);
 }
 
 .WuiButton--solid {
   background-color: var(--WuiButton-bg, var(--color-primary));
-  color: var(--WuiButton-color-on-bg, var(--color-on-primary));
+  color: var(--color-white, var(--color-on-primary));
 }
 .WuiButton--solid:not(:disabled):hover, .WuiButton--soft:not(:disabled):hover {
   filter: brightness(0.95);
 }
 .WuiButton--outline {
   background-color: transparent;
-  color: var(--WuiButton-bg, var(--color-primary));
   --WuiButton-border-color: var(--WuiButton-bg, var(--color-primary));
 }
 .WuiButton--outline:not(:disabled):hover {
   background-color: var(--WuiButton-bg-soft, var(--color-selection-container));
 }
 .WuiButton--soft {
-  background-color: var(--WuiButton-bg-soft, var(--color-selection-container));
-  color: var(--WuiButton-bg, var(--color-on-selection-container));
+  background-color: var(--WuiButton-bg-soft);
 }
 .WuiButton--plain {
   background-color: transparent;
-  color: var(--WuiButton-bg, var(--color-primary));
 }
 .WuiButton--plain:not(:disabled):hover {
   background-color: var(--WuiButton-bg-soft);
 }
 .WuiButton--none, .WuiButton--none:hover {
   background-color: transparent;
-  color: var(--WuiButton-bg, var(--color-primary));
   --WuiButton-height: auto !important;
   --WuiButton-paddingX: 0 !important;
 }

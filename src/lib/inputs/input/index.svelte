@@ -75,21 +75,21 @@
 
   <Col align="flex-start" justify="flex-start" class="WuiInput__root__body">
     {#if type === 'date'}
-      <DateInput {...$$restProps} id={id} on:validate={validate} on:* />
+      <DateInput {...$$restProps} {id} {color} on:validate={validate} on:* />
     {:else if type === 'email'}
-      <EmailInput {...$$restProps} id={id} on:validate={validate} on:* />
+      <EmailInput {...$$restProps} {id} {color} on:validate={validate} on:* />
     {:else if type === 'name'}
-      <BaseInput {...$$restProps} id={id} autocomplete="name" autocapitalize="words" on:validate={validate} on:* />
+      <BaseInput {...$$restProps} {id} {color} autocomplete="name" autocapitalize="words" on:validate={validate} on:* />
     {:else if type === 'password'}
-      <PasswordInput secure {...$$restProps} id={id}  on:validate={validate} on:* />
+      <PasswordInput secure {...$$restProps} {id} {color}  on:validate={validate} on:* />
     {:else if type === 'phone'}
-      <PhoneInput {...$$restProps} id={id} on:validate={validate} on:* />
+      <PhoneInput {...$$restProps} {id} {color} on:validate={validate} on:* />
     {:else if type === 'pin'}
-      <PinInput {...$$restProps} id={id} on:validate={validate} on:* />
+      <PinInput {...$$restProps} {id} {color} on:validate={validate} on:* />
     {:else if type === 'search'}
-      <SearchInput {...$$restProps} id={id} on:validate={validate} on:* />
+      <SearchInput {...$$restProps} {id} {color} on:validate={validate} on:* />
     {:else}
-      <BaseInput {...$$restProps} id={id} on:validate={validate} on:* />
+      <BaseInput {...$$restProps} {id} {color} on:validate={validate} on:* />
     {/if}
 
     {#if errored}

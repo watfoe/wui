@@ -19,7 +19,5 @@
 		<MenuItem icon="logout" color="danger">Logout</MenuItem>
 	</Menu>
 
-	<Modal id="modal" title="Some words in here for fun">
-		<h4></h4>
-	</Modal>
+	<Modal id="modal" title="Some words in here for fun"></Modal>
 </Col>
