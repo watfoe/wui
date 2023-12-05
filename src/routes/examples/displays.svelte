@@ -56,4 +56,11 @@
     <Logo size={100} />
     <Logo size={60} />
   </Row>
+
+  <Row gap="lg">
+    <Logo brand="google" />
+    <Logo brand="apple" />
+    <Logo brand="facebook" />
+    <Logo brand="microsoft" />
+  </Row>
 </Col>
