@@ -51,11 +51,14 @@
 
   .WuiIcon--sm {
     --WuiIcon-size: 1.125rem;
+    line-height: 1.125rem;
   }
   .WuiIcon--md {
     --WuiIcon-size: 1.25rem;
+    line-height: 1.75rem;
   }
   .WuiIcon--lg {
     --WuiIcon-size: 1.5rem;
+    line-height: 1.5rem;
   }
 </style>

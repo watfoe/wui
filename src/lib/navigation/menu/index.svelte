@@ -1,7 +1,15 @@
 <script lang="ts">
-  import './style.css';
   import { Backdrop } from '$lib/feedback';
-  import { Col } from '$lib/layout';
+	import { Listbox } from '$lib/inputs';
+
+  interface $$Props {
+    id: string;
+    class?: string;
+    align?: 'left' | 'right' | 'center';
+  }
+
+  let menu: HTMLDivElement;
+  export let align: 'left' | 'right' | 'center' = 'left';
 
   let rect = {
     top: 0,
@@ -9,23 +17,40 @@
     width: 0,
   };
 
-  function handleClick(e: CustomEvent) {
-    e.stopImmediatePropagation();
-  }
+  let menuRect = {} as DOMRect;
 
-  function handleOpen(e: CustomEvent) {
-    const { innerWidth } = window;
+  function open(e: CustomEvent) {
+    const { innerWidth, innerHeight } = window;
     const anchor = e.detail.anchor as HTMLElement;
 
     if (anchor) {
       let {top, left, width, height} = anchor.getBoundingClientRect();
 
-      if (left + 260 > innerWidth) {
-        left = left - 260 + width;
+      // Preserve the first domrect of the menu, translate() will change the
+      // position of the x and y properties and we need to use the original values.
+      if (!menuRect.width) {
+        menuRect = menu.getBoundingClientRect();
+      }
+
+      // We are using transform: translate() to position the menu which
+      // takes in to account the menu's x and y position.
+      left -= menuRect.x;
+      top -= menuRect.y;
+
+      if (menuRect.width > width) {
+        if (left + menuRect.width > innerWidth) {
+          left = left - menuRect.width + width;
+        }
+      }
+
+      if (top + height + menuRect.height > innerHeight) {
+        top = top - menuRect.height - height;
+      } else {
+        top += height + 2;
       }
 
       rect = {
-        top: top + height + 2,
+        top,
         left,
         width,
       };
@@ -33,14 +58,14 @@
   }
 </script>
 
-<Backdrop id={$$restProps.id} on:open={handleOpen} transparent>
-  <Col
+<Backdrop id={$$restProps.id} on:open={open} transparent>
+  <Listbox
+    bind:element={menu}
     role="menu"
     aria-label="Menu"
-    class="WuiMenu {$$restProps.class || ''}"
-    style="--WuiMenu-posX:{rect.left}px;--WuiMenu-posY:{rect.top}px;--WuiMenu-minWidth:{rect.width}px"
-    on:click={handleClick}
+    class="{$$restProps.class || ''}"
+    style="position: absolute; transform: translate3d({rect.left}px, {rect.top}px, 0); min-width: {rect.width}px"
   >
     <slot />
-  </Col>
+  </Listbox>
 </Backdrop>

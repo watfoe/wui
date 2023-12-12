@@ -53,7 +53,7 @@
           <Text variant="title" size="sm">{title}</Text>
         {/if}
         {#if showclose === 'true'}
-          <Button variant="soft" color="neutral" size="sm" icon="close" class="WuiModal__close-button" on:click={close} />
+          <Button variant="soft" color="neutral" size="sm" prefix="close" class="WuiModal__close-button" on:click={close} />
         {/if}
       </Row>
     {/if}

@@ -67,6 +67,7 @@
   .WuiText {
     color: var(--WuiText-color, var(--color-black));
     font-size: var(--WuiText-font-size, 1rem);
+    font-weight: 400;
     line-height: var(--WuiText-line-height, 1.5rem);
   }
 

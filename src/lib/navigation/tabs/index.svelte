@@ -86,11 +86,11 @@
   .WuiTabs {
     display: flex;
     flex-direction: row;
-    gap: var(--space-xs);
+    gap: var(--space-md);
     width: 100%;
   }
   .WuiTabs--bottom-ruled {
-    border-bottom: 1px solid var(--color-outline);
+    border-bottom: var(--line);
     margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
   }
   .WuiTabs--bottom-ruled > :global(.WuiTab) {

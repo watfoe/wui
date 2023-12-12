@@ -23,7 +23,7 @@
     {color}
     size="sm"
     slot="suffix"
-    icon="clear"
+    prefix="clear"
     bind:value={value}
     on:click={clear}
   />

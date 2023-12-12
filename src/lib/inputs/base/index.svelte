@@ -92,7 +92,7 @@
     dir="ltr"
     bind:this={input}
     {...$$restProps}
-    class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''}"
+    class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''} {$$restProps.class || ''}"
     on:input={change}
     on:blur={blur}
     bind:value={value}

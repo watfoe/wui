@@ -9,12 +9,12 @@
 </script>
 
 <Tabs for="tab-panels-0">
-  <Tab icon="search" active>Buttons</Tab>
-  <Tab icon="mail">Inputs</Tab>
-  <Tab icon="settings">Feedbacks</Tab>
-  <Tab icon="settings">Badges & tooltips</Tab>
-  <Tab icon="person">Avatars</Tab>
-  <Tab icon="text_fields">Typography</Tab>
+  <Tab prefix="search" active>Buttons</Tab>
+  <Tab prefix="mail">Inputs</Tab>
+  <Tab prefix="settings">Feedbacks</Tab>
+  <Tab prefix="settings">Badges & tooltips</Tab>
+  <Tab prefix="person">Avatars</Tab>
+  <Tab prefix="text_fields">Typography</Tab>
 </Tabs>
 
 <TabPanels id="tab-panels-0">

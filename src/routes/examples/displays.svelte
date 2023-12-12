@@ -5,8 +5,8 @@
 
 </script>
 
-<Col gap="lg">
-  <Row gap="lg">
+<Col gap="lg" width="full">
+  <Row gap="lg" width="full">
     <Badge position="top-left">
       <Icon>mail</Icon>
     </Badge>
@@ -34,7 +34,7 @@
     </Badge>
   </Row>
 
-  <Row gap="lg">
+  <Row gap="lg" width="full">
     <Tooltip title="Please click me" position="top">
       <Button class="button">Continue</Button>
     </Tooltip>
@@ -51,13 +51,13 @@
     </Tooltip>
   </Row>
 
-  <Row gap="lg">
+  <Row gap="lg" width="full">
     <Logo size={200} />
     <Logo size={100} />
     <Logo size={60} />
   </Row>
 
-  <Row gap="lg">
+  <Row gap="lg" width="full">
     <Logo brand="google" />
     <Logo brand="apple" />
     <Logo brand="facebook" />

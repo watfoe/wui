@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-  import { Anchor } from '$lib/button';
+  import { Button } from '$lib/button';
   import { Row } from '$lib/layout';
 
   import { validate, mask, ValidationError } from '../_common_';
@@ -69,7 +69,7 @@
 
 <Row class="cs-input-base-cont">
   {#if prefix}
-    <Anchor {...$$restProps.prefix} on:click={handleAnchorClick} class={`cs-input--prefix`} />
+    <Button {...$$restProps.prefix} on:click={handleAnchorClick} class={`cs-input--prefix`} />
   {/if}
   <textarea
     dir="ltr"
@@ -83,6 +83,6 @@
     on:*
   />
   {#if suffix}
-    <Anchor {...$$restProps.suffix} on:click={handleAnchorClick} class={`cs-input--postfix`} />
+    <Button {...$$restProps.suffix} on:click={handleAnchorClick} class={`cs-input--postfix`} />
   {/if}
 </Row>

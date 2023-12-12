@@ -1,0 +1,9 @@
+.WuiListBox {
+  border: 1px solid var(--color-outline);
+  min-height: 50px;
+  padding: var(--space-xs) 0;
+}
+
+.WuiListBox__listitem {
+  border-radius: 0;
+}

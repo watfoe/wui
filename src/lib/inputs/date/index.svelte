@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Row } from "$lib/layout";
   import BaseInput, { type BaseInputProps } from "../base/index.svelte";
+  import Select from "../select/index.svelte";
 	import type { ValidationError } from "../_common_";
+	import Option from "../select/option.svelte";
 
   type $$Props = BaseInputProps;
 
@@ -98,32 +100,50 @@
   // };
 </script>
 
-<Row justify="space-between" class="cs-input-date-cont">
-  <BaseInput
-    bind:this={dayInput}
-    type="number"
-    placeholder="MM"
-    masks={{max: 12}}
-    {...$$restProps}
-    maxlength={2}
-    on:change={monthOnValid}
-  />
+<Row justify="space-between" gap="nm" class="WuiInput__date">
+  <Select placeholder="Month" {...$$restProps}>
+    <Option value="1">January</Option>
+    <Option value="2">February</Option>
+    <Option value="3" selected>March</Option>
+    <Option value="4">April</Option>
+    <Option value="5">May</Option>
+    <Option value="6">June</Option>
+    <Option value="7">July</Option>
+    <Option value="8">August</Option>
+    <Option value="9">September</Option>
+    <Option value="10">October</Option>
+    <Option value="11">November</Option>
+    <Option value="12">December</Option>
+  </Select>
 
   <BaseInput
     bind:this={monthInput}
-    type="number"
-    placeholder="DD"
+    type="text"
+    placeholder="Day"
     masks={{max: 31}}
     {...$$restProps}
     maxlength={2}
-    on:change={dateOnValid}
+    class="WuiInput__date__day"
   />
 
   <BaseInput
     bind:this={yearInput}
-    type="number"
-    placeholder="YYYY"
+    type="text"
+    placeholder="Year"
     {...$$restProps}
     maxlength={4}
+    class="WuiInput__date__year"
   />
 </Row>
+
+<style>
+  :global(.WuiInput__date) {
+    border-radius: inherit;
+  }
+  :global(.WuiInput__date__month, .WuiInput__date__day, .WuiInput__date__year) {
+    width: 100%;
+  }
+  :global(.WuiInput__date__day, .WuiInput__date__year) {
+    text-align: center;
+  }
+</style>

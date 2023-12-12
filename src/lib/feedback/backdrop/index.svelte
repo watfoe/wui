@@ -43,6 +43,7 @@
     transition: opacity 3s;
     padding: var(--space-xs);
     inset: 0px;
+    overflow: hidden;
     z-index: -1;
     -webkit-tap-highlight-color: transparent;
   }

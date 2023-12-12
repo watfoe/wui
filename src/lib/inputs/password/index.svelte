@@ -29,7 +29,7 @@
     {color}
     size="sm"
     slot="suffix"
-    icon={secure ? 'visibility' : 'visibility_off'}
+    prefix={secure ? 'visibility' : 'visibility_off'}
     on:click={toggle}
   />
 </BaseInput>

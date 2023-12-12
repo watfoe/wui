@@ -15,8 +15,10 @@
     <slot />
   </Text>
 
-  {#if description}
-    <Text variant="label" size="md" class="WuiInput__label__desc">{description}</Text>
+  {#if $$slots.description}
+    <slot name="description" />
+  {:else if description}
+    <Text variant="label" size="md" color="neutral">{description}</Text>
   {/if}
 </Col>
 
@@ -26,9 +28,11 @@
     max-width: calc(100% - (2*var(--space-nm)));
     margin-left: var(--space-nm);
   }
+  :global(.WuiInput__label) {
+    color: var(--WuiLabel-color, var(--color-black-1)) !important;
+  }
 
-  :global(.WuiInput__label), :global(.WuiInput__label__desc) {
-    color: var(--WuiLabel-color, var(--color-on-surface-variant)) !important;
-    overflow: hidden;
+  :global(.WuiInput__label__desc) {
+    color: var(--color-grey-3) !important;
   }
 </style>
