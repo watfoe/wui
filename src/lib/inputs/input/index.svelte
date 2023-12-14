@@ -48,7 +48,7 @@
     <Label for={id} description={description}>{label}</Label>
   {/if}
 
-  <Col align="flex-start" justify="flex-start" class="WuiInput__root__body">
+  <Col align="flex-start" justify="flex-start" class="WuiInput__root__body" width="full">
     {#if type === 'date'}
       <DateInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {:else if type === 'email'}

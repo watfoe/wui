@@ -1,11 +1,11 @@
 .WuiInput__root {
   border: 0;
+  width: 100%;
   border-radius: var(--radius);
 }
 
 .WuiInput__root__body {
   border-radius: inherit;
-  width: 100%;
   position: relative;
 }
 

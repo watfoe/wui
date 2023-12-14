@@ -41,7 +41,7 @@
       // Get the form element that this input is in
       const form = element?.closest('form');
       form?.addEventListener('submit', () => {
-        _validate(value);
+        _validate(element?.value!);
       });
     }
   });

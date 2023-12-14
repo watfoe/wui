@@ -19,14 +19,13 @@
   interface $$Props extends FlexProps {};
 
   export let direction: $$Props['direction'] = 'row';
+  export let element: $$Props['element'] = undefined;
   export let justify: $$Props['justify'] = 'flex-start';
   export let align: $$Props['align'] = 'center';
   export let wrap: $$Props['wrap'] = 'nowrap';
   export let gap: $$Props['gap'] = undefined;
   export let width: $$Props['width'] = undefined;
   export let height: $$Props['height'] = undefined;
-
-  export let element: $$Props['element'] = undefined;
 </script>
 
 <div
