@@ -11,6 +11,7 @@
   height: var(--WuiButton-height, var(--button-height));
   justify-content: var(--WuiButtonFlex-justify, center);
   padding: 0 var(--WuiButton-paddingX, var(--space-md));
+  overflow: hidden;
 }
 .WuiButton:disabled {
   pointer-events: none;
