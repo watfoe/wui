@@ -1,6 +1,7 @@
 .WuiSelect__root {
   border: 0;
   border-radius: var(--radius);
+  width: 100%;
 }
 
 .WuiSelect__root__body {

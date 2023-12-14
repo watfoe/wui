@@ -10,7 +10,7 @@
   export let description: $$Props['description'] = undefined;
 </script>
 
-<Col justify="flex-start" align="flex-start" gap="sm" class="WuiInput__label__root">
+<Col justify="flex-start" align="flex-start" class="WuiInput__label__root">
   <Text variant="label" size="md" bold class="WuiInput__label" {...$$restProps} >
     <slot />
   </Text>

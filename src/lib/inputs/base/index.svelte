@@ -75,7 +75,7 @@
   }
 </script>
 
-<Row class="WuiInput__field-cont">
+<Row class="WuiInput__field__root">
   {#if $$slots.prefix}
     <div class="WuiInput__prefix">
       <slot name="prefix" />
