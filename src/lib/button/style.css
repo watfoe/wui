@@ -84,14 +84,18 @@
   background-color: var(--WuiButton-bg, var(--color-primary));
   color: var(--color-white, var(--color-on-primary));
 }
-.WuiButton--solid:not(:disabled):hover, .WuiButton--soft:not(:disabled):hover {
+.WuiButton--solid:not(:disabled):hover,
+.WuiButton--solid:not(:disabled):focus,
+.WuiButton--soft:not(:disabled):hover,
+.WuiButton--soft:not(:disabled):focus {
   filter: brightness(0.95);
 }
 .WuiButton--outline {
   background-color: transparent;
   --WuiButton-border-color: var(--WuiButton-bg, var(--color-primary));
 }
-.WuiButton--outline:not(:disabled):hover {
+.WuiButton--outline:not(:disabled):hover,
+.WuiButton--outline:not(:disabled):focus {
   background-color: var(--WuiButton-bg-soft, var(--color-selection-container));
 }
 .WuiButton--soft {
@@ -100,7 +104,8 @@
 .WuiButton--plain {
   background-color: transparent;
 }
-.WuiButton--plain:not(:disabled):hover {
+.WuiButton--plain:not(:disabled):hover,
+.WuiButton--plain:not(:disabled):focus {
   background-color: var(--WuiButton-bg-soft);
 }
 .WuiButton--none, .WuiButton--none:hover {

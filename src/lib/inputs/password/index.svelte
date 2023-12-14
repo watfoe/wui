@@ -7,7 +7,10 @@
   }
 
   export let color: $$Props['color'] = 'neutral';
+  export let element: $$Props['element'] = undefined;
+  export let error: $$Props['error'] = undefined;
   export let secure = true;
+  export let value: $$Props['value'] = '';
 
   function toggle() {
     secure = !secure;
@@ -22,6 +25,9 @@
   autocorrect="off"
   spellcheck="false"
   suffix="visibility"
+  bind:element={element}
+  bind:error={error}
+  bind:value={value}
   on:*
 >
   <Button

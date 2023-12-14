@@ -20,6 +20,16 @@
   padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
   width: 100%;
 }
+/* Chrome, Safari, Edge, Opera */
+.WuiInput::-webkit-outer-spin-button,
+.WuiInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.WuiInput[type=number] {
+  -moz-appearance: textfield;
+}
 .WuiInput::placeholder {
   color: var(--WuiInput-color-bg, var(--color-on-surface));
   opacity: 0.8;

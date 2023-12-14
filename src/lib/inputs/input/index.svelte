@@ -30,42 +30,17 @@
   import PhoneInput from '../phone/index.svelte';
   import PinInput from '../pin/index.svelte';
   import SearchInput from '../search/index.svelte';
-	import type { ValidationError } from '$lib/domains/_/phone';
-	import { onMount } from 'svelte';
 
   type $$Props = InputProps;
-
-  let errored = false;
 
   export let color: $$Props['color'] = 'neutral';
   export let description: $$Props['description'] = undefined;
   export let label: $$Props['label'] = undefined;
   export let hidden: $$Props['hidden'] = undefined;
   export let type: $$Props['type'] = 'text';
+  export let error: $$Props['error'] = undefined;
 
-  let id: string | undefined = undefined;
-  let error: string = '';
-
-  onMount(() => {
-    id = Math.random().toString(36).substring(2, 15);
-  });
-
-  function validate(e: CustomEvent) {
-    const detail = e.detail;
-    if (detail.error) {
-      errored = true;
-      error = errorToString(detail.error);
-    } else {
-      errored = false;
-      error = '';
-    }
-  }
-
-  function errorToString(error: ValidationError) {
-    let message = error.message.replace(/_/g, ' ').toLocaleLowerCase();
-    message = message.charAt(0).toUpperCase() + message.slice(1);
-    return message;
-  };
+  let id = Math.random().toString(36).substring(2, 15);
 </script>
 
 <fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class}" hidden={hidden}>
@@ -75,24 +50,24 @@
 
   <Col align="flex-start" justify="flex-start" class="WuiInput__root__body">
     {#if type === 'date'}
-      <DateInput {...$$restProps} {id} {color} on:validate={validate} on:* />
+      <DateInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {:else if type === 'email'}
-      <EmailInput {...$$restProps} {id} {color} on:validate={validate} on:* />
+      <EmailInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {:else if type === 'name'}
-      <BaseInput {...$$restProps} {id} {color} autocomplete="name" autocapitalize="words" on:validate={validate} on:* />
+      <BaseInput {...$$restProps} {id} {color} autocomplete="name" autocapitalize="words" bind:error={error} on:* />
     {:else if type === 'password'}
-      <PasswordInput secure {...$$restProps} {id} {color}  on:validate={validate} on:* />
+      <PasswordInput secure {...$$restProps} {id} {color}  bind:error={error} on:* />
     {:else if type === 'phone'}
-      <PhoneInput {...$$restProps} {id} {color} on:validate={validate} on:* />
+      <PhoneInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {:else if type === 'pin'}
-      <PinInput {...$$restProps} {id} {color} on:validate={validate} on:* />
+      <PinInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {:else if type === 'search'}
-      <SearchInput {...$$restProps} {id} {color} on:validate={validate} on:* />
+      <SearchInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {:else}
-      <BaseInput {...$$restProps} {id} {color} on:validate={validate} on:* />
+      <BaseInput {...$$restProps} {id} {color} bind:error={error} on:* />
     {/if}
 
-    {#if errored}
+    {#if error}
       <ErrorText error={error} />
     {/if}
   </Col>

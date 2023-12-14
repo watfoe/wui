@@ -4,8 +4,10 @@
 
   type $$Props = BaseInputProps;
 
-  let value: string = '';
   export let color: $$Props['color'] = 'neutral';
+  export let element: $$Props['element'] = undefined;
+  export let error: $$Props['error'] = undefined;
+  export let value: $$Props['value'] = '';
 
   function clear() {
     value = ''
@@ -14,8 +16,16 @@
 
 <BaseInput
   {...$$restProps}
+  role="searchbox"
+  aria-label="Search"
   autocomplete="search"
+  autocapitalize="off"
+  autocorrect="off"
+  spellcheck="false"
   type="text"
+  bind:element={element}
+  bind:error={error}
+  bind:value={value}
   on:*
 >
   <Button
@@ -24,7 +34,6 @@
     size="sm"
     slot="suffix"
     prefix="clear"
-    bind:value={value}
     on:click={clear}
   />
 </BaseInput>

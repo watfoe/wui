@@ -5,6 +5,7 @@
 	import type { ColProps } from '$lib/layout/col/index.svelte';
 
   interface $$Props extends ColProps {
+    backdrop?: boolean;
     class?: string;
     style?: string;
     selected?: boolean;
@@ -47,6 +48,10 @@
               selections.push(item);
             }
           } else {
+            selections[0]?.dispatchEvent(new CustomEvent('deselect', {
+              detail: { values, selections }
+            }));
+
             values = [value];
             selections = [item];
           }
@@ -64,7 +69,7 @@
   bind:element={element}
   role="{$$restProps.role || 'listbox'}"
   aria-label="{$$restProps.label || 'Select an option'}"
-  class="WuiListBox {$$restProps.class || ''}"
+  class="WuiListbox {$$restProps.class || ''}"
   style="{$$restProps.style || ''}"
 >
   <slot />

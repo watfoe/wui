@@ -15,54 +15,53 @@
 
   type $$Props = BaseInputProps;
 
-  let input: HTMLInputElement;
-  let value: string | null = null;
-  let error: ValidationError | null = null;
-
-  export let size: $$Props['size'] = 'md';
-  export let variant: $$Props['variant'] = 'outline';
-  export let rules: $$Props['rules'] = undefined;
+  export let element: $$Props['element'] = undefined;
+  export let error: $$Props['error'] = undefined;
   export let masks: $$Props['masks'] = undefined;
   export let prefix: $$Props['prefix'] = undefined;
+  export let required: $$Props['required'] = undefined;
+  export let rules: $$Props['rules'] = undefined;
+  export let size: $$Props['size'] = 'md';
   export let suffix: $$Props['suffix'] = undefined;
   export let validateon: $$Props['validateon'] = 'blur';
-  export let required: $$Props['required'] = undefined;
+  export let value: $$Props['value'] = '';
+  export let variant: $$Props['variant'] = 'outline';
+
+  $: if (error || !error) {
+    element?.setCustomValidity(error === undefined ? '' : error?.message);
+  };
 
   onMount(() => {
     if (required && !rules?.required) {
       rules = rules || {};
       rules.required = true;
     }
-  });
 
-  export const clearError = () => {
-    error = null;
-    input?.setCustomValidity('');
-  };
+    if (rules && validateon === 'submit') {
+      // Get the form element that this input is in
+      const form = element?.closest('form');
+      form?.addEventListener('submit', () => {
+        _validate(value);
+      });
+    }
+  });
 
   function _validate(_value: string) {
     try {
       validate(_value, rules!);
-      clearError();
-      input.dispatchEvent(new CustomEvent('validate', {
-        detail: { value }
-      }));
+      error = undefined;
     } catch (e) {
       error = e as ValidationError;
-      input?.setCustomValidity(error.message);
-      input?.dispatchEvent(new CustomEvent('validate', {
-        detail: { error }
-      }));
     }
   }
 
   function change(e: CustomEvent) {
     let _value = (e.target as HTMLInputElement)?.value;
+
     if (masks) {
       _value = mask(_value, masks) || '';
+      value = _value
     }
-
-    value = _value
 
     if (rules && validateon === 'change') {
       _validate(_value);
@@ -70,9 +69,8 @@
   }
 
   function blur(e: CustomEvent) {
-    let _value = (e.target as HTMLInputElement)?.value;
     if (rules && validateon === 'blur') {
-      _validate(_value);
+      _validate((e.target as HTMLInputElement)?.value);
     }
   }
 </script>
@@ -90,7 +88,7 @@
 
   <input
     dir="ltr"
-    bind:this={input}
+    bind:this={element}
     {...$$restProps}
     class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''} {$$restProps.class || ''}"
     on:input={change}

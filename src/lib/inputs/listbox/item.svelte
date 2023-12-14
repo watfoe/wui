@@ -27,12 +27,55 @@
         dispatch();
       }, 0);
     }
+
+    // Keyboard accessibility
+    element?.addEventListener('keydown', (e: KeyboardEvent) => {
+      const {key} = e;
+
+      if (key === 'ArrowDown') {
+        e.preventDefault();
+
+        // If it has focus, move to the next item
+        if (element === document.activeElement) {
+          const next = element.nextElementSibling as HTMLButtonElement;
+
+          if (next) {
+            next.focus();
+          } else if (element.previousElementSibling) {
+            const first = element.parentElement?.firstElementChild as HTMLButtonElement;
+            first?.focus();
+          }
+        }
+      } else if (key === 'ArrowUp') {
+        e.preventDefault();
+        // If it has focus, move to the next item
+        if (element === document.activeElement) {
+          const previous = element.previousElementSibling as HTMLButtonElement;
+
+          if (previous) {
+            previous.focus();
+          } else if (element.nextElementSibling) {
+            const last = element.parentElement?.lastElementChild as HTMLButtonElement;
+            last?.focus();
+          }
+        }
+      } else if (key === 'Enter' || key === ' ') {
+        e.preventDefault();
+        element?.click();
+      }
+    });
   });
 
   function select() {
     if (!selected) {
       selected = true;
       dispatch();
+    }
+  }
+
+  function deselect() {
+    if (selected) {
+      selected = false;
     }
   }
 
@@ -55,6 +98,7 @@
   bold={false}
   class="WuiListBox__listitem"
   on:click={select}
+  on:deselect={deselect}
 >
   <slot/>
 </Button>

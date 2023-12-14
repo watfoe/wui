@@ -2,7 +2,7 @@
   import { Button } from '$lib/button';
   import { Logo } from '$lib/display';
   import { Row } from '$lib/layout';
-  import { Text } from '$lib/typography';
+  import { Link, Text } from '$lib/typography';
 
   interface $$Props {
     class?: string;
@@ -29,8 +29,14 @@
   <Row justify="flex-end" gap="md">
     <Button variant="plain" color="neutral" size="sm" prefix="language">EN</Button>
     <Button variant="plain" color="neutral" size="sm" prefix="apps">Products</Button>
-    <Button variant="plain" color="neutral" size="sm">Sign in</Button>
-    <Button variant="solid" color="primary" size="sm">Create account</Button>
+
+    <Link href="/auth/signin">
+      <Button variant="plain" color="neutral" size="sm">Sign in</Button>
+    </Link>
+
+    <Link href="/auth/signup">
+      <Button variant="solid" color="primary" size="sm">Create account</Button>
+    </Link>
   </Row>
 </Row>
 

@@ -11,18 +11,10 @@
 
 .WuiSelect--primary {
   --WuiSelect-color-plain: var(--color-blue-1);
-  --WuiSelect-color-bg: var(--color-primary);
-  --WuiSelect-color-on-bg: var(--color-on-primary);
-  --WuiSelect-color-bg-soft: var(--color-selection-container);
-  --WuiSelect-color-outline: var(--color-primary);
   --WuiLabel-color: var(--color-primary);
 }
 .WuiSelect--neutral {
   --WuiSelect-color-plain: var(--color-grey-1);
-  --WuiSelect-color-bg: var(--color-neutral);
-  --WuiSelect-color-on-bg: var(--color-on-neutral);
-  --WuiSelect-color-bg-soft: var(--color-neutral-container);
-  --WuiSelect-color-outline: var(--color-grey-4);
   --WuiLabel-color: var(--color-black-1);
 }
 .WuiSelect--neutral:focus-within {
@@ -30,46 +22,20 @@
 }
 .WuiSelect--success {
   --WuiSelect-color-plain: var(--color-green-1);
-  --WuiSelect-color-bg: var(--color-success);
-  --WuiSelect-color-on-bg: var(--color-on-success);
-  --WuiSelect-color-bg-soft: var(--color-success-container);
-  --WuiSelect-color-outline: var(--color-success);
   --WuiLabel-color: var(--color-success);
 }
 .WuiSelect--warning {
   --WuiSelect-color-plain: var(--color-yellow-1);
-  --WuiSelect-color-bg: var(--color-warning);
-  --WuiSelect-color-on-bg: var(--color-on-warning);
-  --WuiSelect-color-bg-soft: var(--color-warning-container);
-  --WuiSelect-color-outline: var(--color-warning);
   --WuiLabel-color: var(--color-warning);
 }
 .WuiSelect--danger, .WuiSelect__root:invalid {
   --WuiSelect-color-plain: var(--color-red-1);
-  --WuiSelect-color-bg: var(--color-error);
-  --WuiSelect-color-on-bg: var(--color-on-error);
-  --WuiSelect-color-bg-soft: var(--color-error-container);
-  --WuiSelect-color-on-bg-soft: var(--color-error);
-  --WuiSelect-color-outline: var(--color-error) !important;
   --WuiLabel-color: var(--color-error);
 }
 
-.WuiSelect--primary:disabled,
-.WuiSelect--neutral:disabled,
-.WuiSelect--success:disabled,
-.WuiSelect--warning:disabled {
-  --WuiSelect-color-plain: var(--color-disabled);
-  --WuiSelect-color-bg: var(--color-disabled);
-  --WuiSelect-color-on-bg: var(--color-on-disabled);
-  --WuiSelect-color-bg-soft: var(--color-disabled);
-  --WuiSelect-color-on-bg-soft: var(--color-on-disabled);
-  --WuiSelect-color-outline: var(--color-disabled);
-  --WuiLabel-color: var(--color-disabled);
+.WuiSelect--neutral:focus-within .WuiSelect__combobox {
+  border-color: var(--color-primary);
 }
-
-
-
-
 
 .WuiSelect__listbox {
   --WuiSelect-posY: 0;
@@ -82,8 +48,30 @@
 .WuiSelect__combobox {
   padding: 0 calc(var(--space-nm) - 0.8px) !important;
 }
+.WuiSelect__combobox:not(.WuiButton--solid):focus, .WuiButton__combobox:not(.WuiSelect--solid):hover {
+  background-color: transparent !important;
+}
+.WuiSelect--plain .WuiSelect__combobox {
+  background-color: var(--WuiSelect-color-plain) !important;
+}
+.WuiSelect--neutral:not(.WuiSelect--solid) .WuiSelect__combobox__value {
+  color: var(--color-on-surface);
+}
 .WuiSelect__combobox__placeholder {
   opacity: 0.8;
+}
+.WuiSelect__root:focus-within .WuiSelect__combobox , .WuiSelect__combobox--opened {
+  border-width: 1.8px
+}
+
+.WuiSelect__combobox__icon {
+  transition: transform 0.1s ease-in-out;
+  opacity: 0.8;
+}
+.WuiSelect__root:focus-within .WuiSelect__combobox__icon,
+.WuiSelect__combobox--opened .WuiSelect__combobox__icon {
+  opacity: 1;
+  transform: rotate(180deg);
 }
 
 .WuiSelect__hidden_input {

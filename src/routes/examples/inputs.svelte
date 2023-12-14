@@ -5,13 +5,6 @@
 
 <Col gap="lg" width="full">
   <Row gap="md" width="full">
-    <Input type="date" variant="solid" color="danger" label="Date" class="input" />
-    <Input type="date" variant="outline" color="danger" label="Date" class="input" />
-    <Input type="date" variant="soft" color="danger" label="Date" class="input" />
-    <Input type="date" variant="plain" color="danger" label="Date" class="input" />
-  </Row>
-
-  <Row gap="md" width="full">
     <Input type="text" variant="solid" color="primary" label="Name" class="input" />
     <Input type="text" variant="outline" color="primary" label="Name" class="input" required />
     <Input type="text" variant="soft" color="primary" label="Name" class="input" required />
@@ -37,5 +30,12 @@
     <Input type="search" variant="outline" color="warning" label="Search" class="input" required />
     <Input type="search" variant="soft" color="warning" label="Search" class="input" required />
     <Input type="search" variant="plain" color="warning" label="Search" class="input" />
+  </Row>
+
+  <Row gap="md" width="full">
+    <Input type="date" variant="solid" label="Date" class="input" validateon="blur" required />
+    <Input type="date" variant="outline" label="Date" class="input" validateon="blur" required />
+    <Input type="date" variant="soft" label="Date" class="input" validateon="blur" required />
+    <Input type="date" variant="plain" label="Date" class="input" validateon="blur" required />
   </Row>
 </Col>

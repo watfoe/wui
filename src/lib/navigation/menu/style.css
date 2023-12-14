@@ -1,0 +1,8 @@
+.WuiMenu {
+  --WuiMenu-minWidth: 200px;
+  --WuiMenu-posY: 0;
+  --WuiMenu-posX: 0;
+  min-width: var(--WuiMenu-minWidth);
+  position: absolute;
+  transform: translate3d(var(--WuiMenu-posX), var(--WuiMenu-posY), 0);
+}

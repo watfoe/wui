@@ -1,9 +1,18 @@
 <script lang="ts">
   import { Text } from '$lib/typography';
-  export let error: string;
+	import type { ValidationError } from '../_common_';
+  export let error: ValidationError;
+
+  function errorToString(error: ValidationError) {
+    let message = error.message.replace(/_/g, ' ').toLocaleLowerCase();
+    message = message.charAt(0).toUpperCase() + message.slice(1);
+    return message;
+  };
 </script>
 
-<Text variant="label" size="sm" color="danger" class="WuiInput__error">{error}</Text>
+<Text variant="label" size="sm" color="danger" class="WuiInput__error">
+  {errorToString(error)}
+</Text>
 
 <style>
   :global(.WuiInput__error) {

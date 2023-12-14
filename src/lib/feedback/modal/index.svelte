@@ -17,22 +17,14 @@
   export let title: $$Props['title'] = undefined;
   export let showclose: $$Props['showclose'] = 'true';
 
-  let backdrop: HTMLDialogElement;
-
   onMount(() => {
-    if (id) {
-      backdrop = document.getElementById(id) as HTMLDialogElement;
-    } else {
+    if (!id) {
       throw new Error('An id prop must be added to the <Modal /> element')
     }
   });
 
   function click(e: CustomEvent) {
     e.stopPropagation();
-  }
-
-  function close() {
-    backdrop?.dispatchEvent(new CustomEvent('closebackdrop'))
   }
 </script>
 
@@ -53,7 +45,9 @@
           <Text variant="title" size="sm">{title}</Text>
         {/if}
         {#if showclose === 'true'}
-          <Button variant="soft" color="neutral" size="sm" prefix="close" class="WuiModal__close-button" on:click={close} />
+          <form>
+            <Button variant="soft" color="neutral" size="sm" prefix="close" class="WuiModal__close-button" value="cancel" formmethod="dialog" />
+          </form>
         {/if}
       </Row>
     {/if}

@@ -4,6 +4,10 @@
 
   interface $$Props extends BaseInputProps {}
 
+  export let element: $$Props['element'] = undefined;
+  export let error: $$Props['error'] = undefined;
+  export let value: $$Props['value'] = '';
+
   function rule(value: string) {
     return new Phone(value);
   }
@@ -16,5 +20,8 @@
     rule,
     ...$$restProps.rules,
   }}
+  bind:element={element}
+  bind:error={error}
+  bind:value={value}
   on:*
 />
