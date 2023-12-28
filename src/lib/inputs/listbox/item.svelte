@@ -90,6 +90,7 @@
   {...$$restProps}
   bind:element={element}
   {role}
+  type="button"
   aria-selected="{selected}"
   variant={selected ? 'soft' : 'plain'}
   color={selected ? 'primary' : 'neutral'}

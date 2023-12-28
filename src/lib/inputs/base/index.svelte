@@ -23,7 +23,7 @@
   export let rules: $$Props['rules'] = undefined;
   export let size: $$Props['size'] = 'md';
   export let suffix: $$Props['suffix'] = undefined;
-  export let validateon: $$Props['validateon'] = 'blur';
+  export let validateon: $$Props['validateon'] = 'submit';
   export let value: $$Props['value'] = '';
   export let variant: $$Props['variant'] = 'outline';
 
@@ -63,7 +63,7 @@
       value = _value
     }
 
-    if (rules && validateon === 'change') {
+    if (rules && (validateon === 'change' || error)) {
       _validate(_value);
     }
   }

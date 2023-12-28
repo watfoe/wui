@@ -30,11 +30,13 @@
   import PhoneInput from '../phone/index.svelte';
   import PinInput from '../pin/index.svelte';
   import SearchInput from '../search/index.svelte';
+	import { Text } from '$lib/typography';
 
   type $$Props = InputProps;
 
   export let color: $$Props['color'] = 'neutral';
   export let description: $$Props['description'] = undefined;
+  export let disabled: $$Props['disabled'] = undefined;
   export let label: $$Props['label'] = undefined;
   export let hidden: $$Props['hidden'] = undefined;
   export let type: $$Props['type'] = 'text';
@@ -43,9 +45,18 @@
   let id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class}" hidden={hidden}>
-  {#if label && !hidden}
-    <Label for={id} description={description}>{label}</Label>
+<fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class}" {hidden} {disabled}>
+  <!-- This might seem repetitive but with how the Label is defined, it ensures that it
+  doesn't leave an unintended empty description helper text -->
+  {#if label && $$slots.description && !hidden}
+    <Label for={id} {description}>
+      {label}
+      <slot name="description" slot="description" />
+    </Label>
+  {:else if label && !hidden}
+    <Label for={id} {description}>
+      {label}
+    </Label>
   {/if}
 
   <Col align="flex-start" justify="flex-start" class="WuiInput__root__body" width="full">

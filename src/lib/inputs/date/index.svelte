@@ -14,6 +14,7 @@
   import Select from "../select/index.svelte";
 	import { ValidationError } from "../_common_";
 	import Option from "../select/option.svelte";
+	import { onMount } from "svelte";
 
   type $$Props = DateInputProps;
 
@@ -21,15 +22,33 @@
   let month: string;
   let year: string;
 
+  export let id: $$Props['id'] = undefined;
   export let element: $$Props['element'] = undefined;
   export let format: $$Props['format'] = 'mm/dd/yyyy';
   export let error: $$Props['error'] = undefined;
+  export let name: $$Props['name'] = undefined;
   export let required: $$Props['required'] = undefined;
-  export let validateon: $$Props['validateon'] = 'blur';
+  export let rules: $$Props['rules'] = undefined;
+  export let validateon: $$Props['validateon'] = 'submit';
   export let value: $$Props['value'] = '';
 
+  onMount(() => {
+    if (required && !rules?.required) {
+      rules = rules || {};
+      rules.required = true;
+    }
+
+    if (rules && validateon === 'submit') {
+      // Get the form element that this input is in
+      const form = element?.closest('form');
+      form?.addEventListener('submit', () => {
+        validate();
+      });
+    }
+  });
+
   function change(e: Event) {
-    if (validateon === 'change') {
+    if (validateon === 'change' || error) {
       validate();
     }
   }
@@ -41,38 +60,35 @@
   }
 
   function validate() {
-    if (day !== '' && month && year !== '') {
+    if (day !== '' && month !== '' && year !== '') {
       const date = new Date(`${month}/${day}/${year}`);
 
       if (date.toString() !== 'Please enter a valid date') {
-        error = undefined;
-        value = date.toLocaleDateString('en-US');
-
-        element?.dispatchEvent(
-          new CustomEvent('change', {
-            detail: {
-              value
-            },
-          })
-        );
+        _dipatch(date.toLocaleDateString('en-US'));
       } else {
-        error = new ValidationError('Invalid date');
-        element?.dispatchEvent(
-          new CustomEvent('change', {
-            detail: {
-              value: '',
-            },
-          })
-        );
+        _dipatch('', new ValidationError('Please enter a valid date'));
       }
+    } else {
+      _dipatch('', new ValidationError('Please enter a valid date'));
     }
+  }
+
+  function _dipatch(_value: string, _error?: ValidationError) {
+    value = _value;
+    error = _error;
+    element?.dispatchEvent(
+      new Event('change', {
+        bubbles: true,
+      })
+    );
   }
 </script>
 
-<Row bind:element={element} justify="space-between" gap="nm" class="WuiInput__date">
+<Row justify="space-between" gap="nm" class="WuiInput__date">
   <Select
     placeholder="Month"
     {...$$restProps}
+    {id}
     {required}
     {validateon}
     bind:value={month}
@@ -102,7 +118,7 @@
     maxlength={2}
     class="WuiInput__date__day"
     rules={{
-      required: required ? 'Day is required' : undefined,
+      required: required ? 'Please enter a valid date' : undefined,
     }}
     {validateon}
     bind:value={day}
@@ -118,13 +134,22 @@
     maxlength={4}
     class="WuiInput__date__year"
     rules={{
-      required: required ? 'Year is required' : undefined,
+      required: required ? 'Please enter a valid date' : undefined,
     }}
     {validateon}
     bind:value={year}
     bind:error={error}
     on:change={change}
     on:blur={blur}
+  />
+
+  <input
+    bind:this={element}
+    tabindex="-1"
+    aria-hidden="true"
+    {name}
+    {value}
+    style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
   />
 </Row>
 

@@ -2,7 +2,7 @@
   import './style.css';
   import { Backdrop } from '$lib/feedback';
 	import { Button } from '$lib/button';
-  import { Listbox } from '$lib/inputs';
+  import { Listbox, Label } from '$lib/inputs';
 	import { onMount } from 'svelte';
 	import { Col } from '$lib/layout';
 	import { Icon } from '$lib/display';
@@ -10,25 +10,23 @@
 
   interface $$Props {
     class?: string;
+    color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+    description?: string;
     element?: HTMLInputElement;
     error?: ValidationError;
-    style?: string;
-    value?: string;
-    selected?: boolean;
-    multiple?: boolean;
-    placeholder?: string;
-    label?: string;
-    description?: string;
     hidden?: boolean;
+    id?: string;
+    label?: string;
+    multiple?: boolean;
     name?: string;
+    placeholder?: string;
     required?: boolean;
-    variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
-    validateon?: 'change' | 'blur' | 'submit';
-    color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
     size?: 'sm' | 'md' | 'lg';
+    style?: string;
+    validateon?: 'change' | 'blur' | 'submit';
+    value?: string;
+    variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
   }
-
-  const id = Math.random().toString(36).substring(2, 9);
 
   let opened = false;
   let rules = {} as Record<string, any>;
@@ -37,25 +35,27 @@
   let listbox: HTMLDivElement;
   let selections = [] as HTMLButtonElement[];
 
+  // Rearange the props in alphabetical order
+  export let color: $$Props['color'] = 'neutral';
+  export let description: $$Props['description'] = undefined;
   export let element: $$Props['element'] = undefined;
   export let error: $$Props['error'] = undefined;
-  export let value: $$Props['value'] = '';
-  export let multiple: $$Props['multiple'] = false;
-  export let placeholder: $$Props['placeholder'] = undefined;
-  export let label: $$Props['label'] = undefined;
-  export let description: $$Props['description'] = undefined;
   export let hidden: $$Props['hidden'] = false;
+  export let id: $$Props['id'] = Math.random().toString(36).substring(2, 9);
+  export let label: $$Props['label'] = undefined;
+  export let multiple: $$Props['multiple'] = false;
   export let name: $$Props['name'] = undefined;
-  export let variant: $$Props['variant'] = 'outline';
-  export let validateon: $$Props['validateon'] = 'blur';
-  export let color: $$Props['color'] = 'neutral';
+  export let placeholder: $$Props['placeholder'] = undefined;
   export let required: $$Props['required'] = undefined;
   export let size: $$Props['size'] = 'md';
+  export let style: $$Props['style'] = undefined;
+  export let value: $$Props['value'] = '';
+  export let validateon: $$Props['validateon'] = 'submit';
+  export let variant: $$Props['variant'] = 'outline';
 
-  // execute blur related logic since
-  $: if (opened) {
-
-  }
+  $: if (error || !error) {
+    element?.setCustomValidity(error === undefined ? '' : error?.message);
+  };
 
   onMount(() => {
     if (required && validateon === 'submit') {
@@ -76,6 +76,10 @@
       // Any listeners on the fieldset will be able to listen for the event since
       // it bubbles up.
       element?.dispatchEvent(new Event('change', {bubbles: true}));
+
+      if (error) {
+        _validate(value!);
+      }
     });
 
     // Keyboard accessibility
@@ -172,15 +176,23 @@
   on:blur={blur}
   on:*
 >
-  {#if label && !hidden}
-    <label for={id} description={description}>{label}</label>
+  {#if label && $$slots.description && !hidden}
+    <Label for={id} {description}>
+      {label}
+      <slot name="description" slot="description" />
+    </Label>
+    {:else if label && !hidden}
+    <Label for={id} {description}>
+      {label}
+    </Label>
   {/if}
 
   <Col align="flex-start" justify="flex-start" class="WuiSelect__root__body">
     <Button
-      {...$$props}
+      {...$$restProps}
       bind:element={combobox}
       role="combobox"
+      type="button"
       aria-expanded="false"
       anchorfor={id}
       color={error ? 'danger' : opened ? 'primary' : color}
@@ -211,8 +223,9 @@
       bind:this={element}
       tabindex="-1"
       aria-hidden="true"
-      {name} value={$$props.value}
-      hidden
+      {name}
+      {value}
+      style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
     />
   </Col>
 </fieldset>

@@ -35,6 +35,7 @@ export type BaseProps<T> = T & {
   color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
   element?: HTMLInputElement;
   error?: ValidationError;
+  id?: string;
   masks?: InputMasks;
   prefix?: string;
   rules?: InputRules;

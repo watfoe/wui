@@ -42,6 +42,9 @@
 </dialog>
 
 <style>
+  :global(html):has(dialog[open]) {
+    overflow: hidden !important;
+  }
   .WuiBackdrop {
     border: 0;
     max-width: 100vw !important;
@@ -53,7 +56,6 @@
     padding: var(--space-xs);
     inset: 0px;
     overflow: hidden;
-    z-index: -1;
     -webkit-tap-highlight-color: transparent;
   }
   .WuiBackdrop--transparent-true {

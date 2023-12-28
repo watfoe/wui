@@ -11,14 +11,18 @@
 </script>
 
 <Col justify="flex-start" align="flex-start" class="WuiInput__label__root">
-  <Text variant="label" size="md" bold class="WuiInput__label" {...$$restProps} >
-    <slot />
+  <Text variant="label" size="md" bold class="WuiInput__label" {...$$restProps}>
+    {#if $$slots.default}
+      <slot />
+    {/if}
   </Text>
 
   {#if $$slots.description}
-    <slot name="description" />
+    <Text variant="label" size="sm" color="neutral" class="WuiInput__label__desc">
+      <slot name="description" />
+    </Text>
   {:else if description}
-    <Text variant="label" size="md" color="neutral">{description}</Text>
+    <Text variant="label" size="sm" color="neutral" class="WuiInput__label__desc">{description}</Text>
   {/if}
 </Col>
 
@@ -30,9 +34,10 @@
   }
   :global(.WuiInput__label) {
     color: var(--WuiLabel-color, var(--color-black-1)) !important;
+    margin-bottom: 1px;
   }
 
   :global(.WuiInput__label__desc) {
-    color: var(--color-grey-3) !important;
+    margin-bottom: 3px;
   }
 </style>
