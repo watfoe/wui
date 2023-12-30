@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
   export interface DateInputProps extends BaseInputProps {
     value?: string;
-    format?: string;
     defaultmonth?: string;
     defaultday?: string;
     defaultyear?: string;
@@ -18,13 +17,12 @@
 
   type $$Props = DateInputProps;
 
-  let day: string;
-  let month: string;
-  let year: string;
+  let day = '';
+  let month = '';
+  let year = '';
 
   export let id: $$Props['id'] = undefined;
   export let element: $$Props['element'] = undefined;
-  export let format: $$Props['format'] = 'mm/dd/yyyy';
   export let error: $$Props['error'] = undefined;
   export let name: $$Props['name'] = undefined;
   export let required: $$Props['required'] = undefined;
@@ -41,13 +39,15 @@
     if (rules && validateon === 'submit') {
       // Get the form element that this input is in
       const form = element?.closest('form');
-      form?.addEventListener('submit', () => {
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
         validate();
       });
     }
   });
 
   function change(e: Event) {
+    console.log('change', month, day, year);
     if (validateon === 'change' || error) {
       validate();
     }
@@ -63,8 +63,8 @@
     if (day !== '' && month !== '' && year !== '') {
       const date = new Date(`${month}/${day}/${year}`);
 
-      if (date.toString() !== 'Please enter a valid date') {
-        _dipatch(date.toLocaleDateString('en-US'));
+      if (date.toString() !== 'Invalid Date') {
+        _dipatch(date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'}));
       } else {
         _dipatch('', new ValidationError('Please enter a valid date'));
       }
@@ -148,7 +148,7 @@
     tabindex="-1"
     aria-hidden="true"
     {name}
-    {value}
+    bind:value
     style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
   />
 </Row>

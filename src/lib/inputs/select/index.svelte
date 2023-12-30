@@ -29,13 +29,10 @@
   }
 
   let opened = false;
-  let rules = {} as Record<string, any>;
-  let fieldset: HTMLFieldSetElement;
   let combobox: HTMLButtonElement;
   let listbox: HTMLDivElement;
   let selections = [] as HTMLButtonElement[];
 
-  // Rearange the props in alphabetical order
   export let color: $$Props['color'] = 'neutral';
   export let description: $$Props['description'] = undefined;
   export let element: $$Props['element'] = undefined;
@@ -61,16 +58,22 @@
     if (required && validateon === 'submit') {
       // Get the form element that this input is in
       const form = element?.closest('form');
-      form?.addEventListener('submit', () => {
-        _validate(value!);
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        _validate();
       });
     }
 
     // @ts-ignore
     listbox?.addEventListener('select', (e: CustomEvent) => {
       const {selections: _selections, values} = e.detail;
-      value = values.join(', ');
       selections = _selections;
+      // Setting this is necessary for a consumer of this component that has bind:value
+      value = values.join(', ');
+
+      // Setting the value on the input element is necessary for a consumer of this component
+      // that is listening for the change event on this component.
+      element!.value = value!;
 
       // Dispatching the event from the input element is best
       // Any listeners on the fieldset will be able to listen for the event since
@@ -78,28 +81,28 @@
       element?.dispatchEvent(new Event('change', {bubbles: true}));
 
       if (error) {
-        _validate(value!);
-      }
-    });
-
-    // Keyboard accessibility
-    combobox?.addEventListener('keydown', (e: KeyboardEvent) => {
-      const {key} = e;
-      const {length} = selections;
-
-      if (key === 'ArrowDown' || key === 'ArrowUp') {
-        e.preventDefault();
-        combobox?.click();
-      } else if (key === 'Backspace' && length > 0) {
-        e.preventDefault();
-        selections[length - 1].click();
+        _validate();
       }
     });
   });
 
-  function _validate(_value: string) {
+  // Keyboard accessibility
+  function keydown(e: KeyboardEvent) {
+    const {key} = e;
+    const {length} = selections;
+
+    if (key === 'ArrowDown' || key === 'ArrowUp') {
+      e.preventDefault();
+      combobox?.click();
+    } else if (key === 'Backspace' && length > 0) {
+      e.preventDefault();
+      selections[length - 1].click();
+    }
+  }
+
+  function _validate() {
     try {
-      validate(_value, {required: 'Please select an option'});
+      validate(element?.value!, {required: 'Please select an option'});
       error = undefined;
     } catch (e) {
       error = e as ValidationError;
@@ -111,7 +114,7 @@
     setTimeout(() => {
       if (!opened) {
         if (required && validateon === 'blur') {
-          _validate(value!);
+          _validate();
         }
       }
     }, 0);
@@ -170,9 +173,9 @@
 </script>
 
 <fieldset
-  bind:this={fieldset}
   hidden={hidden}
   class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {$$restProps.class}"
+  {style}
   on:blur={blur}
   on:*
 >
@@ -181,7 +184,7 @@
       {label}
       <slot name="description" slot="description" />
     </Label>
-    {:else if label && !hidden}
+  {:else if label && !hidden}
     <Label for={id} {description}>
       {label}
     </Label>
@@ -203,6 +206,7 @@
       width="full"
       class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
       on:blur={blur}
+      on:keydown={keydown}
     >
       {#if selections.length > 0}
         {#each selections as selection}
@@ -224,13 +228,13 @@
       tabindex="-1"
       aria-hidden="true"
       {name}
-      {value}
+      bind:value
       style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
     />
   </Col>
 </fieldset>
 
-<Backdrop id={id} on:open={open} bind:opened={opened} transparent>
+<Backdrop id={id} bind:opened={opened} on:open={open} transparent>
   <Listbox
     bind:element={listbox}
     role="listbox"

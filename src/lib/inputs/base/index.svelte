@@ -40,7 +40,8 @@
     if (rules && validateon === 'submit') {
       // Get the form element that this input is in
       const form = element?.closest('form');
-      form?.addEventListener('submit', () => {
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
         _validate(element?.value!);
       });
     }
@@ -90,10 +91,10 @@
     dir="ltr"
     bind:this={element}
     {...$$restProps}
+    bind:value
     class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix ? 'WuiInput--prefixed' : ''} {suffix ? 'WuiInput--suffixed' : ''} {$$restProps.class || ''}"
     on:input={change}
     on:blur={blur}
-    bind:value={value}
     on:validate on:input on:change on:click on:dblclick on:blur on:focus
   />
 

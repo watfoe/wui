@@ -78,7 +78,7 @@
   --color-on-primary: #FFF;
   --color-primary-container: var(--color-blue-2);
 
-  --color-neutral: var(--color-grey-5);
+  --color-neutral: var(--color-grey-4);
   --color-on-neutral: #fff;
   --color-neutral-container: var(--color-grey-2);
 
@@ -116,8 +116,8 @@
 
   --color-link: var(--color-blue-5);
 
-  --color-disabled: var(--color-grey-4);
-  --color-on-disabled: #FFF;
+  --color-disabled: var(--color-grey-3);
+  --color-on-disabled: var(--color-grey-6);
 
   --space-xs: 0.1875rem;
   --space-sm: 0.3125rem;

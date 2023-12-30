@@ -22,7 +22,7 @@
   --WuiInput-color-bg: var(--color-neutral);
   --WuiInput-color-on-bg: var(--color-on-neutral);
   --WuiInput-color-bg-soft: var(--color-neutral-container);
-  --WuiInput-color-outline: var(--color-grey-4);
+  --WuiInput-color-outline: var(--color-neutral);
   --WuiLabel-color: var(--color-black-1);
 }
 .WuiInput--neutral:focus-within {

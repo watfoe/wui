@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Button } from "$lib/button";
 	import { Input, Select } from "$lib/inputs";
 	import Option from "$lib/inputs/select/option.svelte";
@@ -7,8 +7,9 @@
 
   let is_gender_custom = false;
 
-  function gender_changed() {
-
+  function gender_changed(e: Event) {
+    // @ts-ignore
+    is_gender_custom = e.target.value === 'o'
   }
 </script>
 
@@ -62,8 +63,8 @@
 
       <Input name="birthdate" type="date" label="Date of birth" description="Learn why we require your birthdate." required />
 
-      <Select name="gender" label="Gender" required>
-        <Link href="https://www.google.com" target="_blank" slot="description">Learn why we require your gender</Link>
+      <Select name="gender" label="Gender" on:change={gender_changed} required>
+        <Link href="https://www.google.com" target="_blank" variant="label" size="sm" slot="description">Learn why we require your gender</Link>
         <Option value="f">Female</Option>
         <Option value="m">Male</Option>
         <Option value="o">Custom</Option>
