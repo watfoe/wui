@@ -47,7 +47,6 @@
   });
 
   function change(e: Event) {
-    console.log('change', month, day, year);
     if (validateon === 'change' || error) {
       validate();
     }
@@ -75,6 +74,7 @@
 
   function _dipatch(_value: string, _error?: ValidationError) {
     value = _value;
+    element!.value = _value;
     error = _error;
     element?.dispatchEvent(
       new Event('change', {

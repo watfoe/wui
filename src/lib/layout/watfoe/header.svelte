@@ -47,6 +47,7 @@
     height: 50px;
     margin-bottom: var(--space-xs);
     padding: var(--space-sm) var(--space-lg);
+    z-index: 1;
   }
   :global(.WAuth-header__logo) {
     /* Corrects the logo's vertical alignment */
