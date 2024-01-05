@@ -4,11 +4,12 @@
     defaultmonth?: string;
     defaultday?: string;
     defaultyear?: string;
+    format?: 'mm/dd/yyyy' | 'dd/mm/yyyy' | 'yyyy/mm/dd' | 'yyyy-mm-dd' | 'dd-mm-yyyy';
   }
 </script>
 
 <script lang="ts">
-	import { Row } from "$lib/layout";
+  import { Row } from "$lib/layout";
   import BaseInput, { type BaseInputProps } from "../base/index.svelte";
   import Select from "../select/index.svelte";
 	import { ValidationError } from "../_common_";
@@ -24,6 +25,7 @@
   export let id: $$Props['id'] = undefined;
   export let element: $$Props['element'] = undefined;
   export let error: $$Props['error'] = undefined;
+  export let format: $$Props['format'] = 'yyyy-mm-dd';
   export let name: $$Props['name'] = undefined;
   export let required: $$Props['required'] = undefined;
   export let rules: $$Props['rules'] = undefined;
@@ -46,10 +48,16 @@
     }
   });
 
+  const DATE_FORMART_TO_LOCALE = {
+    'mm/dd/yyyy': 'en-US',
+    'dd/mm/yyyy': 'en-GB',
+    'yyyy/mm/dd': 'zh-CN',
+    'yyyy-mm-dd': 'en-CA',
+    'dd-mm-yyyy': 'es-CL',
+  };
+
   function change(e: Event) {
-    if (validateon === 'change' || error) {
-      validate();
-    }
+    validate();
   }
 
   function blur(e: Event) {
@@ -63,7 +71,8 @@
       const date = new Date(`${month}/${day}/${year}`);
 
       if (date.toString() !== 'Invalid Date') {
-        _dipatch(date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'}));
+        const locale = DATE_FORMART_TO_LOCALE[format!] || 'en-CA'
+        _dipatch(date.toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit'}));
       } else {
         _dipatch('', new ValidationError('Please enter a valid date'));
       }
@@ -84,7 +93,7 @@
   }
 </script>
 
-<Row justify="space-between" gap="nm" class="WuiInput__date">
+<Row justify="space-between" gap="nm" class="WuiInput__date" on:change on:*>
   <Select
     placeholder="Month"
     {...$$restProps}

@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+  import type { HTMLButtonAttributes } from 'svelte/elements';
 
   export interface ButtonProps extends HTMLButtonAttributes {
     anchorfor?: string;

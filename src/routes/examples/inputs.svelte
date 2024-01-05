@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "$lib/button";
+  import { Button } from "$lib/button";
 	import { Input, Select } from "$lib/inputs";
 	import Option from "$lib/inputs/select/option.svelte";
 	import { Col, Row } from "$lib/layout";
@@ -10,6 +10,13 @@
   function gender_changed(e: Event) {
     // @ts-ignore
     is_gender_custom = e.target.value === 'o'
+  }
+  
+  function submit(e: Event) {
+    const form = e.currentTarget as HTMLFormElement;
+    const data = new FormData(form);
+    const body = Object.fromEntries(data.entries());
+    console.log(body)
   }
 </script>
 
@@ -49,7 +56,7 @@
     <Input type="date" variant="plain" label="Date" class="input" validateon="blur" required />
   </Row>
 
-  <form class="WAuth-form">
+  <form class="WAuth-form" on:submit={submit}>
     <Col gap="md">
       <Text variant="title" size="lg">Create a Watfoe account</Text>
       <Text variant="title" size="md">Basic information</Text>

@@ -64,7 +64,6 @@
       });
     }
 
-    // @ts-ignore
     listbox?.addEventListener('select', (e: CustomEvent) => {
       const {selections: _selections, values} = e.detail;
       selections = _selections;
