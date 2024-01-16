@@ -5,3 +5,4 @@ export { default as Label } from './label/index.svelte';
 export { default as Listbox } from './listbox/index.svelte';
 export { default as ListItem } from './listbox/item.svelte';
 export { default as Radio } from './radio/index.svelte';
+export { default as Switch } from './switch/index.svelte';
