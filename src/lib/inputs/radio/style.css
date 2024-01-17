@@ -43,7 +43,7 @@
   align-items: center;
   cursor: pointer;
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   gap: var(--space-nm);
 }
@@ -69,7 +69,7 @@ input:checked+.WuiRadio__label {
   border: 1.3px solid var(--WuiRadio-thumb-color);
   border-radius: 17px;
   cursor: pointer;
-  display: inline-block;
+  display: block;
   height: var(--WuiRadio-size);
   width: var(--WuiRadio-size);
   padding: 2px;

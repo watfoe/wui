@@ -35,7 +35,7 @@
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class}" {hidden} {disabled}>
+<fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class || ''}" {hidden} {disabled}>
 	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
   doesn't leave an unintended empty description helper text -->
 	{#if label && $$slots.description && !hidden}

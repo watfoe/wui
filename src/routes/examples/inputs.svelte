@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/button';
-	import { Input, Radio, Select, Switch } from '$lib/inputs';
+	import { Input, Radio, RadioGroup, Select, Switch } from '$lib/inputs';
 	import Option from '$lib/inputs/select/option.svelte';
 	import { Col, Row } from '$lib/layout';
 	import { Link, Text } from '$lib/typography';
@@ -95,12 +95,18 @@
 		<Input type="date" variant="plain" label="Date" class="input" validateon="blur" required />
 	</Row>
 
-	<Row gap="md" width="full">
+	<Row gap="lg" width="full">
 		<Radio label="Primary small radio" name="radio" size="sm" color="primary" />
 		<Radio label="Neutral medium radio" name="radio" size="md" />
 		<Radio label="Large success radio" name="radio" size="lg" color="success" />
 		<Radio label="Warning radio" name="radio" color="warning" />
 		<Radio label="Danger radio" name="radio" color="danger" />
+
+		<RadioGroup label="This is a radio group" description="And this is the radio group description">
+			<Radio name="acctype" label="Personal" />
+			<Radio name="acctype" label="Business" />
+			<Radio name="acctype" label="Other" />
+		</RadioGroup>
 	</Row>
 
 	<Row gap="md" width="full">
