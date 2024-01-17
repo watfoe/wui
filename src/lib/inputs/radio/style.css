@@ -1,0 +1,90 @@
+.WuiRadio {
+  position: relative;
+}
+
+.WuiRadio--sm {
+  --WuiRadio-size: 16px;
+}
+
+.WuiRadio--md {
+  --WuiRadio-size: 20px;
+}
+
+.WuiRadio--lg {
+  --WuiRadio-size: 24px;
+}
+
+.WuiRadio--primary {
+  --WuiRadio-thumb-color: var(--color-primary);
+}
+
+.WuiRadio--neutral {
+  --WuiRadio-thumb-color: var(--color-neutral);
+}
+
+.WuiRadio--neutral input:checked+.WuiRadio__label {
+  --WuiRadio-thumb-color: var(--color-primary);
+}
+
+.WuiRadio--success {
+  --WuiRadio-thumb-color: var(--color-success);
+}
+
+.WuiRadio--warning {
+  --WuiRadio-thumb-color: var(--color-warning);
+}
+
+.WuiRadio--danger {
+  --WuiRadio-thumb-color: var(--color-error);
+}
+
+.WuiRadio__label {
+  --WuiRadio-thumb-indicator-display: none;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  gap: var(--space-nm);
+}
+
+.WuiRadio__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}
+
+input:checked+.WuiRadio__label {
+  --WuiRadio-thumb-indicator-display: block;
+}
+
+.WuiRadio__thumb {
+  border: 1.3px solid var(--WuiRadio-thumb-color);
+  border-radius: 17px;
+  cursor: pointer;
+  display: inline-block;
+  height: var(--WuiRadio-size);
+  width: var(--WuiRadio-size);
+  padding: 2px;
+}
+
+input:not(:checked)+.WuiRadio__label:hover .WuiRadio__thumb {
+  border-width: 2px;
+}
+
+.WuiRadio__thumb::after {
+  background-color: var(--WuiRadio-thumb-color);
+  border-radius: 50%;
+  content: '';
+  display: var(--WuiRadio-thumb-indicator-display) !important;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.2s ease-in-out;
+}

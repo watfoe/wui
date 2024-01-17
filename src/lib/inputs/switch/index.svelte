@@ -12,7 +12,7 @@
 	const id = Math.random().toString(36);
 
 	export let color: $$props['color'] = 'neutral';
-	export let element: $$props['element'];
+	export let element: $$props['element'] = undefined;
 	export let size: $$props['size'] = 'md';
 
 	function change(e: Event) {
@@ -20,7 +20,7 @@
 	}
 </script>
 
-<div class="WuiSwitch WuiSwitch--{size}" on:*>
+<div class="WuiSwitch WuiSwitch--{size} WuiSwitch--{color}" on:*>
 	<input
 		bind:this={element}
 		type="checkbox"
@@ -55,7 +55,7 @@
 	}
 
 	.WuiSwitch__label {
-		border: 1px solid var(--WuiSwitch-color);
+		border: 1.3px solid var(--WuiSwitch-color);
 		border-radius: calc(var(--WuiSwitch-height) / 2);
 		cursor: pointer;
 		display: block;
@@ -64,8 +64,21 @@
 		width: var(--WuiSwitch-width);
 	}
 
-	input:checked + .WuiSwitch__label {
+	.WuiSwitch--primary input:checked + .WuiSwitch__label,
+	.WuiSwitch--neutral input:checked + .WuiSwitch__label {
 		--WuiSwitch-color: var(--color-primary);
+	}
+
+	.WuiSwitch--success input:checked + .WuiSwitch__label {
+		--WuiSwitch-color: var(--color-success);
+	}
+
+	.WuiSwitch--warning input:checked + .WuiSwitch__label {
+		--WuiSwitch-color: var(--color-warning);
+	}
+
+	.WuiSwitch--danger input:checked + .WuiSwitch__label {
+		--WuiSwitch-color: var(--color-error);
 	}
 
 	input:checked + .WuiSwitch__label::after {
@@ -92,6 +105,6 @@
 		padding: 0;
 		position: absolute;
 		left: 50%;
-		top: 0;
+		bottom: 0;
 	}
 </style>
