@@ -77,7 +77,11 @@ export function mask(value: string, masks: InputMasks) {
 export function validate(value: string, rules: InputRules) {
   if (rules?.required && (value.length === 0 || value === undefined)) {
     throw new ValidationError(typeof rules.required === 'string' ? rules.required : 'Please enter a value');
+  } else if (!rules?.required && (value.length === 0 || value === undefined)) {
+    return;
   }
+
+
   if (rules?.minlength && value.length < rules?.minlength.value) {
     throw new ValidationError(rules?.minlength.message);
   }

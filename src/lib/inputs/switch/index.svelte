@@ -7,6 +7,7 @@
 		name?: string;
 		required?: boolean;
 		size?: 'sm' | 'md' | 'lg';
+		value?: string;
 	}
 
 	const id = Math.random().toString(36);
@@ -14,6 +15,7 @@
 	export let color: $$props['color'] = 'neutral';
 	export let element: $$props['element'] = undefined;
 	export let size: $$props['size'] = 'md';
+	export let value: $$props['value'] = undefined;
 
 	function change(e: Event) {
 		e.target?.dispatchEvent(new Event('change', { bubbles: true }));
@@ -28,6 +30,7 @@
 		{id}
 		{...$$restProps}
 		on:change={change}
+		bind:value
 	/>
 	<label class="WuiSwitch__label" for={id} />
 </div>

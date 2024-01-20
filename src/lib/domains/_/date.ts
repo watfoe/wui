@@ -68,3 +68,37 @@ export default class CDate {
     return this.input;
   }
 }
+
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December',
+];
+
+export class Month {
+  private readonly value: number;
+
+  constructor(value: number) {
+    if (value < 1 || value > 12) {
+      throw new ParseError('Invalid month');
+    }
+
+    this.value = value;
+  }
+
+  toString(): string {
+    return MONTHS[this.value - 1];
+  }
+
+  short(): string {
+    return this.toString().slice(0, 3);
+  }
+
+  static list(): Array<string> {
+    return MONTHS;
+  }
+
+  static fromString(month: string): Month {
+    const index = MONTHS.findIndex((m) => m === month);
+    return new Month(index + 1);
+  }
+}

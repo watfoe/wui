@@ -46,7 +46,7 @@
 		appearance: none;
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-nm);
+		gap: var(--space-sm);
 		width: auto;
 	}
 

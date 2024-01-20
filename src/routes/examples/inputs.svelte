@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$lib/button';
+	import { Country } from '$lib/domains';
 	import { Input, Radio, RadioGroup, Select, Switch } from '$lib/inputs';
 	import Option from '$lib/inputs/select/option.svelte';
 	import { Col, Row } from '$lib/layout';
@@ -106,6 +106,7 @@
 			<Radio name="acctype" label="Personal" />
 			<Radio name="acctype" label="Business" />
 			<Radio name="acctype" label="Other" />
+			<Select preset="country" />
 		</RadioGroup>
 	</Row>
 
