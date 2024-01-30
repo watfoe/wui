@@ -115,7 +115,6 @@
 		<Switch size="md" color="neutral" />
 		<Switch size="lg" color="success" />
 		<Switch color="warning" />
-		<Switch color="danger" />
 	</Row>
 </Col>
 
