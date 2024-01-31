@@ -12,7 +12,7 @@
 </script>
 
 <Col justify="flex-start" align="flex-start" class="WuiInput__label__root">
-	<Text variant="label" size="md" bold class="WuiInput__label" {...$$restProps}>
+	<Text variant="label" size="md" class="WuiInput__label" {...$$restProps}>
 		{#if $$slots.default}
 			<slot />
 		{/if}

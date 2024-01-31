@@ -1,90 +1,90 @@
 <script>
-	import { Button } from "$lib/button";
-import { Col, Row } from "$lib/layout";
+	import { Button } from '$lib/button';
+	import { Col, Row } from '$lib/layout';
 </script>
 
 <Col gap="md" width="full">
-  <Row gap="md" width="full">
-    <Button variant="solid" class="button">Primary Solid</Button>
-    <Button variant="outline" class="button">Primary Outline</Button>
-    <Button variant="soft" class="button">Primary Soft</Button>
-    <Button variant="plain" class="button">Primary Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" class="button">Primary Solid</Button>
+		<Button variant="outline" class="button">Primary Outline</Button>
+		<Button variant="soft" class="button">Primary Soft</Button>
+		<Button variant="plain" class="button">Primary Plain</Button>
 
-    <Button variant="solid" prefix="person" />
-    <Button variant="outline" prefix="person" />
-    <Button variant="soft" prefix="person" />
-    <Button variant="plain" prefix="person" />
-  </Row>
+		<Button variant="solid" prefix="person" />
+		<Button variant="outline" prefix="person" />
+		<Button variant="soft" prefix="person" />
+		<Button variant="plain" prefix="person" />
+	</Row>
 
-  <Row gap="md" width="full">
-    <Button variant="solid" color="neutral" class="button">Neutral Solid</Button>
-    <Button variant="outline" color="neutral" class="button">Neutral Outline</Button>
-    <Button variant="soft" color="neutral" class="button">Neutral Soft</Button>
-    <Button variant="plain" color="neutral" class="button">Neutral Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" color="neutral" class="button">Neutral Solid</Button>
+		<Button variant="outline" color="neutral" class="button">Neutral Outline</Button>
+		<Button variant="soft" color="neutral" class="button">Neutral Soft</Button>
+		<Button variant="plain" color="neutral" class="button">Neutral Plain</Button>
 
-    <Button variant="solid" color="neutral" prefix="person" />
-    <Button variant="outline" color="neutral" prefix="person" />
-    <Button variant="soft" color="neutral" prefix="person" />
-    <Button variant="plain" color="neutral" prefix="person" />
-  </Row>
+		<Button variant="solid" color="neutral" prefix="person" />
+		<Button variant="outline" color="neutral" prefix="person" />
+		<Button variant="soft" color="neutral" prefix="person" />
+		<Button variant="plain" color="neutral" prefix="person" />
+	</Row>
 
-  <Row gap="md" width="full">
-    <Button variant="solid" color="success" class="button">Success Solid</Button>
-    <Button variant="outline" color="success" class="button">Success Outline</Button>
-    <Button variant="soft" color="success" class="button">Success Soft</Button>
-    <Button variant="plain" color="success" class="button">Success Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" color="success" class="button">Success Solid</Button>
+		<Button variant="outline" color="success" class="button">Success Outline</Button>
+		<Button variant="soft" color="success" class="button">Success Soft</Button>
+		<Button variant="plain" color="success" class="button">Success Plain</Button>
 
-    <Button variant="solid" color="success" prefix="person" />
-    <Button variant="outline" color="success" prefix="person" />
-    <Button variant="soft" color="success" prefix="person" />
-    <Button variant="plain" color="success" prefix="person" />
-  </Row>
+		<Button variant="solid" color="success" prefix="person" />
+		<Button variant="outline" color="success" prefix="person" />
+		<Button variant="soft" color="success" prefix="person" />
+		<Button variant="plain" color="success" prefix="person" />
+	</Row>
 
-  <Row gap="md" width="full">
-    <Button variant="solid" color="warning" class="button">Warning Solid</Button>
-    <Button variant="outline" color="warning" class="button">Warning Outline</Button>
-    <Button variant="soft" color="warning" class="button">Warning Soft</Button>
-    <Button variant="plain" color="warning" class="button">Warning Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" color="warning" class="button">Warning Solid</Button>
+		<Button variant="outline" color="warning" class="button">Warning Outline</Button>
+		<Button variant="soft" color="warning" class="button">Warning Soft</Button>
+		<Button variant="plain" color="warning" class="button">Warning Plain</Button>
 
-    <Button variant="solid" color="warning" prefix="person" />
-    <Button variant="outline" color="warning" prefix="person" />
-    <Button variant="soft" color="warning" prefix="person" />
-    <Button variant="plain" color="warning" prefix="person" />
-  </Row>
+		<Button variant="solid" color="warning" prefix="person" />
+		<Button variant="outline" color="warning" prefix="person" />
+		<Button variant="soft" color="warning" prefix="person" />
+		<Button variant="plain" color="warning" prefix="person" />
+	</Row>
 
-  <Row gap="md" width="full">
-    <Button variant="solid" color="danger" class="button">Danger Solid</Button>
-    <Button variant="outline" color="danger" class="button">Danger Outline</Button>
-    <Button variant="soft" color="danger" class="button">Danger Soft</Button>
-    <Button variant="plain" color="danger" class="button">Danger Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" color="danger" class="button">Danger Solid</Button>
+		<Button variant="outline" color="danger" class="button">Danger Outline</Button>
+		<Button variant="soft" color="danger" class="button">Danger Soft</Button>
+		<Button variant="plain" color="danger" class="button">Danger Plain</Button>
 
-    <Button variant="solid" color="danger" prefix="person" />
-    <Button variant="outline" color="danger" prefix="person" />
-    <Button variant="soft" color="danger" prefix="person" />
-    <Button variant="plain" color="danger" prefix="person" />
-  </Row>
+		<Button variant="solid" color="danger" prefix="person" />
+		<Button variant="outline" color="danger" prefix="person" />
+		<Button variant="soft" color="danger" prefix="person" />
+		<Button variant="plain" color="danger" prefix="person" />
+	</Row>
 
-  <Row gap="md" width="full">
-    <Button variant="solid" class="button" disabled>Disabled Solid</Button>
-    <Button variant="outline" class="button" disabled>Disabled Outline</Button>
-    <Button variant="soft" class="button" disabled>Disabled Soft</Button>
-    <Button variant="plain" class="button" disabled>Disabled Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" class="button" disabled>Disabled Solid</Button>
+		<Button variant="outline" class="button" disabled>Disabled Outline</Button>
+		<Button variant="soft" class="button" disabled>Disabled Soft</Button>
+		<Button variant="plain" class="button" disabled>Disabled Plain</Button>
 
-    <Button variant="solid" prefix="person" disabled />
-    <Button variant="outline" prefix="person" disabled />
-    <Button variant="soft" prefix="person" disabled />
-    <Button variant="plain" prefix="person" disabled />
-  </Row>
+		<Button variant="solid" prefix="person" disabled />
+		<Button variant="outline" prefix="person" disabled />
+		<Button variant="soft" prefix="person" disabled />
+		<Button variant="plain" prefix="person" disabled />
+	</Row>
 
-  <Row gap="md" width="full">
-    <Button variant="solid" class="button" loading>Danger Solid</Button>
-    <Button variant="outline" class="button" loading>Danger Outline</Button>
-    <Button variant="soft" class="button" loading>Danger Soft</Button>
-    <Button variant="plain" class="button" loading>Danger Plain</Button>
+	<Row gap="md" width="full">
+		<Button variant="solid" class="button" loading>Danger Solid</Button>
+		<Button variant="outline" class="button" loading>Danger Outline</Button>
+		<Button variant="soft" class="button" loading>Danger Soft</Button>
+		<Button variant="plain" class="button" loading>Danger Plain</Button>
 
-    <Button variant="solid" prefix="person" loading />
-    <Button variant="outline" prefix="person" loading />
-    <Button variant="soft" prefix="person" loading />
-    <Button variant="plain" prefix="person" loading />
-  </Row>
+		<Button variant="solid" prefix="person" loading />
+		<Button variant="outline" prefix="person" loading />
+		<Button variant="soft" prefix="person" loading />
+		<Button variant="plain" prefix="person" loading />
+	</Row>
 </Col>
