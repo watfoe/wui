@@ -13,6 +13,7 @@
   padding: 0 var(--WuiButton-paddingX, var(--space-md));
   overflow: hidden;
 }
+
 .WuiButton:disabled {
   pointer-events: none;
   cursor: default;
@@ -21,12 +22,15 @@
 .WuiButton--gap-sm {
   --WuiButton-flex-gap: var(--space-sm);
 }
+
 .WuiButton--gap-nm {
   --WuiButton-flex-gap: var(--space-md);
 }
+
 .WuiButton--gap-md {
   --WuiButton-flex-gap: var(--space-md);
 }
+
 .WuiButton--gap-lg {
   --WuiButton-flex-gap: var(--space-lg);
 }
@@ -36,11 +40,13 @@
   --WuiButton-paddingX: var(--space-nm);
   --WuiButton-flex-gap: var(--space-sm);
 }
+
 .WuiButton--md {
   --WuiButton-height: var(--button-height-md);
   --WuiButton-paddingX: var(--space-md);
   --WuiButton-flex-gap: var(--space-nm);
 }
+
 .WuiButton--lg {
   --WuiButton-height: var(--button-height-lg);
   --WuiButton-paddingX: var(--space-lg);
@@ -52,26 +58,31 @@
   --WuiButton-bg-soft: var(--color-selection-container);
   --WuiButton-color-on-bg-soft: var(--color-primary);
 }
+
 .WuiButton--neutral {
   --WuiButton-bg: var(--color-neutral);
   --WuiButton-bg-soft: var(--color-neutral-container);
-  --WuiButton-color-on-bg-soft: var(--color-black-1);
+  --WuiButton-color-on-bg-soft: var(--color-black-4);
 }
+
 .WuiButton--success {
   --WuiButton-bg: var(--color-success);
   --WuiButton-bg-soft: var(--color-success-container);
   --WuiButton-color-on-bg-soft: var(--color-success);
 }
+
 .WuiButton--warning {
   --WuiButton-bg: var(--color-warning);
   --WuiButton-bg-soft: var(--color-warning-container);
   --WuiButton-color-on-bg-soft: var(--color-warning);
 }
+
 .WuiButton--danger {
   --WuiButton-bg: var(--color-error);
   --WuiButton-bg-soft: var(--color-error-container);
   --WuiButton-color-on-bg-soft: var(--color-error);
 }
+
 .WuiButton--primary:disabled,
 .WuiButton--neutral:disabled,
 .WuiButton--success:disabled,
@@ -85,49 +96,91 @@
   background-color: var(--WuiButton-bg, var(--color-primary));
   color: var(--color-white, var(--color-on-primary));
 }
+
 .WuiButton--solid:not(:disabled):hover,
 .WuiButton--solid:not(:disabled):focus,
 .WuiButton--soft:not(:disabled):hover,
 .WuiButton--soft:not(:disabled):focus {
   filter: brightness(0.95);
 }
+
 .WuiButton--outline {
   background-color: transparent;
   --WuiButton-border-color: var(--WuiButton-bg, var(--color-primary));
 }
+
 .WuiButton--outline:not(:disabled):hover,
 .WuiButton--outline:not(:disabled):focus {
   background-color: var(--WuiButton-bg-soft, var(--color-selection-container));
 }
+
 .WuiButton--soft {
   background-color: var(--WuiButton-bg-soft);
 }
+
 .WuiButton--plain {
   background-color: transparent;
 }
+
 .WuiButton--plain:not(:disabled):hover,
 .WuiButton--plain:not(:disabled):focus {
   background-color: var(--WuiButton-bg-soft);
 }
-.WuiButton--none, .WuiButton--none:hover {
+
+.WuiButton--none,
+.WuiButton--none:hover {
   background-color: transparent;
   --WuiButton-height: auto !important;
   --WuiButton-paddingX: 0 !important;
 }
 
-.WuiButton--width-full {width: 100%;}
-.WuiButton--width-half {width: 50%;}
-.WuiButton--width-third {width: 33.333333%;}
-.WuiButton--width-quarter {width: 25%;}
-.WuiButton--width-auto {width: auto;}
-.WuiButton--width-inherit {width: inherit;}
+.WuiButton--width-full {
+  width: 100%;
+}
 
-.WuiButton--height-full {height: 100%;}
-.WuiButton--height-half {height: 50%;}
-.WuiButton--height-third {height: 33.333333%;}
-.WuiButton--height-quarter {height: 25%;}
-.WuiButton--height-auto {height: auto;}
-.WuiButton--height-inherit {height: inherit;}
+.WuiButton--width-half {
+  width: 50%;
+}
+
+.WuiButton--width-third {
+  width: 33.333333%;
+}
+
+.WuiButton--width-quarter {
+  width: 25%;
+}
+
+.WuiButton--width-auto {
+  width: auto;
+}
+
+.WuiButton--width-inherit {
+  width: inherit;
+}
+
+.WuiButton--height-full {
+  height: 100%;
+}
+
+.WuiButton--height-half {
+  height: 50%;
+}
+
+.WuiButton--height-third {
+  height: 33.333333%;
+}
+
+.WuiButton--height-quarter {
+  height: 25%;
+}
+
+.WuiButton--height-auto {
+  height: auto;
+}
+
+.WuiButton--height-inherit {
+  height: inherit;
+}
 
 .WuiButton--only-icon {
   width: var(--WuiButton-height);
@@ -148,17 +201,28 @@
   border-top-color: var(--color-primary);
   width: 20px;
   height: 20px;
-  -webkit-animation: spin 0.8s linear infinite; /* Safari */
+  -webkit-animation: spin 0.8s linear infinite;
+  /* Safari */
   -moz-animation: spin 0.8s linear infinite;
   animation: spin 0.8s linear infinite;
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
