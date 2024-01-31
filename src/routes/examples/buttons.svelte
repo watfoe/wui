@@ -10,7 +10,7 @@
 		<Button variant="soft" class="button">Primary Soft</Button>
 		<Button variant="plain" class="button">Primary Plain</Button>
 
-		<Button variant="solid" prefix="person" />
+		<Button variant="solid" prefix="person" rounded />
 		<Button variant="outline" prefix="person" />
 		<Button variant="soft" prefix="person" />
 		<Button variant="plain" prefix="person" />

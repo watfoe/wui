@@ -50,7 +50,6 @@
 	}
 	.WuiTooltip::after {
 		background-color: var(--color-black-1);
-		border: 1px solid var(--color-grey-4);
 		color: var(--color-on-primary);
 		border-radius: var(--radius);
 		content: attr(data-tooltip-title);

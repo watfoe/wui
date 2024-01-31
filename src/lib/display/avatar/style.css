@@ -3,42 +3,76 @@
   --WuiAvatar-bg: var(--color-primary);
   --WuiAvatar-color: var(--color-on-primary);
   --WuiAvatar-outline-color: transparent;
-  background-color: var(--WuiAvatar-bg);
+  background-color: var(--WuiAvatar-bg, var(--color-primary));
   border: 1px solid var(--WuiAvatar-outline-color);
   border-radius: 50%;
-  color: var(--WuiAvatar-color);
+  color: var(--WuiAvatar-color, var(--color-on-primary));
   flex-shrink: 0;
   flex-grow: 0;
   height: var(--WuiAvatar-size) !important;
   width: var(--WuiAvatar-size) !important;
 }
 
-.WuiAvatar--solid {
+.WuiAvatar--primary {
   --WuiAvatar-bg: var(--color-primary);
+  --WuiAvatar-bg-soft: var(--color-selection-container);
+  --WuiAvatar-color-on-bg-soft: var(--color-primary);
+}
+
+.WuiAvatar--neutral {
+  --WuiAvatar-bg: var(--color-neutral);
+  --WuiAvatar-bg-soft: var(--color-neutral-container);
+  --WuiAvatar-color-on-bg-soft: var(--color-black-4);
+}
+
+.WuiAvatar--success {
+  --WuiAvatar-bg: var(--color-success);
+  --WuiAvatar-bg-soft: var(--color-success-container);
+  --WuiAvatar-color-on-bg-soft: var(--color-success);
+}
+
+.WuiAvatar--warning {
+  --WuiAvatar-bg: var(--color-warning);
+  --WuiAvatar-bg-soft: var(--color-warning-container);
+  --WuiAvatar-color-on-bg-soft: var(--color-warning);
+}
+
+.WuiAvatar--danger {
+  --WuiAvatar-bg: var(--color-error);
+  --WuiAvatar-bg-soft: var(--color-error-container);
+  --WuiAvatar-color-on-bg-soft: var(--color-error);
+}
+
+.WuiAvatar--solid {
   --WuiAvatar-color: var(--color-on-primary);
 }
+
 .WuiAvatar--outline {
-  --WuiAvatar-bg: var(--color-surface);
-  --WuiAvatar-color: var(--color-on-surface);
-  --WuiAvatar-outline-color: var(--color-outline);
+  background-color: transparent !important;
+  --WuiAvatar-color: var(--WuiAvatar-bg);
+  --WuiAvatar-outline-color: var(--WuiAvatar-bg);
 }
+
 .WuiAvatar--soft {
-  --WuiAvatar-bg: var(--color-selection-container);
-  --WuiAvatar-color: var(--color-on-selection-container);
+  --WuiAvatar-bg: var(--WuiAvatar-bg-soft);
+  --WuiAvatar-color: var(--WuiAvatar-color-on-bg-soft);
 }
+
 .WuiAvatar--plain {
-  --WuiAvatar-bg: var(--color-surface);
-  --WuiAvatar-color: var(--color-on-surface);
+  background-color: transparent !important;
+  --WuiAvatar-color: var(--WuiAvatar-bg);
 }
 
 .WuiAvatar--sm {
   --WuiAvatar-size: var(--button-height-sm);
   font-size: 0.75rem;
 }
+
 .WuiAvatar--md {
   --WuiAvatar-size: var(--button-height-md);
   font-size: 0.875rem;
 }
+
 .WuiAvatar--lg {
   --WuiAvatar-size: var(--button-height-lg);
   font-size: 1rem;
@@ -54,11 +88,11 @@
   width: auto;
 }
 
-.WuiAvatarGroup .WuiAvatar + .WuiAvatar {
+.WuiAvatarGroup .WuiAvatar+.WuiAvatar {
   outline: 1px solid var(--color-surface) !important;
 }
 
-.WuiAvatarGroup > *:not(:first-child) {
+.WuiAvatarGroup>*:not(:first-child) {
   margin-left: -10px;
   z-index: 1;
 }

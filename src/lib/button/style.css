@@ -1,7 +1,7 @@
 .WuiButton {
   align-items: center;
   border: 1px solid var(--WuiButton-border-color, transparent);
-  border-radius: var(--WuiButton-border-radius, var(--radius));
+  border-radius: var(--WuiButton-radius, var(--radius));
   color: var(--WuiButton-color-on-bg-soft);
   cursor: pointer;
   display: inline-flex;

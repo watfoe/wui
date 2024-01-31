@@ -11,6 +11,7 @@
 		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 		loading?: boolean;
 		prefix?: string;
+		rounded?: boolean;
 		suffix?: string;
 		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
 		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
@@ -36,6 +37,7 @@
 	export let disabled: $$Props['disabled'] = false;
 	export let anchorfor: $$Props['anchorfor'] = undefined;
 	export let prefix: $$Props['prefix'] = undefined;
+	export let rounded: $$Props['rounded'] = false;
 	export let suffix: $$Props['suffix'] = undefined;
 	export let width: $$Props['width'] = undefined;
 	export let height: $$Props['height'] = undefined;
@@ -75,7 +77,9 @@
 		? 'WuiButton--only-icon'
 		: ''} {$$restProps.class || ''}"
 	disabled={loading || disabled}
-	style="{$$restProps.style || ''};--WuiButtonFlex-justify:{justify};"
+	style="{$$restProps.style || ''};--WuiButtonFlex-justify:{justify};{rounded
+		? '--WuiButton-radius:calc(var(--WuiButton-height) / 2);'
+		: ''}"
 	on:click={click}
 	on:*
 >
