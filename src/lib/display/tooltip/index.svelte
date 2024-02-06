@@ -46,7 +46,7 @@
 		justify-content: center !important;
 		align-items: center !important;
 		width: auto !important;
-		z-index: 10000;
+		z-index: 1000000;
 	}
 	.WuiTooltip::after {
 		background-color: var(--color-black-1);
