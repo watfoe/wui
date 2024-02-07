@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-	import type { BaseInputProps } from '../base/index.svelte';
-	export type InputProps = Omit<BaseInputProps, 'id'> & {
+	import type { BaseInputAttributes } from '../base/index.svelte';
+	export type InputAttributes = Omit<BaseInputAttributes, 'id'> & {
 		label?: string;
 		name?: string;
 		description?: string;
@@ -22,20 +22,21 @@
 	import PinInput from '../pin/index.svelte';
 	import SearchInput from '../search/index.svelte';
 
-	type $$Props = InputProps;
-
-	export let color: $$Props['color'] = 'neutral';
-	export let description: $$Props['description'] = undefined;
-	export let disabled: $$Props['disabled'] = undefined;
-	export let label: $$Props['label'] = undefined;
-	export let hidden: $$Props['hidden'] = undefined;
-	export let type: $$Props['type'] = 'text';
-	export let error: $$Props['error'] = undefined;
+	let {
+		color = 'neutral',
+		description,
+		disabled,
+		label,
+		hidden,
+		type = 'text',
+		error,
+		...rest
+	} = $props<InputAttributes>();
 
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<fieldset class="WuiInput__root WuiInput--{color} {$$restProps.class || ''}" {hidden} {disabled}>
+<fieldset class="WuiInput__root WuiInput--{color} {rest.class || ''}" {hidden} {disabled}>
 	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
   doesn't leave an unintended empty description helper text -->
 	{#if label && $$slots.description && !hidden}
@@ -51,29 +52,21 @@
 
 	<Col align="flex-start" justify="flex-start" class="WuiInput__root__body" width="full">
 		{#if type === 'date'}
-			<DateInput {...$$restProps} {id} {color} bind:error on:* />
+			<DateInput {...rest} {id} {color} bind:error />
 		{:else if type === 'email'}
-			<EmailInput {...$$restProps} {id} {color} bind:error on:* />
+			<EmailInput {...rest} {id} {color} bind:error />
 		{:else if type === 'name'}
-			<BaseInput
-				{...$$restProps}
-				{id}
-				{color}
-				autocomplete="name"
-				autocapitalize="words"
-				bind:error
-				on:*
-			/>
+			<BaseInput {...rest} {id} {color} autocomplete="name" autocapitalize="words" bind:error />
 		{:else if type === 'password'}
-			<PasswordInput secure {...$$restProps} {id} {color} bind:error on:* />
+			<PasswordInput secure {...rest} {id} {color} bind:error />
 		{:else if type === 'phone'}
-			<PhoneInput {...$$restProps} {id} {color} bind:error on:* />
+			<PhoneInput {...rest} {id} {color} bind:error />
 		{:else if type === 'pin'}
-			<PinInput {...$$restProps} {id} {color} bind:error on:* />
+			<PinInput {...rest} {id} {color} bind:error />
 		{:else if type === 'search'}
-			<SearchInput {...$$restProps} {id} {color} bind:error on:* />
+			<SearchInput {...rest} {id} {color} bind:error />
 		{:else}
-			<BaseInput {...$$restProps} {id} {color} bind:error on:* />
+			<BaseInput {...rest} {id} {color} bind:error />
 		{/if}
 
 		{#if error}

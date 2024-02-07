@@ -2,7 +2,7 @@
 	import './style.css';
 	import { Text } from '$lib/typography';
 
-	interface $$props {
+	interface RadioAttributes {
 		checked?: boolean;
 		class?: string;
 		color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
@@ -14,12 +14,9 @@
 		size?: 'sm' | 'md' | 'lg';
 	}
 
-	const id = Math.random().toString(36).substring(2, 15);
+	let { color = 'neutral', element, label, size = 'md', ...rest } = $props<RadioAttributes>();
 
-	export let color: $$props['color'] = 'neutral';
-	export let element: $$props['element'] = undefined;
-	export let label: string;
-	export let size: $$props['size'] = 'md';
+	const id = Math.random().toString(36).substring(2, 15);
 
 	function change(e: Event) {
 		e.target?.dispatchEvent(new Event('change', { bubbles: true }));
@@ -28,12 +25,12 @@
 
 <div class="WuiRadio WuiRadio--{size} WuiRadio--{color}">
 	<input
+		{...rest}
 		bind:this={element}
 		type="radio"
 		class="WuiRadio__input"
 		{id}
-		{...$$restProps}
-		on:change={change}
+		onchange={change}
 	/>
 
 	<Text

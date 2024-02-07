@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-	import type { BaseInputProps } from '../base/index.svelte';
-	export type RadioGroupProps = Omit<BaseInputProps, 'id'> & {
+	import type { BaseInputAttributes } from '../base/index.svelte';
+	export type RadioGroupAttributes = Omit<BaseInputAttributes, 'id'> & {
 		class?: string;
 		description?: string;
 		disabled?: boolean;
@@ -14,15 +14,10 @@
 	import { Col } from '$lib/layout';
 	import Label from '../label/index.svelte';
 
-	type $$Props = RadioGroupProps;
-
-	export let description: $$Props['description'] = undefined;
-	export let disabled: $$Props['disabled'] = undefined;
-	export let label: $$Props['label'] = undefined;
-	export let hidden: $$Props['hidden'] = undefined;
+	let { description, disabled, label, hidden, ...rest } = $props<RadioGroupAttributes>();
 </script>
 
-<fieldset class="WuiRadioGroup {$$restProps.class || ''}" {hidden} {disabled}>
+<fieldset class="WuiRadioGroup {rest.class || ''}" {hidden} {disabled}>
 	{#if label && $$slots.description && !hidden}
 		<Label {description}>
 			{label}

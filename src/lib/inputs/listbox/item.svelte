@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
-	import type { ButtonProps } from '$lib/button';
+	import type { ButtonAttributes } from '$lib/button';
 
-	export interface ListItemProps extends ButtonProps {
+	export interface ListItemAttributes extends ButtonAttributes {
 		value?: string;
 		selected?: boolean;
 		element?: HTMLButtonElement;
@@ -11,20 +11,20 @@
 
 <script lang="ts">
 	import { Button } from '$lib/button';
-	import { onMount } from 'svelte';
 
-	interface $$Props extends ListItemProps {}
+	let {
+		value,
+		selected = false,
+		element,
+		role = 'listitem',
+		...rest
+	} = $props<ListItemAttributes>();
 
-	export let value: $$Props['value'] = undefined;
-	export let selected: $$Props['selected'] = false;
-	export let element: $$Props['element'] = undefined;
-	export let role: $$Props['role'] = 'listitem';
-
-	onMount(() => {
+	$effect(() => {
 		if (selected && value) {
 			// Without the timeout, the event is dispatched but the listener has not been registered yet.
 			setTimeout(() => {
-				dispatch();
+				element?.click();
 			}, 0);
 		}
 
@@ -66,30 +66,14 @@
 		});
 	});
 
-	function select() {
-		if (!selected) {
-			selected = true;
-			dispatch();
-		}
-	}
-
-	function deselect() {
-		if (selected) {
-			selected = false;
-		}
-	}
-
-	function dispatch() {
-		element?.dispatchEvent(
-			new CustomEvent('select', {
-				detail: { item: element, value }
-			})
-		);
+	function select(e: CustomEvent<{ selected: boolean }>) {
+		selected = e.detail.selected;
 	}
 </script>
 
 <Button
-	{...$$restProps}
+	{...rest}
+	{value}
 	bind:element
 	{role}
 	type="button"
@@ -100,8 +84,7 @@
 	width="full"
 	bold={false}
 	class="WuiListbox__listitem"
-	on:click={select}
-	on:deselect={deselect}
+	onselect={select}
 >
 	<slot />
 </Button>

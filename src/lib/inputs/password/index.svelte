@@ -1,41 +1,43 @@
 <script lang="ts">
-  import { Button } from '$lib/button';
-	import BaseInput, { type BaseInputProps } from "../base/index.svelte";
+	import { Button } from '$lib/button';
+	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
-  interface $$Props extends BaseInputProps {
-    secure: boolean
-  }
+	interface PasswordInputAttributes extends BaseInputAttributes {
+		secure: boolean;
+	}
 
-  export let color: $$Props['color'] = 'neutral';
-  export let element: $$Props['element'] = undefined;
-  export let error: $$Props['error'] = undefined;
-  export let secure = true;
-  export let value: $$Props['value'] = '';
+	let {
+		color = 'neutral',
+		element,
+		error,
+		value = '',
+		secure = true,
+		...rest
+	} = $props<PasswordInputAttributes>();
 
-  function toggle() {
-    secure = !secure;
-  }
+	function toggle() {
+		secure = !secure;
+	}
 </script>
 
 <BaseInput
-  {...$$restProps}
-  autocomplete="password"
-  type={secure ? 'password' : 'text'}
-  autocapitalize="off"
-  autocorrect="off"
-  spellcheck="false"
-  suffix="visibility"
-  bind:element={element}
-  bind:error={error}
-  bind:value={value}
-  on:*
+	{...rest}
+	autocomplete="password"
+	type={secure ? 'password' : 'text'}
+	autocapitalize="off"
+	autocorrect="off"
+	spellcheck="false"
+	suffix="visibility"
+	bind:element
+	bind:error
+	bind:value
 >
-  <Button
-    variant="plain"
-    {color}
-    size="sm"
-    slot="suffix"
-    prefix={secure ? 'visibility' : 'visibility_off'}
-    on:click={toggle}
-  />
+	<Button
+		variant="plain"
+		{color}
+		size="sm"
+		slot="suffix"
+		prefix={secure ? 'visibility' : 'visibility_off'}
+		on:click={toggle}
+	/>
 </BaseInput>

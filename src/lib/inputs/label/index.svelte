@@ -1,18 +1,17 @@
 <script lang="ts">
 	import './style.css';
 	import { Col } from '$lib/layout';
-	import { Text } from '$lib/typography';
-	import type { HTMLLabelAttributes } from 'svelte/elements';
+	import { Text, type TextLabelAttributes } from '$lib/typography';
 
-	interface $$Props extends HTMLLabelAttributes {
+	interface InputLabelAttributes extends Omit<TextLabelAttributes, 'variant'> {
 		description?: string;
 	}
 
-	export let description: $$Props['description'] = undefined;
+	let { description, ...rest } = $props<InputLabelAttributes>();
 </script>
 
 <Col justify="flex-start" align="flex-start" class="WuiInput__label__root">
-	<Text variant="label" size="md" class="WuiInput__label" {...$$restProps}>
+	<Text {...rest} variant="label" size="md" class="WuiInput__label">
 		{#if $$slots.default}
 			<slot />
 		{/if}

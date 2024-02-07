@@ -1,13 +1,11 @@
 <script lang="ts">
-	interface $$Props {
+	interface DividerAttributes {
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		size?: 'sm' | 'md' | 'lg';
 		vertical?: boolean;
 	}
 
-	export let color: $$Props['color'] = 'neutral';
-	export let size: $$Props['size'] = 'sm';
-	export let vertical: $$Props['vertical'] = false;
+	let { color = 'neutral', size = 'sm', vertical = false } = $props<DividerAttributes>();
 </script>
 
 <div

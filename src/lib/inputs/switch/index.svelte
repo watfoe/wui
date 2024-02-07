@@ -1,5 +1,5 @@
 <script lang="ts">
-	interface $$props {
+	interface SwitchAttributes {
 		checked?: boolean;
 		class?: string;
 		color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
@@ -12,23 +12,20 @@
 
 	const id = Math.random().toString(36);
 
-	export let color: $$props['color'] = 'neutral';
-	export let element: $$props['element'] = undefined;
-	export let size: $$props['size'] = 'md';
-	export let value: $$props['value'] = undefined;
+	let { color = 'neutral', element, size = 'md', value, ...rest } = $props<SwitchAttributes>();
 
 	function change(e: Event) {
 		e.target?.dispatchEvent(new Event('change', { bubbles: true }));
 	}
 </script>
 
-<div class="WuiSwitch WuiSwitch--{size} WuiSwitch--{color}" on:*>
+<div class="WuiSwitch WuiSwitch--{size} WuiSwitch--{color}">
 	<input
 		bind:this={element}
 		type="checkbox"
 		class="WuiSwitch__input"
 		{id}
-		{...$$restProps}
+		{...rest}
 		on:change={change}
 		bind:value
 	/>

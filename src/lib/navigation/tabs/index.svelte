@@ -1,100 +1,101 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { type Snippet } from 'svelte';
 
-  interface $$Props {
-    for: string;
-    bottomrule?: 'true' | 'false';
-  }
+	interface TabsAttributes {
+		for: string;
+		bottomrule?: boolean;
+    children: Snippet;
+	}
 
-  let _for: $$Props['for'];
-  export { _for as for };
-  export let bottomrule: $$Props['bottomrule'] = 'true';
+	let { for: _for, bottomrule = true, children } = $props<TabsAttributes>();
 
-  let tabs: HTMLDivElement;
-  let activeIndex = 0;
+	let tabs: HTMLDivElement;
+	let activeIndex = 0;
 
-  onMount(() => {
-    const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
-    const tabButtons = tabs.querySelectorAll('.WuiTab');
+	$effect(() => {
+		const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
+		const tabButtons = tabs.querySelectorAll('.WuiTab');
 
-    if (!tabPanelsParent) {
-      throw new Error(`No tabpanels found for ${_for}`);
-    }
+		if (!tabPanelsParent) {
+			throw new Error(`No tabpanels found for ${_for}`);
+		}
 
-    const tabPanels = tabPanelsParent.children;
+		const tabPanels = tabPanelsParent.children;
 
-    function dispatchEvent(elem: Element, active: boolean) {
-      return elem.dispatchEvent(new CustomEvent('select', {
-        detail: {
-          active,
-        },
-      }));
-    }
+		function dispatchEvent(elem: Element, active: boolean) {
+			elem.dispatchEvent(
+				new CustomEvent('select', {
+					detail: {
+						active
+					}
+				})
+			);
+		}
 
-    tabButtons.forEach((tabButton, index) => {
-      const tabId  = `${_for}-tab-${index}`;
-      const tabPanelId = `${_for}-tabpanel-${index}`;
+		tabButtons.forEach((tabButton, index) => {
+			const tabId = `${_for}-tab-${index}`;
+			const tabPanelId = `${_for}-tabpanel-${index}`;
 
-      tabButton.setAttribute('id', tabId);
-      tabButton.setAttribute('aria-controls', tabPanelId);
+			tabButton.setAttribute('id', tabId);
+			tabButton.setAttribute('aria-controls', tabPanelId);
 
-      // Add aria role tab to each tabpanel
-      tabPanels[index]?.setAttribute('role', 'tabpanel');
-      tabPanels[index]?.setAttribute('id', tabPanelId);
-      tabPanels[index]?.setAttribute('tabindex', '-1');
-      tabPanels[index]?.setAttribute('aria-labelledby', tabId);
+			// Add aria role tab to each tabpanel
+			tabPanels[index]?.setAttribute('role', 'tabpanel');
+			tabPanels[index]?.setAttribute('id', tabPanelId);
+			tabPanels[index]?.setAttribute('tabindex', '-1');
+			tabPanels[index]?.setAttribute('aria-labelledby', tabId);
 
-      if (index === activeIndex) {
-        dispatchEvent(tabButton, true);
+			if (index === activeIndex) {
+				dispatchEvent(tabButton, true);
 
-        if (tabPanels[index]) {
-          tabPanels[index].setAttribute('tabindex', '0');
-          dispatchEvent(tabPanels[index], true);
-        }
-      }
+				if (tabPanels[index]) {
+					tabPanels[index].setAttribute('tabindex', '0');
+					dispatchEvent(tabPanels[index], true);
+				}
+			}
 
-      tabButton.addEventListener('click', () => {
-        if (index === activeIndex) {
-          return;
-        }
+			tabButton.addEventListener('click', () => {
+				if (index === activeIndex) {
+					return;
+				}
 
-        dispatchEvent(tabButtons[activeIndex], false);
+				dispatchEvent(tabButtons[activeIndex], false);
 
-        if (tabPanels[activeIndex]) {
-          tabPanels[activeIndex].setAttribute('tabindex', '-1');
-          dispatchEvent(tabPanels[activeIndex], false);
-        }
+				if (tabPanels[activeIndex]) {
+					tabPanels[activeIndex].setAttribute('tabindex', '-1');
+					dispatchEvent(tabPanels[activeIndex], false);
+				}
 
-        dispatchEvent(tabButton, true);
+				dispatchEvent(tabButton, true);
 
-        if (tabPanels[index]) {
-          tabPanels[index].setAttribute('tabindex', '0');
-          dispatchEvent(tabPanels[index], true);
-        }
+				if (tabPanels[index]) {
+					tabPanels[index].setAttribute('tabindex', '0');
+					dispatchEvent(tabPanels[index], true);
+				}
 
-        activeIndex = index;
-      });
-    });
-  });
+				activeIndex = index;
+			});
+		});
+	});
 </script>
 
-<div bind:this={tabs} role="tablist" class="WuiTabs {bottomrule === 'true' ? 'WuiTabs--bottom-ruled' : ''}">
-  <slot />
+<div bind:this={tabs} role="tablist" class="WuiTabs {bottomrule ? 'WuiTabs--bottom-ruled' : ''}">
+	{@render children()}
 </div>
 
 <style>
-  .WuiTabs {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-md);
-    width: 100%;
-  }
-  .WuiTabs--bottom-ruled {
-    border-bottom: var(--line);
-    margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
-  }
-  .WuiTabs--bottom-ruled > :global(.WuiTab) {
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
+	.WuiTabs {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-md);
+		width: 100%;
+	}
+	.WuiTabs--bottom-ruled {
+		border-bottom: var(--line);
+		margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
+	}
+	.WuiTabs--bottom-ruled > :global(.WuiTab) {
+		border-bottom-left-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	}
 </style>

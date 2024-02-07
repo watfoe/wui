@@ -1,15 +1,15 @@
-<script context="module" lang="ts">
-  import type { FlexProps } from '../flex/index.svelte';
-  export interface ColProps extends Omit<FlexProps, 'direction'> {}
+<script context="module">
+	import type { FlexAttributes } from '../flex/index.svelte';
+
+	export interface ColAttributes extends Omit<FlexAttributes, 'direction'> {}
 </script>
 
 <script lang="ts">
-  import Flex from '../flex/index.svelte';
-  interface $$Props extends ColProps {};
+	import Flex from '../flex/index.svelte';
 
-  export let element: $$Props['element'] = undefined;
+	let { element, ...rest } = $props<ColAttributes>();
 </script>
 
-<Flex {...$$restProps} direction="column" bind:element={element} on:click on:dblclick>
-  <slot/>
+<Flex {...rest} direction="column" bind:element>
+	<slot />
 </Flex>

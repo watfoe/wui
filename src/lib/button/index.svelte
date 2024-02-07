@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	export interface ButtonProps extends HTMLButtonAttributes {
+	export interface ButtonAttributes extends HTMLButtonAttributes {
 		anchorfor?: string;
 		bold?: boolean;
 		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
@@ -23,29 +23,30 @@
 	import './style.css';
 	import { Icon } from '$lib/display';
 	import { Text } from '$lib/typography';
-	import { onMount } from 'svelte';
 
-	interface $$Props extends ButtonProps {}
-
-	export let bold: $$Props['bold'] = false;
-	export let gap: $$Props['gap'] = 'nm';
-	export let size: $$Props['size'] = 'md';
-	export let variant: $$Props['variant'] = 'solid';
-	export let color: $$Props['color'] = 'primary';
-	export let loading: $$Props['loading'] = false;
-	export let justify: $$Props['justify'] = 'center';
-	export let disabled: $$Props['disabled'] = false;
-	export let anchorfor: $$Props['anchorfor'] = undefined;
-	export let prefix: $$Props['prefix'] = undefined;
-	export let rounded: $$Props['rounded'] = false;
-	export let suffix: $$Props['suffix'] = undefined;
-	export let width: $$Props['width'] = undefined;
-	export let height: $$Props['height'] = undefined;
-	export let element: $$Props['element'] = undefined;
+	let {
+		anchorfor,
+		bold = false,
+		gap = 'nm',
+		size = 'md',
+		variant = 'solid',
+		color = 'primary',
+		loading = false,
+		justify = 'center',
+		disabled = false,
+		prefix,
+		rounded = false,
+		suffix,
+		width,
+		height,
+		element,
+		onclick,
+		...rest
+	} = $props<ButtonAttributes>();
 
 	let feedback: HTMLDialogElement;
 
-	onMount(() => {
+	$effect(() => {
 		if (anchorfor) {
 			const _feedback = document.getElementById(anchorfor);
 
@@ -57,7 +58,11 @@
 		}
 	});
 
-	function click(e: CustomEvent<HTMLButtonElement>) {
+	function click(e: MouseEvent) {
+		if (loading || disabled) {
+			return;
+		}
+
 		feedback?.dispatchEvent(
 			new CustomEvent('open', {
 				detail: {
@@ -65,23 +70,24 @@
 				}
 			})
 		);
+
+		onclick?.(e);
 	}
 </script>
 
 <button
-	{...$$restProps}
+	{...rest}
 	bind:this={element}
 	class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {width
 		? 'WuiButton--width-' + width
 		: ''} {height ? 'WuiButton--height-' + height : ''} {!$$slots.default
 		? 'WuiButton--only-icon'
-		: ''} {$$restProps.class || ''}"
+		: ''} {rest.class || ''}"
 	disabled={loading || disabled}
-	style="{$$restProps.style || ''};--WuiButtonFlex-justify:{justify};{rounded
+	style="{rest.style || ''};--WuiButtonFlex-justify:{justify};{rounded
 		? '--WuiButton-radius:calc(var(--WuiButton-height) / 2);'
 		: ''}"
-	on:click={click}
-	on:*
+	onclick={click}
 >
 	{#if loading}
 		<span class="WuiButton__loader" />

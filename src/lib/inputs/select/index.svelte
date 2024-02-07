@@ -1,17 +1,5 @@
-<script lang="ts">
-	import './style.css';
-	import { Backdrop } from '$lib/feedback';
-	import { Button } from '$lib/button';
-	import { Listbox, Label } from '$lib/inputs';
-	import { onMount } from 'svelte';
-	import { Col } from '$lib/layout';
-	import { Icon } from '$lib/display';
-	import { validate, type ValidationError } from '../_common_';
-	import CountryPreset from './presets/country-preset.svelte';
-	import MonthPreset from './presets/month-preset.svelte';
-	import GenderPreset from './presets/gender-preset.svelte';
-
-	interface $$Props {
+<script context="module" lang="ts">
+	export interface SelectAttributes extends HTMLFieldsetAttributes {
 		class?: string;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		description?: string;
@@ -26,40 +14,59 @@
 		preset?: 'country' | 'month' | 'gender';
 		required?: boolean;
 		size?: 'sm' | 'md' | 'lg';
-		style?: string;
+		style?: string | null;
 		validateon?: 'change' | 'blur' | 'submit';
 		value?: string;
 		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 	}
+</script>
 
-	let opened = false;
+<script lang="ts">
+	import './style.css';
+	import { Backdrop } from '$lib/feedback';
+	import { Button } from '$lib/button';
+	import { Listbox, Label } from '$lib/inputs';
+	import { Col } from '$lib/layout';
+	import { Icon } from '$lib/display';
+	import { validate, type ValidationError } from '../_common_';
+	import CountryPreset from './presets/country-preset.svelte';
+	import MonthPreset from './presets/month-preset.svelte';
+	import GenderPreset from './presets/gender-preset.svelte';
+	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+
+	let {
+		color = 'neutral',
+		description,
+		element,
+		error,
+		hidden = false,
+		label,
+		multiple = false,
+		name,
+		placeholder,
+		preset,
+		required,
+		size = 'md',
+		style,
+		value = '',
+		validateon = 'submit',
+		variant = 'outline',
+		...rest
+	} = $props<SelectAttributes>();
+
+	let opened = $state(false);
 	let combobox: HTMLButtonElement;
 	let listbox: HTMLDivElement;
-	let selections = [] as HTMLButtonElement[];
+	let selections = $state([] as HTMLButtonElement[]);
+	const id = Math.random().toString(36).substring(2, 9);
 
-	export let color: $$Props['color'] = 'neutral';
-	export let description: $$Props['description'] = undefined;
-	export let element: $$Props['element'] = undefined;
-	export let error: $$Props['error'] = undefined;
-	export let hidden: $$Props['hidden'] = false;
-	export let id: $$Props['id'] = Math.random().toString(36).substring(2, 9);
-	export let label: $$Props['label'] = undefined;
-	export let multiple: $$Props['multiple'] = false;
-	export let name: $$Props['name'] = undefined;
-	export let placeholder: $$Props['placeholder'] = undefined;
-	export let preset: $$Props['preset'] = undefined;
-	export let required: $$Props['required'] = undefined;
-	export let size: $$Props['size'] = 'md';
-	export let style: $$Props['style'] = undefined;
-	export let value: $$Props['value'] = '';
-	export let validateon: $$Props['validateon'] = 'submit';
-	export let variant: $$Props['variant'] = 'outline';
+	$effect(() => {
+		if (error || !error) {
+			element?.setCustomValidity(error === undefined ? '' : error?.message);
+		}
+	});
 
-	$: if (error || !error) {
-		element?.setCustomValidity(error === undefined ? '' : error?.message);
-	}
-
-	onMount(() => {
+	$effect(() => {
 		if (required && validateon === 'submit') {
 			// Get the form element that this input is in
 			const form = element?.closest('form');
@@ -69,26 +76,46 @@
 			});
 		}
 
-		listbox?.addEventListener('select', (e: CustomEvent) => {
-			const { selections: _selections, values } = e.detail;
-			selections = _selections;
-			// Setting this is necessary for a consumer of this component that has bind:value
-			value = values.join(', ');
+		// listbox?.addEventListener('select', (e: CustomEvent) => {
+		// 	const { selections: _selections, values } = e.detail;
+		// 	selections = _selections;
+		// 	// Setting this is necessary for a consumer of this component that has bind:value
+		// 	value = values.join(', ');
 
-			// Setting the value on the input element is necessary for a consumer of this component
-			// that is listening for the change event on this component.
-			element!.value = value!;
+		// 	// Setting the value on the input element is necessary for a consumer of this component
+		// 	// that is listening for the change event on this component.
+		// 	element!.value = value!;
 
-			// Dispatching the event from the input element is best
-			// Any listeners on the fieldset will be able to listen for the event since
-			// it bubbles up.
-			element?.dispatchEvent(new Event('change', { bubbles: true }));
+		// 	// Dispatching the event from the input element is best
+		// 	// Any listeners on the fieldset will be able to listen for the event since
+		// 	// it bubbles up.
+		// 	element?.dispatchEvent(new Event('change', { bubbles: true }));
 
-			if (error) {
-				_validate();
-			}
-		});
+		// 	if (error) {
+		// 		_validate();
+		// 	}
+		// });
 	});
+
+	function selectOption(e: CustomEvent) {
+		const { selections: _selections, values } = e.detail;
+		selections = _selections;
+		// Setting this is necessary for a consumer of this component that has bind:value
+		value = values.join(', ');
+
+		// Setting the value on the input element is necessary for a consumer of this component
+		// that is listening for the change event on this component.
+		element!.value = value!;
+
+		// Dispatching the event from the input element is best
+		// Any listeners on the fieldset will be able to listen for the event since
+		// it bubbles up.
+		element?.dispatchEvent(new Event('change', { bubbles: true }));
+
+		if (error) {
+			_validate();
+		}
+	}
 
 	// Keyboard accessibility
 	function keydown(e: KeyboardEvent) {
@@ -113,7 +140,7 @@
 		}
 	}
 
-	function blur(e: CustomEvent) {
+	function blur(e: Event) {
 		// Wait for the backdrop to close before validating
 		setTimeout(() => {
 			if (!opened) {
@@ -167,8 +194,6 @@
 				top += height + 1;
 			}
 
-			console.log({ top, left, width });
-
 			rect = {
 				top,
 				left,
@@ -180,10 +205,10 @@
 
 <fieldset
 	{hidden}
-	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {$$restProps.class}"
+	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {rest.class}"
 	{style}
 	on:blur={blur}
-	on:*
+	{...rest}
 >
 	{#if label && $$slots.description && !hidden}
 		<Label for={id} {description}>
@@ -198,7 +223,6 @@
 
 	<Col align="flex-start" justify="flex-start" class="WuiSelect__root__body">
 		<Button
-			{...$$restProps}
 			bind:element={combobox}
 			role="combobox"
 			type="button"
@@ -211,8 +235,8 @@
 			justify="space-between"
 			width="full"
 			class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
-			on:blur={blur}
-			on:keydown={keydown}
+			onblur={blur}
+			onkeydown={keydown}
 		>
 			{#if selections.length > 0}
 				{#each selections as selection}
@@ -240,11 +264,11 @@
 
 <Backdrop {id} bind:opened on:open={open} transparent>
 	<Listbox
-		bind:element={listbox}
 		role="listbox"
 		aria-label="List of options"
 		class="WuiSelect__listbox"
 		style="--WuiSelect-posX:{rect.left}px;--WuiSelect-posY:{rect.top}px;--WuiSelect-width:{rect.width}px"
+		onchange={selectOption}
 		{multiple}
 	>
 		{#if preset === 'country'}

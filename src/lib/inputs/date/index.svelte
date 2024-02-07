@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export interface DateInputProps extends BaseInputProps {
+	export interface DateInputAttributes extends BaseInputAttributes {
 		value?: string;
 		defaultmonth?: string;
 		defaultday?: string;
@@ -10,26 +10,27 @@
 
 <script lang="ts">
 	import { Row } from '$lib/layout';
-	import BaseInput, { type BaseInputProps } from '../base/index.svelte';
+	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 	import Select from '../select/index.svelte';
 	import { ValidationError } from '../_common_';
 	import { onMount } from 'svelte';
-
-	type $$Props = DateInputProps;
 
 	let day = '';
 	let month = '';
 	let year = '';
 
-	export let id: $$Props['id'] = undefined;
-	export let element: $$Props['element'] = undefined;
-	export let error: $$Props['error'] = undefined;
-	export let format: $$Props['format'] = 'yyyy-mm-dd';
-	export let name: $$Props['name'] = undefined;
-	export let required: $$Props['required'] = undefined;
-	export let rules: $$Props['rules'] = undefined;
-	export let validateon: $$Props['validateon'] = 'submit';
-	export let value: $$Props['value'] = '';
+	let {
+		id,
+		element,
+		error,
+		format = 'yyyy-mm-dd',
+		name,
+		required,
+		rules,
+		validateon = 'submit',
+		value = '',
+		...rest
+	} = $props<DateInputAttributes>();
 
 	onMount(() => {
 		if (required && !rules?.required) {
@@ -97,7 +98,7 @@
 <Row justify="space-between" gap="nm" class="WuiInput__date" on:change on:*>
 	<Select
 		placeholder="Month"
-		{...$$restProps}
+		{...rest}
 		preset="month"
 		{id}
 		{required}
@@ -112,7 +113,7 @@
 		type="number"
 		placeholder="Day"
 		masks={{ max: 31 }}
-		{...$$restProps}
+		{...rest}
 		maxlength={2}
 		class="WuiInput__date__day"
 		rules={{
@@ -128,7 +129,7 @@
 	<BaseInput
 		type="number"
 		placeholder="Year"
-		{...$$restProps}
+		{...rest}
 		maxlength={4}
 		class="WuiInput__date__year"
 		rules={{

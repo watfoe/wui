@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	export interface AvatarProps extends HTMLImgAttributes {
+	export interface AvatarAttributes extends Omit<HTMLImgAttributes, 'height' | 'width'> {
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | string;
 		size?: 'sm' | 'md' | 'lg';
 		variant?: 'solid' | 'outline' | 'soft' | 'plain';
@@ -10,16 +10,18 @@
 
 <script lang="ts">
 	import './style.css';
+
 	import { Col } from '$lib/layout';
 	import { Text } from '$lib/typography';
 	import { Icon } from '..';
 
-	interface $$Props extends AvatarProps {}
-
-	export let color: $$Props['color'] = 'primary';
-	export let alt: $$Props['alt'] = undefined;
-	export let size: $$Props['size'] = 'md';
-	export let variant: $$Props['variant'] = 'solid';
+	let {
+		color = 'primary',
+		alt,
+		size = 'md',
+		variant = 'solid',
+		...rest
+	} = $props<AvatarAttributes>();
 
 	let isColorPreset = ['primary', 'neutral', 'success', 'warning', 'danger'].includes(color!);
 </script>
@@ -29,15 +31,13 @@
 	aria-label={alt || 'Avatar'}
 	align="center"
 	justify="center"
-	{...$$restProps}
 	class="WuiAvatar WuiAvatar--{size} WuiAvatar--{variant} {isColorPreset
 		? `WuiAvatar--${color}`
-		: ''} {$$restProps.class || ''}"
+		: ''} {rest.class || ''}"
 	style={isColorPreset ? '' : `--WuiAvatar-bg: ${color}`}
-	on:*
 >
-	{#if $$restProps.src}
-		<img src={$$restProps.src} {...$$restProps} {alt} class="WuiAvatar__img" />
+	{#if rest.src}
+		<img src={rest.src} {...rest} {alt} class="WuiAvatar__img" />
 	{:else if alt}
 		<Text variant="title" {size}>{alt[0].toUpperCase()}</Text>
 	{:else if !$$slots.default}

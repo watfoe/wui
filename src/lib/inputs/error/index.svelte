@@ -2,7 +2,8 @@
 	import './style.css';
 	import { Text } from '$lib/typography';
 	import type { ValidationError } from '../_common_';
-	export let error: ValidationError;
+
+	let { error } = $props<{ error: ValidationError }>();
 
 	function errorToString(error: ValidationError) {
 		let message = error.message.replace(/_/g, ' ').toLocaleLowerCase();

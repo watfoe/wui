@@ -1,5 +1,8 @@
 <script lang="ts">
-	interface $$Props {
+	import type { Snippet } from "svelte";
+
+	interface TooltipAttributes {
+		children: Snippet;
 		title: string;
 		position?:
 			| 'top'
@@ -13,8 +16,7 @@
 		variant?: 'solid' | 'outline' | 'plain' | 'soft';
 	}
 
-	export let title: string;
-	export let position: $$Props['position'] = 'bottom';
+	let { title, position = 'bottom', children } = $props<TooltipAttributes>();
 
 	let top: number = 0;
 	let left: number = 0;
@@ -31,12 +33,11 @@
 <div
 	aria-label={title}
 	role="tooltip"
-	bind:this={tooltip}
 	class="WuiTooltip WuiTooltip-{position} "
 	data-tooltip-title={title}
-	on:mouseenter={mouseenter}
+	onmouseenter={mouseenter}
 >
-	<slot />
+	{@render children()}
 </div>
 
 <style>

@@ -1,15 +1,15 @@
-<script context="module" lang="ts">
-  import type { FlexProps } from '../flex/index.svelte';
-  export interface RowProps extends Omit<FlexProps, 'direction'> {}
+<script context="module">
+	import type { FlexAttributes } from '../flex/index.svelte';
+
+	export interface RowAttributes extends Omit<FlexAttributes, 'direction'> {}
 </script>
 
 <script lang="ts">
-  import Flex from '../flex/index.svelte';
-  interface $$Props extends RowProps {};
+	import Flex from '../flex/index.svelte';
 
-  export let element: $$Props['element'] = undefined;
+	let { element, ...rest } = $props<RowAttributes>();
 </script>
 
-<Flex align="center" {...$$restProps} direction="row" bind:element={element} on:*>
-  <slot/>
+<Flex {...rest} direction="row" bind:element>
+	<slot />
 </Flex>

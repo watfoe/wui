@@ -1,76 +1,95 @@
 <script lang="ts">
-  import './style.css';
-  import { Col } from '$lib/layout';
-	import { onMount } from 'svelte';
-	import type { ColProps } from '$lib/layout/col/index.svelte';
+	import './style.css';
+	import { Col } from '$lib/layout';
+	import type { ColAttributes } from '$lib/layout/col/index.svelte';
+	import type { Snippet } from 'svelte';
 
-  interface $$Props extends ColProps {
-    backdrop?: boolean;
-    class?: string;
-    style?: string;
-    selected?: boolean;
-    variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
-    color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-    size?: 'sm' | 'md' | 'lg';
-    element?: HTMLDivElement;
-    multiple?: boolean;
-  }
+	interface ListboxAttributes extends Omit<ColAttributes, 'onchange'> {
+		backdrop?: boolean;
+		class?: string;
+		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+		children: Snippet;
+		element?: HTMLDivElement;
+		multiple?: boolean;
+		onchange?: (e: CustomEvent) => void;
+		style?: string;
+		selected?: boolean;
+		size?: 'sm' | 'md' | 'lg';
+		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
+	}
 
-  export let element: $$Props['element'] = undefined;
-  export let multiple: $$Props['multiple'] = false;
+	let { children, element, multiple = false, onchange, ...rest } = $props<ListboxAttributes>();
 
-  let selections = [] as HTMLButtonElement[];
-  let values = [] as string[];
+	let selections = [] as number[];
+	let values = [] as string[];
 
-  onMount(() => {
-    const children = element?.children || [];
+	$effect(() => {
+		const children = element?.querySelectorAll('button') || [];
 
-    // Filter out any elements that are not 'item' elements or a divider.
-    for (let i = 0; i < children.length; i++) {
-      const child = element?.children[i];
-      const role = child?.getAttribute('role');
-      if (role !== 'option' && role !== 'listitem' && role !== 'menuitem' && role !== 'divider') {
-        child?.remove();
-        continue;
-      }
+		// Filter out any elements that are not 'item' elements or a divider.
+		for (let i = 0; i < children.length; i++) {
+			const child = children[i] as HTMLButtonElement;
+			const role = child?.getAttribute('role');
 
-      if (role !== 'divider' && child?.nodeName === 'BUTTON') {
-        // @ts-ignore
-        child.addEventListener('select', (e: CustomEvent) => {
-          const {value, item} = e.detail;
+			if (role !== 'option' && role !== 'listitem' && role !== 'menuitem') {
+				continue;
+			}
 
-          if (multiple) {
-            if (values.includes(value)) {
-              values = values.filter(v => v !== value);
-              selections = selections.filter(s => s !== item);
-            } else {
-              values.push(value);
-              selections.push(item);
-            }
-          } else {
-            selections[0]?.dispatchEvent(new CustomEvent('deselect', {
-              detail: { values, selections }
-            }));
+			// Check if the item has aria-selected to determine if it is selected.
+			const selected = child?.getAttribute('aria-selected') === 'true';
+			const value = child?.getAttribute('value');
+			if (selected) {
+				selections.push(i);
+				if (value) {
+					values.push(value);
+					onchange?.(new CustomEvent('change', { detail: { values } }));
+				}
+			}
 
-            values = [value];
-            selections = [item];
-          }
+			child.addEventListener('click', () => {
+				if (multiple) {
+					if (selections.includes(i)) {
+						selections = selections.filter((v) => v !== i);
+						dispatch(child, false);
+						if (value) {
+							values = values.filter((v) => v !== value);
+						}
+					} else {
+						selections.push(i);
+						dispatch(child, true);
+						if (value) {
+							values.push(value);
+						}
+					}
+				} else {
+					dispatch(children[selections[0]] as HTMLButtonElement, false);
+					selections = [i];
+					dispatch(child, true);
+					if (value) {
+						values = [value];
+					}
+				}
 
-          element?.dispatchEvent(new CustomEvent('select', {
-            detail: { values, selections }
-          }));
-        });
-      }
-    }
-  });
+				onchange?.(new CustomEvent('change', { detail: { values } }));
+			});
+		}
+	});
+
+	function dispatch(element: HTMLButtonElement, selected: boolean) {
+		element.dispatchEvent(
+			new CustomEvent('select', {
+				detail: { selected }
+			})
+		);
+	}
 </script>
 
 <Col
-  bind:element={element}
-  role="{$$restProps.role || 'listbox'}"
-  aria-label="{$$restProps.label || 'Select an option'}"
-  class="WuiListbox {$$restProps.class || ''}"
-  style="{$$restProps.style || ''}"
+	bind:element
+	role={rest.role || 'listbox'}
+	aria-label={rest['aria-label'] || 'Select an option'}
+	class="WuiListbox {rest.class || ''}"
+	style={rest.style || ''}
 >
-  <slot />
+	{@render children()}
 </Col>
