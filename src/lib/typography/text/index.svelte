@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
 	import type { HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
 	export interface TextLabelAttributes extends Omit<HTMLLabelAttributes, 'color'> {
 		variant: 'label';

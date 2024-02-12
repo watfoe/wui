@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import type { Snippet } from "svelte";
+	import type { Snippet } from 'svelte';
 	export interface TooltipAttributes {
 		children: Snippet;
 		title: string;

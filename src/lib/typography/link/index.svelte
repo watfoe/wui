@@ -1,14 +1,16 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
-	interface LinkAttributes extends HTMLAnchorAttributes {
+	export interface LinkAttributes extends HTMLAnchorAttributes {
 		color?: 'inherit' | 'link';
 		italic?: boolean;
 		underline?: boolean;
 		size?: 'sm' | 'md' | 'lg';
 		variant?: 'headline' | 'title' | 'body' | 'label' | 'code';
 	}
+</script>
 
+<script lang="ts">
 	let {
 		color = 'link',
 		italic = false,

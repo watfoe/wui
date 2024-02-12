@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
 	import type { FlexAttributes } from '../flex/index.svelte';
 
 	export interface RowAttributes extends Omit<FlexAttributes, 'direction'> {}
