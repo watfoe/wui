@@ -1,1 +1,1 @@
-export {default as Button, type ButtonProps} from './index.svelte';
+export {default as Button, type ButtonAttributes} from './index.svelte';

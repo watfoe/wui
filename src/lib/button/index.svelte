@@ -1,21 +1,21 @@
 <script context="module" lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	export interface ButtonProps extends HTMLButtonAttributes {
+	export interface ButtonAttributes extends HTMLButtonAttributes {
+		_this?: HTMLButtonElement;
 		anchorfor?: string;
 		bold?: boolean;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-		size?: 'sm' | 'md' | 'lg';
 		gap?: 'sm' | 'nm' | 'md' | 'lg';
+		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
 		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 		loading?: boolean;
 		prefix?: string;
 		rounded?: boolean;
+		size?: 'sm' | 'md' | 'lg';
 		suffix?: string;
+		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		element?: HTMLButtonElement;
 	}
 </script>
 
@@ -25,23 +25,25 @@
 	import { Text } from '$lib/typography';
 	import { onMount } from 'svelte';
 
-	interface $$Props extends ButtonProps {}
-
-	export let bold: $$Props['bold'] = false;
-	export let gap: $$Props['gap'] = 'nm';
-	export let size: $$Props['size'] = 'md';
-	export let variant: $$Props['variant'] = 'solid';
-	export let color: $$Props['color'] = 'primary';
-	export let loading: $$Props['loading'] = false;
-	export let justify: $$Props['justify'] = 'center';
-	export let disabled: $$Props['disabled'] = false;
-	export let anchorfor: $$Props['anchorfor'] = undefined;
-	export let prefix: $$Props['prefix'] = undefined;
-	export let rounded: $$Props['rounded'] = false;
-	export let suffix: $$Props['suffix'] = undefined;
-	export let width: $$Props['width'] = undefined;
-	export let height: $$Props['height'] = undefined;
-	export let element: $$Props['element'] = undefined;
+	let {
+		_this,
+		anchorfor,
+		bold = false,
+		gap = 'nm',
+		size = 'md',
+		variant = 'solid',
+		color = 'primary',
+		loading = false,
+		justify = 'center',
+		disabled = false,
+		prefix,
+		rounded = false,
+		suffix,
+		width,
+		height,
+		onclick,
+		...rest
+	} = $props<ButtonAttributes>();
 
 	let feedback: HTMLDialogElement;
 
@@ -57,7 +59,11 @@
 		}
 	});
 
-	function click(e: CustomEvent<HTMLButtonElement>) {
+	function _onclick(e: MouseEvent) {
+		if (loading || disabled) {
+			return;
+		}
+
 		feedback?.dispatchEvent(
 			new CustomEvent('open', {
 				detail: {
@@ -65,23 +71,25 @@
 				}
 			})
 		);
+
+		// @ts-ignore
+		onclick?.(e);
 	}
 </script>
 
 <button
-	{...$$restProps}
-	bind:this={element}
+	{...rest}
 	class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {width
 		? 'WuiButton--width-' + width
 		: ''} {height ? 'WuiButton--height-' + height : ''} {!$$slots.default
 		? 'WuiButton--only-icon'
-		: ''} {$$restProps.class || ''}"
-	disabled={loading || disabled}
-	style="{$$restProps.style || ''};--WuiButtonFlex-justify:{justify};{rounded
+		: ''} {rest.class || ''}"
+	style="{rest.style || ''};--WuiButtonFlex-justify:{justify};{rounded
 		? '--WuiButton-radius:calc(var(--WuiButton-height) / 2);'
 		: ''}"
-	on:click={click}
-	on:*
+	onclick={_onclick}
+	disabled={loading || disabled}
+	bind:this={_this}
 >
 	{#if loading}
 		<span class="WuiButton__loader" />

@@ -1,39 +1,27 @@
 <script lang="ts">
-	import { Button } from "$lib/button";
-	import BaseInput, { type BaseInputProps } from "../base/index.svelte";
+	import { Button } from '$lib/button';
+	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
-  type $$Props = BaseInputProps;
+	let { _this, error, color = 'neutral', value, ...rest } = $props<BaseInputAttributes>();
 
-  export let color: $$Props['color'] = 'neutral';
-  export let element: $$Props['element'] = undefined;
-  export let error: $$Props['error'] = undefined;
-  export let value: $$Props['value'] = '';
-
-  function clear() {
-    value = ''
-  }
+	function clear() {
+		value = '';
+	}
 </script>
 
 <BaseInput
-  {...$$restProps}
-  role="searchbox"
-  aria-label="Search"
-  autocomplete="search"
-  autocapitalize="off"
-  autocorrect="off"
-  spellcheck="false"
-  type="text"
-  bind:element={element}
-  bind:error={error}
-  bind:value={value}
-  on:*
+	{...rest}
+	role="searchbox"
+	aria-label="Search"
+	autocomplete="search"
+	autocapitalize="off"
+	autocorrect="off"
+	spellcheck="false"
+	type="text"
+	{color}
+	bind:_this
+	bind:value
+	bind:error
 >
-  <Button
-    variant="plain"
-    {color}
-    size="sm"
-    slot="suffix"
-    prefix="clear"
-    on:click={clear}
-  />
+	<Button variant="plain" {color} size="sm" slot="suffix" prefix="clear" onclick={clear} />
 </BaseInput>

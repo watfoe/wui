@@ -1,29 +1,33 @@
-<script lang="ts">
-	import { onMount } from "svelte";
+<script context="module" lang="ts">
+	import { onMount, type Snippet } from 'svelte';
 
-  interface $$Props {
-    id: string;
-    class?: string;
-    style?: string;
-  }
-  export let id: $$Props['id'];
-
-  onMount(() => {
-    if (!id) {
-      throw new Error('TabPanels must have an id attribute');
-    }
-  })
+	export interface TabPanelsAttributes {
+		id: string;
+		class?: string | null;
+		style?: string | null;
+		children: Snippet;
+	}
 </script>
 
-<div id={id} class="WuiTabPanels {$$restProps.class || ''}" style="{$$restProps.style}">
-  <slot />
+<script lang="ts">
+	let { id, class: _class, children, style } = $props<TabPanelsAttributes>();
+
+	onMount(() => {
+		if (!id) {
+			throw new Error('TabPanels must have an id attribute');
+		}
+	});
+</script>
+
+<div {id} class="WuiTabPanels {_class || ''}" {style}>
+	{@render children()}
 </div>
 
 <style>
-  .WuiTabPanels {
-    display: contents;
-  }
-  .WuiTabPanels > :global(*:not([tabindex="0"])) {
-    display: none !important;
-  }
+	.WuiTabPanels {
+		display: contents;
+	}
+	.WuiTabPanels > :global(*:not([tabindex='0'])) {
+		display: none !important;
+	}
 </style>

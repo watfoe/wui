@@ -1,23 +1,6 @@
 <script lang="ts">
-	import { Country } from '$lib/domains';
-	import { Input, Radio, RadioGroup, Select, Switch } from '$lib/inputs';
-	import Option from '$lib/inputs/select/option.svelte';
+	import { Checkbox, Input, Radio, RadioGroup, Select, Switch } from '$lib/inputs';
 	import { Col, Row } from '$lib/layout';
-	import { Link, Text } from '$lib/typography';
-
-	let is_gender_custom = false;
-
-	function gender_changed(e: Event) {
-		// @ts-ignore
-		is_gender_custom = e.target.value === 'o';
-	}
-
-	function submit(e: Event) {
-		const form = e.currentTarget as HTMLFormElement;
-		const data = new FormData(form);
-		const body = Object.fromEntries(data.entries());
-		console.log(body);
-	}
 </script>
 
 <Col gap="lg" width="full">
@@ -29,17 +12,10 @@
 	</Row>
 
 	<Row gap="md" width="full">
-		<Input type="email" variant="solid" label="Email" class="input" validateon="change" />
-		<Input
-			type="email"
-			variant="outline"
-			label="Email"
-			class="input"
-			validateon="change"
-			required
-		/>
-		<Input type="email" variant="soft" label="Email" class="input" validateon="change" required />
-		<Input type="email" variant="plain" label="Email" class="input" validateon="change" />
+		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
+		<Input type="email" variant="outline" label="Email" class="input" validateon="input" required />
+		<Input type="email" variant="soft" label="Email" class="input" validateon="input" required />
+		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
 	</Row>
 
 	<Row gap="md" width="full">
@@ -106,8 +82,17 @@
 			<Radio name="acctype" label="Personal" />
 			<Radio name="acctype" label="Business" />
 			<Radio name="acctype" label="Other" />
-			<Select preset="country" />
 		</RadioGroup>
+
+		<Select preset="country" style="width: 300px" />
+	</Row>
+
+	<Row gap="lg" width="full">
+		<Checkbox label="Primary small radio" name="radio" size="sm" color="primary" />
+		<Checkbox label="Neutral medium radio" name="radio" size="md" />
+		<Checkbox label="Large success radio" name="radio" size="lg" color="success" />
+		<Checkbox label="Warning radio" name="radio" color="warning" />
+		<Checkbox label="Danger radio" name="radio" color="danger" />
 	</Row>
 
 	<Row gap="md" width="full">

@@ -1,28 +1,38 @@
-<script lang="ts">
-	import { onMount } from 'svelte';
+<script context="module">
+	import type { HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
+	export interface TextLabelAttributes extends Omit<HTMLLabelAttributes, 'color'> {
+		variant: 'label';
+	}
+	export interface TextHeadingAttributes extends HTMLAttributes<HTMLHeadingElement> {
+		variant: 'headline' | 'title';
+	}
+	export interface TextBodyAttributes extends HTMLAttributes<HTMLSpanElement> {
+		variant?: 'body' | 'code';
+	}
 
-	interface $$Props {
+	export type TextAttributes = {
 		bold?: boolean;
-		class?: string;
 		color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning' | 'black' | 'white';
 		italic?: boolean;
 		rtl?: boolean;
 		size?: 'sm' | 'md' | 'lg';
-		style?: string;
 		underline?: boolean;
-		variant?: 'headline' | 'title' | 'body' | 'label' | 'code';
-	}
+	} & (TextLabelAttributes | TextHeadingAttributes | TextBodyAttributes);
+</script>
 
-	export let bold: $$Props['bold'] = false;
-	export let color: $$Props['color'] = 'black';
-	export let italic: $$Props['italic'] = false;
-	export let rtl: $$Props['rtl'] = false;
-	export let size: $$Props['size'] = 'md';
-	export let underline: $$Props['underline'] = false;
-	export let variant: $$Props['variant'] = 'body';
+<script lang="ts">
+	import { onMount } from 'svelte';
 
-	let _class: $$Props['class'] = '';
-	export { _class as class };
+	let {
+		bold = false,
+		color = 'black',
+		italic = false,
+		rtl = false,
+		size = 'md',
+		underline = false,
+		variant = 'body',
+		...rest
+	} = $props<TextAttributes>();
 
 	const elements = {
 		headline: {
@@ -61,13 +71,13 @@
 
 <svelte:element
 	this={elements[variant || 'body'][size || 'md']}
+	{...rest}
 	class="WuiText WuiText--{variant} WuiText--{size} WuiText--{color} {bold
 		? 'WuiText--bold'
 		: ''} {italic ? 'WuiText--italic' : ''} {rtl ? 'WuiText--rtl' : ''} {underline
 		? 'WuiText--underline'
-		: ''} {_class}"
-	style={$$restProps.style || ''}
-	{...$$restProps}
+		: ''} {rest.class || ''}"
+	style={rest.style || ''}
 >
 	<slot />
 </svelte:element>

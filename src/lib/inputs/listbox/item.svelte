@@ -1,11 +1,10 @@
 <script lang="ts" context="module">
-	import type { ButtonProps } from '$lib/button';
+	import type { ButtonAttributes } from '$lib/button';
 
-	export interface ListItemProps extends ButtonProps {
-		value?: string;
+	export interface ListItemAttributes extends Omit<ButtonAttributes, 'onselect'> {
 		selected?: boolean;
-		element?: HTMLButtonElement;
 		role?: 'listitem' | 'option' | 'menuitem';
+		onselect?: (e: CustomEvent<{ selected: boolean }>) => void;
 	}
 </script>
 
@@ -13,85 +12,63 @@
 	import { Button } from '$lib/button';
 	import { onMount } from 'svelte';
 
-	interface $$Props extends ListItemProps {}
-
-	export let value: $$Props['value'] = undefined;
-	export let selected: $$Props['selected'] = false;
-	export let element: $$Props['element'] = undefined;
-	export let role: $$Props['role'] = 'listitem';
+	let { _this, value, selected = false, role = 'listitem', ...rest } = $props<ListItemAttributes>();
 
 	onMount(() => {
 		if (selected && value) {
 			// Without the timeout, the event is dispatched but the listener has not been registered yet.
 			setTimeout(() => {
-				dispatch();
+				_this?.click();
 			}, 0);
 		}
 
 		// Keyboard accessibility
-		element?.addEventListener('keydown', (e: KeyboardEvent) => {
+		_this?.addEventListener('keydown', (e: KeyboardEvent) => {
 			const { key } = e;
 
 			if (key === 'ArrowDown') {
 				e.preventDefault();
 
 				// If it has focus, move to the next item
-				if (element === document.activeElement) {
-					const next = element.nextElementSibling as HTMLButtonElement;
+				if (_this === document.activeElement) {
+					const next = _this.nextElementSibling as HTMLButtonElement;
 
 					if (next) {
 						next.focus();
-					} else if (element.previousElementSibling) {
-						const first = element.parentElement?.firstElementChild as HTMLButtonElement;
+					} else if (_this.previousElementSibling) {
+						const first = _this.parentElement?.firstElementChild as HTMLButtonElement;
 						first?.focus();
 					}
 				}
 			} else if (key === 'ArrowUp') {
 				e.preventDefault();
 				// If it has focus, move to the next item
-				if (element === document.activeElement) {
-					const previous = element.previousElementSibling as HTMLButtonElement;
+				if (_this === document.activeElement) {
+					const previous = _this.previousElementSibling as HTMLButtonElement;
 
 					if (previous) {
 						previous.focus();
-					} else if (element.nextElementSibling) {
-						const last = element.parentElement?.lastElementChild as HTMLButtonElement;
+					} else if (_this.nextElementSibling) {
+						const last = _this?.parentElement?.lastElementChild as HTMLButtonElement;
 						last?.focus();
 					}
 				}
 			} else if (key === 'Enter' || key === ' ') {
 				e.preventDefault();
-				element?.click();
+				_this?.click();
 			}
 		});
 	});
 
-	function select() {
-		if (!selected) {
-			selected = true;
-			dispatch();
-		}
-	}
-
-	function deselect() {
-		if (selected) {
-			selected = false;
-		}
-	}
-
-	function dispatch() {
-		element?.dispatchEvent(
-			new CustomEvent('select', {
-				detail: { item: element, value }
-			})
-		);
+	function _onselect(e: CustomEvent<{ selected: boolean }>) {
+		selected = e.detail.selected;
 	}
 </script>
 
 <Button
-	{...$$restProps}
-	bind:element
+	{...rest}
 	{role}
+	{value}
 	type="button"
 	aria-selected={selected}
 	variant={selected ? 'soft' : 'plain'}
@@ -100,8 +77,8 @@
 	width="full"
 	bold={false}
 	class="WuiListbox__listitem"
-	on:click={select}
-	on:deselect={deselect}
+	onselect={_onselect}
+	bind:_this
 >
 	<slot />
 </Button>

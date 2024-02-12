@@ -1,2 +1,2 @@
-export { default as Backdrop } from './backdrop/index.svelte';
-export { default as Modal } from './modal/index.svelte';
+export { default as Backdrop, type BackdropAttributes } from './backdrop/index.svelte';
+export { default as Modal, type ModalAttributes } from './modal/index.svelte';

@@ -1,105 +1,70 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	import type { HTMLDialogAttributes } from 'svelte/elements';
-
-	interface $$Props extends HTMLDialogAttributes {
+	export interface BackdropAttributes extends HTMLDialogAttributes {
+		_this?: HTMLDialogElement;
 		transparent?: boolean;
-		element?: HTMLDialogElement;
 		opened?: boolean;
+		onopen?: (e: CustomEvent<HTMLDialogElement>) => void;
+		onclose?: () => void;
 	}
+</script>
 
-	let element: $$Props['element'] = undefined;
-	export let transparent: $$Props['transparent'] = false;
-	export let opened: $$Props['opened'] = false;
+<script lang="ts">
+	import './style.css';
+	import { onMount } from 'svelte';
+
+	let {
+		_this,
+		transparent = false,
+		opened,
+		onopen,
+		onclose,
+		...rest
+	} = $props<BackdropAttributes>();
+
+	onMount(() => {
+		// @ts-ignore
+		_this?.addEventListener('open', open);
+	});
 
 	function open(e: CustomEvent<HTMLDialogElement>) {
-		element?.showModal();
+		_this?.showModal();
 		opened = true;
 
-		element?.addEventListener(
+		_this?.addEventListener(
 			'click',
 			(e) => {
-				element?.close();
-				opened = false;
+				close();
 			},
 			{ once: true }
 		);
 
-		element?.addEventListener(
+		_this?.addEventListener(
 			'keydown',
 			(e) => {
 				if (e.key === 'Escape') {
 					e.preventDefault();
-					element?.close();
-					opened = false;
+					close();
 				}
 			},
 			{ once: true }
 		);
+
+		onopen?.(e);
+	}
+
+	function close() {
+		_this?.close();
+		opened = false;
+		onclose?.();
 	}
 </script>
 
 <dialog
-	bind:this={element}
-	{...$$restProps}
+	{...rest}
 	role="presentation"
-	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {$$restProps.class || ''}"
-	on:open={open}
-	on:*
+	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {rest.class || ''}"
+	bind:this={_this}
 >
 	<slot />
 </dialog>
-
-<style>
-	:global(html):has(dialog[open]) {
-		overflow: hidden !important;
-	}
-	.WuiBackdrop {
-		border: 0;
-		max-width: 100vw !important;
-		max-height: 100vh !important;
-		width: 100vw !important;
-		height: 100vh !important;
-		outline: 0;
-		transition: opacity 3s;
-		padding: var(--space-xs);
-		inset: 0px;
-		overflow: hidden;
-		-webkit-tap-highlight-color: transparent;
-	}
-	.WuiBackdrop--transparent-true {
-		background-color: transparent;
-	}
-	.WuiBackdrop--transparent-false {
-		background-color: var(--color-scrim);
-		backdrop-filter: blur(8px);
-	}
-
-	.WuiBackdrop > :global(*) {
-		background-color: var(--color-surface);
-		border-radius: var(--radius);
-		max-width: 60vw !important;
-		max-height: calc(100vh - calc(var(--space-xs) * 2)) !important;
-		overflow-y: auto;
-	}
-
-	.WuiBackdrop::backdrop {
-		background-color: transparent;
-	}
-
-	&[open] {
-		animation: fade 0.3s ease normal;
-		align-items: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
-
-	@keyframes fade {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-</style>

@@ -1,0 +1,93 @@
+.WuiCheckbox {
+  position: relative;
+}
+
+.WuiCheckbox--sm {
+  --WuiCheckbox-size: 16px;
+}
+
+.WuiCheckbox--md {
+  --WuiCheckbox-size: 20px;
+}
+
+.WuiCheckbox--lg {
+  --WuiCheckbox-size: 24px;
+}
+
+.WuiCheckbox--primary {
+  --WuiCheckbox-thumb-color: var(--color-primary);
+}
+
+.WuiCheckbox--neutral {
+  --WuiCheckbox-thumb-color: var(--color-neutral);
+}
+
+.WuiCheckbox--neutral input:checked+.WuiCheckbox__label {
+  --WuiCheckbox-thumb-color: var(--color-primary);
+}
+
+.WuiCheckbox--success {
+  --WuiCheckbox-thumb-color: var(--color-success);
+}
+
+.WuiCheckbox--warning {
+  --WuiCheckbox-thumb-color: var(--color-warning);
+}
+
+.WuiCheckbox--danger {
+  --WuiCheckbox-thumb-color: var(--color-error);
+}
+
+.WuiCheckbox__label {
+  --WuiCheckbox-thumb-indicator-display: none;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-nm);
+}
+
+.WuiCheckbox__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}
+
+.WuiCheckbox__thumb {
+  align-items: center;
+  border: 1.3px solid var(--WuiCheckbox-thumb-color);
+  border-radius: var(--radius);
+  color: transparent !important;
+  cursor: pointer;
+  display: inline-flex;
+  height: var(--WuiCheckbox-size);
+  justify-content: center;
+  width: var(--WuiCheckbox-size);
+  padding: 2px;
+}
+
+.WuiCheckbox__label .WuiCheckbox__thumb * {
+  opacity: 0;
+}
+
+input:checked+.WuiCheckbox__label .WuiCheckbox__thumb {
+  background-color: var(--WuiCheckbox-thumb-color);
+  color: var(--color-on-primary) !important;
+}
+
+input:checked+.WuiCheckbox__label .WuiCheckbox__thumb * {
+  opacity: 1;
+}
+
+
+input:not(:checked)+.WuiCheckbox__label:hover .WuiCheckbox__thumb {
+  border-width: 2px;
+}

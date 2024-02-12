@@ -1,21 +1,22 @@
-<script lang="ts">
-	interface $$Props {
+<script context="module" lang="ts">
+	export interface LogoAttributes {
 		brand?: 'watfoe' | 'apple' | 'facebook' | 'github' | 'google' | 'microsoft';
 		class?: string;
 		size?: number;
 		style?: string;
 	}
+</script>
 
-	export let brand: $$Props['brand'] = 'watfoe';
-	export let size: $$Props['size'] = 100;
+<script lang="ts">
+	let { brand = 'watfoe', size = 100, ...rest } = $props<LogoAttributes>();
 </script>
 
 {#if brand === 'watfoe'}
 	<enhanced:img
 		src="../../styles/images/logo-no-bg.png"
-		class="WuiLogo {$$restProps.class || ''}"
+		class="WuiLogo {rest.class || ''}"
 		alt="Watfoe official logo"
-		style="--size:{size}px;{$$restProps.style || ''}"
+		style="--size:{size}px;{rest.style || ''}"
 	/>
 {:else}
 	<span class="WuiBrandLogo" data-provider={brand} />

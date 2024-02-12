@@ -5,5 +5,5 @@
 </script>
 
 {#each months as month, i}
-	<Option value={i + 1}>{month}</Option>
+	<Option value={i + 1 + ''}>{month}</Option>
 {/each}

@@ -1,88 +1,122 @@
 <script context="module" lang="ts">
-  import type { HTMLTextareaAttributes } from 'svelte/elements';
-  import type { BaseProps } from '../_common_';
+	import type { HTMLTextareaAttributes } from 'svelte/elements';
+	import type { BaseProps } from '../_common_';
 
-  export type BaseInputProps = BaseProps<HTMLTextareaAttributes>;
+	export type TextAreaAttributes = BaseProps<HTMLTextareaAttributes, HTMLTextAreaElement>;
 </script>
 
 <script lang="ts">
-  import { Button } from '$lib/button';
-  import { Row } from '$lib/layout';
+	import { Row } from '$lib/layout';
+	import { validate, mask, ValidationError } from '../_common_';
+	import { Icon } from '$lib';
+	import { onMount } from 'svelte';
 
-  import { validate, mask, ValidationError } from '../_common_';
+	let {
+		_this,
+		color,
+		error,
+		rules,
+		masks,
+		prefix,
+		required,
+		suffix,
+		size,
+		validateon = 'blur',
+		variant,
+		value,
+		onblur,
+		oninput,
+		onvalidate,
+		...rest
+	} = $props<TextAreaAttributes>();
 
-  type $$Props = BaseInputProps;
+	$effect(() => {
+		if (error || !error) {
+			_this?.setCustomValidity(error === undefined ? '' : error?.message);
+		}
+	});
 
-  let textarea: HTMLTextAreaElement;
-  let value: string | null = null;
-  let error: ValidationError | null;
-  let rules: $$Props['rules'] = undefined;
-  let masks: $$Props['masks'] = undefined;
-  let prefix: $$Props['prefix'] = undefined;
-  let suffix: $$Props['suffix'] = undefined;
-  let validateon: $$Props['validateon'] = 'blur';
+	onMount(() => {
+		if (required && !rules?.required) {
+			rules = rules || {};
+			rules.required = true;
+		}
 
-  export const clearError = () => {
-    error = null;
-  };
+		if (rules && validateon === 'submit') {
+			// Get the form element that this textarea is in
+			const form = _this?.closest('form');
+			form?.addEventListener('submit', (e) => {
+				e.preventDefault();
+				_validate(_this?.value!);
+			});
+		}
+	});
 
-  export const _validateField = (_value: string) => {
-    try {
-      validate(_value, rules!);
-      clearError();
-      textarea.dispatchEvent(new CustomEvent('validate', {
-        detail: { value }
-      }));
-    } catch (e) {
-      error = e as ValidationError;
-      textarea.dispatchEvent(new CustomEvent('validate', {
-        detail: { error }
-      }));
-    }
-  }
+	function _validate(_value: string) {
+		try {
+			validate(_value, rules!);
+			error = undefined;
+		} catch (e) {
+			error = e as ValidationError;
+		}
 
-  function handleChange(e: CustomEvent<HTMLTextAreaElement>) {
-    let _value = e.target?.value;
-    if (masks) {
-      _value = mask(_value, masks) || '';
-    }
+		onvalidate?.(error);
+	}
 
-    value = _value
+	function _onblur(e: FocusEvent & { currentTarget: HTMLTextAreaElement }) {
+		let _value = e.currentTarget.value;
 
-    if (rules && validateon === 'change') {
-      _validateField(_value);
-    }
-  }
+		if (rules && validateon === 'blur') {
+			_validate(_value);
+		}
 
-  function handleBlur(e) {
-    let _value = e.target?.value;
-    if (rules && validateon === 'blur') {
-      _validateField(_value);
-    }
-  }
+		onblur?.(e);
+	}
 
-  const handleAnchorClick = () => {
-    // Prevent the input from losing focus or focus it
-    textarea.focus();
-  }
+	function _oninput(e: Event & { currentTarget: HTMLTextAreaElement }) {
+		let _value = e.currentTarget.value;
+
+		if (masks) {
+			_value = mask(_value, masks) || '';
+			value = _value;
+		}
+
+		if (rules && (validateon === 'input' || error)) {
+			_validate(_value);
+		}
+
+		oninput?.(e);
+	}
 </script>
 
-<Row class="cs-input-base-cont">
-  {#if prefix}
-    <Button {...$$restProps.prefix} on:click={handleAnchorClick} class={`cs-input--prefix`} />
-  {/if}
-  <textarea
-    dir="ltr"
-    on:change={handleChange}
-    on:blur={handleBlur}
-    bind:value={value}
-    bind:this={textarea}
-    {...$$restProps}
-    class="cs-input-base {$$restProps.class}"
-    on:validate
-    on:*
-  />
-  {#if suffix}
-    <Button {...$$restProps.suffix} on:click={handleAnchorClick} class={`cs-input--postfix`} />
-  {/if}
+<Row class="WuiTextarea__root">
+	{#if $$slots.prefix}
+		<div class="WuiTextarea__prefix">
+			<slot name="prefix" />
+		</div>
+	{:else if prefix}
+		<div class="WuiTextarea__prefix">
+			<Icon>{prefix}</Icon>
+		</div>
+	{/if}
+
+	<textarea
+		dir="ltr"
+		{...rest}
+		class="WuiTextarea WuiTextarea--{variant} WuiTextarea--{size} {prefix
+			? 'WuiTextarea--prefixed'
+			: ''} {suffix ? 'WuiTextarea--suffixed' : ''} {rest.class || ''}"
+		onblur={_onblur}
+		oninput={_oninput}
+		bind:this={_this}
+		bind:value
+	/>
+
+	{#if $$slots.suffix}
+		<div class="WuiTextarea__suffix">
+			<slot name="suffix" />
+		</div>
+	{:else if suffix}
+		<Icon class="WuiTextarea__suffix">{suffix}</Icon>
+	{/if}
 </Row>

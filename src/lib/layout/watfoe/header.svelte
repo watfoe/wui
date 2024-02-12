@@ -3,16 +3,17 @@
 	import { Logo } from '$lib/display';
 	import { Row } from '$lib/layout';
 	import { Link, Text } from '$lib/typography';
+	import type { FlexAttributes } from '../flex/index.svelte';
 
-	interface $$Props {
+	interface WatfoeHeaderAttributes extends FlexAttributes {
 		class?: string;
 		subtitle?: string;
 	}
 
-	export let subtitle: $$Props['subtitle'] = undefined;
+	let { subtitle, ...rest } = $props<WatfoeHeaderAttributes>();
 </script>
 
-<Row justify="space-between" class="WAuth-header {$$restProps.class || ''}" width="full">
+<Row justify="space-between" width="full" {...rest} class="WAuth-header {rest.class || ''}">
 	<Row align="center" gap="md">
 		<Logo size={60} class="WAuth-header__logo" />
 

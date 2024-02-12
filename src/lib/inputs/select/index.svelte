@@ -1,97 +1,102 @@
+<script context="module" lang="ts">
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	export interface SelectAttributes extends Omit<HTMLInputAttributes, 'size'> {
+		_this?: HTMLInputElement;
+		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+		description?: string;
+		error?: ValidationError;
+		label?: string;
+		multiple?: boolean;
+		name?: string;
+		onvalidate?: (error?: ValidationError) => void;
+		preset?: 'country' | 'month' | 'gender';
+		size?: 'sm' | 'md' | 'lg';
+		validateon?: 'change' | 'blur' | 'submit';
+		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
+	}
+</script>
+
 <script lang="ts">
 	import './style.css';
 	import { Backdrop } from '$lib/feedback';
 	import { Button } from '$lib/button';
 	import { Listbox, Label } from '$lib/inputs';
-	import { onMount } from 'svelte';
 	import { Col } from '$lib/layout';
 	import { Icon } from '$lib/display';
 	import { validate, type ValidationError } from '../_common_';
 	import CountryPreset from './presets/country-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
+	import { onMount } from 'svelte';
 
-	interface $$Props {
-		class?: string;
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-		description?: string;
-		element?: HTMLInputElement;
-		error?: ValidationError;
-		hidden?: boolean;
-		id?: string;
-		label?: string;
-		multiple?: boolean;
-		name?: string;
-		placeholder?: string;
-		preset?: 'country' | 'month' | 'gender';
-		required?: boolean;
-		size?: 'sm' | 'md' | 'lg';
-		style?: string;
-		validateon?: 'change' | 'blur' | 'submit';
-		value?: string;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
-	}
+	let {
+		_this,
+		color = 'neutral',
+		class: _class,
+		description,
+		error,
+		label,
+		multiple = false,
+		name,
+		onvalidate,
+		placeholder,
+		preset,
+		required,
+		size = 'md',
+		style,
+		value,
+		validateon = 'submit',
+		variant = 'outline',
+		...rest
+	} = $props<SelectAttributes>();
 
-	let opened = false;
+	let opened = $state(false);
+	let selections = $state([] as HTMLButtonElement[]);
 	let combobox: HTMLButtonElement;
 	let listbox: HTMLDivElement;
-	let selections = [] as HTMLButtonElement[];
 
-	export let color: $$Props['color'] = 'neutral';
-	export let description: $$Props['description'] = undefined;
-	export let element: $$Props['element'] = undefined;
-	export let error: $$Props['error'] = undefined;
-	export let hidden: $$Props['hidden'] = false;
-	export let id: $$Props['id'] = Math.random().toString(36).substring(2, 9);
-	export let label: $$Props['label'] = undefined;
-	export let multiple: $$Props['multiple'] = false;
-	export let name: $$Props['name'] = undefined;
-	export let placeholder: $$Props['placeholder'] = undefined;
-	export let preset: $$Props['preset'] = undefined;
-	export let required: $$Props['required'] = undefined;
-	export let size: $$Props['size'] = 'md';
-	export let style: $$Props['style'] = undefined;
-	export let value: $$Props['value'] = '';
-	export let validateon: $$Props['validateon'] = 'submit';
-	export let variant: $$Props['variant'] = 'outline';
+	const id = Math.random().toString(36).substring(2, 9);
 
-	$: if (error || !error) {
-		element?.setCustomValidity(error === undefined ? '' : error?.message);
-	}
+	$effect(() => {
+		if (error || !error) {
+			_this?.setCustomValidity(error === undefined ? '' : error?.message);
+		}
+	});
 
 	onMount(() => {
 		if (required && validateon === 'submit') {
 			// Get the form element that this input is in
-			const form = element?.closest('form');
+			const form = _this?.closest('form');
 			form?.addEventListener('submit', (e) => {
 				e.preventDefault();
 				_validate();
 			});
 		}
-
-		listbox?.addEventListener('select', (e: CustomEvent) => {
-			const { selections: _selections, values } = e.detail;
-			selections = _selections;
-			// Setting this is necessary for a consumer of this component that has bind:value
-			value = values.join(', ');
-
-			// Setting the value on the input element is necessary for a consumer of this component
-			// that is listening for the change event on this component.
-			element!.value = value!;
-
-			// Dispatching the event from the input element is best
-			// Any listeners on the fieldset will be able to listen for the event since
-			// it bubbles up.
-			element?.dispatchEvent(new Event('change', { bubbles: true }));
-
-			if (error) {
-				_validate();
-			}
-		});
 	});
 
+	function selectOption(e: CustomEvent) {
+		const { elements: _selections, values } = e.detail;
+		selections = _selections;
+		// Setting this is necessary for a consumer of this component that has bind:value
+		value = values.join(', ');
+
+		// Setting the value on the input element is necessary for a consumer of this component
+		// that is listening for the change event on this component.
+		_this!.value = value!;
+
+		// Dispatching the event from the input element is best
+		// Any listeners on the fieldset will be able to listen for the event since
+		// it bubbles up.
+		_this?.dispatchEvent(new Event('change'));
+
+		if (error) {
+			_validate();
+		}
+	}
+
 	// Keyboard accessibility
-	function keydown(e: KeyboardEvent) {
+	function _onkeydown(e: KeyboardEvent) {
 		const { key } = e;
 		const { length } = selections;
 
@@ -106,29 +111,20 @@
 
 	function _validate() {
 		try {
-			validate(element?.value!, { required: 'Please select an option' });
+			validate(_this?.value!, { required: 'Please select an option' });
 			error = undefined;
 		} catch (e) {
 			error = e as ValidationError;
 		}
+
+		onvalidate?.(error);
 	}
 
-	function blur(e: CustomEvent) {
-		// Wait for the backdrop to close before validating
-		setTimeout(() => {
-			if (!opened) {
-				if (required && validateon === 'blur') {
-					_validate();
-				}
-			}
-		}, 0);
-	}
-
-	let rect = {
+	let rect = $state({
 		top: 0,
 		left: 0,
 		width: 0
-	};
+	});
 
 	let listDomRect = {} as DOMRect;
 
@@ -167,8 +163,6 @@
 				top += height + 1;
 			}
 
-			console.log({ top, left, width });
-
 			rect = {
 				top,
 				left,
@@ -176,76 +170,80 @@
 			};
 		}
 	}
+
+	function close() {
+		if (required && validateon === 'blur') {
+			_validate();
+		}
+		combobox.blur();
+	}
 </script>
 
-<fieldset
-	{hidden}
-	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {$$restProps.class}"
+<Col
+	align="flex-start"
+	justify="flex-start"
+	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {_class || ''}"
 	{style}
-	on:blur={blur}
-	on:*
 >
-	{#if label && $$slots.description && !hidden}
+	{#if label && $$slots.description}
 		<Label for={id} {description}>
 			{label}
 			<slot name="description" slot="description" />
 		</Label>
-	{:else if label && !hidden}
+	{:else if label}
 		<Label for={id} {description}>
 			{label}
 		</Label>
 	{/if}
 
-	<Col align="flex-start" justify="flex-start" class="WuiSelect__root__body">
-		<Button
-			{...$$restProps}
-			bind:element={combobox}
-			role="combobox"
-			type="button"
-			aria-expanded="false"
-			anchorfor={id}
-			color={error ? 'danger' : opened ? 'primary' : color}
-			{variant}
-			{size}
-			bold={false}
-			justify="space-between"
-			width="full"
-			class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
-			on:blur={blur}
-			on:keydown={keydown}
-		>
-			{#if selections.length > 0}
-				{#each selections as selection}
-					<span class="WuiSelect__combobox__value">{selection.textContent}</span>
-				{/each}
-			{:else if placeholder}
-				<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
-			{:else}
-				<span class="WuiSelect__combobox__placeholder">Select an option</span>
-			{/if}
+	<Button
+		role="combobox"
+		type="button"
+		aria-expanded="false"
+		anchorfor={id}
+		color={error ? 'danger' : opened ? 'primary' : color}
+		{variant}
+		{size}
+		bold={false}
+		justify="space-between"
+		width="full"
+		class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
+		onkeydown={_onkeydown}
+		bind:_this={combobox}
+	>
+		{#if selections.length > 0}
+			{#each selections as selection}
+				<span class="WuiSelect__combobox__value">{selection.textContent}</span>
+			{/each}
+		{:else if placeholder}
+			<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
+		{:else}
+			<span class="WuiSelect__combobox__placeholder">Select an option</span>
+		{/if}
 
-			<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
-		</Button>
+		<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
+	</Button>
 
-		<input
-			bind:this={element}
-			tabindex="-1"
-			aria-hidden="true"
-			{name}
-			bind:value
-			style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
-		/>
-	</Col>
-</fieldset>
+	<input
+		{...rest}
+		tabindex="-1"
+		aria-hidden="true"
+		{name}
+		style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
+		bind:this={_this}
+		bind:value
+	/>
+</Col>
 
-<Backdrop {id} bind:opened on:open={open} transparent>
+<Backdrop {id} transparent onopen={open} onclose={close} bind:opened>
 	<Listbox
-		bind:element={listbox}
 		role="listbox"
 		aria-label="List of options"
 		class="WuiSelect__listbox"
 		style="--WuiSelect-posX:{rect.left}px;--WuiSelect-posY:{rect.top}px;--WuiSelect-width:{rect.width}px"
 		{multiple}
+		onchange={selectOption}
+		bind:_this={listbox}
 	>
 		{#if preset === 'country'}
 			<CountryPreset />
