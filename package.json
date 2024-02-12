@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Watfoe Team",
-	"version": "0.0.31",
+	"version": "0.0.32",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -32,33 +32,33 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.48"
+		"svelte": "^5.0.0-next.52"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.41.1",
+		"@playwright/test": "^1.41.2",
 		"@sveltejs/adapter-auto": "^3.1.1",
 		"@sveltejs/kit": "^2.5.0",
 		"@sveltejs/package": "^2.2.6",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
-		"@typescript-eslint/parser": "^6.20.0",
+		"@typescript-eslint/eslint-plugin": "^6.21.0",
+		"@typescript-eslint/parser": "^6.21.0",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^8.10.0",
 		"eslint-plugin-svelte": "^2.35.1",
-		"prettier": "^2.8.8",
-		"prettier-plugin-svelte": "^2.10.1",
+		"prettier": "^3.2.5",
+		"prettier-plugin-svelte": "^3.1.2",
 		"publint": "^0.1.16",
 		"sass": "^1.70.0",
 		"svelte": "5.0.0-next.48",
-		"svelte-check": "^3.6.3",
+		"svelte-check": "^3.6.4",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.12",
+		"vite": "^5.1.1",
 		"vitest": "^0.32.4"
 	},
 	"dependencies": {
 		"@sveltejs/enhanced-img": "^0.1.8",
-		"libphonenumber-js": "^1.10.54"
+		"libphonenumber-js": "^1.10.55"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
