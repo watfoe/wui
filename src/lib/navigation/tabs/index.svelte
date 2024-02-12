@@ -1,18 +1,19 @@
-<script lang="ts">
-	import { type Snippet } from 'svelte';
+<script context="module" lang="ts">
+	import { onMount, type Snippet } from 'svelte';
 
-	interface TabsAttributes {
+	export interface TabsAttributes {
 		for: string;
 		bottomrule?: boolean;
     children: Snippet;
 	}
+</script>
 
+<script lang="ts">
 	let { for: _for, bottomrule = true, children } = $props<TabsAttributes>();
-
 	let tabs: HTMLDivElement;
 	let activeIndex = 0;
 
-	$effect(() => {
+	onMount(() => {
 		const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
 		const tabButtons = tabs.querySelectorAll('.WuiTab');
 

@@ -1,11 +1,14 @@
+<script context="module" lang="ts">
+	import { Text, type TextLabelAttributes } from '$lib/typography';
+
+	export interface InputLabelAttributes extends Omit<TextLabelAttributes, 'variant'> {
+		description?: string;
+	}
+</script>
+
 <script lang="ts">
 	import './style.css';
 	import { Col } from '$lib/layout';
-	import { Text, type TextLabelAttributes } from '$lib/typography';
-
-	interface InputLabelAttributes extends Omit<TextLabelAttributes, 'variant'> {
-		description?: string;
-	}
 
 	let { description, ...rest } = $props<InputLabelAttributes>();
 </script>

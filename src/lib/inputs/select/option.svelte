@@ -1,14 +1,17 @@
-<script lang="ts">
-	import { ListItem } from '$lib/inputs';
+<script context="module" lang="ts">
 	import type { ListItemAttributes } from '../listbox/item.svelte';
 
-	interface OptionAttributes extends ListItemAttributes {
+	export interface OptionAttributes extends Omit<ListItemAttributes, 'role'> {
 		value: string;
 	}
-
-	let { value, ...rest } = $props<OptionAttributes>();
 </script>
 
-<ListItem role="option" {...rest} size="sm" {value}>
+<script lang="ts">
+	import { ListItem } from '$lib/inputs';
+
+	let { ...rest } = $props<OptionAttributes>();
+</script>
+
+<ListItem size="sm" {...rest} role="option">
 	<slot />
 </ListItem>

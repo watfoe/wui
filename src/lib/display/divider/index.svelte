@@ -1,10 +1,12 @@
-<script lang="ts">
-	interface DividerAttributes {
+<script context="module" lang="ts">
+	export interface DividerAttributes {
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		size?: 'sm' | 'md' | 'lg';
 		vertical?: boolean;
 	}
+</script>
 
+<script lang="ts">
 	let { color = 'neutral', size = 'sm', vertical = false } = $props<DividerAttributes>();
 </script>
 

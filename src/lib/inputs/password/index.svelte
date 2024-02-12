@@ -7,30 +7,27 @@
 	}
 
 	let {
+		_this,
 		color = 'neutral',
-		element,
 		error,
-		value = '',
+		value,
 		secure = true,
 		...rest
 	} = $props<PasswordInputAttributes>();
-
-	function toggle() {
-		secure = !secure;
-	}
 </script>
 
 <BaseInput
 	{...rest}
+	{color}
 	autocomplete="password"
 	type={secure ? 'password' : 'text'}
 	autocapitalize="off"
 	autocorrect="off"
 	spellcheck="false"
 	suffix="visibility"
-	bind:element
-	bind:error
+	bind:_this
 	bind:value
+	bind:error
 >
 	<Button
 		variant="plain"
@@ -38,6 +35,6 @@
 		size="sm"
 		slot="suffix"
 		prefix={secure ? 'visibility' : 'visibility_off'}
-		on:click={toggle}
+		onclick={() => (secure = !secure)}
 	/>
 </BaseInput>

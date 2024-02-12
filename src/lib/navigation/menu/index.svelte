@@ -1,18 +1,16 @@
+<script context="module" lang="ts">
+	import { Listbox, type ListboxAttributes } from '$lib/inputs';
+
+	export interface MenuAttributes extends Omit<ListboxAttributes, 'align' | 'role' | 'aria-label'> {
+		id: string;
+		align?: 'left' | 'right' | 'center';
+	}
+</script>
+
 <script lang="ts">
 	import { Backdrop } from '$lib/feedback';
-	import { Listbox } from '$lib/inputs';
-	import type { Snippet } from 'svelte';
 
-	interface MenuAttributes {
-		id: string;
-		class?: string | null;
-		align?: 'left' | 'right' | 'center';
-		children: Snippet;
-	}
-
-	let { id, align = 'left', ...rest } = $props<MenuAttributes>();
-	let menu: HTMLDivElement;
-
+	let { _this, id, align = 'left', ...rest } = $props<MenuAttributes>();
 	let rect = $state({
 		top: 0,
 		left: 0,
@@ -30,8 +28,8 @@
 
 			// Preserve the first domrect of the menu, translate() will change the
 			// position of the x and y properties and we need to use the original values.
-			if (!menuRect.width) {
-				menuRect = menu.getBoundingClientRect();
+			if (_this && !menuRect.width) {
+				menuRect = _this.getBoundingClientRect();
 			}
 
 			// We are using transform: translate() to position the menu which
@@ -62,11 +60,11 @@
 
 <Backdrop {id} onopen={open} transparent>
 	<Listbox
-		bind:element={menu}
 		role="menu"
 		aria-label="Menu"
 		class={rest.class || ''}
 		style="position: absolute; transform: translate3d({rect.left}px, {rect.top}px, 0); min-width: {rect.width}px"
+		bind:_this
 	>
 		<slot />
 	</Listbox>

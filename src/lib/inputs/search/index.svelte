@@ -2,9 +2,7 @@
 	import { Button } from '$lib/button';
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
-	type SearchInputAttributes = BaseInputAttributes;
-
-	let { color = 'neutral', element, error, value = '', ...rest } = $props<SearchInputAttributes>();
+	let { _this, error, color = 'neutral', value, ...rest } = $props<BaseInputAttributes>();
 
 	function clear() {
 		value = '';
@@ -20,9 +18,10 @@
 	autocorrect="off"
 	spellcheck="false"
 	type="text"
-	bind:element
-	bind:error
+	{color}
+	bind:_this
 	bind:value
+	bind:error
 >
 	<Button variant="plain" {color} size="sm" slot="suffix" prefix="clear" onclick={clear} />
 </BaseInput>

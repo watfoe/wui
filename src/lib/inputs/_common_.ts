@@ -31,18 +31,19 @@ export interface InputRules {
   rule?(value: string): void;
 }
 
-export type BaseProps<T> = T & {
+export type BaseProps<Attributes, Elem> = Attributes & {
   color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-  element?: HTMLInputElement;
+  _this?: Elem;
   error?: ValidationError;
   id?: string;
   masks?: InputMasks;
+  onvalidate?: (error?: ValidationError) => void;
   prefix?: string;
   rules?: InputRules;
   required?: boolean;
   size?: 'sm' | 'md' | 'lg';
   suffix?: string;
-  validateon?: 'change' | 'blur' | 'submit';
+  validateon?: 'blur' | 'input' | 'submit';
   variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 };
 

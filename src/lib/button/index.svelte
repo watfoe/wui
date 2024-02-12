@@ -2,20 +2,20 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	export interface ButtonAttributes extends HTMLButtonAttributes {
+		_this?: HTMLButtonElement;
 		anchorfor?: string;
 		bold?: boolean;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-		size?: 'sm' | 'md' | 'lg';
 		gap?: 'sm' | 'nm' | 'md' | 'lg';
+		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
 		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 		loading?: boolean;
 		prefix?: string;
 		rounded?: boolean;
+		size?: 'sm' | 'md' | 'lg';
 		suffix?: string;
+		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		element?: HTMLButtonElement;
 	}
 </script>
 
@@ -23,8 +23,10 @@
 	import './style.css';
 	import { Icon } from '$lib/display';
 	import { Text } from '$lib/typography';
+	import { onMount } from 'svelte';
 
 	let {
+		_this,
 		anchorfor,
 		bold = false,
 		gap = 'nm',
@@ -39,14 +41,13 @@
 		suffix,
 		width,
 		height,
-		element,
 		onclick,
 		...rest
 	} = $props<ButtonAttributes>();
 
 	let feedback: HTMLDialogElement;
 
-	$effect(() => {
+	onMount(() => {
 		if (anchorfor) {
 			const _feedback = document.getElementById(anchorfor);
 
@@ -58,7 +59,7 @@
 		}
 	});
 
-	function click(e: MouseEvent) {
+	function _onclick(e: MouseEvent) {
 		if (loading || disabled) {
 			return;
 		}
@@ -71,23 +72,24 @@
 			})
 		);
 
+		// @ts-ignore
 		onclick?.(e);
 	}
 </script>
 
 <button
 	{...rest}
-	bind:this={element}
 	class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {width
 		? 'WuiButton--width-' + width
 		: ''} {height ? 'WuiButton--height-' + height : ''} {!$$slots.default
 		? 'WuiButton--only-icon'
 		: ''} {rest.class || ''}"
-	disabled={loading || disabled}
 	style="{rest.style || ''};--WuiButtonFlex-justify:{justify};{rounded
 		? '--WuiButton-radius:calc(var(--WuiButton-height) / 2);'
 		: ''}"
-	onclick={click}
+	onclick={_onclick}
+	disabled={loading || disabled}
+	bind:this={_this}
 >
 	{#if loading}
 		<span class="WuiButton__loader" />

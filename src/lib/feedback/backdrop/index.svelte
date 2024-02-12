@@ -1,48 +1,50 @@
-<script lang="ts">
-	import './style.css';
+<script context="module" lang="ts">
 	import type { HTMLDialogAttributes } from 'svelte/elements';
-
-	interface BackdropAttributes extends HTMLDialogAttributes {
+	export interface BackdropAttributes extends HTMLDialogAttributes {
+		_this?: HTMLDialogElement;
 		transparent?: boolean;
-		element?: HTMLDialogElement;
 		opened?: boolean;
 		onopen?: (e: CustomEvent<HTMLDialogElement>) => void;
+		onclose?: () => void;
 	}
+</script>
+
+<script lang="ts">
+	import './style.css';
+	import { onMount } from 'svelte';
 
 	let {
-		element,
+		_this,
 		transparent = false,
-		opened = false,
+		opened,
 		onopen,
+		onclose,
 		...rest
 	} = $props<BackdropAttributes>();
 
-	$effect(() => {
-		if (element) {
-			element.addEventListener('open', open);
-		}
+	onMount(() => {
+		// @ts-ignore
+		_this?.addEventListener('open', open);
 	});
 
 	function open(e: CustomEvent<HTMLDialogElement>) {
-		element?.showModal();
+		_this?.showModal();
 		opened = true;
 
-		element?.addEventListener(
+		_this?.addEventListener(
 			'click',
 			(e) => {
-				element?.close();
-				opened = false;
+				close();
 			},
 			{ once: true }
 		);
 
-		element?.addEventListener(
+		_this?.addEventListener(
 			'keydown',
 			(e) => {
 				if (e.key === 'Escape') {
 					e.preventDefault();
-					element?.close();
-					opened = false;
+					close();
 				}
 			},
 			{ once: true }
@@ -50,13 +52,19 @@
 
 		onopen?.(e);
 	}
+
+	function close() {
+		_this?.close();
+		opened = false;
+		onclose?.();
+	}
 </script>
 
 <dialog
-	bind:this={element}
 	{...rest}
 	role="presentation"
 	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {rest.class || ''}"
+	bind:this={_this}
 >
 	<slot />
 </dialog>

@@ -1,22 +1,18 @@
 <script context="module" lang="ts">
-	export interface SelectAttributes extends HTMLFieldsetAttributes {
-		class?: string;
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	export interface SelectAttributes extends Omit<HTMLInputAttributes, 'size'> {
+		_this?: HTMLInputElement;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		description?: string;
-		element?: HTMLInputElement;
 		error?: ValidationError;
-		hidden?: boolean;
-		id?: string;
 		label?: string;
 		multiple?: boolean;
 		name?: string;
-		placeholder?: string;
+		onvalidate?: (error?: ValidationError) => void;
 		preset?: 'country' | 'month' | 'gender';
-		required?: boolean;
 		size?: 'sm' | 'md' | 'lg';
-		style?: string | null;
 		validateon?: 'change' | 'blur' | 'submit';
-		value?: string;
 		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 	}
 </script>
@@ -32,85 +28,67 @@
 	import CountryPreset from './presets/country-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
-	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+	import { onMount } from 'svelte';
 
 	let {
+		_this,
 		color = 'neutral',
+		class: _class,
 		description,
-		element,
 		error,
-		hidden = false,
 		label,
 		multiple = false,
 		name,
+		onvalidate,
 		placeholder,
 		preset,
 		required,
 		size = 'md',
 		style,
-		value = '',
+		value,
 		validateon = 'submit',
 		variant = 'outline',
 		...rest
 	} = $props<SelectAttributes>();
 
 	let opened = $state(false);
+	let selections = $state([] as HTMLButtonElement[]);
 	let combobox: HTMLButtonElement;
 	let listbox: HTMLDivElement;
-	let selections = $state([] as HTMLButtonElement[]);
+
 	const id = Math.random().toString(36).substring(2, 9);
 
 	$effect(() => {
 		if (error || !error) {
-			element?.setCustomValidity(error === undefined ? '' : error?.message);
+			_this?.setCustomValidity(error === undefined ? '' : error?.message);
 		}
 	});
 
-	$effect(() => {
+	onMount(() => {
 		if (required && validateon === 'submit') {
 			// Get the form element that this input is in
-			const form = element?.closest('form');
+			const form = _this?.closest('form');
 			form?.addEventListener('submit', (e) => {
 				e.preventDefault();
 				_validate();
 			});
 		}
-
-		// listbox?.addEventListener('select', (e: CustomEvent) => {
-		// 	const { selections: _selections, values } = e.detail;
-		// 	selections = _selections;
-		// 	// Setting this is necessary for a consumer of this component that has bind:value
-		// 	value = values.join(', ');
-
-		// 	// Setting the value on the input element is necessary for a consumer of this component
-		// 	// that is listening for the change event on this component.
-		// 	element!.value = value!;
-
-		// 	// Dispatching the event from the input element is best
-		// 	// Any listeners on the fieldset will be able to listen for the event since
-		// 	// it bubbles up.
-		// 	element?.dispatchEvent(new Event('change', { bubbles: true }));
-
-		// 	if (error) {
-		// 		_validate();
-		// 	}
-		// });
 	});
 
 	function selectOption(e: CustomEvent) {
-		const { selections: _selections, values } = e.detail;
+		const { elements: _selections, values } = e.detail;
 		selections = _selections;
 		// Setting this is necessary for a consumer of this component that has bind:value
 		value = values.join(', ');
 
 		// Setting the value on the input element is necessary for a consumer of this component
 		// that is listening for the change event on this component.
-		element!.value = value!;
+		_this!.value = value!;
 
 		// Dispatching the event from the input element is best
 		// Any listeners on the fieldset will be able to listen for the event since
 		// it bubbles up.
-		element?.dispatchEvent(new Event('change', { bubbles: true }));
+		_this?.dispatchEvent(new Event('change'));
 
 		if (error) {
 			_validate();
@@ -118,7 +96,7 @@
 	}
 
 	// Keyboard accessibility
-	function keydown(e: KeyboardEvent) {
+	function _onkeydown(e: KeyboardEvent) {
 		const { key } = e;
 		const { length } = selections;
 
@@ -133,29 +111,20 @@
 
 	function _validate() {
 		try {
-			validate(element?.value!, { required: 'Please select an option' });
+			validate(_this?.value!, { required: 'Please select an option' });
 			error = undefined;
 		} catch (e) {
 			error = e as ValidationError;
 		}
+
+		onvalidate?.(error);
 	}
 
-	function blur(e: Event) {
-		// Wait for the backdrop to close before validating
-		setTimeout(() => {
-			if (!opened) {
-				if (required && validateon === 'blur') {
-					_validate();
-				}
-			}
-		}, 0);
-	}
-
-	let rect = {
+	let rect = $state({
 		top: 0,
 		left: 0,
 		width: 0
-	};
+	});
 
 	let listDomRect = {} as DOMRect;
 
@@ -201,75 +170,80 @@
 			};
 		}
 	}
+
+	function close() {
+		if (required && validateon === 'blur') {
+			_validate();
+		}
+		combobox.blur();
+	}
 </script>
 
-<fieldset
-	{hidden}
-	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {rest.class}"
+<Col
+	align="flex-start"
+	justify="flex-start"
+	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {_class || ''}"
 	{style}
-	on:blur={blur}
-	{...rest}
 >
-	{#if label && $$slots.description && !hidden}
+	{#if label && $$slots.description}
 		<Label for={id} {description}>
 			{label}
 			<slot name="description" slot="description" />
 		</Label>
-	{:else if label && !hidden}
+	{:else if label}
 		<Label for={id} {description}>
 			{label}
 		</Label>
 	{/if}
 
-	<Col align="flex-start" justify="flex-start" class="WuiSelect__root__body">
-		<Button
-			bind:element={combobox}
-			role="combobox"
-			type="button"
-			aria-expanded="false"
-			anchorfor={id}
-			color={error ? 'danger' : opened ? 'primary' : color}
-			{variant}
-			{size}
-			bold={false}
-			justify="space-between"
-			width="full"
-			class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
-			onblur={blur}
-			onkeydown={keydown}
-		>
-			{#if selections.length > 0}
-				{#each selections as selection}
-					<span class="WuiSelect__combobox__value">{selection.textContent}</span>
-				{/each}
-			{:else if placeholder}
-				<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
-			{:else}
-				<span class="WuiSelect__combobox__placeholder">Select an option</span>
-			{/if}
+	<Button
+		role="combobox"
+		type="button"
+		aria-expanded="false"
+		anchorfor={id}
+		color={error ? 'danger' : opened ? 'primary' : color}
+		{variant}
+		{size}
+		bold={false}
+		justify="space-between"
+		width="full"
+		class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
+		onkeydown={_onkeydown}
+		bind:_this={combobox}
+	>
+		{#if selections.length > 0}
+			{#each selections as selection}
+				<span class="WuiSelect__combobox__value">{selection.textContent}</span>
+			{/each}
+		{:else if placeholder}
+			<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
+		{:else}
+			<span class="WuiSelect__combobox__placeholder">Select an option</span>
+		{/if}
 
-			<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
-		</Button>
+		<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
+	</Button>
 
-		<input
-			bind:this={element}
-			tabindex="-1"
-			aria-hidden="true"
-			{name}
-			bind:value
-			style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
-		/>
-	</Col>
-</fieldset>
+	<input
+		{...rest}
+		tabindex="-1"
+		aria-hidden="true"
+		{name}
+		style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
+		bind:this={_this}
+		bind:value
+	/>
+</Col>
 
-<Backdrop {id} bind:opened on:open={open} transparent>
+<Backdrop {id} transparent onopen={open} onclose={close} bind:opened>
 	<Listbox
 		role="listbox"
 		aria-label="List of options"
 		class="WuiSelect__listbox"
 		style="--WuiSelect-posX:{rect.left}px;--WuiSelect-posY:{rect.top}px;--WuiSelect-width:{rect.width}px"
-		onchange={selectOption}
 		{multiple}
+		onchange={selectOption}
+		bind:_this={listbox}
 	>
 		{#if preset === 'country'}
 			<CountryPreset />

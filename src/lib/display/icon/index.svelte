@@ -1,19 +1,17 @@
 <script context="module" lang="ts">
-</script>
-
-<script lang="ts">
 	import type { Snippet } from 'svelte';
-
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	interface IconAttributes extends HTMLAttributes<HTMLSpanElement> {
+	export interface IconAttributes extends HTMLAttributes<HTMLSpanElement> {
 		children: Snippet;
 		class?: string;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'inherit';
 		fill?: '0' | '1';
 		size?: 'sm' | 'md' | 'lg';
 	}
+</script>
 
+<script lang="ts">
 	let { size = 'md', fill = '0', color = 'inherit', ...rest } = $props<IconAttributes>();
 </script>
 

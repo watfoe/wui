@@ -1,7 +1,6 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	import type { Snippet } from 'svelte';
-
-	interface BadgeAttributes {
+	export interface BadgeAttributes {
 		children: Snippet;
 		content?: string | number;
 		position?:
@@ -16,7 +15,9 @@
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | string;
 		max?: number;
 	}
+</script>
 
+<script lang="ts">
 	let { content, position = 'top-right', color = 'primary', max } = $props<BadgeAttributes>();
 </script>
 

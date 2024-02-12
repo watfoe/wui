@@ -2,14 +2,14 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface FlexKeys {
+		_this?: HTMLDivElement;
+		align?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 		direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
 		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
-		align?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
-		wrap?: 'wrap' | 'nowrap';
 		gap?: 'xs' | 'sm' | 'nm' | 'md' | 'lg';
-		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
 		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		element?: HTMLDivElement;
+		wrap?: 'wrap' | 'nowrap';
+		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
 	}
 
 	export interface FlexAttributes extends HTMLAttributes<HTMLDivElement>, FlexKeys {}
@@ -17,6 +17,7 @@
 
 <script lang="ts">
 	let {
+		_this,
 		direction = 'row',
 		justify = 'flex-start',
 		align = 'center',
@@ -24,7 +25,6 @@
 		gap,
 		width,
 		height,
-		element,
 		...rest
 	} = $props<FlexAttributes>();
 </script>
@@ -41,7 +41,7 @@
     --WuiFlex-align:{align};
     --WuiFlex-wrap:{wrap};
   "
-	bind:this={element}
+	bind:this={_this}
 >
 	<slot />
 </div>

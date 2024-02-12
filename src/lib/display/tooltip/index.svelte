@@ -1,7 +1,6 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	import type { Snippet } from "svelte";
-
-	interface TooltipAttributes {
+	export interface TooltipAttributes {
 		children: Snippet;
 		title: string;
 		position?:
@@ -15,19 +14,10 @@
 			| 'bottom-right';
 		variant?: 'solid' | 'outline' | 'plain' | 'soft';
 	}
+</script>
 
+<script lang="ts">
 	let { title, position = 'bottom', children } = $props<TooltipAttributes>();
-
-	let top: number = 0;
-	let left: number = 0;
-
-	let tooltip: HTMLDivElement;
-
-	function mouseenter() {
-		const { top: t, left: l } = tooltip.getBoundingClientRect();
-		top = t;
-		left = l;
-	}
 </script>
 
 <div
@@ -35,7 +25,6 @@
 	role="tooltip"
 	class="WuiTooltip WuiTooltip-{position} "
 	data-tooltip-title={title}
-	onmouseenter={mouseenter}
 >
 	{@render children()}
 </div>

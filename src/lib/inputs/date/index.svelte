@@ -15,20 +15,23 @@
 	import { ValidationError } from '../_common_';
 	import { onMount } from 'svelte';
 
-	let day = '';
-	let month = '';
-	let year = '';
+	let day = $state();
+	let month = $state();
+	let year = $state();
 
 	let {
+		_this,
+		color,
 		id,
-		element,
 		error,
 		format = 'yyyy-mm-dd',
 		name,
 		required,
 		rules,
+		size,
 		validateon = 'submit',
-		value = '',
+		value,
+		variant,
 		...rest
 	} = $props<DateInputAttributes>();
 
@@ -40,7 +43,7 @@
 
 		if (rules && validateon === 'submit') {
 			// Get the form element that this input is in
-			const form = element?.closest('form');
+			const form = _this?.closest('form');
 			form?.addEventListener('submit', (e) => {
 				e.preventDefault();
 				validate();
@@ -85,9 +88,9 @@
 
 	function _dipatch(_value: string, _error?: ValidationError) {
 		value = _value;
-		element!.value = _value;
+		_this!.value = _value;
 		error = _error;
-		element?.dispatchEvent(
+		_this?.dispatchEvent(
 			new Event('change', {
 				bubbles: true
 			})
@@ -95,60 +98,67 @@
 	}
 </script>
 
-<Row justify="space-between" gap="nm" class="WuiInput__date" on:change on:*>
+<Row justify="space-between" gap="nm" class="WuiInput__date">
 	<Select
 		placeholder="Month"
-		{...rest}
 		preset="month"
 		{id}
 		{required}
 		{validateon}
+		{variant}
+		{color}
+		{size}
+		onchange={change}
+		onblur={blur}
 		bind:value={month}
 		bind:error
-		on:change={change}
-		on:blur={blur}
 	/>
 
 	<BaseInput
 		type="number"
 		placeholder="Day"
 		masks={{ max: 31 }}
-		{...rest}
 		maxlength={2}
 		class="WuiInput__date__day"
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
 		}}
+		{variant}
+		{color}
+		{size}
 		{validateon}
+		onchange={change}
+		onblur={blur}
 		bind:value={day}
 		bind:error
-		on:change={change}
-		on:blur={blur}
 	/>
 
 	<BaseInput
 		type="number"
 		placeholder="Year"
-		{...rest}
 		maxlength={4}
 		class="WuiInput__date__year"
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
 		}}
+		{variant}
+		{color}
+		{size}
 		{validateon}
+		onchange={change}
+		onblur={blur}
 		bind:value={year}
 		bind:error
-		on:change={change}
-		on:blur={blur}
 	/>
 
 	<input
-		bind:this={element}
+		{...rest}
 		tabindex="-1"
 		aria-hidden="true"
 		{name}
-		bind:value
 		style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
+		bind:this={_this}
+		bind:value
 	/>
 </Row>
 

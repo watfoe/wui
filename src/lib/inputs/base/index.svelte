@@ -2,7 +2,10 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { BaseProps } from '../_common_';
 
-	export type BaseInputAttributes = BaseProps<Omit<HTMLInputAttributes, 'prefix' | 'size'>>;
+	export type BaseInputAttributes = BaseProps<
+		Omit<HTMLInputAttributes, 'prefix' | 'size'>,
+		HTMLInputElement
+	>;
 </script>
 
 <script lang="ts">
@@ -14,24 +17,26 @@
 	import { onMount } from 'svelte';
 
 	let {
-		element,
+		_this,
 		error,
 		masks,
+		oninput,
+		onblur,
+		onvalidate,
 		prefix,
 		required,
 		rules,
 		size = 'md',
 		suffix,
 		validateon = 'submit',
-		value = '',
+		value,
 		variant = 'outline',
 		...rest
 	} = $props<BaseInputAttributes>();
-	let input: HTMLInputElement;
 
 	$effect(() => {
 		if (error || !error) {
-			input?.setCustomValidity(error === undefined ? '' : error?.message);
+			_this?.setCustomValidity(error === undefined ? '' : error?.message);
 		}
 	});
 
@@ -43,10 +48,10 @@
 
 		if (rules && validateon === 'submit') {
 			// Get the form element that this input is in
-			const form = input?.closest('form');
+			const form = _this?.closest('form');
 			form?.addEventListener('submit', (e) => {
 				e.preventDefault();
-				_validate(input?.value!);
+				_validate(_this?.value!);
 			});
 		}
 	});
@@ -58,25 +63,33 @@
 		} catch (e) {
 			error = e as ValidationError;
 		}
+
+		onvalidate?.(error);
 	}
 
-	function change(e: Event) {
-		let _value = (e.target as HTMLInputElement)?.value;
+	function _onblur(e: FocusEvent & { currentTarget: HTMLInputElement }) {
+		let _value = e.currentTarget.value;
+
+		if (rules && validateon === 'blur') {
+			_validate(_value);
+		}
+
+		onblur?.(e);
+	}
+
+	function _oninput(e: Event & { currentTarget: HTMLInputElement }) {
+		let _value = e.currentTarget.value;
 
 		if (masks) {
 			_value = mask(_value, masks) || '';
 			value = _value;
 		}
 
-		if (rules && (validateon === 'change' || error)) {
+		if (rules && (validateon === 'input' || error)) {
 			_validate(_value);
 		}
-	}
 
-	function blur(e: Event) {
-		if (rules && validateon === 'blur') {
-			_validate((e.target as HTMLInputElement)?.value);
-		}
+		oninput?.(e);
 	}
 </script>
 
@@ -93,14 +106,13 @@
 
 	<input
 		dir="ltr"
-		bind:this={input}
 		{...rest}
 		class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix
 			? 'WuiInput--prefixed'
 			: ''} {suffix ? 'WuiInput--suffixed' : ''} {rest.class || ''}"
-		oninput={change}
-		onblur={blur}
-		on:validate
+		onblur={_onblur}
+		oninput={_oninput}
+		bind:this={_this}
 		bind:value
 	/>
 

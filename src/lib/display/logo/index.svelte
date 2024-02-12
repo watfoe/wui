@@ -1,11 +1,13 @@
-<script lang="ts">
-	interface LogoAttributes {
+<script context="module" lang="ts">
+	export interface LogoAttributes {
 		brand?: 'watfoe' | 'apple' | 'facebook' | 'github' | 'google' | 'microsoft';
 		class?: string;
 		size?: number;
 		style?: string;
 	}
+</script>
 
+<script lang="ts">
 	let { brand = 'watfoe', size = 100, ...rest } = $props<LogoAttributes>();
 </script>
 

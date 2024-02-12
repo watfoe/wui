@@ -1,13 +1,15 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	import { onMount, type Snippet } from 'svelte';
 
-	interface TabPanelsAttributes {
+	export interface TabPanelsAttributes {
 		id: string;
-		class?: string;
-		style?: string;
+		class?: string | null;
+		style?: string | null;
 		children: Snippet;
 	}
+</script>
 
+<script lang="ts">
 	let { id, class: _class, children, style } = $props<TabPanelsAttributes>();
 
 	onMount(() => {

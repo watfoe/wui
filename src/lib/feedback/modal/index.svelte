@@ -1,3 +1,14 @@
+<script context="module" lang="ts">
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	export interface ModalAttributes extends HTMLAttributes<HTMLDivElement> {
+		id: string;
+		title?: string;
+		showclose?: boolean;
+		class?: string;
+	}
+</script>
+
 <script lang="ts">
 	import './style.css';
 
@@ -6,14 +17,6 @@
 	import { Button } from '$lib/button';
 	import { Text } from '$lib/typography';
 	import { onMount } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	interface ModalAttributes extends HTMLAttributes<HTMLDivElement> {
-		id: string;
-		title?: string;
-		showclose?: boolean;
-		class?: string;
-	}
 
 	let { id, title, showclose = true, ...rest } = $props<ModalAttributes>();
 

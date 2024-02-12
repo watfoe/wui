@@ -1,34 +1,26 @@
-<script lang="ts">
-	interface SwitchAttributes {
+<script context="module" lang="ts">
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	export interface SwitchAttributes extends Omit<HTMLInputAttributes, 'size'> {
+		_this?: HTMLInputElement;
 		checked?: boolean;
 		class?: string;
 		color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
-		element?: HTMLInputElement;
 		name?: string;
 		required?: boolean;
 		size?: 'sm' | 'md' | 'lg';
 		value?: string;
 	}
+</script>
 
+<script lang="ts">
 	const id = Math.random().toString(36);
 
-	let { color = 'neutral', element, size = 'md', value, ...rest } = $props<SwitchAttributes>();
-
-	function change(e: Event) {
-		e.target?.dispatchEvent(new Event('change', { bubbles: true }));
-	}
+	let { _this, color = 'neutral', size = 'md', value, ...rest } = $props<SwitchAttributes>();
 </script>
 
 <div class="WuiSwitch WuiSwitch--{size} WuiSwitch--{color}">
-	<input
-		bind:this={element}
-		type="checkbox"
-		class="WuiSwitch__input"
-		{id}
-		{...rest}
-		on:change={change}
-		bind:value
-	/>
+	<input {...rest} type="checkbox" {id} class="WuiSwitch__input" bind:this={_this} bind:value />
 	<label class="WuiSwitch__label" for={id} />
 </div>
 
