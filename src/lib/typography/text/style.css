@@ -1,0 +1,139 @@
+.WuiText,
+.WuiAnchor {
+  color: var(--WuiText-color, var(--color-black));
+  font-size: var(--WuiText-font-size, 1rem);
+  font-weight: 350 !important;
+  line-height: var(--WuiText-line-height, 1.5rem);
+}
+
+.WuiAnchor {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.WuiAnchor--inherit {
+  color: inherit;
+}
+
+.WuiAnchor--link {
+  color: var(--color-link);
+}
+
+.WuiText--primary {
+  --WuiText-color: var(--color-primary);
+}
+
+.WuiText--primary {
+  --WuiText-color: var(--color-primary);
+}
+
+.WuiText--neutral {
+  --WuiText-color: var(--color-black-1);
+}
+
+.WuiText--success {
+  --WuiText-color: var(--color-success);
+}
+
+.WuiText--warning {
+  --WuiText-color: var(--color-warning);
+}
+
+.WuiText--danger {
+  --WuiText-color: var(--color-error);
+}
+
+.WuiText--black {
+  --WuiText-color: var(--color-black);
+}
+
+.WuiText--white {
+  --WuiText-color: var(--color-white);
+}
+
+.WuiText--title.WuiText--sm {
+  --WuiText-font-size: 1.5rem;
+  --WuiText-line-height: 2rem;
+}
+
+.WuiText--title.WuiText--md {
+  --WuiText-font-size: 1.75rem;
+  --WuiText-line-height: 2.25rem;
+}
+
+.WuiText--title.WuiText--lg {
+  --WuiText-font-size: 2rem;
+  --WuiText-line-height: 2.5rem;
+}
+
+.WuiText--heading.WuiText--sm {
+  --WuiText-font-size: 1rem;
+  --WuiText-line-height: 1.25rem;
+}
+
+.WuiText--heading.WuiText--md {
+  --WuiText-font-size: 1.125rem;
+  --WuiText-line-height: 1.5rem;
+}
+
+.WuiText--heading.WuiText--lg {
+  --WuiText-font-size: 1.25rem;
+  --WuiText-line-height: 1.75rem;
+}
+
+.WuiText--body.WuiText--sm,
+.WuiText--label.WuiText--sm {
+  --WuiText-font-size: 0.75rem;
+  --WuiText-line-height: 0.875rem;
+}
+
+.WuiText--body.WuiText--md,
+.WuiText--label.WuiText--md {
+  --WuiText-font-size: 0.8125rem;
+  --WuiText-line-height: 1rem;
+}
+
+.WuiText--body.WuiText--lg,
+.WuiText--label.WuiText--lg {
+  --WuiText-font-size: 0.9375rem;
+  --WuiText-line-height: 1.125rem;
+}
+
+.WuiText--label.WuiText--sm,
+.WuiText--code.WuiText--sm {
+  --WuiText-font-size: 0.6875rem;
+  --WuiText-line-height: 0.8125rem;
+}
+
+.WuiText--label.WuiText--md,
+.WuiText--code.WuiText--md {
+  --WuiText-font-size: 0.75rem;
+  --WuiText-line-height: 0.875rem;
+}
+
+.WuiText--label.WuiText--lg,
+.WuiText--code.WuiText--lg {
+  --WuiText-font-size: 0.8125rem;
+  --WuiText-line-height: 0.9375rem;
+}
+
+.WuiText--code {
+  font-family: var(--WuiText-code-font-family, 'Fira Code', monospace);
+}
+
+.WuiText--bold {
+  font-weight: 450 !important;
+}
+
+.WuiText--italic {
+  font-style: italic;
+}
+
+.WuiText--rtl {
+  direction: rtl;
+}
+
+.WuiText--underline {
+  text-decoration: underline;
+}

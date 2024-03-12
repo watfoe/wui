@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import type { ButtonAttributes } from '$lib/button';
+	import type { ButtonAttributes } from '$lib/buttons';
 
 	export interface ListItemAttributes extends Omit<ButtonAttributes, 'onselect'> {
 		selected?: boolean;
@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import { Button } from '$lib/button';
+	import { Button } from '$lib/buttons';
 	import { onMount } from 'svelte';
 
 	let { _this, value, selected = false, role = 'listitem', ...rest } = $props<ListItemAttributes>();

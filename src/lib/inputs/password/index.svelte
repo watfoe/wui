@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$lib/button';
+	import { Button } from '$lib/buttons';
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
 	interface PasswordInputAttributes extends BaseInputAttributes {

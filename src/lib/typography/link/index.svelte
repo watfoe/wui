@@ -2,20 +2,25 @@
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	export interface LinkAttributes extends HTMLAnchorAttributes {
+		bold?: boolean;
 		color?: 'inherit' | 'link';
 		italic?: boolean;
 		underline?: boolean;
+		rtl?: boolean;
 		size?: 'sm' | 'md' | 'lg';
-		variant?: 'headline' | 'title' | 'body' | 'label' | 'code';
+		variant?: 'heading' | 'title' | 'body' | 'label' | 'code';
 	}
 </script>
 
 <script lang="ts">
+	import '../text/style.css';
 	let {
+		bold = false,
 		color = 'link',
 		italic = false,
-		underline = false,
+		rtl = false,
 		size = 'md',
+		underline = false,
 		variant = 'body',
 		...rest
 	} = $props<LinkAttributes>();
@@ -23,98 +28,14 @@
 
 <a
 	{...rest}
-	class="WuiAnchor WuiAnchor--{variant} WuiAnchor--{size} WuiAnchor--{color} {underline
-		? 'WuiAnchor--underline'
+	class="WuiAnchor WuiText WuiText--{variant} WuiText--{size} WuiAnchor--{color} {variant ===
+		'heading' ||
+	variant === 'title' ||
+	bold
+		? 'WuiText--bold'
+		: ''} {italic ? 'WuiText--italic' : ''} {rtl ? 'WuiText--rtl' : ''} {underline
+		? 'WuiText--underline'
 		: ''} {rest.class || ''}"
 >
 	<slot />
 </a>
-
-<style>
-	.WuiAnchor {
-		cursor: pointer;
-		display: inline-block;
-		font-size: var(--WuiAnchor-font-size);
-		line-height: var(--WuiAnchor-line-height);
-		text-decoration: none;
-	}
-
-	.WuiAnchor--inherit {
-		color: inherit;
-	}
-	.WuiAnchor--link {
-		color: var(--color-link);
-	}
-
-	.WuiAnchor--headline.WuiAnchor--sm {
-		--WuiAnchor-font-size: 1.5rem;
-		--WuiAnchor-line-height: 2rem;
-	}
-	.WuiAnchor--headline.WuiAnchor--md {
-		--WuiAnchor-font-size: 1.75rem;
-		--WuiAnchor-line-height: 2.25rem;
-	}
-	.WuiAnchor--headline.WuiAnchor--lg {
-		--WuiAnchor-font-size: 2rem;
-		--WuiAnchor-line-height: 2.5rem;
-	}
-
-	.WuiAnchor--title.WuiAnchor--sm {
-		--WuiAnchor-font-size: 1rem;
-		--WuiAnchor-line-height: 1.25rem;
-	}
-	.WuiAnchor--title.WuiAnchor--md {
-		--WuiAnchor-font-size: 1.125rem;
-		--WuiAnchor-line-height: 1.5rem;
-	}
-	.WuiAnchor--title.WuiAnchor--lg {
-		--WuiAnchor-font-size: 1.25rem;
-		--WuiAnchor-line-height: 1.75rem;
-	}
-
-	.WuiAnchor--body.WuiAnchor--sm,
-	.WuiAnchor--label.WuiAnchor--sm {
-		--WuiAnchor-font-size: 0.75rem;
-		--WuiAnchor-line-height: 0.875rem;
-	}
-	.WuiAnchor--body.WuiAnchor--md,
-	.WuiAnchor--label.WuiAnchor--md {
-		--WuiAnchor-font-size: 0.8125rem;
-		--WuiAnchor-line-height: 1rem;
-	}
-	.WuiAnchor--body.WuiAnchor--lg,
-	.WuiAnchor--label.WuiAnchor--lg {
-		--WuiAnchor-font-size: 0.9375rem;
-		--WuiAnchor-line-height: 1.125rem;
-	}
-
-	.WuiAnchor--label.WuiAnchor--sm {
-		--WuiAnchor-font-size: 0.6875rem;
-		--WuiAnchor-line-height: 0.8125rem;
-	}
-	.WuiAnchor--label.WuiAnchor--md {
-		--WuiAnchor-font-size: 0.75rem;
-		--WuiAnchor-line-height: 0.875rem;
-	}
-	.WuiAnchor--label.WuiAnchor--lg {
-		--WuiAnchor-font-size: 0.8125rem;
-		--WuiAnchor-line-height: 0.9375rem;
-	}
-
-	.WuiAnchor--code.WuiAnchor--sm {
-		--WuiAnchor-font-size: 0.75rem;
-		--WuiAnchor-line-height: 1rem;
-	}
-	.WuiAnchor--code.WuiAnchor--md {
-		--WuiAnchor-font-size: 0.875rem;
-		--WuiAnchor-line-height: 1.25rem;
-	}
-	.WuiAnchor--code.WuiAnchor--lg {
-		--WuiAnchor-font-size: 1rem;
-		--WuiAnchor-line-height: 1.5rem;
-	}
-
-	.WuiAnchor--underline {
-		text-decoration: underline;
-	}
-</style>

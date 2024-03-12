@@ -78,9 +78,9 @@
   --color-on-primary: #FFF;
   --color-primary-container: var(--color-blue-2);
 
-  --color-neutral: var(--color-grey-6);
+  --color-neutral: var(--color-grey-5);
   --color-on-neutral: #fff;
-  --color-neutral-container: var(--color-grey-3);
+  --color-neutral-container: var(--color-grey-2);
 
   --color-success: var(--color-green-5);
   --color-on-success: #fff;
@@ -137,7 +137,7 @@
 
   --radius: 3px;
 
-  --line: 0.89px solid var(--color-outline);
+  --line: 0.95px solid var(--color-outline);
 }
 
 /* @media (prefers-color-scheme: dark) {

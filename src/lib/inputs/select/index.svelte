@@ -20,7 +20,7 @@
 <script lang="ts">
 	import './style.css';
 	import { Backdrop } from '$lib/feedback';
-	import { Button } from '$lib/button';
+	import { Button } from '$lib/buttons';
 	import { Listbox, Label } from '$lib/inputs';
 	import { Col } from '$lib/layout';
 	import { Icon } from '$lib/display';

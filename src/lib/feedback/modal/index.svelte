@@ -14,7 +14,7 @@
 
 	import { Backdrop } from '$lib/feedback';
 	import { Col, Row } from '$lib/layout';
-	import { Button } from '$lib/button';
+	import { Button } from '$lib/buttons';
 	import { Text } from '$lib/typography';
 	import { onMount } from 'svelte';
 

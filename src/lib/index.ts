@@ -1,5 +1,5 @@
-export * as button from './button';
-export * from './button';
+export * as button from './buttons';
+export * from './buttons';
 export * as display from './display';
 export * from './display';
 export * as domains from './domains';

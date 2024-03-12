@@ -1,10 +1,10 @@
 <script>
-	import { Button } from "$lib/button";
-	import { Divider } from "$lib/display";
-	import { Modal } from "$lib/feedback";
-	import { Col, Row } from "$lib/layout";
-	import { Menu } from "$lib/navigation";
-	import MenuItem from "$lib/navigation/menu/menu-item.svelte";
+	import { Button } from '$lib/buttons';
+	import { Divider } from '$lib/display';
+	import { Modal } from '$lib/feedback';
+	import { Col, Row } from '$lib/layout';
+	import { Menu } from '$lib/navigation';
+	import MenuItem from '$lib/navigation/menu/menu-item.svelte';
 </script>
 
 <Col gap="md" width="full">

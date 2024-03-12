@@ -1,5 +1,5 @@
 <script>
-	import { Button } from '$lib/button';
+	import { Button } from '$lib/buttons';
 	import { Col, Row } from '$lib/layout';
 </script>
 

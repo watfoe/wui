@@ -39,10 +39,10 @@
 	{#if rest.src}
 		<img src={rest.src} {...rest} {alt} class="WuiAvatar__img" />
 	{:else if alt}
-		<Text variant="title" {size}>{alt[0].toUpperCase()}</Text>
+		<Text variant="heading" {size}>{alt[0].toUpperCase()}</Text>
 	{:else if !$$slots.default}
 		<Icon>person</Icon>
 	{:else}
-		<Text variant="title" {size}><slot /></Text>
+		<Text variant="heading" {size}><slot /></Text>
 	{/if}
 </Col>

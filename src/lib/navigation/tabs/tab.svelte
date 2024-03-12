@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, type ButtonAttributes } from '$lib/button';
+	import { Button, type ButtonAttributes } from '$lib/buttons';
 
 	let { children } = $props<ButtonAttributes>();
 	let active = $state(false);

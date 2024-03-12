@@ -1,0 +1,13 @@
+.WAuth-header {
+  background-color: var(--color-container);
+  border-bottom: var(--line);
+  height: 50px;
+  margin-bottom: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  z-index: 1;
+}
+
+.WAuth-header__logo {
+  /* Corrects the logo's vertical alignment */
+  margin-top: 4px;
+}
