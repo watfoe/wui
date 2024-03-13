@@ -9,18 +9,24 @@
 		name?: string;
 		required?: boolean;
 		size?: 'sm' | 'md' | 'lg';
-		value?: string;
 	}
 </script>
 
 <script lang="ts">
 	const id = Math.random().toString(36);
 
-	let { _this, color = 'neutral', size = 'md', value, ...rest } = $props<SwitchAttributes>();
+	let {
+		_this,
+		checked,
+		color = 'neutral',
+		size = 'md',
+		value,
+		...rest
+	} = $props<SwitchAttributes>();
 </script>
 
 <div class="WuiSwitch WuiSwitch--{size} WuiSwitch--{color}">
-	<input {...rest} type="checkbox" {id} class="WuiSwitch__input" bind:this={_this} bind:value />
+	<input {...rest} type="checkbox" {id} class="WuiSwitch__input" bind:this={_this} bind:checked />
 	<label class="WuiSwitch__label" for={id} />
 </div>
 

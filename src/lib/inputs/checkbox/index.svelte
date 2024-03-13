@@ -8,7 +8,6 @@
 		label: string;
 		name?: string;
 		required?: boolean;
-		value?: string;
 		size?: 'sm' | 'md' | 'lg';
 	}
 </script>
@@ -20,9 +19,9 @@
 	let {
 		_this,
 		color = 'neutral',
+		checked,
 		label,
 		size = 'md',
-		value,
 		...rest
 	} = $props<CheckBoxAttributes>();
 
@@ -30,7 +29,7 @@
 </script>
 
 <div class="WuiCheckbox WuiCheckbox--{size} WuiCheckbox--{color}">
-	<input {...rest} type="checkbox" class="WuiCheckbox__input" {id} bind:this={_this} bind:value />
+	<input {...rest} type="checkbox" class="WuiCheckbox__input" {id} bind:this={_this} bind:checked />
 
 	<Text
 		variant="label"
