@@ -11,6 +11,7 @@
 		name?: string;
 		onvalidate?: (error?: ValidationError) => void;
 		preset?: 'country' | 'month' | 'gender';
+		selected?: string;
 		size?: 'sm' | 'md' | 'lg';
 		validateon?: 'change' | 'blur' | 'submit';
 		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
@@ -43,6 +44,7 @@
 		placeholder,
 		preset,
 		required,
+		selected,
 		size = 'md',
 		style,
 		value,
@@ -246,11 +248,11 @@
 		bind:_this={listbox}
 	>
 		{#if preset === 'country'}
-			<CountryPreset />
+			<CountryPreset {selected} />
 		{:else if preset === 'month'}
-			<MonthPreset />
+			<MonthPreset {selected} />
 		{:else if preset === 'gender'}
-			<GenderPreset />
+			<GenderPreset {selected} />
 		{:else}
 			<slot />
 		{/if}

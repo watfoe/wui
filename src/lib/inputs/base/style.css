@@ -13,36 +13,42 @@
   color: var(--WuiInput-color-bg);
   height: var(--WuiInput-height);
   font-size: var(--WuiInput-font-size);
-  font-weight: 400;
+  font-weight: 350;
   line-height: var(--WuiInput-line-height);
   margin: 0;
   outline: none;
   padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
   width: 100%;
 }
+
 /* Chrome, Safari, Edge, Opera */
 .WuiInput::-webkit-outer-spin-button,
 .WuiInput::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 /* Firefox */
 .WuiInput[type=number] {
   -moz-appearance: textfield;
 }
+
 .WuiInput::placeholder {
   color: var(--WuiInput-color-bg, var(--color-on-surface));
 
 }
+
 .WuiInput:not(:disabled):focus {
   border-width: 1.8px;
 }
+
 .WuiInput--primary .WuiInput:not(:disabled):not(:invalid):focus,
 .WuiInput--success .WuiInput:not(:disabled):not(:invalid):focus,
 .WuiInput--warning .WuiInput:not(:disabled):not(:invalid):focus,
 .WuiInput--danger .WuiInput:not(:disabled):not(:invalid):focus {
   --WuiInput-color-outline: var(--WuiInput-color-bg);
 }
+
 .WuiInput--neutral .WuiInput:not(:disabled):not(:invalid):focus {
   --WuiInput-color-outline: var(--color-primary);
 }
@@ -50,6 +56,7 @@
 .WuiInput--prefixed {
   --WuiInput-paddingX: calc(var(--space-xs) + var(--WuiInput-height) - 1.3px);
 }
+
 .WuiInput--prefixed:focus {
   --WuiInput-paddingX: calc(var(--space-xs) + var(--WuiInput-height) - 1.6px);
 }
@@ -57,11 +64,13 @@
 .WuiInput--suffixed {
   --WuiInput-paddingY: calc(var(--space-xs) + var(--WuiInput-height) - 1.3px);
 }
+
 .WuiInput--suffixed:focus {
   --WuiInput-paddingY: calc(var(--space-xs) + var(--WuiInput-height) - 1.6px)
 }
 
-.WuiInput__prefix, .WuiInput__suffix {
+.WuiInput__prefix,
+.WuiInput__suffix {
   align-items: center;
   border-radius: inherit !important;
   cursor: default;
@@ -76,12 +85,15 @@
   overflow: hidden;
 }
 
-.WuiInput__prefix > *, .WuiInput__suffix > * {
+.WuiInput__prefix>*,
+.WuiInput__suffix>* {
   border-radius: calc(inherit - 1px) !important;
 }
+
 .WuiInput__prefix {
   left: 1.3px;
 }
+
 .WuiInput__suffix {
   right: 1.3px;
 }
@@ -91,11 +103,13 @@
   --WuiInput-font-size: 0.75rem;
   --WuiInput-line-height: 0.875rem;
 }
+
 .WuiInput--md {
   --WuiInput-height: var(--input-height-md);
   --WuiInput-font-size: 0.8125rem;
   --WuiInput-line-height: 1rem;
 }
+
 .WuiInput--lg {
   --WuiInput-height: var(--input-height-lg);
   --WuiInput-font-size: 0.9375rem;
@@ -107,19 +121,24 @@
   background-color: var(--WuiInput-color-bg, var(--color-primary));
   color: var(--WuiInput-color-on-bg, var(--color-on-primary));
 }
+
 .WuiInput--solid::placeholder {
   color: var(--WuiInput-color-on-bg, var(--color-on-primary));
 }
+
 .WuiInput--outline {
   background-color: transparent;
 }
+
 .WuiInput--neutral input {
   color: var(--color-on-surface);
 }
+
 .WuiInput--soft {
   --WuiInput-color-outline: transparent;
   background-color: var(--WuiInput-color-bg-soft, var(--color-selection-container));
 }
+
 .WuiInput--plain {
   --WuiInput-color-outline: transparent;
   background-color: var(--WuiInput-color-plain);
