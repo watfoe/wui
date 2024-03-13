@@ -35,9 +35,7 @@
 	} = $props<BaseInputAttributes>();
 
 	$effect(() => {
-		if (error || !error) {
-			_this?.setCustomValidity(error === undefined ? '' : error?.message);
-		}
+		_this?.setCustomValidity(error === undefined ? '' : error?.message);
 	});
 
 	onMount(() => {
@@ -49,10 +47,19 @@
 		if (rules && validateon === 'submit') {
 			// Get the form element that this input is in
 			const form = _this?.closest('form');
-			form?.addEventListener('submit', (e) => {
-				e.preventDefault();
-				_validate(_this?.value!);
-			});
+			form?.addEventListener(
+				'submit',
+				(e) => {
+					_validate(_this?.value!);
+					if (error) {
+						e.preventDefault();
+						// Stop the event from propagating to other event listeners
+						e.stopPropagation();
+					}
+				},
+				// Capture phase to ensure that this event listener is the first to run
+				true
+			);
 		}
 	});
 

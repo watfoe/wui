@@ -42,6 +42,7 @@
 		width,
 		height,
 		onclick,
+		type = 'button',
 		...rest
 	} = $props<ButtonAttributes>();
 
@@ -79,6 +80,7 @@
 
 <button
 	{...rest}
+	{type}
 	class="WuiButton WuiButton--{variant} WuiButton--{size} WuiButton--{color} WuiButton--gap-{gap} {width
 		? 'WuiButton--width-' + width
 		: ''} {height ? 'WuiButton--height-' + height : ''} {!$$slots.default

@@ -17,7 +17,7 @@
 
 .WuiSelect--neutral {
   --WuiSelect-color-plain: var(--color-grey-1);
-  --WuiLabel-color: var(--color-black-1);
+  --WuiLabel-color: var(--color-black-4);
 }
 
 .WuiSelect--neutral:focus-within {

@@ -6,8 +6,6 @@
 	import { Text } from '$lib/typography';
 	import type { FlexAttributes } from '../flex/index.svelte';
 
-	import { env } from '$env/dynamic/public';
-
 	interface WatfoeHeaderAttributes extends FlexAttributes {
 		class?: string;
 		subtitle?: string;
@@ -19,14 +17,14 @@
 
 	let { subtitle, urls, ...rest } = $props<WatfoeHeaderAttributes>();
 	urls = {
-		signin: urls?.signin || env.WATFOE_SIGNIN_URL || 'https://auth.watfoe.com/signin',
-		signup: urls?.signup || env.WATFOE_SIGNUP_URL || 'https://auth.watfoe.com/create-account'
+		signin: urls?.signin || 'https://auth.watfoe.com/signin',
+		signup: urls?.signup || 'https://auth.watfoe.com/create-account'
 	};
 </script>
 
-<Row justify="space-between" width="full" {...rest} class="WAuth-header {rest.class || ''}">
+<Row justify="space-between" width="full" {...rest} class="WuiHeader {rest.class || ''}">
 	<Row align="center" gap="md">
-		<Logo size={60} class="WAuth-header__logo" />
+		<Logo size={60} class="WuiHeader__logo" />
 
 		<Row align="center" gap="sm">
 			<Text variant="heading" size="md" color="primary">Watfoe</Text>
