@@ -4,20 +4,22 @@
 		defaultmonth?: string;
 		defaultday?: string;
 		defaultyear?: string;
-		format?: 'mm/dd/yyyy' | 'dd/mm/yyyy' | 'yyyy/mm/dd' | 'yyyy-mm-dd' | 'dd-mm-yyyy';
+		format?: DateFormat;
 	}
 </script>
 
 <script lang="ts">
+	import './style.css';
 	import { Row } from '$lib/layout';
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 	import Select from '../select/index.svelte';
 	import { ValidationError } from '../_common_';
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
+	import { splitDate, type DateFormat } from '$lib/utils';
 
-	let day = $state();
-	let month = $state();
-	let year = $state();
+	let day = $state('');
+	let month = $state('');
+	let year = $state('');
 
 	let {
 		_this,
@@ -29,11 +31,22 @@
 		required,
 		rules,
 		size,
-		validateon = 'blur',
+		validateon = 'submit',
 		value,
 		variant,
 		...rest
 	} = $props<DateInputAttributes>();
+
+	$effect.pre(() => {
+		untrack(() => {
+			if (value) {
+				let [_day, _month, _year] = splitDate(value, format)!;
+				day = _day;
+				month = _month;
+				year = _year;
+			}
+		});
+	});
 
 	onMount(() => {
 		if (required && !rules?.required) {
@@ -110,6 +123,7 @@
 		{size}
 		onchange={change}
 		onblur={blur}
+		selected={month}
 		bind:value={month}
 		bind:error
 	/>
@@ -161,16 +175,3 @@
 		bind:value
 	/>
 </Row>
-
-<style>
-	:global(.WuiInput__date) {
-		border-radius: inherit;
-	}
-	:global(.WuiInput__date__month, .WuiInput__date__day, .WuiInput__date__year) {
-		width: 100%;
-	}
-	:global(.WuiInput__date__day, .WuiInput__date__year) {
-		text-align: center;
-		padding: 0;
-	}
-</style>

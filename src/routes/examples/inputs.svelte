@@ -77,7 +77,15 @@
 
 	<Row gap="md" width="full">
 		<Input type="date" variant="solid" label="Date" class="input" validateon="blur" required />
-		<Input type="date" variant="outline" label="Date" class="input" validateon="blur" required />
+		<Input
+			type="date"
+			variant="outline"
+			label="Date"
+			class="input"
+			validateon="blur"
+			value="2021-01-01"
+			required
+		/>
 		<Input type="date" variant="soft" label="Date" class="input" validateon="blur" required />
 		<Input type="date" variant="plain" label="Date" class="input" validateon="blur" required />
 	</Row>
@@ -95,7 +103,11 @@
 			<Radio name="acctype" label="Other" />
 		</RadioGroup>
 
-		<Select preset="country" style="width: 300px" />
+		<Col gap="sm">
+			<Select preset="country" selected="KE" style="width: 300px" />
+			<Select preset="gender" selected="KE" style="width: 300px" />
+			<Select preset="month" selected="KE" style="width: 300px" />
+		</Col>
 	</Row>
 
 	<Row gap="lg" width="full">

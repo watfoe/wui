@@ -116,7 +116,7 @@
 	function _validate() {
 		try {
 			validate(_this?.value!, {
-				required: 'Please select ' + (preset ? 'a ' + preset : 'an option')
+				required: 'Please select ' + (preset ? `a ${preset}` : 'an option')
 			});
 			error = undefined;
 		} catch (e) {
@@ -225,7 +225,9 @@
 		{:else if placeholder}
 			<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
 		{:else}
-			<span class="WuiSelect__combobox__placeholder">Select an option</span>
+			<span class="WuiSelect__combobox__placeholder">
+				Select {preset ? `a ${preset}` : 'an option'}
+			</span>
 		{/if}
 
 		<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
