@@ -16,6 +16,7 @@
 
 .WuiContent {
   margin-top: 50px;
+  min-height: calc(100vh - 50px);
   padding: var(--space-lg);
   overflow-y: auto;
 }

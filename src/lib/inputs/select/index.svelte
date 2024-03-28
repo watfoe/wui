@@ -83,17 +83,19 @@
 		// Setting this is necessary for a consumer of this component that has bind:value
 		value = values.join(', ');
 
-		// Setting the value on the input element is necessary for a consumer of this component
-		// that is listening for the change event on this component.
-		_this!.value = value!;
+		if (value !== _this!.value) {
+			// Setting the value on the input element is necessary for a consumer of this component
+			// that is listening for the change event on this component.
+			_this!.value = value!;
 
-		// Dispatching the event from the input element is best
-		// Any listeners on the fieldset will be able to listen for the event since
-		// it bubbles up.
-		_this?.dispatchEvent(new Event('change'));
+			// Dispatching the event from the input element is best
+			// Any listeners on the fieldset will be able to listen for the event since
+			// it bubbles up.
+			_this?.dispatchEvent(new Event('change'));
 
-		if (error) {
-			_validate();
+			if (error) {
+				_validate();
+			}
 		}
 	}
 
@@ -113,7 +115,9 @@
 
 	function _validate() {
 		try {
-			validate(_this?.value!, { required: 'Please select an option' });
+			validate(_this?.value!, {
+				required: 'Please select ' + (preset ? 'a ' + preset : 'an option')
+			});
 			error = undefined;
 		} catch (e) {
 			error = e as ValidationError;
@@ -178,6 +182,7 @@
 			_validate();
 		}
 		combobox.blur();
+		_this?.dispatchEvent(new Event('blur'));
 	}
 </script>
 

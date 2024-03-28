@@ -9,7 +9,7 @@
 </script>
 
 <Tabs for="tab-panels-0">
-	<Tab prefix="search" active>Buttons</Tab>
+	<Tab prefix="search">Buttons</Tab>
 	<Tab prefix="mail">Inputs</Tab>
 	<Tab prefix="settings">Feedbacks</Tab>
 	<Tab prefix="settings">Badges & tooltips</Tab>

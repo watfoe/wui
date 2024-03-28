@@ -30,6 +30,7 @@
 		hidden,
 		type = 'text',
 		error,
+		value,
 		...rest
 	} = $props<InputAttributes>();
 
@@ -52,21 +53,29 @@
 
 	<Col align="flex-start" justify="flex-start" class="WuiInput__root__body" width="full">
 		{#if type === 'date'}
-			<DateInput {...rest} {id} {color} bind:error />
+			<DateInput {...rest} {id} {color} bind:error bind:value />
 		{:else if type === 'email'}
-			<EmailInput {...rest} {id} {color} bind:error />
+			<EmailInput {...rest} {id} {color} bind:error bind:value />
 		{:else if type === 'name'}
-			<BaseInput {...rest} {id} {color} autocomplete="name" autocapitalize="words" bind:error />
+			<BaseInput
+				{...rest}
+				{id}
+				{color}
+				autocomplete="name"
+				autocapitalize="words"
+				bind:error
+				bind:value
+			/>
 		{:else if type === 'password'}
-			<PasswordInput secure {...rest} {id} {color} bind:error />
+			<PasswordInput secure {...rest} {id} {color} bind:error bind:value />
 		{:else if type === 'phone'}
-			<PhoneInput {...rest} {id} {color} bind:error />
+			<PhoneInput {...rest} {id} {color} bind:error bind:value />
 		{:else if type === 'pin'}
-			<PinInput {...rest} {id} {color} bind:error />
+			<PinInput {...rest} {id} {color} bind:error bind:value />
 		{:else if type === 'search'}
-			<SearchInput {...rest} {id} {color} bind:error />
+			<SearchInput {...rest} {id} {color} bind:error bind:value />
 		{:else}
-			<BaseInput {...rest} {id} {color} bind:error />
+			<BaseInput {...rest} {id} {color} bind:error bind:value />
 		{/if}
 
 		{#if error}

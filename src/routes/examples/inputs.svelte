@@ -1,15 +1,26 @@
 <script lang="ts">
 	import { Checkbox, Input, Radio, RadioGroup, Select, Switch } from '$lib/inputs';
 	import { Col, Row } from '$lib/layout';
+
+	let name = $state('');
 </script>
 
 <Col gap="lg" width="full">
 	<Row gap="md" width="full">
-		<Input type="text" variant="solid" color="primary" label="Name" class="input" />
+		<Input
+			type="text"
+			variant="solid"
+			color="primary"
+			label="Name"
+			class="input"
+			bind:value={name}
+		/>
 		<Input type="text" variant="outline" color="primary" label="Name" class="input" />
 		<Input type="text" variant="soft" color="primary" label="Name" class="input" />
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
+
+	<h2>{name}</h2>
 
 	<Row gap="md" width="full">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />

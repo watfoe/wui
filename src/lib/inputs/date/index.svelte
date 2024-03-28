@@ -29,7 +29,7 @@
 		required,
 		rules,
 		size,
-		validateon = 'submit',
+		validateon = 'blur',
 		value,
 		variant,
 		...rest
@@ -104,7 +104,7 @@
 		preset="month"
 		{id}
 		{required}
-		{validateon}
+		validateon={validateon === 'input' ? 'change' : validateon}
 		{variant}
 		{color}
 		{size}
