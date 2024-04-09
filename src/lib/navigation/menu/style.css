@@ -1,8 +1,10 @@
 .WuiMenu {
-  --WuiMenu-minWidth: 200px;
-  --WuiMenu-posY: 0;
-  --WuiMenu-posX: 0;
-  min-width: var(--WuiMenu-minWidth);
-  position: absolute;
-  transform: translate3d(var(--WuiMenu-posX), var(--WuiMenu-posY), 0);
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.WuiMenu__item {
+  border-radius: 0;
+  flex-shrink: 0;
 }

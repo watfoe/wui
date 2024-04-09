@@ -105,17 +105,17 @@
 
 		<Col gap="sm">
 			<Select preset="country" selected="KE" style="width: 300px" />
-			<Select preset="gender" selected="KE" style="width: 300px" />
-			<Select preset="month" selected="KE" style="width: 300px" />
+			<Select preset="gender" style="width: 300px" />
+			<Select preset="month" style="width: 300px" />
 		</Col>
 	</Row>
 
 	<Row gap="lg" width="full">
-		<Checkbox label="Primary small radio" name="radio" size="sm" color="primary" />
-		<Checkbox label="Neutral medium radio" name="radio" size="md" />
-		<Checkbox label="Large success radio" name="radio" size="lg" color="success" />
-		<Checkbox label="Warning radio" name="radio" color="warning" />
-		<Checkbox label="Danger radio" name="radio" color="danger" />
+		<Checkbox label="Primary small radio" name="checkbox" size="sm" color="primary" />
+		<Checkbox label="Neutral medium checkbox" name="checkbox" size="md" />
+		<Checkbox label="Large success checkbox" name="checkbox" size="lg" color="success" />
+		<Checkbox label="Warning checkbox" name="checkbox" color="warning" />
+		<Checkbox label="Danger checkbox" name="checkbox" color="danger" />
 	</Row>
 
 	<Row gap="md" width="full">

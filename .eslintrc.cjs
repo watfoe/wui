@@ -6,6 +6,9 @@ module.exports = {
 		'plugin:svelte/recommended',
 		'prettier'
 	],
+	rules: {
+    'no-restricted-globals': ['warning', {'name': '$bindable', 'message': 'Use globalThis.$bindable instead'}],
+  },
 	parser: '@typescript-eslint/parser',
 	plugins: ['@typescript-eslint'],
 	parserOptions: {

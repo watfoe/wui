@@ -9,7 +9,7 @@
 	import { Row } from '$lib/layout';
 	import { validate, mask, ValidationError } from '../_common_';
 	import { Icon } from '$lib';
-	import { onMount } from 'svelte';
+	import { untrack } from 'svelte';
 
 	let {
 		_this,
@@ -28,28 +28,28 @@
 		oninput,
 		onvalidate,
 		...rest
-	} = $props<TextAreaAttributes>();
+	}: TextAreaAttributes = $props();
 
 	$effect(() => {
 		if (error || !error) {
 			_this?.setCustomValidity(error === undefined ? '' : error?.message);
 		}
-	});
 
-	onMount(() => {
-		if (required && !rules?.required) {
-			rules = rules || {};
-			rules.required = true;
-		}
+		untrack(() => {
+			if (required && !rules?.required) {
+				rules = rules || {};
+				rules.required = true;
+			}
 
-		if (rules && validateon === 'submit') {
-			// Get the form element that this textarea is in
-			const form = _this?.closest('form');
-			form?.addEventListener('submit', (e) => {
-				e.preventDefault();
-				_validate(_this?.value!);
-			});
-		}
+			if (rules && validateon === 'submit') {
+				// Get the form element that this textarea is in
+				const form = _this?.closest('form');
+				form?.addEventListener('submit', (e) => {
+					e.preventDefault();
+					_validate(_this?.value!);
+				});
+			}
+		});
 	});
 
 	function _validate(_value: string) {

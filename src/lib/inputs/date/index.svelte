@@ -22,20 +22,20 @@
 	let year = $state('');
 
 	let {
-		_this,
+		_this = $bindable(),
 		color,
+		error = $bindable(),
 		id,
-		error,
 		format = 'yyyy-mm-dd',
 		name,
 		required,
 		rules,
 		size,
 		validateon = 'submit',
-		value,
+		value = $bindable(),
 		variant,
 		...rest
-	} = $props<DateInputAttributes>();
+	}: DateInputAttributes = $props();
 
 	$effect.pre(() => {
 		untrack(() => {

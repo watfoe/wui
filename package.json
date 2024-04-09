@@ -32,33 +32,33 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.48"
+		"svelte": "^5.0.0-next.96"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.41.2",
 		"@sveltejs/adapter-auto": "^3.1.1",
-		"@sveltejs/kit": "^2.5.0",
-		"@sveltejs/package": "^2.2.6",
+		"@sveltejs/kit": "^2.5.5",
+		"@sveltejs/package": "^2.3.1",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
-		"@typescript-eslint/eslint-plugin": "^6.21.0",
-		"@typescript-eslint/parser": "^6.21.0",
+		"@typescript-eslint/eslint-plugin": "^7.5.0",
+		"@typescript-eslint/parser": "^7.5.0",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^8.10.0",
-		"eslint-plugin-svelte": "^2.35.1",
+		"eslint-plugin-svelte": "^2.36.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.1.2",
 		"publint": "^0.1.16",
-		"sass": "^1.70.0",
-		"svelte": "5.0.0-next.48",
-		"svelte-check": "^3.6.8",
+		"svelte": "5.0.0-next.96",
+		"svelte-check": "^3.6.9",
 		"tslib": "^2.6.2",
-		"typescript": "^5.4.3",
-		"vite": "^5.2.6",
+		"typescript": "^5.4.4",
+		"vite": "^5.2.8",
 		"vitest": "^0.32.4"
 	},
 	"dependencies": {
-		"@sveltejs/enhanced-img": "^0.1.9",
-		"libphonenumber-js": "^1.10.59"
+		"@sveltejs/enhanced-img": "^0.2.0",
+		"libphonenumber-js": "^1.10.60",
+		"material-symbols": "^0.17.1"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

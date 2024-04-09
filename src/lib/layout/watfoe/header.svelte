@@ -15,7 +15,7 @@
 		};
 	}
 
-	let { subtitle, urls, ...rest } = $props<WatfoeHeaderAttributes>();
+	let { subtitle, urls, ...rest }: WatfoeHeaderAttributes = $props();
 	urls = {
 		signin: urls?.signin || 'https://auth.watfoe.com/signin',
 		signup: urls?.signup || 'https://auth.watfoe.com/create-account'

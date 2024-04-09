@@ -7,13 +7,13 @@
 	}
 
 	let {
-		_this,
+		_this = $bindable(),
 		color = 'neutral',
-		error,
-		value,
+		error = $bindable(),
+		value = $bindable(),
 		secure = true,
 		...rest
-	} = $props<PasswordInputAttributes>();
+	}: PasswordInputAttributes = $props();
 </script>
 
 <BaseInput

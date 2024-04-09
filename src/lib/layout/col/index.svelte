@@ -7,7 +7,7 @@
 <script lang="ts">
 	import Flex from '../flex/index.svelte';
 
-	let { _this, ...rest } = $props<ColAttributes>();
+	let { _this = $bindable(), ...rest }: ColAttributes = $props();
 </script>
 
 <Flex {...rest} direction="column" bind:_this>

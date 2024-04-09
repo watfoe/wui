@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-	let { color = 'neutral', size = 'sm', vertical = false } = $props<DividerAttributes>();
+	let { color = 'neutral', size = 'sm', vertical = false }: DividerAttributes = $props();
 </script>
 
 <div

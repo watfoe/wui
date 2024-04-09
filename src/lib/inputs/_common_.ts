@@ -1,3 +1,5 @@
+import type { HTMLAttributes, HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
+
 export interface InputMasks {
   cast?: 'string' | 'number';
   number?: boolean;
@@ -31,11 +33,10 @@ export interface InputRules {
   rule?(value: string): void;
 }
 
-export type BaseProps<Attributes, Elem> = Attributes & {
+export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<A, 'size'> & {
   color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-  _this?: Elem;
+  _this?: E;
   error?: ValidationError;
-  id?: string;
   masks?: InputMasks;
   onvalidate?: (error?: ValidationError) => void;
   prefix?: string;

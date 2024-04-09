@@ -17,7 +17,7 @@
 
 <script lang="ts">
 	let {
-		_this,
+		_this = $bindable<HTMLDivElement>(),
 		direction = 'row',
 		justify = 'flex-start',
 		align = 'center',
@@ -26,7 +26,7 @@
 		width,
 		height,
 		...rest
-	} = $props<FlexAttributes>();
+	}: FlexAttributes = $props();
 </script>
 
 <div

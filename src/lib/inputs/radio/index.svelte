@@ -17,12 +17,19 @@
 	import './style.css';
 	import { Text } from '$lib/typography';
 
-	let { _this, color = 'neutral', label, size = 'md', value, ...rest } = $props<RadioAttributes>();
+	let {
+		_this = $bindable(),
+		color = 'neutral',
+		label,
+		size = 'md',
+		value = $bindable(),
+		...rest
+	}: RadioAttributes = $props();
 
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<div class="WuiRadio WuiRadio--{size} WuiRadio--{color}">
+<div role="radio" class="WuiRadio WuiRadio--{size} WuiRadio--{color}">
 	<input {...rest} type="radio" class="WuiRadio__input" {id} bind:this={_this} bind:value />
 
 	<Text

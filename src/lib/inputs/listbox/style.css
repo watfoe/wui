@@ -1,10 +1,29 @@
 .WuiListbox {
-  border: 1px solid var(--color-outline);
-  min-height: 50px;
-  padding: var(--space-xs) 0;
+  border: 0;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.WuiListbox__listitem {
+.WuiListbox__item {
+  border: 0;
+  position: relative;
+}
+
+.WuiListbox__item_label {
   border-radius: 0;
-  flex-shrink: 0;
+}
+
+.WuiListbox__item__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
 }

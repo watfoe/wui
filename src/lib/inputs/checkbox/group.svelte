@@ -16,7 +16,7 @@
 	import Label from '../label/index.svelte';
 	import type { Snippet } from 'svelte';
 
-	let { children, description, disabled, label, hidden, ...rest } = $props<RadioGroupAttributes>();
+	let { children, description, disabled, label, hidden, ...rest }: RadioGroupAttributes = $props();
 </script>
 
 <fieldset class="WuiRadioGroup {rest.class || ''}" {hidden} {disabled}>

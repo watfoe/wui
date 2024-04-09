@@ -1,12 +1,9 @@
 <script context="module" lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
-
-	export interface ButtonAttributes extends HTMLButtonAttributes {
-		_this?: HTMLButtonElement;
-		anchorfor?: string;
+	export type ButtonLikeAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A & {
 		bold?: boolean;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		disabled?: boolean;
+		element: string;
 		gap?: 'sm' | 'nm' | 'md' | 'lg';
 		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
 		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
@@ -17,21 +14,19 @@
 		suffix?: string;
 		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
 		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-	}
+	};
 </script>
 
 <script lang="ts">
 	import './style.css';
 	import { Icon } from '$lib/display';
 	import { Text } from '$lib/typography';
-	import { untrack } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
-		_this = $bindable(),
-		anchorfor,
 		bold = false,
+		element,
 		gap = 'nm',
-		height,
 		size = 'md',
 		variant = 'solid',
 		color = 'primary',
@@ -41,46 +36,14 @@
 		prefix,
 		rounded = false,
 		suffix,
-		type = 'button',
-		onclick,
 		width,
+		height,
 		...rest
-	}: ButtonAttributes = $props();
-
-	let feedback: HTMLDialogElement;
-
-	$effect(() => {
-		untrack(() => {
-			if (anchorfor) {
-				const _feedback = document.getElementById(anchorfor);
-
-				if (_feedback instanceof HTMLDialogElement) {
-					feedback = _feedback;
-				} else {
-					throw new Error(`button "anchorfor" attribute must be a valid dialog id`);
-				}
-			}
-		});
-	});
-
-	function click(e: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
-		if (loading || disabled) {
-			return;
-		}
-
-		feedback?.dispatchEvent(
-			new CustomEvent('open', {
-				detail: {
-					anchor: e.currentTarget
-				}
-			})
-		);
-
-		onclick?.(e);
-	}
+	}: ButtonLikeAttributes<any, any> = $props();
 </script>
 
-<button
+<svelte:element
+	this={element}
 	{...rest}
 	disabled={loading || disabled}
 	class="WuiLikeButton WuiLikeButton--{variant} WuiLikeButton--{size} WuiLikeButton--{color} WuiLikeButton--gap-{gap} {width
@@ -91,9 +54,6 @@
 	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify};{rounded
 		? '--WuiLikeButton-radius:calc(var(--WuiLikeButton-height) / 2);'
 		: ''}"
-	{type}
-	onclick={click}
-	bind:this={_this}
 >
 	{#if $$slots.prefix}
 		<slot name="prefix" />
@@ -110,4 +70,4 @@
 	{:else if suffix}
 		<Icon {size}>{suffix}</Icon>
 	{/if}
-</button>
+</svelte:element>

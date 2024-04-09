@@ -2,7 +2,13 @@
 	import { Button } from '$lib/buttons';
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
-	let { _this, error, color = 'neutral', value, ...rest } = $props<BaseInputAttributes>();
+	let {
+		_this = $bindable(),
+		color = 'neutral',
+		error = $bindable(),
+		value = $bindable(),
+		...rest
+	}: BaseInputAttributes = $props();
 
 	function clear() {
 		value = '';

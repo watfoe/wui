@@ -3,7 +3,7 @@
 	import { Text } from '$lib/typography';
 	import type { ValidationError } from '../_common_';
 
-	let { error } = $props<{ error: ValidationError }>();
+	let { error }: { error: ValidationError } = $props();
 
 	function errorToString(error: ValidationError) {
 		let message = error.message.replace(/_/g, ' ').toLocaleLowerCase();

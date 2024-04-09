@@ -23,7 +23,7 @@
 		underline = false,
 		variant = 'body',
 		...rest
-	} = $props<LinkAttributes>();
+	}: LinkAttributes = $props();
 </script>
 
 <a

@@ -9,7 +9,7 @@
 <script lang="ts">
 	import { ListItem } from '$lib/inputs';
 
-	let { ...rest } = $props<OptionAttributes>();
+	let { ...rest }: OptionAttributes = $props();
 </script>
 
 <ListItem size="sm" {...rest} role="option">

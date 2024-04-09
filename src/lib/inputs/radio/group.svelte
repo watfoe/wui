@@ -2,7 +2,6 @@
 	import type { BaseInputAttributes } from '../base/index.svelte';
 	export type RadioGroupAttributes = Omit<BaseInputAttributes, 'id'> & {
 		class?: string;
-		children: Snippet;
 		description?: string;
 		disabled?: boolean;
 		hidden?: boolean;
@@ -14,12 +13,11 @@
 	import './style.css';
 	import { Col } from '$lib/layout';
 	import Label from '../label/index.svelte';
-	import type { Snippet } from 'svelte';
 
-	let { children, description, disabled, label, hidden, ...rest } = $props<RadioGroupAttributes>();
+	let { description, disabled, label, hidden, ...rest }: RadioGroupAttributes = $props();
 </script>
 
-<fieldset class="WuiRadioGroup {rest.class || ''}" {hidden} {disabled}>
+<fieldset role="radiogroup" class="WuiRadioGroup {rest.class || ''}" {hidden} {disabled}>
 	{#if label && $$slots.description && !hidden}
 		<Label {description}>
 			{label}
@@ -32,7 +30,7 @@
 	{/if}
 
 	<Col align="flex-start" justify="flex-start" width="full" gap="nm">
-		{@render children()}
+		<slot />
 	</Col>
 </fieldset>
 

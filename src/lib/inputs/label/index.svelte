@@ -10,7 +10,7 @@
 	import './style.css';
 	import { Col } from '$lib/layout';
 
-	let { description, ...rest } = $props<InputLabelAttributes>();
+	let { description, ...rest }: InputLabelAttributes = $props();
 </script>
 
 <Col justify="flex-start" align="flex-start" class="WuiInput__label__root">

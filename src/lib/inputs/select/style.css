@@ -44,14 +44,6 @@
   border-color: var(--color-primary);
 }
 
-.WuiSelect__listbox {
-  --WuiSelect-posY: 0;
-  --WuiSelect-posX: 0;
-  width: var(--WuiSelect-width) !important;
-  position: absolute;
-  transform: translate(var(--WuiSelect-posX), var(--WuiSelect-posY));
-}
-
 .WuiSelect__combobox {
   padding: 0 calc(var(--space-nm) - 0.8px) !important;
 }

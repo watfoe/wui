@@ -1,0 +1,243 @@
+.WuiLikeButton {
+  align-items: center;
+  border: 1px solid var(--WuiLikeButton-border-color, transparent);
+  border-radius: var(--WuiLikeButton-radius, var(--radius));
+  color: var(--WuiLikeButton-color-on-bg-soft);
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--WuiLikeButton-flex-gap, var(--space-nm));
+  height: var(--WuiLikeButton-height, var(--button-height));
+  justify-content: var(--WuiLikeButtonFlex-justify, center);
+  padding: 0 var(--WuiLikeButton-paddingX, var(--space-md));
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.WuiLikeButton--gap-sm {
+  --WuiLikeButton-flex-gap: var(--space-sm);
+}
+
+.WuiLikeButton--gap-nm {
+  --WuiLikeButton-flex-gap: var(--space-md);
+}
+
+.WuiLikeButton--gap-md {
+  --WuiLikeButton-flex-gap: var(--space-md);
+}
+
+.WuiLikeButton--gap-lg {
+  --WuiLikeButton-flex-gap: var(--space-lg);
+}
+
+.WuiLikeButton--sm {
+  --WuiLikeButton-height: var(--button-height-sm);
+  --WuiLikeButton-paddingX: var(--space-nm);
+  --WuiLikeButton-flex-gap: var(--space-sm);
+}
+
+.WuiLikeButton--md {
+  --WuiLikeButton-height: var(--button-height-md);
+  --WuiLikeButton-paddingX: var(--space-md);
+  --WuiLikeButton-flex-gap: var(--space-nm);
+}
+
+.WuiLikeButton--lg {
+  --WuiLikeButton-height: var(--button-height-lg);
+  --WuiLikeButton-paddingX: var(--space-lg);
+  --WuiLikeButton-flex-gap: var(--space-md);
+}
+
+.WuiLikeButton--primary {
+  --WuiLikeButton-bg: var(--color-primary);
+  --WuiLikeButton-bg-soft: var(--color-selection-container);
+  --WuiLikeButton-color-on-bg-soft: var(--color-primary);
+}
+
+.WuiLikeButton--neutral {
+  --WuiLikeButton-bg: var(--color-neutral);
+  --WuiLikeButton-bg-soft: var(--color-neutral-container);
+  --WuiLikeButton-color-on-bg-soft: var(--color-black-4);
+}
+
+.WuiLikeButton--success {
+  --WuiLikeButton-bg: var(--color-success);
+  --WuiLikeButton-bg-soft: var(--color-success-container);
+  --WuiLikeButton-color-on-bg-soft: var(--color-success);
+}
+
+.WuiLikeButton--warning {
+  --WuiLikeButton-bg: var(--color-warning);
+  --WuiLikeButton-bg-soft: var(--color-warning-container);
+  --WuiLikeButton-color-on-bg-soft: var(--color-warning);
+}
+
+.WuiLikeButton--danger {
+  --WuiLikeButton-bg: var(--color-error);
+  --WuiLikeButton-bg-soft: var(--color-error-container);
+  --WuiLikeButton-color-on-bg-soft: var(--color-error);
+}
+
+.WuiLikeButton--primary:disabled,
+.WuiLikeButton--neutral:disabled,
+.WuiLikeButton--success:disabled,
+.WuiLikeButton--warning:disabled {
+  --WuiLikeButton-bg: var(--color-disabled);
+  --WuiLikeButton-bg-soft: var(--color-disabled);
+  --WuiLikeButton-color-on-bg-soft: var(--color-black-1);
+}
+
+.WuiLikeButton:disabled {
+  color: var(--color-black-1);
+  cursor: default;
+  pointer-events: none;
+}
+
+.WuiLikeButton--solid {
+  background-color: var(--WuiLikeButton-bg, var(--color-primary));
+  color: var(--color-white, var(--color-on-primary));
+}
+
+.WuiLikeButton--solid:not(:disabled):hover,
+.WuiLikeButton--solid:not(:disabled):focus,
+.WuiLikeButton--soft:not(:disabled):hover,
+.WuiLikeButton--soft:not(:disabled):focus {
+  filter: brightness(0.95);
+}
+
+.WuiLikeButton--outline {
+  background-color: transparent;
+  --WuiLikeButton-border-color: var(--WuiLikeButton-bg, var(--color-primary));
+}
+
+.WuiLikeButton--outline:not(:disabled):hover,
+.WuiLikeButton--outline:not(:disabled):focus {
+  background-color: var(--WuiLikeButton-bg-soft, var(--color-selection-container));
+}
+
+.WuiLikeButton--soft {
+  background-color: var(--WuiLikeButton-bg-soft);
+}
+
+.WuiLikeButton--plain {
+  background-color: transparent;
+}
+
+.WuiLikeButton--plain:not(:disabled):hover,
+.WuiLikeButton--plain:not(:disabled):focus {
+  background-color: var(--WuiLikeButton-bg-soft);
+}
+
+.WuiLikeButton--none,
+.WuiLikeButton--none:hover {
+  background-color: transparent;
+  --WuiLikeButton-height: auto !important;
+  --WuiLikeButton-paddingX: 0 !important;
+}
+
+.WuiLikeButton--width-full {
+  width: 100%;
+}
+
+.WuiLikeButton--width-half {
+  width: 50%;
+}
+
+.WuiLikeButton--width-third {
+  width: 33.333333%;
+}
+
+.WuiLikeButton--width-quarter {
+  width: 25%;
+}
+
+.WuiLikeButton--width-auto {
+  width: auto;
+}
+
+.WuiLikeButton--width-inherit {
+  width: inherit;
+}
+
+.WuiLikeButton--height-full {
+  height: 100%;
+}
+
+.WuiLikeButton--height-half {
+  height: 50%;
+}
+
+.WuiLikeButton--height-third {
+  height: 33.333333%;
+}
+
+.WuiLikeButton--height-quarter {
+  height: 25%;
+}
+
+.WuiLikeButton--height-auto {
+  height: auto;
+}
+
+.WuiLikeButton--height-inherit {
+  height: inherit;
+}
+
+.WuiLikeButton--only-icon {
+  width: var(--WuiLikeButton-height);
+  --WuiLikeButton-paddingX: 0;
+}
+
+.WuiLikeButton__text {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.WuiLikeButton--loading:disabled {
+  color: transparent !important;
+  position: relative;
+}
+
+.WuiLikeButton--loading:disabled * {
+  background-color: transparent !important;
+  color: transparent !important;
+}
+
+.WuiLikeButton--loading::before {
+  content: "";
+  border: 1.5px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  border-right-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  -webkit-animation: spin 0.8s linear infinite;
+  /* Safari */
+  -moz-animation: spin 0.8s linear infinite;
+  animation: spin 0.8s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

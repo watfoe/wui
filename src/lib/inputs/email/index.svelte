@@ -4,7 +4,12 @@
 
 	interface EmailInputAttributes extends BaseInputAttributes {}
 
-	let { _this, error, value, ...rest } = $props<EmailInputAttributes>();
+	let {
+		_this = $bindable(),
+		error = $bindable(),
+		value = $bindable(),
+		...rest
+	}: EmailInputAttributes = $props();
 
 	function rule(value: string) {
 		return new Email(value);

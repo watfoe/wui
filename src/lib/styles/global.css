@@ -1,32 +1,11 @@
+@import 'material-symbols/rounded';
+
 @font-face {
   font-family: "Lexend";
   src: url("./fonts/lexend.ttf") format("truetype");
-  font-weight: 300 400 500 600;
+  font-weight: 300 400 500;
   font-stretch: 75% 125%;
   font-style: oblique 0deg 12deg;
-}
-
-@font-face {
-  font-family: 'Material Symbols Rounded';
-  font-style: normal;
-  font-weight: 300;
-  src: url("./fonts/material-symbols.woff2") format('woff2');
-}
-
-.material-symbols-rounded {
-  font-family: "Material Symbols Rounded";
-  font-style: normal;
-  font-size: 1.5rem;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga";
 }
 
 :root {

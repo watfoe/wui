@@ -14,16 +14,17 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Icon, Text } from '$lib';
+	import { Icon } from '$lib/display';
+	import { Text } from '$lib/typography';
 
 	let {
-		_this,
+		_this = $bindable(),
 		color = 'neutral',
-		checked,
+		checked = $bindable(false),
 		label,
 		size = 'md',
 		...rest
-	} = $props<CheckBoxAttributes>();
+	}: CheckBoxAttributes = $props();
 
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
@@ -33,7 +34,7 @@
 
 	<Text
 		variant="label"
-		size="lg"
+		{size}
 		color={color === 'neutral' ? 'black' : color}
 		for={id}
 		class="WuiCheckbox__label"

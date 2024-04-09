@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { onMount, type Snippet } from 'svelte';
+	import { getContext, type Snippet } from 'svelte';
 
 	export interface TabPanelsAttributes {
 		id: string;
@@ -10,16 +10,22 @@
 </script>
 
 <script lang="ts">
-	let { id, class: _class, children, style } = $props<TabPanelsAttributes>();
+	let { id, class: _class, children, style }: TabPanelsAttributes = $props();
+	let _this: HTMLDivElement;
 
-	onMount(() => {
+
+	$effect(() => {
+		getContext(_this);
+	})
+
+	$effect.pre(() => {
 		if (!id) {
 			throw new Error('TabPanels must have an id attribute');
 		}
 	});
 </script>
 
-<div {id} class="WuiTabPanels {_class || ''}" {style}>
+<div bind:this={_this} {id} class="WuiTabPanels {_class || ''}" {style}>
 	{@render children()}
 </div>
 

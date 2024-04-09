@@ -1,13 +1,27 @@
 .WuiModal {
+  --WuiModal-minWidth: 400px;
   left: 50%;
   max-width: 100%;
   max-height: 100%;
-  min-width: var(--WuiMenu-minWidth);
+  min-width: var(--WuiModal-minWidth);
   min-height: 50px;
   position: absolute;
+  width: auto !important;
+}
+
+.WuiModal--top {
+  top: var(--space-nm);
+  transform: translate(-50%, 0);
+}
+
+.WuiModal--bottom {
+  bottom: var(--space-nm);
+  transform: translate(-50%, 0);
+}
+
+.WuiModal--center {
   top: 50%;
   transform: translate(-50%, -50%);
-  width: auto !important;
 }
 
 .WuiModal__header {

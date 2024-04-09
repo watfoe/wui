@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import { Text } from '$lib';
 	import type { Snippet } from 'svelte';
 	export interface BadgeAttributes {
 		children: Snippet;
@@ -18,26 +19,26 @@
 </script>
 
 <script lang="ts">
-	let { content, position = 'top-right', color = 'primary', max } = $props<BadgeAttributes>();
+	let { content, position = 'top-right', color = 'primary', max }: BadgeAttributes = $props();
 </script>
 
 <div
 	aria-label="badge"
-	class="WuiBadge WuiBadge-{position} {!$$slots.content && !content ? 'WuiBadge-no-content' : ''}"
+	class="WuiBadge WuiBadge--{position} {!$$slots.content && !content ? 'WuiBadge--no-content' : ''}"
 >
 	<slot />
 
-	<div class="WuiBadge-content WuiBg-{color}">
+	<div class="WuiBadge__content WuiBg-{color}">
 		{#if $$slots.content}
 			<slot name="content" />
 		{:else if content}
-			<span class="Wui-badge-content">
+			<Text variant="body">
 				{typeof !isNaN(Number(content)) && max
 					? Number(content) > max
 						? `${max}+`
 						: content
 					: content}
-			</span>
+			</Text>
 		{/if}
 	</div>
 </div>
@@ -53,13 +54,13 @@
 		--WuiBadge-translateY: -50%;
 	}
 
-	.WuiBadge-no-content {
+	.WuiBadge--no-content {
 		--WuiBadge-height: 0.75rem;
 		--WuiBadge-paddingX: 0;
 		--WuiBadge-radius: 0.75rem;
 	}
 
-	.WuiBadge-content {
+	.WuiBadge__content {
 		align-items: center;
 		border-radius: var(--WuiBadge-radius);
 		box-sizing: border-box;
@@ -87,25 +88,25 @@
 		z-index: 10000;
 	}
 
-	.WuiBadge-top-left .WuiBadge-content {
+	.WuiBadge--top-left .WuiBadge__content {
 		top: 0;
 		left: 0;
 		--WuiBadge-translateX: -50%;
 		--WuiBadge-translateY: -50%;
 	}
-	.WuiBadge-top-right .WuiBadge-content {
+	.WuiBadge--top-right .WuiBadge__content {
 		top: 0;
 		right: 0;
 		--WuiBadge-translateX: 50%;
 		--WuiBadge-translateY: -50%;
 	}
-	.WuiBadge-bottom-left .WuiBadge-content {
+	.WuiBadge--bottom-left .WuiBadge__content {
 		bottom: 0;
 		left: 0;
 		--WuiBadge-translateX: -50%;
 		--WuiBadge-translateY: 50%;
 	}
-	.WuiBadge-bottom-right .WuiBadge-content {
+	.WuiBadge--bottom-right .WuiBadge__content {
 		bottom: 0;
 		right: 0;
 		--WuiBadge-translateX: 50%;

@@ -32,7 +32,7 @@
 		underline = false,
 		variant = 'body',
 		...rest
-	} = $props<TextAttributes>();
+	}: TextAttributes = $props();
 
 	const elements = {
 		title: {

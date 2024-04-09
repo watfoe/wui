@@ -11,45 +11,44 @@
 
 <script lang="ts">
 	import './style.css';
-	import { onMount } from 'svelte';
+	import { untrack } from 'svelte';
 
 	let {
-		_this,
+		_this = $bindable(),
 		transparent = false,
-		opened,
+		opened = $bindable(false),
 		onopen,
 		onclose,
 		...rest
-	} = $props<BackdropAttributes>();
+	}: BackdropAttributes = $props();
 
-	onMount(() => {
-		// @ts-ignore
-		_this?.addEventListener('open', open);
+	$effect(() => {
+		untrack(() => {
+			// @ts-ignore
+			_this?.addEventListener('open', open);
+			_this?.addEventListener('close', close);
+
+			if (opened) {
+				_this?.showModal();
+			} else {
+				_this?.close();
+			}
+		});
 	});
+
+	function keydown(e: KeyboardEvent) {
+		// Browsers already implement the escape key to close the dialog. The problem is
+		// that if we don't prevent the default behavior, the dialog will close but also some other
+		// action will be triggered. For example, the browser window is minimized.
+		if (e.key === 'Escape') {
+			e.preventDefault();
+			close();
+		}
+	}
 
 	function open(e: CustomEvent<HTMLDialogElement>) {
 		_this?.showModal();
 		opened = true;
-
-		_this?.addEventListener(
-			'click',
-			(e) => {
-				close();
-			},
-			{ once: true }
-		);
-
-		_this?.addEventListener(
-			'keydown',
-			(e) => {
-				if (e.key === 'Escape') {
-					e.preventDefault();
-					close();
-				}
-			},
-			{ once: true }
-		);
-
 		onopen?.(e);
 	}
 
@@ -64,6 +63,8 @@
 	{...rest}
 	role="presentation"
 	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {rest.class || ''}"
+	onclick={close}
+	onkeydown={keydown}
 	bind:this={_this}
 >
 	<slot />

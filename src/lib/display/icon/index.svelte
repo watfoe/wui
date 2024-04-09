@@ -1,34 +1,45 @@
 <script context="module" lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import type { Snippet } from "svelte";
 
-	export interface IconAttributes extends HTMLAttributes<HTMLSpanElement> {
+	export interface IconAttributes {
 		children: Snippet;
 		class?: string;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'inherit';
-		fill?: '0' | '1';
+		fill?: boolean;
+		grade?: number;
 		size?: 'sm' | 'md' | 'lg';
+		style?: string;
+		weight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 	}
 </script>
 
 <script lang="ts">
-	let { size = 'md', fill = '0', color = 'inherit', ...rest } = $props<IconAttributes>();
+	let {
+		children,
+		color = 'inherit',
+		fill = false,
+		grade = 0,
+		size = 'md',
+		weight = '400',
+		...rest
+	}: IconAttributes = $props();
 </script>
 
 <span
-	role="img"
 	aria-label="Icon"
-	{...rest}
+	role="img"
 	class="material-symbols-rounded WuiIcon WuiIcon--{size} WuiIcon--{color} {rest.class || ''}"
+	style="{rest.style || ''}; font-variation-settings: 'FILL' {fill
+		? '1'
+		: '0'}, 'wght' {weight}, 'GRAD' {grade}, 'opsz' 48;"
 >
-	<slot />
+	{@render children()}
 </span>
 
 <style>
 	.WuiIcon {
 		color: var(--WuiIcon-color);
 		font-size: var(--WuiIcon-size);
-		font-variation-settings: 'FILL' var(--fill);
 	}
 
 	.WuiIcon--primary {

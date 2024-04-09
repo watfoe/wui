@@ -3,6 +3,6 @@
 	import { Row } from "$lib/layout";
 </script>
 
-<Row role="img" aria-label="Avatar Group" class="WuiAvatarGroup">
+<Row role="group" aria-label="Avatar Group" class="WuiAvatarGroup">
   <slot />
 </Row>

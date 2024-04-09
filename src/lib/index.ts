@@ -1,4 +1,4 @@
-export * as button from './buttons';
+export * as buttons from './buttons';
 export * from './buttons';
 export * as display from './display';
 export * from './display';

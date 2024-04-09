@@ -21,8 +21,9 @@
 		size = 'md',
 		variant = 'solid',
 		...rest
-	} = $props<AvatarAttributes>();
+	}: AvatarAttributes = $props();
 
+	// TODO: Rethink this logic
 	let isColorPreset = ['primary', 'neutral', 'success', 'warning', 'danger'].includes(color!);
 </script>
 

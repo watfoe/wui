@@ -1,3 +1,5 @@
+<!-- TODO: Should it be a popover instead of a tooltip? -->
+
 <script context="module" lang="ts">
 	import type { Snippet } from 'svelte';
 	export interface TooltipAttributes {
@@ -8,16 +10,17 @@
 			| 'bottom'
 			| 'left'
 			| 'right'
-			| 'top-left'
-			| 'top-right'
-			| 'bottom-left'
-			| 'bottom-right';
+			| 'top-start'
+			| 'top-end'
+			| 'bottom-start'
+			| 'bottom-end';
+		// TODO: Implement other variants - solid already implemented
 		variant?: 'solid' | 'outline' | 'plain' | 'soft';
 	}
 </script>
 
 <script lang="ts">
-	let { title, position = 'bottom', children } = $props<TooltipAttributes>();
+	let { title, position = 'bottom', children }: TooltipAttributes = $props();
 </script>
 
 <div
@@ -69,19 +72,19 @@
 	.WuiTooltip-bottom::after {
 		top: calc(100% + var(--space-xs));
 	}
-	.WuiTooltip-top-left::after {
+	.WuiTooltip-top-start::after {
 		bottom: calc(100% + var(--space-xs));
 		left: 0;
 	}
-	.WuiTooltip-top-right::after {
+	.WuiTooltip-top-end::after {
 		bottom: calc(100% + var(--space-xs));
 		right: 0;
 	}
-	.WuiTooltip-bottom-left::after {
+	.WuiTooltip-bottom-start::after {
 		top: calc(100% + var(--space-xs));
 		left: 0;
 	}
-	.WuiTooltip-bottom-right::after {
+	.WuiTooltip-bottom-end::after {
 		top: calc(100% + var(--space-xs));
 		right: 0;
 	}

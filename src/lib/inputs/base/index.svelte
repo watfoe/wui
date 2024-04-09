@@ -1,11 +1,7 @@
 <script context="module" lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { BaseProps } from '../_common_';
-
-	export type BaseInputAttributes = BaseProps<
-		Omit<HTMLInputAttributes, 'prefix' | 'size'>,
-		HTMLInputElement
-	>;
+	import type { HTMLInputAttributes } from 'svelte/elements';
+	export interface BaseInputAttributes extends BaseProps<HTMLInputElement, HTMLInputAttributes> {};
 </script>
 
 <script lang="ts">
@@ -14,11 +10,11 @@
 
 	import { validate, mask, ValidationError } from '../_common_';
 	import { Icon } from '$lib/display';
-	import { onMount } from 'svelte';
+	import { untrack } from 'svelte';
 
 	let {
-		_this,
-		error,
+		_this = $bindable(),
+		error = $bindable(),
 		masks,
 		oninput,
 		onblur,
@@ -29,38 +25,38 @@
 		size = 'md',
 		suffix,
 		validateon = 'submit',
-		value,
+		value = $bindable(),
 		variant = 'outline',
 		...rest
-	} = $props<BaseInputAttributes>();
+	}: BaseInputAttributes = $props();
 
 	$effect(() => {
-		_this?.setCustomValidity(error === undefined ? '' : error?.message);
-	});
+		untrack(() => {
+			_this?.setCustomValidity(error === undefined ? '' : error?.message);
 
-	onMount(() => {
-		if (required && !rules?.required) {
-			rules = rules || {};
-			rules.required = true;
-		}
+			if (required && !rules?.required) {
+				rules = rules || {};
+				rules.required = true;
+			}
 
-		if (rules && validateon === 'submit') {
-			// Get the form element that this input is in
-			const form = _this?.closest('form');
-			form?.addEventListener(
-				'submit',
-				(e) => {
-					_validate(_this?.value!);
-					if (error) {
-						e.preventDefault();
-						// Stop the event from propagating to other event listeners
-						e.stopPropagation();
-					}
-				},
-				// Capture phase to ensure that this event listener is the first to run
-				true
-			);
-		}
+			if (rules && validateon === 'submit') {
+				// Get the form element that this input is in
+				const form = _this?.closest('form');
+				form?.addEventListener(
+					'submit',
+					(e) => {
+						_validate(_this?.value!);
+						if (error) {
+							e.preventDefault();
+							// Stop the event from propagating to other event listeners
+							e.stopPropagation();
+						}
+					},
+					// Capture phase to ensure that this event listener is the first to run
+					true
+				);
+			}
+		});
 	});
 
 	function _validate(_value: string) {
@@ -74,7 +70,7 @@
 		onvalidate?.(error);
 	}
 
-	function _onblur(e: FocusEvent & { currentTarget: HTMLInputElement }) {
+	function blur(e: FocusEvent & { currentTarget: HTMLInputElement }) {
 		let _value = e.currentTarget.value;
 
 		if (rules && validateon === 'blur') {
@@ -84,7 +80,7 @@
 		onblur?.(e);
 	}
 
-	function _oninput(e: Event & { currentTarget: HTMLInputElement }) {
+	function input(e: Event & { currentTarget: HTMLInputElement }) {
 		let _value = e.currentTarget.value;
 
 		if (masks) {
@@ -117,8 +113,8 @@
 		class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix
 			? 'WuiInput--prefixed'
 			: ''} {suffix ? 'WuiInput--suffixed' : ''} {rest.class || ''}"
-		onblur={_onblur}
-		oninput={_oninput}
+		onblur={blur}
+		oninput={input}
 		bind:this={_this}
 		bind:value
 	/>

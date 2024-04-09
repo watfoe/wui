@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	let { brand = 'watfoe', size = 100, ...rest } = $props<LogoAttributes>();
+	let { brand = 'watfoe', size = 100, ...rest }: LogoAttributes = $props();
 </script>
 
 {#if brand === 'watfoe'}

@@ -22,7 +22,7 @@
 		size = 'md',
 		value,
 		...rest
-	} = $props<SwitchAttributes>();
+	}: SwitchAttributes = $props();
 </script>
 
 <div class="WuiSwitch WuiSwitch--{size} WuiSwitch--{color}">

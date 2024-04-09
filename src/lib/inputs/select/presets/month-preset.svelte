@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Month } from '$lib/domains';
-	import Option from '../option.svelte';
+	import Option, { type OptionAttributes } from '../option.svelte';
 
-	const { selected } = $props<{ selected?: string }>();
+	interface MonthPresetAttributes {
+		selected?: string;
+	}
+
+	const { selected }: MonthPresetAttributes = $props();
 	const months = Month.list();
 </script>
 

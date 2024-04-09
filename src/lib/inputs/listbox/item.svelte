@@ -1,84 +1,105 @@
 <script lang="ts" context="module">
-	import type { ButtonAttributes } from '$lib/buttons';
+	import { ButtonLike, type ButtonLikeAttributes } from '$lib/utils';
+	import { getContext, untrack } from 'svelte';
 
-	export interface ListItemAttributes extends Omit<ButtonAttributes, 'onselect'> {
+	export interface ListItemAttributes
+		extends Omit<ButtonLikeAttributes<HTMLLabelElement>, 'element'> {
+		_this?: HTMLInputElement;
 		selected?: boolean;
-		role?: 'listitem' | 'option' | 'menuitem';
-		onselect?: (e: CustomEvent<{ selected: boolean }>) => void;
+		role?: 'listitem' | 'option';
+		value?: string;
 	}
 </script>
 
 <script lang="ts">
-	import { Button } from '$lib/buttons';
-	import { onMount } from 'svelte';
+	let {
+		_this = $bindable(),
+		role = 'listitem',
+		selected = $bindable(false),
+		value = $bindable(),
+		...rest
+	}: ListItemAttributes = $props();
 
-	let { _this, value, selected = false, role = 'listitem', ...rest } = $props<ListItemAttributes>();
+	const id = Math.random().toString(36).substring(2, 15);
+	const context: { name: string; multiple: boolean } = getContext('listbox-name') || {};
 
-	onMount(() => {
-		if (selected && value) {
-			// Without the timeout, the event is dispatched but the listener has not been registered yet.
-			setTimeout(() => {
-				_this?.click();
-			}, 0);
-		}
-
-		// Keyboard accessibility
-		_this?.addEventListener('keydown', (e: KeyboardEvent) => {
-			const { key } = e;
-
-			if (key === 'ArrowDown') {
-				e.preventDefault();
-
-				// If it has focus, move to the next item
-				if (_this === document.activeElement) {
-					const next = _this.nextElementSibling as HTMLButtonElement;
-
-					if (next) {
-						next.focus();
-					} else if (_this.previousElementSibling) {
-						const first = _this.parentElement?.firstElementChild as HTMLButtonElement;
-						first?.focus();
-					}
-				}
-			} else if (key === 'ArrowUp') {
-				e.preventDefault();
-				// If it has focus, move to the next item
-				if (_this === document.activeElement) {
-					const previous = _this.previousElementSibling as HTMLButtonElement;
-
-					if (previous) {
-						previous.focus();
-					} else if (_this.nextElementSibling) {
-						const last = _this?.parentElement?.lastElementChild as HTMLButtonElement;
-						last?.focus();
-					}
-				}
-			} else if (key === 'Enter' || key === ' ') {
-				e.preventDefault();
-				_this?.click();
+	$effect(() => {
+		untrack(() => {
+			if (selected && value) {
+				// Without the timeout, the event is dispatched but the listener has not been registered yet.
+				setTimeout(() => {
+					_this?.click();
+				}, 0);
 			}
 		});
 	});
 
-	function _onselect(e: CustomEvent<{ selected: boolean }>) {
-		selected = e.detail.selected;
+	function keydown(e: KeyboardEvent) {
+		const { key } = e;
+
+		if (key === 'ArrowDown') {
+			e.preventDefault();
+
+			// If it has focus, move to the next item
+			if (_this === document.activeElement) {
+				const next = _this.nextElementSibling as HTMLButtonElement;
+
+				if (next) {
+					next.focus();
+				} else if (_this.previousElementSibling) {
+					const first = _this.parentElement?.firstElementChild as HTMLButtonElement;
+					first?.focus();
+				}
+			}
+		} else if (key === 'ArrowUp') {
+			e.preventDefault();
+			// If it has focus, move to the next item
+			if (_this === document.activeElement) {
+				const previous = _this.previousElementSibling as HTMLButtonElement;
+
+				if (previous) {
+					previous.focus();
+				} else if (_this.nextElementSibling) {
+					const last = _this?.parentElement?.lastElementChild as HTMLButtonElement;
+					last?.focus();
+				}
+			}
+		} else if (key === 'Enter' || key === ' ') {
+			e.preventDefault();
+			_this?.click();
+		}
 	}
 </script>
 
-<Button
-	{...rest}
+<fieldset
 	{role}
-	{value}
-	type="button"
 	aria-selected={selected}
-	variant={selected ? 'soft' : 'plain'}
-	color={selected ? 'primary' : 'neutral'}
-	justify="flex-start"
-	width="full"
-	bold={false}
-	class="WuiListbox__listitem"
-	onselect={_onselect}
-	bind:_this
+	class="WuiListbox__item WuiListbox__item_{context.name}"
+	onkeydown={keydown}
 >
-	<slot />
-</Button>
+	<input
+		type="checkbox"
+		class="WuiListbox__item__input"
+		{id}
+		{value}
+		name={context.name}
+		bind:this={_this}
+		bind:checked={selected}
+	/>
+
+	<ButtonLike
+		{...rest}
+		element="label"
+		variant={selected ? 'soft' : 'plain'}
+		color={selected ? 'primary' : 'neutral'}
+		tabindex={selected ? 0 : -1}
+		size="md"
+		justify="flex-start"
+		width="full"
+		bold={false}
+		for={id}
+		class="WuiListbox__item_label"
+	>
+		<slot />
+	</ButtonLike>
+</fieldset>

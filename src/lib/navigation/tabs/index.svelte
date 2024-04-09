@@ -1,80 +1,90 @@
 <script context="module" lang="ts">
-	import { onMount, type Snippet } from 'svelte';
+	import type { ButtonAttributes } from '$lib';
+	import { untrack, type Snippet, setContext } from 'svelte';
 
 	export interface TabsAttributes {
 		for: string;
 		bottomrule?: boolean;
     children: Snippet;
+		color?: ButtonAttributes['color'];
+		size?: ButtonAttributes['size'];
+		selected?: number;
+		variant?: ButtonAttributes['variant'];
 	}
 </script>
 
 <script lang="ts">
-	let { for: _for, bottomrule = true, children } = $props<TabsAttributes>();
+	let { for: _for, bottomrule = true, children, color, selected, size, variant }: TabsAttributes = $props();
 	let tabs: HTMLDivElement;
-	let activeIndex = 0;
+	let activeIndex = selected || 0;
 
-	onMount(() => {
-		const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
-		const tabButtons = tabs.querySelectorAll('.WuiTab');
+	// To be use by Tab items
+	setContext('wui-tab', {
+		color,
+		size,
+		variant,
+	});
 
-		if (!tabPanelsParent) {
-			throw new Error(`No tabpanels found for ${_for}`);
-		}
+	$effect(() => {
+		untrack(() => {
+			const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
+			const tabButtons = tabs.querySelectorAll('.WuiTab');
 
-		const tabPanels = tabPanelsParent.children;
-
-		function dispatchEvent(elem: Element, active: boolean) {
-			elem.dispatchEvent(
-				new CustomEvent('select', {
-					detail: {
-						active
-					}
-				})
-			);
-		}
-
-		tabButtons.forEach((tabButton, index) => {
-			const tabId = `${_for}-tab-${index}`;
-			const tabPanelId = `${_for}-tabpanel-${index}`;
-
-			tabButton.setAttribute('id', tabId);
-			tabButton.setAttribute('aria-controls', tabPanelId);
-
-			// Add aria role tab to each tabpanel
-			tabPanels[index]?.setAttribute('role', 'tabpanel');
-			tabPanels[index]?.setAttribute('id', tabPanelId);
-			tabPanels[index]?.setAttribute('tabindex', '-1');
-			tabPanels[index]?.setAttribute('aria-labelledby', tabId);
-
-			if (index === activeIndex) {
-				dispatchEvent(tabButton, true);
-
-				if (tabPanels[index]) {
-					tabPanels[index].setAttribute('tabindex', '0');
-					dispatchEvent(tabPanels[index], true);
-				}
+			if (!tabPanelsParent) {
+				throw new Error(`No tabpanels found for ${_for}`);
 			}
 
-			tabButton.addEventListener('click', () => {
+			const tabPanels = tabPanelsParent.children;
+
+			function dispatchEvent(elem: Element) {
+				elem.dispatchEvent(
+					new Event('select')
+				);
+			}
+
+			tabButtons.forEach((tabButton, index) => {
+				const tabId = `${_for}-tab-${index}`;
+				const tabPanelId = `${_for}-tabpanel-${index}`;
+
+				tabButton.setAttribute('id', tabId);
+				tabButton.setAttribute('aria-controls', tabPanelId);
+
+				// Add aria role tab to each tabpanel
+				tabPanels[index]?.setAttribute('role', 'tabpanel');
+				tabPanels[index]?.setAttribute('id', tabPanelId);
+				tabPanels[index]?.setAttribute('tabindex', '-1');
+				tabPanels[index]?.setAttribute('aria-labelledby', tabId);
+
 				if (index === activeIndex) {
-					return;
+					dispatchEvent(tabButton);
+
+					if (tabPanels[index]) {
+						tabPanels[index].setAttribute('tabindex', '0');
+						dispatchEvent(tabPanels[index]);
+					}
 				}
 
-				dispatchEvent(tabButtons[activeIndex], false);
+				tabButton.addEventListener('click', () => {
+					if (index === activeIndex) {
+						return;
+					}
 
-				if (tabPanels[activeIndex]) {
-					tabPanels[activeIndex].setAttribute('tabindex', '-1');
-					dispatchEvent(tabPanels[activeIndex], false);
-				}
+					dispatchEvent(tabButtons[activeIndex]);
 
-				dispatchEvent(tabButton, true);
+					if (tabPanels[activeIndex]) {
+						tabPanels[activeIndex].setAttribute('tabindex', '-1');
+						dispatchEvent(tabPanels[activeIndex]);
+					}
 
-				if (tabPanels[index]) {
-					tabPanels[index].setAttribute('tabindex', '0');
-					dispatchEvent(tabPanels[index], true);
-				}
+					dispatchEvent(tabButton);
 
-				activeIndex = index;
+					if (tabPanels[index]) {
+						tabPanels[index].setAttribute('tabindex', '0');
+						dispatchEvent(tabPanels[index]);
+					}
+
+					activeIndex = index;
+				});
 			});
 		});
 	});
