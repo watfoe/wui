@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
-	import type { Snippet } from "svelte";
+	import type { Snippet } from 'svelte';
 
 	export interface IconAttributes {
-		children: Snippet;
 		class?: string;
+		children?: Snippet;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'inherit';
 		fill?: boolean;
 		grade?: number;
@@ -15,7 +15,6 @@
 
 <script lang="ts">
 	let {
-		children,
 		color = 'inherit',
 		fill = false,
 		grade = 0,
@@ -33,7 +32,7 @@
 		? '1'
 		: '0'}, 'wght' {weight}, 'GRAD' {grade}, 'opsz' 48;"
 >
-	{@render children()}
+	<slot />
 </span>
 
 <style>

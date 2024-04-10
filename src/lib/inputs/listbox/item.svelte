@@ -2,7 +2,7 @@
 	import { LikeButton, type LikeButtonAttributes } from '$lib/utils';
 	import { getContext, untrack } from 'svelte';
 
-	export interface ListItemAttributes
+	export interface ListboxItemAttributes
 		extends Omit<LikeButtonAttributes<HTMLLabelElement>, 'element'> {
 		_this?: HTMLInputElement;
 		selected?: boolean;
@@ -18,7 +18,7 @@
 		selected = $bindable(false),
 		value = $bindable(),
 		...rest
-	}: ListItemAttributes = $props();
+	}: ListboxItemAttributes = $props();
 
 	const id = Math.random().toString(36).substring(2, 15);
 	const context: { name: string; multiple: boolean } = getContext('listbox-name') || {};

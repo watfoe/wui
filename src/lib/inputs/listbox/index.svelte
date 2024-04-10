@@ -1,13 +1,15 @@
 <script context="module" lang="ts">
 	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+	import type { LikeButtonAttributes } from '$lib/utils';
 
+	// TODO: Implement color, size, and variant.
 	export interface ListboxAttributes extends HTMLFieldsetAttributes {
 		_this?: HTMLFieldSetElement;
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+		color?: LikeButtonAttributes<HTMLFieldSetElement>['color'];
 		multiple?: boolean;
-		size?: 'sm' | 'md' | 'lg';
+		size?: LikeButtonAttributes<HTMLFieldSetElement>['size'];
 		value?: string;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
+		variant?: LikeButtonAttributes<HTMLFieldSetElement>['variant'];
 	}
 </script>
 

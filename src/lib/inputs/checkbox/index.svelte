@@ -5,8 +5,6 @@
 		checked?: boolean;
 		color?: LikeButtonAttributes<HTMLSpanElement>['color'];
 		label: string;
-		name?: string;
-		required?: boolean;
 		size?: LikeButtonAttributes<HTMLSpanElement>['size'];
 		variant?: LikeButtonAttributes<HTMLSpanElement>['variant'];
 	}
@@ -24,7 +22,7 @@
 		checked = $bindable(false),
 		label,
 		size = 'md',
-		variant = 'soft',
+		variant = 'outline',
 		...rest
 	}: CheckBoxAttributes = $props();
 

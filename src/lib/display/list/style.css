@@ -1,0 +1,36 @@
+.WuiList {
+  display: flex;
+  gap: var(--WuiList-flex-gap, 0);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: square;
+}
+
+.WuiList--horizontal {
+  flex-direction: row;
+}
+
+.WuiList--vertical {
+  flex-direction: column;
+}
+
+.WuiList--spacing-sm {
+  --WuiList-flex-gap: var(--space-sm);
+}
+
+.WuiList--spacing-nm {
+  --WuiList-flex-gap: var(--space-md);
+}
+
+.WuiList--spacing-md {
+  --WuiList-flex-gap: var(--space-md);
+}
+
+.WuiList--spacing-lg {
+  --WuiList-flex-gap: var(--space-lg);
+}
+
+.WuiListItem {
+  border-radius: 0;
+}

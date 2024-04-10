@@ -1,9 +1,10 @@
 <!-- TODO: Should it be a popover instead of a tooltip? -->
 
-<script context="module" lang="ts">
+<script lang="ts" context="module">
 	import type { Snippet } from 'svelte';
+
 	export interface TooltipAttributes {
-		children: Snippet;
+		children?: Snippet;
 		title: string;
 		position?:
 			| 'top'
@@ -20,7 +21,7 @@
 </script>
 
 <script lang="ts">
-	let { title, position = 'bottom', children }: TooltipAttributes = $props();
+	let { title, position = 'bottom' }: TooltipAttributes = $props();
 </script>
 
 <div
@@ -29,7 +30,7 @@
 	class="WuiTooltip WuiTooltip-{position} "
 	data-tooltip-title={title}
 >
-	{@render children()}
+	<slot />
 </div>
 
 <style>

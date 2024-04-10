@@ -2,6 +2,7 @@
 	import { Text } from '$lib';
 	import type { Snippet } from 'svelte';
 	export interface BadgeAttributes {
+		'aria-label'?: string;
 		children: Snippet;
 		content?: string | number;
 		position?:
@@ -19,16 +20,21 @@
 </script>
 
 <script lang="ts">
-	let { content, position = 'top-right', color = 'primary', max }: BadgeAttributes = $props();
+	let {
+		content,
+		position = 'top-right',
+		color = 'primary',
+		max,
+		...rest
+	}: BadgeAttributes = $props();
 </script>
 
 <div
-	aria-label="badge"
 	class="WuiBadge WuiBadge--{position} {!$$slots.content && !content ? 'WuiBadge--no-content' : ''}"
 >
 	<slot />
 
-	<div class="WuiBadge__content WuiBg-{color}">
+	<div aria-label={rest['aria-label'] || 'badge'} class="WuiBadge__content WuiBg-{color}">
 		{#if $$slots.content}
 			<slot name="content" />
 		{:else if content}
