@@ -48,6 +48,7 @@
 	}: ButtonAttributes = $props();
 
 	let feedback: HTMLDialogElement;
+	let feedbackExpanded = $state(false);
 
 	$effect(() => {
 		untrack(() => {
@@ -56,6 +57,9 @@
 
 				if (_feedback instanceof HTMLDialogElement) {
 					feedback = _feedback;
+					feedback.onclose = () => {
+						feedbackExpanded = false;
+					};
 				} else {
 					throw new Error(`button "anchorfor" attribute must be a valid dialog id`);
 				}
@@ -68,13 +72,17 @@
 			return;
 		}
 
-		feedback?.dispatchEvent(
-			new CustomEvent('open', {
-				detail: {
-					anchor: e.currentTarget
-				}
-			})
-		);
+		if (feedback) {
+			feedback.dispatchEvent(
+				new CustomEvent('open', {
+					detail: {
+						anchor: e.currentTarget
+					}
+				})
+			);
+
+			feedbackExpanded = true;
+		}
 
 		onclick?.(e);
 	}
@@ -82,6 +90,9 @@
 
 <button
 	{...rest}
+	aria-haspopup={anchorfor ? 'true' : undefined}
+	aria-expanded={anchorfor ? feedbackExpanded : undefined}
+	aria-controls={anchorfor || undefined}
 	disabled={loading || disabled}
 	class="WuiLikeButton WuiLikeButton--{variant} WuiLikeButton--{size} WuiLikeButton--{color} WuiLikeButton--gap-{gap} {width
 		? 'WuiLikeButton--width-' + width

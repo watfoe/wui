@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export type ButtonLikeAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A & {
+	export type LikeButtonAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A & {
 		bold?: boolean;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		disabled?: boolean;
@@ -39,7 +39,7 @@
 		width,
 		height,
 		...rest
-	}: ButtonLikeAttributes<any, any> = $props();
+	}: LikeButtonAttributes<any, any> = $props();
 </script>
 
 <svelte:element

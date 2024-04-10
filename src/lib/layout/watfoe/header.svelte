@@ -1,9 +1,9 @@
 <script lang="ts">
 	import './style.css';
-	import { Button, ButtonLink } from '$lib/buttons';
+	import { Button } from '$lib/buttons';
 	import { Logo } from '$lib/display';
 	import { Row } from '$lib/layout';
-	import { Text } from '$lib/typography';
+	import { LinkLikeButton, Text } from '$lib/typography';
 	import type { FlexAttributes } from '../flex/index.svelte';
 
 	interface WatfoeHeaderAttributes extends FlexAttributes {
@@ -40,9 +40,11 @@
 		<Button variant="plain" color="neutral" size="sm" prefix="language">EN</Button>
 		<Button variant="plain" color="neutral" size="sm" prefix="apps">Apps</Button>
 
-		<ButtonLink href={urls?.signin} variant="plain" color="neutral" size="sm">Sign in</ButtonLink>
-		<ButtonLink href={urls?.signup} variant="solid" color="primary" size="sm">
+		<LinkLikeButton href={urls?.signin} variant="plain" color="neutral" size="sm"
+			>Sign in</LinkLikeButton
+		>
+		<LinkLikeButton href={urls?.signup} variant="solid" color="primary" size="sm">
 			Create account
-		</ButtonLink>
+		</LinkLikeButton>
 	</Row>
 </Row>

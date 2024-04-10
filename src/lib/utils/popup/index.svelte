@@ -107,9 +107,10 @@
 					// flip to top
 					top = anchor_top - height - spacing;
 
-					// If the top is still less than 0, position to the top
+					// If the top is still less than 0, position to the center
 					if (top < 13) {
-						top = 13;
+						const d = innerHeight - height;
+						top = d - d / 2;
 					}
 				} else {
 					// position to end-vertical
@@ -122,9 +123,10 @@
 					// flip to bottom
 					top = anchor_top + anchor_height + spacing;
 
-					// If the top is greater than the innerHeight, position to the bottom
+					// If the top is greater than the innerHeight, position to the center
 					if (top + height + spacing > innerHeight) {
-						top = innerHeight - 13;
+						const d = innerHeight - height;
+						top = d - d / 2;
 					}
 				} else {
 					// position to start-vertical
@@ -153,6 +155,7 @@
 <style>
 	.WuiPopup {
 		border: 1px solid var(--color-outline);
+		max-height: calc(100vh - calc(var(--space-nm) * 2)) !important;
 		overflow-y: auto;
 		padding: var(--space-xs) 0;
 		position: absolute;

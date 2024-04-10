@@ -100,10 +100,18 @@
 }
 
 .WuiLikeButton--solid:not(:disabled):hover,
-.WuiLikeButton--solid:not(:disabled):focus,
+.WuiLikeButton--solid:not(:disabled):focus-visible,
 .WuiLikeButton--soft:not(:disabled):hover,
-.WuiLikeButton--soft:not(:disabled):focus {
-  filter: brightness(0.95);
+.WuiLikeButton--soft:not(:disabled):focus-visible {
+  filter: brightness(0.94);
+}
+
+.WuiLikeButton--solid:not(:disabled):active,
+.WuiLikeButton--soft:not(:disabled):active,
+.WuiLikeButton--outline:not(:disabled):active,
+.WuiLikeButton--plain:not(:disabled):active {
+  filter: brightness(0.89);
+  transition: filter 0.13s;
 }
 
 .WuiLikeButton--outline {
@@ -112,7 +120,7 @@
 }
 
 .WuiLikeButton--outline:not(:disabled):hover,
-.WuiLikeButton--outline:not(:disabled):focus {
+.WuiLikeButton--outline:not(:disabled):focus-visible {
   background-color: var(--WuiLikeButton-bg-soft, var(--color-selection-container));
 }
 
@@ -125,7 +133,7 @@
 }
 
 .WuiLikeButton--plain:not(:disabled):hover,
-.WuiLikeButton--plain:not(:disabled):focus {
+.WuiLikeButton--plain:not(:disabled):focus-visible {
   background-color: var(--WuiLikeButton-bg-soft);
 }
 

@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
-	import { ButtonLike, type ButtonLikeAttributes } from '$lib/utils';
+	import { LikeButton, type LikeButtonAttributes } from '$lib/utils';
 	import { getContext, untrack } from 'svelte';
 
 	export interface ListItemAttributes
-		extends Omit<ButtonLikeAttributes<HTMLLabelElement>, 'element'> {
+		extends Omit<LikeButtonAttributes<HTMLLabelElement>, 'element'> {
 		_this?: HTMLInputElement;
 		selected?: boolean;
 		role?: 'listitem' | 'option';
@@ -87,7 +87,7 @@
 		bind:checked={selected}
 	/>
 
-	<ButtonLike
+	<LikeButton
 		{...rest}
 		element="label"
 		variant={selected ? 'soft' : 'plain'}
@@ -101,5 +101,5 @@
 		class="WuiListbox__item_label"
 	>
 		<slot />
-	</ButtonLike>
+	</LikeButton>
 </fieldset>
