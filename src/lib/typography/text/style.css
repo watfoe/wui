@@ -2,7 +2,7 @@
 .WuiAnchor {
   color: var(--WuiText-color, var(--color-black));
   font-size: var(--WuiText-font-size, 1rem);
-  font-weight: 350 !important;
+  font-weight: 350;
   line-height: var(--WuiText-line-height, 1.5rem);
 }
 
@@ -18,10 +18,6 @@
 
 .WuiAnchor--link {
   color: var(--color-link);
-}
-
-.WuiText--primary {
-  --WuiText-color: var(--color-primary);
 }
 
 .WuiText--primary {

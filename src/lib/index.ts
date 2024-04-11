@@ -16,3 +16,5 @@ export * as typography from './typography';
 export * from './typography';
 export * as utils from './utils';
 export * from './utils';
+export * as types from './types';
+export * from './types';

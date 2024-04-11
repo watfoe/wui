@@ -1,8 +1,6 @@
 .WuiInput__error {
-  background-color: var(--color-surface);
-  left: calc(var(--space-nm) - var(--space-xs));
-  padding: 0 var(--space-xs);
+  padding: 1px 0;
   position: absolute;
-  bottom: -6px;
-  z-index: 1000;
+  left: var(--space-xs);
+  top: 100%;
 }

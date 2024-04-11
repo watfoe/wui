@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { FlexAttributes } from '$lib/layout';
+	import type { LikeButtonAttributes } from '$lib/utils';
 
 	export interface ButtonAttributes extends HTMLButtonAttributes {
 		_this?: HTMLButtonElement;
@@ -7,23 +9,23 @@
 		bold?: boolean;
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		disabled?: boolean;
-		gap?: 'sm' | 'nm' | 'md' | 'lg';
+		gap?: FlexAttributes['gap'];
 		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
+		justify?: FlexAttributes['justify'];
 		loading?: boolean;
 		prefix?: string;
 		rounded?: boolean;
-		size?: 'sm' | 'md' | 'lg';
+		size?: LikeButtonAttributes<HTMLButtonElement>['size'];
 		suffix?: string;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
-		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
+		variant?: LikeButtonAttributes<HTMLButtonElement>['variant'];
+		width?: LikeButtonAttributes<HTMLButtonElement>['width'];
 	}
 </script>
 
 <script lang="ts">
 	import './style.css';
 	import { Icon } from '$lib/display';
-	import { getContext, untrack } from 'svelte';
+	import { untrack } from 'svelte';
 
 	let {
 		_this = $bindable(),
