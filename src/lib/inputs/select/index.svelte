@@ -117,12 +117,16 @@
 		onvalidate?.(error);
 	}
 
-	function close() {
+	function popup_closed() {
+		opened = false;
 		if (required && validateon === 'blur') {
 			_validate();
 		}
 		combobox.blur();
-		_this?.dispatchEvent(new Event('blur'));
+	}
+
+	function popup_opened() {
+		opened = true;
 	}
 </script>
 
@@ -154,7 +158,7 @@
 		bold={false}
 		justify="space-between"
 		width="full"
-		class="WuiSelect__combobox {opened ? 'WuiSelect__combobox--opened' : ''}"
+		class="WuiSelect__combobox"
 		onkeydown={_onkeydown}
 		bind:_this={combobox}
 	>
@@ -178,7 +182,7 @@
 	</Button>
 </Col>
 
-<Popup {id} onclose={close}>
+<Popup {id} onopen={popup_opened} onclose={popup_closed}>
 	<Listbox
 		role="listbox"
 		aria-label="List of options"

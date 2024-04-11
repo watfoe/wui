@@ -109,7 +109,14 @@ export function validate(value: string, rules: InputRules) {
       }
     }
   }
-  if (rules?.rule) {
-    rules?.rule(value);
+  if (typeof rules?.rule === 'function') {
+    try {
+      rules?.rule(value);
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        throw error;
+      }
+      throw new ValidationError((error as { message: string }).message);
+    }
   }
 }

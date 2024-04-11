@@ -25,7 +25,6 @@
 </script>
 
 <span
-	aria-label="Icon"
 	role="img"
 	class="material-symbols-rounded WuiIcon WuiIcon--{size} WuiIcon--{color} {rest.class || ''}"
 	style="{rest.style || ''}; font-variation-settings: 'FILL' {fill

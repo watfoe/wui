@@ -5,7 +5,7 @@
 		transparent?: boolean;
 		opened?: boolean;
 		onopen?: (e: CustomEvent<HTMLDialogElement>) => void;
-		onclose?: () => void;
+		onclose?: (e: Event) => void;
 	}
 </script>
 
@@ -42,7 +42,7 @@
 		// action will be triggered. For example, the browser window is minimized.
 		if (e.key === 'Escape') {
 			e.preventDefault();
-			close();
+			close(e);
 		}
 	}
 
@@ -52,10 +52,12 @@
 		onopen?.(e);
 	}
 
-	function close() {
-		_this?.close();
-		opened = false;
-		onclose?.();
+	function close(e: Event) {
+		if (opened) {
+			_this?.close();
+			opened = false;
+			onclose?.(e);
+		}
 	}
 </script>
 

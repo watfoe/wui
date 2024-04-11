@@ -4,8 +4,8 @@ export default class Email {
   private readonly value: string;
 
   constructor(_value: string) {
-    if (!this.startsWithLetter(_value)) {
-      throw new ParseError('Email must start with a letter');
+    if (!this.startsWithLetterOrNum(_value)) {
+      throw new ParseError('Email must start with a letter or number');
     }
 
     _value = _value.toLowerCase().trim();
@@ -19,12 +19,12 @@ export default class Email {
 
   private isValid(value: string): boolean {
     return (
-      value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/) !== null
+      value.match(/^[a-zA-Z0-9]+(?:[\.\-\+\_]{0,1}[a-zA-Z0-9]+)+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$/) !== null
     );
   }
 
-  private startsWithLetter(value: string): boolean {
-    return value.match(/^[a-zA-Z]+.*/) !== null;
+  private startsWithLetterOrNum(value: string): boolean {
+    return value.match(/^[a-zA-Z0-9]+.*/) !== null;
   }
 
   toString(): string {

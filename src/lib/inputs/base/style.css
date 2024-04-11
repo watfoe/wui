@@ -31,6 +31,7 @@
 /* Firefox */
 .WuiInput[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .WuiInput::placeholder {
@@ -39,7 +40,7 @@
 }
 
 .WuiInput:not(:disabled):focus {
-  border-width: 1.8px;
+  box-shadow: inset 0 0 0 0.7px var(--WuiInput-color-outline);
 }
 
 .WuiInput--primary .WuiInput:not(:disabled):not(:invalid):focus,

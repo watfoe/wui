@@ -23,8 +23,7 @@
 <script lang="ts">
 	import './style.css';
 	import { Icon } from '$lib/display';
-	import { Text } from '$lib/typography';
-	import { untrack } from 'svelte';
+	import { getContext, untrack } from 'svelte';
 
 	let {
 		_this = $bindable(),
@@ -94,14 +93,17 @@
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
 	disabled={loading || disabled}
-	class="WuiLikeButton WuiLikeButton--{variant} WuiLikeButton--{size} WuiLikeButton--{color} WuiLikeButton--gap-{gap} {width
-		? 'WuiLikeButton--width-' + width
-		: ''} {height ? 'WuiLikeButton--height-' + height : ''} {!$$slots.default
-		? 'WuiLikeButton--only-icon'
-		: ''} {loading ? 'WuiLikeButton--loading' : ''} {rest.class || ''}"
-	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify};{rounded
-		? '--WuiLikeButton-radius:calc(var(--WuiLikeButton-height) / 2);'
-		: ''}"
+	class="
+		WuiLikeButton WuiLikeButton--{variant} WuiLikeButton--{size} WuiLikeButton--{color} WuiLikeButton--gap-{gap}
+		WuiText WuiText--body WuiText--{size} WuiText--{color} {bold ? 'WuiText--bold' : ''}
+		{width ? 'WuiLikeButton--width-' + width : ''}
+		{height ? 'WuiLikeButton--height-' + height : ''}
+		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
+		{loading ? 'WuiLikeButton--loading' : ''}
+		{rest.class || ''}"
+	style="
+		{rest.style || ''};--WuiLikeButtonFlex-justify:{justify};
+		{rounded ? '--WuiLikeButton-radius:calc(var(--WuiLikeButton-height) / 2);' : ''}"
 	{type}
 	onclick={click}
 	bind:this={_this}
@@ -113,7 +115,7 @@
 	{/if}
 
 	{#if $$slots.default}
-		<Text variant="body" {bold}><slot /></Text>
+		<slot />
 	{/if}
 
 	{#if $$slots.suffix}

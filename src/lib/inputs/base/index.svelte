@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { BaseProps } from '../_common_';
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	export interface BaseInputAttributes extends BaseProps<HTMLInputElement, HTMLInputAttributes> {};
+	export interface BaseInputAttributes extends BaseProps<HTMLInputElement, HTMLInputAttributes> {}
 </script>
 
 <script lang="ts">
@@ -31,9 +31,9 @@
 	}: BaseInputAttributes = $props();
 
 	$effect(() => {
-		untrack(() => {
-			_this?.setCustomValidity(error === undefined ? '' : error?.message);
+		_this?.setCustomValidity(error === undefined ? '' : error?.message);
 
+		untrack(() => {
 			if (required && !rules?.required) {
 				rules = rules || {};
 				rules.required = true;
@@ -73,8 +73,18 @@
 	function blur(e: FocusEvent & { currentTarget: HTMLInputElement }) {
 		let _value = e.currentTarget.value;
 
-		if (rules && validateon === 'blur') {
-			_validate(_value);
+		if (rules) {
+			if (
+				validateon === 'blur' ||
+				// input event won't trigger validation if the input is just focused and then blurred
+				// without any input
+				(!!_value && validateon === 'input') ||
+				(rules.required && validateon === 'input' && _value === '' && !error)
+			) {
+				_validate(_value);
+			}
+		} else {
+			error = undefined;
 		}
 
 		onblur?.(e);
@@ -88,7 +98,10 @@
 			value = _value;
 		}
 
-		if (rules && (validateon === 'input' || error)) {
+		if (!required && _value === '' && error) {
+			// Clear error if input is empty and not required
+			error = undefined;
+		} else if (rules && (validateon === 'input' || error)) {
 			_validate(_value);
 		}
 
@@ -110,9 +123,10 @@
 	<input
 		dir="ltr"
 		{...rest}
-		class="WuiInput WuiInput--{variant} WuiInput--{size} {prefix
-			? 'WuiInput--prefixed'
-			: ''} {suffix ? 'WuiInput--suffixed' : ''} {rest.class || ''}"
+		class="WuiInput WuiInput--{variant} WuiInput--{size}
+		{prefix ? 'WuiInput--prefixed' : ''}
+		{suffix ? 'WuiInput--suffixed' : ''}
+		{rest.class || ''}"
 		onblur={blur}
 		oninput={input}
 		bind:this={_this}

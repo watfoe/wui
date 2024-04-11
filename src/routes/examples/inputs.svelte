@@ -20,8 +20,6 @@
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
 
-	<h2>{name}</h2>
-
 	<Row gap="md" width="full">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
 		<Input type="email" variant="outline" label="Email" class="input" validateon="input" required />

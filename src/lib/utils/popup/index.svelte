@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
-	export interface PopupAttributes extends HTMLAttributes<HTMLDivElement> {
-		_this?: HTMLDivElement;
+	export interface PopupAttributes extends BackdropAttributes {
 		id: string;
 		position?:
 			| 'top'
@@ -19,17 +18,18 @@
 </script>
 
 <script lang="ts">
-	import Backdrop from '../backdrop/index.svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import Backdrop, { type BackdropAttributes } from '../backdrop/index.svelte';
 
 	let {
 		_this = $bindable(),
 		class: _class = '',
 		id,
+		onopen,
 		position = 'bottom-start',
 		...rest
 	}: PopupAttributes = $props();
 
+	let popup: HTMLDivElement;
 	const spacing = 2;
 
 	let rect = $state({
@@ -42,7 +42,7 @@
 		const { innerWidth, innerHeight } = window;
 		const anchor = e.detail.anchor;
 
-		if (anchor && _this) {
+		if (anchor && popup) {
 			const {
 				left: anchor_left,
 				top: anchor_top,
@@ -52,7 +52,7 @@
 
 			let left = anchor_left;
 			let top = anchor_top;
-			let { width, height } = _this.getBoundingClientRect();
+			let { width, height } = popup.getBoundingClientRect();
 
 			// The menu should at least be as wide as the anchor
 			if (width < anchor_width) {
@@ -136,17 +136,18 @@
 
 			rect = { left, top, width };
 		}
+
+		onopen?.(e);
 	}
 </script>
 
-<Backdrop {id} onopen={open} transparent>
+<Backdrop {...rest} {id} onopen={open} transparent bind:_this>
 	<div
 		role="tooltip"
 		aria-label="Popup"
-		{...rest}
 		class="WuiPopup {_class}"
 		style="left:{rect.left}px; top:{rect.top}px; min-width:{rect.width}px;"
-		bind:this={_this}
+		bind:this={popup}
 	>
 		<slot />
 	</div>
