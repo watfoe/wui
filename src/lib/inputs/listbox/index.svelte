@@ -1,15 +1,15 @@
 <script context="module" lang="ts">
 	import type { HTMLFieldsetAttributes } from 'svelte/elements';
-	import type { LikeButtonAttributes } from '$lib/utils';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	// TODO: Implement color, size, and variant.
 	export interface ListboxAttributes extends HTMLFieldsetAttributes {
 		_this?: HTMLFieldSetElement;
-		color?: LikeButtonAttributes<HTMLFieldSetElement>['color'];
+		color?: WuiColor;
 		multiple?: boolean;
-		size?: LikeButtonAttributes<HTMLFieldSetElement>['size'];
+		size?: WuiSize;
+		shape?: WuiShape;
 		value?: string;
-		variant?: LikeButtonAttributes<HTMLFieldSetElement>['variant'];
+		variant?: WuiVariant;
 	}
 </script>
 
@@ -19,10 +19,14 @@
 
 	let {
 		_this = $bindable(),
+		color,
 		multiple = false,
 		name,
 		onchange,
+		size,
+		shape,
 		value = $bindable(),
+		variant,
 		...rest
 	}: ListboxAttributes = $props();
 	let selections = [] as HTMLInputElement[];
@@ -32,81 +36,26 @@
 			name = Math.random().toString(36).substring(2, 15);
 		}
 
-		setContext('listbox-name', {
+		setContext('wui-listbox-ctx', {
+			color,
+			multiple,
 			name,
-			multiple
+			size,
+			shape,
+			variant
 		});
 	});
 
 	function change(e: Event & { currentTarget: HTMLFieldSetElement }) {
+		let input = e.target as HTMLInputElement;
 		if (selections.length === 1) {
 			selections[0].checked = false;
 		}
-		selections[0] = e.target as HTMLInputElement;
-		value = selections[0].value;
+		selections[0] = input;
+		value = input.value;
 
 		onchange?.(e);
 	}
-
-	// $effect(() => {
-	// 	untrack(() => {
-	// 		const children = _this?.querySelectorAll('li') || [];
-
-	// 		// Filter out any elements that are not 'item' elements or a divider.
-	// 		for (let i = 0; i < children.length; i++) {
-	// 			const child = children[i] as HTMLLIElement;
-	// 			const role = child?.getAttribute('role');
-
-	// 			if (role !== 'option' && role !== 'listitem' && role !== 'menuitem') {
-	// 				continue;
-	// 			}
-
-	// 			// Check if the item has aria-selected to determine if it is selected.
-	// 			const selected = child?.getAttribute('aria-selected') === 'true';
-	// 			const value = child?.getAttribute('value');
-	// 			if (selected) {
-	// 				selections.push(i);
-	// 				if (value) {
-	// 					values.push(value);
-	// 					onchange?.(new CustomEvent('change', { detail: { values, elements: [children[i]] } }));
-	// 				}
-	// 			}
-
-	// 			child.addEventListener('click', () => {
-	// 				if (multiple) {
-	// 					if (selections.includes(i)) {
-	// 						selections = selections.filter((v) => v !== i);
-	// 						dispatch(child, false);
-	// 						if (value) {
-	// 							values = values.filter((v) => v !== value);
-	// 						}
-	// 					} else {
-	// 						selections.push(i);
-	// 						dispatch(child, true);
-	// 						if (value) {
-	// 							values.push(value);
-	// 						}
-	// 					}
-	// 				} else {
-	// 					if (selections.length === 1) {
-	// 						dispatch(children[selections[0]] as HTMLLIElement, false);
-	// 					}
-	// 					selections = [i];
-	// 					dispatch(child, true);
-	// 					if (value) {
-	// 						values = [value];
-	// 					}
-	// 				}
-
-	// 				onchange?.(
-	// 					new CustomEvent('change', {
-	// 						detail: { values, elements: selections.map((index) => children[index]) }
-	// 					})
-	// 				);
-	// 			});
-	// 		}
-	// 	});
-	// });
 </script>
 
 <fieldset

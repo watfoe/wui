@@ -15,14 +15,21 @@
 			class="input"
 			bind:value={name}
 		/>
-		<Input type="text" variant="outline" color="primary" label="Name" class="input" />
+		<Input type="text" variant="outlined" color="primary" label="Name" class="input" />
 		<Input type="text" variant="soft" color="primary" label="Name" class="input" />
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
 
 	<Row gap="md" width="full">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
-		<Input type="email" variant="outline" label="Email" class="input" validateon="input" required />
+		<Input
+			type="email"
+			variant="outlined"
+			label="Email"
+			class="input"
+			validateon="input"
+			required
+		/>
 		<Input type="email" variant="soft" label="Email" class="input" validateon="input" required />
 		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
 	</Row>
@@ -39,7 +46,7 @@
 		/>
 		<Input
 			type="password"
-			variant="outline"
+			variant="outlined"
 			color="success"
 			label="Password"
 			class="input"
@@ -68,7 +75,7 @@
 
 	<Row gap="md" width="full">
 		<Input type="search" variant="solid" color="warning" label="Search" class="input" />
-		<Input type="search" variant="outline" color="warning" label="Search" class="input" required />
+		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="plain" color="warning" label="Search" class="input" />
 	</Row>
@@ -77,7 +84,7 @@
 		<Input type="date" variant="solid" label="Date" class="input" validateon="blur" required />
 		<Input
 			type="date"
-			variant="outline"
+			variant="outlined"
 			label="Date"
 			class="input"
 			validateon="blur"
@@ -102,7 +109,7 @@
 		</RadioGroup>
 
 		<Col gap="sm">
-			<Select preset="country" selected="KE" style="width: 300px" />
+			<Select preset="country" selected="KE" style="width: 300px" variant="solid" shape="square" />
 			<Select preset="gender" style="width: 300px" />
 			<Select preset="month" style="width: 300px" />
 		</Col>
@@ -123,22 +130,3 @@
 		<Switch color="warning" />
 	</Row>
 </Col>
-
-<style>
-	:global(.WAuth-form) {
-		border: 1px solid var(--color-grey-3);
-		border-radius: var(--radius);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: var(--space-xl);
-		padding: var(--space-xl);
-		width: 420px;
-	}
-
-	:global(.WAuth-footer) {
-		padding: 0 var(--space-xl);
-		width: 420px;
-	}
-</style>

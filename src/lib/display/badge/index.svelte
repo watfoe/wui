@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { Text } from '$lib';
+	import { type WuiColor } from '$lib/types';
 	import type { Snippet } from 'svelte';
 	export interface BadgeAttributes {
 		'aria-label'?: string;
@@ -14,12 +14,13 @@
 			| 'top-right'
 			| 'bottom-left'
 			| 'bottom-right';
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | string;
+		color?: WuiColor;
 		max?: number;
 	}
 </script>
 
 <script lang="ts">
+	import { Text } from '$lib/typography';
 	let {
 		content,
 		position = 'top-right',
@@ -34,11 +35,14 @@
 >
 	<slot />
 
-	<div aria-label={rest['aria-label'] || 'badge'} class="WuiBadge__content WuiBg-{color}">
+	<div
+		aria-label={rest['aria-label'] || 'badge'}
+		class="WuiBadge__content WuiSurface WuiSurface--solid WuiSurface--{color}"
+	>
 		{#if $$slots.content}
 			<slot name="content" />
 		{:else if content}
-			<Text variant="body">
+			<Text variant="body" color="white" size="sm">
 				{typeof !isNaN(Number(content)) && max
 					? Number(content) > max
 						? `${max}+`

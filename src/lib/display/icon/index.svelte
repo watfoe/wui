@@ -1,15 +1,16 @@
 <script context="module" lang="ts">
+	import type { WuiColor, WuiSize, WuiTextWeight } from '$lib/types';
 	import type { Snippet } from 'svelte';
 
 	export interface IconAttributes {
 		class?: string;
 		children?: Snippet;
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'inherit';
+		color?: WuiColor | 'inherit';
 		fill?: boolean;
 		grade?: number;
-		size?: 'sm' | 'md' | 'lg';
+		size?: WuiSize;
 		style?: string;
-		weight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+		weight?: WuiTextWeight;
 	}
 </script>
 
@@ -26,7 +27,7 @@
 
 <span
 	role="img"
-	class="material-symbols-rounded WuiIcon WuiIcon--{size} WuiIcon--{color} {rest.class || ''}"
+	class="material-symbols-rounded WuiIcon WuiIcon--{size} WuiText--{color} {rest.class || ''}"
 	style="{rest.style || ''}; font-variation-settings: 'FILL' {fill
 		? '1'
 		: '0'}, 'wght' {weight}, 'GRAD' {grade}, 'opsz' 48;"
@@ -36,25 +37,9 @@
 
 <style>
 	.WuiIcon {
-		color: var(--WuiIcon-color);
 		font-size: var(--WuiIcon-size);
 	}
 
-	.WuiIcon--primary {
-		--WuiIcon-color: var(--color-primary);
-	}
-	.WuiIcon--neutral {
-		--WuiIcon-color: var(--color-neutral);
-	}
-	.WuiIcon--success {
-		--WuiIcon-color: var(--color-success);
-	}
-	.WuiIcon--warning {
-		--WuiIcon-color: var(--color-warning);
-	}
-	.WuiIcon--danger {
-		--WuiIcon-color: var(--color-danger);
-	}
 	.WuiIcon--inherit {
 		--WuiIcon-color: inherit;
 	}

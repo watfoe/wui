@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
 	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface SelectAttributes extends Omit<HTMLFieldsetAttributes, 'size'> {
 		_this?: HTMLFieldSetElement;
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+		color?: WuiColor;
 		description?: string;
 		error?: ValidationError;
 		label?: string;
@@ -13,10 +14,11 @@
 		preset?: 'country' | 'month' | 'gender';
 		required?: boolean;
 		selected?: string;
-		size?: 'sm' | 'md' | 'lg';
+		shape?: WuiShape;
+		size?: WuiSize;
 		validateon?: 'change' | 'blur' | 'submit';
 		value?: string;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
+		variant?: WuiVariant;
 	}
 </script>
 
@@ -35,7 +37,7 @@
 
 	let {
 		_this = $bindable(),
-		color = 'neutral',
+		color,
 		class: _class,
 		description,
 		error = $bindable(),
@@ -48,11 +50,12 @@
 		preset,
 		required,
 		selected = $bindable(),
-		size = 'md',
+		shape,
+		size,
 		style,
 		value = $bindable(),
 		validateon = 'submit',
-		variant = 'outline',
+		variant = 'outlined',
 		...rest
 	}: SelectAttributes = $props();
 
@@ -80,7 +83,7 @@
 	});
 
 	function change(e: Event & { currentTarget: HTMLFieldSetElement }) {
-		const label = (e.target as HTMLInputElement).nextElementSibling as HTMLLabelElement;
+		const label = (e.target as HTMLInputElement).parentElement as HTMLLabelElement;
 		if (multiple) {
 			selections.push(label);
 		} else {
@@ -91,14 +94,11 @@
 	}
 
 	// Keyboard accessibility
-	function _onkeydown(e: KeyboardEvent) {
+	function keydown(e: KeyboardEvent) {
 		const { key } = e;
 		const { length } = selections;
 
-		if (key === 'ArrowDown' || key === 'ArrowUp') {
-			e.preventDefault();
-			combobox?.click();
-		} else if (key === 'Backspace' && length > 0) {
+		if (key === 'Backspace' && length > 0) {
 			e.preventDefault();
 			selections[length - 1].click();
 		}
@@ -152,14 +152,15 @@
 		type="button"
 		aria-expanded="false"
 		anchorfor={id}
-		color={error ? 'danger' : opened ? 'primary' : color}
+		color={error ? 'danger' : opened ? color || 'primary' : color}
 		{variant}
 		{size}
+		{shape}
 		bold={false}
 		justify="space-between"
 		width="full"
 		class="WuiSelect__combobox"
-		onkeydown={_onkeydown}
+		onkeydown={keydown}
 		bind:_this={combobox}
 	>
 		{#if selections.length > 0}
@@ -182,13 +183,15 @@
 	</Button>
 </Col>
 
-<Popup {id} onopen={popup_opened} onclose={popup_closed}>
+<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
 	<Listbox
 		role="listbox"
 		aria-label="List of options"
 		class="WuiSelect__listbox"
 		{multiple}
 		{name}
+		color="primary"
+		{size}
 		onchange={change}
 		bind:_this
 		bind:value

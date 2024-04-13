@@ -12,6 +12,8 @@ export * as layout from './layout';
 export * from './layout';
 export * as navigation from './navigation';
 export * from './navigation';
+export * as surfaces from './surfaces';
+export * from './surfaces';
 export * as typography from './typography';
 export * from './typography';
 export * as utils from './utils';

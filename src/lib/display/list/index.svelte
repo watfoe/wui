@@ -1,12 +1,14 @@
 <script lang="ts" context="module">
-	import type { LikeButtonAttributes } from '$lib';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type { LikeButtonAttributes } from '$lib/utils';
 
 	export interface ListAttributes extends HTMLUListElement {
-		color?: LikeButtonAttributes<HTMLUListElement>['color'];
+		color?: WuiColor;
 		orientation: 'horizontal' | 'vertical';
-		size?: LikeButtonAttributes<HTMLUListElement>['size'];
+		size?: WuiSize;
+		shape?: Omit<WuiShape, 'pill' | 'circle'>;
 		spacing?: LikeButtonAttributes<HTMLUListElement>['gap'] | 'none';
-		variant?: LikeButtonAttributes<HTMLUListElement>['variant'];
+		variant?: WuiVariant;
 	}
 </script>
 
@@ -16,20 +18,29 @@
 
 	let {
 		color,
-		orientation = 'vertical',
+		orientation = 'horizontal',
 		size,
+		shape = 'rounded',
 		spacing,
-		variant,
-		...rest
+		variant = 'plain'
 	}: ListAttributes = $props();
 
-	setContext('wui-tab', {
+	$effect.pre(() => {
+		if (shape === 'circle' || shape === 'pill') {
+			shape = 'rounded';
+		}
+	});
+
+	setContext('wui-tab-ctx', {
 		color,
 		size,
-		variant
+		variant,
+		orientation
 	});
 </script>
 
-<ul class="WuiList WuiList--{orientation} WuiList--spacing-{spacing}">
+<ul
+	class="WuiList WuiList--{orientation} WuiList--spacing-{spacing} WuiSurface WuiSurface--{shape}"
+>
 	<slot />
 </ul>

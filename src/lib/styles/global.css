@@ -131,7 +131,6 @@
   padding: 0;
   margin: 0;
   vertical-align: baseline;
-  transition: background-color 0.1s ease-in-out;
   outline: none;
 }
 
@@ -161,32 +160,210 @@ a {
   }
 }
 
-.WuiBg-primary {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
+.WuiSurface {
+  border: 1px solid var(--WuiSurface-border-color, transparent);
+  border-radius: var(--WuiSurface-radius);
 }
 
-.WuiBg-neutral {
-  background-color: var(--color-neutral);
-  color: var(--color-on-neutral);
+.WuiSurface--primary {
+  --WuiSurface-bg: var(--color-primary);
+  --WuiSurface-color-on-bg: var(--color-white);
+  --WuiSurface-bg-soft: var(--color-selection-container);
+  --WuiSurface-color-on-bg-soft: var(--color-primary);
 }
 
-.WuiBg-success {
-  background-color: var(--color-success);
-  color: var(--color-on-success);
+.WuiSurface--neutral {
+  --WuiSurface-bg: var(--color-neutral);
+  --WuiSurface-color-on-bg: var(--color-white);
+  --WuiSurface-bg-soft: var(--color-neutral-container);
+  --WuiSurface-color-on-bg-soft: var(--color-black-3);
 }
 
-.WuiBg-warning {
-  background-color: var(--color-warning);
-  color: var(--color-on-warning);
+.WuiSurface--success {
+  --WuiSurface-bg: var(--color-success);
+  --WuiSurface-color-on-bg: var(--color-white);
+  --WuiSurface-bg-soft: var(--color-success-container);
+  --WuiSurface-color-on-bg-soft: var(--color-success);
 }
 
-.WuiBg-danger {
-  background-color: var(--color-error);
-  color: var(--color-on-error);
+.WuiSurface--warning {
+  --WuiSurface-bg: var(--color-warning);
+  --WuiSurface-color-on-bg: var(--color-white);
+  --WuiSurface-bg-soft: var(--color-warning-container);
+  --WuiSurface-color-on-bg-soft: var(--color-warning);
 }
 
-.Wui-disabled {
+.WuiSurface--danger {
+  --WuiSurface-bg: var(--color-error);
+  --WuiSurface-color-on-bg: var(--color-white);
+  --WuiSurface-bg-soft: var(--color-error-container);
+  --WuiSurface-color-on-bg-soft: var(--color-error);
+}
+
+.WuiSurface--black {
+  --WuiSurface-bg: var(--color-black-4);
+  --WuiSurface-color-on-bg: var(--color-white);
+  --WuiSurface-bg-soft: var(--color-neutral-4);
+  --WuiSurface-color-on-bg-soft: var(--color-white);
+}
+
+.WuiSurface--white {
+  --WuiSurface-bg: var(--color-white);
+  --WuiSurface-color-on-bg: var(--color-black-4);
+  --WuiSurface-bg-soft: var(--color-neutral-1);
+  --WuiSurface-color-on-bg-soft: var(--color-black-4);
+}
+
+.WuiSurface--rounded {
+  --WuiSurface-radius: var(--radius);
+}
+
+.WuiSurface--pill {
+  --WuiSurface-radius: 9999px;
+}
+
+.WuiSurface--circle {
+  --WuiSurface-radius: 50%;
+}
+
+.WuiSurface--square {
+  --WuiSurface-radius: 0 !important;
+}
+
+.WuiSurface--solid {
+  background-color: var(--WuiSurface-bg, var(--color-primary));
+  color: var(--WuiSurface-color-on-bg, var(--color-white));
+}
+
+.WuiSurface--outlined {
+  background-color: transparent;
+  color: var(--WuiSurface-bg, var(--color-primary));
+  --WuiSurface-border-color: var(--WuiSurface-bg, var(--color-primary));
+}
+
+.WuiSurface--outlined.WuiSurface--neutral {
+  color: var(--color-black-3, var(--color-primary));
+  --WuiSurface-border-color: var(--color-neutral-4, var(--color-primary));
+}
+
+.WuiSurface--soft {
+  background-color: var(--WuiSurface-bg-soft, var(--color-selection-container));
+  color: var(--WuiSurface-color-on-bg-soft, var(--color-primary));
+  --WuiSurface-border-color: var(--WuiSurface-bg-soft);
+}
+
+.WuiSurface--plain,
+.WuiSurface--none {
+  background-color: transparent;
+  color: var(--WuiSurface-color-on-bg-soft, var(--color-primary));
+  --WuiSurface-border-color: transparent;
+}
+
+.WuiSurface--clickable {
+  cursor: pointer;
+}
+
+.WuiSurface--clickable.WuiSurface--primary:disabled,
+.WuiSurface--clickable.WuiSurface--neutral:disabled,
+.WuiSurface--clickable.WuiSurface--success:disabled,
+.WuiSurface--clickable.WuiSurface--warning:disabled {
+  --WuiSurface-bg: var(--color-disabled);
+  --WuiSurface-bg-soft: var(--color-disabled);
+  --WuiSurface-color-on-bg-soft: var(--color-black-1);
+}
+
+.WuiSurface--clickable.WuiSurface:disabled {
+  color: var(--color-black-1);
+  cursor: default;
+  pointer-events: none;
+}
+
+.WuiSurface--clickable.WuiSurface--solid:not(:disabled):hover,
+.WuiSurface--clickable.WuiSurface--solid:not(:disabled):focus-visible,
+.WuiSurface--clickable.WuiSurface--soft:not(:disabled):hover,
+.WuiSurface--clickable.WuiSurface--soft:not(:disabled):focus-visible {
+  filter: brightness(0.94);
+}
+
+.WuiSurface--clickable.WuiSurface--solid:not(:disabled):active,
+.WuiSurface--clickable.WuiSurface--soft:not(:disabled):active,
+.WuiSurface--clickable.WuiSurface--outlined:not(:disabled):active,
+.WuiSurface--clickable.WuiSurface--plain:not(:disabled):active {
+  filter: brightness(0.89);
+  transition: filter 0.2s ease-in-out;
+}
+
+.WuiSurface--clickable.WuiSurface--outlined:not(:disabled):hover,
+.WuiSurface--clickable.WuiSurface--outlined:not(:disabled):focus-visible {
+  background-color: var(--WuiSurface-bg-soft, var(--color-selection-container));
+}
+
+.WuiSurface--clickable.WuiSurface--plain:not(:disabled):hover,
+.WuiSurface--clickable.WuiSurface--plain:not(:disabled):focus-visible {
+  background-color: var(--WuiSurface-bg-soft);
+}
+
+.WuiSurface--round {
+  --WuiSurface-radius: 9999px;
+}
+
+.WuiSurface--pill {
+  --WuiSurface-radius: 9999px;
+}
+
+.WuiSurface--square {
+  --WuiSurface-radius: 0;
+}
+
+.WuiSurface--wid-full {
+  width: 100%;
+}
+
+.WuiSurface--wid-half {
+  width: 50%;
+}
+
+.WuiSurface--wid-third {
+  width: 33.333333%;
+}
+
+.WuiSurface--wid-quarter {
+  width: 25%;
+}
+
+.WuiSurface--wid-auto {
+  width: auto;
+}
+
+.WuiSurface--wid-inherit {
+  width: inherit;
+}
+
+.WuiSurface--hgt-full {
+  height: 100%;
+}
+
+.WuiSurface--hgt-half {
+  height: 50%;
+}
+
+.WuiSurface--hgt-third {
+  height: 33.333333%;
+}
+
+.WuiSurface--hgt-quarter {
+  height: 25%;
+}
+
+.WuiSurface--hgt-auto {
+  height: auto;
+}
+
+.WuiSurface--hgt-inherit {
+  height: inherit;
+}
+
+.WuiDisabled {
   pointer-events: none;
   cursor: default;
   --Icon-color: currentColor;
@@ -194,7 +371,7 @@ a {
   background-color: var(--color-disabled);
 }
 
-.hidden {
+.WuiHidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Option, { type OptionAttributes } from '../option.svelte';
+	import Option from '../option.svelte';
 	interface GenderPresetAttributes {
 		selected?: string;
 	}

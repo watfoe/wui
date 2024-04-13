@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
+	import type { WuiColor, WuiSize } from '$lib/types';
+
 	export interface TextLabelAttributes extends Omit<HTMLLabelAttributes, 'color'> {
 		variant: 'label';
 	}
@@ -12,10 +14,10 @@
 
 	export type TextAttributes = {
 		bold?: boolean;
-		color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning' | 'black' | 'white';
+		color?: WuiColor | 'inherit';
 		italic?: boolean;
 		rtl?: boolean;
-		size?: 'sm' | 'md' | 'lg';
+		size?: WuiSize | 'xs';
 		underline?: boolean;
 	} & (TextLabelAttributes | TextHeadingAttributes | TextBodyAttributes);
 </script>
@@ -66,13 +68,13 @@
 <svelte:element
 	this={elements[variant || 'body'][size || 'md']}
 	{...rest}
-	class="WuiText WuiText--{variant} WuiText--{size} WuiText--{color} {bold ||
-	variant === 'heading' ||
-	variant === 'title'
-		? 'WuiText--bold'
-		: ''} {italic ? 'WuiText--italic' : ''} {rtl ? 'WuiText--rtl' : ''} {underline
-		? 'WuiText--underline'
-		: ''} {rest.class || ''}"
+	class="
+	WuiText WuiText--{variant} WuiText--{size} WuiText--{color}
+	{bold || variant === 'heading' || variant === 'title' ? 'WuiText--bold' : ''}
+	{italic ? 'WuiText--italic' : ''}
+	{rtl ? 'WuiText--rtl' : ''}
+	{underline ? 'WuiText--underline' : ''}
+	{rest.class || ''}"
 	style={rest.style || ''}
 >
 	<slot />

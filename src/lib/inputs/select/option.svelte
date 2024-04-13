@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import type { ListboxItemAttributes } from '../listbox/item.svelte';
+	import type { ListboxItemAttributes } from '../listbox/listboxitem.svelte';
 
 	export interface OptionAttributes extends Omit<ListboxItemAttributes, 'role'> {
 		value: string;
@@ -12,6 +12,4 @@
 	let { ...rest }: OptionAttributes = $props();
 </script>
 
-<ListboxItem size="sm" {...rest} role="option">
-	<slot />
-</ListboxItem>
+<ListboxItem {...rest} role="option" />

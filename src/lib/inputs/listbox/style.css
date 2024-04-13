@@ -1,4 +1,5 @@
 .WuiListbox {
+  background-color: inherit;
   border: 0;
   border-radius: inherit;
   display: flex;
@@ -7,15 +8,10 @@
 }
 
 .WuiListbox__item {
-  border: 0;
   position: relative;
 }
 
-.WuiListbox__item_label {
-  border-radius: 0;
-}
-
-.WuiListbox__item__input {
+.WuiListbox__item--hidden {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   height: 1px;

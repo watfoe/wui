@@ -3,15 +3,15 @@
 }
 
 .WuiCheckbox--sm {
-  --WuiCheckbox-size: 16px;
+  --WuiCheckbox-size: 18px;
 }
 
 .WuiCheckbox--md {
-  --WuiCheckbox-size: 20px;
+  --WuiCheckbox-size: 22px;
 }
 
 .WuiCheckbox--lg {
-  --WuiCheckbox-size: 24px;
+  --WuiCheckbox-size: 26px;
 }
 
 .WuiCheckbox__label {

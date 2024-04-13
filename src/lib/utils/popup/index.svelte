@@ -1,5 +1,8 @@
 <script context="module" lang="ts">
+	import type { WuiColor, WuiShape, WuiVariant } from '$lib/types';
+
 	export interface PopupAttributes extends BackdropAttributes {
+		color?: WuiColor;
 		id: string;
 		position?:
 			| 'top'
@@ -14,6 +17,8 @@
 			| 'left-end'
 			| 'right-start'
 			| 'right-end';
+		shape?: Omit<WuiShape, 'circle'>;
+		variant?: WuiVariant;
 	}
 </script>
 
@@ -23,9 +28,12 @@
 	let {
 		_this = $bindable(),
 		class: _class = '',
+		color = 'neutral',
 		id,
 		onopen,
 		position = 'bottom-start',
+		shape = 'rounded',
+		variant = 'outlined',
 		...rest
 	}: PopupAttributes = $props();
 
@@ -36,6 +44,12 @@
 		left: 0,
 		top: 0,
 		width: 0
+	});
+
+	$effect.pre(() => {
+		if (shape === 'circle') {
+			shape = 'rounded';
+		}
 	});
 
 	function open(e: CustomEvent) {
@@ -145,7 +159,10 @@
 	<div
 		role="tooltip"
 		aria-label="Popup"
-		class="WuiPopup {_class}"
+		class="
+		WuiPopup
+		WuiSurface WuiSurface--outlined WuiSurface--{color} WuiSurface--{shape}
+		{_class}"
 		style="left:{rect.left}px; top:{rect.top}px; min-width:{rect.width}px;"
 		bind:this={popup}
 	>
@@ -155,7 +172,6 @@
 
 <style>
 	.WuiPopup {
-		border: 1px solid var(--color-outline);
 		max-height: calc(100vh - calc(var(--space-nm) * 2)) !important;
 		overflow-y: auto;
 		padding: var(--space-xs) 0;

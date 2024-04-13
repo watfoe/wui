@@ -1,4 +1,5 @@
-import type { HTMLAttributes, HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
+import type { WuiColor, WuiSize, WuiVariant } from "$lib/types";
+import type { HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
 
 export interface InputMasks {
   cast?: 'string' | 'number';
@@ -34,7 +35,7 @@ export interface InputRules {
 }
 
 export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<A, 'size'> & {
-  color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
+  color?: WuiColor;
   _this?: E;
   error?: ValidationError;
   masks?: InputMasks;
@@ -42,10 +43,10 @@ export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAtt
   prefix?: string;
   rules?: InputRules;
   required?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: Omit<WuiSize, 'xl' | 'nm' | 'xl'>;
   suffix?: string;
   validateon?: 'blur' | 'input' | 'submit';
-  variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
+  variant?: WuiVariant;
 };
 
 export class ValidationError extends Error {

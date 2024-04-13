@@ -74,7 +74,7 @@
 	</Row>
 
 	<Row gap="lg" width="full">
-		<Sheet variant="outline">
+		<Sheet variant="outlined">
 			<List size="md">
 				<ListItem gap="lg" suffix="clear">Item 1: some grocery stuff</ListItem>
 				<ListItem prefix="check">Item 2</ListItem>

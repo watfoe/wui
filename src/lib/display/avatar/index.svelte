@@ -1,10 +1,12 @@
 <script context="module" lang="ts">
 	import type { HTMLImgAttributes } from 'svelte/elements';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface AvatarAttributes extends Omit<HTMLImgAttributes, 'height' | 'width'> {
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | string;
-		size?: 'sm' | 'md' | 'lg';
-		variant?: 'solid' | 'outline' | 'soft' | 'plain';
+		color?: WuiColor | string;
+		size?: WuiSize;
+		variant?: WuiVariant;
+		shape?: Omit<WuiShape, 'pill'>;
 	}
 </script>
 
@@ -19,12 +21,27 @@
 		color = 'primary',
 		alt,
 		size = 'md',
+		shape = 'circle',
 		variant = 'solid',
 		...rest
 	}: AvatarAttributes = $props();
 
+	$effect.pre(() => {
+		if (size === 'sm') {
+			shape = 'circle';
+		}
+	});
+
 	// TODO: Rethink this logic
-	let isColorPreset = ['primary', 'neutral', 'success', 'warning', 'danger'].includes(color!);
+	let isColorPreset = [
+		'primary',
+		'neutral',
+		'success',
+		'warning',
+		'danger',
+		'black',
+		'white'
+	].includes(color!);
 </script>
 
 <Col
@@ -32,18 +49,20 @@
 	aria-label={alt || 'Avatar'}
 	align="center"
 	justify="center"
-	class="WuiAvatar WuiAvatar--{size} WuiAvatar--{variant} {isColorPreset
-		? `WuiAvatar--${color}`
-		: ''} {rest.class || ''}"
+	class="
+	WuiAvatar WuiAvatar--{size}
+	WuiSurface WuiSurface--{variant} WuiSurface--{shape}
+	{isColorPreset ? `WuiSurface--${color}` : ''}
+	{rest.class || ''}"
 	style={isColorPreset ? '' : `--WuiAvatar-bg: ${color}`}
 >
 	{#if rest.src}
 		<img src={rest.src} {...rest} {alt} class="WuiAvatar__img" />
 	{:else if alt}
-		<Text variant="heading" {size}>{alt[0].toUpperCase()}</Text>
+		<Text variant="heading" color="inherit" {size}>{alt[0].toUpperCase()}</Text>
 	{:else if !$$slots.default}
-		<Icon>person</Icon>
+		<Icon color="inherit">person</Icon>
 	{:else}
-		<Text variant="heading" {size}><slot /></Text>
+		<Text variant="heading" color="inherit" {size}><slot /></Text>
 	{/if}
 </Col>

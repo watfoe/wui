@@ -1,37 +1,38 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
+	import type { WuiFlexGap, WuiFlexJustify, WuiHeight, WuiSurface } from '$lib/types';
 
-	export interface SheetAttributes extends HTMLAttributes<HTMLDivElement> {
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-		gap?: 'sm' | 'nm' | 'md' | 'lg';
-		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
-		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
+	export interface SheetAttributes
+		extends WuiSurface,
+			Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+		_this?: HTMLDivElement;
+		gap?: WuiFlexGap;
+		height?: WuiHeight;
+		justify?: WuiFlexJustify;
 	}
 </script>
 
 <script lang="ts">
-	import './style.css';
-
 	let {
-		gap = 'nm',
-		variant = 'plain',
+		_this = $bindable(),
 		color = 'neutral',
 		justify = 'center',
-		prefix,
-		width,
+		gap = 'nm',
 		height,
+		variant = 'plain',
+		shape = 'square',
+		width,
 		...rest
 	}: SheetAttributes = $props();
 </script>
 
 <div
 	{...rest}
-	class="WuiSheet WuiSheet--{variant} WuiSheet--{color} WuiSheet--gap-{gap} {width
-		? 'WuiSheet--width-' + width
-		: ''} {height ? 'WuiSheet--height-' + height : ''} {rest.class || ''}"
-	style="{rest.style || ''};--WuiSheetFlex-justify:{justify}"
+	class="WuiSurface WuiSurface--{variant} WuiSurface--{color} WuiSurface--gap-{gap}
+	{width ? 'WuiSurface--wid-' + width : ''}
+	{height ? 'WuiSurface--hgt-' + height : ''}
+	{rest.class || ''}"
+	bind:this={_this}
 >
 	<slot />
 </div>

@@ -1,6 +1,5 @@
 .WuiInput__error {
   padding: 1px 0;
   position: absolute;
-  left: var(--space-xs);
   top: 100%;
 }

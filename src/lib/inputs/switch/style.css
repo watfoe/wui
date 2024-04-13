@@ -1,0 +1,78 @@
+.WuiSwitch {
+  --WuiSwitch-color: var(--color-neutral);
+  display: inline-block;
+  height: var(--WuiSwitch-height);
+  position: relative;
+  width: var(--WuiSwitch-width);
+}
+
+.WuiSwitch--sm {
+  --WuiSwitch-width: 28px;
+  --WuiSwitch-height: 18px;
+}
+
+.WuiSwitch--md {
+  --WuiSwitch-width: 34px;
+  --WuiSwitch-height: 22px;
+}
+
+.WuiSwitch--lg {
+  --WuiSwitch-width: 42px;
+  --WuiSwitch-height: 26px;
+}
+
+.WuiSwitch__label {
+  background-color: transparent;
+  border-radius: inherit;
+  cursor: pointer;
+  display: block;
+  padding: 2px;
+}
+
+.WuiSwitch--primary input:checked+.WuiSwitch__label,
+.WuiSwitch--neutral input:checked+.WuiSwitch__label {
+  --WuiSwitch-color: var(--color-primary);
+}
+
+.WuiSwitch--success input:checked+.WuiSwitch__label {
+  --WuiSwitch-color: var(--color-success);
+}
+
+.WuiSwitch--warning input:checked+.WuiSwitch__label {
+  --WuiSwitch-color: var(--color-warning);
+}
+
+.WuiSwitch--danger input:checked+.WuiSwitch__label {
+  --WuiSwitch-color: var(--color-error);
+}
+
+input:checked+.WuiSwitch__label::after {
+  transform: translateX(calc(var(--WuiSwitch-width) - var(--WuiSwitch-height)));
+}
+
+.WuiSwitch__label::after {
+  background-color: var(--WuiSurface-bg);
+  border-radius: inherit;
+  content: '';
+  display: block;
+  height: calc(var(--WuiSwitch-height) - 6px);
+  width: calc(var(--WuiSwitch-height) - 6px);
+  transition: transform 0.1s ease-in-out;
+}
+
+.WuiSurface--solid .WuiSwitch__label::after {
+  background-color: var(--WuiSurface-color-on-bg);
+}
+
+.WuiSwitch__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}

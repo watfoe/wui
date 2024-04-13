@@ -6,9 +6,9 @@
 
 .WuiInput__label {
   color: var(--WuiLabel-color, var(--color-black-4)) !important;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
 }
 
 .WuiInput__label__desc {
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }

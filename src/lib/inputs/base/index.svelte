@@ -26,7 +26,7 @@
 		suffix,
 		validateon = 'submit',
 		value = $bindable(),
-		variant = 'outline',
+		variant = 'outlined',
 		...rest
 	}: BaseInputAttributes = $props();
 
@@ -123,7 +123,9 @@
 	<input
 		dir="ltr"
 		{...rest}
-		class="WuiInput WuiInput--{variant} WuiInput--{size}
+		class="
+		WuiInput WuiInput--{variant} WuiInput--{size}
+		WuiText WuiText--body WuiText--{size}
 		{prefix ? 'WuiInput--prefixed' : ''}
 		{suffix ? 'WuiInput--suffixed' : ''}
 		{rest.class || ''}"

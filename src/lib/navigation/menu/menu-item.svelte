@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	export interface MenuItemAttributes extends ButtonAttributes {
 		selected?: boolean;
 	}
@@ -6,17 +7,35 @@
 
 <script lang="ts">
 	import { Button, type ButtonAttributes } from '$lib/buttons';
-	import { getContext } from 'svelte';
+	import { getContext, untrack } from 'svelte';
 
-	let { color, role = 'listitem', selected = false, size, ...rest }: MenuItemAttributes = $props();
+	let {
+		_this = $bindable(),
+		color,
+		role = 'listitem',
+		selected = false,
+		size,
+		shape,
+		variant,
+		...rest
+	}: MenuItemAttributes = $props();
 	let context: {
-		color?: ButtonAttributes['color'];
-		size?: ButtonAttributes['size'];
-		variant?: ButtonAttributes['variant'];
-	} = getContext('wui-tab') || {};
+		color?: WuiColor;
+		size?: WuiSize;
+		shape?: WuiShape;
+		variant?: WuiVariant;
+	} = getContext('wui-tab-ctx') || {};
 
 	const altColor =
 		(color || context.color) === 'primary' ? 'neutral' : color || context.color || 'neutral';
+
+	$effect.pre(() => {
+		untrack(() => {
+			if (shape === 'circle') {
+				shape = 'pill';
+			}
+		});
+	});
 </script>
 
 <Button
@@ -24,13 +43,15 @@
 	{...rest}
 	aria-selected={selected}
 	role="menuitem"
-	variant={selected ? 'soft' : 'plain'}
+	navigation="vertical"
+	variant={selected ? variant || context.variant || 'soft' : 'plain'}
 	color={color || (selected ? context.color || 'primary' : altColor)}
 	size={size || context.size || 'md'}
-	tabindex={selected ? 0 : -1}
+	shape={shape || context.shape || 'square'}
 	justify="flex-start"
 	width="full"
 	class="WuiMenu__item"
+	bind:_this
 >
 	<slot />
 </Button>

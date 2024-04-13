@@ -1,24 +1,14 @@
 <script context="module" lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
-	import type { FlexAttributes } from '$lib/layout';
-	import type { LikeButtonAttributes } from '$lib/utils';
+	import type { LikeButtonAttributes } from '$lib';
 
-	export interface ButtonAttributes extends HTMLButtonAttributes {
+	export interface ButtonAttributes
+		extends Omit<LikeButtonAttributes<HTMLButtonElement, HTMLButtonAttributes>, 'element'> {
 		_this?: HTMLButtonElement;
 		anchorfor?: string;
 		bold?: boolean;
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		disabled?: boolean;
-		gap?: FlexAttributes['gap'];
-		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		justify?: FlexAttributes['justify'];
 		loading?: boolean;
-		prefix?: string;
-		rounded?: boolean;
-		size?: LikeButtonAttributes<HTMLButtonElement>['size'];
-		suffix?: string;
-		variant?: LikeButtonAttributes<HTMLButtonElement>['variant'];
-		width?: LikeButtonAttributes<HTMLButtonElement>['width'];
 	}
 </script>
 
@@ -39,11 +29,14 @@
 		loading = false,
 		disabled = false,
 		justify = 'center',
+		navigation = 'none',
 		prefix,
-		rounded = false,
+		role,
 		suffix,
+		shape = 'rounded',
 		type = 'button',
 		onclick,
+		onkeydown,
 		width,
 		...rest
 	}: ButtonAttributes = $props();
@@ -87,6 +80,68 @@
 
 		onclick?.(e);
 	}
+
+	// Keyboard accessibility
+	function keydown(e: KeyboardEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		if (loading || disabled) {
+			return;
+		}
+
+		const key = e.key;
+		if (navigation !== 'none') {
+			if (
+				(navigation === 'horizontal' && key === 'ArrowRight') ||
+				(navigation === 'vertical' && key === 'ArrowDown') ||
+				(navigation === 'mixed' && (key === 'ArrowRight' || key === 'ArrowDown'))
+			) {
+				navigate_down();
+			} else if (
+				(navigation === 'vertical' && key === 'ArrowUp') ||
+				(navigation === 'horizontal' && key === 'ArrowLeft') ||
+				(navigation === 'mixed' && (key === 'ArrowUp' || key === 'ArrowLeft'))
+			) {
+				navigate_up();
+			}
+		}
+
+		// if (key === 'ArrowDown' || key === 'ArrowUp') {
+		// 	if ((feedback && role === 'menuitem') || role === 'combobox') {
+		// 		feedback.dispatchEvent(
+		// 			new CustomEvent('open', {
+		// 				detail: {
+		// 					anchor: e.currentTarget
+		// 				}
+		// 			})
+		// 		);
+
+		// 		feedbackExpanded = true;
+		// 	}
+		// }
+
+		onkeydown?.(e);
+	}
+
+	function navigate_down() {
+		const next = _this?.nextElementSibling as HTMLElement;
+		if (next) {
+			next.focus();
+		} else if (_this?.previousElementSibling) {
+			// There are other siblings
+			const first = _this.parentElement?.firstElementChild as HTMLButtonElement;
+			first?.focus();
+		}
+	}
+
+	function navigate_up() {
+		const prev = _this?.previousElementSibling as HTMLElement;
+		if (prev) {
+			prev.focus();
+		} else if (_this?.nextElementSibling) {
+			// There are other siblings
+			const last = _this.parentElement?.lastElementChild as HTMLButtonElement;
+			last?.focus();
+		}
+	}
 </script>
 
 <button
@@ -96,18 +151,25 @@
 	aria-controls={anchorfor || undefined}
 	disabled={loading || disabled}
 	class="
-		WuiLikeButton WuiLikeButton--{variant} WuiLikeButton--{size} WuiLikeButton--{color} WuiLikeButton--gap-{gap}
-		WuiText WuiText--body WuiText--{size} WuiText--{color} {bold ? 'WuiText--bold' : ''}
-		{width ? 'WuiLikeButton--width-' + width : ''}
-		{height ? 'WuiLikeButton--height-' + height : ''}
+		WuiSurface
+		WuiSurface--clickable
+		WuiSurface--{variant}
+		WuiSurface--{color}
+		WuiSurface--{shape}
+		WuiLikeButton
+		WuiLikeButton--{size}
+		WuiLikeButton--gap-{gap}
+		WuiText WuiText--body WuiText--md
+		{bold ? 'WuiText--bold' : ''}
+		{width ? 'WuiSurface--wid-' + width : ''}
+		{height ? 'WuiSurface--hgt-' + height : ''}
 		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
-		{loading ? 'WuiLikeButton--loading' : ''}
+		{loading ? 'WuiButton--loading' : ''}
 		{rest.class || ''}"
-	style="
-		{rest.style || ''};--WuiLikeButtonFlex-justify:{justify};
-		{rounded ? '--WuiLikeButton-radius:calc(var(--WuiLikeButton-height) / 2);' : ''}"
+	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify}"
 	{type}
 	onclick={click}
+	onkeydown={keydown}
 	bind:this={_this}
 >
 	{#if $$slots.prefix}

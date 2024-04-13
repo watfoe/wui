@@ -1,26 +1,22 @@
 <script context="module" lang="ts">
-	export type LikeButtonAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A & {
-		bold?: boolean;
-		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-		disabled?: boolean;
-		element: string;
-		gap?: 'sm' | 'nm' | 'md' | 'lg';
-		height?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-		justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
-		loading?: boolean;
-		prefix?: string;
-		rounded?: boolean;
-		size?: 'sm' | 'md' | 'lg';
-		suffix?: string;
-		variant?: 'solid' | 'outline' | 'soft' | 'plain' | 'none';
-		width?: 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit';
-	};
+	import type { WuiFlexJustify, WuiSize, WuiSurface } from '$lib/types';
+
+	export type LikeButtonAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A &
+		WuiSurface & {
+			bold?: boolean;
+			element: string;
+			gap?: 'sm' | 'nm' | 'md' | 'lg';
+			justify?: WuiFlexJustify;
+			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
+			prefix?: string;
+			suffix?: string;
+			size?: WuiSize;
+		};
 </script>
 
 <script lang="ts">
 	import './style.css';
 	import { Icon } from '$lib/display';
-	import { Text } from '$lib/typography';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
@@ -30,33 +26,84 @@
 		size = 'md',
 		variant = 'solid',
 		color = 'primary',
-		loading = false,
-		disabled = false,
 		justify = 'center',
+		navigation = 'none',
 		prefix,
-		rounded = false,
 		suffix,
+		shape = 'rounded',
 		width,
 		height,
+		onkeydown,
 		...rest
 	}: LikeButtonAttributes<any, any> = $props();
+
+	// Keyboard accessibility
+	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
+		const key = e.key;
+		if (navigation !== 'none') {
+			if (
+				(navigation === 'horizontal' && key === 'ArrowRight') ||
+				(navigation === 'vertical' && key === 'ArrowDown') ||
+				(navigation === 'mixed' && (key === 'ArrowRight' || key === 'ArrowDown'))
+			) {
+				navigate_down(e.currentTarget as HTMLElement);
+			} else if (
+				(navigation === 'vertical' && key === 'ArrowUp') ||
+				(navigation === 'horizontal' && key === 'ArrowLeft') ||
+				(navigation === 'mixed' && (key === 'ArrowUp' || key === 'ArrowLeft'))
+			) {
+				navigate_up(e.currentTarget as HTMLElement);
+			}
+		}
+
+		onkeydown?.(e);
+	}
+
+	function navigate_down(target: HTMLElement) {
+		const next = target.nextElementSibling as HTMLElement;
+		if (next) {
+			next.focus();
+		} else if (target?.previousElementSibling) {
+			// There are other siblings
+			const first = target.parentElement?.firstElementChild as HTMLButtonElement;
+			first?.focus();
+		}
+	}
+
+	function navigate_up(target: HTMLElement) {
+		const prev = target.previousElementSibling as HTMLElement;
+		if (prev) {
+			prev.focus();
+		} else if (target.nextElementSibling) {
+			// There are other siblings
+			const last = target.parentElement?.lastElementChild as HTMLButtonElement;
+			last?.focus();
+		}
+	}
 </script>
 
 <svelte:element
 	this={element}
+	role="button"
+	tabindex="0"
 	{...rest}
-	disabled={loading || disabled}
 	class="
-		WuiLikeButton WuiLikeButton--{variant} WuiLikeButton--{size} WuiLikeButton--{color} WuiLikeButton--gap-{gap}
-		WuiText WuiText--body WuiText--{size} WuiText--{color} {bold ? 'WuiText--bold' : ''}
-		{width ? 'WuiLikeButton--width-' + width : ''}
-		{height ? 'WuiLikeButton--height-' + height : ''}
-		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
-		{loading ? 'WuiLikeButton--loading' : ''}
+		WuiLikeButton
+		WuiSurface
+		WuiSurface--clickable
+		WuiSurface--{variant}
+		WuiLikeButton--{size}
+		WuiSurface--{color}
+		WuiSurface--{shape}
+		WuiLikeButton--gap-{gap}
+		WuiText WuiText--body WuiText--md
+		{bold ? 'WuiText--bold' : ''}
+		{width ? 'WuiSurface--wid-' + width : ''}
+		{height ? 'WuiSurface--hgt-' + height : ''}
+		{!$$slots.default ? 'WuiSurface--only-icon' : ''}
 		{rest.class || ''}"
-	style="
-		{rest.style || ''};--WuiLikeButtonFlex-justify:{justify};
-		{rounded ? '--WuiLikeButton-radius:calc(var(--WuiLikeButton-height) / 2);' : ''}"
+	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify}"
+	onkeydown={keydown}
 >
 	{#if $$slots.prefix}
 		<slot name="prefix" />

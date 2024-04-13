@@ -12,9 +12,6 @@
   border-radius: inherit;
   color: var(--WuiInput-color-bg);
   height: var(--WuiInput-height);
-  font-size: var(--WuiInput-font-size);
-  font-weight: 350;
-  line-height: var(--WuiInput-line-height);
   margin: 0;
   outline: none;
   padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
@@ -101,20 +98,14 @@
 
 .WuiInput--sm {
   --WuiInput-height: var(--input-height-sm);
-  --WuiInput-font-size: 0.75rem;
-  --WuiInput-line-height: 0.875rem;
 }
 
 .WuiInput--md {
   --WuiInput-height: var(--input-height-md);
-  --WuiInput-font-size: 0.8125rem;
-  --WuiInput-line-height: 1rem;
 }
 
 .WuiInput--lg {
   --WuiInput-height: var(--input-height-lg);
-  --WuiInput-font-size: 0.9375rem;
-  --WuiInput-line-height: 1.125rem;
 }
 
 .WuiInput--solid {

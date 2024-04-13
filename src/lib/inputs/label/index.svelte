@@ -14,7 +14,7 @@
 </script>
 
 <Col justify="flex-start" align="flex-start" class="WuiInput__label__root">
-	<Text {...rest} variant="label" size="md" class="WuiInput__label">
+	<Text {...rest} variant="label" size="sm" class="WuiInput__label">
 		{#if $$slots.default}
 			<slot />
 		{/if}

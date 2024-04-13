@@ -30,7 +30,3 @@
 .WuiList--spacing-lg {
   --WuiList-flex-gap: var(--space-lg);
 }
-
-.WuiListItem {
-  border-radius: 0;
-}

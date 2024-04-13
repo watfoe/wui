@@ -1,27 +1,29 @@
 <script context="module" lang="ts">
-	import type { ButtonAttributes } from '$lib';
+	import type { ButtonAttributes, WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib';
 	import { untrack, type Snippet, setContext } from 'svelte';
 
 	export interface TabsAttributes {
 		for: string;
 		bottomrule?: boolean;
     children: Snippet;
-		color?: ButtonAttributes['color'];
-		size?: ButtonAttributes['size'];
+		color?: WuiColor;
+		size?: WuiSize;
+		shape?: Omit<WuiShape, 'circle' | 'pill'>;
 		selected?: number;
-		variant?: ButtonAttributes['variant'];
+		variant?: WuiVariant;
 	}
 </script>
 
 <script lang="ts">
-	let { for: _for, bottomrule = true, children, color, selected, size, variant }: TabsAttributes = $props();
+	let { for: _for, bottomrule = true, children, color, selected, size, shape, variant }: TabsAttributes = $props();
 	let tabs: HTMLDivElement;
 	let activeIndex = selected || 0;
 
 	// To be use by Tab items
-	setContext('wui-tab', {
+	setContext('wui-tab-ctx', {
 		color,
 		size,
+		shape,
 		variant,
 	});
 
