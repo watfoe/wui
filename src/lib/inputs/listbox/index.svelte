@@ -48,13 +48,21 @@
 
 	function change(e: Event & { currentTarget: HTMLFieldSetElement }) {
 		let input = e.target as HTMLInputElement;
-		if (selections.length === 1) {
-			selections[0].checked = false;
-		}
-		selections[0] = input;
-		value = input.value;
+		if (input.checked) {
+			if (selections.length === 1) {
+				// Uncheck the previously selected item
+				selections[0].checked = false;
+				// Dispatch the change event to the previously selected item so that svelte bind:checked can update
+				// But do not bubble the event to the parent fieldset
+				selections[0].dispatchEvent(new Event('change', { bubbles: false }));
+			}
+			selections[0] = input;
+			value = input.value;
 
-		onchange?.(e);
+			onchange?.(e);
+		} else {
+			e.stopImmediatePropagation();
+		}
 	}
 </script>
 

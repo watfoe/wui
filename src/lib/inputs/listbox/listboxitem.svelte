@@ -1,16 +1,20 @@
 <script lang="ts" context="module">
-	import { Button, type ButtonAttributes } from '$lib/buttons';
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { getContext, untrack } from 'svelte';
 
-	export interface ListboxItemAttributes extends ButtonAttributes {
-		selected?: boolean;
+	export interface ListboxItemAttributes
+		extends Omit<LikeButtonAttributes<HTMLLabelElement, HTMLLabelAttributes>, '_this'> {
+		_this?: HTMLInputElement;
 		role?: 'listitem' | 'option';
+		selected?: boolean;
 		value?: string;
 	}
 </script>
 
 <script lang="ts">
+	import { LikeButton, type LikeButtonAttributes } from '$lib/utils';
+	import type { HTMLLabelAttributes } from 'svelte/elements';
+
 	let {
 		_this = $bindable(),
 		color,
@@ -22,6 +26,8 @@
 		variant,
 		...rest
 	}: ListboxItemAttributes = $props();
+
+	let _checked = $state(selected);
 
 	const id = Math.random().toString(36).substring(2, 15);
 	const context: {
@@ -35,42 +41,50 @@
 
 	$effect(() => {
 		untrack(() => {
-			if (selected && value) {
+			if (_checked && value) {
 				// Without the timeout, the event is dispatched but the listener has not yet been registered.
 				setTimeout(() => {
-					_this?.click();
+					_this?.dispatchEvent(new Event('change', { bubbles: true }));
 				}, 0);
 			}
 		});
 	});
 
-	function click(e: MouseEvent) {
-		(_this?.firstElementChild as HTMLInputElement).click();
+	function keydown(e: KeyboardEvent) {
+		if (_this && (e.key === 'Enter' || e.key === ' ')) {
+			if (context.multiple) {
+				_this.click();
+			} else if (!_checked) {
+				_this.click();
+			}
+		}
 	}
 </script>
 
-<Button
-	aria-selected={selected}
+<LikeButton
+	{...rest}
+	element="label"
+	for={id}
+	aria-selected={_checked}
 	navigation="vertical"
-	variant={selected ? variant || context.variant || 'soft' : 'plain'}
-	color={selected ? color || context.color || 'primary' : 'neutral'}
+	variant={_checked ? variant || context.variant || 'soft' : 'plain'}
+	color={_checked ? color || context.color || 'primary' : 'neutral'}
 	size={size || context.size || 'md'}
 	shape={shape || context.shape || 'square'}
 	justify="flex-start"
 	class="WuiListbox__item"
-	onclick={click}
-	bind:_this
+	onkeydown={keydown}
 >
 	<input
 		type="checkbox"
+		tabindex="-1"
 		class="WuiListbox__item--hidden"
 		{id}
 		{value}
 		name={context.name}
-		bind:checked={selected}
-		tabindex="-1"
+		bind:checked={_checked}
+		bind:this={_this}
 	/>
 
-	<slot name="prefix" />
 	<slot />
-</Button>
+</LikeButton>

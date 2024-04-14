@@ -32,6 +32,7 @@
 		id,
 		onopen,
 		position = 'bottom-start',
+		role = 'popup',
 		shape = 'rounded',
 		variant = 'outlined',
 		...rest
@@ -157,7 +158,7 @@
 
 <Backdrop {...rest} {id} onopen={open} transparent bind:_this>
 	<div
-		role="tooltip"
+		{role}
 		aria-label="Popup"
 		class="
 		WuiPopup

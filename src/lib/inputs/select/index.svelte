@@ -148,7 +148,6 @@
 	{/if}
 
 	<Button
-		role="combobox"
 		type="button"
 		aria-expanded="false"
 		anchorfor={id}
@@ -186,7 +185,7 @@
 <Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
 	<Listbox
 		role="listbox"
-		aria-label="List of options"
+		aria-label="List of {preset} options"
 		class="WuiSelect__listbox"
 		{multiple}
 		{name}
