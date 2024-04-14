@@ -16,15 +16,16 @@
 	import { Col } from '$lib/layout';
 	import { Text } from '$lib/typography';
 	import { Icon } from '..';
+	import { getContext } from 'svelte';
 
-	let {
-		color = 'primary',
-		alt,
-		size = 'md',
-		shape = 'circle',
-		variant = 'solid',
-		...rest
-	}: AvatarAttributes = $props();
+	let { color, alt, size, shape, variant, ...rest }: AvatarAttributes = $props();
+
+	let ctx: {
+		color?: WuiColor | string;
+		size?: WuiSize;
+		variant?: WuiVariant;
+		shape?: Omit<WuiShape, 'pill'>;
+	} = getContext('avatar-group-ctx') || {};
 
 	$effect.pre(() => {
 		if (size === 'sm') {
@@ -41,7 +42,7 @@
 		'danger',
 		'black',
 		'white'
-	].includes(color!);
+	].includes(color || ctx.color || '');
 </script>
 
 <Col
@@ -50,9 +51,11 @@
 	align="center"
 	justify="center"
 	class="
-	WuiAvatar WuiAvatar--{size}
-	WuiSurface WuiSurface--{variant} WuiSurface--{shape}
-	{isColorPreset ? `WuiSurface--${color}` : ''}
+	WuiAvatar WuiAvatar--{size || ctx.size || 'md'}
+	WuiSurface
+	WuiSurface--{variant || ctx.variant || 'solid'}
+	WuiSurface--{shape || ctx.shape || 'circle'}
+	{isColorPreset ? `WuiSurface--${color || ctx.color || 'primary'}` : ''}
 	{rest.class || ''}"
 	style={isColorPreset ? '' : `--WuiAvatar-bg: ${color}`}
 >
