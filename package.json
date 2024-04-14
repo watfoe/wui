@@ -32,7 +32,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.96"
+		"svelte": "^5.0.0-next.101"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.41.2",

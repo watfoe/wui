@@ -13,13 +13,13 @@
 	</Row>
 
 	<Row gap="md" width="full">
-		<Avatar variant="solid" />
-		<Avatar alt="Jimmie Lovell" variant="outline" />
+		<Avatar variant="solid" shape="square" />
+		<Avatar alt="Jimmie Lovell" variant="outlined" />
 		<Avatar variant="soft">JL</Avatar>
 		<Avatar variant="plain" />
 	</Row>
 
-	<AvatarGroup>
+	<AvatarGroup color="danger" shape="rounded">
 		<Avatar />
 		<Avatar alt="Jimmie Lovell" />
 		<Avatar>JL</Avatar>
