@@ -20,7 +20,7 @@
 		gap = 'nm',
 		height,
 		variant = 'plain',
-		shape = 'square',
+		shape = 'rounded',
 		width,
 		...rest
 	}: SheetAttributes = $props();
@@ -28,7 +28,8 @@
 
 <div
 	{...rest}
-	class="WuiSurface WuiSurface--{variant} WuiSurface--{color} WuiSurface--gap-{gap}
+	class="
+	WuiSurface WuiSurface--{variant} WuiSurface--{color} WuiSurface--{shape} WuiSurface--gap-{gap}
 	{width ? 'WuiSurface--wid-' + width : ''}
 	{height ? 'WuiSurface--hgt-' + height : ''}
 	{rest.class || ''}"

@@ -9,7 +9,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import { Row } from '$lib/layout';
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 	import Select from '../select/index.svelte';
@@ -31,6 +30,7 @@
 		required,
 		rules,
 		size,
+		shape,
 		validateon = 'submit',
 		value = $bindable(),
 		variant,
@@ -73,6 +73,7 @@
 	};
 
 	function change(e: Event) {
+		e.stopImmediatePropagation();
 		validate();
 	}
 
@@ -111,7 +112,7 @@
 	}
 </script>
 
-<Row justify="space-between" gap="nm" class="WuiInput__date">
+<Row justify="space-between" gap="nm">
 	<Select
 		placeholder="Month"
 		preset="month"
@@ -121,6 +122,7 @@
 		{variant}
 		{color}
 		{size}
+		{shape}
 		onchange={change}
 		onblur={blur}
 		selected={month}
@@ -131,15 +133,16 @@
 	<BaseInput
 		type="number"
 		placeholder="Day"
+		align="center"
 		masks={{ max: 31 }}
 		maxlength={2}
-		class="WuiInput__date__day"
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
 		}}
 		{variant}
 		{color}
 		{size}
+		{shape}
 		{validateon}
 		onchange={change}
 		onblur={blur}
@@ -150,14 +153,15 @@
 	<BaseInput
 		type="number"
 		placeholder="Year"
+		align="center"
 		maxlength={4}
-		class="WuiInput__date__year"
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
 		}}
 		{variant}
 		{color}
 		{size}
+		{shape}
 		{validateon}
 		onchange={change}
 		onblur={blur}

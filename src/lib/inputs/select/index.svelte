@@ -93,17 +93,6 @@
 		onchange?.(e);
 	}
 
-	// Keyboard accessibility
-	function keydown(e: KeyboardEvent) {
-		const { key } = e;
-		const { length } = selections;
-
-		if (key === 'Backspace' && length > 0) {
-			e.preventDefault();
-			selections[length - 1].click();
-		}
-	}
-
 	function _validate() {
 		try {
 			validate(value!, {
@@ -151,6 +140,7 @@
 		type="button"
 		aria-expanded="false"
 		anchorfor={id}
+		navigation="feedback"
 		color={error ? 'danger' : opened ? color || 'primary' : color}
 		{variant}
 		{size}
@@ -159,7 +149,6 @@
 		justify="space-between"
 		width="full"
 		class="WuiSelect__combobox"
-		onkeydown={keydown}
 		bind:_this={combobox}
 	>
 		{#if selections.length > 0}

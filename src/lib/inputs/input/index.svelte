@@ -11,7 +11,6 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Col } from '$lib/layout';
 	import Label from '../label/index.svelte';
 	import ErrorText from '../error/index.svelte';
 	import BaseInput from '../base/index.svelte';
@@ -51,35 +50,33 @@
 		</Label>
 	{/if}
 
-	<Col align="flex-start" justify="flex-start" class="WuiInput__root__body" width="full">
-		{#if type === 'date'}
-			<DateInput {...rest} {id} {color} bind:error bind:value />
-		{:else if type === 'email'}
-			<EmailInput {...rest} {id} {color} bind:error bind:value />
-		{:else if type === 'name'}
-			<BaseInput
-				{...rest}
-				{id}
-				{color}
-				autocomplete="name"
-				autocapitalize="words"
-				bind:error
-				bind:value
-			/>
-		{:else if type === 'password'}
-			<PasswordInput secure {...rest} {id} {color} bind:error bind:value />
-		{:else if type === 'phone'}
-			<PhoneInput {...rest} {id} {color} bind:error bind:value />
-		{:else if type === 'pin'}
-			<PinInput {...rest} {id} {color} bind:error bind:value />
-		{:else if type === 'search'}
-			<SearchInput {...rest} {id} {color} bind:error bind:value />
-		{:else}
-			<BaseInput {...rest} {id} {color} bind:error bind:value />
-		{/if}
+	{#if type === 'date'}
+		<DateInput {...rest} {id} {color} bind:error bind:value />
+	{:else if type === 'email'}
+		<EmailInput {...rest} {id} {color} bind:error bind:value />
+	{:else if type === 'name'}
+		<BaseInput
+			{...rest}
+			{id}
+			{color}
+			autocomplete="name"
+			autocapitalize="words"
+			bind:error
+			bind:value
+		/>
+	{:else if type === 'password'}
+		<PasswordInput secure {...rest} {id} {color} bind:error bind:value />
+	{:else if type === 'phone'}
+		<PhoneInput {...rest} {id} {color} bind:error bind:value />
+	{:else if type === 'pin'}
+		<PinInput {...rest} {id} {color} bind:error bind:value />
+	{:else if type === 'search'}
+		<SearchInput {...rest} {id} {color} bind:error bind:value />
+	{:else}
+		<BaseInput {...rest} {id} {color} bind:error bind:value />
+	{/if}
 
-		{#if error}
-			<ErrorText {error} />
-		{/if}
-	</Col>
+	{#if error}
+		<ErrorText {error} />
+	{/if}
 </fieldset>

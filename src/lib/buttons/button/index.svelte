@@ -2,13 +2,15 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import type { LikeButtonAttributes } from '$lib';
 
-	export interface ButtonAttributes
-		extends Omit<LikeButtonAttributes<HTMLButtonElement, HTMLButtonAttributes>, 'element'> {
+	type LB = LikeButtonAttributes<HTMLButtonElement, HTMLButtonAttributes>;
+
+	export interface ButtonAttributes extends Omit<LB, 'element' | 'navigation'> {
 		_this?: HTMLButtonElement;
 		anchorfor?: string;
 		bold?: boolean;
 		disabled?: boolean;
 		loading?: boolean;
+		navigation?: LB['navigation'] | 'feedback';
 	}
 </script>
 
@@ -67,15 +69,7 @@
 		}
 
 		if (feedback) {
-			feedback.dispatchEvent(
-				new CustomEvent('open', {
-					detail: {
-						anchor: e.currentTarget
-					}
-				})
-			);
-
-			feedbackExpanded = true;
+			show_feedback();
 		}
 
 		onclick?.(e);
@@ -88,7 +82,9 @@
 		}
 
 		const key = e.key;
-		if (navigation !== 'none') {
+		if (navigation === 'feedback' && feedback && (key === 'ArrowDown' || key === 'ArrowUp')) {
+			show_feedback();
+		} else if (navigation !== 'none') {
 			if (
 				(navigation === 'horizontal' && key === 'ArrowRight') ||
 				(navigation === 'vertical' && key === 'ArrowDown') ||
@@ -103,20 +99,6 @@
 				navigate_up();
 			}
 		}
-
-		// if (key === 'ArrowDown' || key === 'ArrowUp') {
-		// 	if ((feedback && role === 'menuitem') || role === 'combobox') {
-		// 		feedback.dispatchEvent(
-		// 			new CustomEvent('open', {
-		// 				detail: {
-		// 					anchor: e.currentTarget
-		// 				}
-		// 			})
-		// 		);
-
-		// 		feedbackExpanded = true;
-		// 	}
-		// }
 
 		onkeydown?.(e);
 	}
@@ -141,6 +123,18 @@
 			const last = _this.parentElement?.lastElementChild as HTMLButtonElement;
 			last?.focus();
 		}
+	}
+
+	function show_feedback() {
+		feedback.dispatchEvent(
+			new CustomEvent('open', {
+				detail: {
+					anchor: _this
+				}
+			})
+		);
+
+		feedbackExpanded = true;
 	}
 </script>
 

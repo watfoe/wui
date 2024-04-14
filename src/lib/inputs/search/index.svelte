@@ -7,6 +7,7 @@
 		color = 'neutral',
 		error = $bindable(),
 		value = $bindable(),
+		variant,
 		...rest
 	}: BaseInputAttributes = $props();
 
@@ -24,10 +25,18 @@
 	autocorrect="off"
 	spellcheck="false"
 	type="text"
+	{variant}
 	{color}
 	bind:_this
 	bind:value
 	bind:error
 >
-	<Button variant="plain" {color} size="sm" slot="suffix" prefix="clear" onclick={clear} />
+	<Button
+		{color}
+		variant={variant === 'outlined' ? 'plain' : variant}
+		size="sm"
+		slot="suffix"
+		prefix="clear"
+		onclick={clear}
+	/>
 </BaseInput>

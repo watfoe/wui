@@ -38,6 +38,8 @@
 		<Input
 			type="password"
 			variant="solid"
+			placeholder="Enter your password"
+			shape="pill"
 			color="success"
 			label="Password"
 			class="input"
@@ -47,6 +49,8 @@
 		<Input
 			type="password"
 			variant="outlined"
+			placeholder="Enter your password"
+			shape="square"
 			color="success"
 			label="Password"
 			class="input"

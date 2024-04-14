@@ -1,29 +1,16 @@
 .WuiInput__root {
+  display: flex;
+  flex-direction: column;
   border: 0;
   width: 100%;
-  border-radius: var(--radius);
-}
-
-.WuiInput__root__body {
-  border-radius: inherit;
   position: relative;
 }
 
 .WuiInput--primary {
-  --WuiInput-color-plain: var(--color-blue-1);
-  --WuiInput-color-bg: var(--color-primary);
-  --WuiInput-color-on-bg: var(--color-on-primary);
-  --WuiInput-color-bg-soft: var(--color-selection-container);
-  --WuiInput-color-outline: var(--color-primary);
   --WuiLabel-color: var(--color-primary);
 }
 
 .WuiInput--neutral {
-  --WuiInput-color-plain: var(--color-grey-1);
-  --WuiInput-color-bg: var(--color-neutral);
-  --WuiInput-color-on-bg: var(--color-on-neutral);
-  --WuiInput-color-bg-soft: var(--color-neutral-container);
-  --WuiInput-color-outline: var(--color-neutral);
   --WuiLabel-color: var(--color-black-4);
 }
 
@@ -32,43 +19,18 @@
 }
 
 .WuiInput--success {
-  --WuiInput-color-plain: var(--color-green-1);
-  --WuiInput-color-bg: var(--color-success);
-  --WuiInput-color-on-bg: var(--color-on-success);
-  --WuiInput-color-bg-soft: var(--color-success-container);
-  --WuiInput-color-outline: var(--color-success);
   --WuiLabel-color: var(--color-success);
 }
 
 .WuiInput--warning {
-  --WuiInput-color-plain: var(--color-yellow-1);
-  --WuiInput-color-bg: var(--color-warning);
-  --WuiInput-color-on-bg: var(--color-on-warning);
-  --WuiInput-color-bg-soft: var(--color-warning-container);
-  --WuiInput-color-outline: var(--color-warning);
   --WuiLabel-color: var(--color-warning);
 }
 
 .WuiInput--danger,
 .WuiInput__root:invalid {
-  --WuiInput-color-plain: var(--color-red-1);
-  --WuiInput-color-bg: var(--color-error);
-  --WuiInput-color-on-bg: var(--color-on-error);
-  --WuiInput-color-bg-soft: var(--color-error-container);
-  --WuiInput-color-on-bg-soft: var(--color-error);
-  --WuiInput-color-outline: var(--color-error) !important;
   --WuiLabel-color: var(--color-error);
 }
 
-.WuiInput--primary:disabled,
-.WuiInput--neutral:disabled,
-.WuiInput--success:disabled,
-.WuiInput--warning:disabled {
-  --WuiInput-color-plain: var(--color-disabled);
-  --WuiInput-color-bg: var(--color-disabled);
-  --WuiInput-color-on-bg: var(--color-on-disabled);
-  --WuiInput-color-bg-soft: var(--color-disabled);
-  --WuiInput-color-on-bg-soft: var(--color-on-disabled);
-  --WuiInput-color-outline: var(--color-disabled);
+.WuiInput:disabled {
   --WuiLabel-color: var(--color-disabled);
 }

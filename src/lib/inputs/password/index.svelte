@@ -11,6 +11,7 @@
 		color = 'neutral',
 		error = $bindable(),
 		value = $bindable(),
+		variant = 'plain',
 		secure = true,
 		...rest
 	}: PasswordInputAttributes = $props();
@@ -19,6 +20,7 @@
 <BaseInput
 	{...rest}
 	{color}
+	{variant}
 	autocomplete="password"
 	type={secure ? 'password' : 'text'}
 	autocapitalize="off"
@@ -30,7 +32,7 @@
 	bind:error
 >
 	<Button
-		variant="plain"
+		variant={variant === 'outlined' ? 'plain' : variant}
 		{color}
 		size="sm"
 		slot="suffix"

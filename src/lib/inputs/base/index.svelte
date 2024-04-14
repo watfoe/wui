@@ -6,14 +6,17 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Row } from '$lib/layout';
 
 	import { validate, mask, ValidationError } from '../_common_';
 	import { Icon } from '$lib/display';
 	import { untrack } from 'svelte';
+	import { Sheet } from '$lib/surfaces';
 
 	let {
 		_this = $bindable(),
+		align = 'left',
+		class: _class = '',
+		color,
 		error = $bindable(),
 		masks,
 		oninput,
@@ -23,7 +26,9 @@
 		required,
 		rules,
 		size = 'md',
+		shape,
 		suffix,
+		style = '',
 		validateon = 'submit',
 		value = $bindable(),
 		variant = 'outlined',
@@ -109,7 +114,17 @@
 	}
 </script>
 
-<Row class="WuiInput__field__root">
+<Sheet
+	color={error ? 'danger' : color}
+	{shape}
+	{variant}
+	class="
+	WuiInput__field__root
+	{prefix ? 'WuiInput--prefixed' : ''}
+	{suffix ? 'WuiInput--suffixed' : ''}
+	{_class}"
+	{style}
+>
 	{#if $$slots.prefix}
 		<div class="WuiInput__prefix">
 			<slot name="prefix" />
@@ -124,13 +139,11 @@
 		dir="ltr"
 		{...rest}
 		class="
-		WuiInput WuiInput--{variant} WuiInput--{size}
-		WuiText WuiText--body WuiText--{size}
-		{prefix ? 'WuiInput--prefixed' : ''}
-		{suffix ? 'WuiInput--suffixed' : ''}
-		{rest.class || ''}"
+		WuiInput WuiInput--{size}
+		WuiText WuiText--body WuiText--{size}"
 		onblur={blur}
 		oninput={input}
+		style="text-align: {align}"
 		bind:this={_this}
 		bind:value
 	/>
@@ -142,4 +155,4 @@
 	{:else if suffix}
 		<Icon class="WuiInput__suffix">{suffix}</Icon>
 	{/if}
-</Row>
+</Sheet>

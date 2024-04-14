@@ -1,4 +1,4 @@
-import type { WuiColor, WuiSize, WuiVariant } from "$lib/types";
+import type { WuiColor, WuiShape, WuiSize, WuiVariant } from "$lib/types";
 import type { HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
 
 export interface InputMasks {
@@ -35,6 +35,7 @@ export interface InputRules {
 }
 
 export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<A, 'size'> & {
+  align?: 'left' | 'center' | 'right'; // Controls the alignment of the input value
   color?: WuiColor;
   _this?: E;
   error?: ValidationError;
@@ -43,7 +44,8 @@ export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAtt
   prefix?: string;
   rules?: InputRules;
   required?: boolean;
-  size?: Omit<WuiSize, 'xl' | 'nm' | 'xl'>;
+  size?: WuiSize;
+  shape?: WuiShape;
   suffix?: string;
   validateon?: 'blur' | 'input' | 'submit';
   variant?: WuiVariant;
