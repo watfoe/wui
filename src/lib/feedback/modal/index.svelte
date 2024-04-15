@@ -53,17 +53,15 @@
 					<Text variant="heading" size="sm" tabindex={0}>{title}</Text>
 				{/if}
 
-				<Tooltip title="Close">
-					<Button
-						variant="plain"
-						color="neutral"
-						size="sm"
-						class="WuiModal__close-button"
-						onclick={close}
-					>
-						<Icon slot="prefix" size="md">close</Icon>
-					</Button>
-				</Tooltip>
+				<Button
+					variant="plain"
+					color="neutral"
+					size="sm"
+					class="WuiModal__close-button"
+					onclick={close}
+				>
+					<Icon slot="prefix" size="md">close</Icon>
+				</Button>
 			</Row>
 		{/if}
 

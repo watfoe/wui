@@ -1,6 +1,6 @@
 <script>
 	import { Button } from '$lib/buttons';
-	import { Badge, Icon, List, ListItem, Logo, Tooltip } from '$lib/display';
+	import { Badge, Icon, List, ListButtonItem, ListItem, Logo, Tooltip } from '$lib/display';
 	import { Col, Row } from '$lib/layout';
 	import { Sheet } from '$lib/surfaces';
 </script>
@@ -74,13 +74,23 @@
 	</Row>
 
 	<Row gap="lg" width="full">
-		<Sheet variant="outlined">
+		<Sheet>
 			<List size="md">
-				<ListItem gap="lg" suffix="clear">Item 1: some grocery stuff</ListItem>
-				<ListItem prefix="check">Item 2</ListItem>
+				<ListItem>Item 1: some grocery stuff</ListItem>
+				<ListItem>Item 2</ListItem>
 				<ListItem>Item 3</ListItem>
 				<ListItem>Item 4</ListItem>
 				<ListItem>Item 5</ListItem>
+			</List>
+		</Sheet>
+
+		<Sheet variant="plain">
+			<List size="md" gap="sm" variant="outlined">
+				<ListButtonItem gap="lg" suffix="clear">Item 1: some grocery stuff</ListButtonItem>
+				<ListButtonItem prefix="check">Item 2</ListButtonItem>
+				<ListButtonItem>Item 3</ListButtonItem>
+				<ListButtonItem>Item 4</ListButtonItem>
+				<ListButtonItem>Item 5</ListButtonItem>
 			</List>
 		</Sheet>
 	</Row>

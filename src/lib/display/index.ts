@@ -5,5 +5,6 @@ export {default as Divider, type DividerAttributes} from './divider/index.svelte
 export {default as Icon, type IconAttributes } from './icon/index.svelte';
 export {default as List, type ListAttributes} from './list/index.svelte';
 export {default as ListItem, type ListItemAttributes} from './list/list-item.svelte';
+export {default as ListButtonItem, type ListButtonItemAttributes} from './list/list-button-item.svelte';
 export {default as Logo, type LogoAttributes} from './logo/index.svelte';
 export {default as Tooltip, type TooltipAttributes} from './tooltip/index.svelte';

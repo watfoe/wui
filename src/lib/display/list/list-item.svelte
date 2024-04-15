@@ -1,40 +1,34 @@
 <script lang="ts" context="module">
-	import { type LikeButtonAttributes } from '$lib/utils';
+	import type { WuiColor, WuiListMarker, WuiSize } from '$lib/types';
 	import type { HTMLLiAttributes } from 'svelte/elements';
 
-	export interface ListItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLIElement, HTMLLiAttributes>, 'element'> {}
+	export interface ListItemAttributes extends HTMLLiAttributes {
+		color?: WuiColor;
+		size?: WuiSize;
+		marker?: WuiListMarker;
+	}
 </script>
 
 <script lang="ts">
-	import { LikeButton } from '$lib/utils';
 	import { getContext } from 'svelte';
-	import type { WuiColor, WuiSize, WuiVariant } from '$lib/types';
 
-	let { color, size, variant, ...rest }: ListItemAttributes = $props();
+	let { color, size, marker, ...rest }: ListItemAttributes = $props();
 	let context: {
 		color?: WuiColor;
+		marker?: WuiListMarker;
 		size?: WuiSize;
-		variant?: WuiVariant;
-		orientation?: 'horizontal' | 'vertical';
 	} = getContext('wui-tab-ctx') || {};
 
 	color = color || context.color || 'neutral';
 	size = size || context.size || 'sm';
-	variant = variant || context.variant || 'plain';
+	marker = marker || context.marker || 'circle';
 </script>
 
-<LikeButton
+<li
 	{...rest}
-	element="li"
-	navigation={context.orientation || 'vertical'}
-	tabindex="0"
-	justify="flex-start"
-	class="WuiListItem"
-	{color}
-	{size}
-	{variant}
-	shape="square"
+	class="
+	WuiListItem WuiListItem--{size} WuiListItem--marker-{marker}
+	WuiText WuiText--body WuiText--md WuiText--{color}"
 >
 	<slot />
-</LikeButton>
+</li>
