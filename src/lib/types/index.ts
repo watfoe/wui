@@ -15,6 +15,8 @@ export type WuiFlexWrap = 'wrap' | 'nowrap';
 
 export type WuiTextWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 
+export type WuiSpacing = 'xs' | 'sm' | 'nm' | 'md' | 'lg' | 'xl';
+
 export interface WuiSurface {
   color?: WuiColor;
   gap?: WuiFlexGap;
@@ -23,3 +25,5 @@ export interface WuiSurface {
   variant?: WuiVariant;
   width?: WuiWidth;
 }
+
+export type WuiListMarker = 'disc' | 'circle' | 'square' | 'decimal' | 'decimal-leading-zero' | 'lower-roman' | 'upper-roman' | 'lower-greek' | 'lower-latin' | 'upper-latin' | 'armenian' | 'georgian' | 'lower-alpha' | 'upper-alpha' | 'none';

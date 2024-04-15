@@ -15,18 +15,97 @@
   flex-direction: column;
 }
 
-.WuiList--spacing-sm {
+.WuiList--gap-sm {
   --WuiList-flex-gap: var(--space-sm);
 }
 
-.WuiList--spacing-nm {
+.WuiList--gap-nm {
   --WuiList-flex-gap: var(--space-md);
 }
 
-.WuiList--spacing-md {
+.WuiList--gap-md {
   --WuiList-flex-gap: var(--space-md);
 }
 
-.WuiList--spacing-lg {
+.WuiList--gap-lg {
   --WuiList-flex-gap: var(--space-lg);
+}
+
+.WuiListItem {
+  --WuiListItem-marker: disc;
+  height: var(--WuiListItem-height, var(--button-height));
+  list-style-type: var(--WuiListItem-marker);
+}
+
+.WuiListItem--marker-disc {
+  --WuiListItem-marker: disc;
+}
+
+.WuiListItem--marker-circle {
+  --WuiListItem-marker: circle
+}
+
+.WuiListItem--marker-square {
+  --WuiListItem-marker: square
+}
+
+.WuiListItem--marker-decimal {
+  --WuiListItem-marker: decimal
+}
+
+.WuiListItem--marker-decimal-leading-zero {
+  --WuiListItem-marker: decimal-leading-zero
+}
+
+.WuiListItem--marker-lower-roman {
+  --WuiListItem-marker: lower-roman
+}
+
+.WuiListItem--marker-upper-roman {
+  --WuiListItem-marker: upper-roman
+}
+
+.WuiListItem--marker-lower-greek {
+  --WuiListItem-marker: lower-greek
+}
+
+.WuiListItem--marker-lower-latin {
+  --WuiListItem-marker: lower-latin
+}
+
+.WuiListItem--marker-upper-latin {
+  --WuiListItem-marker: upper-latin
+}
+
+.WuiListItem--marker-armenian {
+  --WuiListItem-marker: armenian
+}
+
+.WuiListItem--marker-georgian {
+  --WuiListItem-marker: georgian
+}
+
+.WuiListItem--marker-lower-alpha {
+  --WuiListItem-marker: lower-alpha
+}
+
+.WuiListItem--marker-upper-alpha {
+  --WuiListItem-marker: upper-alpha
+}
+
+.WuiListItem--marker-none {
+  --WuiListItem-marker: none
+}
+
+
+.WuiListItem--sm {
+  --WuiListItem-height: var(--button-height-sm);
+}
+
+.WuiListItem--md {
+  --WuiListItem-height: var(--button-height-md);
+}
+
+.WuiListItem--lg {
+  --WuiListItem-height: var(--button-height-lg);
 }
