@@ -122,7 +122,8 @@
 <Col
 	align="flex-start"
 	justify="flex-start"
-	class="WuiSelect__root WuiSelect--{color} WuiSelect--{variant} {_class || ''}"
+	class="WuiSelect WuiSelect--{color} {_class || ''}"
+	width="full"
 	{style}
 >
 	{#if label && $$slots.description}
@@ -145,7 +146,6 @@
 		{variant}
 		{size}
 		{shape}
-		bold={false}
 		justify="space-between"
 		width="full"
 		class="WuiSelect__combobox"
@@ -169,29 +169,29 @@
 
 		<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
 	</Button>
-</Col>
 
-<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
-	<Listbox
-		role="listbox"
-		aria-label="List of {preset} options"
-		class="WuiSelect__listbox"
-		{multiple}
-		{name}
-		color="primary"
-		{size}
-		onchange={change}
-		bind:_this
-		bind:value
-	>
-		{#if preset === 'country'}
-			<CountryPreset {selected} />
-		{:else if preset === 'month'}
-			<MonthPreset {selected} />
-		{:else if preset === 'gender'}
-			<GenderPreset {selected} />
-		{:else}
-			<slot />
-		{/if}
-	</Listbox>
-</Popup>
+	<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
+		<Listbox
+			role="listbox"
+			aria-label="List of {preset} options"
+			class="WuiSelect__listbox"
+			{multiple}
+			{name}
+			color="primary"
+			{size}
+			onchange={change}
+			bind:_this
+			bind:value
+		>
+			{#if preset === 'country'}
+				<CountryPreset {selected} />
+			{:else if preset === 'month'}
+				<MonthPreset {selected} />
+			{:else if preset === 'gender'}
+				<GenderPreset {selected} />
+			{:else}
+				<slot />
+			{/if}
+		</Listbox>
+	</Popup>
+</Col>

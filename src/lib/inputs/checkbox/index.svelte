@@ -1,11 +1,12 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
 	export interface CheckBoxAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		_this?: HTMLInputElement;
 		checked?: boolean;
 		color?: WuiColor;
 		label: string;
+		gap?: WuiSpacing;
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
@@ -23,6 +24,7 @@
 		checked = $bindable(false),
 		color = 'black',
 		label,
+		gap = 'md',
 		size = 'md',
 		shape = 'rounded',
 		variant = 'outlined',
@@ -32,37 +34,39 @@
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<div
+<Text
 	role="checkbox"
 	aria-checked={checked}
 	aria-label={label}
-	class="WuiCheckbox WuiCheckbox--{size}"
+	variant="label"
+	{size}
+	for={id}
+	class="WuiCheckbox WuiCheckbox--{size} WuiGap-{gap}"
 >
 	<input
 		{...rest}
 		tabindex="-1"
 		type="checkbox"
-		class="WuiCheckbox__input"
+		class="WuiHidden"
 		{id}
 		bind:this={_this}
 		bind:checked
 	/>
 
-	<Text variant="label" {size} for={id} class="WuiCheckbox__label">
-		<LikeButton
-			element="span"
-			color={checked ? color : 'neutral'}
-			{variant}
-			{shape}
-			size="sm"
-			class="WuiCheckbox__thumb"
-		>
-			<Icon {size} slot="prefix">check</Icon>
-		</LikeButton>
-		{#if $$slots.label}
-			<slot name="label" />
-		{:else}
-			{label}
-		{/if}
-	</Text>
-</div>
+	<LikeButton
+		element="span"
+		color={checked ? color : 'neutral'}
+		{variant}
+		{shape}
+		size="sm"
+		class="WuiCheckbox__thumb"
+	>
+		<Icon {size} slot="prefix">check</Icon>
+	</LikeButton>
+
+	{#if $$slots.label}
+		<slot name="label" />
+	{:else}
+		{label}
+	{/if}
+</Text>

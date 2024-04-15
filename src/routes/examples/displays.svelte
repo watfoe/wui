@@ -1,4 +1,5 @@
 <script>
+	import { Snackbar } from '$lib';
 	import { Button } from '$lib/buttons';
 	import { Badge, Icon, List, ListButtonItem, ListItem, Logo, Tooltip } from '$lib/display';
 	import { Col, Row } from '$lib/layout';
@@ -84,14 +85,16 @@
 			</List>
 		</Sheet>
 
-		<Sheet variant="plain">
-			<List size="md" gap="sm" variant="outlined">
-				<ListButtonItem gap="lg" suffix="clear">Item 1: some grocery stuff</ListButtonItem>
+		<Sheet variant="soft" pad="md" color="danger">
+			<List size="md" gap="md" variant="solid" color="danger" shape="pill">
+				<ListButtonItem suffix="clear">Item 1: some grocery stuff</ListButtonItem>
 				<ListButtonItem prefix="check">Item 2</ListButtonItem>
-				<ListButtonItem>Item 3</ListButtonItem>
-				<ListButtonItem>Item 4</ListButtonItem>
-				<ListButtonItem>Item 5</ListButtonItem>
+				<ListButtonItem color="black">Item 3</ListButtonItem>
+				<ListButtonItem color="primary">Item 4</ListButtonItem>
+				<ListButtonItem shape="square">Item 5</ListButtonItem>
 			</List>
 		</Sheet>
 	</Row>
+
+	<Snackbar id="snack" title="This is a snackbar" position="bottom" />
 </Col>

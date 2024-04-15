@@ -112,7 +112,7 @@
 	}
 </script>
 
-<Row justify="space-between" gap="nm">
+<Row justify="space-between" gap="xs">
 	<Select
 		placeholder="Month"
 		preset="month"
@@ -174,7 +174,7 @@
 		tabindex="-1"
 		aria-hidden="true"
 		{name}
-		style="clip:rect(1px, 1px, 1px, 1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;left:50%;bottom:0"
+		class="WuiHidden"
 		bind:this={_this}
 		bind:value
 	/>

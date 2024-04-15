@@ -19,7 +19,7 @@
 	let { children, description, disabled, label, hidden, ...rest }: RadioGroupAttributes = $props();
 </script>
 
-<fieldset class="WuiRadioGroup {rest.class || ''}" {hidden} {disabled}>
+<fieldset class="WuiCheckboxGroup {rest.class || ''}" {hidden} {disabled}>
 	{#if label && $$slots.description && !hidden}
 		<Label {description}>
 			{label}
@@ -31,13 +31,13 @@
 		</Label>
 	{/if}
 
-	<Col align="flex-start" justify="flex-start" width="full" gap="nm">
+	<Col align="flex-start" justify="flex-start" width="full" gap="md">
 		{@render children()}
 	</Col>
 </fieldset>
 
 <style>
-	.WuiRadioGroup {
+	.WuiCheckboxGroup {
 		border: 0;
 		outline: 0;
 		appearance: none;
@@ -47,7 +47,7 @@
 		width: auto;
 	}
 
-	.WuiRadioGroup :global(.WuiInput__label__root) {
+	.WuiCheckboxGroup :global(.WuiInput__label__root) {
 		max-width: unset !important;
 	}
 </style>

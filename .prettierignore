@@ -15,4 +15,4 @@ yarn.lock
 
 # Ignore css files
 
-/src/lib/**/*.css
+**/*.css

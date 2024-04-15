@@ -1,20 +1,32 @@
 <script context="module" lang="ts">
+	import type { WuiSpacing } from '$lib';
+
 	export interface DividerAttributes {
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
 		size?: 'sm' | 'md' | 'lg';
+		spacing?: WuiSpacing | number;
 		vertical?: boolean;
 	}
 </script>
 
 <script lang="ts">
-	let { color = 'neutral', size = 'sm', vertical = false }: DividerAttributes = $props();
+	let {
+		color = 'neutral',
+		size = 'sm',
+		spacing = 'xs',
+		vertical = false
+	}: DividerAttributes = $props();
+	let spacingIsNumber = typeof spacing === 'number';
 </script>
 
 <div
 	role="separator"
-	class="WuiDivider WuiDivider--{size} WuiDivider--{color} {vertical
-		? 'WuiDivider--vert'
-		: 'WuiDivider--horiz'}"
+	class="
+	WuiDivider WuiDivider--{size} WuiDivider--{color}
+	WuiColor-{color}
+	{vertical ? 'WuiDivider--vert' : 'WuiDivider--horiz'}
+	{spacingIsNumber ? '' : 'WuiDivider--mgn-{spacing}'}"
+	style={spacingIsNumber ? '--WuiDivider--margin: {spacing}px' : ''}
 />
 
 <style>
@@ -39,30 +51,30 @@
 
 	.WuiDivider--sm {
 		--WuiDivider--size: 1px;
-		--WuiDivider--margin: var(--space-xs);
 	}
 	.WuiDivider--md {
 		--WuiDivider--size: 2px;
-		--WuiDivider--margin: var(--space-sm);
 	}
 	.WuiDivider--lg {
 		--WuiDivider--size: 3px;
-		--WuiDivider--margin: var(--space-nm);
 	}
 
-	.WuiDivider--primary {
-		--WuiDivider--color: var(--color-primary);
+	.WuiDivider--mgn-ss {
+		--WuiDivider--margin: var(--space-xs);
 	}
-	.WuiDivider--neutral {
-		--WuiDivider--color: var(--color-outline);
+	.WuiDivider--mgn-sm {
+		--WuiDivider--margin: var(--space-sm);
 	}
-	.WuiDivider--success {
-		--WuiDivider--color: var(--color-success);
+	.WuiDivider--mgn-md {
+		--WuiDivider--margin: var(--space-md);
 	}
-	.WuiDivider--warning {
-		--WuiDivider--color: var(--color-warning);
+	.WuiDivider--mgn-lg {
+		--WuiDivider--margin: var(--space-lg);
 	}
-	.WuiDivider--danger {
-		--WuiDivider--color: var(--color-danger);
+	.WuiDivider--mgn-xl {
+		--WuiDivider--margin: var(--space-xl);
+	}
+	.WuiDivider--mgn-xx {
+		--WuiDivider--margin: var(--space-xx);
 	}
 </style>

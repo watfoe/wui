@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import type { ListboxItemAttributes } from '../listbox/listboxitem.svelte';
+	import type { ListboxItemAttributes } from '../listbox/listbox-item.svelte';
 
 	export interface OptionAttributes extends Omit<ListboxItemAttributes, 'role'> {
 		value: string;

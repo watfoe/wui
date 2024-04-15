@@ -1,5 +1,9 @@
 .WuiCheckbox {
+  align-items: center;
+  cursor: pointer;
   position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .WuiCheckbox--sm {
@@ -14,38 +18,16 @@
   --WuiCheckbox-size: 26px;
 }
 
-.WuiCheckbox__label {
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-nm);
-}
-
-.WuiCheckbox__input {
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-}
-
 .WuiCheckbox__thumb {
   display: inline-flex;
   height: var(--WuiCheckbox-size);
   width: var(--WuiCheckbox-size);
 }
 
-.WuiCheckbox__label .WuiCheckbox__thumb * {
+.WuiCheckbox .WuiCheckbox__thumb * {
   opacity: 0;
 }
 
-input:checked+.WuiCheckbox__label .WuiCheckbox__thumb * {
+.WuiCheckbox input:checked+.WuiCheckbox__thumb * {
   opacity: 1;
 }

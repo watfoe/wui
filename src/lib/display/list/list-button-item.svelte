@@ -9,18 +9,20 @@
 <script lang="ts">
 	import { LikeButton } from '$lib/utils';
 	import { getContext } from 'svelte';
-	import type { WuiColor, WuiSize, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	let { color, size, variant, ...rest }: ListButtonItemAttributes = $props();
+	let { color, size, shape, variant, ...rest }: ListButtonItemAttributes = $props();
 	let context: {
 		color?: WuiColor;
 		size?: WuiSize;
+		shape?: WuiShape;
 		variant?: WuiVariant;
 		orientation?: 'horizontal' | 'vertical';
 	} = getContext('wui-tab-ctx') || {};
 
 	color = color || context.color || 'neutral';
 	size = size || context.size || 'md';
+	shape = shape || context.shape || 'square';
 	variant = variant || context.variant || 'plain';
 </script>
 
@@ -32,8 +34,8 @@
 	justify="flex-start"
 	{color}
 	{size}
+	{shape}
 	{variant}
-	shape="square"
 >
 	<slot />
 </LikeButton>

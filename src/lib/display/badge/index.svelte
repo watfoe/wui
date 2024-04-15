@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { type WuiColor } from '$lib/types';
+	import { type WuiColor, type WuiShape, type WuiVariant } from '$lib/types';
 	import type { Snippet } from 'svelte';
 	export interface BadgeAttributes {
 		'aria-label'?: string;
@@ -16,6 +16,8 @@
 			| 'bottom-right';
 		color?: WuiColor;
 		max?: number;
+		shape?: WuiShape;
+		variant?: WuiVariant;
 	}
 </script>
 
@@ -26,6 +28,8 @@
 		position = 'top-right',
 		color = 'primary',
 		max,
+		shape = 'pill',
+		variant = 'solid',
 		...rest
 	}: BadgeAttributes = $props();
 </script>
@@ -37,12 +41,12 @@
 
 	<div
 		aria-label={rest['aria-label'] || 'badge'}
-		class="WuiBadge__content WuiSurface WuiSurface--solid WuiSurface--{color}"
+		class="WuiBadge__content WuiVariant-{variant} WuiColor-{color} WuiShape-{shape}"
 	>
 		{#if $$slots.content}
 			<slot name="content" />
 		{:else if content}
-			<Text variant="body" color="white" size="sm">
+			<Text variant="body" color="inherit" size="sm">
 				{typeof !isNaN(Number(content)) && max
 					? Number(content) > max
 						? `${max}+`
@@ -67,24 +71,18 @@
 	.WuiBadge--no-content {
 		--WuiBadge-height: 0.75rem;
 		--WuiBadge-paddingX: 0;
-		--WuiBadge-radius: 0.75rem;
 	}
 
 	.WuiBadge__content {
 		align-items: center;
-		border-radius: var(--WuiBadge-radius);
 		box-sizing: border-box;
 		box-shadow: 0 0 0 2px;
 		display: inline-flex;
 		flex-wrap: wrap;
-		font-size: 0.75rem;
-		-webkit-box-pack: center;
 		place-content: center;
-		-webkit-box-align: center;
 		position: absolute;
 		padding: 0 var(--WuiBadge-paddingX);
 		min-height: var(--WuiBadge-height);
-		line-height: 1.2;
 		min-width: var(--WuiBadge-height);
 		-webkit-transform: scale(1) translateX(var(--WuiBadge-translateX))
 			translateY(var(--WuiBadge-translateY));

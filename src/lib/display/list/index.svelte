@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	import { Flex } from '$lib/layout';
 	import type { WuiColor, WuiListMarker, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import type { LikeButtonAttributes } from '$lib/utils';
 
@@ -30,8 +31,6 @@
 	$effect.pre(() => {
 		if (shape === 'circle') {
 			shape = 'rounded';
-		} else if (shape === 'pill' && orientation !== 'horizontal') {
-			shape = 'rounded';
 		}
 	});
 
@@ -45,6 +44,11 @@
 	});
 </script>
 
-<ul class="WuiList WuiList--{orientation} WuiList--gap-{gap}">
+<Flex
+	align="flex-start"
+	justify="flex-start"
+	direction={orientation === 'horizontal' ? 'row' : 'column'}
+	class="WuiList WuiGap-{gap}"
+>
 	<slot />
-</ul>
+</Flex>

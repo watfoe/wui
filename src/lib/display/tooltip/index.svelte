@@ -1,11 +1,16 @@
 <!-- TODO: Should it be a popover instead of a tooltip? -->
 
 <script lang="ts" context="module">
+	import type { WuiColor, WuiShape, WuiSpacing, WuiVariant } from '$lib/types';
 	import type { Snippet } from 'svelte';
 
 	export interface TooltipAttributes {
 		children?: Snippet;
+		color?: WuiColor;
 		title: string;
+		pad?: WuiSpacing;
+		padx?: WuiSpacing;
+		pady?: WuiSpacing;
 		position?:
 			| 'top'
 			| 'bottom'
@@ -15,22 +20,40 @@
 			| 'top-end'
 			| 'bottom-start'
 			| 'bottom-end';
-		// TODO: Implement other variants - solid already implemented
-		variant?: 'solid' | 'outline' | 'plain' | 'soft';
+		shape?: WuiShape;
+		variant?: WuiVariant;
 	}
 </script>
 
 <script lang="ts">
-	let { title, position = 'bottom' }: TooltipAttributes = $props();
+	let {
+		color = 'neutral',
+		title,
+		pad = 'sm',
+		padx,
+		pady,
+		position = 'bottom',
+		shape = 'rounded',
+		variant = 'solid'
+	}: TooltipAttributes = $props();
+
+	padx = padx || pad;
+	pady = pady || pad;
 </script>
 
-<div
-	aria-label={title}
-	role="tooltip"
-	class="WuiTooltip WuiTooltip-{position} "
-	data-tooltip-title={title}
->
+<div class="WuiTooltip WuiTooltip-{position}">
 	<slot />
+	<span
+		role="tooltip"
+		class="
+		WuiTooltip__content
+		WuiText WuiText--body WuiText--sm
+		WuiColor-{color} WuiVariant-{variant} WuiShape-{shape}
+		{padx ? `WuiPadding-x-${padx}` : ''}
+		{pady ? `WuiPadding-y-${pady}` : ''}"
+	>
+		{title}
+	</span>
 </div>
 
 <style>
@@ -42,50 +65,44 @@
 		width: auto !important;
 		z-index: 1000000;
 	}
-	.WuiTooltip::after {
-		background-color: var(--color-black-1);
-		color: var(--color-on-primary);
-		border-radius: var(--radius);
-		content: attr(data-tooltip-title);
-		font-size: 0.74rem;
+	.WuiTooltip .WuiTooltip__content {
 		position: absolute;
-		padding: var(--space-nm) var(--space-sm);
 		white-space: nowrap;
 		display: none;
 	}
-	.WuiTooltip:hover::after {
+	.WuiTooltip:hover .WuiTooltip__content {
 		display: block;
 	}
-	.WuiTooltip-left::after {
+	.WuiTooltip-left .WuiTooltip__content {
 		left: calc(100% + var(--space-xs));
 		top: auto;
 		bottom: auto;
 	}
-	.WuiTooltip-right::after {
+	.WuiTooltip-right .WuiTooltip__content {
 		right: calc(100% + var(--space-xs));
 		top: auto;
 		bottom: auto;
 	}
-	.WuiTooltip-top::after {
+	.WuiTooltip-top .WuiTooltip__content {
 		bottom: calc(100% + var(--space-xs));
 		margin: 0 auto;
 	}
-	.WuiTooltip-bottom::after {
+	.WuiTooltip-bottom .WuiTooltip__content {
 		top: calc(100% + var(--space-xs));
 	}
-	.WuiTooltip-top-start::after {
+	.WuiTooltip-top-start .WuiTooltip__content {
 		bottom: calc(100% + var(--space-xs));
 		left: 0;
 	}
-	.WuiTooltip-top-end::after {
+	.WuiTooltip-top-end .WuiTooltip__content {
 		bottom: calc(100% + var(--space-xs));
 		right: 0;
 	}
-	.WuiTooltip-bottom-start::after {
+	.WuiTooltip-bottom-start .WuiTooltip__content {
 		top: calc(100% + var(--space-xs));
 		left: 0;
 	}
-	.WuiTooltip-bottom-end::after {
+	.WuiTooltip-bottom-end .WuiTooltip__content {
 		top: calc(100% + var(--space-xs));
 		right: 0;
 	}

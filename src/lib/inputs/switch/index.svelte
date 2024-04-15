@@ -31,13 +31,13 @@
 	}: SwitchAttributes = $props();
 </script>
 
-<div
+<label
 	class="
 	WuiSwitch WuiSwitch--{size}
-	WuiSurface WuiSurface--{variant}
-	WuiSurface--{checked ? color : 'neutral'}
-	WuiSurface--{shape} WuiSurface--clickable"
+	WuiVariant-{variant}
+	WuiColor-{checked ? color : 'neutral'}
+	WuiShape-{shape} WuiClickable"
+	for={id}
 >
-	<input {...rest} type="checkbox" {id} class="WuiSwitch__input" bind:this={_this} bind:checked />
-	<label class="WuiSwitch__label WuiSurface--wid-full WuiSurface--hgt-full" for={id} />
-</div>
+	<input {...rest} type="checkbox" {id} class="WuiHidden" bind:this={_this} bind:checked />
+</label>

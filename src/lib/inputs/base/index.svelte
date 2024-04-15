@@ -22,6 +22,9 @@
 		oninput,
 		onblur,
 		onvalidate,
+		pad,
+		padx = 'md',
+		pady,
 		prefix,
 		required,
 		rules,
@@ -118,8 +121,11 @@
 	color={error ? 'danger' : color}
 	{shape}
 	{variant}
+	{pad}
+	{padx}
+	{pady}
 	class="
-	WuiInput__field__root
+	WuiInput WuiInput--{size}
 	{prefix ? 'WuiInput--prefixed' : ''}
 	{suffix ? 'WuiInput--suffixed' : ''}
 	{_class}"
@@ -138,9 +144,7 @@
 	<input
 		dir="ltr"
 		{...rest}
-		class="
-		WuiInput WuiInput--{size}
-		WuiText WuiText--body WuiText--{size}"
+		class="WuiInput__input WuiText WuiText--body WuiText--{size}"
 		onblur={blur}
 		oninput={input}
 		style="text-align: {align}"

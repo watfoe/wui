@@ -1,4 +1,8 @@
 .WuiRadio {
+  --WuiRadio-thumb-display: none;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
   position: relative;
 }
 
@@ -14,34 +18,6 @@
   --WuiRadio-size: 26px;
 }
 
-
-.WuiRadio__label {
-  --WuiRadio-thumb-indicator-display: none;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-nm);
-}
-
-.WuiRadio__input {
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-}
-
-input:checked+.WuiRadio__label {
-  --WuiRadio-thumb-indicator-display: block;
-}
-
 .WuiRadio__thumb {
   cursor: pointer;
   display: block;
@@ -50,20 +26,24 @@ input:checked+.WuiRadio__label {
   padding: 2px;
 }
 
-input:not(:checked)+.WuiRadio__label:hover .WuiRadio__thumb {
+.WuiRadio input:checked+.WuiRadio__thumb {
+  --WuiRadio-thumb-display: block;
+}
+
+.WuiRadio:hover input:not(:checked)+.WuiRadio__thumb {
   border-width: 2px;
 }
 
 .WuiRadio__thumb::after {
-  background-color: var(--WuiSurface-bg);
+  background-color: var(--WuiColor-bg);
   border-radius: inherit;
   content: '';
-  display: var(--WuiRadio-thumb-indicator-display) !important;
+  display: var(--WuiRadio-thumb-display);
   height: 100%;
   width: 100%;
   transition: transform 0.2s ease-in-out;
 }
 
-.WuiRadio__thumb.WuiSurface--solid::after {
-  background-color: var(--WuiSurface-color-on-bg);
+.WuiRadio__thumb.WuiVariant-solid::after {
+  background-color: var(--WuiColor-on-bg);
 }

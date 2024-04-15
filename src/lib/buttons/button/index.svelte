@@ -23,7 +23,7 @@
 		_this = $bindable(),
 		anchorfor,
 		bold = false,
-		gap = 'nm',
+		gap = 'sm',
 		height,
 		size = 'md',
 		variant = 'solid',
@@ -32,6 +32,9 @@
 		disabled = false,
 		justify = 'center',
 		navigation = 'none',
+		pad,
+		padx,
+		pady = 'none',
 		prefix,
 		role,
 		suffix,
@@ -145,18 +148,19 @@
 	aria-controls={anchorfor || undefined}
 	disabled={loading || disabled}
 	class="
-		WuiSurface
-		WuiSurface--clickable
-		WuiSurface--{variant}
-		WuiSurface--{color}
-		WuiSurface--{shape}
+		WuiClickable
+		WuiVariant-{variant}
+		WuiColor-{color}
+		WuiShape-{shape}
+		WuiGap-{gap || size}
+		WuiPadding-x-{padx || pad || size}
+		WuiPadding-y-{pady || pad || size}
 		WuiLikeButton
 		WuiLikeButton--{size}
-		WuiLikeButton--gap-{gap}
 		WuiText WuiText--body WuiText--md
 		{bold ? 'WuiText--bold' : ''}
-		{width ? 'WuiSurface--wid-' + width : ''}
-		{height ? 'WuiSurface--hgt-' + height : ''}
+		{width ? 'WuiWidth-' + width : ''}
+		{height ? 'WuiHeight-' + height : ''}
 		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
 		{loading ? 'WuiButton--loading' : ''}
 		{rest.class || ''}"

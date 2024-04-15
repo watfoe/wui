@@ -1,13 +1,15 @@
 <script context="module" lang="ts">
-	import type { WuiFlexJustify, WuiSize, WuiSurface } from '$lib/types';
+	import type { WuiFlexJustify, WuiSize, WuiSpacing, WuiSurface } from '$lib/types';
 
 	export type LikeButtonAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A &
 		WuiSurface & {
 			bold?: boolean;
 			element: string;
-			gap?: 'sm' | 'nm' | 'md' | 'lg';
 			justify?: WuiFlexJustify;
 			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
+			pad?: WuiSpacing;
+			padx?: WuiSpacing;
+			pady?: WuiSpacing;
 			prefix?: string;
 			suffix?: string;
 			size?: WuiSize;
@@ -22,12 +24,15 @@
 	let {
 		bold = false,
 		element,
-		gap = 'nm',
+		gap = 'sm',
 		size = 'md',
 		variant = 'solid',
 		color = 'primary',
 		justify = 'center',
 		navigation = 'none',
+		pad,
+		padx,
+		pady = 'none',
 		prefix,
 		suffix,
 		shape = 'rounded',
@@ -90,17 +95,19 @@
 	class="
 		WuiLikeButton
 		WuiSurface
-		WuiSurface--clickable
-		WuiSurface--{variant}
+		WuiClickable
+		WuiVariant-{variant}
 		WuiLikeButton--{size}
-		WuiSurface--{color}
-		WuiSurface--{shape}
-		WuiLikeButton--gap-{gap}
+		WuiColor-{color}
+		WuiShape-{shape}
+		WuiGap-{gap || size}
+		WuiPadding-x-{padx || pad || size}
+		WuiPadding-y-{pady || pad || size}
 		WuiText WuiText--body WuiText--md
 		{bold ? 'WuiText--bold' : ''}
-		{width ? 'WuiSurface--wid-' + width : ''}
-		{height ? 'WuiSurface--hgt-' + height : ''}
-		{!$$slots.default ? 'WuiSurface--only-icon' : ''}
+		{width ? 'WuiWidth-' + width : ''}
+		{height ? 'WuiHeight-' + height : ''}
+		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
 		{rest.class || ''}"
 	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify}"
 	onkeydown={keydown}

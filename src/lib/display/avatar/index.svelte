@@ -52,10 +52,9 @@
 	justify="center"
 	class="
 	WuiAvatar WuiAvatar--{size || ctx.size || 'md'}
-	WuiSurface
-	WuiSurface--{variant || ctx.variant || 'solid'}
-	WuiSurface--{shape || ctx.shape || 'circle'}
-	{isColorPreset ? `WuiSurface--${color || ctx.color || 'primary'}` : ''}
+	WuiVariant-{variant || ctx.variant || 'solid'}
+	WuiShape-{shape || ctx.shape || 'circle'}
+	{isColorPreset ? `WuiColor-${color || ctx.color || 'primary'}` : ''}
 	{rest.class || ''}"
 	style={isColorPreset ? '' : `--WuiAvatar-bg: ${color}`}
 >

@@ -100,9 +100,9 @@
 
   --font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
-  --space-xs: 0.1875rem;
-  --space-sm: 0.3125rem;
-  --space-nm: 0.5rem;
+  --space-ss: 0.1875rem;
+  --space-xs: 0.3125rem;
+  --space-sm: 0.5rem;
   --space-md: 0.8125rem;
   --space-lg: 1.3125rem;
   --space-xl: 2.125rem;
@@ -160,207 +160,294 @@ a {
   }
 }
 
-.WuiSurface {
-  border: 1px solid var(--WuiSurface-border-color, transparent);
-  border-radius: var(--WuiSurface-radius);
+.WuiColor-primary {
+  --WuiColor-bg: var(--color-primary);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-selection-container);
+  --WuiColor-on-bg-soft: var(--color-primary);
 }
 
-.WuiSurface--primary {
-  --WuiSurface-bg: var(--color-primary);
-  --WuiSurface-color-on-bg: var(--color-white);
-  --WuiSurface-bg-soft: var(--color-selection-container);
-  --WuiSurface-color-on-bg-soft: var(--color-primary);
+.WuiColor-neutral {
+  --WuiColor-bg: var(--color-neutral);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-neutral-container);
+  --WuiColor-on-bg-soft: var(--color-black-3);
 }
 
-.WuiSurface--neutral {
-  --WuiSurface-bg: var(--color-neutral);
-  --WuiSurface-color-on-bg: var(--color-white);
-  --WuiSurface-bg-soft: var(--color-neutral-container);
-  --WuiSurface-color-on-bg-soft: var(--color-black-3);
+.WuiColor-success {
+  --WuiColor-bg: var(--color-success);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-success-container);
+  --WuiColor-on-bg-soft: var(--color-success);
 }
 
-.WuiSurface--success {
-  --WuiSurface-bg: var(--color-success);
-  --WuiSurface-color-on-bg: var(--color-white);
-  --WuiSurface-bg-soft: var(--color-success-container);
-  --WuiSurface-color-on-bg-soft: var(--color-success);
+.WuiColor-warning {
+  --WuiColor-bg: var(--color-warning);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-warning-container);
+  --WuiColor-on-bg-soft: var(--color-warning);
 }
 
-.WuiSurface--warning {
-  --WuiSurface-bg: var(--color-warning);
-  --WuiSurface-color-on-bg: var(--color-white);
-  --WuiSurface-bg-soft: var(--color-warning-container);
-  --WuiSurface-color-on-bg-soft: var(--color-warning);
+.WuiColor-danger {
+  --WuiColor-bg: var(--color-error);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-error-container);
+  --WuiColor-on-bg-soft: var(--color-error);
 }
 
-.WuiSurface--danger {
-  --WuiSurface-bg: var(--color-error);
-  --WuiSurface-color-on-bg: var(--color-white);
-  --WuiSurface-bg-soft: var(--color-error-container);
-  --WuiSurface-color-on-bg-soft: var(--color-error);
+.WuiColor-black {
+  --WuiColor-bg: var(--color-black-4);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-neutral-4);
+  --WuiColor-on-bg-soft: var(--color-white);
 }
 
-.WuiSurface--black {
-  --WuiSurface-bg: var(--color-black-4);
-  --WuiSurface-color-on-bg: var(--color-white);
-  --WuiSurface-bg-soft: var(--color-neutral-4);
-  --WuiSurface-color-on-bg-soft: var(--color-white);
+.WuiColor-white {
+  --WuiColor-bg: var(--color-white);
+  --WuiColor-on-bg: var(--color-black-4);
+  --WuiColor-bg-soft: var(--color-neutral-1);
+  --WuiColor-on-bg-soft: var(--color-black-4);
 }
 
-.WuiSurface--white {
-  --WuiSurface-bg: var(--color-white);
-  --WuiSurface-color-on-bg: var(--color-black-4);
-  --WuiSurface-bg-soft: var(--color-neutral-1);
-  --WuiSurface-color-on-bg-soft: var(--color-black-4);
+.WuiShape-rounded {
+  border-radius: var(--radius);
 }
 
-.WuiSurface--rounded {
-  --WuiSurface-radius: var(--radius);
+.WuiShape-pill {
+  border-radius: 9999px;
 }
 
-.WuiSurface--pill {
-  --WuiSurface-radius: 9999px;
+.WuiShape-circle {
+  border-radius: 50%;
 }
 
-.WuiSurface--circle {
-  --WuiSurface-radius: 50%;
+.WuiShape-square {
+  border-radius: 0 !important;
 }
 
-.WuiSurface--square {
-  --WuiSurface-radius: 0 !important;
+.WuiVariant-solid {
+  background-color: var(--WuiColor-bg, var(--color-primary));
+  border: 0;
+  color: var(--WuiColor-on-bg, var(--color-white));
 }
 
-.WuiSurface--solid {
-  background-color: var(--WuiSurface-bg, var(--color-primary));
-  color: var(--WuiSurface-color-on-bg, var(--color-white));
+.WuiVariant-outlined {
+  background-color: inherit;
+  color: var(--WuiColor-bg, var(--color-primary));
+  border: 1px solid var(--WuiColor-bg, var(--color-primary));
 }
 
-.WuiSurface--outlined {
-  background-color: transparent;
-  color: var(--WuiSurface-bg, var(--color-primary));
-  --WuiSurface-border-color: var(--WuiSurface-bg, var(--color-primary));
-}
-
-.WuiSurface--outlined.WuiSurface--neutral {
+.WuiVariant-outlined.WuiColor-neutral {
   color: var(--color-black-3, var(--color-primary));
-  --WuiSurface-border-color: var(--color-neutral-4, var(--color-primary));
+  border-color: var(--color-neutral-4, var(--color-primary));
 }
 
-.WuiSurface--soft {
-  background-color: var(--WuiSurface-bg-soft, var(--color-selection-container));
-  color: var(--WuiSurface-color-on-bg-soft, var(--color-primary));
-  --WuiSurface-border-color: var(--WuiSurface-bg-soft);
+.WuiVariant-soft {
+  background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
+  border: 0;
+  color: var(--WuiColor-on-bg-soft, var(--color-primary));
 }
 
-.WuiSurface--plain,
-.WuiSurface--none {
+.WuiVariant-plain,
+.WuiVariant-none {
   background-color: transparent;
-  color: var(--WuiSurface-color-on-bg-soft, var(--color-primary));
-  --WuiSurface-border-color: transparent;
+  border: 0;
+  color: var(--WuiColor-on-bg-soft, var(--color-primary));
 }
 
-.WuiSurface--clickable {
+.WuiClickable {
   cursor: pointer;
 }
 
-.WuiSurface--clickable.WuiSurface--primary:disabled,
-.WuiSurface--clickable.WuiSurface--neutral:disabled,
-.WuiSurface--clickable.WuiSurface--success:disabled,
-.WuiSurface--clickable.WuiSurface--warning:disabled {
-  --WuiSurface-bg: var(--color-disabled);
-  --WuiSurface-bg-soft: var(--color-disabled);
-  --WuiSurface-color-on-bg-soft: var(--color-black-1);
+.WuiClickable.WuiColor-primary:disabled,
+.WuiClickable.WuiColor-neutral:disabled,
+.WuiClickable.WuiColor-success:disabled,
+.WuiClickable.WuiColor-warning:disabled {
+  --WuiColor-bg: var(--color-disabled);
+  --WuiColor-bg-soft: var(--color-disabled);
+  --WuiColor-on-bg-soft: var(--color-black-1);
 }
 
-.WuiSurface--clickable.WuiSurface:disabled {
+.WuiClickable:disabled {
   color: var(--color-black-1);
   cursor: default;
   pointer-events: none;
 }
 
-.WuiSurface--clickable.WuiSurface--solid:not(:disabled):hover,
-.WuiSurface--clickable.WuiSurface--solid:not(:disabled):focus-visible,
-.WuiSurface--clickable.WuiSurface--soft:not(:disabled):hover,
-.WuiSurface--clickable.WuiSurface--soft:not(:disabled):focus-visible {
+.WuiClickable.WuiVariant-solid:not(:disabled):hover,
+.WuiClickable.WuiVariant-solid:not(:disabled):focus-visible,
+.WuiClickable.WuiVariant-soft:not(:disabled):hover,
+.WuiClickable.WuiVariant-soft:not(:disabled):focus-visible {
   filter: brightness(0.94);
 }
 
-.WuiSurface--clickable.WuiSurface--solid:not(:disabled):active,
-.WuiSurface--clickable.WuiSurface--soft:not(:disabled):active,
-.WuiSurface--clickable.WuiSurface--outlined:not(:disabled):active,
-.WuiSurface--clickable.WuiSurface--plain:not(:disabled):active {
+.WuiClickable.WuiVariant-solid:not(:disabled):active,
+.WuiClickable.WuiVariant-soft:not(:disabled):active,
+.WuiClickable.WuiVariant-outlined:not(:disabled):active,
+.WuiClickable.WuiVariant-plain:not(:disabled):active {
   filter: brightness(0.89);
   transition: filter 0.2s ease-in-out;
 }
 
-.WuiSurface--clickable.WuiSurface--outlined:not(:disabled):hover,
-.WuiSurface--clickable.WuiSurface--outlined:not(:disabled):focus-visible {
-  background-color: var(--WuiSurface-bg-soft, var(--color-selection-container));
+.WuiClickable.WuiVariant-outlined:not(:disabled):hover,
+.WuiClickable.WuiVariant-outlined:not(:disabled):focus-visible {
+  background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
 }
 
-.WuiSurface--clickable.WuiSurface--plain:not(:disabled):hover,
-.WuiSurface--clickable.WuiSurface--plain:not(:disabled):focus-visible {
-  background-color: var(--WuiSurface-bg-soft);
+.WuiClickable.WuiVariant-plain:not(:disabled):hover,
+.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible {
+  background-color: var(--WuiColor-bg-soft);
 }
 
-.WuiSurface--round {
-  --WuiSurface-radius: 9999px;
-}
-
-.WuiSurface--pill {
-  --WuiSurface-radius: 9999px;
-}
-
-.WuiSurface--square {
-  --WuiSurface-radius: 0;
-}
-
-.WuiSurface--wid-full {
+.WuiWidth-full {
   width: 100%;
 }
 
-.WuiSurface--wid-half {
+.WuiWidth-half {
   width: 50%;
 }
 
-.WuiSurface--wid-third {
+.WuiWidth-third {
   width: 33.333333%;
 }
 
-.WuiSurface--wid-quarter {
+.WuiWidth-quarter {
   width: 25%;
 }
 
-.WuiSurface--wid-auto {
+.WuiWidth-auto {
   width: auto;
 }
 
-.WuiSurface--wid-inherit {
+.WuiWidth-inherit {
   width: inherit;
 }
 
-.WuiSurface--hgt-full {
+.WuiHeight-full {
   height: 100%;
 }
 
-.WuiSurface--hgt-half {
+.WuiHeight-half {
   height: 50%;
 }
 
-.WuiSurface--hgt-third {
+.WuiHeight-third {
   height: 33.333333%;
 }
 
-.WuiSurface--hgt-quarter {
+.WuiHeight-quarter {
   height: 25%;
 }
 
-.WuiSurface--hgt-auto {
+.WuiHeight-auto {
   height: auto;
 }
 
-.WuiSurface--hgt-inherit {
+.WuiHeight-inherit {
   height: inherit;
+}
+
+.WuiPadding-x-ss {
+  padding-left: var(--space-ss);
+  padding-right: var(--space-ss);
+}
+
+.WuiPadding-x-xs {
+  padding-left: var(--space-xs);
+  padding-right: var(--space-xs);
+}
+
+.WuiPadding-x-sm {
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+}
+
+.WuiPadding-x-md {
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.WuiPadding-x-lg {
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+.WuiPadding-x-xl {
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+.WuiPadding-x-xx {
+  padding-left: var(--space-xx);
+  padding-right: var(--space-xx);
+}
+
+.WuiPadding-y-xs {
+  padding-bottom: var(--space-xs);
+  padding-top: var(--space-xs);
+}
+
+.WuiPadding-y-ss {
+  padding-bottom: var(--space-ss);
+  padding-top: var(--space-ss);
+}
+
+.WuiPadding-y-sm {
+  padding-bottom: var(--space-sm);
+  padding-top: var(--space-sm);
+}
+
+.WuiPadding-y-md {
+  padding-bottom: var(--space-md);
+  padding-top: var(--space-md);
+}
+
+.WuiPadding-y-lg {
+  padding-bottom: var(--space-lg);
+  padding-top: var(--space-lg);
+}
+
+.WuiPadding-y-xl {
+  padding-bottom: var(--space-xl);
+  padding-top: var(--space-xl);
+}
+
+.WuiPadding-y-xx {
+  padding-bottom: var(--space-xx);
+  padding-top: var(--space-xx);
+}
+
+.WuiPadding-y-xs {
+  padding-bottom: var(--space-xs);
+  padding-top: var(--space-xs);
+}
+
+.WuiGap-ss {
+  gap: var(--space-ss);
+}
+
+.WuiGap-xs {
+  gap: var(--space-xs);
+}
+
+.WuiGap-sm {
+  gap: var(--space-sm);
+}
+
+.WuiGap-md {
+  gap: var(--space-md);
+}
+
+.WuiGap-lg {
+  gap: var(--space-lg);
+}
+
+.WuiGap-xl {
+  gap: var(--space-xl);
+}
+
+.WuiGap-xx {
+  gap: var(--space-xx);
 }
 
 .WuiDisabled {
@@ -373,11 +460,14 @@ a {
 
 .WuiHidden {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
   height: 1px;
+  width: 1px;
   margin: -1px;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 1px;
+  left: 50%;
+  bottom: 0
 }

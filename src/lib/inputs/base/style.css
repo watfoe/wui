@@ -1,70 +1,83 @@
-.WuiInput__field__root {
+.WuiInput {
   align-items: center;
   display: flex;
   flex-direction: row;
   gap: var(--space-xs);
   width: 100% !important;
   position: relative;
-  --WuiInput-height: var(--input-height-md);
-  --WuiInput-paddingX: calc(var(--space-nm) - 1px);
-  --WuiInput-paddingY: var(--space-xs);
-  padding: 0 var(--WuiInput-paddingY) 0 var(--WuiInput-paddingX);
 }
 
-.WuiInput__field__root--prefixed {
-  --WuiInput-paddingX: 3px;
+.WuiInput--sm {
+  height: var(--input-height-sm);
 }
 
-.WuiInput__field__root--suffixed {
-  --WuiInput-paddingY: 3px;
+.WuiInput--md {
+  height: var(--input-height-md);
 }
 
-.WuiInput__field__root:focus-within {
-  box-shadow: inset 0 0 0 0.7px var(--WuiSurface-bg);
+.WuiInput--lg {
+  height: var(--input-height-lg);
 }
 
-.WuiInput__field__root.WuiSurface--neutral:focus-within {
-  --WuiSurface-bg: var(--color-primary);
+.WuiInput--prefixed {
+  padding-left: 3px;
 }
 
-.WuiInput__field__root.WuiSurface--neutral.WuiSurface--outlined:focus-within {
-  --WuiSurface-border-color: var(--color-primary);
+.WuiInput--suffixed {
+  padding-right: 3px;
 }
 
-.WuiInput__field__root.WuiSurface--soft:focus-within,
-.WuiInput__field__root.WuiSurface--plain:focus-within {
-  --WuiSurface-border-color: var(--WuiSurface-bg);
+.WuiInput:focus-within {
+  box-shadow: inset 0 0 0 0.7px var(--WuiColor-bg);
 }
 
-.WuiInput {
+.WuiInput.WuiColor-neutral:focus-within {
+  --WuiColor-bg: var(--color-primary);
+}
+
+.WuiInput.WuiColor-neutral.WuiVariant-outlined:focus-within {
+  border-color: var(--color-primary);
+}
+
+.WuiInput.WuiVariant-soft:focus-within,
+.WuiInput.WuiVariant-plain:focus-within {
+  border: 1px solid var(--WuiColor-bg);
+}
+
+.WuiInput__input {
   background-color: transparent !important;
   border: none;
   color: inherit;
-  height: var(--WuiInput-height);
+  height: 100%;
   margin: 0;
   outline: none;
   width: 100%;
 }
 
-.WuiInput::placeholder {
-  color: var(--WuiSurface-bg);
+.WuiInput__input::placeholder {
+  color: var(--WuiColor-bg);
 }
 
-.WuiSurface--solid .WuiInput::placeholder {
-  color: var(--WuiSurface-color-on-bg);
+.WuiVariant-solid .WuiInput__input::placeholder {
+  color: var(--WuiColor-on-bg);
 }
 
 /* Chrome, Safari, Edge, Opera */
-.WuiInput::-webkit-outer-spin-button,
-.WuiInput::-webkit-inner-spin-button {
+.WuiInput__input::-webkit-outer-spin-button,
+.WuiInput__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-.WuiInput[type=number] {
+.WuiInput__input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+.WuiInput__prefix>*,
+.WuiInput__suffix>* {
+  border-radius: calc(inherit - 1px) !important;
 }
 
 .WuiInput__prefix,
@@ -80,21 +93,4 @@
   width: calc(var(--WuiInput-height) - (1.3px * 2));
   text-decoration: none;
   overflow: hidden;
-}
-
-.WuiInput__prefix>*,
-.WuiInput__suffix>* {
-  border-radius: calc(inherit - 1px) !important;
-}
-
-.WuiInput--sm {
-  --WuiInput-height: var(--input-height-sm);
-}
-
-.WuiInput--md {
-  --WuiInput-height: var(--input-height-md);
-}
-
-.WuiInput--lg {
-  --WuiInput-height: var(--input-height-lg);
 }

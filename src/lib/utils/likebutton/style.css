@@ -4,51 +4,26 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: var(--WuiLikeButton-flex-gap, var(--space-nm));
   height: var(--WuiLikeButton-height, var(--button-height));
   justify-content: var(--WuiLikeButtonFlex-justify, center);
   overflow: hidden;
-  padding: 0 var(--WuiLikeButton-paddingX, var(--space-md));
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.WuiLikeButton--gap-sm {
-  --WuiLikeButton-flex-gap: var(--space-sm);
-}
-
-.WuiLikeButton--gap-nm {
-  --WuiLikeButton-flex-gap: var(--space-md);
-}
-
-.WuiLikeButton--gap-md {
-  --WuiLikeButton-flex-gap: var(--space-md);
-}
-
-.WuiLikeButton--gap-lg {
-  --WuiLikeButton-flex-gap: var(--space-lg);
-}
-
 .WuiLikeButton--sm {
   --WuiLikeButton-height: var(--button-height-sm);
-  --WuiLikeButton-paddingX: var(--space-nm);
-  --WuiLikeButton-flex-gap: var(--space-sm);
 }
 
 .WuiLikeButton--md {
   --WuiLikeButton-height: var(--button-height-md);
-  --WuiLikeButton-paddingX: var(--space-md);
-  --WuiLikeButton-flex-gap: var(--space-nm);
 }
 
 .WuiLikeButton--lg {
   --WuiLikeButton-height: var(--button-height-lg);
-  --WuiLikeButton-paddingX: var(--space-lg);
-  --WuiLikeButton-flex-gap: var(--space-md);
 }
 
 .WuiLikeButton--only-icon {
   width: var(--WuiLikeButton-height);
-  --WuiLikeButton-paddingX: 0;
 }

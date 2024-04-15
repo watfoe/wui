@@ -1,10 +1,14 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
+	import type { WuiSpacing } from '$lib/types';
 
 	export interface ModalAttributes extends HTMLAttributes<HTMLDivElement> {
 		id: string;
 		title?: string;
 		showclose?: boolean;
+		pad?: WuiSpacing;
+		padx?: WuiSpacing;
+		pady?: WuiSpacing;
 		position?: 'top' | 'center' | 'bottom';
 	}
 </script>
@@ -15,15 +19,27 @@
 	import { Col, Row } from '$lib/layout';
 	import { Button } from '$lib/buttons';
 	import { Text } from '$lib/typography';
-	import { Icon, Tooltip } from '$lib/display';
+	import { Icon } from '$lib/display';
 	import { Backdrop } from '$lib/utils';
 
-	let { id, title, showclose = true, position = 'center', ...rest }: ModalAttributes = $props();
+	let {
+		id,
+		title,
+		showclose = true,
+		pad,
+		padx = 'md',
+		pady = 'sm',
+		position = 'center',
+		...rest
+	}: ModalAttributes = $props();
 	let backdrop: HTMLDialogElement;
+
+	padx = padx || pad;
+	pady = pady || pad;
 
 	$effect.pre(() => {
 		if (!id) {
-			throw new Error('An id prop must be added to the <Modal /> element');
+			throw new Error('An id prop must be added to the Modal component');
 		}
 	});
 
@@ -42,7 +58,7 @@
 		aria-modal="true"
 		tabindex={-1}
 		aria-label="Modal"
-		class="WuiModal WuiModal--{position} {rest.class || ''}"
+		class="WuiModal WuiModal--{position} WuiPadding-x-{padx} WuiPadding-y-{pady} {rest.class || ''}"
 		onclick={click}
 	>
 		{#if showclose || title || $$slots.header}
@@ -57,6 +73,7 @@
 					variant="plain"
 					color="neutral"
 					size="sm"
+					shape="circle"
 					class="WuiModal__close-button"
 					onclick={close}
 				>

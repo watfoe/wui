@@ -33,14 +33,12 @@
 }
 
 .WuiModal__close-button {
-  border-radius: 50% !important;
   flex-shrink: 0;
   margin-left: auto;
   user-select: none;
 }
 
 .WuiModal__body {
-  padding: var(--space-nm);
   width: 100%;
   overflow-y: auto;
 }

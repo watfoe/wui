@@ -10,12 +10,12 @@ export type WuiWidth = 'full' | 'half' | 'third' | 'quarter' | 'auto' | 'inherit
 export type WuiFlexAlign = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 export type WuiFlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type WuiFlexJustify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
-export type WuiFlexGap = 'xs' | 'sm' | 'nm' | 'md' | 'lg';
+export type WuiFlexGap = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none';
 export type WuiFlexWrap = 'wrap' | 'nowrap';
 
 export type WuiTextWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 
-export type WuiSpacing = 'xs' | 'sm' | 'nm' | 'md' | 'lg' | 'xl';
+export type WuiSpacing = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none' | 'auto' | 'inherit';
 
 export interface WuiSurface {
   color?: WuiColor;

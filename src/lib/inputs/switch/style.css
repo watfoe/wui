@@ -1,9 +1,9 @@
 .WuiSwitch {
-  --WuiSwitch-color: var(--color-neutral);
   display: inline-block;
   height: var(--WuiSwitch-height);
-  position: relative;
   width: var(--WuiSwitch-width);
+  padding: 2px;
+  position: relative;
 }
 
 .WuiSwitch--sm {
@@ -21,37 +21,12 @@
   --WuiSwitch-height: 26px;
 }
 
-.WuiSwitch__label {
-  background-color: transparent;
-  border-radius: inherit;
-  cursor: pointer;
-  display: block;
-  padding: 2px;
-}
-
-.WuiSwitch--primary input:checked+.WuiSwitch__label,
-.WuiSwitch--neutral input:checked+.WuiSwitch__label {
-  --WuiSwitch-color: var(--color-primary);
-}
-
-.WuiSwitch--success input:checked+.WuiSwitch__label {
-  --WuiSwitch-color: var(--color-success);
-}
-
-.WuiSwitch--warning input:checked+.WuiSwitch__label {
-  --WuiSwitch-color: var(--color-warning);
-}
-
-.WuiSwitch--danger input:checked+.WuiSwitch__label {
-  --WuiSwitch-color: var(--color-error);
-}
-
-input:checked+.WuiSwitch__label::after {
+.WuiSwitch input:checked+.WuiSwitch::after {
   transform: translateX(calc(var(--WuiSwitch-width) - var(--WuiSwitch-height)));
 }
 
-.WuiSwitch__label::after {
-  background-color: var(--WuiSurface-bg);
+.WuiSwitch::after {
+  background-color: var(--WuiColor-bg);
   border-radius: inherit;
   content: '';
   display: block;
@@ -60,19 +35,6 @@ input:checked+.WuiSwitch__label::after {
   transition: transform 0.1s ease-in-out;
 }
 
-.WuiSurface--solid .WuiSwitch__label::after {
-  background-color: var(--WuiSurface-color-on-bg);
-}
-
-.WuiSwitch__input {
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
+.WuiColor-solid.WuiSwitch::after {
+  background-color: var(--WuiColor-on-bg);
 }

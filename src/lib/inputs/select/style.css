@@ -1,22 +1,8 @@
-.WuiSelect__root {
-  border: 0;
-  border-radius: var(--radius);
-  width: 100%;
-}
-
-.WuiSelect__root__body {
-  border-radius: inherit;
-  width: 100%;
-  position: relative;
-}
-
 .WuiSelect--primary {
-  --WuiSelect-color-plain: var(--color-blue-1);
   --WuiLabel-color: var(--color-primary);
 }
 
 .WuiSelect--neutral {
-  --WuiSelect-color-plain: var(--color-grey-1);
   --WuiLabel-color: var(--color-black-4);
 }
 
@@ -25,44 +11,24 @@
 }
 
 .WuiSelect--success {
-  --WuiSelect-color-plain: var(--color-green-1);
   --WuiLabel-color: var(--color-success);
 }
 
 .WuiSelect--warning {
-  --WuiSelect-color-plain: var(--color-yellow-1);
   --WuiLabel-color: var(--color-warning);
 }
 
 .WuiSelect--danger,
 .WuiSelect__root:invalid {
-  --WuiSelect-color-plain: var(--color-red-1);
   --WuiLabel-color: var(--color-error);
 }
 
-.WuiSelect--neutral:focus-within .WuiSelect__combobox {
-  border-color: var(--color-primary);
-}
-
 .WuiSelect__combobox {
-  padding: 0 calc(var(--space-nm) - 0.8px) !important;
-}
-
-.WuiSelect__combobox:not(.WuiButton--solid):focus,
-.WuiButton__combobox:not(.WuiSelect--solid):hover {
-  background-color: transparent !important;
-}
-
-.WuiSelect--plain .WuiSelect__combobox {
-  background-color: var(--WuiSelect-color-plain) !important;
-}
-
-.WuiSelect--neutral:not(.WuiSelect--solid) .WuiSelect__combobox__value {
-  color: var(--color-on-surface);
+  padding-right: 3px;
 }
 
 .WuiSelect__combobox__placeholder {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .WuiSelect__root:focus-within .WuiSelect__combobox,
@@ -73,23 +39,10 @@
 
 .WuiSelect__combobox__icon {
   transition: transform 0.1s ease-in-out;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .WuiSelect__combobox[aria-expanded='true'] .WuiSelect__combobox__icon {
   opacity: 1;
   transform: rotate(-180deg);
-}
-
-.WuiSelect__hidden_input {
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  bottom: 0
 }

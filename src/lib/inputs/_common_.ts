@@ -1,4 +1,4 @@
-import type { WuiColor, WuiShape, WuiSize, WuiVariant } from "$lib/types";
+import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from "$lib/types";
 import type { HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
 
 export interface InputMasks {
@@ -41,6 +41,9 @@ export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAtt
   error?: ValidationError;
   masks?: InputMasks;
   onvalidate?: (error?: ValidationError) => void;
+  pad?: WuiSpacing;
+  padx?: WuiSpacing;
+  pady?: WuiSpacing;
   prefix?: string;
   rules?: InputRules;
   required?: boolean;

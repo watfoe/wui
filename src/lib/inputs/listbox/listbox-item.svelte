@@ -78,7 +78,7 @@
 	<input
 		type="checkbox"
 		tabindex="-1"
-		class="WuiListbox__item--hidden"
+		class="WuiHidden"
 		{id}
 		{value}
 		name={context.name}

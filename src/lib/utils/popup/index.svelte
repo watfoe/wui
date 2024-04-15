@@ -1,9 +1,12 @@
 <script context="module" lang="ts">
-	import type { WuiColor, WuiShape, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSpacing, WuiVariant } from '$lib/types';
 
 	export interface PopupAttributes extends BackdropAttributes {
 		color?: WuiColor;
 		id: string;
+		pad?: WuiSpacing;
+		padx?: WuiSpacing;
+		pady?: WuiSpacing;
 		position?:
 			| 'top'
 			| 'bottom'
@@ -27,16 +30,22 @@
 
 	let {
 		_this = $bindable(),
-		class: _class = '',
+		class: _class,
 		color = 'neutral',
 		id,
 		onopen,
+		pad,
+		padx,
+		pady = 'ss',
 		position = 'bottom-start',
 		role = 'popup',
 		shape = 'rounded',
 		variant = 'outlined',
 		...rest
 	}: PopupAttributes = $props();
+
+	padx = padx || pad;
+	pady = pady || pad;
 
 	let popup: HTMLDivElement;
 	const spacing = 2;
@@ -161,9 +170,10 @@
 		{role}
 		aria-label="Popup"
 		class="
-		WuiPopup
-		WuiSurface WuiSurface--outlined WuiSurface--{color} WuiSurface--{shape}
-		{_class}"
+		WuiPopup WuiVariant-outlined WuiColor-{color} WuiShape-{shape}
+		{padx ? `WuiPadding-x-${padx}` : ''}
+		{pady ? `WuiPadding-y-${pady}` : ''}
+		{_class || ''}"
 		style="left:{rect.left}px; top:{rect.top}px; min-width:{rect.width}px;"
 		bind:this={popup}
 	>
@@ -173,9 +183,8 @@
 
 <style>
 	.WuiPopup {
-		max-height: calc(100vh - calc(var(--space-nm) * 2)) !important;
+		max-height: calc(100vh - calc(var(--space-md) * 2)) !important;
 		overflow-y: auto;
-		padding: var(--space-xs) 0;
 		position: absolute;
 	}
 </style>

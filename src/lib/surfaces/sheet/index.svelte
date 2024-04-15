@@ -1,12 +1,14 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { WuiFlexGap, WuiFlexJustify, WuiHeight, WuiSurface } from '$lib/types';
+	import type { WuiFlexJustify, WuiHeight, WuiSpacing, WuiSurface } from '$lib/types';
 
 	export interface SheetAttributes
 		extends WuiSurface,
 			Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
 		_this?: HTMLDivElement;
-		gap?: WuiFlexGap;
+		pad?: WuiSpacing;
+		padx?: WuiSpacing;
+		pady?: WuiSpacing;
 		height?: WuiHeight;
 		justify?: WuiFlexJustify;
 	}
@@ -17,7 +19,9 @@
 		_this = $bindable(),
 		color = 'neutral',
 		justify = 'center',
-		gap = 'nm',
+		pad = 'none',
+		padx = pad,
+		pady = pad,
 		height,
 		variant = 'plain',
 		shape = 'rounded',
@@ -29,9 +33,10 @@
 <div
 	{...rest}
 	class="
-	WuiSurface WuiSurface--{variant} WuiSurface--{color} WuiSurface--{shape} WuiSurface--gap-{gap}
-	{width ? 'WuiSurface--wid-' + width : ''}
-	{height ? 'WuiSurface--hgt-' + height : ''}
+	WuiVariant-{variant} WuiColor-{color} WuiShape-{shape}
+	WuiPadding-x-{padx} WuiPadding-y-{pady}
+	{width ? 'WuiWidth-' + width : ''}
+	{height ? 'WuiHeight-' + height : ''}
 	{rest.class || ''}"
 	bind:this={_this}
 >

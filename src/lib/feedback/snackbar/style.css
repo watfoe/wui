@@ -1,0 +1,75 @@
+/* prettier-ignore */
+.WuiSnackbar {
+  --WuiSnackbar-minWidth: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  left: 50%;
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 50px;
+  min-height: 50px;
+  position: fixed;
+  width: auto !important;
+}
+
+.WuiSnackbar--top {
+  top: var(--space-nm);
+  transform: translate(-50%, 0);
+}
+
+.WuiSnackbar--top-right {
+  top: var(--space-nm);
+  right: var(--space-nm);
+  transform: translate(0, 0);
+}
+
+.WuiSnackbar--top-left {
+  top: var(--space-nm);
+  left: var(--space-nm);
+  transform: translate(0, 0);
+}
+
+.WuiSnackbar--left {
+  left: var(--space-nm);
+  transform: translate(0, -50%);
+}
+
+.WuiSnackbar--right {
+  right: var(--space-nm);
+  transform: translate(0, -50%);
+}
+
+.WuiSnackbar--bottom {
+  bottom: var(--space-nm);
+  transform: translate(-50%, 0);
+}
+
+.WuiSnackbar--bottom-right {
+  bottom: var(--space-nm);
+  right: var(--space-nm);
+  transform: translate(0, 0);
+}
+
+.WuiSnackbar--bottom-left {
+  bottom: var(--space-nm);
+  left: var(--space-nm);
+  transform: translate(0, 0);
+}
+
+.WuiSnackbar--center {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.WuiSnackbar__close-button {
+  justify-self: flex-end;
+  flex-shrink: 0;
+  margin-left: auto;
+  user-select: none;
+}
+
+.WuiSnackbar__body {
+  padding: var(--space-nm);
+  width: 100%;
+}
