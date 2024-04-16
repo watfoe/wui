@@ -11,7 +11,7 @@
 	import { getContext } from 'svelte';
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	let { color, size, shape, variant, ...rest }: ListButtonItemAttributes = $props();
+	let { color, size, shape, variant, width, ...rest }: ListButtonItemAttributes = $props();
 	let context: {
 		color?: WuiColor;
 		size?: WuiSize;
@@ -36,6 +36,7 @@
 	{size}
 	{shape}
 	{variant}
+	width={width || 'full'}
 >
 	<slot />
 </LikeButton>

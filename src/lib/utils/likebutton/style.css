@@ -4,24 +4,11 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: var(--WuiLikeButton-height, var(--button-height));
-  justify-content: var(--WuiLikeButtonFlex-justify, center);
+  flex-shrink: 0;
   overflow: hidden;
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.WuiLikeButton--sm {
-  --WuiLikeButton-height: var(--button-height-sm);
-}
-
-.WuiLikeButton--md {
-  --WuiLikeButton-height: var(--button-height-md);
-}
-
-.WuiLikeButton--lg {
-  --WuiLikeButton-height: var(--button-height-lg);
 }
 
 .WuiLikeButton--only-icon {

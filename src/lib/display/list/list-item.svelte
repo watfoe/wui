@@ -12,7 +12,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 
-	let { color, size, marker, ...rest }: ListItemAttributes = $props();
+	let { color, size, marker, style = '', ...rest }: ListItemAttributes = $props();
 	let context: {
 		color?: WuiColor;
 		marker?: WuiListMarker;
@@ -26,9 +26,14 @@
 
 <li
 	{...rest}
-	class="
-	WuiListItem WuiListItem--{size} WuiListItem--marker-{marker}
+	class="WuiListItem
 	WuiText WuiText--body WuiText--md WuiText--{color}"
+	style="
+		height:var(--height-{size});
+		line-height:var(--height-{size});
+		list-style-type:{marker}
+		{style}
+	"
 >
 	<slot />
 </li>

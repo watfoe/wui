@@ -108,13 +108,12 @@
   --space-xl: 2.125rem;
   --space-xx: 3.4375rem;
 
-  --button-height-sm: 2.125rem;
-  --button-height-md: 2.5rem;
-  --button-height-lg: 3rem;
-
-  --input-height-sm: 2.125rem;
-  --input-height-md: 2.5rem;
-  --input-height-lg: 3rem;
+  --height-ss: 1.75rem;
+  --height-sm: 2.125rem;
+  --height-md: 2.5rem;
+  --height-lg: 3rem;
+  --height-xl: 3.5rem;
+  --height-xx: 4rem;
 
   --radius: 3px;
 
@@ -448,14 +447,6 @@ a {
 
 .WuiGap-xx {
   gap: var(--space-xx);
-}
-
-.WuiDisabled {
-  pointer-events: none;
-  cursor: default;
-  --Icon-color: currentColor;
-  color: var(--color-on-disabled);
-  background-color: var(--color-disabled);
 }
 
 .WuiHidden {

@@ -15,7 +15,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import { setContext } from 'svelte';
 
 	let {
@@ -48,7 +47,7 @@
 	align="flex-start"
 	justify="flex-start"
 	direction={orientation === 'horizontal' ? 'row' : 'column'}
-	class="WuiList WuiGap-{gap}"
+	class="WuiGap-{gap}"
 >
 	<slot />
 </Flex>

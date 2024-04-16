@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
-	export interface CheckBoxAttributes extends Omit<HTMLInputAttributes, 'size'> {
+	export interface CheckboxAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		_this?: HTMLInputElement;
 		checked?: boolean;
 		color?: WuiColor;
@@ -18,18 +18,28 @@
 	import { Icon } from '$lib/display';
 	import { Text } from '$lib/typography';
 	import { LikeButton } from '$lib/utils';
+	import { getContext } from 'svelte';
 
 	let {
 		_this = $bindable(),
 		checked = $bindable(false),
-		color = 'black',
+		color,
 		label,
-		gap = 'md',
-		size = 'md',
-		shape = 'rounded',
-		variant = 'outlined',
+		gap = 'sm',
+		name,
+		size,
+		shape,
+		variant,
 		...rest
-	}: CheckBoxAttributes = $props();
+	}: CheckboxAttributes = $props();
+
+	const ctx: {
+		color: WuiColor;
+		name: string;
+		size: WuiSize;
+		shape: WuiShape;
+		variant: WuiVariant;
+	} = getContext('wui-checkbox-group-ctx') || {};
 
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
@@ -39,9 +49,9 @@
 	aria-checked={checked}
 	aria-label={label}
 	variant="label"
-	{size}
+	size={size || ctx.size || 'md'}
 	for={id}
-	class="WuiCheckbox WuiCheckbox--{size} WuiGap-{gap}"
+	class="WuiCheckbox WuiCheckbox--{size || ctx.size || 'md'} WuiGap-{gap}"
 >
 	<input
 		{...rest}
@@ -49,19 +59,20 @@
 		type="checkbox"
 		class="WuiHidden"
 		{id}
+		name={name || ctx.name}
 		bind:this={_this}
 		bind:checked
 	/>
 
 	<LikeButton
 		element="span"
-		color={checked ? color : 'neutral'}
-		{variant}
-		{shape}
+		color={checked ? color || ctx.color || 'primary' : 'neutral'}
+		variant={variant || ctx.variant || 'outlined'}
+		shape={shape || ctx.shape || 'rounded'}
 		size="sm"
 		class="WuiCheckbox__thumb"
 	>
-		<Icon {size} slot="prefix">check</Icon>
+		<Icon {size} weight="500" slot="prefix">check</Icon>
 	</LikeButton>
 
 	{#if $$slots.label}

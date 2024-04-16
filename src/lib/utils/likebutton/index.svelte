@@ -97,7 +97,6 @@
 		WuiSurface
 		WuiClickable
 		WuiVariant-{variant}
-		WuiLikeButton--{size}
 		WuiColor-{color}
 		WuiShape-{shape}
 		WuiGap-{gap || size}
@@ -109,7 +108,7 @@
 		{height ? 'WuiHeight-' + height : ''}
 		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
 		{rest.class || ''}"
-	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify}"
+	style="height:var(--height-{size});{rest.style || ''};justify-content:{justify}"
 	onkeydown={keydown}
 >
 	{#if $$slots.prefix}

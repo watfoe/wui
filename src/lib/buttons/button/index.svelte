@@ -33,7 +33,7 @@
 		justify = 'center',
 		navigation = 'none',
 		pad,
-		padx,
+		padx = 'sm',
 		pady = 'none',
 		prefix,
 		role,
@@ -156,7 +156,6 @@
 		WuiPadding-x-{padx || pad || size}
 		WuiPadding-y-{pady || pad || size}
 		WuiLikeButton
-		WuiLikeButton--{size}
 		WuiText WuiText--body WuiText--md
 		{bold ? 'WuiText--bold' : ''}
 		{width ? 'WuiWidth-' + width : ''}
@@ -164,7 +163,7 @@
 		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
 		{loading ? 'WuiButton--loading' : ''}
 		{rest.class || ''}"
-	style="{rest.style || ''};--WuiLikeButtonFlex-justify:{justify}"
+	style="height:var(--height-{size});{rest.style || ''};justify-content:{justify}"
 	{type}
 	onclick={click}
 	onkeydown={keydown}

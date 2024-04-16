@@ -16,7 +16,7 @@
 	import { setContext } from 'svelte';
 
 	const { color, size, variant, shape }: AvatarGroupProps = $props();
-	setContext('avatar-group-ctx', { color, size, variant, shape });
+	setContext('wui-avatar-group-ctx', { color, size, variant, shape });
 </script>
 
 <Row role="group" aria-label="Avatar Group" class="WuiAvatarGroup">

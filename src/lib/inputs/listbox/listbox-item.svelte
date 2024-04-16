@@ -30,7 +30,7 @@
 	let _checked = $state(selected);
 
 	const id = Math.random().toString(36).substring(2, 15);
-	const context: {
+	const ctx: {
 		color: WuiColor;
 		name: string;
 		multiple: boolean;
@@ -52,7 +52,7 @@
 
 	function keydown(e: KeyboardEvent) {
 		if (_this && (e.key === 'Enter' || e.key === ' ')) {
-			if (context.multiple) {
+			if (ctx.multiple) {
 				_this.click();
 			} else if (!_checked) {
 				_this.click();
@@ -67,10 +67,10 @@
 	for={id}
 	aria-selected={_checked}
 	navigation="vertical"
-	variant={_checked ? variant || context.variant || 'soft' : 'plain'}
-	color={_checked ? color || context.color || 'primary' : 'neutral'}
-	size={size || context.size || 'md'}
-	shape={shape || context.shape || 'square'}
+	variant={_checked ? variant || ctx.variant || 'soft' : 'plain'}
+	color={_checked ? color || ctx.color || 'primary' : 'neutral'}
+	size={size || ctx.size || 'md'}
+	shape={shape || ctx.shape || 'square'}
 	justify="flex-start"
 	class="WuiListbox__item"
 	onkeydown={keydown}
@@ -81,7 +81,7 @@
 		class="WuiHidden"
 		{id}
 		{value}
-		name={context.name}
+		name={ctx.name}
 		bind:checked={_checked}
 		bind:this={_this}
 	/>

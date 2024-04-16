@@ -25,7 +25,7 @@
 		size?: WuiSize;
 		variant?: WuiVariant;
 		shape?: Omit<WuiShape, 'pill'>;
-	} = getContext('avatar-group-ctx') || {};
+	} = getContext('wui-avatar-group-ctx') || {};
 
 	$effect.pre(() => {
 		if (size === 'sm') {
@@ -51,12 +51,16 @@
 	align="center"
 	justify="center"
 	class="
-	WuiAvatar WuiAvatar--{size || ctx.size || 'md'}
+	WuiAvatar
 	WuiVariant-{variant || ctx.variant || 'solid'}
 	WuiShape-{shape || ctx.shape || 'circle'}
 	{isColorPreset ? `WuiColor-${color || ctx.color || 'primary'}` : ''}
 	{rest.class || ''}"
-	style={isColorPreset ? '' : `--WuiAvatar-bg: ${color}`}
+	style="
+		height:var(--height-{size || ctx.size || 'md'});
+		width:var(--height-{size || ctx.size || 'md'});
+		{isColorPreset ? '' : `--WuiAvatar-bg: ${color}`}
+	"
 >
 	{#if rest.src}
 		<img src={rest.src} {...rest} {alt} class="WuiAvatar__img" />

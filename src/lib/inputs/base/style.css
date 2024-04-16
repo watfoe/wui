@@ -7,18 +7,6 @@
   position: relative;
 }
 
-.WuiInput--sm {
-  height: var(--input-height-sm);
-}
-
-.WuiInput--md {
-  height: var(--input-height-md);
-}
-
-.WuiInput--lg {
-  height: var(--input-height-lg);
-}
-
 .WuiInput--prefixed {
   padding-left: 3px;
 }
@@ -56,6 +44,7 @@
 
 .WuiInput__input::placeholder {
   color: var(--WuiColor-bg);
+  opacity: 0.6;
 }
 
 .WuiVariant-solid .WuiInput__input::placeholder {

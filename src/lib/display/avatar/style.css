@@ -2,23 +2,6 @@
   --WuiAvatar-size: var(--button-height-md, --button-height-md);
   flex-shrink: 0;
   flex-grow: 0;
-  height: var(--WuiAvatar-size) !important;
-  width: var(--WuiAvatar-size) !important;
-}
-
-.WuiAvatar--sm {
-  --WuiAvatar-size: var(--button-height-sm);
-  font-size: 0.75rem;
-}
-
-.WuiAvatar--md {
-  --WuiAvatar-size: var(--button-height-md);
-  font-size: 0.875rem;
-}
-
-.WuiAvatar--lg {
-  --WuiAvatar-size: var(--button-height-lg);
-  font-size: 1rem;
 }
 
 .WuiAvatar__img {

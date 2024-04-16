@@ -40,4 +40,5 @@
 	for={id}
 >
 	<input {...rest} type="checkbox" {id} class="WuiHidden" bind:this={_this} bind:checked />
+	<span class="WuiSwitch__thumb"></span>
 </label>

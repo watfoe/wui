@@ -21,11 +21,11 @@
   --WuiSwitch-height: 26px;
 }
 
-.WuiSwitch input:checked+.WuiSwitch::after {
+.WuiSwitch input:checked+.WuiSwitch__thumb {
   transform: translateX(calc(var(--WuiSwitch-width) - var(--WuiSwitch-height)));
 }
 
-.WuiSwitch::after {
+.WuiSwitch__thumb {
   background-color: var(--WuiColor-bg);
   border-radius: inherit;
   content: '';
@@ -35,6 +35,6 @@
   transition: transform 0.1s ease-in-out;
 }
 
-.WuiColor-solid.WuiSwitch::after {
+.WuiColor-solid .WuiSwitch__thumb {
   background-color: var(--WuiColor-on-bg);
 }

@@ -23,7 +23,7 @@
 		onblur,
 		onvalidate,
 		pad,
-		padx = 'md',
+		padx = 'sm',
 		pady,
 		prefix,
 		required,
@@ -124,12 +124,11 @@
 	{pad}
 	{padx}
 	{pady}
-	class="
-	WuiInput WuiInput--{size}
+	class="WuiInput
 	{prefix ? 'WuiInput--prefixed' : ''}
 	{suffix ? 'WuiInput--suffixed' : ''}
 	{_class}"
-	{style}
+	style="height:var(--height-{size});{style || ''}"
 >
 	{#if $$slots.prefix}
 		<div class="WuiInput__prefix">
@@ -147,7 +146,7 @@
 		class="WuiInput__input WuiText WuiText--body WuiText--{size}"
 		onblur={blur}
 		oninput={input}
-		style="text-align: {align}"
+		style="text-align:{align}"
 		bind:this={_this}
 		bind:value
 	/>
