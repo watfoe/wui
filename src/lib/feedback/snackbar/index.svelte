@@ -1,9 +1,8 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	export interface SnackbarAttributes
-		extends Omit<HTMLAttributes<HTMLDivElement>, 'color'>,
-			WuiSurface {
+	export interface SnackbarAttributes extends SheetAttributes {
+		align?: WuiFlexAlign;
 		id: string;
 		title?: string;
 		showclose?: boolean;
@@ -17,19 +16,31 @@
 			| 'top-right'
 			| 'bottom-left'
 			| 'bottom-right';
+		prefix?: string;
 	}
 </script>
 
 <script lang="ts">
 	import './style.css';
 
-	import { Col, Row } from '$lib/layout';
+	import { Col } from '$lib/layout';
 	import { Button } from '$lib/buttons';
 	import { Icon } from '$lib/display';
-	import { Sheet } from '$lib/surfaces';
-	import type { WuiSurface } from '$lib';
+	import { Sheet, type SheetAttributes } from '$lib/surfaces';
+	import type { WuiFlexAlign } from '$lib';
 
-	let { id, title, showclose = true, position = 'center', ...rest }: SnackbarAttributes = $props();
+	let {
+		align = 'flex-start',
+		color = 'neutral',
+		id,
+		title,
+		showclose = true,
+		pad = 'md',
+		position = 'bottom-right',
+		prefix,
+		variant = 'outlined',
+		...rest
+	}: SnackbarAttributes = $props();
 	let backdrop: HTMLDialogElement;
 
 	$effect.pre(() => {
@@ -49,17 +60,35 @@
 
 <Sheet
 	{...rest}
+	{color}
 	{id}
-	variant="outlined"
+	{pad}
+	{variant}
 	role="alertdialog"
 	aria-label="Snackbar"
-	class="WuiSnackbar WuiSnackbar--{position} {rest.class || ''}"
+	class="WuiSnackbar WuiSnackbar--{position} WuiGap-md {rest.class || ''}"
+	style="align-items: {align};"
 	onclick={click}
 >
+	{#if $$slots.prefix}
+		<slot name="prefix" />
+	{:else if prefix}
+		<Icon size="md">{prefix}</Icon>
+	{/if}
+
+	<Col
+		align="flex-start"
+		justify="flex-start"
+		gap="md"
+		class="WuiSnackbar__body WuiText WuiText--body WuiText--md WuiText--inherit"
+	>
+		<slot />
+	</Col>
+
 	{#if showclose}
 		<Button
-			variant="soft"
-			color="danger"
+			variant={variant === 'outlined' ? 'plain' : variant}
+			{color}
 			size="sm"
 			shape="circle"
 			class="WuiSnackbar__close-button"
@@ -68,8 +97,4 @@
 			<Icon slot="prefix" size="md">close</Icon>
 		</Button>
 	{/if}
-
-	<Col class="WuiSnackbar__body">
-		<slot />
-	</Col>
 </Sheet>

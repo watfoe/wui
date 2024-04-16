@@ -2,17 +2,49 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  height: var(--WuiInput-height, var(--height-md));
   gap: var(--space-xs);
   width: 100% !important;
   position: relative;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.WuiInput--ss {
+  --WuiInput-height: var(--height-ss);
+}
+
+.WuiInput--xs {
+  --WuiInput-height: var(--height-xs);
+}
+
+.WuiInput--sm {
+  --WuiInput-height: var(--height-sm);
+}
+
+.WuiInput--md {
+  --WuiInput-height: var(--height-md);
+}
+
+.WuiInput--lg {
+  --WuiInput-height: var(--height-lg);
+}
+
+.WuiInput--xl {
+  --WuiInput-height: var(--height-xl);
+}
+
+.WuiInput--xx {
+  --WuiInput-height: var(--height-xx);
 }
 
 .WuiInput--prefixed {
-  padding-left: 3px;
+  padding-left: 2px !important;
 }
 
 .WuiInput--suffixed {
-  padding-right: 3px;
+  padding-right: 2px !important;
 }
 
 .WuiInput:focus-within {
@@ -72,14 +104,22 @@
 .WuiInput__prefix,
 .WuiInput__suffix {
   align-items: center;
-  border-radius: inherit !important;
+  border-radius: inherit;
   cursor: default;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  flex-shrink: 0;
   justify-content: center;
-  height: calc(100% - (1.3px * 2)) !important;
-  width: calc(var(--WuiInput-height) - (1.3px * 2));
+  height: 100%;
+  width: calc(var(--WuiInput-height) - 4px);
   text-decoration: none;
   overflow: hidden;
+}
+
+div.WuiInput__prefix>*,
+div.WuiInput__suffix>* {
+  border-radius: inherit !important;
+  width: 100% !important;
+  height: 100% !important;
 }

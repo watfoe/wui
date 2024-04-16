@@ -3,7 +3,7 @@
 
 	export interface DividerAttributes {
 		color?: 'primary' | 'neutral' | 'success' | 'warning' | 'danger';
-		size?: 'sm' | 'md' | 'lg';
+		size?: 'sm' | 'md' | 'lg' | number;
 		spacing?: WuiSpacing | number;
 		vertical?: boolean;
 	}
@@ -13,20 +13,24 @@
 	let {
 		color = 'neutral',
 		size = 'sm',
-		spacing = 'xs',
+		spacing = 'ss',
 		vertical = false
 	}: DividerAttributes = $props();
+
+	let sizeIsNumber = typeof size === 'number';
 	let spacingIsNumber = typeof spacing === 'number';
 </script>
 
 <div
 	role="separator"
-	class="
-	WuiDivider WuiDivider--{size} WuiDivider--{color}
-	WuiColor-{color}
+	class="WuiDivider WuiColor-{color} WuiVariant-solid
+	{sizeIsNumber ? '' : `WuiDivider--${size}`}
 	{vertical ? 'WuiDivider--vert' : 'WuiDivider--horiz'}
-	{spacingIsNumber ? '' : 'WuiDivider--mgn-{spacing}'}"
-	style={spacingIsNumber ? '--WuiDivider--margin: {spacing}px' : ''}
+	{spacingIsNumber ? '' : `WuiDivider--mgn-${spacing}`}"
+	style="
+		{spacingIsNumber ? `--WuiDivider--margin: ${spacing}px;` : ''}
+		{sizeIsNumber ? `--WuiDivider--size: ${size}px;` : ''}
+	"
 />
 
 <style>
@@ -34,7 +38,6 @@
 		--WuiDivider--color: var(--color-outline);
 		--WuiDivider--size: 1px;
 		--WuiDivider--margin: var(--space-xs);
-		background-color: var(--WuiDivider--color);
 	}
 
 	.WuiDivider--horiz {
@@ -60,6 +63,9 @@
 	}
 
 	.WuiDivider--mgn-ss {
+		--WuiDivider--margin: var(--space-ss);
+	}
+	.WuiDivider--mgn-xs {
 		--WuiDivider--margin: var(--space-xs);
 	}
 	.WuiDivider--mgn-sm {

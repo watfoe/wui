@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
-	import type { LikeButtonAttributes } from '$lib';
+	import type { LikeButtonAttributes } from '$lib/utils';
 
 	type LB = LikeButtonAttributes<HTMLButtonElement, HTMLButtonAttributes>;
 
@@ -15,7 +15,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import { Icon } from '$lib/display';
 	import { untrack } from 'svelte';
 
@@ -39,6 +38,7 @@
 		role,
 		suffix,
 		shape = 'rounded',
+		style = '',
 		type = 'button',
 		onclick,
 		onkeydown,
@@ -48,6 +48,10 @@
 
 	let feedback: HTMLDialogElement;
 	let feedbackExpanded = $state(false);
+	const only_icon =
+		!$$slots.default &&
+		!width &&
+		!((prefix && suffix) || (prefix && $$slots.suffix) || ($$slots.prefix && suffix));
 
 	$effect(() => {
 		untrack(() => {
@@ -147,23 +151,21 @@
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
 	disabled={loading || disabled}
-	class="
-		WuiClickable
+	class="WuiLikeButton WuiClickable WuiLikeButton--{size}
+		{only_icon ? 'WuiLikeButton--only-icon' : ''}
 		WuiVariant-{variant}
 		WuiColor-{color}
 		WuiShape-{shape}
 		WuiGap-{gap || size}
 		WuiPadding-x-{padx || pad || size}
 		WuiPadding-y-{pady || pad || size}
-		WuiLikeButton
 		WuiText WuiText--body WuiText--md
 		{bold ? 'WuiText--bold' : ''}
-		{width ? 'WuiWidth-' + width : ''}
-		{height ? 'WuiHeight-' + height : ''}
-		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
+		{width ? `WuiWidth-${width}` : ''}
+		{height ? `WuiHeight-${height}` : ''}
 		{loading ? 'WuiButton--loading' : ''}
 		{rest.class || ''}"
-	style="height:var(--height-{size});{rest.style || ''};justify-content:{justify}"
+	style="{style};justify-content:{justify}"
 	{type}
 	onclick={click}
 	onkeydown={keydown}
@@ -185,3 +187,50 @@
 		<Icon {size}>{suffix}</Icon>
 	{/if}
 </button>
+
+<style>
+	.WuiButton--loading:disabled {
+		color: transparent !important;
+		position: relative;
+	}
+
+	.WuiButton--loading:disabled * {
+		background-color: transparent !important;
+		color: transparent !important;
+	}
+
+	.WuiButton--loading::before {
+		content: '';
+		border: 1.5px solid transparent;
+		border-radius: 50%;
+		border-top-color: var(--color-primary);
+		border-right-color: var(--color-primary);
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		-webkit-animation: spin 0.8s linear infinite;
+		/* Safari */
+		-moz-animation: spin 0.8s linear infinite;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>

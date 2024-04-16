@@ -36,11 +36,17 @@
 		prefix,
 		suffix,
 		shape = 'rounded',
+		style = '',
 		width,
 		height,
 		onkeydown,
 		...rest
 	}: LikeButtonAttributes<any, any> = $props();
+
+	const only_icon =
+		!$$slots.default &&
+		!width &&
+		!((prefix && suffix) || (prefix && $$slots.suffix) || ($$slots.prefix && suffix));
 
 	// Keyboard accessibility
 	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
@@ -92,10 +98,9 @@
 	role="button"
 	tabindex="0"
 	{...rest}
-	class="
-		WuiLikeButton
-		WuiSurface
-		WuiClickable
+	class="WuiLikeButton WuiClickable
+		WuiLikeButton--{size}
+		{only_icon ? 'WuiLikeButton--only-icon' : ''}
 		WuiVariant-{variant}
 		WuiColor-{color}
 		WuiShape-{shape}
@@ -106,9 +111,8 @@
 		{bold ? 'WuiText--bold' : ''}
 		{width ? 'WuiWidth-' + width : ''}
 		{height ? 'WuiHeight-' + height : ''}
-		{!$$slots.default ? 'WuiLikeButton--only-icon' : ''}
 		{rest.class || ''}"
-	style="height:var(--height-{size});{rest.style || ''};justify-content:{justify}"
+	style="{style};justify-content:{justify}"
 	onkeydown={keydown}
 >
 	{#if $$slots.prefix}

@@ -96,5 +96,16 @@
 		</Sheet>
 	</Row>
 
-	<Snackbar id="snack" title="This is a snackbar" position="bottom" />
+	<Snackbar
+		id="snack"
+		title="This is a snackbar"
+		position="right"
+		prefix="mail"
+		color="primary"
+		variant="soft"
+	>
+		lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+		labore et dolore magna aliqua.
+		<Button color="white" size="sm" shape="pill" padx="md">Undo</Button>
+	</Snackbar>
 </Col>

@@ -112,7 +112,7 @@
 	}
 </script>
 
-<Row justify="space-between" gap="xs">
+<Row gap="xs">
 	<Select
 		placeholder="Month"
 		preset="month"

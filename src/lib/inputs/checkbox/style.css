@@ -20,8 +20,8 @@
 
 .WuiCheckbox__thumb {
   display: inline-flex;
-  height: var(--WuiCheckbox-size) !important;
-  width: var(--WuiCheckbox-size) !important;
+  height: var(--WuiCheckbox-size);
+  width: var(--WuiCheckbox-size);
 }
 
 .WuiCheckbox:hover input:not(:checked)+.WuiCheckbox__thumb {

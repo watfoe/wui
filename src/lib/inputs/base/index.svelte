@@ -124,11 +124,11 @@
 	{pad}
 	{padx}
 	{pady}
-	class="WuiInput
-	{prefix ? 'WuiInput--prefixed' : ''}
-	{suffix ? 'WuiInput--suffixed' : ''}
+	class="WuiInput WuiInput--{size}
+	{prefix || $$slots.prefix ? 'WuiInput--prefixed' : ''}
+	{suffix || $$slots.suffix ? 'WuiInput--suffixed' : ''}
 	{_class}"
-	style="height:var(--height-{size});{style || ''}"
+	{style}
 >
 	{#if $$slots.prefix}
 		<div class="WuiInput__prefix">

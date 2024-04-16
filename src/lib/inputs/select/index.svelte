@@ -38,7 +38,7 @@
 	let {
 		_this = $bindable(),
 		color,
-		class: _class,
+		class: _class = '',
 		description,
 		error = $bindable(),
 		label,
@@ -122,7 +122,7 @@
 <Col
 	align="flex-start"
 	justify="flex-start"
-	class="WuiSelect WuiSelect--{color} {_class || ''}"
+	class="WuiSelect WuiSelect--{color} {_class}"
 	width="full"
 	{style}
 >

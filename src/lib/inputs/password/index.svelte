@@ -26,7 +26,6 @@
 	autocapitalize="off"
 	autocorrect="off"
 	spellcheck="false"
-	suffix="visibility"
 	bind:_this
 	bind:value
 	bind:error

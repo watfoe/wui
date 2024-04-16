@@ -21,7 +21,7 @@
 .WuiRadio__thumb {
   cursor: pointer;
   display: block;
-  height: var(--WuiRadio-size) !important;
+  height: var(--WuiRadio-size);
   width: var(--WuiRadio-size);
   padding: 2px;
 }
