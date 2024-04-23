@@ -1,4 +1,6 @@
 <script>
-  import '$lib/styles/global.css';
+	import '$lib/styles/global.css';
+	const { children } = $props();
 </script>
-<slot />
+
+{@render children()}

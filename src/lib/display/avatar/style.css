@@ -1,5 +1,4 @@
 .WuiAvatar {
-  --WuiAvatar-size: var(--button-height-md, --button-height-md);
   flex-shrink: 0;
   flex-grow: 0;
 }

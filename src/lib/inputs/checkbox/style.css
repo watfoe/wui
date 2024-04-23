@@ -1,4 +1,7 @@
 .WuiCheckbox {
+  --WuiCheckbox-size-sm: 18px;
+  --WuiCheckbox-size-md: 22px;
+  --WuiCheckbox-size-lg: 26px;
   align-items: center;
   cursor: pointer;
   position: relative;
@@ -6,22 +9,8 @@
   flex-direction: row;
 }
 
-.WuiCheckbox--sm {
-  --WuiCheckbox-size: 18px;
-}
-
-.WuiCheckbox--md {
-  --WuiCheckbox-size: 22px;
-}
-
-.WuiCheckbox--lg {
-  --WuiCheckbox-size: 26px;
-}
-
 .WuiCheckbox__thumb {
   display: inline-flex;
-  height: var(--WuiCheckbox-size);
-  width: var(--WuiCheckbox-size);
 }
 
 .WuiCheckbox:hover input:not(:checked)+.WuiCheckbox__thumb {

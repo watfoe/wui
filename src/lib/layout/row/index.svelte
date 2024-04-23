@@ -7,9 +7,7 @@
 <script lang="ts">
 	import Flex from '../flex/index.svelte';
 
-	let { _this = $bindable(), ...rest }: RowAttributes = $props();
+	let { ...rest }: RowAttributes = $props();
 </script>
 
-<Flex {...rest} direction="row" bind:_this>
-	<slot />
-</Flex>
+<Flex {...rest} direction="row" />

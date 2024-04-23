@@ -32,23 +32,23 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.101"
+		"svelte": "^5.0.0-next.112"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.41.2",
-		"@sveltejs/adapter-auto": "^3.1.1",
-		"@sveltejs/kit": "^2.5.5",
+		"@sveltejs/adapter-static": "^3.0.1",
+		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/package": "^2.3.1",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@typescript-eslint/eslint-plugin": "^7.6.0",
 		"@typescript-eslint/parser": "^7.6.0",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.37.0",
+		"eslint-plugin-svelte": "^2.38.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.3",
 		"publint": "^0.1.16",
-		"svelte": "5.0.0-next.101",
+		"svelte": "5.0.0-next.112",
 		"svelte-check": "^3.6.9",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.5",

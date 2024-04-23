@@ -1,12 +1,19 @@
 <script context="module" lang="ts">
-	import type { ButtonAttributes, WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib';
-	import { untrack, type Snippet, setContext } from 'svelte';
+	import {
+		display,
+		type WuiColor,
+		type WuiShape,
+		type WuiSize,
+		type WuiSpacing,
+		type WuiVariant
+	} from '$lib';
+	import { untrack, setContext } from 'svelte';
 
 	export interface TabsAttributes {
-		for: string;
 		bottomrule?: boolean;
-    children: Snippet;
 		color?: WuiColor;
+		for: string;
+		gap?: WuiSpacing;
 		size?: WuiSize;
 		shape?: Omit<WuiShape, 'circle' | 'pill'>;
 		selected?: number;
@@ -15,7 +22,16 @@
 </script>
 
 <script lang="ts">
-	let { for: _for, bottomrule = true, children, color, selected, size, shape, variant }: TabsAttributes = $props();
+	let {
+		bottomrule = true,
+		color,
+		for: _for,
+		gap = 'md',
+		selected,
+		size,
+		shape,
+		variant
+	}: TabsAttributes = $props();
 	let tabs: HTMLDivElement;
 	let activeIndex = selected || 0;
 
@@ -24,7 +40,7 @@
 		color,
 		size,
 		shape,
-		variant,
+		variant
 	});
 
 	$effect(() => {
@@ -39,9 +55,7 @@
 			const tabPanels = tabPanelsParent.children;
 
 			function dispatchEvent(elem: Element) {
-				elem.dispatchEvent(
-					new Event('select')
-				);
+				elem.dispatchEvent(new Event('select'));
 			}
 
 			tabButtons.forEach((tabButton, index) => {
@@ -92,17 +106,19 @@
 	});
 </script>
 
-<div bind:this={tabs} role="tablist" class="WuiTabs {bottomrule ? 'WuiTabs--bottom-ruled' : ''}">
-	{@render children()}
+<div
+	bind:this={tabs}
+	role="tablist"
+	class={bottomrule ? 'WuiTabs--bottom-ruled' : ''}
+	style:display="flex"
+	style:flex-direction="row"
+	style:gap="var(--space-{gap})"
+	style:width="100%"
+>
+	<slot />
 </div>
 
 <style>
-	.WuiTabs {
-		display: flex;
-		flex-direction: row;
-		gap: var(--space-md);
-		width: 100%;
-	}
 	.WuiTabs--bottom-ruled {
 		border-bottom: var(--line);
 		margin-bottom: var(--WuiTab-marginBottom, var(--space-md));

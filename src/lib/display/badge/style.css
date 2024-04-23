@@ -1,0 +1,48 @@
+.WuiBadge {
+  display: inline-flex !important;
+  position: relative !important;
+  --WuiBadge-translateX: 50%;
+  --WuiBadge-translateY: -50%;
+}
+
+.WuiBadge__content {
+  box-shadow: 0 0 0 2px;
+  display: inline-flex;
+  position: absolute;
+  min-height: 0.75rem;
+  min-width: 0.75rem;
+  -webkit-transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  -moz-transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  -ms-transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  transform: scale(1) translateX(var(--WuiBadge-translateX)) translateY(var(--WuiBadge-translateY));
+  transform-origin: 100% 0%;
+  z-index: 9990;
+}
+
+.WuiBadge--top-left .WuiBadge__content {
+  top: 0;
+  left: 0;
+  --WuiBadge-translateX: -50%;
+  --WuiBadge-translateY: -50%;
+}
+
+.WuiBadge--top-right .WuiBadge__content {
+  top: 0;
+  right: 0;
+  --WuiBadge-translateX: 50%;
+  --WuiBadge-translateY: -50%;
+}
+
+.WuiBadge--bottom-left .WuiBadge__content {
+  bottom: 0;
+  left: 0;
+  --WuiBadge-translateX: -50%;
+  --WuiBadge-translateY: 50%;
+}
+
+.WuiBadge--bottom-right .WuiBadge__content {
+  bottom: 0;
+  right: 0;
+  --WuiBadge-translateX: 50%;
+  --WuiBadge-translateY: 50%;
+}

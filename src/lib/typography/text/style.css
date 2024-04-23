@@ -1,6 +1,6 @@
 .WuiText {
   font-size: var(--WuiText-font-size, 1rem);
-  font-weight: 300;
+  font-weight: 320;
   line-height: var(--WuiText-line-height, 1.5rem);
 }
 
@@ -101,8 +101,8 @@
 .WuiText--body.WuiText--md,
 .WuiText--code.WuiText--md,
 .WuiText--label.WuiText--md {
-  --WuiText-font-size: 13.5px;
-  --WuiText-line-height: 1rem;
+  --WuiText-font-size: 14px;
+  --WuiText-line-height: 24px;
 }
 
 .WuiText--body.WuiText--lg,

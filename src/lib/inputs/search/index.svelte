@@ -3,7 +3,6 @@
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
 	let {
-		_this = $bindable(),
 		color = 'neutral',
 		error = $bindable(),
 		value = $bindable(),
@@ -27,16 +26,16 @@
 	type="text"
 	{variant}
 	{color}
-	bind:_this
 	bind:value
 	bind:error
 >
-	<Button
-		{color}
-		variant={variant === 'outlined' ? 'plain' : variant}
-		size="sm"
-		slot="suffix"
-		prefix="clear"
-		onclick={clear}
-	/>
+	{#snippet suffix()}
+		<Button
+			{color}
+			variant={variant === 'outlined' ? 'plain' : variant}
+			size="sm"
+			prefix="clear"
+			onclick={clear}
+		/>
+	{/snippet}
 </BaseInput>

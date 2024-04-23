@@ -3,4 +3,4 @@
 	const { class: _class = '', ...rest }: ColAttributes = $props();
 </script>
 
-<Col width="full" class="WuiContent {_class}" {...rest}></Col>
+<Col class="WuiContent {_class}" width="100%" p="lg" mt={50} {...rest}></Col>

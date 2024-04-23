@@ -1,52 +1,45 @@
 <script context="module" lang="ts">
-	import type { WuiFlexJustify, WuiSize, WuiSpacing, WuiSurface } from '$lib/types';
+	import type { WuiFlexJustify, WuiSize } from '$lib/types';
 
-	export type LikeButtonAttributes<T extends HTMLElement, A = HTMLAttributes<T>> = A &
-		WuiSurface & {
-			bold?: boolean;
-			element: string;
-			justify?: WuiFlexJustify;
-			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
-			pad?: WuiSpacing;
-			padx?: WuiSpacing;
-			pady?: WuiSpacing;
-			prefix?: string;
-			suffix?: string;
-			size?: WuiSize;
-		};
+	export type LikeButtonAttributes<A> = SurfaceAttributes<A> & {
+		bold?: boolean;
+		element?: string;
+		justify?: WuiFlexJustify;
+		navigation?: 'horizontal' | 'vertical' | 'mixed' | 'none';
+		prefix?: Snippet | string;
+		suffix?: Snippet | string;
+		size?: WuiSize;
+	};
 </script>
 
 <script lang="ts">
 	import './style.css';
 	import { Icon } from '$lib/display';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import Surface, { type SurfaceAttributes } from '../surface/index.svelte';
+	import type { Snippet } from 'svelte';
 
 	let {
 		bold = false,
-		element,
-		gap = 'sm',
-		size = 'md',
-		variant = 'solid',
+		children,
+		class: _class = '',
 		color = 'primary',
+		direction = 'row',
+		element = 'button',
+		gap = 'sm',
+		height,
 		justify = 'center',
 		navigation = 'none',
-		pad,
-		padx,
-		pady = 'none',
+		px,
 		prefix,
 		suffix,
 		shape = 'rounded',
 		style = '',
+		size = 'md',
+		variant = 'solid',
 		width,
-		height,
 		onkeydown,
 		...rest
-	}: LikeButtonAttributes<any, any> = $props();
-
-	const only_icon =
-		!$$slots.default &&
-		!width &&
-		!((prefix && suffix) || (prefix && $$slots.suffix) || ($$slots.prefix && suffix));
+	}: LikeButtonAttributes<any> = $props();
 
 	// Keyboard accessibility
 	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
@@ -93,41 +86,37 @@
 	}
 </script>
 
-<svelte:element
-	this={element}
-	role="button"
-	tabindex="0"
-	{...rest}
-	class="WuiLikeButton WuiClickable
-		WuiLikeButton--{size}
-		{only_icon ? 'WuiLikeButton--only-icon' : ''}
-		WuiVariant-{variant}
-		WuiColor-{color}
-		WuiShape-{shape}
-		WuiGap-{gap || size}
-		WuiPadding-x-{padx || pad || size}
-		WuiPadding-y-{pady || pad || size}
-		WuiText WuiText--body WuiText--md
-		{bold ? 'WuiText--bold' : ''}
-		{width ? 'WuiWidth-' + width : ''}
-		{height ? 'WuiHeight-' + height : ''}
-		{rest.class || ''}"
-	style="{style};justify-content:{justify}"
+<Surface
+	class="WuiLikeButton {_class}"
+	height={height || size}
+	px={children ? px : undefined}
+	tabindex={0}
+	width={!width && !children ? size : width}
 	onkeydown={keydown}
+	{color}
+	{direction}
+	{element}
+	{gap}
+	{justify}
+	{style}
+	{shape}
+	{variant}
+	clickable
+	{...rest}
 >
-	{#if $$slots.prefix}
-		<slot name="prefix" />
-	{:else if prefix}
+	{#if typeof prefix === 'string'}
 		<Icon {size}>{prefix}</Icon>
+	{:else if prefix}
+		{@render prefix()}
 	{/if}
 
-	{#if $$slots.default}
-		<slot />
+	{#if children}
+		{@render children()}
 	{/if}
 
-	{#if $$slots.suffix}
-		<slot name="suffix" />
-	{:else if suffix}
+	{#if typeof suffix === 'string'}
 		<Icon {size}>{suffix}</Icon>
+	{:else if suffix}
+		{@render suffix()}
 	{/if}
-</svelte:element>
+</Surface>

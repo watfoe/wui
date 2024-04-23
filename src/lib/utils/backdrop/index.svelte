@@ -1,11 +1,17 @@
 <script context="module" lang="ts">
 	import type { HTMLDialogAttributes } from 'svelte/elements';
-	export interface BackdropAttributes extends HTMLDialogAttributes {
-		_this?: HTMLDialogElement;
+
+	export interface BaseBackdropAttributes {
 		transparent?: boolean;
 		opened?: boolean;
 		onopen?: (e: CustomEvent<HTMLDialogElement>) => void;
-		onclose?: (e: Event) => void;
+		// Redefine for types that want to extend BackdropAttributes but do not want
+		// to inherit props other than the ones defined in this BaseBackdropAttributes
+		onclose?: HTMLDialogAttributes['onclose'];
+	}
+
+	export interface BackdropAttributes extends BaseBackdropAttributes, HTMLDialogAttributes {
+		_this?: HTMLDialogElement;
 	}
 </script>
 
@@ -26,7 +32,6 @@
 		untrack(() => {
 			// @ts-ignore
 			_this?.addEventListener('open', open);
-			_this?.addEventListener('close', close);
 
 			if (opened) {
 				_this?.showModal();
@@ -36,7 +41,7 @@
 		});
 	});
 
-	function keydown(e: KeyboardEvent) {
+	function keydown(e: KeyboardEvent & { currentTarget: HTMLDialogElement }) {
 		// Browsers already implement the escape key to close the dialog. The problem is
 		// that if we don't prevent the default behavior, the dialog will close but also some other
 		// action will be triggered. For example, the browser window is minimized.
@@ -52,7 +57,7 @@
 		onopen?.(e);
 	}
 
-	function close(e: Event) {
+	function close(e: Event & { currentTarget: HTMLDialogElement }) {
 		if (opened) {
 			_this?.close();
 			opened = false;

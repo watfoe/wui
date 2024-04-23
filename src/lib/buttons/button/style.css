@@ -1,0 +1,44 @@
+.WuiButton--loading:disabled {
+  color: transparent !important;
+  position: relative;
+}
+
+.WuiButton--loading:disabled * {
+  background-color: transparent !important;
+  color: transparent !important;
+}
+
+.WuiButton--loading::before {
+  content: '';
+  border: 1.5px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  border-right-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  -webkit-animation: spin 0.8s linear infinite;
+  /* Safari */
+  -moz-animation: spin 0.8s linear infinite;
+  animation: spin 0.8s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

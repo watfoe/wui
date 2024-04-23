@@ -18,6 +18,7 @@
 	let {
 		_this = $bindable(),
 		color,
+		px = 'sm',
 		role = 'listitem',
 		selected = $bindable(false),
 		shape,
@@ -69,6 +70,7 @@
 	navigation="vertical"
 	variant={_checked ? variant || ctx.variant || 'soft' : 'plain'}
 	color={_checked ? color || ctx.color || 'primary' : 'neutral'}
+	{px}
 	size={size || ctx.size || 'md'}
 	shape={shape || ctx.shape || 'square'}
 	justify="flex-start"

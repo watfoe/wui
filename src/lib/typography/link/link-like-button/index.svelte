@@ -8,9 +8,9 @@
 <script lang="ts">
 	import { LikeButton, type LikeButtonAttributes } from '$lib/utils';
 
-	let { ...rest }: LinkLikeButtonAttributes = $props();
+	let { px = 'sm', ...rest }: LinkLikeButtonAttributes = $props();
 </script>
 
-<LikeButton {...rest} element="a">
+<LikeButton {...rest} element="a" {px}>
 	<slot />
 </LikeButton>

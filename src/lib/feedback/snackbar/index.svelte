@@ -1,7 +1,9 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
+	import type { WuiFlexAlign } from '$lib/types';
 
-	export interface SnackbarAttributes extends SheetAttributes {
+	export interface SnackbarAttributes
+		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
 		align?: WuiFlexAlign;
 		id: string;
 		title?: string;
@@ -22,22 +24,23 @@
 
 <script lang="ts">
 	import './style.css';
-
 	import { Col } from '$lib/layout';
 	import { Button } from '$lib/buttons';
 	import { Icon } from '$lib/display';
-	import { Sheet, type SheetAttributes } from '$lib/surfaces';
-	import type { WuiFlexAlign } from '$lib';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
 
 	let {
 		align = 'flex-start',
+		class: _class = '',
 		color = 'neutral',
+		gap = 'md',
 		id,
-		title,
-		showclose = true,
-		pad = 'md',
+		p = 'md',
 		position = 'bottom-right',
 		prefix,
+		shape = 'rounded',
+		showclose = true,
+		title,
 		variant = 'outlined',
 		...rest
 	}: SnackbarAttributes = $props();
@@ -58,17 +61,18 @@
 	}
 </script>
 
-<Sheet
-	{...rest}
+<Surface
+	{variant}
 	{color}
 	{id}
-	{pad}
-	{variant}
+	{p}
+	{gap}
+	{align}
 	role="alertdialog"
 	aria-label="Snackbar"
-	class="WuiSnackbar WuiSnackbar--{position} WuiGap-md {rest.class || ''}"
-	style="align-items: {align};"
+	class="WuiSnackbar WuiSnackbar--{position} {_class}"
 	onclick={click}
+	{...rest}
 >
 	{#if $$slots.prefix}
 		<slot name="prefix" />
@@ -97,4 +101,4 @@
 			<Icon slot="prefix" size="md">close</Icon>
 		</Button>
 	{/if}
-</Sheet>
+</Surface>

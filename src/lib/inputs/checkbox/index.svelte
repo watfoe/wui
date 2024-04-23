@@ -2,10 +2,9 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
 	export interface CheckboxAttributes extends Omit<HTMLInputAttributes, 'size'> {
-		_this?: HTMLInputElement;
 		checked?: boolean;
 		color?: WuiColor;
-		label: string;
+		label: Snippet | string;
 		gap?: WuiSpacing;
 		size?: WuiSize;
 		shape?: WuiShape;
@@ -18,10 +17,9 @@
 	import { Icon } from '$lib/display';
 	import { Text } from '$lib/typography';
 	import { LikeButton } from '$lib/utils';
-	import { getContext } from 'svelte';
+	import { getContext, type Snippet } from 'svelte';
 
 	let {
-		_this = $bindable(),
 		checked = $bindable(false),
 		color,
 		label,
@@ -41,17 +39,25 @@
 		variant: WuiVariant;
 	} = getContext('wui-checkbox-group-ctx') || {};
 
+	const heights = {
+		sm: '18px',
+		md: '22px',
+		lg: '26px',
+		xl: '34px'
+	};
+
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
 <Text
 	role="checkbox"
 	aria-checked={checked}
-	aria-label={label}
+	aria-label={typeof label === 'string' ? label : rest['aria-label']}
 	variant="label"
 	size={size || ctx.size || 'md'}
 	for={id}
-	class="WuiCheckbox WuiCheckbox--{size || ctx.size || 'md'} WuiGap-{gap}"
+	class="WuiCheckbox"
+	style="gap:var(--space-{gap});"
 >
 	<input
 		{...rest}
@@ -60,24 +66,26 @@
 		class="WuiHidden"
 		{id}
 		name={name || ctx.name}
-		bind:this={_this}
 		bind:checked
 	/>
 
 	<LikeButton
 		element="span"
-		color={checked ? color || ctx.color || 'primary' : 'neutral'}
-		variant={variant || ctx.variant || 'outlined'}
-		shape={shape || ctx.shape || 'rounded'}
-		size="sm"
 		class="WuiCheckbox__thumb"
+		color={checked ? color || ctx.color || 'primary' : 'neutral'}
+		height="var(--WuiCheckbox-size-{size || ctx.size || 'md'}"
+		shape={shape || ctx.shape || 'rounded'}
+		variant={variant || ctx.variant || 'outlined'}
+		width="var(--WuiCheckbox-size-{size || ctx.size || 'md'}"
 	>
-		<Icon {size} weight="500" slot="prefix">check</Icon>
+		{#snippet prefix()}
+			<Icon {size} weight="500">check</Icon>
+		{/snippet}
 	</LikeButton>
 
-	{#if $$slots.label}
-		<slot name="label" />
-	{:else}
+	{#if typeof label === 'string'}
 		{label}
+	{:else}
+		{@render label()}
 	{/if}
 </Text>

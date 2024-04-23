@@ -7,7 +7,6 @@
 	}
 
 	let {
-		_this = $bindable(),
 		color = 'neutral',
 		error = $bindable(),
 		value = $bindable(),
@@ -26,16 +25,16 @@
 	autocapitalize="off"
 	autocorrect="off"
 	spellcheck="false"
-	bind:_this
 	bind:value
 	bind:error
 >
-	<Button
-		variant={variant === 'outlined' ? 'plain' : variant}
-		{color}
-		size="sm"
-		slot="suffix"
-		prefix={secure ? 'visibility' : 'visibility_off'}
-		onclick={() => (secure = !secure)}
-	/>
+	{#snippet suffix()}
+		<Button
+			variant={variant === 'outlined' ? 'plain' : variant}
+			{color}
+			size="sm"
+			prefix={secure ? 'visibility' : 'visibility_off'}
+			onclick={() => (secure = !secure)}
+		/>
+	{/snippet}
 </BaseInput>

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { BaseProps } from '../_common_';
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	export interface BaseInputAttributes extends BaseProps<HTMLInputElement, HTMLInputAttributes> {}
+	export interface BaseInputAttributes extends BaseProps<HTMLInputAttributes> {}
 </script>
 
 <script lang="ts">
@@ -10,10 +10,9 @@
 	import { validate, mask, ValidationError } from '../_common_';
 	import { Icon } from '$lib/display';
 	import { untrack } from 'svelte';
-	import { Sheet } from '$lib/surfaces';
+	import { Surface } from '$lib/utils';
 
 	let {
-		_this = $bindable(),
 		align = 'left',
 		class: _class = '',
 		color,
@@ -22,14 +21,14 @@
 		oninput,
 		onblur,
 		onvalidate,
-		pad,
-		padx = 'sm',
-		pady,
+		p,
+		px = 'sm',
+		py,
 		prefix,
 		required,
 		rules,
 		size = 'md',
-		shape,
+		shape = 'rounded',
 		suffix,
 		style = '',
 		validateon = 'submit',
@@ -38,8 +37,10 @@
 		...rest
 	}: BaseInputAttributes = $props();
 
+	let input_el: HTMLInputElement;
+
 	$effect(() => {
-		_this?.setCustomValidity(error === undefined ? '' : error?.message);
+		input_el?.setCustomValidity(error === undefined ? '' : error?.message);
 
 		untrack(() => {
 			if (required && !rules?.required) {
@@ -49,11 +50,11 @@
 
 			if (rules && validateon === 'submit') {
 				// Get the form element that this input is in
-				const form = _this?.closest('form');
+				const form = input_el?.closest('form');
 				form?.addEventListener(
 					'submit',
 					(e) => {
-						_validate(_this?.value!);
+						_validate(input_el?.value!);
 						if (error) {
 							e.preventDefault();
 							// Stop the event from propagating to other event listeners
@@ -117,26 +118,26 @@
 	}
 </script>
 
-<Sheet
+<Surface
 	color={error ? 'danger' : color}
 	{shape}
 	{variant}
-	{pad}
-	{padx}
-	{pady}
+	{p}
+	{px}
+	{py}
 	class="WuiInput WuiInput--{size}
-	{prefix || $$slots.prefix ? 'WuiInput--prefixed' : ''}
-	{suffix || $$slots.suffix ? 'WuiInput--suffixed' : ''}
+	{prefix ? 'WuiInput--prefixed' : ''}
+	{suffix ? 'WuiInput--suffixed' : ''}
 	{_class}"
 	{style}
 >
-	{#if $$slots.prefix}
+	{#if prefix}
 		<div class="WuiInput__prefix">
-			<slot name="prefix" />
-		</div>
-	{:else if prefix}
-		<div class="WuiInput__prefix">
-			<Icon>{prefix}</Icon>
+			{#if typeof prefix === 'string'}
+				<Icon>{prefix}</Icon>
+			{:else}
+				{@render prefix()}
+			{/if}
 		</div>
 	{/if}
 
@@ -147,15 +148,17 @@
 		onblur={blur}
 		oninput={input}
 		style="text-align:{align}"
-		bind:this={_this}
+		bind:this={input_el}
 		bind:value
 	/>
 
-	{#if $$slots.suffix}
+	{#if suffix}
 		<div class="WuiInput__suffix">
-			<slot name="suffix" />
+			{#if typeof suffix === 'string'}
+				<Icon>{suffix}</Icon>
+			{:else}
+				{@render suffix()}
+			{/if}
 		</div>
-	{:else if suffix}
-		<Icon class="WuiInput__suffix">{suffix}</Icon>
 	{/if}
-</Sheet>
+</Surface>

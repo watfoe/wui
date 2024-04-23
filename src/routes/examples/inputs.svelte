@@ -5,8 +5,8 @@
 	let name = $state('');
 </script>
 
-<Col gap="lg" width="full">
-	<Row gap="md" width="full">
+<Col gap="lg" width="100%">
+	<Row gap="md" width="100%">
 		<Input
 			type="text"
 			variant="solid"
@@ -20,7 +20,7 @@
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
 
-	<Row gap="md" width="full">
+	<Row gap="md" width="100%">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
 		<Input
 			type="email"
@@ -34,12 +34,11 @@
 		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
 	</Row>
 
-	<Row gap="md" width="full">
+	<Row gap="md" width="100%">
 		<Input
 			type="password"
 			variant="solid"
 			placeholder="Enter your password"
-			shape="pill"
 			color="success"
 			label="Password"
 			class="input"
@@ -77,14 +76,14 @@
 		/>
 	</Row>
 
-	<Row gap="md" width="full">
+	<Row gap="md" width="100%">
 		<Input type="search" variant="solid" color="warning" label="Search" class="input" />
 		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="plain" color="warning" label="Search" class="input" />
 	</Row>
 
-	<Row gap="md" width="full">
+	<Row gap="md" width="100%">
 		<Input type="date" variant="solid" label="Date" class="input" validateon="blur" required />
 		<Input
 			type="date"
@@ -99,7 +98,7 @@
 		<Input type="date" variant="plain" label="Date" class="input" validateon="blur" required />
 	</Row>
 
-	<Row gap="lg" width="full">
+	<Row gap="lg" width="100%">
 		<Radio label="Primary small radio" name="radio" size="sm" color="primary" />
 		<Radio label="Neutral medium radio" name="radio" size="md" />
 		<Radio label="Large success radio" name="radio" size="lg" color="success" />
@@ -119,7 +118,7 @@
 		</Col>
 	</Row>
 
-	<Row gap="lg" width="full">
+	<Row gap="lg" width="100%">
 		<Checkbox label="Primary small radio" name="checkbox" size="sm" color="primary" />
 		<Checkbox label="Neutral medium checkbox" name="checkbox" size="md" />
 		<Checkbox label="Large success checkbox" name="checkbox" size="lg" color="success" />
@@ -127,7 +126,7 @@
 		<Checkbox label="Danger checkbox" name="checkbox" color="danger" />
 	</Row>
 
-	<Row gap="md" width="full">
+	<Row gap="md" width="100%">
 		<Switch size="sm" color="primary" />
 		<Switch size="md" color="neutral" />
 		<Switch size="lg" color="success" />

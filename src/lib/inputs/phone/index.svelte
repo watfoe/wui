@@ -4,7 +4,7 @@
 
 	interface PhoneInputAttributes extends BaseInputAttributes {}
 
-	let { _this, error, value, ...rest }: PhoneInputAttributes = $props();
+	let { error, value, ...rest }: PhoneInputAttributes = $props();
 
 	function rule(value: string) {
 		return new Phone(value);
@@ -18,7 +18,6 @@
 		rule,
 		...rest.rules
 	}}
-	bind:_this
 	bind:value
 	bind:error
 />

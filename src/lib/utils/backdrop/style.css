@@ -26,8 +26,8 @@
 }
 
 .WuiBackdrop>* {
-  background-color: var(--color-surface);
-  border-radius: var(--radius);
+  /* background-color: var(--color-surface);
+  border-radius: var(--radius); */
   max-width: 80vw !important;
   max-height: calc(100vh - calc(var(--space-nm) * 2)) !important;
   overflow-y: auto;
