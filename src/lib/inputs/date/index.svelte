@@ -21,7 +21,6 @@
 	let year = $state('');
 
 	let {
-		_this = $bindable(),
 		color,
 		error = $bindable(),
 		id,
@@ -36,6 +35,8 @@
 		variant,
 		...rest
 	}: DateInputAttributes = $props();
+
+	let input_el: HTMLInputElement;
 
 	$effect.pre(() => {
 		untrack(() => {
@@ -56,8 +57,8 @@
 
 		if (rules && validateon === 'submit') {
 			// Get the form element that this input is in
-			const form = _this?.closest('form');
-			form?.addEventListener('submit', (e) => {
+			const form = input_el?.closest('form');
+			form?.addEventListener('submit', (e: Event) => {
 				e.preventDefault();
 				validate();
 			});
@@ -102,9 +103,9 @@
 
 	function _dipatch(_value: string, _error?: ValidationError) {
 		value = _value;
-		_this!.value = _value;
+		input_el!.value = _value;
 		error = _error;
-		_this?.dispatchEvent(
+		input_el?.dispatchEvent(
 			new Event('change', {
 				bubbles: true
 			})
@@ -175,7 +176,7 @@
 		aria-hidden="true"
 		{name}
 		class="WuiHidden"
-		bind:this={_this}
+		bind:this={input_el}
 		bind:value
 	/>
 </Row>

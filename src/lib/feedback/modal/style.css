@@ -6,16 +6,15 @@
   min-width: var(--WuiModal-minWidth);
   min-height: 50px;
   position: absolute;
-  width: auto !important;
 }
 
 .WuiModal--top {
-  top: var(--space-nm);
+  top: var(--space-md);
   transform: translate(-50%, 0);
 }
 
 .WuiModal--bottom {
-  bottom: var(--space-nm);
+  bottom: var(--space-md);
   transform: translate(-50%, 0);
 }
 
@@ -25,11 +24,8 @@
 }
 
 .WuiModal__header {
-  border-bottom: 1px solid var(--color-outline);
   flex-shrink: 0;
   max-height: fit-content;
-  padding: var(--space-nm);
-  width: 100%;
 }
 
 .WuiModal__close-button {

@@ -10,7 +10,6 @@
 	import { getContext, untrack } from 'svelte';
 
 	let {
-		_this = $bindable(),
 		color,
 		role = 'listitem',
 		selected = false,
@@ -19,6 +18,7 @@
 		variant,
 		...rest
 	}: MenuItemAttributes = $props();
+
 	let context: {
 		color?: WuiColor;
 		size?: WuiSize;
@@ -39,19 +39,15 @@
 </script>
 
 <Button
-	bold={false}
-	{...rest}
 	aria-selected={selected}
-	role="menuitem"
-	navigation="vertical"
-	variant={selected ? variant || context.variant || 'soft' : 'plain'}
+	class="WuiMenu__item"
 	color={color || (selected ? context.color || 'primary' : altColor)}
+	justify="flex-start"
+	navigation="vertical"
+	role="menuitem"
 	size={size || context.size || 'md'}
 	shape={shape || context.shape || 'square'}
-	justify="flex-start"
-	width="full"
-	class="WuiMenu__item"
-	bind:_this
->
-	<slot />
-</Button>
+	variant={selected ? variant || context.variant || 'soft' : 'plain'}
+	width="100%"
+	{...rest}
+/>

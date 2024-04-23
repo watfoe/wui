@@ -1,53 +1,59 @@
 <script lang="ts" context="module">
+	import type { SurfaceAttributes } from '$lib/utils';
 	import { Flex } from '$lib/layout';
 	import type { WuiColor, WuiListMarker, WuiShape, WuiSize, WuiVariant } from '$lib/types';
-	import type { LikeButtonAttributes } from '$lib/utils';
 
-	export interface ListAttributes extends HTMLUListElement {
-		color?: WuiColor;
+	export interface ListAttributes
+		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
+		itemcolor?: WuiColor;
+		itemshape?: WuiShape;
+		itemsize?: WuiSize;
+		itemvariant?: WuiVariant;
 		marker?: WuiListMarker;
-		orientation: 'horizontal' | 'vertical';
-		shape?: Omit<WuiShape, 'circle'>;
-		size?: WuiSize;
-		gap?: LikeButtonAttributes<HTMLUListElement>['gap'] | 'none';
-		variant?: WuiVariant;
+		orientation?: 'horizontal' | 'vertical';
 	}
 </script>
 
 <script lang="ts">
 	import { setContext } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
-		color,
+		children,
+		itemcolor,
+		itemshape,
+		itemsize,
+		itemvariant,
 		marker,
 		orientation = 'vertical',
 		shape,
-		size,
-		gap,
-		variant
+		...rest
 	}: ListAttributes = $props();
 
 	$effect.pre(() => {
-		if (shape === 'circle') {
+		if (shape === 'circle' || shape === 'pill') {
 			shape = 'rounded';
 		}
 	});
 
 	setContext('wui-tab-ctx', {
-		color,
+		color: itemcolor,
 		marker,
-		shape,
-		size,
-		variant,
+		shape: itemshape,
+		size: itemsize,
+		variant: itemvariant,
 		orientation
 	});
 </script>
 
 <Flex
+	{...rest}
 	align="flex-start"
 	justify="flex-start"
+	{shape}
 	direction={orientation === 'horizontal' ? 'row' : 'column'}
-	class="WuiGap-{gap}"
 >
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </Flex>

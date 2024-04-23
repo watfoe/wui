@@ -1,12 +1,10 @@
 <script context="module" lang="ts">
-	import type { WuiColor, WuiShape, WuiSpacing, WuiVariant } from '$lib/types';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
 
-	export interface PopupAttributes extends BackdropAttributes {
-		color?: WuiColor;
-		id: string;
-		pad?: WuiSpacing;
-		padx?: WuiSpacing;
-		pady?: WuiSpacing;
+	export interface PopupAttributes
+		extends Omit<SurfaceAttributes<Omit<HTMLAttributes<HTMLDivElement>, 'onclose'>>, 'element'>,
+			BaseBackdropAttributes {
+		id?: string;
 		position?:
 			| 'top'
 			| 'bottom'
@@ -20,23 +18,22 @@
 			| 'left-end'
 			| 'right-start'
 			| 'right-end';
-		shape?: Omit<WuiShape, 'circle'>;
-		variant?: WuiVariant;
 	}
 </script>
 
 <script lang="ts">
-	import Backdrop, { type BackdropAttributes } from '../backdrop/index.svelte';
+	import './style.css';
+	import Backdrop, { type BaseBackdropAttributes } from '../backdrop/index.svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
-		_this = $bindable(),
-		class: _class,
+		class: _class = '',
 		color = 'neutral',
 		id,
 		onopen,
-		pad,
-		padx,
-		pady = 'ss',
+		onclose,
+		opened = $bindable(false),
+		py = 'ss',
 		position = 'bottom-start',
 		role = 'popup',
 		shape = 'rounded',
@@ -44,10 +41,6 @@
 		...rest
 	}: PopupAttributes = $props();
 
-	padx = padx || pad;
-	pady = pady || pad;
-
-	let popup: HTMLDivElement;
 	const spacing = 2;
 
 	let rect = $state({
@@ -56,17 +49,12 @@
 		width: 0
 	});
 
-	$effect.pre(() => {
-		if (shape === 'circle') {
-			shape = 'rounded';
-		}
-	});
-
 	function open(e: CustomEvent) {
 		const { innerWidth, innerHeight } = window;
-		const anchor = e.detail.anchor;
+		const anchor = e.detail.anchor as HTMLButtonElement;
+		const dialog = e.target as HTMLDialogElement;
 
-		if (anchor && popup) {
+		if (anchor) {
 			const {
 				left: anchor_left,
 				top: anchor_top,
@@ -76,7 +64,10 @@
 
 			let left = anchor_left;
 			let top = anchor_top;
-			let { width, height } = popup.getBoundingClientRect();
+			let { width, height } = dialog.firstElementChild?.getBoundingClientRect() || {
+				width: 0,
+				height: 0
+			};
 
 			// The menu should at least be as wide as the anchor
 			if (width < anchor_width) {
@@ -165,26 +156,16 @@
 	}
 </script>
 
-<Backdrop {...rest} {id} onopen={open} transparent bind:_this>
-	<div
-		{role}
+<Backdrop {id} onopen={open} {onclose} transparent bind:opened>
+	<Surface
 		aria-label="Popup"
-		class="
-		WuiPopup WuiVariant-outlined WuiColor-{color} WuiShape-{shape}
-		{padx ? `WuiPadding-x-${padx}` : ''}
-		{pady ? `WuiPadding-y-${pady}` : ''}
-		{_class || ''}"
-		style="left:{rect.left}px; top:{rect.top}px; min-width:{rect.width}px;"
-		bind:this={popup}
-	>
-		<slot />
-	</div>
+		class="WuiPopup {_class}"
+		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;"
+		{color}
+		{role}
+		{py}
+		{shape}
+		{variant}
+		{...rest}
+	/>
 </Backdrop>
-
-<style>
-	.WuiPopup {
-		max-height: calc(100vh - calc(var(--space-md) * 2)) !important;
-		overflow-y: auto;
-		position: absolute;
-	}
-</style>

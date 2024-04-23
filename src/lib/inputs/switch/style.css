@@ -1,38 +1,11 @@
 .WuiSwitch {
-  display: inline-block;
-  height: var(--WuiSwitch-height);
-  width: var(--WuiSwitch-width);
-  padding: 2px;
-  position: relative;
-}
-
-.WuiSwitch--sm {
-  --WuiSwitch-width: 28px;
-  --WuiSwitch-height: 18px;
-}
-
-.WuiSwitch--md {
-  --WuiSwitch-width: 34px;
-  --WuiSwitch-height: 22px;
-}
-
-.WuiSwitch--lg {
-  --WuiSwitch-width: 42px;
-  --WuiSwitch-height: 26px;
-}
-
-.WuiSwitch input:checked+.WuiSwitch__thumb {
-  transform: translateX(calc(var(--WuiSwitch-width) - var(--WuiSwitch-height)));
+  --WuiSwitch-size-sm: 18px;
+  --WuiSwitch-size-md: 22px;
+  --WuiSwitch-size-lg: 26px;
 }
 
 .WuiSwitch__thumb {
   background-color: var(--WuiColor-bg);
-  border-radius: inherit;
-  content: '';
-  display: block;
-  height: calc(var(--WuiSwitch-height) - 6px);
-  width: calc(var(--WuiSwitch-height) - 6px);
-  transition: transform 0.1s ease-in-out;
 }
 
 .WuiColor-solid .WuiSwitch__thumb {

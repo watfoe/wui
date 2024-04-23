@@ -1,16 +1,14 @@
 @import 'material-symbols/rounded';
 
 @font-face {
-  font-family: "Lexend";
-  src: url("./fonts/lexend.ttf") format("truetype");
+  font-family: "Inter";
+  src: url("/fonts/lexend.ttf") format("truetype");
   font-weight: 300 400 500;
   font-stretch: 75% 125%;
   font-style: oblique 0deg 12deg;
 }
 
 :root {
-  --max-width: 100%;
-
   --color-primary-1: #F7FBFD;
   --color-primary-2: #dff1f9;
   --color-primary-3: #bfe4f2;
@@ -57,7 +55,7 @@
   --color-on-primary: #FFF;
   --color-primary-container: var(--color-primary-2);
 
-  --color-neutral: var(--color-neutral-5);
+  --color-neutral: var(--color-neutral-4);
   --color-on-neutral: #fff;
   --color-neutral-container: var(--color-neutral-2);
 
@@ -98,7 +96,7 @@
   --color-disabled: var(--color-neutral-3);
   --color-on-disabled: var(--color-neutral-6);
 
-  --font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
   --space-ss: 0.1875rem;
   --space-xs: 0.3125rem;
@@ -115,7 +113,7 @@
   --height-xl: 3.5rem;
   --height-xx: 4rem;
 
-  --radius: 3px;
+  --radius: 3.77px;
 
   --line: 1px solid var(--color-outline);
 }
@@ -144,8 +142,7 @@ body {
 body {
   color: var(--color-on-surface);
   background-color: var(--color-surface);
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 100%;
 }
 
 a {
@@ -157,296 +154,6 @@ a {
   html {
     color-scheme: system;
   }
-}
-
-.WuiColor-primary {
-  --WuiColor-bg: var(--color-primary);
-  --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-selection-container);
-  --WuiColor-on-bg-soft: var(--color-primary);
-}
-
-.WuiColor-neutral {
-  --WuiColor-bg: var(--color-neutral);
-  --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-neutral-container);
-  --WuiColor-on-bg-soft: var(--color-black-3);
-}
-
-.WuiColor-success {
-  --WuiColor-bg: var(--color-success);
-  --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-success-container);
-  --WuiColor-on-bg-soft: var(--color-success);
-}
-
-.WuiColor-warning {
-  --WuiColor-bg: var(--color-warning);
-  --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-warning-container);
-  --WuiColor-on-bg-soft: var(--color-warning);
-}
-
-.WuiColor-danger {
-  --WuiColor-bg: var(--color-error);
-  --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-error-container);
-  --WuiColor-on-bg-soft: var(--color-error);
-}
-
-.WuiColor-black {
-  --WuiColor-bg: var(--color-black-4);
-  --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-neutral-4);
-  --WuiColor-on-bg-soft: var(--color-white);
-}
-
-.WuiColor-white {
-  --WuiColor-bg: var(--color-white);
-  --WuiColor-on-bg: var(--color-black-4);
-  --WuiColor-bg-soft: var(--color-neutral-1);
-  --WuiColor-on-bg-soft: var(--color-black-4);
-}
-
-.WuiShape-rounded {
-  border-radius: var(--radius);
-}
-
-.WuiShape-pill {
-  border-radius: 9999px;
-}
-
-.WuiShape-circle {
-  border-radius: 50%;
-}
-
-.WuiShape-square {
-  border-radius: 0 !important;
-}
-
-.WuiVariant-solid {
-  background-color: var(--WuiColor-bg, var(--color-primary));
-  border: 0;
-  color: var(--WuiColor-on-bg, var(--color-white));
-}
-
-.WuiVariant-outlined {
-  background-color: inherit;
-  color: var(--WuiColor-bg, var(--color-primary));
-  border: 1px solid var(--WuiColor-bg, var(--color-primary));
-}
-
-.WuiVariant-outlined.WuiColor-neutral {
-  color: var(--color-black-3, var(--color-primary));
-  border-color: var(--color-neutral-4, var(--color-primary));
-}
-
-.WuiVariant-soft {
-  background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
-  border: 0;
-  color: var(--WuiColor-on-bg-soft, var(--color-primary));
-}
-
-.WuiVariant-plain,
-.WuiVariant-none {
-  background-color: transparent;
-  border: 0;
-  color: var(--WuiColor-on-bg-soft, var(--color-primary));
-}
-
-.WuiClickable {
-  cursor: pointer;
-}
-
-.WuiClickable.WuiColor-primary:disabled,
-.WuiClickable.WuiColor-neutral:disabled,
-.WuiClickable.WuiColor-success:disabled,
-.WuiClickable.WuiColor-warning:disabled {
-  --WuiColor-bg: var(--color-disabled);
-  --WuiColor-bg-soft: var(--color-disabled);
-  --WuiColor-on-bg-soft: var(--color-black-1);
-}
-
-.WuiClickable:disabled {
-  color: var(--color-black-1);
-  cursor: default;
-  pointer-events: none;
-}
-
-.WuiClickable.WuiVariant-solid:not(:disabled):hover,
-.WuiClickable.WuiVariant-solid:not(:disabled):focus-visible,
-.WuiClickable.WuiVariant-soft:not(:disabled):hover,
-.WuiClickable.WuiVariant-soft:not(:disabled):focus-visible {
-  filter: brightness(0.94);
-}
-
-.WuiClickable.WuiVariant-solid:not(:disabled):active,
-.WuiClickable.WuiVariant-soft:not(:disabled):active,
-.WuiClickable.WuiVariant-outlined:not(:disabled):active,
-.WuiClickable.WuiVariant-plain:not(:disabled):active {
-  filter: brightness(0.89);
-  transition: filter 0.2s ease-in-out;
-}
-
-.WuiClickable.WuiVariant-outlined:not(:disabled):hover,
-.WuiClickable.WuiVariant-outlined:not(:disabled):focus-visible {
-  background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
-}
-
-.WuiClickable.WuiVariant-plain:not(:disabled):hover,
-.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible {
-  background-color: var(--WuiColor-bg-soft);
-}
-
-.WuiWidth-full {
-  width: 100%;
-}
-
-.WuiWidth-half {
-  width: 50%;
-}
-
-.WuiWidth-third {
-  width: 33.333333%;
-}
-
-.WuiWidth-quarter {
-  width: 25%;
-}
-
-.WuiWidth-auto {
-  width: auto;
-}
-
-.WuiWidth-inherit {
-  width: inherit;
-}
-
-.WuiHeight-full {
-  height: 100%;
-}
-
-.WuiHeight-half {
-  height: 50%;
-}
-
-.WuiHeight-third {
-  height: 33.333333%;
-}
-
-.WuiHeight-quarter {
-  height: 25%;
-}
-
-.WuiHeight-auto {
-  height: auto;
-}
-
-.WuiHeight-inherit {
-  height: inherit;
-}
-
-.WuiPadding-x-ss {
-  padding-left: var(--space-ss);
-  padding-right: var(--space-ss);
-}
-
-.WuiPadding-x-xs {
-  padding-left: var(--space-xs);
-  padding-right: var(--space-xs);
-}
-
-.WuiPadding-x-sm {
-  padding-left: var(--space-sm);
-  padding-right: var(--space-sm);
-}
-
-.WuiPadding-x-md {
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
-}
-
-.WuiPadding-x-lg {
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
-}
-
-.WuiPadding-x-xl {
-  padding-left: var(--space-xl);
-  padding-right: var(--space-xl);
-}
-
-.WuiPadding-x-xx {
-  padding-left: var(--space-xx);
-  padding-right: var(--space-xx);
-}
-
-.WuiPadding-y-xs {
-  padding-bottom: var(--space-xs);
-  padding-top: var(--space-xs);
-}
-
-.WuiPadding-y-ss {
-  padding-bottom: var(--space-ss);
-  padding-top: var(--space-ss);
-}
-
-.WuiPadding-y-sm {
-  padding-bottom: var(--space-sm);
-  padding-top: var(--space-sm);
-}
-
-.WuiPadding-y-md {
-  padding-bottom: var(--space-md);
-  padding-top: var(--space-md);
-}
-
-.WuiPadding-y-lg {
-  padding-bottom: var(--space-lg);
-  padding-top: var(--space-lg);
-}
-
-.WuiPadding-y-xl {
-  padding-bottom: var(--space-xl);
-  padding-top: var(--space-xl);
-}
-
-.WuiPadding-y-xx {
-  padding-bottom: var(--space-xx);
-  padding-top: var(--space-xx);
-}
-
-.WuiPadding-y-xs {
-  padding-bottom: var(--space-xs);
-  padding-top: var(--space-xs);
-}
-
-.WuiGap-ss {
-  gap: var(--space-ss);
-}
-
-.WuiGap-xs {
-  gap: var(--space-xs);
-}
-
-.WuiGap-sm {
-  gap: var(--space-sm);
-}
-
-.WuiGap-md {
-  gap: var(--space-md);
-}
-
-.WuiGap-lg {
-  gap: var(--space-lg);
-}
-
-.WuiGap-xl {
-  gap: var(--space-xl);
-}
-
-.WuiGap-xx {
-  gap: var(--space-xx);
 }
 
 .WuiHidden {

@@ -1,24 +1,19 @@
 <script context="module" lang="ts">
 	import type { HTMLFieldsetAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface SelectAttributes extends Omit<HTMLFieldsetAttributes, 'size'> {
-		_this?: HTMLFieldSetElement;
-		color?: WuiColor;
-		description?: string;
+	export interface SelectAttributes
+		extends Omit<LikeButtonAttributes<Omit<HTMLFieldsetAttributes, 'size'>>, 'element'> {
+		description?: Snippet | string;
 		error?: ValidationError;
-		label?: string;
+		label?: Snippet | string;
 		multiple?: boolean;
 		name?: string;
 		onvalidate?: (error?: ValidationError) => void;
 		preset?: 'country' | 'month' | 'gender';
 		required?: boolean;
 		selected?: string;
-		shape?: WuiShape;
-		size?: WuiSize;
 		validateon?: 'change' | 'blur' | 'submit';
 		value?: string;
-		variant?: WuiVariant;
 	}
 </script>
 
@@ -32,15 +27,16 @@
 	import CountryPreset from './presets/country-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
-	import { untrack } from 'svelte';
-	import { Popup } from '$lib/utils';
+	import { untrack, type Snippet } from 'svelte';
+	import { Popup, type LikeButtonAttributes } from '$lib/utils';
 
 	let {
-		_this = $bindable(),
 		color,
 		class: _class = '',
+		children,
 		description,
 		error = $bindable(),
+		hidden,
 		label,
 		multiple = false,
 		name,
@@ -61,19 +57,19 @@
 
 	let opened = $state(false);
 	let selections = $state([] as HTMLLabelElement[]);
-	let combobox: HTMLButtonElement;
+	let listbox: HTMLFieldSetElement;
 
 	const id = Math.random().toString(36).substring(2, 9);
 
 	$effect(() => {
 		if (error || !error) {
-			_this?.setCustomValidity(error === undefined ? '' : error?.message);
+			listbox?.setCustomValidity(error === undefined ? '' : error?.message);
 		}
 
 		untrack(() => {
 			if (required && validateon === 'submit') {
 				// Get the form element that this input is in
-				const form = _this?.closest('form');
+				const form = listbox?.closest('form');
 				form?.addEventListener('submit', (e) => {
 					e.preventDefault();
 					_validate();
@@ -111,7 +107,7 @@
 		if (required && validateon === 'blur') {
 			_validate();
 		}
-		combobox.blur();
+		// combobox.blur();
 	}
 
 	function popup_opened() {
@@ -123,33 +119,28 @@
 	align="flex-start"
 	justify="flex-start"
 	class="WuiSelect WuiSelect--{color} {_class}"
-	width="full"
+	width="100%"
 	{style}
+	{hidden}
 >
-	{#if label && $$slots.description}
-		<Label for={id} {description}>
-			{label}
-			<slot name="description" slot="description" />
-		</Label>
-	{:else if label}
-		<Label for={id} {description}>
-			{label}
-		</Label>
+	{#if label}
+		<Label for={id} {description}>{label}</Label>
 	{/if}
 
 	<Button
-		type="button"
-		aria-expanded="false"
 		anchorfor={id}
-		navigation="feedback"
+		aria-expanded="false"
+		class="WuiSelect__combobox"
 		color={error ? 'danger' : opened ? color || 'primary' : color}
-		{variant}
+		justify="space-between"
+		navigation="feedback"
+		pr={2}
+		type="button"
+		width="100%"
 		{size}
 		{shape}
-		justify="space-between"
-		width="full"
-		class="WuiSelect__combobox"
-		bind:_this={combobox}
+		{variant}
+		{...rest}
 	>
 		{#if selections.length > 0}
 			{#if multiple}
@@ -167,7 +158,9 @@
 			</span>
 		{/if}
 
-		<Icon slot="suffix" class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
+		{#snippet suffix()}
+			<Icon class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
+		{/snippet}
 	</Button>
 
 	<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
@@ -180,7 +173,7 @@
 			color="primary"
 			{size}
 			onchange={change}
-			bind:_this
+			bind:_this={listbox}
 			bind:value
 		>
 			{#if preset === 'country'}
@@ -189,8 +182,8 @@
 				<MonthPreset {selected} />
 			{:else if preset === 'gender'}
 				<GenderPreset {selected} />
-			{:else}
-				<slot />
+			{:else if children}
+				{@render children()}
 			{/if}
 		</Listbox>
 	</Popup>

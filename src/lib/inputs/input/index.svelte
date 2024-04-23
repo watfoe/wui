@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
 	import type { BaseInputAttributes } from '../base/index.svelte';
 	export type InputAttributes = Omit<BaseInputAttributes, 'id'> & {
-		label?: string;
+		label?: Snippet | string;
 		name?: string;
-		description?: string;
+		description?: Snippet | string;
 		hidden?: boolean;
 		type?: 'date' | 'email' | 'name' | 'number' | 'password' | 'pin' | 'phone' | 'search' | 'text';
 	};
@@ -20,6 +20,7 @@
 	import PhoneInput from '../phone/index.svelte';
 	import PinInput from '../pin/index.svelte';
 	import SearchInput from '../search/index.svelte';
+	import type { Snippet } from 'svelte';
 
 	let {
 		color = 'neutral',
@@ -39,15 +40,8 @@
 <fieldset class="WuiInput__root WuiInput--{color} {rest.class || ''}" {hidden} {disabled}>
 	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
   doesn't leave an unintended empty description helper text -->
-	{#if label && $$slots.description && !hidden}
-		<Label for={id} {description}>
-			{label}
-			<slot name="description" slot="description" />
-		</Label>
-	{:else if label && !hidden}
-		<Label for={id} {description}>
-			{label}
-		</Label>
+	{#if label}
+		<Label for={id} {description}>{label}</Label>
 	{/if}
 
 	{#if type === 'date'}

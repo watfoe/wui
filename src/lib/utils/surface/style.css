@@ -1,0 +1,138 @@
+.WuiColor-primary {
+  --WuiColor-bg: var(--color-primary);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-selection-container);
+  --WuiColor-on-bg-soft: var(--color-primary);
+}
+
+.WuiColor-neutral {
+  --WuiColor-bg: var(--color-neutral);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-neutral-container);
+  --WuiColor-on-bg-soft: var(--color-black-3);
+}
+
+.WuiColor-success {
+  --WuiColor-bg: var(--color-success);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-success-container);
+  --WuiColor-on-bg-soft: var(--color-success);
+}
+
+.WuiColor-warning {
+  --WuiColor-bg: var(--color-warning);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-warning-container);
+  --WuiColor-on-bg-soft: var(--color-warning);
+}
+
+.WuiColor-danger {
+  --WuiColor-bg: var(--color-error);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-error-container);
+  --WuiColor-on-bg-soft: var(--color-error);
+}
+
+.WuiColor-black {
+  --WuiColor-bg: var(--color-black-4);
+  --WuiColor-on-bg: var(--color-white);
+  --WuiColor-bg-soft: var(--color-neutral-4);
+  --WuiColor-on-bg-soft: var(--color-white);
+}
+
+.WuiColor-white {
+  --WuiColor-bg: var(--color-white);
+  --WuiColor-on-bg: var(--color-black-4);
+  --WuiColor-bg-soft: var(--color-neutral-1);
+  --WuiColor-on-bg-soft: var(--color-black-4);
+}
+
+.WuiShape-rounded {
+  border-radius: var(--radius);
+}
+
+.WuiShape-pill {
+  border-radius: 9999px;
+}
+
+.WuiShape-circle {
+  border-radius: 50%;
+}
+
+.WuiShape-square {
+  border-radius: 0 !important;
+}
+
+.WuiVariant-solid {
+  background-color: var(--WuiColor-bg, var(--color-primary));
+  border: 0;
+  color: var(--WuiColor-on-bg, var(--color-white));
+}
+
+.WuiVariant-outlined {
+  background-color: inherit;
+  color: var(--WuiColor-bg, var(--color-primary));
+  border: 1.3px solid var(--WuiColor-bg, var(--color-primary));
+}
+
+.WuiVariant-outlined.WuiColor-neutral {
+  color: var(--color-black-3, var(--color-primary));
+  border-color: var(--color-neutral-4, var(--color-primary));
+}
+
+.WuiVariant-soft {
+  background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
+  border: 0;
+  color: var(--WuiColor-on-bg-soft, var(--color-primary));
+}
+
+.WuiVariant-plain,
+.WuiVariant-none {
+  background-color: transparent;
+  border: 0;
+  color: var(--WuiColor-on-bg-soft, var(--color-primary));
+}
+
+.WuiClickable {
+  cursor: pointer;
+}
+
+.WuiClickable.WuiColor-primary:disabled,
+.WuiClickable.WuiColor-neutral:disabled,
+.WuiClickable.WuiColor-success:disabled,
+.WuiClickable.WuiColor-warning:disabled {
+  --WuiColor-bg: var(--color-disabled);
+  --WuiColor-bg-soft: var(--color-disabled);
+  --WuiColor-on-bg-soft: var(--color-black-1);
+}
+
+.WuiClickable:disabled {
+  color: var(--color-black-1);
+  cursor: default;
+  pointer-events: none;
+}
+
+.WuiClickable.WuiVariant-solid:not(:disabled):hover,
+.WuiClickable.WuiVariant-solid:not(:disabled):focus-visible,
+.WuiClickable.WuiVariant-soft:not(:disabled):hover,
+.WuiClickable.WuiVariant-soft:not(:disabled):focus-visible {
+  filter: brightness(0.94);
+}
+
+.WuiClickable.WuiVariant-solid:not(:disabled):active,
+.WuiClickable.WuiVariant-soft:not(:disabled):active,
+.WuiClickable.WuiVariant-outlined:not(:disabled):active,
+.WuiClickable.WuiVariant-plain:not(:disabled):active {
+  filter: brightness(0.89);
+  transition: filter 0.2s ease-in-out;
+}
+
+.WuiClickable.WuiVariant-outlined:not(:disabled):hover,
+.WuiClickable.WuiVariant-outlined:not(:disabled):focus-visible {
+  background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
+}
+
+.WuiClickable.WuiVariant-plain:not(:disabled):hover,
+.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible {
+  background-color: var(--WuiColor-bg-soft);
+}

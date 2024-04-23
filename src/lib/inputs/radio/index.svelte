@@ -7,7 +7,7 @@
 		checked?: boolean;
 		color?: WuiColor;
 		gap?: WuiSpacing;
-		label: string;
+		label: Snippet | string;
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
@@ -18,7 +18,7 @@
 	import './style.css';
 	import { Text } from '$lib/typography';
 	import { LikeButton } from '$lib/utils';
-	import { getContext } from 'svelte';
+	import { getContext, type Snippet } from 'svelte';
 
 	let {
 		_this = $bindable(),
@@ -27,7 +27,7 @@
 		gap = 'sm',
 		label,
 		name,
-		size,
+		size = 'md',
 		shape,
 		variant,
 		value = $bindable(),
@@ -46,12 +46,7 @@
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<Text
-	variant="label"
-	{size}
-	for={id}
-	class="WuiRadio WuiClickable WuiGap-{gap} WuiRadio--{size || ctx.size || 'md'}"
->
+<Text variant="label" {size} for={id} class="WuiRadio WuiClickable" style="gap:var(--space-{gap});">
 	<input
 		{...rest}
 		type="radio"
@@ -65,15 +60,17 @@
 	<LikeButton
 		element="span"
 		color={color || ctx.color || 'primary'}
-		variant={variant || ctx.variant || 'outlined'}
-		shape={shape || ctx.shape || 'circle'}
-		size="sm"
 		class="WuiRadio__thumb"
+		height="var(--WuiRadio-size-{size || ctx.size || 'md'})"
+		p={2}
+		shape={shape || ctx.shape || 'circle'}
+		variant={variant || ctx.variant || 'outlined'}
+		width="var(--WuiRadio-size-{size || ctx.size || 'md'})"
 	/>
 
-	{#if $$slots.label}
-		<slot name="label" />
-	{:else}
+	{#if typeof label === 'string'}
 		{label}
+	{:else}
+		{@render label()}
 	{/if}
 </Text>

@@ -1,29 +1,17 @@
 .WuiRadio {
   --WuiRadio-thumb-display: none;
+  --WuiRadio-size-sm: 18px;
+  --WuiRadio-size-md: 22px;
+  --WuiRadio-size-lg: 26px;
   align-items: center;
   display: flex;
   flex-direction: row;
   position: relative;
 }
 
-.WuiRadio--sm {
-  --WuiRadio-size: 18px;
-}
-
-.WuiRadio--md {
-  --WuiRadio-size: 22px;
-}
-
-.WuiRadio--lg {
-  --WuiRadio-size: 26px;
-}
-
 .WuiRadio__thumb {
   cursor: pointer;
   display: block;
-  height: var(--WuiRadio-size);
-  width: var(--WuiRadio-size);
-  padding: 2px;
 }
 
 .WuiRadio input:checked+.WuiRadio__thumb {

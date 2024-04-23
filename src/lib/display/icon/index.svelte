@@ -4,7 +4,7 @@
 
 	export interface IconAttributes {
 		class?: string;
-		children?: Snippet;
+		children: Snippet;
 		color?: WuiColor | 'inherit';
 		fill?: boolean;
 		grade?: number;
@@ -17,6 +17,8 @@
 <script lang="ts">
 	let {
 		color = 'inherit',
+		class: _class = '',
+		children,
 		fill = false,
 		grade = 0,
 		size = 'md',
@@ -25,35 +27,23 @@
 	}: IconAttributes = $props();
 </script>
 
+<!-- Apply width to icon to avoid shifting -->
 <span
+	{...rest}
 	role="img"
-	class="material-symbols-rounded WuiIcon WuiIcon--{size} WuiText--{color} {rest.class || ''}"
-	style="{rest.style || ''}; font-variation-settings: 'FILL' {fill
-		? '1'
-		: '0'}, 'wght' {weight}, 'GRAD' {grade}, 'opsz' 48;"
+	class="material-symbols-rounded WuiIcon WuiText--{color} {_class}"
+	style:font-variation-settings="'fill' {fill ? 1 : 0}, 'wght' {weight}, 'grad' {grade}, 'opsz' 48;"
+	style:max-width="var(--WuiIcon-size-{size})"
+	style:font-size="var(--WuiIcon-size-{size})"
+	style:overflow="hidden"
 >
-	<slot />
+	{@render children()}
 </span>
 
 <style>
 	.WuiIcon {
-		font-size: var(--WuiIcon-size);
-	}
-
-	.WuiIcon--inherit {
-		--WuiIcon-color: inherit;
-	}
-
-	.WuiIcon--sm {
-		--WuiIcon-size: 1.125rem;
-		line-height: 1.125rem;
-	}
-	.WuiIcon--md {
-		--WuiIcon-size: 1.25rem;
-		line-height: 1.75rem;
-	}
-	.WuiIcon--lg {
-		--WuiIcon-size: 1.5rem;
-		line-height: 1.5rem;
+		--WuiIcon-size-sm: 1.125rem;
+		--WuiIcon-size-md: 1.25rem;
+		--WuiIcon-size-lg: 1.5rem;
 	}
 </style>

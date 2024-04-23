@@ -23,10 +23,6 @@
   --WuiLabel-color: var(--color-error);
 }
 
-.WuiSelect__combobox {
-  padding-right: 3px;
-}
-
 .WuiSelect__combobox__placeholder {
   opacity: 0.5;
 }

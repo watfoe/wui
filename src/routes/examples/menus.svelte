@@ -22,9 +22,9 @@
 	</Menu>
 {/snippet}
 
-<Col justify="center" gap="lg" width="full" style="margin-top: 200px">
+<Col justify="center" gap="lg" width="100%" style="margin-top: 200px">
 	{#each positions as row}
-		<Row justify="space-between" style="width: 840px">
+		<Row justify="space-between" width={840}>
 			{#each row as position}
 				<Button anchorfor="{position}-menu" class="button" style="text-transform:capitalize">
 					{position}

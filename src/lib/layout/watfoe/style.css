@@ -1,22 +1,17 @@
 .WuiHeader {
   background-color: var(--color-surface);
   border-bottom: var(--line);
-  height: 50px;
-  margin-bottom: var(--space-xs);
-  padding: var(--space-sm) var(--space-lg);
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .WuiHeader__logo {
   /* Corrects the logo's vertical alignment */
-  margin-top: 4px;
+  margin-top: 7px;
 }
 
 .WuiContent {
-  margin-top: 50px;
   min-height: calc(100vh - 50px);
-  padding: var(--space-lg);
   overflow-y: auto;
 }

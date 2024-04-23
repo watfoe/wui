@@ -1,4 +1,6 @@
-import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from "$lib/types";
+import type { WuiSize } from "$lib/types";
+import type { SurfaceAttributes } from "$lib/utils";
+import type { Snippet } from "svelte";
 import type { HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
 
 export interface InputMasks {
@@ -34,24 +36,17 @@ export interface InputRules {
   rule?(value: string): void;
 }
 
-export type BaseProps<E = HTMLElement, A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<A, 'size'> & {
+export type BaseProps<A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<SurfaceAttributes<Omit<A, 'size'>>, 'element' | 'align' | 'justfiy' | 'direction' | 'wrap'> & {
   align?: 'left' | 'center' | 'right'; // Controls the alignment of the input value
-  color?: WuiColor;
-  _this?: E;
   error?: ValidationError;
   masks?: InputMasks;
   onvalidate?: (error?: ValidationError) => void;
-  pad?: WuiSpacing;
-  padx?: WuiSpacing;
-  pady?: WuiSpacing;
-  prefix?: string;
+  prefix?: Snippet | string;
   rules?: InputRules;
   required?: boolean;
   size?: WuiSize;
-  shape?: WuiShape;
-  suffix?: string;
+  suffix?: Snippet | string;
   validateon?: 'blur' | 'input' | 'submit';
-  variant?: WuiVariant;
 };
 
 export class ValidationError extends Error {

@@ -2,12 +2,9 @@
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib';
 
 	export interface MenuAttributes extends Omit<PopupAttributes, 'role' | 'aria-label'> {
-		color?: WuiColor;
-		shape?: Omit<WuiShape, 'circle'>;
-		variant?: WuiVariant;
 		itemsize?: WuiSize;
 		itemcolor?: WuiColor;
-		itemshape?: Omit<WuiShape, 'circle'>;
+		itemshape?: WuiShape;
 		itemvariant?: WuiVariant;
 	}
 </script>
@@ -18,15 +15,13 @@
 	import { setContext } from 'svelte';
 
 	let {
-		_this = $bindable(),
 		class: _class = '',
 		color,
-		shape,
-		variant,
 		itemcolor,
 		itemsize,
 		itemshape,
 		itemvariant,
+		shape,
 		...rest
 	}: MenuAttributes = $props();
 
@@ -37,17 +32,14 @@
 		shape: itemshape,
 		variant: itemvariant
 	});
+
+	$effect.pre(() => {
+		if (shape === 'circle') {
+			shape = 'rounded';
+		}
+	});
 </script>
 
-<Popup
-	{...rest}
-	role="menu"
-	aria-label="Menu"
-	class="WuiMenu {_class}"
-	{variant}
-	{color}
-	{shape}
-	bind:_this
->
+<Popup aria-label="Menu" class="WuiMenu {_class}" role="menu" {color} {shape} {...rest}>
 	<slot />
 </Popup>

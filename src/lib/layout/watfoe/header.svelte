@@ -15,14 +15,23 @@
 		};
 	}
 
-	let { subtitle, urls, ...rest }: WatfoeHeaderAttributes = $props();
+	let { class: _class = '', subtitle, urls, ...rest }: WatfoeHeaderAttributes = $props();
 	urls = {
 		signin: urls?.signin || 'https://auth.watfoe.com/signin',
 		signup: urls?.signup || 'https://auth.watfoe.com/create-account'
 	};
 </script>
 
-<Row justify="space-between" width="full" {...rest} class="WuiHeader {rest.class || ''}">
+<Row
+	justify="space-between"
+	px="lg"
+	py="sm"
+	mb="xs"
+	width="100%"
+	height={50}
+	class="WuiHeader {_class}"
+	{...rest}
+>
 	<Row align="center" gap="md">
 		<Logo size={60} class="WuiHeader__logo" />
 
