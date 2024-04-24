@@ -6,7 +6,6 @@
 		color?: 'inherit' | 'link';
 		italic?: boolean;
 		underline?: boolean;
-		rtl?: boolean;
 		size?: 'sm' | 'md' | 'lg';
 		variant?: 'heading' | 'title' | 'body' | 'label' | 'code';
 	}
@@ -16,9 +15,10 @@
 	import '../text/style.css';
 	let {
 		bold = false,
+		children,
 		color = 'link',
+		class: _class = '',
 		italic = false,
-		rtl = false,
 		size = 'md',
 		underline = false,
 		variant = 'body',
@@ -28,14 +28,13 @@
 
 <a
 	{...rest}
-	class="WuiAnchor WuiText WuiText--{variant} WuiText--{size} WuiAnchor--{color} {variant ===
-		'heading' ||
-	variant === 'title' ||
-	bold
-		? 'WuiText--bold'
-		: ''} {italic ? 'WuiText--italic' : ''} {rtl ? 'WuiText--rtl' : ''} {underline
-		? 'WuiText--underline'
-		: ''} {rest.class || ''}"
+	class="WuiAnchor WuiText WuiText--{variant} WuiText--{size} WuiText--{color}{bold ||
+	variant === 'heading' ||
+	variant === 'title'
+		? ' WuiText--bold'
+		: ''} {italic ? ' WuiText--italic' : ''}{underline ? ' WuiText--underline' : ''} {_class}"
 >
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </a>

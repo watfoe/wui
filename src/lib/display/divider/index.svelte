@@ -1,11 +1,19 @@
 <script context="module" lang="ts">
-	import { type WuiColor, type WuiSize, type WuiSpacing } from '$lib/types';
+	import {
+		type WuiColor,
+		type WuiDimension,
+		type WuiMargin,
+		type WuiShape,
+		type WuiSize
+	} from '$lib/types';
 
-	export interface DividerAttributes {
+	export interface DividerAttributes extends WuiMargin {
 		color?: WuiColor;
+		height?: WuiDimension;
 		size?: WuiSize | number;
-		spacing?: WuiSpacing | number;
+		shape?: WuiShape;
 		vertical?: boolean;
+		width?: WuiDimension;
 	}
 
 	const SIZES = {
@@ -16,13 +24,26 @@
 </script>
 
 <script lang="ts">
+	import { Surface } from '$lib/utils';
 	let {
 		color = 'neutral',
+		height,
+		m,
+		mx,
+		my,
 		size = 'sm',
-		spacing = 'ss',
-		vertical = false
+		vertical = false,
+		width,
+		...rest
 	}: DividerAttributes = $props();
-	import { Surface } from '$lib/utils';
+
+	if (vertical) {
+		height = height || '100%';
+		width = width || (size ? SIZES[size] : SIZES['sm']);
+	} else {
+		height = height || (size ? SIZES[size] : SIZES['sm']);
+		width = width || '100%';
+	}
 
 	let sizeIsNumber = typeof size === 'number';
 </script>
@@ -31,9 +52,9 @@
 	role="separator"
 	variant="solid"
 	{color}
-	style={sizeIsNumber ? `--WuiDivider--size: ${size}px;` : ''}
-	mx={vertical ? spacing : undefined}
-	my={vertical ? undefined : spacing}
-	height={vertical ? '100%' : SIZES[size] || size}
-	width={vertical ? SIZES[size] || size : '100%'}
+	mx={vertical ? mx || m : undefined}
+	my={vertical ? undefined : my || m}
+	{height}
+	{width}
+	{...rest}
 />

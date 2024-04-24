@@ -1,6 +1,13 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
+	import type {
+		WuiColor,
+		WuiDimension,
+		WuiShape,
+		WuiSize,
+		WuiSpacing,
+		WuiVariant
+	} from '$lib/types';
 
 	export interface RadioAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		_this?: HTMLInputElement;
@@ -43,6 +50,9 @@
 		variant: WuiVariant;
 	} = getContext('wui-radio-group-ctx') || {};
 
+	const height = `var(--WuiRadio-size-${size || ctx.size || 'md'})` as WuiDimension;
+	const width = `var(--WuiRadio-size-${size || ctx.size || 'md'})` as WuiDimension;
+
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
@@ -61,11 +71,11 @@
 		element="span"
 		color={color || ctx.color || 'primary'}
 		class="WuiRadio__thumb"
-		height="var(--WuiRadio-size-{size || ctx.size || 'md'})"
+		{height}
 		p={2}
 		shape={shape || ctx.shape || 'circle'}
 		variant={variant || ctx.variant || 'outlined'}
-		width="var(--WuiRadio-size-{size || ctx.size || 'md'})"
+		{width}
 	/>
 
 	{#if typeof label === 'string'}

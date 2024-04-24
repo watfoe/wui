@@ -1,19 +1,22 @@
 <script context="module" lang="ts">
+	import type { LikeButtonAttributes } from '$lib/utils';
 	import {
-		display,
 		type WuiColor,
 		type WuiShape,
 		type WuiSize,
 		type WuiSpacing,
 		type WuiVariant
-	} from '$lib';
-	import { untrack, setContext } from 'svelte';
+	} from '$lib/types';
+	import { untrack, setContext, type Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface TabsAttributes {
 		bottomrule?: boolean;
 		color?: WuiColor;
+		children: Snippet;
 		for: string;
 		gap?: WuiSpacing;
+		navigation?: LikeButtonAttributes<HTMLAttributes<HTMLDivElement>>['navigation'];
 		size?: WuiSize;
 		shape?: Omit<WuiShape, 'circle' | 'pill'>;
 		selected?: number;
@@ -25,7 +28,9 @@
 	let {
 		bottomrule = true,
 		color,
+		children,
 		for: _for,
+		navigation,
 		gap = 'md',
 		selected,
 		size,
@@ -38,6 +43,7 @@
 	// To be use by Tab items
 	setContext('wui-tab-ctx', {
 		color,
+		navigation,
 		size,
 		shape,
 		variant
@@ -115,7 +121,7 @@
 	style:gap="var(--space-{gap})"
 	style:width="100%"
 >
-	<slot />
+	{@render children()}
 </div>
 
 <style>

@@ -3,7 +3,7 @@
 	import { getContext, untrack } from 'svelte';
 
 	export interface ListboxItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLabelElement, HTMLLabelAttributes>, '_this'> {
+		extends Omit<LikeButtonAttributes<HTMLLabelAttributes>, '_this'> {
 		_this?: HTMLInputElement;
 		role?: 'listitem' | 'option';
 		selected?: boolean;
@@ -17,6 +17,7 @@
 
 	let {
 		_this = $bindable(),
+		children,
 		color,
 		px = 'sm',
 		role = 'listitem',
@@ -72,7 +73,7 @@
 	color={_checked ? color || ctx.color || 'primary' : 'neutral'}
 	{px}
 	size={size || ctx.size || 'md'}
-	shape={shape || ctx.shape || 'square'}
+	shape={shape || ctx.shape || 'rounded'}
 	justify="flex-start"
 	class="WuiListbox__item"
 	onkeydown={keydown}
@@ -87,6 +88,7 @@
 		bind:checked={_checked}
 		bind:this={_this}
 	/>
-
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </LikeButton>

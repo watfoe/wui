@@ -1,28 +1,47 @@
 <script context="module" lang="ts">
 	import type { HTMLImgAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiDimension, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface AvatarAttributes extends SurfaceAttributes<Omit<HTMLImgAttributes, 'color'>> {
+	export interface AvatarAttributes
+		extends Omit<SurfaceAttributes<Omit<HTMLImgAttributes, 'color'>>, 'element'> {
 		size?: WuiSize;
 	}
 </script>
 
 <script lang="ts">
 	import './style.css';
-
 	import { Text } from '$lib/typography';
 	import { Icon } from '..';
 	import { getContext } from 'svelte';
 	import { Surface, type SurfaceAttributes } from '$lib/utils';
 
 	let {
+		alt,
 		color,
 		class: _class = '',
+		clickable,
 		children,
-		alt,
+		fontsize,
+		height,
+		m,
+		mx,
+		my,
+		mt,
+		mr,
+		mb,
+		ml,
+		p,
+		px,
+		py,
+		pt,
+		pr,
+		pb,
+		pl,
 		size,
+		src,
 		shape,
 		variant,
+		width,
 		style,
 		...rest
 	}: AvatarAttributes = $props();
@@ -34,11 +53,12 @@
 		shape?: WuiShape;
 	} = getContext('wui-avatar-group-ctx') || {};
 
-	$effect.pre(() => {
-		if (size === 'sm') {
-			shape = 'circle';
-		}
-	});
+	height = (height || size || ctx.size || 'md') as WuiDimension;
+	width = (width || size || ctx.size || 'md') as WuiDimension;
+
+	if (shape === 'pill') {
+		shape = 'circle';
+	}
 
 	// TODO: Rethink this logic
 	let isColorPreset = [
@@ -53,6 +73,7 @@
 </script>
 
 <Surface
+	element="div"
 	role="img"
 	aria-label={alt || 'Avatar'}
 	align="center"
@@ -60,13 +81,29 @@
 	variant={variant || ctx.variant || 'solid'}
 	shape={shape || ctx.shape || 'circle'}
 	color={color || ctx.color || 'primary'}
-	height={size || ctx.size || 'md'}
-	width={size || ctx.size || 'md'}
 	class="WuiAvatar {_class}"
+	{clickable}
+	{fontsize}
+	{m}
+	{mx}
+	{my}
+	{mt}
+	{mr}
+	{mb}
+	{ml}
+	{p}
+	{px}
+	{py}
+	{pt}
+	{pr}
+	{pb}
+	{pl}
+	{height}
+	{width}
 	{style}
 >
-	{#if rest.src}
-		<img src={rest.src} {...rest} {alt} class="WuiAvatar__img" />
+	{#if src}
+		<img {src} {alt} class="WuiAvatar__img" {...rest} />
 	{:else if alt}
 		<Text variant="heading" color="inherit" {size}>{alt[0].toUpperCase()}</Text>
 	{:else if !children}

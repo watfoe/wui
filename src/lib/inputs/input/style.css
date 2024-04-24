@@ -1,8 +1,5 @@
 .WuiInput__root {
-  display: flex;
-  flex-direction: column;
   border: 0;
-  width: 100%;
   position: relative;
 }
 

@@ -3,34 +3,50 @@
 	import type { HTMLLiAttributes } from 'svelte/elements';
 
 	export interface ListButtonItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {}
+		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {
+		selected?: boolean;
+	}
 </script>
 
 <script lang="ts">
 	import { LikeButton } from '$lib/utils';
 	import { getContext } from 'svelte';
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	let { color, size, shape, variant, px = 'md', ...rest }: ListButtonItemAttributes = $props();
+	let {
+		color,
+		justify,
+		navigation,
+		px = 'md',
+		size,
+		shape,
+		selected = $bindable(false),
+		variant,
+		width,
+		...rest
+	}: ListButtonItemAttributes = $props();
 	let ctx: {
 		color?: WuiColor;
+		direction?: WuiFlexDirection;
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
-		orientation?: 'horizontal' | 'vertical';
 	} = getContext('wui-tab-ctx') || {};
+
+	const altColor = (color || ctx.color) === 'primary' ? 'neutral' : color || ctx.color || 'neutral';
 </script>
 
 <LikeButton
-	{...rest}
 	element="li"
-	navigation={ctx.orientation || 'vertical'}
+	aria-selected={selected}
 	tabindex="0"
-	justify="flex-start"
-	color={color || ctx.color || 'neutral'}
-	{px}
+	color={color || ctx.color || (selected ? 'neutral' : altColor)}
+	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
+	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}
 	size={size || ctx.size || 'md'}
 	shape={shape || ctx.shape || 'square'}
-	variant={variant || ctx.variant || 'plain'}
-	width={ctx.orientation === 'vertical' ? '100%' : undefined}
+	variant={variant || ctx.variant || (selected ? 'soft' : 'plain')}
+	width={width || (ctx.direction === 'row' ? undefined : '100%')}
+	{px}
+	{...rest}
 />

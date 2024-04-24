@@ -17,6 +17,8 @@
 	let {
 		class: _class = '',
 		color,
+		direction = 'column',
+		gap = 'ss',
 		itemcolor,
 		itemsize,
 		itemshape,
@@ -28,8 +30,9 @@
 	// To be use by MenuItem
 	setContext('wui-tab-ctx', {
 		color: itemcolor || color,
+		direction,
 		size: itemsize,
-		shape: itemshape,
+		shape: itemshape || shape,
 		variant: itemvariant
 	});
 
@@ -40,6 +43,13 @@
 	});
 </script>
 
-<Popup aria-label="Menu" class="WuiMenu {_class}" role="menu" {color} {shape} {...rest}>
-	<slot />
-</Popup>
+<Popup
+	aria-label="Menu"
+	class="WuiMenu {_class}"
+	role="menu"
+	{color}
+	{direction}
+	{gap}
+	{shape}
+	{...rest}
+/>

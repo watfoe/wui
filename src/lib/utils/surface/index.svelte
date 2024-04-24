@@ -1,14 +1,24 @@
 <script context="module" lang="ts">
-	import type { WuiFlexKeys, WuiFlexJustify, WuiSurface } from '$lib/types';
+	import type {
+		WuiFlexKeys,
+		WuiFlexJustify,
+		WuiSurface,
+		WuiSize,
+		WuiSurfaceHTMLAttributes,
+		WuiSurfaceElement
+	} from '$lib/types';
+	import { type Snippet } from 'svelte';
 
-	export type SurfaceAttributes<A> = A &
+	export type SurfaceAttributes<A = WuiSurfaceHTMLAttributes> = A &
 		WuiSurface &
 		WuiFlexKeys & {
 			bold?: boolean;
+			children?: Snippet;
 			clickable?: boolean;
-			element?: string;
+			element?: WuiSurfaceElement;
 			justify?: WuiFlexJustify;
 			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
+			fontsize?: WuiSize;
 		};
 
 	const SPACES = ['ss', 'xs', 'sm', 'md', 'lg', 'xl', 'xx'];
@@ -53,13 +63,13 @@
 
 <script lang="ts">
 	import './style.css';
-
 	let {
 		align,
 		element = 'div',
 		color,
 		class: _class = '',
 		clickable = false,
+		children,
 		direction,
 		gap,
 		justify,
@@ -81,10 +91,11 @@
 		variant,
 		shape,
 		style = '',
+		fontsize,
 		width,
 		wrap,
 		...rest
-	}: SurfaceAttributes<any> = $props();
+	}: SurfaceAttributes<WuiSurfaceHTMLAttributes> = $props();
 
 	let _style = '';
 	_style = construct_dimension_style('height', _style, height);
@@ -93,41 +104,33 @@
 	_style = construct_spacing_style('margin', 'right', _style, mr || m || mx);
 	_style = construct_spacing_style('margin', 'bottom', _style, mb || m || my);
 	_style = construct_spacing_style('margin', 'left', _style, ml || m || mx);
-	_style = construct_spacing_style('padding', 'top', _style, pt || p || py);
-	_style = construct_spacing_style('padding', 'right', _style, pr || p || px);
-	_style = construct_spacing_style('padding', 'bottom', _style, pb || p || py);
-	_style = construct_spacing_style('padding', 'left', _style, pl || p || px);
+	_style = construct_spacing_style('padding', 'top', _style, pt || py || p);
+	_style = construct_spacing_style('padding', 'right', _style, pr || px || p);
+	_style = construct_spacing_style('padding', 'bottom', _style, pb || py || p);
+	_style = construct_spacing_style('padding', 'left', _style, pl || px || p);
 
 	if (direction || justify || align) {
 		_style += `
-			display:flex;
-			flex-direction:${direction || 'row'};
-			justify-content:${justify || 'flex-start'};
-			align-items:${align || 'center'};
-			flex-wrap:${wrap || 'nowrap'};
-			${gap ? `gap:var(--space-${gap});` : ''}`;
+				display:flex;
+				flex-direction:${direction || 'row'};
+				justify-content:${justify || 'flex-start'};
+				align-items:${align || 'center'};
+				flex-wrap:${wrap || 'nowrap'};
+				${gap ? `gap:var(--space-${gap});` : ''}`;
 	}
 </script>
 
-<!-- Input elements do not have child elements and are self closing -->
-{#if element === 'input'}
-	<svelte:element
-		this="input"
-		{...rest}
-		class="WuiText WuiText--body WuiText--md {variant ? `WuiVariant-${variant} ` : ''}{color
-			? `WuiColor-${color} `
-			: ''}{shape ? `WuiShape-${shape} ` : ''}{clickable ? 'WuiClickable ' : ''}{_class}"
-		{style}
-	/>
-{:else}
-	<svelte:element
-		this={element}
-		{...rest}
-		class="WuiText WuiText--body WuiText--md {variant ? `WuiVariant-${variant} ` : ''}{color
-			? `WuiColor-${color} `
-			: ''}{shape ? `WuiShape-${shape} ` : ''}{clickable ? 'WuiClickable ' : ''}{_class}"
-		style="{_style}{style}"
-	>
-		<slot />
-	</svelte:element>
-{/if}
+<svelte:element
+	this={element}
+	class="WuiText WuiText--body WuiText--{fontsize || 'md'} {variant
+		? `WuiVariant-${variant} `
+		: ''}{color ? `WuiColor-${color} ` : ''}{shape ? `WuiShape-${shape} ` : ''}{clickable
+		? 'WuiClickable '
+		: ''}{_class}"
+	style="{_style}{style}"
+	{...rest}
+>
+	{#if children}
+		{@render children()}
+	{/if}
+</svelte:element>

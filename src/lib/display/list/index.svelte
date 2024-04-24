@@ -19,13 +19,12 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
-		children,
+		direction = 'column',
 		itemcolor,
 		itemshape,
 		itemsize,
 		itemvariant,
 		marker,
-		orientation = 'vertical',
 		shape,
 		...rest
 	}: ListAttributes = $props();
@@ -38,22 +37,12 @@
 
 	setContext('wui-tab-ctx', {
 		color: itemcolor,
+		direction,
 		marker,
 		shape: itemshape,
 		size: itemsize,
-		variant: itemvariant,
-		orientation
+		variant: itemvariant
 	});
 </script>
 
-<Flex
-	{...rest}
-	align="flex-start"
-	justify="flex-start"
-	{shape}
-	direction={orientation === 'horizontal' ? 'row' : 'column'}
->
-	{#if children}
-		{@render children()}
-	{/if}
-</Flex>
+<Flex {...rest} align="flex-start" justify="flex-start" {shape} {direction} />

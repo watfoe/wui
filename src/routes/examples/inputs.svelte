@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox, Input, Radio, RadioGroup, Select, Switch } from '$lib/inputs';
+	import { Checkbox, Input, Radio, RadioGroup, Select, Switch, TextArea } from '$lib/inputs';
 	import { Col, Row } from '$lib/layout';
 
 	let name = $state('');
@@ -84,7 +84,15 @@
 	</Row>
 
 	<Row gap="md" width="100%">
-		<Input type="date" variant="solid" label="Date" class="input" validateon="blur" required />
+		<Input
+			type="date"
+			variant="solid"
+			label="Date"
+			class="input"
+			validateon="blur"
+			required
+			disabled
+		/>
 		<Input
 			type="date"
 			variant="outlined"
@@ -96,6 +104,8 @@
 		/>
 		<Input type="date" variant="soft" label="Date" class="input" validateon="blur" required />
 		<Input type="date" variant="plain" label="Date" class="input" validateon="blur" required />
+
+		<!-- <TextArea label="Description" class="input" prefix="person" /> -->
 	</Row>
 
 	<Row gap="lg" width="100%">

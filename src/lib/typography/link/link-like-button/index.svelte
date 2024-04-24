@@ -2,7 +2,7 @@
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	export interface LinkLikeButtonAttributes
-		extends Omit<LikeButtonAttributes<HTMLAnchorElement, HTMLAnchorAttributes>, 'element'> {}
+		extends Omit<LikeButtonAttributes<HTMLAnchorAttributes>, 'element'> {}
 </script>
 
 <script lang="ts">
@@ -11,6 +11,4 @@
 	let { px = 'sm', ...rest }: LinkLikeButtonAttributes = $props();
 </script>
 
-<LikeButton {...rest} element="a" {px}>
-	<slot />
-</LikeButton>
+<LikeButton {...rest} element="a" {px} />

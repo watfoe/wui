@@ -5,10 +5,11 @@
 	import { Row } from '$lib/layout';
 	import { LinkLikeButton, Text } from '$lib/typography';
 	import type { FlexAttributes } from '../flex/index.svelte';
+	import type { Snippet } from 'svelte';
 
 	interface WatfoeHeaderAttributes extends FlexAttributes {
 		class?: string;
-		subtitle?: string;
+		subtitle?: Snippet | string;
 		urls?: {
 			signin?: string;
 			signup?: string;
@@ -36,11 +37,11 @@
 		<Logo size={60} class="WuiHeader__logo" />
 
 		<Row align="center" gap="sm">
-			<Text variant="heading" size="md" color="primary">Watfoe</Text>
-			{#if $$slots.subtitle}
-				<slot name="subtitle" />
+			<Text color="primary" size="md" variant="heading" weight="400">Watfoe</Text>
+			{#if typeof subtitle === 'string'}
+				<Text color="neutral" size="md" variant="heading" weight="400">{subtitle}</Text>
 			{:else if subtitle}
-				<Text variant="heading" size="md" color="neutral">{subtitle}</Text>
+				{@render subtitle()}
 			{/if}
 		</Row>
 	</Row>

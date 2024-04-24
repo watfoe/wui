@@ -1,12 +1,15 @@
 <script context="module" lang="ts">
+	import type { Snippet } from 'svelte';
+
 	export interface TabPanelsAttributes {
 		id: string;
 		class?: string | null;
+		children: Snippet;
 	}
 </script>
 
 <script lang="ts">
-	let { id, class: _class = '' }: TabPanelsAttributes = $props();
+	let { id, children, class: _class = '' }: TabPanelsAttributes = $props();
 
 	$effect.pre(() => {
 		if (!id) {
@@ -16,7 +19,7 @@
 </script>
 
 <div {id} class="WuiTabPanels {_class || ''}" style:display="contents">
-	<slot />
+	{@render children()}
 </div>
 
 <style>

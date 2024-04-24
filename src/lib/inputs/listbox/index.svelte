@@ -3,7 +3,7 @@
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface ListboxAttributes extends HTMLFieldsetAttributes {
-		_this?: HTMLFieldSetElement;
+		listbox?: HTMLFieldSetElement;
 		color?: WuiColor;
 		multiple?: boolean;
 		size?: WuiSize;
@@ -18,7 +18,8 @@
 	import { setContext } from 'svelte';
 
 	let {
-		_this = $bindable(),
+		listbox = $bindable(),
+		children,
 		color,
 		multiple = false,
 		name,
@@ -72,8 +73,10 @@
 	{name}
 	class="WuiListbox {rest.class || ''}"
 	style={rest.style || ''}
-	bind:this={_this}
+	bind:this={listbox}
 	onchange={change}
 >
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </fieldset>

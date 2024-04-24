@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	export interface MenuItemAttributes extends ButtonAttributes {
 		selected?: boolean;
 	}
@@ -7,47 +7,46 @@
 
 <script lang="ts">
 	import { Button, type ButtonAttributes } from '$lib/buttons';
-	import { getContext, untrack } from 'svelte';
+	import { getContext } from 'svelte';
 
 	let {
 		color,
+		justify,
+		navigation,
 		role = 'listitem',
 		selected = false,
 		size,
 		shape,
 		variant,
+		width,
 		...rest
 	}: MenuItemAttributes = $props();
 
-	let context: {
+	let ctx: {
 		color?: WuiColor;
+		direction: WuiFlexDirection;
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
 	} = getContext('wui-tab-ctx') || {};
 
-	const altColor =
-		(color || context.color) === 'primary' ? 'neutral' : color || context.color || 'neutral';
+	const altColor = (color || ctx.color) === 'primary' ? 'neutral' : color || ctx.color || 'neutral';
 
-	$effect.pre(() => {
-		untrack(() => {
-			if (shape === 'circle') {
-				shape = 'pill';
-			}
-		});
-	});
+	if (shape === 'circle') {
+		shape = 'pill';
+	}
 </script>
 
 <Button
 	aria-selected={selected}
 	class="WuiMenu__item"
-	color={color || (selected ? context.color || 'primary' : altColor)}
-	justify="flex-start"
-	navigation="vertical"
+	color={color || ctx.color || (selected ? 'primary' : altColor)}
+	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
+	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}
 	role="menuitem"
-	size={size || context.size || 'md'}
-	shape={shape || context.shape || 'square'}
-	variant={selected ? variant || context.variant || 'soft' : 'plain'}
-	width="100%"
+	size={size || ctx.size || 'md'}
+	shape={shape || ctx.shape || 'rounded'}
+	variant={variant || ctx.variant || (selected ? 'soft' : 'plain')}
+	width={width || (ctx.direction === 'row' ? undefined : '100%')}
 	{...rest}
 />

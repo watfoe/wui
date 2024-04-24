@@ -1,9 +1,8 @@
 <script context="module" lang="ts">
-	import type { HTMLFieldsetAttributes } from 'svelte/elements';
-
 	export interface SelectAttributes
-		extends Omit<LikeButtonAttributes<Omit<HTMLFieldsetAttributes, 'size'>>, 'element'> {
+		extends Omit<LikeButtonAttributes<HTMLFieldsetAttributes>, 'element'> {
 		description?: Snippet | string;
+		disabled?: boolean;
 		error?: ValidationError;
 		label?: Snippet | string;
 		multiple?: boolean;
@@ -29,19 +28,36 @@
 	import GenderPreset from './presets/gender-preset.svelte';
 	import { untrack, type Snippet } from 'svelte';
 	import { Popup, type LikeButtonAttributes } from '$lib/utils';
+	import type { HTMLFieldsetAttributes } from 'svelte/elements';
 
 	let {
 		color,
 		class: _class = '',
 		children,
 		description,
+		disabled,
 		error = $bindable(),
+		fontsize,
+		gap,
 		hidden,
 		label,
 		multiple = false,
+		m,
+		mx,
+		my,
+		mt,
+		mr,
+		mb,
+		ml,
 		name,
-		onchange,
-		onvalidate,
+		p,
+		px,
+		py,
+		pt,
+		pr = 2,
+		pb,
+		pl = 6.7,
+		prefix,
 		placeholder,
 		preset,
 		required,
@@ -52,12 +68,14 @@
 		value = $bindable(),
 		validateon = 'submit',
 		variant = 'outlined',
+		onchange,
+		onvalidate,
 		...rest
 	}: SelectAttributes = $props();
 
 	let opened = $state(false);
 	let selections = $state([] as HTMLLabelElement[]);
-	let listbox: HTMLFieldSetElement;
+	let listbox: HTMLFieldSetElement | undefined = $state();
 
 	const id = Math.random().toString(36).substring(2, 9);
 
@@ -107,7 +125,6 @@
 		if (required && validateon === 'blur') {
 			_validate();
 		}
-		// combobox.blur();
 	}
 
 	function popup_opened() {
@@ -120,6 +137,14 @@
 	justify="flex-start"
 	class="WuiSelect WuiSelect--{color} {_class}"
 	width="100%"
+	{gap}
+	{m}
+	{mx}
+	{my}
+	{mt}
+	{mr}
+	{mb}
+	{ml}
 	{style}
 	{hidden}
 >
@@ -132,15 +157,22 @@
 		aria-expanded="false"
 		class="WuiSelect__combobox"
 		color={error ? 'danger' : opened ? color || 'primary' : color}
+		fontsize={fontsize || size}
 		justify="space-between"
 		navigation="feedback"
-		pr={2}
 		type="button"
 		width="100%"
+		{disabled}
+		{p}
+		{px}
+		{py}
+		{pt}
+		{pr}
+		{pb}
+		{pl}
 		{size}
 		{shape}
 		{variant}
-		{...rest}
 	>
 		{#if selections.length > 0}
 			{#if multiple}
@@ -163,28 +195,31 @@
 		{/snippet}
 	</Button>
 
-	<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
-		<Listbox
-			role="listbox"
-			aria-label="List of {preset} options"
-			class="WuiSelect__listbox"
-			{multiple}
-			{name}
-			color="primary"
-			{size}
-			onchange={change}
-			bind:_this={listbox}
-			bind:value
-		>
-			{#if preset === 'country'}
-				<CountryPreset {selected} />
-			{:else if preset === 'month'}
-				<MonthPreset {selected} />
-			{:else if preset === 'gender'}
-				<GenderPreset {selected} />
-			{:else if children}
-				{@render children()}
-			{/if}
-		</Listbox>
-	</Popup>
+	{#if !disabled}
+		<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
+			<Listbox
+				role="listbox"
+				aria-label="List of {preset} options"
+				class="WuiSelect__listbox"
+				{multiple}
+				{name}
+				color="primary"
+				{size}
+				onchange={change}
+				bind:listbox
+				bind:value
+				{...rest}
+			>
+				{#if preset === 'country'}
+					<CountryPreset {selected} />
+				{:else if preset === 'month'}
+					<MonthPreset {selected} />
+				{:else if preset === 'gender'}
+					<GenderPreset {selected} />
+				{:else if children}
+					{@render children()}
+				{/if}
+			</Listbox>
+		</Popup>
+	{/if}
 </Col>

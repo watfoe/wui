@@ -42,15 +42,17 @@
 
 	<Surface
 		aria-label={rest['aria-label'] || 'badge'}
-		{variant}
+		class="WuiBadge__content"
+		element="div"
+		px={!content ? undefined : typeof content === 'function' ? 1 : 'xs'}
+		py={!content ? undefined : 1}
+		wrap="wrap"
 		{color}
 		{shape}
-		px={!content ? undefined : 'xs'}
-		wrap="wrap"
-		class="WuiBadge__content"
+		{variant}
 	>
 		{#if typeof content !== 'function'}
-			<Text variant="body" color="inherit" size="sm">
+			<Text variant="body" color="inherit" size="sm" style="line-height:1">
 				{typeof !isNaN(Number(content)) && max
 					? Number(content) > max
 						? `${max}+`

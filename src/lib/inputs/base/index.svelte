@@ -6,24 +6,28 @@
 
 <script lang="ts">
 	import './style.css';
-
 	import { validate, mask, ValidationError } from '../_common_';
 	import { Icon } from '$lib/display';
 	import { untrack } from 'svelte';
 	import { Surface } from '$lib/utils';
+	import type { WuiDimension } from '$lib';
 
 	let {
 		align = 'left',
 		class: _class = '',
 		color,
+		disabled,
 		error = $bindable(),
+		fontsize,
+		height,
 		masks,
-		oninput,
-		onblur,
-		onvalidate,
-		p,
-		px = 'sm',
+		p = 2,
+		px = 6.7,
 		py,
+		pt,
+		pr,
+		pb,
+		pl,
 		prefix,
 		required,
 		rules,
@@ -34,10 +38,14 @@
 		validateon = 'submit',
 		value = $bindable(),
 		variant = 'outlined',
+		oninput,
+		onblur,
+		onvalidate,
 		...rest
 	}: BaseInputAttributes = $props();
 
 	let input_el: HTMLInputElement;
+	height = size as WuiDimension;
 
 	$effect(() => {
 		input_el?.setCustomValidity(error === undefined ? '' : error?.message);
@@ -119,25 +127,31 @@
 </script>
 
 <Surface
+	align="center"
+	class="WuiInput {_class}"
 	color={error ? 'danger' : color}
-	{shape}
-	{variant}
+	direction="row"
+	gap="xs"
+	justify="space-between"
+	width="100%"
+	fontsize={fontsize || size}
+	{disabled}
+	{height}
 	{p}
-	{px}
 	{py}
-	class="WuiInput WuiInput--{size}
-	{prefix ? 'WuiInput--prefixed' : ''}
-	{suffix ? 'WuiInput--suffixed' : ''}
-	{_class}"
+	{pt}
+	pr={typeof suffix === 'function' ? undefined : pr || px}
+	{pb}
+	pl={typeof prefix === 'function' ? undefined : pl || px}
+	{shape}
 	{style}
+	{variant}
 >
-	{#if prefix}
-		<div class="WuiInput__prefix">
-			{#if typeof prefix === 'string'}
-				<Icon>{prefix}</Icon>
-			{:else}
-				{@render prefix()}
-			{/if}
+	{#if typeof prefix === 'string'}
+		<Icon color="inherit" {size}>{prefix}</Icon>
+	{:else if prefix}
+		<div class="WuiInput__prefix" style:width="calc(var(--height-{size}) - 4px)">
+			{@render prefix()}
 		</div>
 	{/if}
 
@@ -150,15 +164,14 @@
 		style="text-align:{align}"
 		bind:this={input_el}
 		bind:value
+		{disabled}
 	/>
 
-	{#if suffix}
-		<div class="WuiInput__suffix">
-			{#if typeof suffix === 'string'}
-				<Icon>{suffix}</Icon>
-			{:else}
-				{@render suffix()}
-			{/if}
+	{#if typeof suffix === 'string'}
+		<Icon color="inherit" {size}>{suffix}</Icon>
+	{:else if suffix}
+		<div class="WuiInput__suffix" style:width="calc(var(--height-{size}) - 4px)">
+			{@render suffix()}
 		</div>
 	{/if}
 </Surface>

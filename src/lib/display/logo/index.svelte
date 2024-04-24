@@ -17,9 +17,9 @@
 		class="WuiLogo {rest.class || ''}"
 		alt="Watfoe official logo"
 		style="--size:{size}px;{rest.style || ''}"
-	/>
+	></enhanced:img>
 {:else}
-	<span class="WuiBrandLogo" data-provider={brand} />
+	<span class="WuiBrandLogo" data-provider={brand}></span>
 {/if}
 
 <style>

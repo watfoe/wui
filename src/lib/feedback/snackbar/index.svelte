@@ -1,13 +1,11 @@
 <script context="module" lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { WuiFlexAlign } from '$lib/types';
+	import type { WuiFlexAlign, WuiSize } from '$lib/types';
 
 	export interface SnackbarAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
+		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'prefix'> {
 		align?: WuiFlexAlign;
-		id: string;
-		title?: string;
-		showclose?: boolean;
+		openned?: boolean;
 		position?:
 			| 'top'
 			| 'center'
@@ -18,7 +16,10 @@
 			| 'top-right'
 			| 'bottom-left'
 			| 'bottom-right';
-		prefix?: string;
+		prefix?: Snippet | string;
+		showclose?: boolean;
+		size?: WuiSize;
+		title?: string;
 	}
 </script>
 
@@ -28,28 +29,33 @@
 	import { Button } from '$lib/buttons';
 	import { Icon } from '$lib/display';
 	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import type { Snippet } from 'svelte';
+	import { Text } from '$lib/typography';
 
 	let {
 		align = 'flex-start',
+		children,
 		class: _class = '',
 		color = 'neutral',
 		gap = 'md',
-		id,
+		openned = $bindable(false),
 		p = 'md',
 		position = 'bottom-right',
 		prefix,
 		shape = 'rounded',
 		showclose = true,
+		size = 'md',
 		title,
 		variant = 'outlined',
 		...rest
 	}: SnackbarAttributes = $props();
-	let backdrop: HTMLDialogElement;
 
-	$effect.pre(() => {
-		if (!id) {
-			throw new Error('An id prop must be added to the Snackbar component');
-		}
+	$effect(() => {
+		// if (openned) {
+		// 	setTimeout(() => {
+		// 		openned = false;
+		// 	}, 10000);
+		// }
 	});
 
 	function click(e: MouseEvent) {
@@ -57,48 +63,50 @@
 	}
 
 	function close() {
-		backdrop?.close();
+		openned = false;
 	}
 </script>
 
 <Surface
-	{variant}
-	{color}
-	{id}
-	{p}
-	{gap}
-	{align}
-	role="alertdialog"
 	aria-label="Snackbar"
-	class="WuiSnackbar WuiSnackbar--{position} {_class}"
+	class="WuiSnackbar WuiSnackbar--{position} {openned ? 'WuiSnackbar--visible' : ''} {_class}"
+	fontsize={size}
+	role="alertdialog"
 	onclick={click}
+	{align}
+	{color}
+	{gap}
+	{shape}
+	{p}
+	{variant}
 	{...rest}
 >
-	{#if $$slots.prefix}
-		<slot name="prefix" />
+	{#if typeof prefix === 'string'}
+		<Icon {size}>{prefix}</Icon>
 	{:else if prefix}
-		<Icon size="md">{prefix}</Icon>
+		{@render prefix()}
 	{/if}
 
-	<Col
-		align="flex-start"
-		justify="flex-start"
-		gap="md"
-		class="WuiSnackbar__body WuiText WuiText--body WuiText--md WuiText--inherit"
-	>
-		<slot />
+	<Col align="flex-start" justify="flex-start" gap="ss" width="100%">
+		{#if title}
+			<Text color="inherit" variant="heading" bold={false} {size}>
+				{title}
+			</Text>
+		{/if}
+		{#if children}
+			{@render children()}
+		{/if}
 	</Col>
 
 	{#if showclose}
 		<Button
-			variant={variant === 'outlined' ? 'plain' : variant}
-			{color}
-			size="sm"
-			shape="circle"
 			class="WuiSnackbar__close-button"
+			prefix="close"
+			variant={variant === 'outlined' ? 'plain' : variant}
 			onclick={close}
-		>
-			<Icon slot="prefix" size="md">close</Icon>
-		</Button>
+			{color}
+			{size}
+			{shape}
+		/>
 	{/if}
 </Surface>

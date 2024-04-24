@@ -8,7 +8,7 @@
 	export interface TooltipAttributes {
 		children?: Snippet;
 		color?: WuiColor;
-		title: string;
+		title: Snippet | string;
 		p?: WuiSpacing;
 		px?: WuiSpacing;
 		py?: WuiSpacing;
@@ -30,19 +30,22 @@
 	import './style.css';
 
 	let {
+		children,
 		color = 'black',
-		title,
 		p,
 		px = 'sm',
 		py = 'xs',
 		position = 'bottom',
 		shape = 'rounded',
+		title,
 		variant = 'solid'
 	}: TooltipAttributes = $props();
 </script>
 
 <div class="WuiTooltip WuiTooltip-{position}">
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 	<Surface
 		element="span"
 		role="tooltip"
@@ -54,6 +57,10 @@
 		{variant}
 		class="WuiTooltip__content WuiText--sm"
 	>
-		{title}
+		{#if typeof title === 'string'}
+			{title}
+		{:else}
+			{@render title()}
+		{/if}
 	</Surface>
 </div>

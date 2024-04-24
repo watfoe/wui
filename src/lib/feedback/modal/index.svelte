@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-
 	export interface ModalAttributes
 		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
 		divider?: boolean;
+		header?: Snippet;
 		id: string;
 		title?: string;
 		showclose?: boolean;
@@ -21,18 +22,21 @@
 	import { Backdrop, Surface, type SurfaceAttributes } from '$lib/utils';
 
 	let {
+		children,
 		class: _class = '',
 		divider = false,
+		header,
 		id,
 		title,
 		showclose = true,
+		shape = 'rounded',
 		p,
 		px = 'md',
 		py = 'sm',
 		position = 'center',
 		...rest
 	}: ModalAttributes = $props();
-	let backdrop: HTMLDialogElement;
+	let backdrop: HTMLDialogElement | undefined = $state();
 
 	$effect.pre(() => {
 		if (!id) {
@@ -49,25 +53,27 @@
 	}
 </script>
 
-<Backdrop {id} bind:_this={backdrop}>
+<Backdrop {id} bind:backdrop>
 	<Surface
-		role="dialog"
 		aria-modal="true"
 		aria-label="Modal"
 		color="white"
-		variant="solid"
+		class="WuiModal WuiModal--{position} {_class}"
 		direction="column"
+		element="div"
+		role="dialog"
+		variant="solid"
+		onclick={click}
 		{p}
 		{px}
 		{py}
-		class="WuiModal WuiModal--{position} {_class}"
-		onclick={click}
+		{shape}
 		{...rest}
 	>
-		{#if showclose || title || $$slots.header}
+		{#if showclose || title || header}
 			<Row justify="space-between" class="WuiModal__header" width="100%">
-				{#if $$slots.header}
-					<slot name="header" />
+				{#if header}
+					{@render header()}
 				{:else if title}
 					<Text variant="heading" size="sm" tabindex={0}>{title}</Text>
 				{/if}
@@ -81,7 +87,9 @@
 						class="WuiModal__close-button"
 						onclick={close}
 					>
-						<Icon slot="prefix" size="md">close</Icon>
+						{#snippet prefix()}
+							<Icon size="md">close</Icon>
+						{/snippet}
 					</Button>
 				{/if}
 			</Row>
@@ -92,7 +100,9 @@
 		{/if}
 
 		<Col class="WuiModal__body">
-			<slot />
+			{#if children}
+				{@render children()}
+			{/if}
 		</Col>
 	</Surface>
 </Backdrop>

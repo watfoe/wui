@@ -6,9 +6,11 @@
 
 <script lang="ts">
 	import { Surface, type SurfaceAttributes } from '$lib/utils';
-	let { direction = 'row', ...rest }: FlexAttributes = $props();
+	let { children, direction = 'row', ...rest }: FlexAttributes = $props();
 </script>
 
-<Surface {direction} {...rest}>
-	<slot />
+<Surface {direction} {...rest} element="div">
+	{#if children}
+		{@render children()}
+	{/if}
 </Surface>

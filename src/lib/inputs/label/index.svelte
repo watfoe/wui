@@ -15,11 +15,11 @@
 </script>
 
 <Col justify="flex-start" align="flex-start" class="WuiInput__label__root">
-	<Text {...rest} variant="label" size="sm" class="WuiInput__label">
-		{#if children}
+	{#if children}
+		<Text {...rest} variant="label" size="sm" class="WuiInput__label">
 			{@render children()}
-		{/if}
-	</Text>
+		</Text>
+	{/if}
 
 	{#if typeof description === 'string'}
 		<Text variant="label" size="sm" color="neutral" class="WuiInput__label__desc">

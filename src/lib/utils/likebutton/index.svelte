@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
-	import type { WuiFlexJustify, WuiSize } from '$lib/types';
+	import type { WuiDimension, WuiFlexJustify, WuiSize, WuiSurfaceHTMLAttributes } from '$lib/types';
 
-	export type LikeButtonAttributes<A> = SurfaceAttributes<A> & {
+	export type LikeButtonAttributes<A = WuiSurfaceHTMLAttributes> = SurfaceAttributes<
+		Omit<A, 'prefix'>
+	> & {
 		bold?: boolean;
-		element?: string;
 		justify?: WuiFlexJustify;
 		navigation?: 'horizontal' | 'vertical' | 'mixed' | 'none';
 		prefix?: Snippet | string;
@@ -25,6 +26,7 @@
 		color = 'primary',
 		direction = 'row',
 		element = 'button',
+		fontsize,
 		gap = 'sm',
 		height,
 		justify = 'center',
@@ -39,7 +41,10 @@
 		width,
 		onkeydown,
 		...rest
-	}: LikeButtonAttributes<any> = $props();
+	}: LikeButtonAttributes<WuiSurfaceHTMLAttributes> = $props();
+
+	height = height || (size as WuiDimension);
+	width = !width && !children ? (size as WuiDimension) : width;
 
 	// Keyboard accessibility
 	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
@@ -88,10 +93,11 @@
 
 <Surface
 	class="WuiLikeButton {_class}"
-	height={height || size}
+	{height}
+	fontsize={fontsize || size}
 	px={children ? px : undefined}
 	tabindex={0}
-	width={!width && !children ? size : width}
+	{width}
 	onkeydown={keydown}
 	{color}
 	{direction}

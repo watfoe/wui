@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiDimension, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface SwitchAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		_this?: HTMLInputElement;
@@ -9,7 +9,7 @@
 		name?: string;
 		required?: boolean;
 		size?: WuiSize;
-		shape?: Omit<WuiShape, 'circle'>;
+		shape?: WuiShape;
 		variant?: WuiVariant;
 	}
 </script>
@@ -17,8 +17,6 @@
 <script lang="ts">
 	import './style.css';
 	import { LikeButton } from '$lib/utils';
-
-	const id = Math.random().toString(36);
 
 	let {
 		_this = $bindable(),
@@ -30,6 +28,14 @@
 		variant = 'outlined',
 		...rest
 	}: SwitchAttributes = $props();
+
+	const height = `var(--WuiSwitch-size-${size})` as WuiDimension;
+	const width = `calc(var(--WuiSwitch-size-${size}) * 2 - 6px)` as WuiDimension;
+	const id = Math.random().toString(36);
+
+	if (shape === 'circle') {
+		shape = 'pill';
+	}
 </script>
 
 <LikeButton
@@ -37,9 +43,9 @@
 	class="WuiSwitch"
 	element="label"
 	for={id}
-	height="var(--WuiSwitch-size-{size})"
+	{height}
 	style="display:inline-block;position:relative"
-	width="calc(var(--WuiSwitch-size-{size}) * 2 - 6px)"
+	{width}
 	p={2}
 	{shape}
 	{variant}

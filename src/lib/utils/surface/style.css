@@ -36,8 +36,8 @@
 .WuiColor-black {
   --WuiColor-bg: var(--color-black-4);
   --WuiColor-on-bg: var(--color-white);
-  --WuiColor-bg-soft: var(--color-neutral-4);
-  --WuiColor-on-bg-soft: var(--color-white);
+  --WuiColor-bg-soft: var(--color-neutral-3);
+  --WuiColor-on-bg-soft: var(--color-black-4);
 }
 
 .WuiColor-white {

@@ -11,7 +11,7 @@
 	}
 
 	export interface BackdropAttributes extends BaseBackdropAttributes, HTMLDialogAttributes {
-		_this?: HTMLDialogElement;
+		backdrop?: HTMLDialogElement;
 	}
 </script>
 
@@ -20,9 +20,10 @@
 	import { untrack } from 'svelte';
 
 	let {
-		_this = $bindable(),
-		transparent = false,
+		backdrop = $bindable(),
+		children,
 		opened = $bindable(false),
+		transparent = false,
 		onopen,
 		onclose,
 		...rest
@@ -31,12 +32,12 @@
 	$effect(() => {
 		untrack(() => {
 			// @ts-ignore
-			_this?.addEventListener('open', open);
+			backdrop?.addEventListener('open', open);
 
 			if (opened) {
-				_this?.showModal();
+				backdrop?.showModal();
 			} else {
-				_this?.close();
+				backdrop?.close();
 			}
 		});
 	});
@@ -52,14 +53,14 @@
 	}
 
 	function open(e: CustomEvent<HTMLDialogElement>) {
-		_this?.showModal();
+		backdrop?.showModal();
 		opened = true;
 		onopen?.(e);
 	}
 
 	function close(e: Event & { currentTarget: HTMLDialogElement }) {
 		if (opened) {
-			_this?.close();
+			backdrop?.close();
 			opened = false;
 			onclose?.(e);
 		}
@@ -72,7 +73,9 @@
 	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {rest.class || ''}"
 	onclick={close}
 	onkeydown={keydown}
-	bind:this={_this}
+	bind:this={backdrop}
 >
-	<slot />
+	{#if children}
+		{@render children()}
+	{/if}
 </dialog>

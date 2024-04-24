@@ -1,8 +1,23 @@
 <script>
 	import { Snackbar } from '$lib';
 	import { Button } from '$lib/buttons';
-	import { Badge, Icon, List, ListButtonItem, ListItem, Logo, Tooltip } from '$lib/display';
+	import {
+		Badge,
+		Divider,
+		Icon,
+		List,
+		ListButtonItem,
+		ListItem,
+		Logo,
+		Tooltip
+	} from '$lib/display';
 	import { Col, Row } from '$lib/layout';
+
+	let openned = $state(false);
+
+	setTimeout(() => {
+		openned = true;
+	}, 2000);
 </script>
 
 <Col gap="lg" width="100%">
@@ -80,7 +95,7 @@
 	</Row>
 
 	<Row gap="lg" width="100%">
-		<List itemsize="md">
+		<List variant="outlined" itemvariant="soft" p={5} gap="ss">
 			<ListItem>Item 1: some grocery stuff</ListItem>
 			<ListItem>Item 2</ListItem>
 			<ListItem>Item 3</ListItem>
@@ -103,20 +118,36 @@
 			<ListButtonItem prefix="check">Item 2</ListButtonItem>
 			<ListButtonItem color="black">Item 3</ListButtonItem>
 			<ListButtonItem color="primary">Item 4</ListButtonItem>
-			<ListButtonItem shape="square">Item 5</ListButtonItem>
+			<Divider color="danger" />
+			<List
+				direction="row"
+				variant="soft"
+				p="ss"
+				color="black"
+				gap="sm"
+				shape="rounded"
+				itemshape="rounded"
+				itemsize="sm"
+			>
+				<ListButtonItem prefix="home" selected></ListButtonItem>
+				<ListButtonItem prefix="search"></ListButtonItem>
+				<ListButtonItem prefix="person"></ListButtonItem>
+				<Divider vertical size="lg" />
+				<ListButtonItem prefix="settings"></ListButtonItem>
+				<ListButtonItem prefix="delete"></ListButtonItem>
+			</List>
 		</List>
 	</Row>
 
 	<Snackbar
-		id="snack"
-		title="This is a snackbar"
+		align="center"
+		title="Notification alert"
 		position="right"
-		prefix="mail"
-		color="primary"
-		variant="soft"
+		prefix="notifications"
+		color="success"
+		variant="solid"
+		bind:openned
 	>
-		lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua.
-		<Button color="white" size="sm" shape="pill" px="md">Undo</Button>
+		102 unread messages since last month.
 	</Snackbar>
 </Col>

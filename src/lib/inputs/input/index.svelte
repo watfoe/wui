@@ -5,7 +5,7 @@
 		name?: string;
 		description?: Snippet | string;
 		hidden?: boolean;
-		type?: 'date' | 'email' | 'name' | 'number' | 'password' | 'pin' | 'phone' | 'search' | 'text';
+		type?: 'date' | 'email' | 'name' | 'number' | 'password' | 'phone' | 'search' | 'text';
 	};
 </script>
 
@@ -18,26 +18,53 @@
 	import EmailInput from '../email/index.svelte';
 	import PasswordInput from '../password/index.svelte';
 	import PhoneInput from '../phone/index.svelte';
-	import PinInput from '../pin/index.svelte';
 	import SearchInput from '../search/index.svelte';
 	import type { Snippet } from 'svelte';
+	import { Surface } from '$lib/utils';
 
 	let {
 		color = 'neutral',
 		description,
 		disabled,
 		error = $bindable(),
-		label,
+		gap,
 		hidden,
+		justify,
+		label,
+		m,
+		mx,
+		my,
+		mt,
+		mr,
+		mb,
+		ml,
 		type = 'text',
 		value = $bindable(),
+		width,
 		...rest
 	}: InputAttributes = $props();
 
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<fieldset class="WuiInput__root WuiInput--{color} {rest.class || ''}" {hidden} {disabled}>
+<Surface
+	align="flex-start"
+	element="fieldset"
+	direction="column"
+	class="WuiInput__root WuiInput--{color} {rest.class || ''}"
+	{disabled}
+	{gap}
+	{justify}
+	{m}
+	{mx}
+	{my}
+	{mt}
+	{mr}
+	{mb}
+	{ml}
+	{hidden}
+	{width}
+>
 	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
   doesn't leave an unintended empty description helper text -->
 	{#if label}
@@ -62,8 +89,6 @@
 		<PasswordInput secure {...rest} {id} {color} bind:error bind:value />
 	{:else if type === 'phone'}
 		<PhoneInput {...rest} {id} {color} bind:error bind:value />
-	{:else if type === 'pin'}
-		<PinInput {...rest} {id} {color} bind:error bind:value />
 	{:else if type === 'search'}
 		<SearchInput {...rest} {id} {color} bind:error bind:value />
 	{:else}
@@ -73,4 +98,4 @@
 	{#if error}
 		<ErrorText {error} />
 	{/if}
-</fieldset>
+</Surface>

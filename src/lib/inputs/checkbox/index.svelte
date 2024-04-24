@@ -1,6 +1,13 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
+	import type {
+		WuiColor,
+		WuiDimension,
+		WuiShape,
+		WuiSize,
+		WuiSpacing,
+		WuiVariant
+	} from '$lib/types';
 	export interface CheckboxAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		checked?: boolean;
 		color?: WuiColor;
@@ -39,12 +46,8 @@
 		variant: WuiVariant;
 	} = getContext('wui-checkbox-group-ctx') || {};
 
-	const heights = {
-		sm: '18px',
-		md: '22px',
-		lg: '26px',
-		xl: '34px'
-	};
+	const height = `var(--WuiCheckbox-size-${size || ctx.size || 'md'})` as WuiDimension;
+	const width = `var(--WuiCheckbox-size-${size || ctx.size || 'md'})` as WuiDimension;
 
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
@@ -73,10 +76,10 @@
 		element="span"
 		class="WuiCheckbox__thumb"
 		color={checked ? color || ctx.color || 'primary' : 'neutral'}
-		height="var(--WuiCheckbox-size-{size || ctx.size || 'md'}"
+		{height}
 		shape={shape || ctx.shape || 'rounded'}
 		variant={variant || ctx.variant || 'outlined'}
-		width="var(--WuiCheckbox-size-{size || ctx.size || 'md'}"
+		{width}
 	>
 		{#snippet prefix()}
 			<Icon {size} weight="500">check</Icon>

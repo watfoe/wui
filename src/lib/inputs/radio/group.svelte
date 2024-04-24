@@ -1,28 +1,37 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
+	import type {
+		WuiColor,
+		WuiFlexDirection,
+		WuiFlexGap,
+		WuiShape,
+		WuiSize,
+		WuiVariant
+	} from '$lib/types';
 
 	export type RadioGroupAttributes = Omit<HTMLInputAttributes, 'id'> & {
 		color?: WuiColor;
+		direction?: WuiFlexDirection;
 		size?: WuiSize;
 		shape?: WuiShape;
 		value?: string;
 		variant?: WuiVariant;
 		description?: string;
 		label?: string;
-		orientation?: 'horizontal' | 'vertical';
-		gap?: WuiSpacing;
+		gap?: WuiFlexGap;
 	};
 </script>
 
 <script lang="ts">
 	import './style.css';
-	import { Col, Row } from '$lib/layout';
+	import { Flex } from '$lib/layout';
 	import Label from '../label/index.svelte';
 	import { setContext } from 'svelte';
 
 	let {
 		color,
+		children,
+		class: _class = '',
 		description,
 		disabled,
 		gap = 'sm',
@@ -31,7 +40,7 @@
 		name,
 		size,
 		shape,
-		orientation = 'vertical',
+		direction = 'column',
 		variant,
 		...rest
 	}: RadioGroupAttributes = $props();
@@ -45,27 +54,16 @@
 	});
 </script>
 
-<fieldset role="radiogroup" class="WuiRadioGroup {rest.class || ''}" {hidden} {disabled}>
-	{#if label && $$slots.description && !hidden}
-		<Label {description}>
-			{label}
-			<slot name="description" slot="description" />
-		</Label>
-	{:else if label && !hidden}
-		<Label {description}>
-			{label}
-		</Label>
+<fieldset role="radiogroup" class="WuiRadioGroup {_class}" {hidden} {disabled}>
+	{#if label}
+		<Label {description}>{label}</Label>
 	{/if}
 
-	{#if orientation === 'horizontal'}
-		<Row align="flex-start" justify="flex-start" {gap}>
-			<slot />
-		</Row>
-	{:else}
-		<Col align="flex-start" justify="flex-start" {gap}>
-			<slot />
-		</Col>
-	{/if}
+	<Flex align="flex-start" justify="flex-start" {direction} {gap}>
+		{#if children}
+			{@render children()}
+		{/if}
+	</Flex>
 </fieldset>
 
 <style>

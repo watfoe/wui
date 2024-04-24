@@ -1,7 +1,7 @@
 .WuiText {
   font-size: var(--WuiText-font-size, 1rem);
   font-weight: 320;
-  line-height: var(--WuiText-line-height, 1.5rem);
+  line-height: 1.5;
 }
 
 .WuiAnchor {
@@ -56,60 +56,50 @@
 
 .WuiText--title.WuiText--sm {
   --WuiText-font-size: 1.5rem;
-  --WuiText-line-height: 2rem;
 }
 
 .WuiText--title.WuiText--md {
   --WuiText-font-size: 1.75rem;
-  --WuiText-line-height: 2.25rem;
 }
 
 .WuiText--title.WuiText--lg {
   --WuiText-font-size: 2rem;
-  --WuiText-line-height: 2.5rem;
 }
 
 .WuiText--heading.WuiText--sm {
   --WuiText-font-size: 1rem;
-  --WuiText-line-height: 1.25rem;
 }
 
 .WuiText--heading.WuiText--md {
   --WuiText-font-size: 1.125rem;
-  --WuiText-line-height: 1.5rem;
 }
 
 .WuiText--heading.WuiText--lg {
   --WuiText-font-size: 1.25rem;
-  --WuiText-line-height: 1.75rem;
 }
 
 .WuiText--body.WuiText--xs,
 .WuiText--code.WuiText--xs,
 .WuiText--label.WuiText--xs {
   --WuiText-font-size: 12px;
-  --WuiText-line-height: 0.875rem;
 }
 
 .WuiText--body.WuiText--sm,
 .WuiText--code.WuiText--sm,
 .WuiText--label.WuiText--sm {
   --WuiText-font-size: 12.8px;
-  --WuiText-line-height: 0.875rem;
 }
 
 .WuiText--body.WuiText--md,
 .WuiText--code.WuiText--md,
 .WuiText--label.WuiText--md {
   --WuiText-font-size: 14px;
-  --WuiText-line-height: 24px;
 }
 
 .WuiText--body.WuiText--lg,
 .WuiText--code.WuiText--lg,
 .WuiText--label.WuiText--lg {
   --WuiText-font-size: 15px;
-  --WuiText-line-height: 1.125rem;
 }
 
 .WuiText--code {
@@ -117,7 +107,7 @@
 }
 
 .WuiText--bold {
-  font-weight: 450 !important;
+  font-weight: 380;
 }
 
 .WuiText--italic {

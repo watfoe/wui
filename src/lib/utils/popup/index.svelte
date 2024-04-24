@@ -2,7 +2,7 @@
 	import { Surface, type SurfaceAttributes } from '$lib/utils';
 
 	export interface PopupAttributes
-		extends Omit<SurfaceAttributes<Omit<HTMLAttributes<HTMLDivElement>, 'onclose'>>, 'element'>,
+		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'onclose'>,
 			BaseBackdropAttributes {
 		id?: string;
 		position?:
@@ -29,14 +29,16 @@
 	let {
 		class: _class = '',
 		color = 'neutral',
+		direction = 'column',
 		id,
 		onopen,
 		onclose,
 		opened = $bindable(false),
-		py = 'ss',
+		p = 'ss',
 		position = 'bottom-start',
 		role = 'popup',
 		shape = 'rounded',
+		style = '',
 		variant = 'outlined',
 		...rest
 	}: PopupAttributes = $props();
@@ -129,7 +131,7 @@
 					}
 				} else {
 					// position to end-vertical
-					top = anchor_top - height - anchor_height;
+					top = anchor_top - height + anchor_height;
 				}
 			}
 			// top-start, top, top-end, right-end, right, left-end, left
@@ -158,12 +160,14 @@
 
 <Backdrop {id} onopen={open} {onclose} transparent bind:opened>
 	<Surface
+		element="div"
 		aria-label="Popup"
 		class="WuiPopup {_class}"
-		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;"
+		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
 		{color}
+		{direction}
 		{role}
-		{py}
+		{p}
 		{shape}
 		{variant}
 		{...rest}

@@ -1,8 +1,16 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
+	import type {
+		WuiColor,
+		WuiFlexDirection,
+		WuiFlexGap,
+		WuiShape,
+		WuiSize,
+		WuiVariant
+	} from '$lib/types';
 	export type CheckboxGroupAttributes = Omit<HTMLInputAttributes, 'id'> & {
 		color?: WuiColor;
+		direction?: WuiFlexDirection;
 		multiple?: boolean;
 		size?: WuiSize;
 		shape?: WuiShape;
@@ -10,28 +18,29 @@
 		variant?: WuiVariant;
 		description?: string;
 		label?: string;
-		orientation?: 'horizontal' | 'vertical';
-		gap?: WuiSpacing;
+		gap?: WuiFlexGap;
 	};
 </script>
 
 <script lang="ts">
 	import './style.css';
-	import { Col, Row } from '$lib/layout';
+	import { Flex } from '$lib/layout';
 	import Label from '../label/index.svelte';
 	import { setContext } from 'svelte';
 
 	let {
 		color,
+		children,
+		class: _class = '',
 		description,
 		disabled,
+		direction = 'column',
 		gap = 'sm',
 		label,
 		hidden,
 		name,
 		size,
 		shape,
-		orientation = 'vertical',
 		variant,
 		...rest
 	}: CheckboxGroupAttributes = $props();
@@ -45,27 +54,16 @@
 	});
 </script>
 
-<fieldset class="WuiCheckboxGroup {rest.class || ''}" {hidden} {disabled}>
-	{#if label && $$slots.description && !hidden}
-		<Label {description}>
-			{label}
-			<slot name="description" slot="description" />
-		</Label>
-	{:else if label && !hidden}
-		<Label {description}>
-			{label}
-		</Label>
+<fieldset class="WuiCheckboxGroup {_class}" {hidden} {disabled}>
+	{#if label}
+		<Label {description}>{label}</Label>
 	{/if}
 
-	{#if orientation === 'horizontal'}
-		<Row align="flex-start" justify="flex-start" {gap}>
-			<slot />
-		</Row>
-	{:else}
-		<Col align="flex-start" justify="flex-start" {gap}>
-			<slot />
-		</Col>
-	{/if}
+	<Flex align="flex-start" justify="flex-start" {direction} {gap}>
+		{#if children}
+			{@render children()}
+		{/if}
+	</Flex>
 </fieldset>
 
 <style>

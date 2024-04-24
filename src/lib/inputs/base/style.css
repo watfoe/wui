@@ -1,52 +1,3 @@
-.WuiInput {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: var(--WuiInput-height, var(--height-md));
-  gap: var(--space-xs);
-  width: 100% !important;
-  position: relative;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
-.WuiInput--ss {
-  --WuiInput-height: var(--height-ss);
-}
-
-.WuiInput--xs {
-  --WuiInput-height: var(--height-xs);
-}
-
-.WuiInput--sm {
-  --WuiInput-height: var(--height-sm);
-}
-
-.WuiInput--md {
-  --WuiInput-height: var(--height-md);
-}
-
-.WuiInput--lg {
-  --WuiInput-height: var(--height-lg);
-}
-
-.WuiInput--xl {
-  --WuiInput-height: var(--height-xl);
-}
-
-.WuiInput--xx {
-  --WuiInput-height: var(--height-xx);
-}
-
-.WuiInput--prefixed {
-  padding-left: 2px !important;
-}
-
-.WuiInput--suffixed {
-  padding-right: 2px !important;
-}
-
 .WuiInput:focus-within {
   box-shadow: inset 0 0 0 0.7px var(--WuiColor-bg);
 }
@@ -74,15 +25,6 @@
   width: 100%;
 }
 
-.WuiInput__input::placeholder {
-  color: var(--WuiColor-bg);
-  opacity: 0.6;
-}
-
-.WuiVariant-solid .WuiInput__input::placeholder {
-  color: var(--WuiColor-on-bg);
-}
-
 /* Chrome, Safari, Edge, Opera */
 .WuiInput__input::-webkit-outer-spin-button,
 .WuiInput__input::-webkit-inner-spin-button {
@@ -96,11 +38,6 @@
   appearance: textfield;
 }
 
-.WuiInput__prefix>*,
-.WuiInput__suffix>* {
-  border-radius: calc(inherit - 1px) !important;
-}
-
 .WuiInput__prefix,
 .WuiInput__suffix {
   align-items: center;
@@ -112,7 +49,6 @@
   flex-shrink: 0;
   justify-content: center;
   height: 100%;
-  width: calc(var(--WuiInput-height) - 4px);
   text-decoration: none;
   overflow: hidden;
 }

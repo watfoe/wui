@@ -1,39 +1,75 @@
 <script context="module" lang="ts">
-	import type { HTMLTextareaAttributes } from 'svelte/elements';
 	import type { BaseProps } from '../_common_';
+	import type { HTMLTextareaAttributes } from 'svelte/elements';
 
-	export type TextAreaAttributes = BaseProps<HTMLTextareaAttributes, HTMLTextAreaElement>;
+	export type TextAreaAttributes = Omit<BaseProps<HTMLTextareaAttributes>, 'id'> & {
+		label?: Snippet | string;
+		name?: string;
+		description?: Snippet | string;
+		hidden?: boolean;
+		textarea?: HTMLTextAreaElement;
+		type?: 'date' | 'email' | 'name' | 'number' | 'password' | 'pin' | 'phone' | 'search' | 'text';
+	};
 </script>
 
 <script lang="ts">
-	import { Row } from '$lib/layout';
+	import './style.css';
+	import ErrorText from '../error/index.svelte';
 	import { validate, mask, ValidationError } from '../_common_';
-	import { Icon } from '$lib';
-	import { untrack } from 'svelte';
+	import { Icon } from '$lib/display';
+	import { untrack, type Snippet } from 'svelte';
+	import { Surface } from '$lib/utils';
+	import { Label } from '..';
 
 	let {
-		_this,
-		color,
-		error,
-		rules,
+		align = 'left',
+		class: _class = '',
+		color = 'neutral',
+		description,
+		disabled,
+		error = $bindable(),
+		gap,
+		height = 89,
+		hidden,
+		label,
+		fontsize,
 		masks,
+		m,
+		mx,
+		my,
+		mt,
+		mr,
+		mb,
+		ml,
+		p = 6.7,
+		px,
+		py,
+		pt,
+		pr,
+		pb,
+		pl,
 		prefix,
 		required,
+		rules,
+		size = 'md',
+		shape = 'rounded',
 		suffix,
-		size,
-		validateon = 'blur',
-		variant,
-		value,
-		onblur,
+		style = '',
+		textarea = $bindable(),
+		validateon = 'submit',
+		value = $bindable(),
+		variant = 'outlined',
+		width,
 		oninput,
+		onblur,
 		onvalidate,
 		...rest
 	}: TextAreaAttributes = $props();
 
+	const id = Math.random().toString(36).substring(2, 15);
+
 	$effect(() => {
-		if (error || !error) {
-			_this?.setCustomValidity(error === undefined ? '' : error?.message);
-		}
+		textarea?.setCustomValidity(error === undefined ? '' : error?.message);
 
 		untrack(() => {
 			if (required && !rules?.required) {
@@ -42,12 +78,21 @@
 			}
 
 			if (rules && validateon === 'submit') {
-				// Get the form element that this textarea is in
-				const form = _this?.closest('form');
-				form?.addEventListener('submit', (e) => {
-					e.preventDefault();
-					_validate(_this?.value!);
-				});
+				// Get the form element that this input is in
+				const form = textarea?.closest('form');
+				form?.addEventListener(
+					'submit',
+					(e) => {
+						_validate(textarea?.value!);
+						if (error) {
+							e.preventDefault();
+							// Stop the event from propagating to other event listeners
+							e.stopPropagation();
+						}
+					},
+					// Capture phase to ensure that this event listener is the first to run
+					true
+				);
 			}
 		});
 	});
@@ -63,17 +108,27 @@
 		onvalidate?.(error);
 	}
 
-	function _onblur(e: FocusEvent & { currentTarget: HTMLTextAreaElement }) {
+	function blur(e: FocusEvent & { currentTarget: HTMLTextAreaElement }) {
 		let _value = e.currentTarget.value;
 
-		if (rules && validateon === 'blur') {
-			_validate(_value);
+		if (rules) {
+			if (
+				validateon === 'blur' ||
+				// input event won't trigger validation if the input is just focused and then blurred
+				// without any input
+				(!!_value && validateon === 'input') ||
+				(rules.required && validateon === 'input' && _value === '' && !error)
+			) {
+				_validate(_value);
+			}
+		} else {
+			error = undefined;
 		}
 
 		onblur?.(e);
 	}
 
-	function _oninput(e: Event & { currentTarget: HTMLTextAreaElement }) {
+	function input(e: Event & { currentTarget: HTMLTextAreaElement }) {
 		let _value = e.currentTarget.value;
 
 		if (masks) {
@@ -81,7 +136,10 @@
 			value = _value;
 		}
 
-		if (rules && (validateon === 'input' || error)) {
+		if (!required && _value === '' && error) {
+			// Clear error if input is empty and not required
+			error = undefined;
+		} else if (rules && (validateon === 'input' || error)) {
 			_validate(_value);
 		}
 
@@ -89,34 +147,89 @@
 	}
 </script>
 
-<Row class="WuiTextarea__root">
-	{#if $$slots.prefix}
-		<div class="WuiTextarea__prefix">
-			<slot name="prefix" />
-		</div>
-	{:else if prefix}
-		<div class="WuiTextarea__prefix">
-			<Icon>{prefix}</Icon>
-		</div>
+<Surface
+	align="flex-start"
+	element="fieldset"
+	direction="column"
+	class="WuiTextArea__root WuiTextArea--{color} {_class}"
+	justify="flex-start"
+	{disabled}
+	{gap}
+	{m}
+	{mx}
+	{my}
+	{mt}
+	{mr}
+	{mb}
+	{ml}
+	{hidden}
+	{width}
+>
+	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
+  doesn't leave an unintended empty description helper text -->
+	{#if label}
+		<Label for={id} {description}>{label}</Label>
 	{/if}
 
-	<textarea
-		dir="ltr"
-		{...rest}
-		class="WuiTextarea WuiTextarea--{variant} WuiTextarea--{size} {prefix
-			? 'WuiTextarea--prefixed'
-			: ''} {suffix ? 'WuiTextarea--suffixed' : ''} {rest.class || ''}"
-		onblur={_onblur}
-		oninput={_oninput}
-		bind:this={_this}
-		bind:value
-	/>
+	<Surface
+		align="flex-start"
+		class="WuiTextArea {_class}"
+		color={error ? 'danger' : color}
+		direction="row"
+		gap="xs"
+		justify="space-between"
+		width="100%"
+		fontsize={fontsize || size}
+		{height}
+		{p}
+		{px}
+		{py}
+		{pt}
+		{pr}
+		{pb}
+		{pl}
+		{shape}
+		{style}
+		{variant}
+	>
+		{#if typeof prefix === 'string'}
+			<Icon color="inherit" {size}>{prefix}</Icon>
+		{:else if prefix}
+			<div
+				class="WuiTextArea__prefix"
+				style:height="calc(var(--height-{size}) - 4px)"
+				style:width="calc(var(--height-{size}) - 4px)"
+			>
+				{@render prefix()}
+			</div>
+		{/if}
 
-	{#if $$slots.suffix}
-		<div class="WuiTextarea__suffix">
-			<slot name="suffix" />
-		</div>
-	{:else if suffix}
-		<Icon class="WuiTextarea__suffix">{suffix}</Icon>
+		<textarea
+			class="WuiTextArea__input WuiText WuiText--body WuiText--{size}"
+			style="text-align:{align};font-size:inherit;"
+			onblur={blur}
+			oninput={input}
+			style:width="100%"
+			style:height="100%"
+			bind:this={textarea}
+			bind:value
+			{...rest}
+		></textarea>
+
+		{#if typeof suffix === 'string'}
+			<Icon color="inherit" {size}>{suffix}</Icon>
+		{:else if suffix}
+			<div
+				class="WuiTextArea__suffix"
+				style:height="calc(var(--height-{size}) - 4px)"
+				style:width="calc(var(--height-{size}) - 4px)"
+			>
+				{@render suffix()}
+			</div>
+		{/if}
+	</Surface>
+
+	{#if error}
+		<ErrorText {error} />
 	{/if}
-</Row>
+</Surface>

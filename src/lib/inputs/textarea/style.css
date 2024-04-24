@@ -1,0 +1,83 @@
+.WuiTextArea__root {
+  border: 0;
+  position: relative;
+}
+
+.WuiTextArea--primary {
+  --WuiLabel-color: var(--color-primary);
+}
+
+.WuiTextArea--neutral {
+  --WuiLabel-color: var(--color-black-4);
+}
+
+.WuiTextArea--neutral:focus-within {
+  --WuiLabel-color: var(--color-primary);
+}
+
+.WuiTextArea--success {
+  --WuiLabel-color: var(--color-success);
+}
+
+.WuiTextArea--warning {
+  --WuiLabel-color: var(--color-warning);
+}
+
+.WuiTextArea--danger,
+.WuiTextArea__root:invalid {
+  --WuiLabel-color: var(--color-error);
+}
+
+.WuiTextArea:disabled {
+  --WuiLabel-color: var(--color-disabled);
+}
+
+.WuiTextArea:focus-within {
+  box-shadow: inset 0 0 0 0.7px var(--WuiColor-bg);
+}
+
+.WuiTextArea.WuiColor-neutral:focus-within {
+  --WuiColor-bg: var(--color-primary);
+}
+
+.WuiTextArea.WuiColor-neutral.WuiVariant-outlined:focus-within {
+  border-color: var(--color-primary);
+}
+
+.WuiTextArea.WuiVariant-soft:focus-within,
+.WuiTextArea.WuiVariant-plain:focus-within {
+  border: 1px solid var(--WuiColor-bg);
+}
+
+.WuiTextArea__input {
+  background-color: transparent !important;
+  border: none;
+  color: inherit;
+  line-height: 1.5;
+  margin: 0;
+  resize: none;
+  outline: none;
+  width: 100%;
+}
+
+.WuiTextArea__prefix,
+.WuiTextArea__suffix {
+  align-items: center;
+  border-radius: inherit;
+  cursor: default;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+div.WuiTextArea__prefix>*,
+div.WuiTextArea__suffix>* {
+  border-radius: inherit !important;
+  line-height: 30px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
