@@ -56,7 +56,7 @@
 		pt,
 		pr = 2,
 		pb,
-		pl = 6.7,
+		pl = 7,
 		prefix,
 		placeholder,
 		preset,

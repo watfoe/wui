@@ -1,5 +1,5 @@
 export {default as Avatar, type AvatarAttributes} from './avatar/index.svelte';
-export {default as AvatarGroup} from './avatar/avatar-group.svelte';
+export {default as AvatarGroup, type AvatarGroupAttributes} from './avatar/avatar-group.svelte';
 export {default as Badge, type BadgeAttributes} from './badge/index.svelte';
 export {default as Divider, type DividerAttributes} from './divider/index.svelte';
 export {default as Icon, type IconAttributes } from './icon/index.svelte';

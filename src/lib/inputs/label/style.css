@@ -1,7 +1,7 @@
 .WuiInput__label__root {
   width: 100% !important;
   max-width: calc(100% - (2 * var(--space-sm)));
-  margin-left: var(--space-sm);
+  margin: 0 0 1px var(--space-sm);
 }
 
 .WuiInput__label {

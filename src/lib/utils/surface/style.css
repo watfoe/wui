@@ -72,7 +72,7 @@
 .WuiVariant-outlined {
   background-color: inherit;
   color: var(--WuiColor-bg, var(--color-primary));
-  border: 1.3px solid var(--WuiColor-bg, var(--color-primary));
+  border: 1px solid var(--WuiColor-bg, var(--color-primary));
 }
 
 .WuiVariant-outlined.WuiColor-neutral {
@@ -82,14 +82,14 @@
 
 .WuiVariant-soft {
   background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
-  border: 0;
+  border: 1px solid transparent;
   color: var(--WuiColor-on-bg-soft, var(--color-primary));
 }
 
 .WuiVariant-plain,
 .WuiVariant-none {
   background-color: transparent;
-  border: 0;
+  border: 1px solid transparent;
   color: var(--WuiColor-on-bg-soft, var(--color-primary));
 }
 

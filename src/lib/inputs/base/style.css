@@ -12,7 +12,7 @@
 
 .WuiInput.WuiVariant-soft:focus-within,
 .WuiInput.WuiVariant-plain:focus-within {
-  border: 1px solid var(--WuiColor-bg);
+  border-color: var(--WuiColor-bg);
 }
 
 .WuiInput__input {

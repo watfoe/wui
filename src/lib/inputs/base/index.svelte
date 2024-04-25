@@ -22,7 +22,7 @@
 		height,
 		masks,
 		p = 2,
-		px = 6.7,
+		px = 7,
 		py,
 		pt,
 		pr,
@@ -38,6 +38,7 @@
 		validateon = 'submit',
 		value = $bindable(),
 		variant = 'outlined',
+		onclick,
 		oninput,
 		onblur,
 		onvalidate,
@@ -135,7 +136,7 @@
 	justify="space-between"
 	width="100%"
 	fontsize={fontsize || size}
-	{disabled}
+	disabled={true}
 	{height}
 	{p}
 	{py}
@@ -144,8 +145,9 @@
 	{pb}
 	pl={typeof prefix === 'function' ? undefined : pl || px}
 	{shape}
-	{style}
+	style="cursor:text;{style}"
 	{variant}
+	onclick={disabled ? undefined : () => input_el.focus()}
 >
 	{#if typeof prefix === 'string'}
 		<Icon color="inherit" {size}>{prefix}</Icon>
@@ -157,14 +159,18 @@
 
 	<input
 		dir="ltr"
-		{...rest}
 		class="WuiInput__input WuiText WuiText--body WuiText--{size}"
 		onblur={blur}
 		oninput={input}
-		style="text-align:{align}"
+		onclick={(e) => {
+			e.stopPropagation();
+			onclick?.(e);
+		}}
+		style:text-align={align}
 		bind:this={input_el}
 		bind:value
 		{disabled}
+		{...rest}
 	/>
 
 	{#if typeof suffix === 'string'}

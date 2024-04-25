@@ -12,6 +12,6 @@
 	}
 </script>
 
-<Text variant="label" size="sm" color="danger" class="WuiInput__error">
+<Text color="danger" class="WuiInput__error" size="sm" variant="label" style="line-height:1">
 	{errorToString(error)}
 </Text>

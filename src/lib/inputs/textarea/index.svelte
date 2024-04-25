@@ -41,7 +41,7 @@
 		mr,
 		mb,
 		ml,
-		p = 6.7,
+		p = 7,
 		px,
 		py,
 		pt,
