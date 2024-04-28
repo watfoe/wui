@@ -1,7 +1,9 @@
 .WuiText {
   font-size: var(--WuiText-font-size, 1rem);
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .WuiText--label {
@@ -22,7 +24,7 @@
 }
 
 .WuiText--neutral {
-  color: var(--color-black-2);
+  color: var(--color-black-3);
 }
 
 .WuiText--success {
@@ -81,35 +83,35 @@
 .WuiText--code.WuiText--xs,
 .WuiText--label.WuiText--xs,
 .WuiText--a.WuiText--xs {
-  --WuiText-font-size: 12px;
+  --WuiText-font-size: 0.75rem;
 }
 
 .WuiText--body.WuiText--sm,
 .WuiText--code.WuiText--sm,
 .WuiText--label.WuiText--sm,
 .WuiText--a.WuiText--sm {
-  --WuiText-font-size: 13px;
+  --WuiText-font-size: 0.8125rem;
 }
 
 .WuiText--body.WuiText--md,
 .WuiText--code.WuiText--md,
 .WuiText--label.WuiText--md,
 .WuiText--a.WuiText--md {
-  --WuiText-font-size: 14px;
+  --WuiText-font-size: 0.875rem;
 }
 
 .WuiText--body.WuiText--lg,
 .WuiText--code.WuiText--lg,
 .WuiText--label.WuiText--lg,
 .WuiText--a.WuiText--lg {
-  --WuiText-font-size: 16px;
+  --WuiText-font-size: 1rem;
 }
 
 .WuiText--body.WuiText--xl,
 .WuiText--code.WuiText--xl,
 .WuiText--label.WuiText--xl,
 .WuiText--a.WuiText--xl {
-  --WuiText-font-size: 18px;
+  --WuiText-font-size: 1.125rem;
 }
 
 .WuiText--code {
@@ -117,7 +119,7 @@
 }
 
 .WuiText--bold {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .WuiText--italic {

@@ -37,9 +37,9 @@
 		<Logo size={60} class="WuiHeader__logo" />
 
 		<Row align="center" gap="sm">
-			<Text color="primary" size="md" variant="heading" weight="400">Watfoe</Text>
+			<Text color="primary" size="md" variant="heading">Watfoe</Text>
 			{#if typeof subtitle === 'string'}
-				<Text color="neutral" size="md" variant="heading" weight="400">{subtitle}</Text>
+				<Text color="neutral" size="md" variant="heading">{subtitle}</Text>
 			{:else if subtitle}
 				{@render subtitle()}
 			{/if}
