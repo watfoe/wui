@@ -40,7 +40,8 @@
 		ml,
 		type = 'text',
 		value = $bindable(),
-		width,
+		variant = 'outlined',
+		width = '100%',
 		...rest
 	}: InputAttributes = $props();
 
@@ -72,27 +73,28 @@
 	{/if}
 
 	{#if type === 'date'}
-		<DateInput {...rest} {id} {color} bind:error bind:value />
+		<DateInput {...rest} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'email'}
-		<EmailInput {...rest} {id} {color} bind:error bind:value />
+		<EmailInput {...rest} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'name'}
 		<BaseInput
 			{...rest}
 			{id}
 			{color}
+			{variant}
 			autocomplete="name"
 			autocapitalize="words"
 			bind:error
 			bind:value
 		/>
 	{:else if type === 'password'}
-		<PasswordInput secure {...rest} {id} {color} bind:error bind:value />
+		<PasswordInput secure {...rest} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'phone'}
-		<PhoneInput {...rest} {id} {color} bind:error bind:value />
+		<PhoneInput {...rest} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'search'}
-		<SearchInput {...rest} {id} {color} bind:error bind:value />
+		<SearchInput {...rest} {id} {color} {variant} bind:error bind:value />
 	{:else}
-		<BaseInput {...rest} {id} {color} bind:error bind:value />
+		<BaseInput {...rest} {id} {color} {variant} bind:error bind:value />
 	{/if}
 
 	{#if error}

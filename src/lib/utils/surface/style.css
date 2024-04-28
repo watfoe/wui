@@ -9,7 +9,7 @@
   --WuiColor-bg: var(--color-neutral);
   --WuiColor-on-bg: var(--color-white);
   --WuiColor-bg-soft: var(--color-neutral-container);
-  --WuiColor-on-bg-soft: var(--color-black-3);
+  --WuiColor-on-bg-soft: var(--color-black-2);
 }
 
 .WuiColor-success {
@@ -80,10 +80,20 @@
   border-color: var(--color-neutral-4, var(--color-primary));
 }
 
-.WuiVariant-soft {
+.WuiVariant-soft,
+.WuiVariant-mixed {
   background-color: var(--WuiColor-bg-soft, var(--color-selection-container));
   border: 1px solid transparent;
   color: var(--WuiColor-on-bg-soft, var(--color-primary));
+}
+
+/* A mix of soft and outlined */
+.WuiVariant-mixed {
+  border-color: var(--WuiColor-bg, var(--color-primary));
+}
+
+.WuiVariant-mixed.WuiColor-neutral {
+  border-color: var(--color-neutral-4, var(--color-primary));
 }
 
 .WuiVariant-plain,

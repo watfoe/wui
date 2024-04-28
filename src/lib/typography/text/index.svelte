@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-	import type { HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiSize, WuiTextWeight } from '$lib/types';
+	import type { HTMLAnchorAttributes, HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
+	import type { WuiColor, WuiTextSize, WuiTextWeight } from '$lib/types';
 
 	export interface TextLabelAttributes extends Omit<HTMLLabelAttributes, 'color'> {
 		variant: 'label';
@@ -12,15 +12,21 @@
 		variant?: 'body' | 'code';
 	}
 
-	export type TextAttributes = {
+	export interface TextAnchorAttributes extends Omit<HTMLAnchorAttributes, 'color'> {
+		variant?: 'a';
+	}
+
+	export interface BaseTextAttributes {
 		bold?: boolean;
 		color?: WuiColor | 'inherit';
 		italic?: boolean;
-		rtl?: boolean;
-		size?: WuiSize;
+		size?: WuiTextSize;
 		underline?: boolean;
 		weight?: WuiTextWeight;
-	} & (TextLabelAttributes | TextHeadingAttributes | TextBodyAttributes);
+	}
+
+	export type TextAttributes = BaseTextAttributes &
+		(TextLabelAttributes | TextHeadingAttributes | TextBodyAttributes | TextAnchorAttributes);
 </script>
 
 <script lang="ts">
@@ -39,37 +45,40 @@
 		...rest
 	}: TextAttributes = $props();
 
+	// For title and heading, there are no ss and xl sizes
 	const elements = {
 		title: {
-			sm: 'h3',
+			lg: 'h1',
 			md: 'h2',
-			lg: 'h1'
+			sm: 'h3'
 		},
 		heading: {
-			sm: 'h6',
+			lg: 'h4',
 			md: 'h5',
-			lg: 'h4'
+			sm: 'h6'
 		},
-		body: {
-			sm: 'span',
-			md: 'span',
-			lg: 'span'
-		},
-		label: {
-			sm: 'label',
-			md: 'label',
-			lg: 'label'
-		},
-		code: {
-			sm: 'code',
-			md: 'code',
-			lg: 'code'
-		}
+		body: 'span',
+		label: 'label',
+		code: 'code',
+		a: 'a'
 	};
+
+	let element = '';
+	if (variant === 'title' || variant === 'heading') {
+		if (size === 'xs') {
+			size = 'sm';
+		} else if (size === 'xl') {
+			size = 'lg';
+		}
+
+		element = elements[variant][size || 'md'];
+	} else {
+		element = elements[variant];
+	}
 </script>
 
 <svelte:element
-	this={elements[variant || 'body'][size || 'md']}
+	this={element}
 	class="WuiText WuiText--{variant} WuiText--{size} WuiText--{color}{bold ||
 	variant === 'heading' ||
 	variant === 'title'

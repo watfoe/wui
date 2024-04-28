@@ -59,7 +59,7 @@
 		validateon = 'submit',
 		value = $bindable(),
 		variant = 'outlined',
-		width,
+		width = '100%',
 		oninput,
 		onblur,
 		onvalidate,

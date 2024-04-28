@@ -1,17 +1,16 @@
 .WuiText {
   font-size: var(--WuiText-font-size, 1rem);
-  font-weight: 320;
+  font-weight: 350;
   line-height: 1.5;
 }
 
-.WuiAnchor {
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
+.WuiText--label {
+  line-height: 1.2;
+  vertical-align: top;
 }
 
-.WuiAnchor--inherit {
-  color: inherit;
+.WuiText--a:hover {
+  text-decoration: underline;
 }
 
 .WuiAnchor--link {
@@ -23,7 +22,7 @@
 }
 
 .WuiText--neutral {
-  color: var(--color-black-1);
+  color: var(--color-black-2);
 }
 
 .WuiText--success {
@@ -80,26 +79,37 @@
 
 .WuiText--body.WuiText--xs,
 .WuiText--code.WuiText--xs,
-.WuiText--label.WuiText--xs {
+.WuiText--label.WuiText--xs,
+.WuiText--a.WuiText--xs {
   --WuiText-font-size: 12px;
 }
 
 .WuiText--body.WuiText--sm,
 .WuiText--code.WuiText--sm,
-.WuiText--label.WuiText--sm {
-  --WuiText-font-size: 12.8px;
+.WuiText--label.WuiText--sm,
+.WuiText--a.WuiText--sm {
+  --WuiText-font-size: 13px;
 }
 
 .WuiText--body.WuiText--md,
 .WuiText--code.WuiText--md,
-.WuiText--label.WuiText--md {
+.WuiText--label.WuiText--md,
+.WuiText--a.WuiText--md {
   --WuiText-font-size: 14px;
 }
 
 .WuiText--body.WuiText--lg,
 .WuiText--code.WuiText--lg,
-.WuiText--label.WuiText--lg {
-  --WuiText-font-size: 15px;
+.WuiText--label.WuiText--lg,
+.WuiText--a.WuiText--lg {
+  --WuiText-font-size: 16px;
+}
+
+.WuiText--body.WuiText--xl,
+.WuiText--code.WuiText--xl,
+.WuiText--label.WuiText--xl,
+.WuiText--a.WuiText--xl {
+  --WuiText-font-size: 18px;
 }
 
 .WuiText--code {
@@ -107,7 +117,7 @@
 }
 
 .WuiText--bold {
-  font-weight: 380;
+  font-weight: 400;
 }
 
 .WuiText--italic {

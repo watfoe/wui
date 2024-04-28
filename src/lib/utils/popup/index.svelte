@@ -102,7 +102,7 @@
 			if (left + width > innerWidth) {
 				if (position === 'right' || position === 'right-start' || position === 'right-end') {
 					// flip to left
-					left = anchor_left - width + spacing;
+					left = anchor_left - width - spacing;
 				} else {
 					// position to end-horizontal
 					left = anchor_left - width - anchor_width;

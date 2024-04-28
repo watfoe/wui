@@ -55,7 +55,7 @@
 
 div.WuiInput__prefix>*,
 div.WuiInput__suffix>* {
-  border-radius: inherit !important;
+  border-radius: inherit;
   width: 100% !important;
   height: 100% !important;
 }

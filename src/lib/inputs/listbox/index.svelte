@@ -22,7 +22,6 @@
 		children,
 		color,
 		multiple = false,
-		name,
 		onchange,
 		size,
 		shape,
@@ -32,19 +31,12 @@
 	}: ListboxAttributes = $props();
 	let selections = [] as HTMLInputElement[];
 
-	$effect.pre(() => {
-		if (!name) {
-			name = Math.random().toString(36).substring(2, 15);
-		}
-
-		setContext('wui-listbox-ctx', {
-			color,
-			multiple,
-			name,
-			size,
-			shape,
-			variant
-		});
+	setContext('wui-listbox-ctx', {
+		color,
+		multiple,
+		size,
+		shape,
+		variant
 	});
 
 	function change(e: Event & { currentTarget: HTMLFieldSetElement }) {
@@ -70,7 +62,6 @@
 <fieldset
 	role={rest.role || 'listbox'}
 	aria-label={rest['aria-label'] || 'Select an option'}
-	{name}
 	class="WuiListbox {rest.class || ''}"
 	style={rest.style || ''}
 	bind:this={listbox}

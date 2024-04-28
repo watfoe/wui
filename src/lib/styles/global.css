@@ -1,13 +1,5 @@
 @import 'material-symbols/rounded';
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/lexend.ttf") format("truetype");
-  font-weight: 300 400 500;
-  font-stretch: 75% 125%;
-  font-style: oblique 0deg 12deg;
-}
-
 :root {
   --color-primary-1: #F7FBFD;
   --color-primary-2: #dff1f9;
@@ -96,7 +88,7 @@
   --color-disabled: var(--color-neutral-3);
   --color-on-disabled: var(--color-neutral-6);
 
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
   --space-ss: 0.1875rem;
   --space-xs: 0.3125rem;
@@ -113,22 +105,20 @@
   --height-xl: 3.5rem;
   --height-xx: 4rem;
 
-  --radius: 3.77px;
+  --radius: 3px;
 
   --line: 1px solid var(--color-outline);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {}
-} */
-
 * {
+  border: 0;
   box-sizing: border-box;
   font-family: var(--font-family);
   padding: 0;
   margin: 0;
   vertical-align: baseline;
   outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 html,
@@ -140,8 +130,6 @@ body {
 }
 
 body {
-  color: var(--color-on-surface);
-  background-color: var(--color-surface);
   font-size: 100%;
 }
 
@@ -150,15 +138,9 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: system) {
-  html {
-    color-scheme: system;
-  }
-}
-
 .WuiHidden {
   border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
   height: 1px;
   width: 1px;
@@ -169,3 +151,15 @@ a {
   left: 50%;
   bottom: 0
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: var(--color-black-3);
+    --color-on-surface: var(--color-white);
+    --color-on-surface-variant: #5f6368;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+} */

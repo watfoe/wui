@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
 	export interface SelectAttributes
-		extends Omit<LikeButtonAttributes<HTMLFieldsetAttributes>, 'element'> {
+		extends Omit<LikeButtonAttributes<HTMLInputAttributes>, 'element'> {
 		description?: Snippet | string;
 		disabled?: boolean;
 		error?: ValidationError;
@@ -27,11 +29,10 @@
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
 	import { untrack, type Snippet } from 'svelte';
-	import { Popup, type LikeButtonAttributes } from '$lib/utils';
-	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+	import { Popup, Surface, type LikeButtonAttributes } from '$lib/utils';
 
 	let {
-		color,
+		color = 'neutral',
 		class: _class = '',
 		children,
 		description,
@@ -49,7 +50,6 @@
 		mr,
 		mb,
 		ml,
-		name,
 		p,
 		px,
 		py,
@@ -68,43 +68,69 @@
 		value = $bindable(),
 		validateon = 'submit',
 		variant = 'outlined',
-		onchange,
+		width = '100%',
 		onvalidate,
 		...rest
 	}: SelectAttributes = $props();
 
 	let opened = $state(false);
 	let selections = $state([] as HTMLLabelElement[]);
+	let input_el: HTMLInputElement | undefined = $state();
 	let listbox: HTMLFieldSetElement | undefined = $state();
+	let listbox_value: string | undefined = $state();
 
 	const id = Math.random().toString(36).substring(2, 9);
 
 	$effect(() => {
 		if (error || !error) {
-			listbox?.setCustomValidity(error === undefined ? '' : error?.message);
+			input_el?.setCustomValidity(error === undefined ? '' : error?.message);
 		}
 
 		untrack(() => {
 			if (required && validateon === 'submit') {
 				// Get the form element that this input is in
-				const form = listbox?.closest('form');
-				form?.addEventListener('submit', (e) => {
-					e.preventDefault();
-					_validate();
-				});
+				const form = input_el?.closest('form');
+				form?.addEventListener(
+					'submit',
+					(e) => {
+						e.preventDefault();
+						_validate();
+					},
+					// Capture phase to ensure that this event listener is the first to run
+					true
+				);
 			}
 		});
 	});
 
 	function change(e: Event & { currentTarget: HTMLFieldSetElement }) {
 		const label = (e.target as HTMLInputElement).parentElement as HTMLLabelElement;
-		if (multiple) {
-			selections.push(label);
+		// Create a clone of the label element
+		const label_clone = label.cloneNode(true) as HTMLLabelElement;
+		// Remove the input child from the label element
+		const children = label_clone.children;
+
+		// The input element can be the first or second (if a prefix was added to the option)
+		// child of the label element
+		if (children[0] instanceof HTMLInputElement) {
+			children[0].remove();
 		} else {
-			selections = [label];
+			children[1].remove();
 		}
 
-		onchange?.(e);
+		if (multiple) {
+			selections.push(label_clone);
+		} else {
+			selections = [label_clone];
+		}
+
+		input_el!.value = listbox_value!;
+		value = listbox_value;
+		input_el!.dispatchEvent(new Event('change'));
+
+		if (error) {
+			_validate();
+		}
 	}
 
 	function _validate() {
@@ -125,6 +151,7 @@
 		if (required && validateon === 'blur') {
 			_validate();
 		}
+		input_el!.dispatchEvent(new Event('blur'));
 	}
 
 	function popup_opened() {
@@ -132,11 +159,22 @@
 	}
 </script>
 
-<Col
+{#snippet _placeholder()}
+	{#if placeholder}
+		<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
+	{:else}
+		<span class="WuiSelect__combobox__placeholder">
+			Select {preset ? `a ${preset}` : 'an option'}
+		</span>
+	{/if}
+{/snippet}
+
+<Surface
 	align="flex-start"
 	justify="flex-start"
 	class="WuiSelect WuiSelect--{color} {_class}"
-	width="100%"
+	direction="column"
+	element="fieldset"
 	{gap}
 	{m}
 	{mx}
@@ -147,16 +185,23 @@
 	{ml}
 	{style}
 	{hidden}
+	{width}
 >
 	{#if label}
-		<Label for={id} {description}>{label}</Label>
+		<Label
+			color={error ? 'danger' : opened && color === 'neutral' ? 'primary' : color}
+			for={id}
+			{description}>{label}</Label
+		>
 	{/if}
+
+	<input type="hidden" bind:this={input_el} bind:value {...rest} />
 
 	<Button
 		anchorfor={id}
 		aria-expanded="false"
 		class="WuiSelect__combobox"
-		color={error ? 'danger' : opened ? color || 'primary' : color}
+		color={error ? 'danger' : opened && color === 'neutral' ? 'primary' : color}
 		fontsize={fontsize || size}
 		justify="space-between"
 		navigation="feedback"
@@ -182,44 +227,38 @@
 			{:else}
 				{@html selections[0].innerHTML}
 			{/if}
-		{:else if placeholder}
-			<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
 		{:else}
-			<span class="WuiSelect__combobox__placeholder">
-				Select {preset ? `a ${preset}` : 'an option'}
-			</span>
+			{@render _placeholder()}
 		{/if}
 
 		{#snippet suffix()}
 			<Icon class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
 		{/snippet}
 	</Button>
+</Surface>
 
-	{#if !disabled}
-		<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
-			<Listbox
-				role="listbox"
-				aria-label="List of {preset} options"
-				class="WuiSelect__listbox"
-				{multiple}
-				{name}
-				color="primary"
-				{size}
-				onchange={change}
-				bind:listbox
-				bind:value
-				{...rest}
-			>
-				{#if preset === 'country'}
-					<CountryPreset {selected} />
-				{:else if preset === 'month'}
-					<MonthPreset {selected} />
-				{:else if preset === 'gender'}
-					<GenderPreset {selected} />
-				{:else if children}
-					{@render children()}
-				{/if}
-			</Listbox>
-		</Popup>
-	{/if}
-</Col>
+{#if !disabled}
+	<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
+		<Listbox
+			role="listbox"
+			aria-label="List of {preset} options"
+			class="WuiSelect__listbox"
+			color="primary"
+			onchange={change}
+			bind:listbox
+			bind:value={listbox_value}
+			{multiple}
+			{size}
+		>
+			{#if preset === 'country'}
+				<CountryPreset {selected} />
+			{:else if preset === 'month'}
+				<MonthPreset {selected} />
+			{:else if preset === 'gender'}
+				<GenderPreset {selected} />
+			{:else if children}
+				{@render children()}
+			{/if}
+		</Listbox>
+	</Popup>
+{/if}

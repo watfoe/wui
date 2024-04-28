@@ -64,12 +64,12 @@
 >
 	<input
 		{...rest}
+		class="WuiHidden"
+		name={name || ctx.name}
 		tabindex="-1"
 		type="checkbox"
-		class="WuiHidden"
-		{id}
-		name={name || ctx.name}
 		bind:checked
+		{id}
 	/>
 
 	<LikeButton

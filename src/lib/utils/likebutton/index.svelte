@@ -93,12 +93,12 @@
 
 <Surface
 	class="WuiLikeButton {_class}"
-	{height}
 	fontsize={fontsize || size}
 	px={children ? px : undefined}
 	tabindex={0}
-	{width}
 	onkeydown={keydown}
+	{height}
+	{width}
 	{color}
 	{direction}
 	{element}
@@ -107,8 +107,8 @@
 	{style}
 	{shape}
 	{variant}
-	clickable
 	{...rest}
+	clickable
 >
 	{#if typeof prefix === 'string'}
 		<Icon {size}>{prefix}</Icon>

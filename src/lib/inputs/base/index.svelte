@@ -134,20 +134,20 @@
 	direction="row"
 	gap="xs"
 	justify="space-between"
-	width="100%"
 	fontsize={fontsize || size}
 	disabled={true}
+	pr={typeof suffix === 'function' ? undefined : pr || px}
+	pl={typeof prefix === 'function' ? undefined : pl || px}
+	style="cursor:text;{style}"
+	width="100%"
+	onclick={disabled ? undefined : () => input_el.focus()}
 	{height}
 	{p}
 	{py}
 	{pt}
-	pr={typeof suffix === 'function' ? undefined : pr || px}
 	{pb}
-	pl={typeof prefix === 'function' ? undefined : pl || px}
 	{shape}
-	style="cursor:text;{style}"
 	{variant}
-	onclick={disabled ? undefined : () => input_el.focus()}
 >
 	{#if typeof prefix === 'string'}
 		<Icon color="inherit" {size}>{prefix}</Icon>
@@ -159,13 +159,14 @@
 
 	<input
 		dir="ltr"
-		class="WuiInput__input WuiText WuiText--body WuiText--{size}"
+		class="WuiInput__input"
 		onblur={blur}
 		oninput={input}
 		onclick={(e) => {
 			e.stopPropagation();
 			onclick?.(e);
 		}}
+		style:font="inherit"
 		style:text-align={align}
 		bind:this={input_el}
 		bind:value
@@ -176,7 +177,7 @@
 	{#if typeof suffix === 'string'}
 		<Icon color="inherit" {size}>{suffix}</Icon>
 	{:else if suffix}
-		<div class="WuiInput__suffix" style:width="calc(var(--height-{size}) - 4px)">
+		<div class="WuiInput__suffix" style:min-width="calc(var(--height-{size}) - 6px)">
 			{@render suffix()}
 		</div>
 	{/if}

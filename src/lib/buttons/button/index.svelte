@@ -110,13 +110,13 @@
 	aria-haspopup={anchorfor ? 'true' : undefined}
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
+	class="{loading ? 'WuiButton--loading ' : ''} {_class}"
 	disabled={loading || disabled}
 	navigation={navigation === 'feedback' ? 'none' : navigation}
-	{px}
-	{type}
 	onclick={click}
 	onmouseover={mouseover}
 	onkeydown={keydown}
-	class="{loading ? 'WuiButton--loading ' : ''} {_class}"
+	{px}
+	{type}
 	{...rest}
 />

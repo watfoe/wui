@@ -1,12 +1,15 @@
 <script lang="ts">
+	import { Menu } from '$lib';
+	import { Button } from '$lib/buttons';
 	import { Checkbox, Input, Radio, RadioGroup, Select, Switch, TextArea } from '$lib/inputs';
 	import { Col, Row } from '$lib/layout';
+	import MenuItem from '$lib/navigation/menu/menu-item.svelte';
 
 	let name = $state('');
 </script>
 
 <Col gap="lg" width="100%">
-	<Row gap="md" width="100%">
+	<Row align="flex-start" gap="md" width="100%">
 		<Input
 			type="text"
 			variant="solid"
@@ -20,21 +23,28 @@
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
 
-	<Row gap="md" width="100%">
+	<Row align="flex-start" gap="md" width="100%">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
-		<Input
-			type="email"
-			variant="outlined"
-			label="Email"
-			class="input"
-			validateon="input"
-			required
-		/>
+		<Input type="email" variant="outlined" label="Email" class="input" validateon="input" required>
+			{#snippet suffix()}
+				<Button
+					color="neutral"
+					anchorfor="some-menu-input"
+					variant="solid"
+					shape="circle"
+					prefix="more_horiz"
+				/>
+				<Menu id="some-menu-input" position="top" itemsize="sm">
+					<MenuItem prefix="check" selected>Checked</MenuItem>
+					<MenuItem prefix="clear">Cleared</MenuItem>
+				</Menu>
+			{/snippet}
+		</Input>
 		<Input type="email" variant="soft" label="Email" class="input" validateon="input" required />
 		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
 	</Row>
 
-	<Row gap="md" width="100%">
+	<Row align="flex-start" gap="md" width="100%">
 		<Input
 			type="password"
 			variant="solid"
@@ -76,14 +86,14 @@
 		/>
 	</Row>
 
-	<Row gap="md" width="100%">
+	<Row align="flex-start" gap="md" width="100%">
 		<Input type="search" variant="solid" color="warning" label="Search" class="input" />
 		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="plain" color="warning" label="Search" class="input" />
 	</Row>
 
-	<Row gap="md" width="100%">
+	<Row align="flex-start" gap="md" width="100%">
 		<Input
 			type="date"
 			variant="solid"
@@ -109,7 +119,7 @@
 	</Row>
 
 	<Row gap="lg" width="100%">
-		<Radio label="Primary small radio" name="radio" size="sm" color="primary" />
+		<Radio label="Primary small radio" name="radio" size="sm" color="primary" checked />
 		<Radio label="Neutral medium radio" name="radio" size="md" />
 		<Radio label="Large success radio" name="radio" size="lg" color="success" />
 		<Radio label="Warning radio" name="radio" color="warning" />
@@ -136,7 +146,7 @@
 		<Checkbox label="Danger checkbox" name="checkbox" color="danger" />
 	</Row>
 
-	<Row gap="md" width="100%">
+	<Row align="flex-start" gap="md" width="100%">
 		<Switch size="sm" color="primary" />
 		<Switch size="md" color="neutral" />
 		<Switch size="lg" color="success" />

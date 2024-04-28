@@ -3,7 +3,7 @@ import type { HTMLAnchorAttributes, HTMLAreaAttributes, HTMLAttributes, HTMLAudi
 // TODO: Think about a size multiplier for the sizes
 export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'white' | 'black';
 export type WuiSize = 'sm' | 'md' | 'lg';
-export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'none';
+export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'mixed' | 'none';
 export type WuiShape = 'rounded' | 'circle' | 'pill' | 'square';
 
 export type WuiDimension = '100%' | '75%' | '50%' | '25%' | 'auto' | 'inherit' | number;
@@ -21,6 +21,8 @@ export interface WuiFlexKeys {
   gap?: WuiSpacing;
   wrap?: 'wrap' | 'nowrap';
 }
+
+export type WuiTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type WuiTextWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 

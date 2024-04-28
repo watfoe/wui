@@ -1,37 +1,11 @@
-.WuiSelect--primary {
-  --WuiLabel-color: var(--color-primary);
-}
-
-.WuiSelect--neutral {
-  --WuiLabel-color: var(--color-black-4);
-}
-
-.WuiSelect--neutral:focus-within {
-  --WuiLabel-color: var(--color-primary);
-}
-
-.WuiSelect--success {
-  --WuiLabel-color: var(--color-success);
-}
-
-.WuiSelect--warning {
-  --WuiLabel-color: var(--color-warning);
-}
-
-.WuiSelect--danger,
-.WuiSelect__root:invalid {
-  --WuiLabel-color: var(--color-error);
-}
-
 .WuiSelect__combobox__placeholder {
   opacity: 0.5;
 }
 
-.WuiSelect__root:focus-within .WuiSelect__combobox,
+/* .WuiSelect:focus-within .WuiSelect__combobox,
 .WuiSelect__combobox[aria-expanded='true'] {
-  /* TODO: use the border color */
   box-shadow: inset 0 0 0 0.5px var(--color-primary);
-}
+} */
 
 .WuiSelect__combobox__icon {
   transition: transform 0.1s ease-in-out;

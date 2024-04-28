@@ -10,7 +10,7 @@
 	} from '$lib/types';
 
 	export interface RadioAttributes extends Omit<HTMLInputAttributes, 'size'> {
-		_this?: HTMLInputElement;
+		checkbox?: HTMLInputElement;
 		checked?: boolean;
 		color?: WuiColor;
 		gap?: WuiSpacing;
@@ -28,7 +28,7 @@
 	import { getContext, type Snippet } from 'svelte';
 
 	let {
-		_this = $bindable(),
+		checkbox = $bindable(),
 		checked = $bindable(),
 		color,
 		gap = 'sm',
@@ -59,22 +59,23 @@
 <Text variant="label" {size} for={id} class="WuiRadio WuiClickable" style="gap:var(--space-{gap});">
 	<input
 		{...rest}
-		type="radio"
 		class="WuiHidden"
-		{id}
+		{checked}
 		name={name || ctx.name}
-		bind:this={_this}
+		type="radio"
+		bind:this={checkbox}
 		bind:value
+		{id}
 	/>
 
 	<LikeButton
 		element="span"
 		color={color || ctx.color || 'primary'}
 		class="WuiRadio__thumb"
-		{height}
 		p={2}
 		shape={shape || ctx.shape || 'circle'}
 		variant={variant || ctx.variant || 'outlined'}
+		{height}
 		{width}
 	/>
 

@@ -24,13 +24,13 @@
 </script>
 
 <Row
+	class="WuiHeader {_class}"
+	height={50}
 	justify="space-between"
+	mb="xs"
 	px="lg"
 	py="sm"
-	mb="xs"
 	width="100%"
-	height={50}
-	class="WuiHeader {_class}"
 	{...rest}
 >
 	<Row align="center" gap="md">
@@ -47,13 +47,13 @@
 	</Row>
 
 	<Row justify="flex-end" gap="md">
-		<Button variant="plain" color="neutral" size="sm" prefix="language">EN</Button>
-		<Button variant="plain" color="neutral" size="sm" prefix="apps">Apps</Button>
+		<Button color="neutral" fontsize="md" prefix="language" size="sm" variant="plain">EN</Button>
+		<Button color="neutral" fontsize="md" prefix="apps" size="sm" variant="plain">Apps</Button>
 
-		<LinkLikeButton href={urls?.signin} variant="plain" color="neutral" size="sm"
-			>Sign in</LinkLikeButton
-		>
-		<LinkLikeButton href={urls?.signup} variant="solid" color="primary" size="sm">
+		<LinkLikeButton href={urls?.signin} color="neutral" fontsize="md" size="sm" variant="plain">
+			Sign in
+		</LinkLikeButton>
+		<LinkLikeButton href={urls?.signup} color="primary" fontsize="md" size="sm" variant="solid">
 			Create account
 		</LinkLikeButton>
 	</Row>

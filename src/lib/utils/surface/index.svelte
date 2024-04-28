@@ -9,7 +9,7 @@
 	} from '$lib/types';
 	import { type Snippet } from 'svelte';
 
-	export type SurfaceAttributes<A = WuiSurfaceHTMLAttributes> = A &
+	export type SurfaceAttributes<A = WuiSurfaceHTMLAttributes> = Omit<A, 'color'> &
 		WuiSurface &
 		WuiFlexKeys & {
 			bold?: boolean;
@@ -51,7 +51,7 @@
 			if (typeof value === 'number') {
 				style += `${which}:${value}px;`;
 			} else if (SPACES.includes(value)) {
-				style += `${which}:var(--height-${value}, auto);`;
+				style += `${which}:var(--height-${value});`;
 			} else {
 				style += `${which}:${value};`;
 			}

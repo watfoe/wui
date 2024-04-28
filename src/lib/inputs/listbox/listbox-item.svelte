@@ -2,9 +2,8 @@
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { getContext, untrack } from 'svelte';
 
-	export interface ListboxItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLabelAttributes>, '_this'> {
-		_this?: HTMLInputElement;
+	export interface ListboxItemAttributes extends LikeButtonAttributes<HTMLLabelAttributes> {
+		listboxitem?: HTMLInputElement;
 		role?: 'listitem' | 'option';
 		selected?: boolean;
 		value?: string;
@@ -16,7 +15,7 @@
 	import type { HTMLLabelAttributes } from 'svelte/elements';
 
 	let {
-		_this = $bindable(),
+		listboxitem = $bindable(),
 		children,
 		color,
 		px = 'sm',
@@ -34,7 +33,6 @@
 	const id = Math.random().toString(36).substring(2, 15);
 	const ctx: {
 		color: WuiColor;
-		name: string;
 		multiple: boolean;
 		size: WuiSize;
 		shape: WuiShape;
@@ -46,47 +44,46 @@
 			if (_checked && value) {
 				// Without the timeout, the event is dispatched but the listener has not yet been registered.
 				setTimeout(() => {
-					_this?.dispatchEvent(new Event('change', { bubbles: true }));
+					listboxitem?.dispatchEvent(new Event('change', { bubbles: true }));
 				}, 0);
 			}
 		});
 	});
 
 	function keydown(e: KeyboardEvent) {
-		if (_this && (e.key === 'Enter' || e.key === ' ')) {
+		if (listboxitem && (e.key === 'Enter' || e.key === ' ')) {
 			if (ctx.multiple) {
-				_this.click();
+				listboxitem.click();
 			} else if (!_checked) {
-				_this.click();
+				listboxitem.click();
 			}
 		}
 	}
 </script>
 
 <LikeButton
-	{...rest}
+	aria-selected={_checked}
+	class="WuiListbox__item"
+	color={_checked ? color || ctx.color || 'primary' : 'neutral'}
 	element="label"
 	for={id}
-	aria-selected={_checked}
+	justify="flex-start"
 	navigation="vertical"
-	variant={_checked ? variant || ctx.variant || 'soft' : 'plain'}
-	color={_checked ? color || ctx.color || 'primary' : 'neutral'}
-	{px}
 	size={size || ctx.size || 'md'}
 	shape={shape || ctx.shape || 'rounded'}
-	justify="flex-start"
-	class="WuiListbox__item"
+	variant={_checked ? variant || ctx.variant || 'soft' : 'plain'}
 	onkeydown={keydown}
+	{px}
+	{...rest}
 >
 	<input
+		hidden
 		type="checkbox"
 		tabindex="-1"
-		class="WuiHidden"
+		bind:checked={_checked}
+		bind:this={listboxitem}
 		{id}
 		{value}
-		name={ctx.name}
-		bind:checked={_checked}
-		bind:this={_this}
 	/>
 	{#if children}
 		{@render children()}

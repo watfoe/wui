@@ -8,7 +8,7 @@
 }
 
 .WuiInput--neutral {
-  --WuiLabel-color: var(--color-black-4);
+  --WuiLabel-color: var(--color-black-2);
 }
 
 .WuiInput--neutral:focus-within {
