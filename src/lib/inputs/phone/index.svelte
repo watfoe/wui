@@ -4,7 +4,7 @@
 
 	interface PhoneInputAttributes extends BaseInputAttributes {}
 
-	let { error = $bindable(), value, ...rest }: PhoneInputAttributes = $props();
+	let { error = $bindable(), value = $bindable(), ...rest }: PhoneInputAttributes = $props();
 
 	function rule(value: string) {
 		return new Phone(value);

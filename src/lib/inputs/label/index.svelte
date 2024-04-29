@@ -35,7 +35,7 @@
 	{/if}
 
 	{#if typeof description === 'string'}
-		<Text color="neutral" for={_for} size="sm" variant="label">
+		<Text color="neutral" for={_for} size="xs" variant="label">
 			{description}
 		</Text>
 	{:else if description}
