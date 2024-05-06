@@ -31,13 +31,13 @@
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
-	} = getContext('wui-tab-ctx') || {};
+	} = getContext('wui-list-ctx') || {};
 
 	const altColor = (color || ctx.color) === 'primary' ? 'neutral' : color || ctx.color || 'neutral';
 </script>
 
 <LikeButton
-	element="li"
+	element="div"
 	aria-selected={selected}
 	tabindex="0"
 	color={color || ctx.color || (selected ? 'neutral' : altColor)}

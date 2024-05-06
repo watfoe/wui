@@ -1,59 +1,42 @@
 <script context="module" lang="ts">
-	import {
-		type WuiColor,
-		type WuiDimension,
-		type WuiMargin,
-		type WuiShape,
-		type WuiSize
-	} from '$lib/types';
-
-	export interface DividerAttributes extends WuiMargin {
-		color?: WuiColor;
-		height?: WuiDimension;
-		size?: WuiSize | number;
-		shape?: WuiShape;
+	export interface DividerAttributes extends Omit<SurfaceAttributes, 'size'> {
+		size?: number;
 		vertical?: boolean;
-		width?: WuiDimension;
 	}
-
-	const SIZES = {
-		sm: 1,
-		md: 2,
-		lg: 3
-	};
 </script>
 
 <script lang="ts">
-	import { Surface } from '$lib/utils';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
+
 	let {
 		color = 'neutral',
 		height,
 		m,
 		mx,
 		my,
-		size = 'sm',
+		size = 1,
 		vertical = false,
 		width,
 		...rest
 	}: DividerAttributes = $props();
 
+	// Parent containers with no explicit height will not render the divider
+
 	if (vertical) {
 		height = height || '100%';
-		width = width || (size ? SIZES[size] : SIZES['sm']);
+		width = width || size;
 	} else {
-		height = height || (size ? SIZES[size] : SIZES['sm']);
+		height = height || size;
 		width = width || '100%';
 	}
-
-	let sizeIsNumber = typeof size === 'number';
 </script>
 
 <Surface
+	mx={vertical ? mx || m : undefined}
+	my={vertical ? undefined : my || m}
 	role="separator"
 	variant="solid"
 	{color}
-	mx={vertical ? mx || m : undefined}
-	my={vertical ? undefined : my || m}
 	{height}
 	{width}
 	{...rest}

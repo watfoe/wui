@@ -5,7 +5,12 @@
 		WuiSurface,
 		WuiSize,
 		WuiSurfaceHTMLAttributes,
-		WuiSurfaceElement
+		WuiSurfaceElement,
+		WuiVariant,
+		WuiFlexDirection,
+		WuiFlexAlign,
+		WuiFlexWrap,
+		WuiFlexGap
 	} from '$lib/types';
 	import { type Snippet } from 'svelte';
 
@@ -26,38 +31,90 @@
 	function construct_spacing_style(
 		type: 'margin' | 'padding',
 		which: 'top' | 'right' | 'bottom' | 'left',
-		style: string,
 		value?: string | number
 	) {
 		if (value) {
 			if (typeof value === 'number') {
-				style += `${type}-${which}:${value}px;`;
+				return `${type}-${which}:${value}px;`;
 			} else if (SPACES.includes(value)) {
-				style += `${type}-${which}:var(--space-${value},var(--space-md));`;
+				return `${type}-${which}:var(--space-${value},var(--space-md));`;
 			} else {
-				style += `${type}-${which}:${value};`;
+				return `${type}-${which}:${value};`;
 			}
 		}
 
-		return style;
+		return '';
 	}
 
-	function construct_dimension_style(
-		which: 'height' | 'width',
-		style: string,
-		value?: string | number
-	) {
+	function construct_dimension_style(which: 'height' | 'width', value?: string | number) {
 		if (value) {
 			if (typeof value === 'number') {
-				style += `${which}:${value}px;`;
+				return `--WuiDimen-${which}:${value}px;`;
 			} else if (SPACES.includes(value)) {
-				style += `${which}:var(--height-${value});`;
+				return `--WuiDimen-${which}:var(--height-${value});`;
 			} else {
-				style += `${which}:${value};`;
+				return `--WuiDimen-${which}:${value};`;
 			}
 		}
 
-		return style;
+		return '';
+	}
+
+	function construct_color_style(color?: string, variant?: WuiVariant, weight?: string) {
+		let color_bg = `var(--color-${color}-${weight || '5'})`;
+		let color_on_bg = 'var(--color-white)';
+		let color_bg_soft = `var(--color-${color}-${weight || '1'})`;
+
+		if (color === 'white') {
+			color_bg = `var(--color-${color})`;
+			color_on_bg = 'var(--color-black)';
+			color_bg_soft = `var(--color-neutral-${weight || '1'})`;
+		} else if (color === 'black') {
+			color_bg = `var(--color-${color})`;
+			color_on_bg = 'var(--color-white)';
+			color_bg_soft = `var(--color-neutral-${weight || '1'})`;
+		}
+		if (variant !== 'solid') {
+			if (color === 'neutral') {
+				if ((variant === 'outlined' || variant === 'mixed') && !weight) {
+					color_bg = 'var(--color-neutral-3)';
+				}
+				color_on_bg = 'var(--color-neutral-8)';
+			} else {
+				color_on_bg = color_bg;
+			}
+		}
+
+		if (color) {
+			return `
+				--WuiColor-bg: ${color_bg};
+				--WuiColor-on-bg: ${color_on_bg};
+				--WuiColor-bg-soft: ${color_bg_soft};
+			`;
+		}
+
+		return '';
+	}
+
+	function construct_flex_style(
+		direction?: WuiFlexDirection,
+		justify?: WuiFlexJustify,
+		align?: WuiFlexAlign,
+		wrap?: WuiFlexWrap,
+		gap?: WuiFlexGap
+	) {
+		if (direction || justify || align || wrap || gap) {
+			return `
+				display:flex;
+				flex-direction:${direction || 'row'};
+				justify-content:${justify || 'flex-start'};
+				align-items:${align || 'center'};
+				flex-wrap:${wrap || 'nowrap'};
+				${gap ? `gap:var(--space-${gap});` : ''}
+			`;
+		}
+
+		return '';
 	}
 </script>
 
@@ -67,10 +124,12 @@
 		align,
 		element = 'div',
 		color,
+		colorweight,
 		class: _class = '',
 		clickable = false,
 		children,
 		direction,
+		disabled,
 		gap,
 		justify,
 		m,
@@ -96,38 +155,33 @@
 		wrap,
 		...rest
 	}: SurfaceAttributes<WuiSurfaceHTMLAttributes> = $props();
-
-	let _style = '';
-	_style = construct_dimension_style('height', _style, height);
-	_style = construct_dimension_style('width', _style, width);
-	_style = construct_spacing_style('margin', 'top', _style, mt || m || my);
-	_style = construct_spacing_style('margin', 'right', _style, mr || m || mx);
-	_style = construct_spacing_style('margin', 'bottom', _style, mb || m || my);
-	_style = construct_spacing_style('margin', 'left', _style, ml || m || mx);
-	_style = construct_spacing_style('padding', 'top', _style, pt || py || p);
-	_style = construct_spacing_style('padding', 'right', _style, pr || px || p);
-	_style = construct_spacing_style('padding', 'bottom', _style, pb || py || p);
-	_style = construct_spacing_style('padding', 'left', _style, pl || px || p);
-
-	if (direction || justify || align) {
-		_style += `
-				display:flex;
-				flex-direction:${direction || 'row'};
-				justify-content:${justify || 'flex-start'};
-				align-items:${align || 'center'};
-				flex-wrap:${wrap || 'nowrap'};
-				${gap ? `gap:var(--space-${gap});` : ''}`;
-	}
 </script>
 
 <svelte:element
 	this={element}
-	class="WuiText WuiText--body WuiText--{fontsize || 'md'} {variant
+	class="WuiSurface WuiText WuiText--body WuiText--{fontsize || 'md'} {variant
 		? `WuiVariant-${variant} `
 		: ''}{color ? `WuiColor-${color} ` : ''}{shape ? `WuiShape-${shape} ` : ''}{clickable
 		? 'WuiClickable '
 		: ''}{_class}"
-	style="{_style}{style}"
+	{disabled}
+	data-has-width={width ? 'true' : 'false'}
+	data-has-height={height ? 'true' : 'false'}
+	style="
+		{construct_flex_style(direction, justify, align, wrap, gap)}
+		{construct_dimension_style('height', height)}
+		{construct_dimension_style('width', width)}
+		{construct_spacing_style('margin', 'top', mt || m || my)}
+		{construct_spacing_style('margin', 'right', mr || m || mx)}
+		{construct_spacing_style('margin', 'bottom', mb || m || my)}
+		{construct_spacing_style('margin', 'left', ml || m || mx)}
+		{construct_spacing_style('padding', 'top', pt || py || p)}
+		{construct_spacing_style('padding', 'right', pr || px || p)}
+		{construct_spacing_style('padding', 'bottom', pb || py || p)}
+		{construct_spacing_style('padding', 'left', pl || px || p)}
+		{construct_color_style(color, variant, colorweight)}
+		{style}
+	"
 	{...rest}
 >
 	{#if children}

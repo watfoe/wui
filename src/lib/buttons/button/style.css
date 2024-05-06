@@ -12,8 +12,8 @@
   content: '';
   border: 1.5px solid transparent;
   border-radius: 50%;
-  border-top-color: var(--color-primary);
-  border-right-color: var(--color-primary);
+  border-top-color: var(--color-primary-5);
+  border-right-color: var(--color-primary-5);
   width: 16px;
   height: 16px;
   position: absolute;

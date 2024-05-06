@@ -95,7 +95,7 @@
 	</Row>
 
 	<Row gap="lg" width="100%">
-		<List variant="outlined" itemvariant="soft" p={5} gap="ss">
+		<List variant="outlined" p={5} gap="ss">
 			<ListItem>Item 1: some grocery stuff</ListItem>
 			<ListItem>Item 2</ListItem>
 			<ListItem>Item 3</ListItem>
@@ -132,7 +132,7 @@
 				<ListButtonItem prefix="home" selected></ListButtonItem>
 				<ListButtonItem prefix="search"></ListButtonItem>
 				<ListButtonItem prefix="person"></ListButtonItem>
-				<Divider vertical size="lg" />
+				<Divider vertical />
 				<ListButtonItem prefix="settings"></ListButtonItem>
 				<ListButtonItem prefix="delete"></ListButtonItem>
 			</List>

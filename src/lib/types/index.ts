@@ -1,7 +1,19 @@
-import type { HTMLAnchorAttributes, HTMLAreaAttributes, HTMLAttributes, HTMLAudioAttributes, HTMLButtonAttributes, HTMLCanvasAttributes, HTMLDataAttributes, HTMLDetailsAttributes, HTMLDialogAttributes, HTMLFieldsetAttributes, HTMLFormAttributes, HTMLInputAttributes, HTMLLabelAttributes, HTMLLiAttributes, HTMLLinkAttributes, HTMLMenuAttributes, HTMLTableAttributes, HTMLTextareaAttributes, HTMLVideoAttributes } from "svelte/elements";
+import type {
+  HTMLAnchorAttributes,
+  HTMLAttributes,
+  HTMLButtonAttributes,
+  HTMLFieldsetAttributes,
+  HTMLFormAttributes,
+  HTMLInputAttributes,
+  HTMLLabelAttributes,
+  HTMLLiAttributes,
+  HTMLTableAttributes,
+  HTMLTextareaAttributes
+} from "svelte/elements";
 
 // TODO: Think about a size multiplier for the sizes
 export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'white' | 'black';
+export type WuiColorWeight = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 export type WuiSize = 'sm' | 'md' | 'lg';
 export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'mixed' | 'none';
 export type WuiShape = 'rounded' | 'circle' | 'pill' | 'square';
@@ -50,6 +62,7 @@ export interface WuiPadding {
 
 export interface WuiSurface extends WuiMargin, WuiPadding {
   color?: WuiColor;
+  colorweight?: WuiColorWeight;
   gap?: WuiFlexGap;
   height?: WuiDimension;
   shape?: WuiShape;

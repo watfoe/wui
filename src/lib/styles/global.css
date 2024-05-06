@@ -1,77 +1,65 @@
 @import 'material-symbols/rounded';
 
 :root {
-  --color-primary-1: #F7FBFD;
-  --color-primary-2: #dff1f9;
-  --color-primary-3: #bfe4f2;
-  --color-primary-4: #20a0d2;
+  --color-primary-0: #F7FBFD;
+  --color-primary-1: #e6f4fa;
+  --color-primary-2: #99d3eb;
+  --color-primary-3: #66bee0;
+  --color-primary-4: #33a8d6;
   --color-primary-5: #0092cc;
-  --color-primary-6: #0080b3;
+  --color-primary-6: #0075a3;
+  --color-primary-7: #00587a;
+  --color-primary-8: #003a52;
+  --color-primary-9: #001d29;
 
-  --color-neutral-1: #FCFCFC;
-  --color-neutral-2: #F3F4F5;
-  --color-neutral-3: #E9EAEC;
-  --color-neutral-4: #B7BCC2;
-  --color-neutral-5: #9FA6AD;
-  --color-neutral-6: #777D82;
-
-  --color-success-1: #FBFCF8;
-  --color-success-2: #EEF2E5;
-  --color-success-3: #DDE6CC;
-  --color-success-4: #88A64D;
+  --color-success-0: #fbfcf8;
+  --color-success-1: #f1f5eb;
+  --color-success-2: #c9d6ad;
+  --color-success-3: #adc285;
+  --color-success-4: #92ad5c;
   --color-success-5: #779933;
-  --color-success-6: #68862D;
+  --color-success-6: #5f7a29;
+  --color-success-7: #475c1f;
+  --color-success-8: #303d14;
+  --color-success-9: #181f0a;
 
-  --color-warning-1: #FFFCF7;
-  --color-warning-2: #FDF4DF;
-  --color-warning-3: #FCE9BF;
-  --color-warning-4: #F4B120;
-  --color-warning-5: #F2A600;
-  --color-warning-6: #D49100;
+  --color-danger-0: #fff8f8;
+  --color-danger-1: #ffebeb;
+  --color-danger-2: #ffadad;
+  --color-danger-3: #ff8585;
+  --color-danger-4: #ff5c5c;
+  --color-danger-5: #ff3333;
+  --color-danger-6: #cc2929;
+  --color-danger-7: #991f1f;
+  --color-danger-8: #661414;
+  --color-danger-9: #330a0a;
 
-  --color-danger-1: #FFF8F8;
-  --color-danger-2: #FFE5E5;
-  --color-danger-3: #FFCCCC;
-  --color-danger-4: #FF4D4D;
-  --color-danger-5: #FF3333;
-  --color-danger-6: #DF2D2D;
+  --color-warning-0: #fffcf7;
+  --color-warning-1: #fbf4e6;
+  --color-warning-2: #eed399;
+  --color-warning-3: #e5bd66;
+  --color-warning-4: #dda733;
+  --color-warning-5: #d49100;
+  --color-warning-6: #aa7400;
+  --color-warning-7: #7f5700;
+  --color-warning-8: #553a00;
+  --color-warning-9: #2a1d00;
 
-  --color-black-1: #606060;
-  --color-black-2: #404040;
-  --color-black-3: #202020;
-  --color-black-4: #000000;
+  --color-neutral-0: #fcfcfc;
+  --color-neutral-1: #f5f6f7;
+  --color-neutral-2: #d9dbde;
+  --color-neutral-3: #c5cace;
+  --color-neutral-4: #b2b8bd;
+  --color-neutral-5: #9fa6ad;
+  --color-neutral-6: #7f858a;
+  --color-neutral-7: #5f6468;
+  --color-neutral-8: #404245;
+  --color-neutral-9: #202123;
 
-  --color-white: #fff;
+  --color-surface: var(--color-white);
 
-  --color-primary: var(--color-primary-5);
-  --color-on-primary: #FFF;
-  --color-primary-container: var(--color-primary-2);
-
-  --color-neutral: var(--color-neutral-4);
-  --color-on-neutral: #fff;
-  --color-neutral-container: var(--color-neutral-2);
-
-  --color-success: var(--color-success-5);
-  --color-on-success: #fff;
-  --color-success-container: var(--color-success-2);
-
-  --color-warning: var(--color-warning-5);
-  --color-on-warning: #fff;
-  --color-warning-container: var(--color-warning-2);
-
-  --color-error: var(--color-danger-5);
-  --color-on-error: #fff;
-  --color-error-container: var(--color-danger-2);
-
-  --color-surface: #fff;
-  --color-on-surface: var(--color-black-4);
-  --color-on-surface-variant: #5f6368;
-
-  --color-container: var(--color-neutral-1);
-  --color-on-container: var(--color-black-3);
-
-  --color-hover: var(--color-neutral-2);
-  --color-on-hover: var(--color-black-3);
+  --color-black: #000000;
+  --color-white: #ffffff;
 
   --color-scrim: rgba(50, 56, 62, .25);
 
@@ -79,16 +67,7 @@
   --color-outline: var(--color-neutral-3);
   --color-hairline: var(--color-neutral-3);
 
-  --color-selection: var(--color-primary-5);
-  --color-on-selection: #fff;
-  --color-selection-container: var(--color-primary-2);
-
-  --color-link: var(--color-primary-5);
-
-  --color-disabled: var(--color-neutral-3);
-  --color-on-disabled: var(--color-neutral-6);
-
-  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
   --space-ss: 0.1875rem;
   --space-xs: 0.3125rem;
@@ -107,7 +86,7 @@
 
   --radius: 3px;
 
-  --line: 1px solid var(--color-outline);
+  --line: 1px solid var(--color-neutral-2);
 }
 
 * {
@@ -123,6 +102,7 @@
 
 html,
 body {
+  color-scheme: light;
   min-width: 100vw;
   height: 100%;
   overflow: auto;
@@ -154,9 +134,7 @@ a {
 
 /* @media (prefers-color-scheme: dark) {
   :root {
-    --color-surface: var(--color-black-3);
-    --color-on-surface: var(--color-white);
-    --color-on-surface-variant: #5f6368;
+    --color-surface: var(--color-black);
   }
 
   html {

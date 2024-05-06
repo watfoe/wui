@@ -39,7 +39,7 @@
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
-	} = getContext('wui-tab-ctx') || {};
+	} = getContext('wui-list-ctx') || {};
 
 	height = height || ((size || ctx.size) as WuiDimension);
 </script>

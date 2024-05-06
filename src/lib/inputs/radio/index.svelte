@@ -1,13 +1,6 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type {
-		WuiColor,
-		WuiDimension,
-		WuiShape,
-		WuiSize,
-		WuiSpacing,
-		WuiVariant
-	} from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
 
 	export interface RadioAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		checkbox?: HTMLInputElement;
@@ -19,6 +12,12 @@
 		shape?: WuiShape;
 		variant?: WuiVariant;
 	}
+
+	const SIZES = {
+		sm: 18,
+		md: 22,
+		lg: 26
+	};
 </script>
 
 <script lang="ts">
@@ -50,9 +49,6 @@
 		variant: WuiVariant;
 	} = getContext('wui-radio-group-ctx') || {};
 
-	const height = `var(--WuiRadio-size-${size || ctx.size || 'md'})` as WuiDimension;
-	const width = `var(--WuiRadio-size-${size || ctx.size || 'md'})` as WuiDimension;
-
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
@@ -75,8 +71,8 @@
 		p={2}
 		shape={shape || ctx.shape || 'circle'}
 		variant={variant || ctx.variant || 'outlined'}
-		{height}
-		{width}
+		height={SIZES[size || ctx.size || 'md']}
+		width={SIZES[size || ctx.size || 'md']}
 	/>
 
 	{#if typeof label === 'string'}

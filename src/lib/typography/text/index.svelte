@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { HTMLAnchorAttributes, HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiTextSize, WuiTextWeight } from '$lib/types';
+	import type { WuiColor, WuiSurface, WuiTextSize, WuiTextWeight } from '$lib/types';
 
 	export interface TextLabelAttributes extends Omit<HTMLLabelAttributes, 'color'> {
 		variant: 'label';
@@ -16,13 +16,15 @@
 		variant?: 'a';
 	}
 
-	export interface BaseTextAttributes {
+	export interface BaseTextAttributes extends Omit<WuiSurface, 'color' | 'variant'> {
 		bold?: boolean;
 		color?: WuiColor | 'inherit';
 		italic?: boolean;
 		size?: WuiTextSize;
 		underline?: boolean;
 		weight?: WuiTextWeight;
+		surfacevariant?: WuiSurface['variant'];
+		surfacecolor?: WuiSurface['color'];
 	}
 
 	export type TextAttributes = BaseTextAttributes &

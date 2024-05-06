@@ -18,6 +18,7 @@
 			| 'left-end'
 			| 'right-start'
 			| 'right-end';
+		closeon?: 'blur' | 'click' | 'click-blur' | 'click-out' | 'none';
 	}
 </script>
 
@@ -29,6 +30,7 @@
 	let {
 		class: _class = '',
 		color = 'neutral',
+		colorweight,
 		direction = 'column',
 		id,
 		onopen,
@@ -165,6 +167,7 @@
 		class="WuiPopup {_class}"
 		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
 		{color}
+		colorweight={!colorweight && variant === 'outlined' && color === 'neutral' ? '2' : colorweight}
 		{direction}
 		{role}
 		{p}

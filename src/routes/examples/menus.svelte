@@ -17,7 +17,7 @@
 		<MenuItem prefix="home">Home</MenuItem>
 		<MenuItem prefix="apps" selected>Dashboard</MenuItem>
 		<MenuItem prefix="settings">Settings</MenuItem>
-		<Divider />
+		<Divider colorweight="2" />
 		<MenuItem prefix="logout" color="danger">Logout</MenuItem>
 	</Menu>
 {/snippet}

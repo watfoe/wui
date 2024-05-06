@@ -31,6 +31,7 @@
 	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import type { Snippet } from 'svelte';
 	import { Text } from '$lib/typography';
+	import { slide } from 'svelte/transition';
 
 	let {
 		align = 'flex-start',

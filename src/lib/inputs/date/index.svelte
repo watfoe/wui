@@ -22,6 +22,7 @@
 
 	let {
 		color,
+		disabled,
 		error = $bindable(),
 		id,
 		format = 'yyyy-mm-dd',
@@ -119,11 +120,12 @@
 		preset="month"
 		{id}
 		{required}
-		validateon={validateon === 'input' ? 'change' : validateon}
 		{variant}
 		{color}
 		{size}
 		{shape}
+		{disabled}
+		validateon={validateon === 'input' ? 'change' : validateon}
 		onchange={change}
 		onblur={blur}
 		selected={month}
@@ -145,6 +147,7 @@
 		{size}
 		{shape}
 		{validateon}
+		{disabled}
 		onchange={change}
 		onblur={blur}
 		bind:value={day}
@@ -164,6 +167,7 @@
 		{size}
 		{shape}
 		{validateon}
+		{disabled}
 		onchange={change}
 		onblur={blur}
 		bind:value={year}

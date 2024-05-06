@@ -33,15 +33,15 @@
 		if (shape === 'circle' || shape === 'pill') {
 			shape = 'rounded';
 		}
-	});
 
-	setContext('wui-tab-ctx', {
-		color: itemcolor,
-		direction,
-		marker,
-		shape: itemshape,
-		size: itemsize,
-		variant: itemvariant
+		setContext('wui-list-ctx', {
+			color: itemcolor,
+			direction,
+			marker,
+			shape: itemshape,
+			size: itemsize,
+			variant: itemvariant
+		});
 	});
 </script>
 

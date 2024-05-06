@@ -1,12 +1,9 @@
 .WuiCheckbox {
-  --WuiCheckbox-size-sm: 18px;
-  --WuiCheckbox-size-md: 22px;
-  --WuiCheckbox-size-lg: 26px;
   align-items: center;
   cursor: pointer;
-  position: relative;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .WuiCheckbox__thumb {
@@ -14,7 +11,7 @@
 }
 
 .WuiCheckbox:hover input:not(:checked)+.WuiCheckbox__thumb {
-  box-shadow: inset 0 0 0 0.7px var(--WuiColor-bg);
+  box-shadow: inset 0 0 0 0.5px var(--WuiColor-bg);
 }
 
 .WuiCheckbox .WuiCheckbox__thumb * {

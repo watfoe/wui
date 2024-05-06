@@ -10,7 +10,7 @@
 	import Menus from './menus.svelte';
 </script>
 
-<Tabs for="tab-panels-0" selected={7}>
+<Tabs for="tab-panels-0" selected={4}>
 	<Tab prefix="buttons_alt">Buttons</Tab>
 	<Tab prefix="check_box_outline_blank">Inputs</Tab>
 	<Tab prefix="menu">Menus</Tab>

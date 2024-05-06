@@ -129,7 +129,7 @@
 
 <Surface
 	align="center"
-	class="WuiInput {_class}"
+	class="WuiInput {_class} {disabled ? 'WuiInput--disabled' : ''}"
 	color={error ? 'danger' : color}
 	direction="row"
 	gap="xs"
@@ -166,7 +166,6 @@
 			e.stopPropagation();
 			onclick?.(e);
 		}}
-		style:font="inherit"
 		style:text-align={align}
 		bind:this={input_el}
 		bind:value

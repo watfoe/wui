@@ -53,7 +53,6 @@
 	element="fieldset"
 	direction="column"
 	class="WuiInput__root WuiInput--{color} {rest.class || ''}"
-	{disabled}
 	{gap}
 	{justify}
 	{m}
@@ -73,12 +72,13 @@
 	{/if}
 
 	{#if type === 'date'}
-		<DateInput {...rest} {id} {color} {variant} bind:error bind:value />
+		<DateInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'email'}
-		<EmailInput {...rest} {id} {color} {variant} bind:error bind:value />
+		<EmailInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'name'}
 		<BaseInput
 			{...rest}
+			{disabled}
 			{id}
 			{color}
 			{variant}
@@ -88,13 +88,13 @@
 			bind:value
 		/>
 	{:else if type === 'password'}
-		<PasswordInput secure {...rest} {id} {color} {variant} bind:error bind:value />
+		<PasswordInput secure {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'phone'}
-		<PhoneInput {...rest} {id} {color} {variant} bind:error bind:value />
+		<PhoneInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'search'}
-		<SearchInput {...rest} {id} {color} {variant} bind:error bind:value />
+		<SearchInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{:else}
-		<BaseInput {...rest} {id} {color} {variant} bind:error bind:value />
+		<BaseInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{/if}
 
 	{#if error}

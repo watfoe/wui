@@ -2,8 +2,6 @@
   font-size: var(--WuiText-font-size, 1rem);
   font-weight: 400;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .WuiText--label {
@@ -15,32 +13,28 @@
   text-decoration: underline;
 }
 
-.WuiAnchor--link {
-  color: var(--color-link);
-}
-
 .WuiText--primary {
-  color: var(--color-primary);
+  color: var(--color-primary-5);
 }
 
 .WuiText--neutral {
-  color: var(--color-black-3);
+  color: var(--color-neutral-8);
 }
 
 .WuiText--success {
-  color: var(--color-success);
+  color: var(--color-success-5);
 }
 
 .WuiText--warning {
-  color: var(--color-warning);
+  color: var(--color-warning-5);
 }
 
 .WuiText--danger {
-  color: var(--color-error);
+  color: var(--color-danger-5);
 }
 
 .WuiText--black {
-  color: var(--color-black-4, #000);
+  color: var(--color-black, #000);
 }
 
 .WuiText--white {
@@ -124,10 +118,6 @@
 
 .WuiText--italic {
   font-style: italic;
-}
-
-.WuiText--rtl {
-  direction: rtl;
 }
 
 .WuiText--underline {

@@ -47,10 +47,10 @@
 	</Row>
 
 	<Row justify="flex-end" gap="md">
-		<Button color="neutral" fontsize="md" prefix="language" size="sm" variant="plain">EN</Button>
-		<Button color="neutral" fontsize="md" prefix="apps" size="sm" variant="plain">Apps</Button>
+		<Button color="black" fontsize="md" prefix="language" size="sm" variant="plain">EN</Button>
+		<Button color="black" fontsize="md" prefix="apps" size="sm" variant="plain">Apps</Button>
 
-		<LinkLikeButton href={urls?.signin} color="neutral" fontsize="md" size="sm" variant="plain">
+		<LinkLikeButton href={urls?.signin} color="black" fontsize="md" size="sm" variant="plain">
 			Sign in
 		</LinkLikeButton>
 		<LinkLikeButton href={urls?.signup} color="primary" fontsize="md" size="sm" variant="solid">

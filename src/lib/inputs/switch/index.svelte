@@ -12,6 +12,12 @@
 		shape?: WuiShape;
 		variant?: WuiVariant;
 	}
+
+	const SIZES = {
+		sm: 18,
+		md: 22,
+		lg: 26
+	};
 </script>
 
 <script lang="ts">
@@ -29,8 +35,7 @@
 		...rest
 	}: SwitchAttributes = $props();
 
-	const height = `var(--WuiSwitch-size-${size})` as WuiDimension;
-	const width = `calc(var(--WuiSwitch-size-${size}) * 2 - 6px)` as WuiDimension;
+	const width = `calc(${SIZES[size] + 'px'} * 2 - 6px)` as WuiDimension;
 	const id = Math.random().toString(36);
 
 	if (shape === 'circle') {
@@ -39,25 +44,17 @@
 </script>
 
 <LikeButton
-	color={checked ? color : 'neutral'}
+	color={checked ? (color === 'neutral' ? 'primary' : color) : 'neutral'}
 	class="WuiSwitch"
 	element="label"
 	for={id}
-	{height}
-	style="display:inline-block;position:relative"
-	{width}
+	height={SIZES[size]}
 	p={2}
+	style="display:inline-block;position:relative"
+	variant={checked && variant === 'outlined' ? 'mixed' : variant}
 	{shape}
-	{variant}
+	{width}
 >
 	<input {...rest} type="checkbox" {id} class="WuiHidden" bind:this={_this} bind:checked />
-	<span
-		class="WuiSwitch__thumb"
-		style:height="calc(var(--WuiSwitch-size-{size}) - 6px)"
-		style:width="calc(var(--WuiSwitch-size-{size}) - 6px)"
-		style:transform="translateX({checked ? '100%' : '0'})"
-		style:transition="transform 0.1s ease-in-out"
-		style:display="block"
-		style:border-radius="inherit"
-	></span>
+	<span class="WuiSwitch__thumb" style:transform="translateX({checked ? '100%' : '0'})"></span>
 </LikeButton>

@@ -33,6 +33,7 @@
 
 	let {
 		color = 'neutral',
+		colorweight,
 		class: _class = '',
 		children,
 		description,
@@ -198,10 +199,10 @@
 	<input type="hidden" bind:this={input_el} bind:value {...rest} />
 
 	<Button
-		anchorfor={id}
+		anchorfor={disabled ? undefined : id}
 		aria-expanded="false"
 		class="WuiSelect__combobox"
-		color={error ? 'danger' : opened && color === 'neutral' ? 'primary' : color}
+		color={error ? 'danger' : color}
 		fontsize={fontsize || size}
 		justify="space-between"
 		navigation="feedback"
@@ -238,7 +239,15 @@
 </Surface>
 
 {#if !disabled}
-	<Popup {id} {color} {shape} {variant} onopen={popup_opened} onclose={popup_closed}>
+	<Popup
+		{id}
+		{color}
+		{shape}
+		colorweight={!colorweight && variant === 'plain' ? '0' : colorweight}
+		variant={variant === 'plain' ? 'soft' : variant}
+		onopen={popup_opened}
+		onclose={popup_closed}
+	>
 		<Listbox
 			role="listbox"
 			aria-label="List of {preset} options"

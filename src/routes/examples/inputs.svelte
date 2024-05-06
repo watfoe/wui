@@ -146,7 +146,7 @@
 		<Checkbox label="Danger checkbox" name="checkbox" color="danger" />
 	</Row>
 
-	<Row align="flex-start" gap="md" width="100%">
+	<Row gap="md" width="100%">
 		<Switch size="sm" color="primary" />
 		<Switch size="md" color="neutral" />
 		<Switch size="lg" color="success" />

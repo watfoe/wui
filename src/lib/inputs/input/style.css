@@ -4,30 +4,30 @@
 }
 
 .WuiInput--primary {
-  --WuiLabel-color: var(--color-primary);
+  --WuiLabel-color: var(--color-primary-5);
 }
 
 .WuiInput--neutral {
-  --WuiLabel-color: var(--color-black-3);
+  --WuiLabel-color: var(--color-neutral-7);
 }
 
 .WuiInput--neutral:focus-within {
-  --WuiLabel-color: var(--color-primary);
+  --WuiLabel-color: var(--color-primary-5);
 }
 
 .WuiInput--success {
-  --WuiLabel-color: var(--color-success);
+  --WuiLabel-color: var(--color-success-5);
 }
 
 .WuiInput--warning {
-  --WuiLabel-color: var(--color-warning);
+  --WuiLabel-color: var(--color-warning-5);
 }
 
 .WuiInput--danger,
 .WuiInput__root:invalid {
-  --WuiLabel-color: var(--color-error);
+  --WuiLabel-color: var(--color-danger-5);
 }
 
 .WuiInput:disabled {
-  --WuiLabel-color: var(--color-disabled);
+  --WuiLabel-color: var(--color-neutral-4);
 }
