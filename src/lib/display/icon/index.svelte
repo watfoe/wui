@@ -32,8 +32,8 @@
 	role="img"
 	class="material-symbols-rounded WuiIcon WuiText--{color} {_class}"
 	style:font-variation-settings="'fill' {fill ? 1 : 0}, 'wght' {weight}, 'grad' {grade}, 'opsz' 48;"
-	style:max-width="var(--WuiIcon-size-{size})"
-	style:font-size="var(--WuiIcon-size-{size})"
+	style:max-width="var(--WuiIcon-size-{size});"
+	style:font-size="var(--WuiIcon-size-{size});"
 	{...rest}
 >
 	{@render children()}

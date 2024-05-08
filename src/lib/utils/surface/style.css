@@ -1,7 +1,3 @@
-.WuiSurface {
-  color: var(--WuiColor-on-bg);
-}
-
 .WuiSurface[data-has-height="true"] {
   height: var(--WuiDimen-height);
 }
@@ -61,7 +57,9 @@
 .WuiClickable.WuiVariant-outlined:not(:disabled):hover,
 .WuiClickable.WuiVariant-outlined:not(:disabled):focus-visible,
 .WuiClickable.WuiVariant-plain:not(:disabled):hover,
-.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible {
+.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible,
+.WuiClickable.WuiVariant-none:not(:disabled):hover,
+.WuiClickable.WuiVariant-none:not(:disabled):focus-visible {
   background-color: var(--WuiColor-bg-soft);
 }
 
@@ -79,4 +77,98 @@
 
 .WuiShape-square {
   border-radius: 0 !important;
+}
+
+.WuiText {
+  color: var(--WuiColor-on-bg);
+  font-size: var(--WuiText-font-size, 1rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.WuiText--label {
+  line-height: 1.2;
+}
+
+.WuiText--a:hover {
+  text-decoration: underline;
+}
+
+.WuiText--inherit {
+  color: inherit;
+}
+
+.WuiText--title.WuiText--sm {
+  --WuiText-font-size: 1.5rem;
+}
+
+.WuiText--title.WuiText--md {
+  --WuiText-font-size: 1.75rem;
+}
+
+.WuiText--title.WuiText--lg {
+  --WuiText-font-size: 2rem;
+}
+
+.WuiText--heading.WuiText--sm {
+  --WuiText-font-size: 1rem;
+}
+
+.WuiText--heading.WuiText--md {
+  --WuiText-font-size: 1.125rem;
+}
+
+.WuiText--heading.WuiText--lg {
+  --WuiText-font-size: 1.25rem;
+}
+
+.WuiText--body.WuiText--xs,
+.WuiText--code.WuiText--xs,
+.WuiText--label.WuiText--xs,
+.WuiText--a.WuiText--xs {
+  --WuiText-font-size: 0.75rem;
+}
+
+.WuiText--body.WuiText--sm,
+.WuiText--code.WuiText--sm,
+.WuiText--label.WuiText--sm,
+.WuiText--a.WuiText--sm {
+  --WuiText-font-size: 0.8125rem;
+}
+
+.WuiText--body.WuiText--md,
+.WuiText--code.WuiText--md,
+.WuiText--label.WuiText--md,
+.WuiText--a.WuiText--md {
+  --WuiText-font-size: 0.875rem;
+}
+
+.WuiText--body.WuiText--lg,
+.WuiText--code.WuiText--lg,
+.WuiText--label.WuiText--lg,
+.WuiText--a.WuiText--lg {
+  --WuiText-font-size: 1rem;
+}
+
+.WuiText--body.WuiText--xl,
+.WuiText--code.WuiText--xl,
+.WuiText--label.WuiText--xl,
+.WuiText--a.WuiText--xl {
+  --WuiText-font-size: 1.125rem;
+}
+
+.WuiText--code {
+  font-family: var(--WuiText-code-font-family, 'Fira Code', monospace);
+}
+
+.WuiText--bold {
+  font-weight: 500;
+}
+
+.WuiText--italic {
+  font-style: italic;
+}
+
+.WuiText--underline {
+  text-decoration: underline;
 }

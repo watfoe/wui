@@ -18,13 +18,13 @@
 
 	export interface BaseTextAttributes extends Omit<WuiSurface, 'color' | 'variant'> {
 		bold?: boolean;
-		color?: WuiColor | 'inherit';
+		color?: WuiColor;
 		italic?: boolean;
 		size?: WuiTextSize;
 		underline?: boolean;
 		weight?: WuiTextWeight;
-		surfacevariant?: WuiSurface['variant'];
-		surfacecolor?: WuiSurface['color'];
+		bgvariant?: WuiSurface['variant'];
+		bgcolor?: WuiSurface['color'];
 	}
 
 	export type TextAttributes = BaseTextAttributes &
@@ -32,18 +32,17 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
+	import { Surface } from '$lib/utils';
 
 	let {
 		bold,
 		color = 'black',
-		children,
-		class: _class = '',
 		italic = false,
 		size = 'md',
 		underline = false,
 		variant = 'body',
 		weight,
+		style,
 		...rest
 	}: TextAttributes = $props();
 
@@ -79,17 +78,16 @@
 	}
 </script>
 
-<svelte:element
-	this={element}
-	class="WuiText WuiText--{variant} WuiText--{size} WuiText--{color}{bold ||
-	variant === 'heading' ||
-	variant === 'title'
-		? ' WuiText--bold'
-		: ''} {italic ? ' WuiText--italic' : ''}{underline ? ' WuiText--underline' : ''} {_class}"
-	style:font-weight={weight}
+<Surface
+	{element}
+	textsize={size}
+	textweight={weight}
+	textbold={bold || variant === 'heading' || variant === 'title'}
+	textcolor={color}
+	textitalic={italic}
+	textunderline={underline}
+	textvariant={variant}
+	style="font-weight={weight};{style}"
+	variant="plain"
 	{...rest}
->
-	{#if children}
-		{@render children()}
-	{/if}
-</svelte:element>
+/>
