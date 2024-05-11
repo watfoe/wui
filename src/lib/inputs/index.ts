@@ -1,5 +1,7 @@
 export {default as Checkbox, type CheckboxAttributes} from './checkbox/index.svelte';
 export {default as CheckboxGroup, type CheckboxGroupAttributes} from './checkbox/group.svelte';
+export {default as BaseInput, type BaseInputAttributes} from './base/index.svelte';
+export {default as InputError} from './error/index.svelte';
 export {default as Input, type InputAttributes} from './input/index.svelte';
 export {default as Select, type SelectAttributes} from './select/index.svelte';
 export {default as Option, type OptionAttributes} from './select/option.svelte';

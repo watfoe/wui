@@ -31,7 +31,6 @@
 	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import type { Snippet } from 'svelte';
 	import { Text } from '$lib/typography';
-	import { slide } from 'svelte/transition';
 
 	let {
 		align = 'flex-start',
@@ -46,6 +45,7 @@
 		shape = 'rounded',
 		showclose = true,
 		size = 'md',
+		textsize,
 		title,
 		variant = 'outlined',
 		...rest
@@ -71,8 +71,8 @@
 <Surface
 	aria-label="Snackbar"
 	class="WuiSnackbar WuiSnackbar--{position} {openned ? 'WuiSnackbar--visible' : ''} {_class}"
-	fontsize={size}
 	role="alertdialog"
+	textsize={textsize || size}
 	onclick={click}
 	{align}
 	{color}

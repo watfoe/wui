@@ -18,7 +18,6 @@
 		color,
 		disabled,
 		error = $bindable(),
-		fontsize,
 		height,
 		masks,
 		p = 2,
@@ -35,6 +34,14 @@
 		shape = 'rounded',
 		suffix,
 		style = '',
+		textcolor,
+		textcolorweight,
+		textsize,
+		textweight,
+		textbold,
+		textitalic,
+		textunderline,
+		textvariant,
 		validateon = 'submit',
 		value = $bindable(),
 		variant = 'outlined',
@@ -134,13 +141,18 @@
 	direction="row"
 	gap="xs"
 	justify="space-between"
-	fontsize={fontsize || size}
 	disabled={true}
 	pr={typeof suffix === 'function' ? undefined : pr || px}
 	pl={typeof prefix === 'function' ? undefined : pl || px}
 	style="cursor:text;{style}"
-	width="100%"
-	onclick={disabled ? undefined : () => input_el.focus()}
+	{textcolor}
+	{textcolorweight}
+	{textsize}
+	{textweight}
+	{textbold}
+	{textitalic}
+	{textunderline}
+	{textvariant}
 	{height}
 	{p}
 	{py}
@@ -148,6 +160,8 @@
 	{pb}
 	{shape}
 	{variant}
+	width="100%"
+	onclick={disabled ? undefined : () => input_el.focus()}
 >
 	{#if typeof prefix === 'string'}
 		<Icon color="inherit" {size}>{prefix}</Icon>

@@ -32,7 +32,6 @@
 		height = 89,
 		hidden,
 		label,
-		fontsize,
 		masks,
 		m,
 		mx,
@@ -55,6 +54,14 @@
 		shape = 'rounded',
 		suffix,
 		style = '',
+		textcolor,
+		textcolorweight,
+		textsize,
+		textweight,
+		textbold,
+		textitalic,
+		textunderline,
+		textvariant,
 		textarea = $bindable(),
 		validateon = 'submit',
 		value = $bindable(),
@@ -178,8 +185,8 @@
 		direction="row"
 		gap="xs"
 		justify="space-between"
+		textsize={textsize || size}
 		width="100%"
-		fontsize={fontsize || size}
 		{height}
 		{p}
 		{px}
@@ -190,6 +197,13 @@
 		{pl}
 		{shape}
 		{style}
+		{textcolor}
+		{textcolorweight}
+		{textweight}
+		{textbold}
+		{textitalic}
+		{textunderline}
+		{textvariant}
 		{variant}
 	>
 		{#if typeof prefix === 'string'}

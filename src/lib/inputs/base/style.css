@@ -50,8 +50,9 @@
 }
 
 .WuiInput__input {
-  background-color: transparent !important;
+  background-color: unset !important;
   color: inherit;
+  font: inherit;
   height: 100%;
   outline: none;
   width: 100%;

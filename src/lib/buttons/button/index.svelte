@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	import type { LikeButtonAttributes } from '$lib/utils';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	type LB = LikeButtonAttributes<HTMLButtonAttributes>;
 
@@ -16,7 +17,6 @@
 	import './style.css';
 	import { LikeButton } from '$lib';
 	import { untrack } from 'svelte';
-	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	let {
 		anchorfor,

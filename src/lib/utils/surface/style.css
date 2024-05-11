@@ -1,9 +1,9 @@
-.WuiSurface[data-has-height="true"] {
-  height: var(--WuiDimen-height);
+[data-has-height="true"] {
+  height: var(--WuiSize-height);
 }
 
-.WuiSurface[data-has-width="true"] {
-  width: var(--WuiDimen-width, auto);
+[data-has-width="true"] {
+  width: var(--WuiSize-width, auto);
 }
 
 .WuiVariant-solid {
@@ -80,7 +80,7 @@
 }
 
 .WuiText {
-  color: var(--WuiColor-on-bg);
+  color: var(--WuiColor-text);
   font-size: var(--WuiText-font-size, 1rem);
   font-weight: 400;
   line-height: 1.5;
@@ -96,6 +96,22 @@
 
 .WuiText--inherit {
   color: inherit;
+}
+
+.WuiText--align-left {
+  text-align: left;
+}
+
+.WuiText--align-center {
+  text-align: center;
+}
+
+.WuiText--align-right {
+  text-align: right;
+}
+
+.WuiText--align-justify {
+  text-align: justify;
 }
 
 .WuiText--title.WuiText--sm {

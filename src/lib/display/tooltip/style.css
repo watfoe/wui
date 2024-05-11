@@ -1,59 +1,59 @@
-	.WuiTooltip {
-	  position: relative !important;
-	  display: inline-flex !important;
-	  justify-content: center !important;
-	  align-items: center !important;
-	  width: auto !important;
-	  z-index: 9995;
-	}
+.WuiTooltip {
+	position: relative !important;
+	display: inline-flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	width: auto !important;
+	z-index: 9995;
+}
 
-	.WuiTooltip .WuiTooltip__content {
-	  position: absolute;
-	  white-space: nowrap;
-	  display: none;
-	}
+.WuiTooltip .WuiTooltip__content {
+	position: absolute;
+	white-space: nowrap;
+	opacity: 0;
+}
 
-	.WuiTooltip:hover .WuiTooltip__content {
-	  display: block;
-	}
+.WuiTooltip:hover .WuiTooltip__content {
+	opacity: 1;
+}
 
-	.WuiTooltip-left .WuiTooltip__content {
-	  left: calc(100% + var(--space-xs));
-	  top: auto;
-	  bottom: auto;
-	}
+.WuiTooltip-left .WuiTooltip__content {
+	left: calc(100% + var(--space-xs));
+	top: auto;
+	bottom: auto;
+}
 
-	.WuiTooltip-right .WuiTooltip__content {
-	  right: calc(100% + var(--space-xs));
-	  top: auto;
-	  bottom: auto;
-	}
+.WuiTooltip-right .WuiTooltip__content {
+	right: calc(100% + var(--space-xs));
+	top: auto;
+	bottom: auto;
+}
 
-	.WuiTooltip-top .WuiTooltip__content {
-	  bottom: calc(100% + var(--space-xs));
-	  margin: 0 auto;
-	}
+.WuiTooltip-top .WuiTooltip__content {
+	bottom: calc(100% + var(--space-xs));
+	margin: 0 auto;
+}
 
-	.WuiTooltip-bottom .WuiTooltip__content {
-	  top: calc(100% + var(--space-xs));
-	}
+.WuiTooltip-bottom .WuiTooltip__content {
+	top: calc(100% + var(--space-xs));
+}
 
-	.WuiTooltip-top-start .WuiTooltip__content {
-	  bottom: calc(100% + var(--space-xs));
-	  left: 0;
-	}
+.WuiTooltip-top-start .WuiTooltip__content {
+	bottom: calc(100% + var(--space-xs));
+	left: 0;
+}
 
-	.WuiTooltip-top-end .WuiTooltip__content {
-	  bottom: calc(100% + var(--space-xs));
-	  right: 0;
-	}
+.WuiTooltip-top-end .WuiTooltip__content {
+	bottom: calc(100% + var(--space-xs));
+	right: 0;
+}
 
-	.WuiTooltip-bottom-start .WuiTooltip__content {
-	  top: calc(100% + var(--space-xs));
-	  left: 0;
-	}
+.WuiTooltip-bottom-start .WuiTooltip__content {
+	top: calc(100% + var(--space-xs));
+	left: 0;
+}
 
-	.WuiTooltip-bottom-end .WuiTooltip__content {
-	  top: calc(100% + var(--space-xs));
-	  right: 0;
-	}
+.WuiTooltip-bottom-end .WuiTooltip__content {
+	top: calc(100% + var(--space-xs));
+	right: 0;
+}

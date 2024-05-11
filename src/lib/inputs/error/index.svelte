@@ -11,6 +11,6 @@
 	}
 </script>
 
-<Text color="danger" size="xs" style="margin-left:var(--space-sm);line-height:1.2" variant="label">
+<Text color="danger" size="xs" ml="ss" style="line-height:1.2" variant="body">
 	{error_to_string(error)}
 </Text>

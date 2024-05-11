@@ -28,7 +28,7 @@
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;
-	} = getContext('wui-tab-ctx') || {};
+	} = getContext('wui-menu-ctx') || {};
 
 	const altColor = (color || ctx.color) === 'primary' ? 'neutral' : color || ctx.color || 'neutral';
 

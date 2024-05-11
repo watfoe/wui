@@ -13,8 +13,7 @@
   width: auto;
 }
 
-.WuiAvatarGroup .WuiAvatar+.WuiAvatar {
-  /* White box shadow */
+.WuiAvatarGroup>*+* {
   box-shadow: 0 0 0 1px var(--color-surface) !important;
 }
 

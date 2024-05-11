@@ -36,9 +36,13 @@ export interface WuiFlexKeys {
   wrap?: 'wrap' | 'nowrap';
 }
 
+export type WuiTextAlign = 'left' | 'center' | 'right' | 'justify' | 'inherit';
+
 export type WuiTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type WuiTextWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+
+export type WuiTextVariant = 'a' | 'heading' | 'title' | 'body' | 'code' | 'label';
 
 export type WuiSpacing = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none' | 'auto' | 'inherit' | number;
 
@@ -73,6 +77,7 @@ export interface WuiSurface extends WuiMargin, WuiPadding {
 }
 
 export interface WuiSurfaceTextAttributes {
+  textalign?: WuiTextAlign;
   textcolor?: WuiColor;
   textcolorweight?: WuiColorWeight;
   textsize?: WuiTextSize;
@@ -80,7 +85,7 @@ export interface WuiSurfaceTextAttributes {
   textbold?: boolean;
   textitalic?: boolean;
   textunderline?: boolean;
-  textvariant?: 'a' | 'heading' | 'title' | 'body' | 'code' | 'label';
+  textvariant?: WuiTextVariant;
 }
 
 export type WuiListMarker = 'disc' | 'circle' | 'square' | 'decimal' | 'decimal-leading-zero' | 'lower-roman' | 'upper-roman' | 'lower-greek' | 'lower-latin' | 'upper-latin' | 'armenian' | 'georgian' | 'lower-alpha' | 'upper-alpha' | 'none';

@@ -1,48 +1,79 @@
 <script context="module" lang="ts">
 	import type { HTMLAnchorAttributes, HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiSurface, WuiTextSize, WuiTextWeight } from '$lib/types';
 
-	export interface TextLabelAttributes extends Omit<HTMLLabelAttributes, 'color'> {
+	type TextSurfaceAttributes<A> = Omit<
+		SurfaceAttributes<A>,
+		| 'element'
+		| 'textalign'
+		| 'textbold'
+		| 'textcolor'
+		| 'textitalic'
+		| 'textsize'
+		| 'textunderline'
+		| 'textweight'
+		| 'textvariant'
+		| 'align'
+		| 'variant'
+	>;
+
+	export type TextAnchorAttributes = TextSurfaceAttributes<HTMLAnchorAttributes> & {
+		variant: 'a';
+	};
+	export type TextLabelAttributes = TextSurfaceAttributes<HTMLLabelAttributes> & {
 		variant: 'label';
-	}
-	export interface TextHeadingAttributes extends HTMLAttributes<HTMLHeadingElement> {
+	};
+	export type TextHeadingAttributes = TextSurfaceAttributes<HTMLAttributes<HTMLHeadingElement>> & {
 		variant: 'heading' | 'title';
-	}
-	export interface TextBodyAttributes extends HTMLAttributes<HTMLSpanElement> {
-		variant?: 'body' | 'code';
-	}
+	};
+	export type TextBodyAttributes = TextSurfaceAttributes<HTMLAttributes<HTMLSpanElement>> & {
+		variant?: 'body';
+	};
 
-	export interface TextAnchorAttributes extends Omit<HTMLAnchorAttributes, 'color'> {
-		variant?: 'a';
-	}
+	type BaseTextAttributes =
+		| TextLabelAttributes
+		| TextHeadingAttributes
+		| TextBodyAttributes
+		| TextAnchorAttributes;
 
-	export interface BaseTextAttributes extends Omit<WuiSurface, 'color' | 'variant'> {
+	export type TextAttributes = BaseTextAttributes & {
+		align?: WuiTextAlign;
 		bold?: boolean;
-		color?: WuiColor;
 		italic?: boolean;
 		size?: WuiTextSize;
 		underline?: boolean;
 		weight?: WuiTextWeight;
-		bgvariant?: WuiSurface['variant'];
-		bgcolor?: WuiSurface['color'];
-	}
-
-	export type TextAttributes = BaseTextAttributes &
-		(TextLabelAttributes | TextHeadingAttributes | TextBodyAttributes | TextAnchorAttributes);
+		surfacealign?: WuiFlexAlign;
+		surfacevariant?: WuiVariant;
+		surfacecolor?: WuiColor;
+		surfacecolorweight?: WuiColorWeight;
+	};
 </script>
 
 <script lang="ts">
-	import { Surface } from '$lib/utils';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import type {
+		WuiColor,
+		WuiColorWeight,
+		WuiFlexAlign,
+		WuiTextAlign,
+		WuiTextSize,
+		WuiTextWeight,
+		WuiVariant
+	} from '$lib/types';
 
 	let {
+		align,
 		bold,
-		color = 'black',
+		color = 'inherit',
 		italic = false,
 		size = 'md',
 		underline = false,
 		variant = 'body',
 		weight,
-		style,
+		surfacealign,
+		surfacecolor,
+		surfacecolorweight,
+		surfacevariant = 'none',
 		...rest
 	}: TextAttributes = $props();
 
@@ -80,14 +111,17 @@
 
 <Surface
 	{element}
+	textalign={align}
 	textsize={size}
-	textweight={weight}
 	textbold={bold || variant === 'heading' || variant === 'title'}
 	textcolor={color}
 	textitalic={italic}
 	textunderline={underline}
 	textvariant={variant}
-	style="font-weight={weight};{style}"
-	variant="plain"
+	textweight={weight}
+	align={surfacealign}
+	color={surfacecolor}
+	colorweight={surfacecolorweight}
+	variant={surfacevariant}
 	{...rest}
 />

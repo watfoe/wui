@@ -2,6 +2,8 @@
 	import type { HTMLDialogAttributes } from 'svelte/elements';
 
 	export interface BaseBackdropAttributes {
+		backdrop?: HTMLDialogElement;
+		closeon?: 'blur' | 'click' | 'none';
 		transparent?: boolean;
 		opened?: boolean;
 		onopen?: (e: CustomEvent<HTMLDialogElement>) => void;
@@ -10,9 +12,7 @@
 		onclose?: HTMLDialogAttributes['onclose'];
 	}
 
-	export interface BackdropAttributes extends BaseBackdropAttributes, HTMLDialogAttributes {
-		backdrop?: HTMLDialogElement;
-	}
+	export interface BackdropAttributes extends BaseBackdropAttributes, HTMLDialogAttributes {}
 </script>
 
 <script lang="ts">
@@ -22,6 +22,7 @@
 	let {
 		backdrop = $bindable(),
 		children,
+		closeon = 'click',
 		opened = $bindable(false),
 		transparent = false,
 		onopen,
@@ -33,6 +34,9 @@
 		untrack(() => {
 			// @ts-ignore
 			backdrop?.addEventListener('open', open);
+			backdrop?.addEventListener('close', (e) => {
+				onclose?.(e);
+			});
 
 			if (opened) {
 				backdrop?.showModal();
@@ -48,7 +52,7 @@
 		// action will be triggered. For example, the browser window is minimized.
 		if (e.key === 'Escape') {
 			e.preventDefault();
-			close(e);
+			close();
 		}
 	}
 
@@ -58,11 +62,10 @@
 		onopen?.(e);
 	}
 
-	function close(e: Event & { currentTarget: HTMLDialogElement }) {
+	function close() {
 		if (opened) {
 			backdrop?.close();
 			opened = false;
-			onclose?.(e);
 		}
 	}
 </script>
@@ -71,7 +74,8 @@
 	{...rest}
 	role="presentation"
 	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {rest.class || ''}"
-	onclick={close}
+	onclick={closeon === 'click' ? close : undefined}
+	onblur={closeon === 'blur' ? close : undefined}
 	onkeydown={keydown}
 	bind:this={backdrop}
 >

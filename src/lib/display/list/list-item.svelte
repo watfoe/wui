@@ -10,7 +10,7 @@
 	} from '$lib/types';
 	import type { HTMLLiAttributes } from 'svelte/elements';
 
-	export interface ListItemAttributes extends SurfaceAttributes<HTMLLiAttributes> {
+	export interface ListItemAttributes extends Omit<SurfaceAttributes<HTMLLiAttributes>, 'element'> {
 		color?: WuiColor;
 		size?: WuiSize;
 		marker?: WuiListMarker;

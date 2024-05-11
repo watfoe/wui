@@ -29,19 +29,17 @@
 		...rest
 	}: ListAttributes = $props();
 
-	$effect.pre(() => {
-		if (shape === 'circle' || shape === 'pill') {
-			shape = 'rounded';
-		}
+	if (shape === 'circle' || shape === 'pill') {
+		shape = 'rounded';
+	}
 
-		setContext('wui-list-ctx', {
-			color: itemcolor,
-			direction,
-			marker,
-			shape: itemshape,
-			size: itemsize,
-			variant: itemvariant
-		});
+	setContext('wui-list-ctx', {
+		color: itemcolor,
+		direction,
+		marker,
+		shape: itemshape,
+		size: itemsize,
+		variant: itemvariant
 	});
 </script>
 

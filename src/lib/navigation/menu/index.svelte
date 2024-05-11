@@ -28,7 +28,7 @@
 	}: MenuAttributes = $props();
 
 	// To be use by MenuItem
-	setContext('wui-tab-ctx', {
+	setContext('wui-menu-ctx', {
 		color: itemcolor || color,
 		direction,
 		size: itemsize,
@@ -36,11 +36,9 @@
 		variant: itemvariant
 	});
 
-	$effect.pre(() => {
-		if (shape === 'circle') {
-			shape = 'rounded';
-		}
-	});
+	if (shape === 'circle') {
+		shape = 'rounded';
+	}
 </script>
 
 <Popup

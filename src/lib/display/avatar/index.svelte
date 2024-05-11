@@ -21,7 +21,6 @@
 		class: _class = '',
 		clickable,
 		children,
-		fontsize,
 		height,
 		m,
 		mx,
@@ -40,6 +39,12 @@
 		size,
 		src,
 		shape,
+		textcolor,
+		textcolorweight,
+		textsize = size,
+		textweight,
+		textbold,
+		textvariant = 'heading',
 		variant,
 		width,
 		style,
@@ -59,31 +64,20 @@
 	if (shape === 'pill') {
 		shape = 'circle';
 	}
-
-	// TODO: Rethink this logic
-	let isColorPreset = [
-		'primary',
-		'neutral',
-		'success',
-		'warning',
-		'danger',
-		'black',
-		'white'
-	].includes(color || ctx.color || '');
 </script>
 
 <Surface
-	element="div"
-	role="img"
 	aria-label={alt || 'Avatar'}
 	align="center"
-	justify="center"
-	variant={variant || ctx.variant || 'solid'}
-	shape={shape || ctx.shape || 'circle'}
 	color={color || ctx.color || 'primary'}
 	class="WuiAvatar {_class}"
+	element="div"
+	justify="center"
+	role="img"
+	shape={shape || ctx.shape || 'circle'}
+	variant={variant || ctx.variant || 'solid'}
 	{clickable}
-	{fontsize}
+	{height}
 	{m}
 	{mx}
 	{my}
@@ -98,19 +92,22 @@
 	{pr}
 	{pb}
 	{pl}
-	{height}
+	{textcolor}
+	{textcolorweight}
+	{textsize}
+	{textweight}
+	{textbold}
+	{textvariant}
 	{width}
 	{style}
 >
 	{#if src}
 		<img {src} {alt} class="WuiAvatar__img" {...rest} />
 	{:else if alt}
-		<Text variant="heading" color="inherit" {size}>{alt[0].toUpperCase()}</Text>
+		{alt[0].toUpperCase()}
 	{:else if !children}
 		<Icon color="inherit">person</Icon>
 	{:else}
-		<Text variant="heading" color="inherit" {size}>
-			{@render children()}
-		</Text>
+		{@render children()}
 	{/if}
 </Surface>

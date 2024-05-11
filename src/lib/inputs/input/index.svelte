@@ -65,8 +65,6 @@
 	{hidden}
 	{width}
 >
-	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
-  doesn't leave an unintended empty description helper text -->
 	{#if label}
 		<Label for={id} {description}>{label}</Label>
 	{/if}

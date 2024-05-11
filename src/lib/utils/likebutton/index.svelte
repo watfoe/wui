@@ -1,9 +1,7 @@
 <script context="module" lang="ts">
-	import type { WuiDimension, WuiFlexJustify, WuiSize, WuiSurfaceHTMLAttributes } from '$lib/types';
+	import type { WuiDimension, WuiFlexJustify, WuiSize } from '$lib/types';
 
-	export type LikeButtonAttributes<A = WuiSurfaceHTMLAttributes> = SurfaceAttributes<
-		Omit<A, 'prefix'>
-	> & {
+	export type LikeButtonAttributes<A> = SurfaceAttributes<Omit<A, 'prefix'>> & {
 		bold?: boolean;
 		justify?: WuiFlexJustify;
 		navigation?: 'horizontal' | 'vertical' | 'mixed' | 'none';
@@ -26,7 +24,6 @@
 		color = 'primary',
 		direction = 'row',
 		element = 'button',
-		fontsize,
 		gap = 'sm',
 		height,
 		justify = 'center',
@@ -37,11 +34,13 @@
 		shape = 'rounded',
 		style = '',
 		size = 'md',
+		tabindex,
+		textsize,
 		variant = 'solid',
 		width,
 		onkeydown,
 		...rest
-	}: LikeButtonAttributes<WuiSurfaceHTMLAttributes> = $props();
+	}: LikeButtonAttributes<any> = $props();
 
 	height = height || (size as WuiDimension);
 	width = !width && !children ? (size as WuiDimension) : width;
@@ -93,9 +92,9 @@
 
 <Surface
 	class="WuiLikeButton {_class}"
-	fontsize={fontsize || size}
 	px={children ? px : undefined}
-	tabindex={0}
+	tabindex={tabindex || 0}
+	textsize={textsize || size}
 	onkeydown={keydown}
 	{height}
 	{width}

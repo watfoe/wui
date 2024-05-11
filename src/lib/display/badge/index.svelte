@@ -1,7 +1,8 @@
 <script context="module" lang="ts">
 	import { type WuiColor, type WuiShape, type WuiVariant } from '$lib/types';
 	import type { Snippet } from 'svelte';
-	export interface BadgeAttributes {
+	export interface BadgeAttributes
+		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
 		'aria-label'?: string;
 		children: Snippet;
 		content?: Snippet | string | number;
@@ -23,8 +24,8 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Text } from '$lib/typography';
-	import { Surface } from '$lib/utils';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import type { HTMLAttributes } from 'svelte/elements';
 	let {
 		content,
 		children,
@@ -32,6 +33,8 @@
 		color = 'primary',
 		max,
 		shape = 'pill',
+		style = '',
+		textsize = 'sm',
 		variant = 'solid',
 		...rest
 	}: BadgeAttributes = $props();
@@ -46,19 +49,20 @@
 		element="div"
 		px={!content ? undefined : typeof content === 'function' ? 1 : 'xs'}
 		py={!content ? undefined : 1}
+		style="line-height:1;{style}"
 		wrap="wrap"
 		{color}
 		{shape}
+		{textsize}
 		{variant}
+		{...rest}
 	>
 		{#if typeof content !== 'function'}
-			<Text variant="body" color="inherit" size="sm" style="line-height:1">
-				{typeof !isNaN(Number(content)) && max
-					? Number(content) > max
-						? `${max}+`
-						: content
-					: content}
-			</Text>
+			{typeof !isNaN(Number(content)) && max
+				? Number(content) > max
+					? `${max}+`
+					: content
+				: content}
 		{:else}
 			{@render content()}
 		{/if}

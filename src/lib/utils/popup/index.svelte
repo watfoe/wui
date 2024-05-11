@@ -3,7 +3,7 @@
 
 	export interface PopupAttributes
 		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'onclose'>,
-			BaseBackdropAttributes {
+			Omit<BaseBackdropAttributes, 'closeon'> {
 		id?: string;
 		position?:
 			| 'top'
@@ -18,7 +18,7 @@
 			| 'left-end'
 			| 'right-start'
 			| 'right-end';
-		closeon?: 'blur' | 'click' | 'click-blur' | 'click-out' | 'none';
+		closeon?: 'mouseout' | 'click-mouseout' | 'click-in' | 'click-in-out' | 'click-out' | 'none';
 	}
 </script>
 
@@ -28,7 +28,9 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
+		backdrop = $bindable(),
 		class: _class = '',
+		closeon = 'click-in-out',
 		color = 'neutral',
 		colorweight,
 		direction = 'column',
@@ -158,16 +160,48 @@
 
 		onopen?.(e);
 	}
+
+	function close_on_mouseout() {
+		backdrop?.close();
+		opened = false;
+	}
+
+	function close_on_click() {
+		backdrop?.close();
+		opened = false;
+	}
+
+	function dont_close(e: MouseEvent) {
+		e.stopPropagation();
+	}
 </script>
 
-<Backdrop {id} onopen={open} {onclose} transparent bind:opened>
+<Backdrop
+	{id}
+	closeon={closeon === 'click-mouseout' || closeon === 'click-in-out' || closeon === 'click-out'
+		? 'click'
+		: 'none'}
+	onopen={open}
+	{onclose}
+	transparent
+	bind:backdrop
+	bind:opened
+>
 	<Surface
 		element="div"
 		aria-label="Popup"
 		class="WuiPopup {_class}"
 		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
-		{color}
 		colorweight={!colorweight && variant === 'outlined' && color === 'neutral' ? '2' : colorweight}
+		onclick={closeon === 'mouseout' || closeon === 'click-out'
+			? dont_close
+			: closeon === 'click-in'
+				? close_on_click
+				: undefined}
+		onmouseout={closeon === 'mouseout' || closeon === 'click-mouseout'
+			? close_on_mouseout
+			: undefined}
+		{color}
 		{direction}
 		{role}
 		{p}

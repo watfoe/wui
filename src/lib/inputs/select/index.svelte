@@ -39,7 +39,6 @@
 		description,
 		disabled,
 		error = $bindable(),
-		fontsize,
 		gap,
 		hidden,
 		label,
@@ -66,6 +65,14 @@
 		shape,
 		size,
 		style,
+		textcolor,
+		textcolorweight,
+		textsize,
+		textweight,
+		textbold,
+		textitalic,
+		textunderline,
+		textvariant,
 		value = $bindable(),
 		validateon = 'submit',
 		variant = 'outlined',
@@ -203,9 +210,9 @@
 		aria-expanded="false"
 		class="WuiSelect__combobox"
 		color={error ? 'danger' : color}
-		fontsize={fontsize || size}
 		justify="space-between"
 		navigation="feedback"
+		textsize={textsize || size}
 		type="button"
 		width="100%"
 		{disabled}
@@ -218,6 +225,13 @@
 		{pl}
 		{size}
 		{shape}
+		{textcolor}
+		{textcolorweight}
+		{textweight}
+		{textbold}
+		{textitalic}
+		{textunderline}
+		{textvariant}
 		{variant}
 	>
 		{#if selections.length > 0}

@@ -1,17 +1,12 @@
 <!-- TODO: Should it be a popover instead of a tooltip? -->
 
 <script lang="ts" context="module">
-	import { Surface } from '$lib/utils';
-	import type { WuiColor, WuiShape, WuiSpacing, WuiVariant } from '$lib/types';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import type { Snippet } from 'svelte';
 
-	export interface TooltipAttributes {
-		children?: Snippet;
-		color?: WuiColor;
+	export interface TooltipAttributes
+		extends Omit<SurfaceAttributes<Omit<HTMLAttributes<HTMLSpanElement>, 'title'>>, 'element'> {
 		title: Snippet | string;
-		p?: WuiSpacing;
-		px?: WuiSpacing;
-		py?: WuiSpacing;
 		position?:
 			| 'top'
 			| 'bottom'
@@ -21,24 +16,25 @@
 			| 'top-end'
 			| 'bottom-start'
 			| 'bottom-end';
-		shape?: WuiShape;
-		variant?: WuiVariant;
 	}
 </script>
 
 <script lang="ts">
 	import './style.css';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
 		children,
-		color = 'black',
-		p,
+		color = 'neutral',
+		colorweight = '6',
 		px = 'sm',
 		py = 'xs',
 		position = 'bottom',
-		shape = 'rounded',
+		textsize = 'sm',
 		title,
-		variant = 'solid'
+		shape = 'rounded',
+		variant = 'solid',
+		...rest
 	}: TooltipAttributes = $props();
 </script>
 
@@ -49,13 +45,17 @@
 	<Surface
 		element="span"
 		role="tooltip"
-		{p}
+		tabindex={-1}
+		aria-hidden="true"
+		{color}
+		{colorweight}
 		{px}
 		{py}
-		{color}
 		{shape}
+		{textsize}
 		{variant}
-		class="WuiTooltip__content WuiText--sm"
+		class="WuiTooltip__content"
+		{...rest}
 	>
 		{#if typeof title === 'string'}
 			{title}

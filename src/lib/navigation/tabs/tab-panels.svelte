@@ -11,11 +11,9 @@
 <script lang="ts">
 	let { id, children, class: _class = '' }: TabPanelsAttributes = $props();
 
-	$effect.pre(() => {
-		if (!id) {
-			throw new Error('TabPanels must have an id attribute');
-		}
-	});
+	if (!id) {
+		throw new Error('TabPanels must have an id attribute');
+	}
 </script>
 
 <div {id} class="WuiTabPanels {_class || ''}" style:display="contents">
