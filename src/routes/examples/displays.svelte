@@ -3,6 +3,7 @@
 	import { Button } from '$lib/buttons';
 	import {
 		Badge,
+		Chip,
 		Divider,
 		Icon,
 		List,
@@ -85,6 +86,13 @@
 		<Logo size={200} />
 		<Logo size={100} />
 		<Logo size={60} />
+	</Row>
+
+	<Row gap="lg" width="100%">
+		<Chip>Chip</Chip>
+		<Chip color="black">Chip</Chip>
+		<Chip color="danger" variant="solid">Chip</Chip>
+		<Chip color="warning" variant="mixed">Chip</Chip>
 	</Row>
 
 	<Row gap="lg" width="100%">

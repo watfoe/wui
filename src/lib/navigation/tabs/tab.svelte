@@ -14,6 +14,7 @@
 		onkeydown,
 		...rest
 	}: ButtonAttributes = $props();
+
 	let active = $state(false);
 	let ctx: {
 		color?: WuiColor;

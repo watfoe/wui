@@ -7,7 +7,7 @@
 		type WuiSpacing,
 		type WuiVariant
 	} from '$lib/types';
-	import { untrack, setContext, type Snippet } from 'svelte';
+	import { setContext, untrack, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface TabsAttributes {
@@ -55,14 +55,10 @@
 			const tabButtons = tabs.querySelectorAll('.WuiTab');
 
 			if (!tabPanelsParent) {
-				throw new Error(`No tabpanels found for ${_for}`);
+				throw new Error(`No tabpanels found with the id: '${_for}'`);
 			}
 
 			const tabPanels = tabPanelsParent.children;
-
-			function dispatchEvent(elem: Element) {
-				elem.dispatchEvent(new Event('select'));
-			}
 
 			tabButtons.forEach((tabButton, index) => {
 				const tabId = `${_for}-tab-${index}`;
@@ -78,12 +74,17 @@
 				tabPanels[index]?.setAttribute('aria-labelledby', tabId);
 
 				if (index === activeIndex) {
-					dispatchEvent(tabButton);
+					// Since this $effect runs before the tabButtons are rendered/events are attached to them?
+					// We need to wait for the tabButtons to be rendered before we can dispatch the select event
+					// using setTimeout
+					setTimeout(() => {
+						dispatchEvent(tabButton);
 
-					if (tabPanels[index]) {
-						tabPanels[index].setAttribute('tabindex', '0');
-						dispatchEvent(tabPanels[index]);
-					}
+						if (tabPanels[index]) {
+							tabPanels[index].setAttribute('tabindex', '0');
+							dispatchEvent(tabPanels[index]);
+						}
+					}, 0);
 				}
 
 				tabButton.addEventListener('click', () => {
@@ -110,6 +111,10 @@
 			});
 		});
 	});
+
+	function dispatchEvent(elem: Element) {
+		elem.dispatchEvent(new Event('select'));
+	}
 </script>
 
 <div

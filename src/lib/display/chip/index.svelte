@@ -7,9 +7,16 @@
 </script>
 
 <script lang="ts">
-	import { LikeButton } from '$lib';
+	import { LikeButton } from '$lib/utils';
 
-	let { height, px = 'xs', size = 'md', variant = 'outlined', ...rest }: ChipAttributes = $props();
+	let {
+		height,
+		px = 'sm',
+		size = 'md',
+		shape = 'pill',
+		variant = 'outlined',
+		...rest
+	}: ChipAttributes = $props();
 
 	const SIZES = {
 		sm: 18,
@@ -18,4 +25,12 @@
 	};
 </script>
 
-<LikeButton element="div" height={height || SIZES[size]} {px} {variant} {...rest} />
+<LikeButton
+	element="div"
+	height={height || SIZES[size]}
+	style="line-height:1"
+	{px}
+	{shape}
+	{variant}
+	{...rest}
+/>

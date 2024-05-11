@@ -34,7 +34,7 @@
 .WuiInput--disabled {
   --WuiColor-bg: var(--color-neutral-2) !important;
   --WuiColor-bg-soft: var(--color-neutral-2) !important;
-  color: var(--color-neutral-6);
+  --WuiColor-text: var(--color-neutral-6) !important;
   cursor: default;
   pointer-events: none;
 }
