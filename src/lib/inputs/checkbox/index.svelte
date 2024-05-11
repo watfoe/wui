@@ -1,13 +1,6 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type {
-		WuiColor,
-		WuiDimension,
-		WuiShape,
-		WuiSize,
-		WuiSpacing,
-		WuiVariant
-	} from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
 	export interface CheckboxAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		checked?: boolean;
 		color?: WuiColor;
@@ -17,12 +10,6 @@
 		shape?: WuiShape;
 		variant?: WuiVariant;
 	}
-
-	const SIZES = {
-		sm: 18,
-		md: 22,
-		lg: 26
-	};
 </script>
 
 <script lang="ts">
@@ -53,6 +40,12 @@
 	} = getContext('wui-checkbox-group-ctx') || {};
 
 	const id = Math.random().toString(36).substring(2, 15);
+
+	const SIZES = {
+		sm: 18,
+		md: 22,
+		lg: 26
+	};
 </script>
 
 <Text
