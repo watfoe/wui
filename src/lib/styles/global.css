@@ -1,4 +1,10 @@
-@import 'material-symbols/rounded';
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: block;
+  src: url('./fonts/material-symbols-rounded.woff2') format('woff2');
+}
 
 :root {
   --color-primary-0: #F7FBFD;

@@ -10,11 +10,11 @@
 .WuiTooltip .WuiTooltip__content {
 	position: absolute;
 	white-space: nowrap;
-	opacity: 0;
+	display: none;
 }
 
 .WuiTooltip:hover .WuiTooltip__content {
-	opacity: 1;
+	display: block;
 }
 
 .WuiTooltip-left .WuiTooltip__content {

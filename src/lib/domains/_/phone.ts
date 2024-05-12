@@ -1,4 +1,4 @@
-import { type CountryCode, parsePhoneNumberWithError } from 'libphonenumber-js/max';
+import { type CountryCode, parsePhoneNumberWithError } from 'libphonenumber-js/mobile';
 import ParseError from './parse-error';
 
 export class ValidationError {

@@ -45,8 +45,6 @@
 	<Surface
 		element="span"
 		role="tooltip"
-		tabindex={-1}
-		aria-hidden="true"
 		{color}
 		{colorweight}
 		{px}
