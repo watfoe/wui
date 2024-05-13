@@ -38,8 +38,9 @@
 <span
 	role="img"
 	class="material-symbols-rounded WuiIcon {_class}"
-	style:font-variation-settings="'fill' {fill ? 1 : 0}, 'wght' {weight}, 'grad' {grade}, 'opsz' 48;"
-	style="--WuiIcon-size:{SIZES[size]};{style}"
+	style="font-variation-settings: 'fill' {fill
+		? 1
+		: 0}, 'wght' {weight}, 'grad' {grade}, 'opsz' 48;--WuiIcon-size:{SIZES[size]};{style}"
 	{...rest}
 >
 	{@render children()}
@@ -51,9 +52,9 @@
 		--WuiIcon-size-md: 1.25rem;
 		--WuiIcon-size-lg: 1.5rem;
 		font-family: 'Material Symbols Rounded';
-		font-weight: normal;
 		font-style: normal;
 		font-size: var(--WuiIcon-size, 1.25rem);
+		font-weight: normal;
 		font-feature-settings: 'liga';
 		display: inline-block;
 		direction: ltr;
