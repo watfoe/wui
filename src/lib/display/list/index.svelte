@@ -19,6 +19,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
+		color = 'neutral',
 		direction = 'column',
 		itemcolor,
 		itemshape,
@@ -34,13 +35,13 @@
 	}
 
 	setContext('wui-list-ctx', {
-		color: itemcolor,
+		color: itemcolor || color,
 		direction,
 		marker,
-		shape: itemshape,
+		shape: itemshape || shape,
 		size: itemsize,
 		variant: itemvariant
 	});
 </script>
 
-<Flex {...rest} align="flex-start" justify="flex-start" {shape} {direction} />
+<Flex align="flex-start" justify="flex-start" {color} {shape} {direction} {...rest} />

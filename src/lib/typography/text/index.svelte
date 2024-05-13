@@ -65,6 +65,7 @@
 		align,
 		bold,
 		color = 'inherit',
+		colorweight,
 		italic = false,
 		size = 'md',
 		underline = false,
@@ -115,6 +116,7 @@
 	textsize={size}
 	textbold={bold || variant === 'heading' || variant === 'title'}
 	textcolor={color}
+	textcolorweight={colorweight}
 	textitalic={italic}
 	textunderline={underline}
 	textvariant={variant}

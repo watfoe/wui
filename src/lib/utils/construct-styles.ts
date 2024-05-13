@@ -56,7 +56,7 @@ export function construct_color_style(
 		// bg soft is used for hover effect
 		return `
 			--WuiColor-text: ${compute_color_value(textcolor || color || 'black', textweight)};
-			${clickable ? `--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}
+			${clickable ? `--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});` : ''}
 		`;
 	} else if (variant === 'soft') {
 		color = color || 'primary';
@@ -103,7 +103,7 @@ export function construct_color_style(
 		return `
 			--WuiColor-bg: ${compute_color_value(color, !weight && color === 'neutral' ? '3' : weight || '5')};
 			--WuiColor-text: ${compute_color_value(textcolor || color, textweight)};
-			--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});
+			--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');
 		`;
 	}
 
