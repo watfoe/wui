@@ -84,13 +84,19 @@
   --space-xx: 3.4375rem;
 
   --height-ss: 1.75rem;
+  /* 28px */
   --height-sm: 2.125rem;
-  --height-md: 2.5rem;
+  /* 34px */
+  --height-md: 2.375rem;
+  /* 38px */
   --height-lg: 3rem;
+  /* 48px */
   --height-xl: 3.5rem;
+  /* 55px */
   --height-xx: 4rem;
+  /* 64px */
 
-  --radius: 3px;
+  --radius: 2px;
 
   --line: 1px solid var(--color-neutral-2);
 }

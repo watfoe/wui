@@ -1,6 +1,5 @@
 .WuiHeader {
   background-color: var(--color-surface);
-  border-bottom: var(--line);
   position: fixed;
   top: 0;
   z-index: 9999;
