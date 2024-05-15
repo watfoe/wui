@@ -1,33 +1,64 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
-	export interface CheckboxAttributes extends Omit<HTMLInputAttributes, 'size'> {
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	export interface CheckboxAttributes
+		extends Omit<SurfaceAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element' | 'textvariant'> {
 		checked?: boolean;
-		color?: WuiColor;
 		label: Snippet | string;
-		gap?: WuiSpacing;
 		size?: WuiSize;
-		shape?: WuiShape;
-		variant?: WuiVariant;
 	}
 </script>
 
 <script lang="ts">
 	import './style.css';
 	import { Icon } from '$lib/display';
-	import { Text } from '$lib/typography';
-	import { LikeButton } from '$lib/utils';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import { getContext, type Snippet } from 'svelte';
 
 	let {
+		// Checkbox attributes
 		checked = $bindable(false),
-		color,
 		label,
-		gap = 'sm',
 		name,
 		size,
+		// Surface attributes
+		align,
+		color,
+		colorweight,
+		class: _class = '',
+		direction,
+		gap,
+		height,
+		justify,
+		m,
+		mx,
+		my,
+		mt,
+		mr,
+		mb,
+		ml,
+		p,
+		px,
+		py,
+		pt,
+		pr,
+		pb,
+		pl,
+		self,
 		shape,
+		style = '',
+		textalign,
+		textcolor,
+		textcolorweight,
+		textsize,
+		textweight,
+		textbold,
+		textitalic,
+		textunderline,
 		variant,
+		width,
+		wrap,
+		// input attributes
 		...rest
 	}: CheckboxAttributes = $props();
 
@@ -48,15 +79,46 @@
 	};
 </script>
 
-<Text
+<Surface
 	role="checkbox"
+	element="label"
 	aria-checked={checked}
 	aria-label={typeof label === 'string' ? label : rest['aria-label']}
-	variant="label"
-	size={size || ctx.size || 'md'}
+	class="WuiCheckbox {_class}"
 	for={id}
-	class="WuiCheckbox"
-	style="gap:var(--space-{gap});"
+	gap={gap || size || ctx.size || 'md'}
+	textsize={textsize || size || ctx.size || 'md'}
+	variant="none"
+	{align}
+	{colorweight}
+	{direction}
+	{height}
+	{justify}
+	{m}
+	{mx}
+	{my}
+	{mt}
+	{mr}
+	{mb}
+	{ml}
+	{p}
+	{px}
+	{py}
+	{pt}
+	{pr}
+	{pb}
+	{pl}
+	{self}
+	{style}
+	{textalign}
+	{textcolor}
+	{textcolorweight}
+	{textweight}
+	{textbold}
+	{textitalic}
+	{textunderline}
+	{width}
+	{wrap}
 >
 	<input
 		{...rest}
@@ -68,7 +130,7 @@
 		{id}
 	/>
 
-	<LikeButton
+	<Surface
 		element="span"
 		class="WuiCheckbox__thumb"
 		color={checked ? color || ctx.color || 'primary' : 'neutral'}
@@ -77,14 +139,12 @@
 		height={SIZES[size || ctx.size || 'md']}
 		width={SIZES[size || ctx.size || 'md']}
 	>
-		{#snippet prefix()}
-			<Icon {size} weight="500">check</Icon>
-		{/snippet}
-	</LikeButton>
+		<Icon {size} weight="500">check</Icon>
+	</Surface>
 
 	{#if typeof label === 'string'}
 		{label}
 	{:else}
 		{@render label()}
 	{/if}
-</Text>
+</Surface>

@@ -1,16 +1,12 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiShape, WuiSize, WuiSpacing, WuiVariant } from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface RadioAttributes extends Omit<HTMLInputAttributes, 'size'> {
-		checkbox?: HTMLInputElement;
+	export interface RadioAttributes
+		extends Omit<SurfaceAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element' | 'textvariant'> {
 		checked?: boolean;
-		color?: WuiColor;
-		gap?: WuiSpacing;
 		label: Snippet | string;
 		size?: WuiSize;
-		shape?: WuiShape;
-		variant?: WuiVariant;
 	}
 
 	const SIZES = {
@@ -22,20 +18,53 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Text } from '$lib/typography';
-	import { LikeButton } from '$lib/utils';
+	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import { getContext, type Snippet } from 'svelte';
 
 	let {
-		checkbox = $bindable(),
-		checked = $bindable(),
-		color,
-		gap = 'sm',
+		// Radio attributes
+		checked = $bindable(false),
 		label,
 		name,
-		size = 'md',
+		size,
+		// Surface attributes
+		align,
+		color,
+		colorweight,
+		class: _class = '',
+		direction,
+		gap,
+		height,
+		justify,
+		m,
+		mx,
+		my,
+		mt,
+		mr,
+		mb,
+		ml,
+		p,
+		px,
+		py,
+		pt,
+		pr,
+		pb,
+		pl,
+		self,
 		shape,
+		style = '',
+		textalign,
+		textcolor,
+		textcolorweight,
+		textsize,
+		textweight,
+		textbold,
+		textitalic,
+		textunderline,
 		variant,
+		width,
+		wrap,
+		// input attributes
 		value = $bindable(),
 		onchange,
 		...rest
@@ -52,21 +81,60 @@
 	const id = Math.random().toString(36).substring(2, 15);
 </script>
 
-<Text variant="label" {size} for={id} class="WuiRadio WuiClickable" style="gap:var(--space-{gap});">
+<Surface
+	role="radio"
+	element="label"
+	aria-checked={checked}
+	aria-label={typeof label === 'string' ? label : rest['aria-label']}
+	class="WuiRadio {_class}"
+	for={id}
+	gap={gap || size || ctx.size || 'md'}
+	textsize={textsize || size || ctx.size || 'md'}
+	variant="none"
+	{align}
+	{colorweight}
+	{direction}
+	{height}
+	{justify}
+	{m}
+	{mx}
+	{my}
+	{mt}
+	{mr}
+	{mb}
+	{ml}
+	{p}
+	{px}
+	{py}
+	{pt}
+	{pr}
+	{pb}
+	{pl}
+	{self}
+	{style}
+	{textalign}
+	{textcolor}
+	{textcolorweight}
+	{textweight}
+	{textbold}
+	{textitalic}
+	{textunderline}
+	{width}
+	{wrap}
+>
 	<input
 		{...rest}
 		class="WuiHidden"
 		{checked}
 		name={name || ctx.name}
 		type="radio"
-		bind:this={checkbox}
 		bind:value
 		{id}
 	/>
 
-	<LikeButton
+	<Surface
 		element="span"
-		color={color || ctx.color || 'primary'}
+		color={color || ctx.color || 'neutral'}
 		class="WuiRadio__thumb"
 		p={2}
 		shape={shape || ctx.shape || 'circle'}
@@ -80,4 +148,4 @@
 	{:else}
 		{@render label()}
 	{/if}
-</Text>
+</Surface>

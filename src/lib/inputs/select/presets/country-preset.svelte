@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Country } from '$lib/domains';
+	import { COUNTRIES } from '$lib/domains';
 	import Option from '../option.svelte';
 
 	interface CountryPresetAttributes {
@@ -7,11 +7,11 @@
 	}
 
 	const { selected }: CountryPresetAttributes = $props();
-	const countries = Country.list();
 </script>
 
-{#each countries as country}
-	<Option value={country.code} selected={selected === country.code}>
-		{country.name}
+{#each COUNTRIES as country}
+	<Option value={country.c} selected={selected === country.c}>
+		<img src="https://flagcdn.com/w20/{country.c}.png" width="16" height="12" alt={country.n} />
+		{country.n}
 	</Option>
 {/each}

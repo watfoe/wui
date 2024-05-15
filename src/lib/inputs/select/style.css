@@ -1,3 +1,7 @@
+.WuiSelect:disabled .WuiInput__label {
+  color: var(--color-neutral-4);
+}
+
 .WuiSelect__combobox.WuiVariant-plain.WuiColor-primary {
   background-color: var(--color-primary-0);
 }

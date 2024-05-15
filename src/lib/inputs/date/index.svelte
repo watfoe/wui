@@ -13,7 +13,7 @@
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 	import Select from '../select/index.svelte';
 	import { ValidationError } from '../_common_';
-	import { onMount, untrack } from 'svelte';
+	import { untrack } from 'svelte';
 	import { splitDate, type DateFormat } from '$lib/utils';
 
 	let day = $state('');
@@ -50,20 +50,22 @@
 		});
 	});
 
-	onMount(() => {
-		if (required && !rules?.required) {
-			rules = rules || {};
-			rules.required = true;
-		}
+	$effect(() => {
+		untrack(() => {
+			if (required && !rules?.required) {
+				rules = rules || {};
+				rules.required = true;
+			}
 
-		if (rules && validateon === 'submit') {
-			// Get the form element that this input is in
-			const form = input_el?.closest('form');
-			form?.addEventListener('submit', (e: Event) => {
-				e.preventDefault();
-				validate();
-			});
-		}
+			if (rules && validateon === 'submit') {
+				// Get the form element that this input is in
+				const form = input_el?.closest('form');
+				form?.addEventListener('submit', (e: Event) => {
+					e.preventDefault();
+					validate();
+				});
+			}
+		});
 	});
 
 	const DATE_FORMART_TO_LOCALE = {

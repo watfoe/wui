@@ -120,7 +120,9 @@
 	{/if}
 
 	{#if typeof suffix === 'string'}
-		<Icon {size}>{suffix}</Icon>
+		<Icon {size} style={justify === 'space-between' && prefix ? 'margin-left:auto' : undefined}
+			>{suffix}</Icon
+		>
 	{:else if suffix}
 		{@render suffix()}
 	{/if}

@@ -2,10 +2,10 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	export interface SelectAttributes
-		extends Omit<LikeButtonAttributes<HTMLInputAttributes>, 'element'> {
+		extends Omit<LikeButtonAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element'> {
 		description?: Snippet | string;
 		disabled?: boolean;
-		error?: ValidationError;
+		error?: ValidationError | string;
 		label?: Snippet | string;
 		multiple?: boolean;
 		name?: string;
@@ -22,7 +22,6 @@
 	import './style.css';
 	import { Button } from '$lib/buttons';
 	import { Listbox, Label } from '$lib/inputs';
-	import { Col } from '$lib/layout';
 	import { Icon } from '$lib/display';
 	import { validate, type ValidationError } from '../_common_';
 	import CountryPreset from './presets/country-preset.svelte';
@@ -91,7 +90,9 @@
 
 	$effect(() => {
 		if (error || !error) {
-			input_el?.setCustomValidity(error === undefined ? '' : error?.message);
+			input_el?.setCustomValidity(
+				error === undefined ? '' : typeof error === 'string' ? error : error?.message
+			);
 		}
 
 		untrack(() => {
@@ -180,7 +181,7 @@
 <Surface
 	align="flex-start"
 	justify="flex-start"
-	class="WuiSelect WuiSelect--{color} {_class}"
+	class="WuiSelect {_class}"
 	direction="column"
 	element="fieldset"
 	{gap}
@@ -203,6 +204,7 @@
 		>
 	{/if}
 
+	<!-- The input controls the tabindex -->
 	<input type="hidden" bind:this={input_el} bind:value {...rest} />
 
 	<Button
@@ -212,6 +214,7 @@
 		color={error ? 'danger' : color}
 		justify="space-between"
 		navigation="feedback"
+		tabindex={-1}
 		textsize={textsize || size}
 		type="button"
 		width="100%"
@@ -247,7 +250,7 @@
 		{/if}
 
 		{#snippet suffix()}
-			<Icon class="WuiSelect__combobox__icon">keyboard_arrow_down</Icon>
+			<Icon class="WuiSelect__combobox__icon" style="margin-left:auto">keyboard_arrow_down</Icon>
 		{/snippet}
 	</Button>
 </Surface>
@@ -268,10 +271,11 @@
 			class="WuiSelect__listbox"
 			color="primary"
 			onchange={change}
-			bind:listbox
-			bind:value={listbox_value}
 			{multiple}
 			{size}
+			{shape}
+			bind:listbox
+			bind:value={listbox_value}
 		>
 			{#if preset === 'country'}
 				<CountryPreset {selected} />

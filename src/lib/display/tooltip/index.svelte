@@ -11,7 +11,11 @@
 			| 'top'
 			| 'bottom'
 			| 'left'
+			| 'left-start'
+			| 'left-end'
 			| 'right'
+			| 'right-start'
+			| 'right-end'
 			| 'top-start'
 			| 'top-end'
 			| 'bottom-start'
@@ -33,7 +37,7 @@
 		textsize = 'sm',
 		title,
 		shape = 'rounded',
-		variant = 'solid',
+		variant = 'outlined',
 		...rest
 	}: TooltipAttributes = $props();
 </script>

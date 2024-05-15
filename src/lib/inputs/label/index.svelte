@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
 	import { Text, type TextAttributes } from '$lib/typography';
 
+	// TODO: Fix this
 	export interface InputLabelAttributes extends Omit<TextAttributes, 'variant'> {
 		description?: Snippet | string;
 	}
@@ -24,10 +25,11 @@
 	{#if children}
 		<Text
 			{color}
+			colorweight={color === 'neutral' ? '7' : undefined}
+			class="WuiInput__label"
 			for={_for}
 			size="sm"
 			variant="label"
-			style={color ? style : `color:var(--WuiLabel-color);${style}`}
 			{...rest}
 		>
 			{@render children()}
@@ -35,7 +37,7 @@
 	{/if}
 
 	{#if typeof description === 'string'}
-		<Text color="neutral" for={_for} size="xs" variant="label">
+		<Text color="neutral" colorweight="6" for={_for} size="xs" variant="label">
 			{description}
 		</Text>
 	{:else if description}

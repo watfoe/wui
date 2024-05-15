@@ -13,6 +13,15 @@
 	display: none;
 }
 
+.WuiTooltip .WuiTooltip__content::after {
+	content: '';
+	border: 5px solid transparent;
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-style: solid;
+}
+
 .WuiTooltip:hover .WuiTooltip__content {
 	display: block;
 }
@@ -23,10 +32,22 @@
 	bottom: auto;
 }
 
+.WuiTooltip-left .WuiTooltip__content::after {
+	border-left-color: var(--WuiColor-bg);
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 .WuiTooltip-right .WuiTooltip__content {
 	right: calc(100% + var(--space-xs));
 	top: auto;
 	bottom: auto;
+}
+
+.WuiTooltip-right .WuiTooltip__content::after {
+	border-right-color: var(--WuiColor-bg);
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .WuiTooltip-top .WuiTooltip__content {
@@ -34,13 +55,32 @@
 	margin: 0 auto;
 }
 
+.WuiTooltip-top .WuiTooltip__content::after {
+	border-top-color: var(--WuiColor-bg);
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: -10px
+}
+
 .WuiTooltip-bottom .WuiTooltip__content {
 	top: calc(100% + var(--space-xs));
+}
+
+.WuiTooltip-bottom .WuiTooltip__content::after {
+	border-bottom-color: var(--WuiColor-bg);
+	left: 50%;
+	transform: translateX(-50%);
+	top: -10px;
 }
 
 .WuiTooltip-top-start .WuiTooltip__content {
 	bottom: calc(100% + var(--space-xs));
 	left: 0;
+}
+
+.WuiTooltip-top-end .WuiTooltip__content::after {
+	bottom: calc(100% + var(--space-xs));
+	right: 0;
 }
 
 .WuiTooltip-top-end .WuiTooltip__content {

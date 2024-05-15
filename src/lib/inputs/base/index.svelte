@@ -56,7 +56,9 @@
 	height = size as WuiDimension;
 
 	$effect(() => {
-		input_el?.setCustomValidity(error === undefined ? '' : error?.message);
+		input_el?.setCustomValidity(
+			error === undefined ? '' : typeof error === 'string' ? error : error?.message
+		);
 
 		untrack(() => {
 			if (required && !rules?.required) {

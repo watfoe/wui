@@ -53,6 +53,7 @@
 	element="fieldset"
 	direction="column"
 	class="WuiInput__root WuiInput--{color} {rest.class || ''}"
+	{disabled}
 	{gap}
 	{justify}
 	{m}
@@ -66,7 +67,7 @@
 	{width}
 >
 	{#if label}
-		<Label for={id} {description}>{label}</Label>
+		<Label for={id} {color} {description}>{label}</Label>
 	{/if}
 
 	{#if type === 'date'}

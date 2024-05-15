@@ -38,7 +38,7 @@ export interface InputRules {
 
 export type BaseProps<A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<SurfaceAttributes<Omit<A, 'size' | 'prefix'>>, 'element' | 'align' | 'justfiy' | 'direction' | 'wrap'> & {
   align?: 'left' | 'center' | 'right'; // Controls the alignment of the input value
-  error?: ValidationError;
+  error?: ValidationError | string;
   masks?: InputMasks;
   onvalidate?: (error?: ValidationError) => void;
   prefix?: Snippet | string;
