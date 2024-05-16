@@ -25,12 +25,12 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Col } from '$lib/layout';
-	import { Button } from '$lib/buttons';
-	import { Icon } from '$lib/display';
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import type { Snippet } from 'svelte';
-	import { Text } from '$lib/typography';
+	import Col from '$lib/layout/col/index.svelte';
+	import Button from '$lib/button/index.svelte';
+	import Icon from '$lib/display/icon/index.svelte';
+	import Text from '$lib/typography/text/index.svelte';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		align = 'flex-start',

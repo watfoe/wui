@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import type { BaseProps } from '../_common_';
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
 
 	export type TextAreaAttributes = Omit<BaseProps<HTMLTextareaAttributes>, 'id'> & {
@@ -15,11 +14,11 @@
 <script lang="ts">
 	import './style.css';
 	import ErrorText from '../error/index.svelte';
-	import { validate, mask, ValidationError } from '../_common_';
-	import { Icon } from '$lib/display';
+	import Icon from '$lib/display/icon/index.svelte';
+	import Label from '../label/index.svelte';
+	import Surface from '$lib/utils/surface/index.svelte';
+	import { validate, mask, ValidationError, type BaseProps } from '../_common_';
 	import { untrack, type Snippet } from 'svelte';
-	import { Surface } from '$lib/utils';
-	import { Label } from '..';
 
 	let {
 		align = 'left',
@@ -76,7 +75,9 @@
 	const id = Math.random().toString(36).substring(2, 15);
 
 	$effect(() => {
-		textarea?.setCustomValidity(error === undefined ? '' : error?.message);
+		textarea?.setCustomValidity(
+			error === undefined ? '' : typeof error === 'string' ? error : error?.message
+		);
 
 		untrack(() => {
 			if (required && !rules?.required) {

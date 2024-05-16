@@ -1,6 +1,5 @@
 <script>
-	import { Button } from '$lib/buttons';
-	import { Col, Row } from '$lib/layout';
+	import { Col, Row, Button } from '$lib';
 </script>
 
 <Col gap="md" width="100%">

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$lib/buttons';
+	import Button from '$lib/button/index.svelte';
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 
 	let {

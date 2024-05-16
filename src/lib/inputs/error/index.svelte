@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Text } from '$lib/typography';
+	import Text from '$lib/typography/text/index.svelte';
 	import type { ValidationError } from '../_common_';
 
 	let { error }: { error: ValidationError | string } = $props();

@@ -24,7 +24,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Flex } from '$lib/layout';
+	import Flex from '$lib/layout/flex/index.svelte';
 	import Label from '../label/index.svelte';
 	import { setContext } from 'svelte';
 

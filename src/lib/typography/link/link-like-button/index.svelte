@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import { LikeButton, type LikeButtonAttributes } from '$lib/utils';
+	import LikeButton, { type LikeButtonAttributes } from '$lib/utils/likebutton/index.svelte';
 
 	let { px = 'sm', ...rest }: LinkLikeButtonAttributes = $props();
 </script>

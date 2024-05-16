@@ -20,15 +20,18 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Button } from '$lib/buttons';
-	import { Listbox, Label } from '$lib/inputs';
-	import { Icon } from '$lib/display';
-	import { validate, type ValidationError } from '../_common_';
+	import Button from '$lib/button/index.svelte';
+	import Label from '../label/index.svelte';
+	import Listbox from '../listbox/index.svelte';
+	import Icon from '$lib/display/icon/index.svelte';
 	import CountryPreset from './presets/country-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
+	import Popup from '$lib/utils/popup/index.svelte';
+	import Surface from '$lib/utils/surface/index.svelte';
+	import { validate, type ValidationError } from '../_common_';
+	import { type LikeButtonAttributes } from '$lib/utils/likebutton/index.svelte';
 	import { untrack, type Snippet } from 'svelte';
-	import { Popup, Surface, type LikeButtonAttributes } from '$lib/utils';
 
 	let {
 		color = 'neutral',

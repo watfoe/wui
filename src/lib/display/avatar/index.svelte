@@ -10,10 +10,9 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Text } from '$lib/typography';
-	import { Icon } from '..';
 	import { getContext } from 'svelte';
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import Icon from '../icon/index.svelte';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		alt,

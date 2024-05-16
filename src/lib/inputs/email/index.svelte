@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
-	import { Email } from '$lib/domains';
+	import Email from '$lib/domains/_/email';
 
 	interface EmailInputAttributes extends BaseInputAttributes {}
 

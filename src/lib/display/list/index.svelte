@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
-	import type { SurfaceAttributes } from '$lib/utils';
-	import { Flex } from '$lib/layout';
+	import { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 	import type { WuiColor, WuiListMarker, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface ListAttributes
@@ -17,6 +16,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
+	import Flex from '$lib/layout/flex/index.svelte';
 
 	let {
 		color = 'neutral',

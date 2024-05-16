@@ -1,6 +1,5 @@
 <script>
-	import { Snackbar } from '$lib';
-	import { Button } from '$lib/buttons';
+	import { Snackbar, Button } from '$lib';
 	import {
 		Badge,
 		Chip,

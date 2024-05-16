@@ -13,7 +13,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Icon } from '$lib/display';
+	import Icon from '$lib/display/icon/index.svelte';
 	import Surface, { type SurfaceAttributes } from '../surface/index.svelte';
 	import type { Snippet } from 'svelte';
 

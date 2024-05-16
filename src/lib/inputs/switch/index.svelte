@@ -22,7 +22,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import { LikeButton } from '$lib/utils';
+	import LikeButton from '$lib/utils/likebutton/index.svelte';
 
 	let {
 		_this = $bindable(),

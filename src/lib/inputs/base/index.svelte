@@ -1,16 +1,15 @@
 <script context="module" lang="ts">
-	import type { BaseProps } from '../_common_';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	export interface BaseInputAttributes extends BaseProps<HTMLInputAttributes> {}
 </script>
 
 <script lang="ts">
 	import './style.css';
-	import { validate, mask, ValidationError } from '../_common_';
-	import { Icon } from '$lib/display';
+	import type { WuiDimension } from '$lib/types';
+	import { validate, mask, ValidationError, type BaseProps } from '../_common_';
+	import Icon from '$lib/display/icon/index.svelte';
+	import Surface from '$lib/utils/surface/index.svelte';
 	import { untrack } from 'svelte';
-	import { Surface } from '$lib/utils';
-	import type { WuiDimension } from '$lib';
 
 	let {
 		align = 'left',

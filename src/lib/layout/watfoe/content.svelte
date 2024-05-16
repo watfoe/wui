@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Col, type ColAttributes } from '..';
+	import Col, { type ColAttributes } from '../col/index.svelte';
 	const { class: _class = '', ...rest }: ColAttributes = $props();
 </script>
 

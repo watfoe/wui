@@ -14,12 +14,14 @@
 
 <script lang="ts">
 	import './style.css';
-
-	import { Col, Row } from '$lib/layout';
-	import { Button } from '$lib/buttons';
-	import { Text } from '$lib/typography';
-	import { Divider, Icon } from '$lib/display';
-	import { Backdrop, Surface, type SurfaceAttributes } from '$lib/utils';
+	import Col from '$lib/layout/col/index.svelte';
+	import Backdrop from '$lib/utils/backdrop/index.svelte';
+	import Button from '$lib/button/index.svelte';
+	import Divider from '$lib/display/divider/index.svelte';
+	import Icon from '$lib/display/icon/index.svelte';
+	import Text from '$lib/typography/text/index.svelte';
+	import Row from '$lib/layout/row/index.svelte';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		children,

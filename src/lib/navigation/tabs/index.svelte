@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import type { LikeButtonAttributes } from '$lib/utils';
+	import { type LikeButtonAttributes } from '$lib/utils/likebutton/index.svelte';
 	import {
 		type WuiColor,
 		type WuiShape,

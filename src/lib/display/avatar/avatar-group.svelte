@@ -13,7 +13,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Row } from '$lib/layout';
+	import Row from '$lib/layout/row/index.svelte';
 	import { setContext, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 

@@ -1,6 +1,4 @@
 <script context="module" lang="ts">
-	import { Text, type TextAttributes } from '$lib/typography';
-
 	// TODO: Fix this
 	export interface InputLabelAttributes extends Omit<TextAttributes, 'variant'> {
 		description?: Snippet | string;
@@ -8,7 +6,8 @@
 </script>
 
 <script lang="ts">
-	import { Col } from '$lib/layout';
+	import Col from '$lib/layout/col/index.svelte';
+	import Text, { type TextAttributes } from '$lib/typography/text/index.svelte';
 	import type { Snippet } from 'svelte';
 
 	let {

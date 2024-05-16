@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface MenuAttributes extends Omit<PopupAttributes, 'role' | 'aria-label'> {
 		itemsize?: WuiSize;
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Popup, type PopupAttributes } from '$lib/utils';
+	import Popup, { type PopupAttributes } from '$lib/utils/popup/index.svelte';
 	import { setContext } from 'svelte';
 
 	let {

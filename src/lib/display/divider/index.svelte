@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		color = 'neutral',

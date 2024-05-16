@@ -1,7 +1,7 @@
-import type { WuiSize } from "$lib/types";
-import type { SurfaceAttributes } from "$lib/utils";
-import type { Snippet } from "svelte";
-import type { HTMLInputAttributes, HTMLTextareaAttributes } from "svelte/elements";
+import type { WuiSize } from '$lib/types';
+import type { SurfaceAttributes } from '$lib/utils/surface/index.svelte';
+import type { Snippet } from 'svelte';
+import type { HTMLInputAttributes, HTMLTextareaAttributes } from 'svelte/elements';
 
 export interface InputMasks {
   cast?: 'string' | 'number';

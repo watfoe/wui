@@ -1,7 +1,6 @@
 <!-- TODO: Should it be a popover instead of a tooltip? -->
 
 <script lang="ts" context="module">
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
 	import type { Snippet } from 'svelte';
 
 	export interface TooltipAttributes
@@ -26,6 +25,7 @@
 <script lang="ts">
 	import './style.css';
 	import type { HTMLAttributes } from 'svelte/elements';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		children,

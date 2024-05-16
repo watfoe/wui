@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import type { LikeButtonAttributes } from '$lib/utils';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface ChipAttributes
@@ -7,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import { LikeButton } from '$lib/utils';
+	import LikeButton, { type LikeButtonAttributes } from '$lib/utils/likebutton/index.svelte';
 
 	let {
 		height,

@@ -24,7 +24,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	let {
 		content,

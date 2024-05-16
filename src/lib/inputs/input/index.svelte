@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import type { BaseInputAttributes } from '../base/index.svelte';
 	export type InputAttributes = Omit<BaseInputAttributes, 'id'> & {
 		label?: Snippet | string;
 		name?: string;
@@ -13,14 +12,14 @@
 	import './style.css';
 	import Label from '../label/index.svelte';
 	import ErrorText from '../error/index.svelte';
-	import BaseInput from '../base/index.svelte';
+	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
 	import DateInput from '../date/index.svelte';
 	import EmailInput from '../email/index.svelte';
 	import PasswordInput from '../password/index.svelte';
 	import PhoneInput from '../phone/index.svelte';
 	import SearchInput from '../search/index.svelte';
+	import Surface from '$lib/utils/surface/index.svelte';
 	import type { Snippet } from 'svelte';
-	import { Surface } from '$lib/utils';
 
 	let {
 		color = 'neutral',

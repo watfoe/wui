@@ -1,9 +1,10 @@
 <script lang="ts">
 	import './style.css';
-	import { Button } from '$lib/buttons';
-	import { Logo } from '$lib/display';
-	import { Row } from '$lib/layout';
-	import { LinkLikeButton, Text } from '$lib/typography';
+	import Button from '$lib/button/index.svelte';
+	import Logo from '$lib/display/logo/index.svelte';
+	import Row from '$lib/layout/row/index.svelte';
+	import LinkLikeButton from '$lib/typography/link/link-like-button/index.svelte';
+	import Text from '$lib/typography/text/index.svelte';
 	import type { FlexAttributes } from '../flex/index.svelte';
 	import type { Snippet } from 'svelte';
 

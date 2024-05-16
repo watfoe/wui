@@ -1,5 +1,14 @@
 <script context="module" lang="ts">
 	import type { HTMLAnchorAttributes, HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
+	import type {
+		WuiColor,
+		WuiColorWeight,
+		WuiFlexAlign,
+		WuiTextAlign,
+		WuiTextSize,
+		WuiTextWeight,
+		WuiVariant
+	} from '$lib/types';
 
 	type TextSurfaceAttributes<A> = Omit<
 		SurfaceAttributes<A>,
@@ -50,16 +59,7 @@
 </script>
 
 <script lang="ts">
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
-	import type {
-		WuiColor,
-		WuiColorWeight,
-		WuiFlexAlign,
-		WuiTextAlign,
-		WuiTextSize,
-		WuiTextWeight,
-		WuiVariant
-	} from '$lib/types';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		align,

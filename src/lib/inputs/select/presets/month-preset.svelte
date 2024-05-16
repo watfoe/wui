@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Month } from '$lib/domains';
+	import { Month } from '$lib/domains/_/date';
 	import Option from '../option.svelte';
 
 	interface MonthPresetAttributes {

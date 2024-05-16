@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
-	import { type LikeButtonAttributes } from '$lib/utils';
 	import type { HTMLLiAttributes } from 'svelte/elements';
+	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface ListButtonItemAttributes
 		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {
@@ -9,9 +9,8 @@
 </script>
 
 <script lang="ts">
-	import { LikeButton } from '$lib/utils';
+	import LikeButton, { type LikeButtonAttributes } from '$lib/utils/likebutton/index.svelte';
 	import { getContext } from 'svelte';
-	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	let {
 		color,

@@ -11,8 +11,8 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Icon } from '$lib/display';
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import Icon from '$lib/display/icon/index.svelte';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 	import { getContext, type Snippet } from 'svelte';
 
 	let {

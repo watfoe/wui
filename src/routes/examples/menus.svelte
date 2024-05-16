@@ -1,7 +1,5 @@
 <script>
-	import { Button } from '$lib/buttons';
-	import { Divider } from '$lib/display';
-	import { Col, Row } from '$lib/layout';
+	import { Button, Divider, Col, Row } from '$lib';
 	import { Menu } from '$lib/navigation';
 	import MenuItem from '$lib/navigation/menu/menu-item.svelte';
 

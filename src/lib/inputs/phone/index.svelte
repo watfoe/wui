@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BaseInput, { type BaseInputAttributes } from '../base/index.svelte';
-	import { Phone } from '$lib/domains';
+	import Phone from '$lib/domains/_/phone';
 
 	interface PhoneInputAttributes extends BaseInputAttributes {}
 

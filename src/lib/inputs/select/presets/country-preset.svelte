@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { COUNTRIES } from '$lib/domains';
+	import { COUNTRIES } from '$lib/domains/_/country';
 	import Option from '../option.svelte';
 
 	interface CountryPresetAttributes {

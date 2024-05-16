@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	import type { HTMLLiAttributes } from 'svelte/elements';
 	import type {
 		WuiColor,
 		WuiDimension,
@@ -8,7 +9,6 @@
 		WuiSize,
 		WuiVariant
 	} from '$lib/types';
-	import type { HTMLLiAttributes } from 'svelte/elements';
 
 	export interface ListItemAttributes extends Omit<SurfaceAttributes<HTMLLiAttributes>, 'element'> {
 		color?: WuiColor;
@@ -19,7 +19,7 @@
 
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import Surface, { type SurfaceAttributes } from '$lib/utils/surface/index.svelte';
 
 	let {
 		color,

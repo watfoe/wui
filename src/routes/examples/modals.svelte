@@ -1,5 +1,5 @@
 <script>
-	import { Button } from '$lib/buttons';
+	import { Button } from '$lib';
 	import { Modal } from '$lib/feedback';
 	import { Col, Row } from '$lib/layout';
 

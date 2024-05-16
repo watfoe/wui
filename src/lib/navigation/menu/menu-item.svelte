@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import { Button, type ButtonAttributes } from '$lib/buttons';
+	import Button, { type ButtonAttributes } from '$lib/button/index.svelte';
 	import { getContext } from 'svelte';
 
 	let {

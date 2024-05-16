@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Menu } from '$lib';
-	import { Button } from '$lib/buttons';
+	import { Menu, Button } from '$lib';
 	import { Checkbox, Input, Radio, RadioGroup, Select, Switch, TextArea } from '$lib/inputs';
 	import { Col, Row } from '$lib/layout';
 	import MenuItem from '$lib/navigation/menu/menu-item.svelte';

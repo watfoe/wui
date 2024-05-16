@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-	import { LikeButton, type LikeButtonAttributes } from '$lib/utils';
+	import LikeButton, { type LikeButtonAttributes } from '$lib/utils/likebutton/index.svelte';
 	import type { HTMLLabelAttributes } from 'svelte/elements';
 
 	let {
