@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Jimmie Lovell<jimmieomlovell@gmail.com>",
-	"version": "0.0.53",
+	"version": "0.0.54",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -24,6 +24,186 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./button": {
+			"types": "./dist/button/index.d.ts",
+			"svelte": "./dist/button/index.svelte"
+		},
+		"./avatar": {
+			"types": "./dist/display/avatar/index.d.ts",
+			"svelte": "./dist/display/avatar/index.svelte"
+		},
+		"./avatar-group": {
+			"types": "./dist/display/avatar/avatar-group.d.ts",
+			"svelte": "./dist/display/avatar/avatar-group.svelte"
+		},
+		"./badge": {
+			"types": "./dist/display/badge/index.d.ts",
+			"svelte": "./dist/display/badge/index.svelte"
+		},
+		"./chip": {
+			"types": "./dist/display/chip/index.d.ts",
+			"svelte": "./dist/display/chip/index.svelte"
+		},
+		"./divider": {
+			"types": "./dist/display/divider/index.d.ts",
+			"svelte": "./dist/display/divider/index.svelte"
+		},
+		"./icon": {
+			"types": "./dist/display/icon/index.d.ts",
+			"svelte": "./dist/display/icon/index.svelte"
+		},
+		"./list": {
+			"types": "./dist/display/list/index.d.ts",
+			"svelte": "./dist/display/list/index.svelte"
+		},
+		"./list-item": {
+			"types": "./dist/display/list/list-item.d.ts",
+			"svelte": "./dist/display/list/list-item.svelte"
+		},
+		"./list-button-item": {
+			"types": "./dist/display/list/list-button-item.d.ts",
+			"svelte": "./dist/display/list/list-button-item.svelte"
+		},
+		"./logo": {
+			"types": "./dist/display/logo/index.d.ts",
+			"svelte": "./dist/display/logo/index.svelte"
+		},
+		"./tooltip": {
+			"types": "./dist/display/tooltip/index.d.ts",
+			"svelte": "./dist/display/tooltip/index.svelte"
+		},
+		"./modal": {
+			"types": "./dist/feedback/modal/index.d.ts",
+			"svelte": "./dist/feedback/modal/index.svelte"
+		},
+		"./snackbar": {
+			"types": "./dist/feedback/snackbar/index.d.ts",
+			"svelte": "./dist/feedback/snackbar/index.svelte"
+		},
+		"./checkbox": {
+			"types": "./dist/inputs/checkbox/index.d.ts",
+			"svelte": "./dist/inputs/checkbox/index.svelte"
+		},
+		"./checkbox-group": {
+			"types": "./dist/inputs/checkbox/group.d.ts",
+			"svelte": "./dist/inputs/checkbox/group.svelte"
+		},
+		"./base-input": {
+			"types": "./dist/inputs/base/index.d.ts",
+			"svelte": "./dist/inputs/base/index.svelte"
+		},
+		"./input-error": {
+			"types": "./dist/inputs/error/index.d.ts",
+			"svelte": "./dist/inputs/error/index.svelte"
+		},
+		"./input": {
+			"types": "./dist/inputs/input/index.d.ts",
+			"svelte": "./dist/inputs/input/index.svelte"
+		},
+		"./select": {
+			"types": "./dist/inputs/select/index.d.ts",
+			"svelte": "./dist/inputs/select/index.svelte"
+		},
+		"./option": {
+			"types": "./dist/inputs/select/option.d.ts",
+			"svelte": "./dist/inputs/select/option.svelte"
+		},
+		"./input-label": {
+			"types": "./dist/inputs/label/index.d.ts",
+			"svelte": "./dist/inputs/label/index.svelte"
+		},
+		"./listbox": {
+			"types": "./dist/inputs/listbox/index.d.ts",
+			"svelte": "./dist/inputs/listbox/index.svelte"
+		},
+		"./listbox-item": {
+			"types": "./dist/inputs/listbox/listbox-item.d.ts",
+			"svelte": "./dist/inputs/listbox/listbox-item.svelte"
+		},
+		"./radio": {
+			"types": "./dist/inputs/radio/index.d.ts",
+			"svelte": "./dist/inputs/radio/index.svelte"
+		},
+		"./radio-group": {
+			"types": "./dist/inputs/radio/group.d.ts",
+			"svelte": "./dist/inputs/radio/group.svelte"
+		},
+		"./switch": {
+			"types": "./dist/inputs/switch/index.d.ts",
+			"svelte": "./dist/inputs/switch/index.svelte"
+		},
+		"./textarea": {
+			"types": "./dist/inputs/textarea/index.d.ts",
+			"svelte": "./dist/inputs/textarea/index.svelte"
+		},
+		"./col": {
+			"types": "./dist/layout/col/index.d.ts",
+			"svelte": "./dist/layout/col/index.svelte"
+		},
+		"./flex": {
+			"types": "./dist/layout/flex/index.d.ts",
+			"svelte": "./dist/layout/flex/index.svelte"
+		},
+		"./row": {
+			"types": "./dist/layout/row/index.d.ts",
+			"svelte": "./dist/layout/row/index.svelte"
+		},
+		"./watfoe-header": {
+			"types": "./dist/layout/watfoe/header.d.ts",
+			"svelte": "./dist/layout/watfoe/header.svelte"
+		},
+		"./watfoe-content": {
+			"types": "./dist/layout/watfoe/content.d.ts",
+			"svelte": "./dist/layout/watfoe/content.svelte"
+		},
+		"./menu": {
+			"types": "./dist/navigation/menu/index.d.ts",
+			"svelte": "./dist/navigation/menu/index.svelte"
+		},
+		"./menu-item": {
+			"types": "./dist/navigation/menu/menu-item.d.ts",
+			"svelte": "./dist/navigation/menu/menu-item.svelte"
+		},
+		"./tabs": {
+			"types": "./dist/navigation/tabs/index.d.ts",
+			"svelte": "./dist/navigation/tabs/index.svelte"
+		},
+		"./tab": {
+			"types": "./dist/navigation/tabs/tab.d.ts",
+			"svelte": "./dist/navigation/tabs/tab.svelte"
+		},
+		"./tabpanels": {
+			"types": "./dist/navigation/tabs/tab-panels.d.ts",
+			"svelte": "./dist/navigation/tabs/tab-panels.svelte"
+		},
+		"./link": {
+			"types": "./dist/typography/link/index.d.ts",
+			"svelte": "./dist/typography/link/index.svelte"
+		},
+		"./link-like-button": {
+			"types": "./dist/typography/link/link-like-button/index.d.ts",
+			"svelte": "./dist/typography/link/link-like-button/index.svelte"
+		},
+		"./text": {
+			"types": "./dist/typography/text/index.d.ts",
+			"svelte": "./dist/typography/text/index.svelte"
+		},
+		"./backdrop": {
+			"types": "./dist/utils/backdrop/index.d.ts",
+			"svelte": "./dist/utils/backdrop/index.svelte"
+		},
+		"./likebutton": {
+			"types": "./dist/utils/likebutton/index.d.ts",
+			"svelte": "./dist/utils/likebutton/index.svelte"
+		},
+		"./popup": {
+			"types": "./dist/utils/popup/index.d.ts",
+			"svelte": "./dist/utils/popup/index.svelte"
+		},
+		"./surface": {
+			"types": "./dist/utils/surface/index.d.ts",
+			"svelte": "./dist/utils/surface/index.svelte"
 		}
 	},
 	"files": [
@@ -32,7 +212,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.135"
+		"svelte": "^5.0.0-next.136"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.41.2",
@@ -48,7 +228,7 @@
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.3",
 		"publint": "^0.2.7",
-		"svelte": "5.0.0-next.135",
+		"svelte": "5.0.0-next.136",
 		"svelte-check": "^3.7.1",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.5",
