@@ -1,6 +1,7 @@
 <script>
-	import { Col, Row } from '$lib/layout';
-	import { Text } from '$lib/typography';
+	import Col from '$lib/col';
+	import Row from '$lib/row';
+	import Text from '$lib/text';
 </script>
 
 <Col gap="md" width="100%">
@@ -26,11 +27,5 @@
 		<Text variant="label" size="lg">Large label</Text>
 		<Text variant="label" size="md">Medium label</Text>
 		<Text variant="label" size="sm" color="danger">Small label</Text>
-	</Row>
-
-	<Row align="flex-end" gap="md" width="100%">
-		<Text variant="code" size="lg">Large code</Text>
-		<Text variant="code" size="md">Medium code</Text>
-		<Text variant="code" size="sm" color="danger">Small code</Text>
 	</Row>
 </Col>

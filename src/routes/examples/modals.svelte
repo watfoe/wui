@@ -1,7 +1,7 @@
 <script>
-	import { Button } from '$lib';
-	import { Modal } from '$lib/feedback';
-	import { Col, Row } from '$lib/layout';
+	import Button from '$lib/button';
+	import Col from '$lib/col';
+	import Modal from '$lib/modal';
 
 	const positions = ['top', 'center', 'bottom'];
 </script>

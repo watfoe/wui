@@ -1,11 +1,11 @@
 <script lang="ts">
 	import './style.css';
 
-	import { WuiHeader, WuiContent } from '$lib/layout';
 	import Tabs from './examples/tabs.svelte';
+	import { WatfoeContent, WatfoeHeader } from '$lib/watfoe';
 </script>
 
-<WuiHeader subtitle="Ui" />
-<WuiContent>
+<WatfoeHeader subtitle="Ui" />
+<WatfoeContent>
 	<Tabs />
-</WuiContent>
+</WatfoeContent>

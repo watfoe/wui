@@ -1,7 +1,8 @@
 <script>
-	import { Avatar } from '$lib/display';
-	import AvatarGroup from '$lib/display/avatar/avatar-group.svelte';
-	import { Col, Row } from '$lib/layout';
+	import Avatar from '$lib/avatar';
+	import AvatarGroup from '$lib/avatargroup';
+	import Col from '$lib/col';
+	import Row from '$lib/row';
 </script>
 
 <Col align="flex-start" gap="md" width="100%">

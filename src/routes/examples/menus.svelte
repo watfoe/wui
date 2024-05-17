@@ -1,7 +1,9 @@
 <script>
-	import { Button, Divider, Col, Row } from '$lib';
-	import { Menu } from '$lib/navigation';
-	import MenuItem from '$lib/navigation/menu/menu-item.svelte';
+	import Button from '$lib/button';
+	import Col from '$lib/col';
+	import Divider from '$lib/divider';
+	import Menu, { MenuItem } from '$lib/menu';
+	import Row from '$lib/row';
 
 	const positions = [
 		['left-start', 'top-start', 'top', 'top-end', 'right-start'],

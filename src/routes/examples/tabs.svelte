@@ -1,5 +1,4 @@
 <script>
-	import { Tabs, Tab, TabPanels } from '$lib/navigation';
 	import Avatars from './avatars.svelte';
 	import Buttons from './buttons.svelte';
 	import Displays from './displays.svelte';
@@ -8,6 +7,7 @@
 	import Inputs from './inputs.svelte';
 	import Typography from './typography.svelte';
 	import Menus from './menus.svelte';
+	import Tabs, { Tab, TabPanels } from '$lib/tabs';
 </script>
 
 <Tabs for="tab-panels-0" selected={4}>

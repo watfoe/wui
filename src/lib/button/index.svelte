@@ -15,7 +15,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import LikeButton from '$lib/utils/likebutton/index.svelte';
+	import LikeButton from '../likebutton';
 	import { untrack } from 'svelte';
 
 	let {

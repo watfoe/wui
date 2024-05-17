@@ -1,0 +1,188 @@
+[data-has-height="true"] {
+  height: var(--WuiSize-height);
+}
+
+[data-has-width="true"] {
+  width: var(--WuiSize-width, auto);
+}
+
+.WuiVariant-solid {
+  background-color: var(--WuiColor-bg);
+}
+
+.WuiVariant-soft,
+.WuiVariant-mixed {
+  background-color: var(--WuiColor-bg-soft);
+}
+
+.WuiVariant-plain,
+.WuiVariant-none,
+.WuiVariant-outlined {
+  background-color: inherit;
+}
+
+.WuiVariant-outlined,
+.WuiVariant-mixed {
+  border: 1px solid var(--WuiColor-bg);
+}
+
+.WuiClickable {
+  cursor: pointer;
+}
+
+.WuiClickable:disabled,
+.WuiInput--disabled {
+  --WuiColor-bg: var(--color-neutral-2) !important;
+  --WuiColor-bg-soft: var(--color-neutral-2) !important;
+  --WuiColor-text: var(--color-neutral-6) !important;
+  cursor: default;
+  pointer-events: none;
+}
+
+.WuiClickable.WuiVariant-solid:not(:disabled):hover,
+.WuiClickable.WuiVariant-solid:not(:disabled):focus-visible,
+.WuiClickable.WuiVariant-soft:not(:disabled):hover,
+.WuiClickable.WuiVariant-soft:not(:disabled):focus-visible {
+  filter: brightness(0.94);
+}
+
+.WuiClickable.WuiVariant-solid:not(:disabled):active,
+.WuiClickable.WuiVariant-soft:not(:disabled):active,
+.WuiClickable.WuiVariant-outlined:not(:disabled):active,
+.WuiClickable.WuiVariant-plain:not(:disabled):active {
+  filter: brightness(0.89);
+  transition: filter 0.2s ease-in-out;
+}
+
+.WuiClickable.WuiVariant-outlined:not(:disabled):hover,
+.WuiClickable.WuiVariant-outlined:not(:disabled):focus-visible,
+.WuiClickable.WuiVariant-plain:not(:disabled):hover,
+.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible,
+.WuiClickable.WuiVariant-none:not(:disabled):hover,
+.WuiClickable.WuiVariant-none:not(:disabled):focus-visible {
+  background-color: var(--WuiColor-bg-soft);
+}
+
+.WuiShape-rounded {
+  border-radius: var(--radius);
+}
+
+.WuiShape-pill {
+  border-radius: 9999px;
+}
+
+.WuiShape-circle {
+  border-radius: 50%;
+}
+
+.WuiShape-square {
+  border-radius: 0 !important;
+}
+
+.WuiText {
+  color: var(--WuiColor-text);
+  font-size: var(--WuiText-font-size, 1rem);
+}
+
+.WuiText--label {
+  line-height: 1.2;
+}
+
+.WuiText--a:hover {
+  text-decoration: underline;
+}
+
+.WuiText--inherit {
+  color: inherit;
+}
+
+.WuiText--align-left {
+  text-align: left;
+}
+
+.WuiText--align-center {
+  text-align: center;
+}
+
+.WuiText--align-right {
+  text-align: right;
+}
+
+.WuiText--align-justify {
+  text-align: justify;
+}
+
+.WuiText--title.WuiText--sm {
+  --WuiText-font-size: 1.5rem;
+}
+
+.WuiText--title.WuiText--md {
+  --WuiText-font-size: 1.75rem;
+}
+
+.WuiText--title.WuiText--lg {
+  --WuiText-font-size: 2rem;
+}
+
+.WuiText--heading.WuiText--sm {
+  --WuiText-font-size: 1rem;
+}
+
+.WuiText--heading.WuiText--md {
+  --WuiText-font-size: 1.125rem;
+}
+
+.WuiText--heading.WuiText--lg {
+  --WuiText-font-size: 1.25rem;
+}
+
+.WuiText--body.WuiText--xs,
+.WuiText--code.WuiText--xs,
+.WuiText--label.WuiText--xs,
+.WuiText--a.WuiText--xs {
+  --WuiText-font-size: 0.75rem;
+}
+
+.WuiText--body.WuiText--sm,
+.WuiText--code.WuiText--sm,
+.WuiText--label.WuiText--sm,
+.WuiText--a.WuiText--sm {
+  --WuiText-font-size: 0.8125rem;
+}
+
+.WuiText--body.WuiText--md,
+.WuiText--code.WuiText--md,
+.WuiText--label.WuiText--md,
+.WuiText--a.WuiText--md {
+  --WuiText-font-size: 0.875rem;
+}
+
+.WuiText--body.WuiText--lg,
+.WuiText--code.WuiText--lg,
+.WuiText--label.WuiText--lg,
+.WuiText--a.WuiText--lg {
+  --WuiText-font-size: 1rem;
+}
+
+.WuiText--body.WuiText--xl,
+.WuiText--code.WuiText--xl,
+.WuiText--label.WuiText--xl,
+.WuiText--a.WuiText--xl {
+  --WuiText-font-size: 1.125rem;
+}
+
+.WuiText--code {
+  font-family: var(--WuiText-code-font-family, 'Fira Code', monospace);
+}
+
+.WuiText--bold {
+  font-weight: 500;
+}
+
+.WuiText--italic {
+  font-style: italic;
+}
+
+.WuiText--underline {
+  text-decoration: underline;
+}

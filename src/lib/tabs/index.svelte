@@ -1,0 +1,141 @@
+<script context="module" lang="ts">
+	import { type LikeButtonAttributes } from '../likebutton';
+	import {
+		type WuiColor,
+		type WuiShape,
+		type WuiSize,
+		type WuiSpacing,
+		type WuiVariant
+	} from '$lib/types';
+	import { setContext, untrack, type Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	export interface TabsAttributes {
+		bottomrule?: boolean;
+		color?: WuiColor;
+		children: Snippet;
+		for: string;
+		gap?: WuiSpacing;
+		navigation?: LikeButtonAttributes<HTMLAttributes<HTMLDivElement>>['navigation'];
+		size?: WuiSize;
+		shape?: Omit<WuiShape, 'circle' | 'pill'>;
+		selected?: number;
+		variant?: WuiVariant;
+	}
+</script>
+
+<script lang="ts">
+	let {
+		bottomrule = true,
+		color,
+		children,
+		for: _for,
+		navigation,
+		gap = 'md',
+		selected,
+		size,
+		shape,
+		variant
+	}: TabsAttributes = $props();
+	let tabs: HTMLDivElement;
+	let activeIndex = selected || 0;
+
+	// To be use by Tab items
+	setContext('wui-tab-ctx', {
+		color,
+		navigation,
+		size,
+		shape,
+		variant
+	});
+
+	$effect(() => {
+		untrack(() => {
+			const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
+			const tabButtons = tabs.querySelectorAll('.WuiTab');
+
+			if (!tabPanelsParent) {
+				throw new Error(`No tabpanels found with the id: '${_for}'`);
+			}
+
+			const tabPanels = tabPanelsParent.children;
+
+			tabButtons.forEach((tabButton, index) => {
+				const tabId = `${_for}-tab-${index}`;
+				const tabPanelId = `${_for}-tabpanel-${index}`;
+
+				tabButton.setAttribute('id', tabId);
+				tabButton.setAttribute('aria-controls', tabPanelId);
+
+				// Add aria role tab to each tabpanel
+				tabPanels[index]?.setAttribute('role', 'tabpanel');
+				tabPanels[index]?.setAttribute('id', tabPanelId);
+				tabPanels[index]?.setAttribute('tabindex', '-1');
+				tabPanels[index]?.setAttribute('aria-labelledby', tabId);
+
+				if (index === activeIndex) {
+					// Since this $effect runs before the tabButtons are rendered/events are attached to them?
+					// We need to wait for the tabButtons to be rendered before we can dispatch the select event
+					// using setTimeout
+					setTimeout(() => {
+						dispatchEvent(tabButton);
+
+						if (tabPanels[index]) {
+							tabPanels[index].setAttribute('tabindex', '0');
+							dispatchEvent(tabPanels[index]);
+						}
+					}, 0);
+				}
+
+				tabButton.addEventListener('click', () => {
+					if (index === activeIndex) {
+						return;
+					}
+
+					dispatchEvent(tabButtons[activeIndex]);
+
+					if (tabPanels[activeIndex]) {
+						tabPanels[activeIndex].setAttribute('tabindex', '-1');
+						dispatchEvent(tabPanels[activeIndex]);
+					}
+
+					dispatchEvent(tabButton);
+
+					if (tabPanels[index]) {
+						tabPanels[index].setAttribute('tabindex', '0');
+						dispatchEvent(tabPanels[index]);
+					}
+
+					activeIndex = index;
+				});
+			});
+		});
+	});
+
+	function dispatchEvent(elem: Element) {
+		elem.dispatchEvent(new Event('select'));
+	}
+</script>
+
+<div
+	bind:this={tabs}
+	role="tablist"
+	class={bottomrule ? 'WuiTabs--bottom-ruled' : ''}
+	style:display="flex"
+	style:flex-direction="row"
+	style:gap="var(--space-{gap})"
+	style:width="100%"
+>
+	{@render children()}
+</div>
+
+<style>
+	.WuiTabs--bottom-ruled {
+		border-bottom: var(--line);
+		margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
+	}
+	.WuiTabs--bottom-ruled > :global(.WuiTab) {
+		border-bottom-left-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	}
+</style>

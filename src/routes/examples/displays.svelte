@@ -1,17 +1,17 @@
 <script>
-	import { Snackbar, Button } from '$lib';
-	import {
-		Badge,
-		Chip,
-		Divider,
-		Icon,
-		List,
-		ListButtonItem,
-		ListItem,
-		Logo,
-		Tooltip
-	} from '$lib/display';
-	import { Col, Row } from '$lib/layout';
+	import Badge from '$lib/badge';
+	import Button from '$lib/button';
+	import Chip from '$lib/chip';
+	import Col from '$lib/col';
+	import Divider from '$lib/divider';
+	import Icon from '$lib/icon';
+	import List from '$lib/list';
+	import ListButtonItem from '$lib/listbuttonitem';
+	import ListItem from '$lib/listitem';
+	import Logo from '$lib/logo';
+	import Row from '$lib/row';
+	import Snackbar from '$lib/snackbar';
+	import Tooltip from '$lib/tooltip';
 
 	let openned = $state(false);
 

@@ -1,6 +1,13 @@
 <script lang="ts">
-	import { Col, Row, Text, Input, Link, Select, Button } from '$lib';
-	import { Surface, type SurfaceAttributes } from '$lib/utils';
+	import Button from '$lib/button';
+	import Col from '$lib/col';
+	import Input from '$lib/input';
+	import Link from '$lib/link';
+	import Row from '$lib/row';
+	import Select from '$lib/select';
+	import type { SurfaceAttributes } from '$lib/surface';
+	import Surface from '$lib/surface';
+	import Text from '$lib/text';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 
