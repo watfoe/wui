@@ -1,3 +1,3 @@
-import Backdrop, { type BackdropAttributes, type BaseBackdropAttributes } from './index.svelte';
+import Backdrop from './index.svelte';
 export default Backdrop;
-export type { BackdropAttributes, BaseBackdropAttributes };
+export type { BackdropAttributes, BaseBackdropAttributes } from './index.svelte';

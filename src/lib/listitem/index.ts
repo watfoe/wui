@@ -1,3 +1,3 @@
-import ListItem, { type ListItemAttributes } from './index.svelte';
+import ListItem from './index.svelte';
 export default ListItem;
-export type { ListItemAttributes };
+export type { ListItemAttributes } from './index.svelte';

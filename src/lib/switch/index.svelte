@@ -21,7 +21,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import LikeButton from '../likebutton';
 
 	let {
@@ -45,7 +44,7 @@
 
 <LikeButton
 	color={checked ? (color === 'neutral' ? 'primary' : color) : 'neutral'}
-	class="WuiSwitch"
+	class="w-switch"
 	element="label"
 	for={id}
 	height={SIZES[size]}
@@ -55,6 +54,21 @@
 	{shape}
 	{width}
 >
-	<input {...rest} type="checkbox" {id} class="WuiHidden" bind:this={_this} bind:checked />
-	<span class="WuiSwitch__thumb" style:transform="translateX({checked ? '100%' : '0'})"></span>
+	<input {...rest} type="checkbox" {id} class="w-hidden" bind:this={_this} bind:checked />
+	<span class="w-switch__thumb" style:transform="translateX({checked ? '100%' : '0'})"></span>
 </LikeButton>
+
+<style>
+	.w-switch__thumb {
+		background-color: var(--w-color-bg);
+		border-radius: inherit;
+		display: block;
+		height: 100%;
+		transition: all 0.15s ease-in-out;
+		width: calc(100% / 2);
+	}
+
+	:global(.w-solid .w-switch__thumb) {
+		background-color: var(--w-color-on-bg);
+	}
+</style>

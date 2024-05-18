@@ -46,7 +46,6 @@
 
 <Surface
 	element="li"
-	class="WuiListItem"
 	color={color || ctx.color || 'black'}
 	shape={shape || ctx.shape}
 	style="list-style-type:{marker || ctx.marker || 'circle'};{style}"

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import './style.css';
 	import Button from '../button';
 	import Logo from '../logo';
 	import Row from '../row';
@@ -25,7 +24,7 @@
 </script>
 
 <Row
-	class="WuiHeader {_class}"
+	class="watfoe-header {_class}"
 	height={50}
 	justify="space-between"
 	mb="xs"
@@ -35,7 +34,7 @@
 	{...rest}
 >
 	<Row align="center" gap="md">
-		<Logo size={60} class="WuiHeader__logo" />
+		<Logo size={50} />
 
 		<Row align="center" gap="sm">
 			<Text color="primary" size="md" variant="heading">Watfoe</Text>
@@ -59,3 +58,12 @@
 		</LinkLikeButton>
 	</Row>
 </Row>
+
+<style>
+	:global(.watfoe-header) {
+		background-color: var(--color-surface);
+		position: fixed;
+		top: 0;
+		z-index: 9999;
+	}
+</style>

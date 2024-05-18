@@ -1,8 +1,0 @@
-.WuiLikeButton {
-  display: inline-flex;
-  flex-shrink: 0;
-  overflow: hidden;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}

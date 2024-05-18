@@ -40,12 +40,12 @@
 	}: BadgeAttributes = $props();
 </script>
 
-<div class="WuiBadge WuiBadge--{position}">
+<div class="w-badge w-badge--{position}">
 	{@render children()}
 
 	<Surface
 		aria-label={rest['aria-label'] || 'badge'}
-		class="WuiBadge__content"
+		class="w-badge__content"
 		element="div"
 		px={!content ? undefined : typeof content === 'function' ? 1 : 'xs'}
 		py={!content ? undefined : 1}

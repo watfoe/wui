@@ -16,12 +16,12 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import { untrack } from 'svelte';
 
 	let {
 		backdrop = $bindable(),
 		children,
+		class: _class = '',
 		closeon = 'click',
 		opened = $bindable(false),
 		transparent = false,
@@ -73,7 +73,7 @@
 <dialog
 	{...rest}
 	role="presentation"
-	class="WuiBackdrop WuiBackdrop--transparent-{transparent} {rest.class || ''}"
+	class="w-backdrop w-backdrop--transparent-{transparent} {_class}"
 	onclick={closeon === 'click' ? close : undefined}
 	onblur={closeon === 'blur' ? close : undefined}
 	onkeydown={keydown}
@@ -83,3 +83,41 @@
 		{@render children()}
 	{/if}
 </dialog>
+
+<style>
+	.w-backdrop {
+		animation: fade 0.3s ease normal;
+		border: 0;
+		inset: 0px;
+		max-width: 100vw;
+		max-height: 100vh;
+		width: 100vw;
+		height: 100vh;
+		outline: 0;
+		padding: var(--space-xs);
+		overflow: hidden;
+	}
+
+	.w-backdrop--transparent-true {
+		background-color: transparent;
+	}
+
+	.w-backdrop--transparent-false {
+		background-color: var(--color-scrim);
+		backdrop-filter: blur(8px);
+	}
+
+	.w-backdrop::backdrop {
+		background-color: transparent;
+	}
+
+	@keyframes fade {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+</style>

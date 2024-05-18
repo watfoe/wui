@@ -12,7 +12,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import Row from '../row';
 	import { setContext, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -21,6 +20,17 @@
 	setContext('wui-avatar-group-ctx', { color, size, variant, shape });
 </script>
 
-<Row role="group" aria-label="Avatar Group" class="WuiAvatarGroup">
+<Row role="group" aria-label="Avatar Group" class="w-avatargroup" width="auto">
 	{@render children()}
 </Row>
+
+<style>
+	:global(.w-avatargroup > * + *) {
+		box-shadow: 0 0 0 1px var(--color-surface) !important;
+	}
+
+	:global(.w-avatargroup > *:not(:first-child)) {
+		margin-left: -3px;
+		z-index: 1;
+	}
+</style>

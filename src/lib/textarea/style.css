@@ -1,89 +1,89 @@
-.WuiTextArea__root {
+.w-textarea__root {
   border: 0;
   position: relative;
 }
 
-.WuiTextArea--primary {
-  --WuiLabel-color: var(--color-primary);
+.w-textarea--primary {
+  --w-label: var(--color-primary);
 }
 
-.WuiTextArea--neutral {
-  --WuiLabel-color: var(--color-black-4);
+.w-textarea--neutral {
+  --w-label: var(--color-black-4);
 }
 
-.WuiTextArea--neutral:focus-within {
-  --WuiLabel-color: var(--color-primary);
+.w-textarea--neutral:focus-within {
+  --w-label: var(--color-primary);
 }
 
-.WuiTextArea--success {
-  --WuiLabel-color: var(--color-success);
+.w-textarea--success {
+  --w-label: var(--color-success);
 }
 
-.WuiTextArea--warning {
-  --WuiLabel-color: var(--color-warning);
+.w-textarea--warning {
+  --w-label: var(--color-warning);
 }
 
-.WuiTextArea--danger,
-.WuiTextArea__root:invalid {
-  --WuiLabel-color: var(--color-error);
+.w-textarea--danger,
+.w-textarea__root:invalid {
+  --w-label: var(--color-error);
 }
 
-.WuiTextArea:disabled {
-  --WuiLabel-color: var(--color-disabled);
+.w-textarea:disabled {
+  --w-label: var(--color-disabled);
 }
 
-.WuiTextArea.WuiColor-neutral.WuiVariant-outlined,
-.WuiTextArea.WuiColor-neutral.WuiVariant-soft,
-.WuiTextArea.WuiColor-neutral.WuiVariant-plain {
+.w-textarea.w-neutral.w-outlined,
+.w-textarea.w-neutral.w-soft,
+.w-textarea.w-neutral.w-plain {
   color: var(--color-neutral-8);
 }
 
-.WuiTextArea.WuiVariant-plain.WuiColor-primary {
+.w-textarea.w-plain.w-primary {
   background-color: var(--color-primary-0);
 }
 
-.WuiTextArea.WuiVariant-plain.WuiColor-neutral,
-.WuiTextArea.WuiVariant-plain.WuiColor-black,
-.WuiTextArea.WuiVariant-plain.WuiColor-white {
+.w-textarea.w-plain.w-neutral,
+.w-textarea.w-plain.w-black,
+.w-textarea.w-plain.w-white {
   background-color: var(--color-neutral-0);
 }
 
-.WuiTextArea.WuiVariant-plain.WuiColor-success {
+.w-textarea.w-plain.w-success {
   background-color: var(--color-success-0);
 }
 
-.WuiTextArea.WuiVariant-plain.WuiColor-danger {
+.w-textarea.w-plain.w-danger {
   background-color: var(--color-danger-0);
 }
 
-.WuiTextArea.WuiVariant-plain.WuiColor-warning {
+.w-textarea.w-plain.w-warning {
   background-color: var(--color-warning-0);
 }
 
-.WuiTextArea:focus-within:not(.WuiVariant-solid):not(.WuiColor-neutral) {
-  box-shadow: inset 0 0 0 0.5px var(--WuiColor-bg);
+.w-textarea:focus-within:not(.w-solid):not(.w-neutral) {
+  box-shadow: inset 0 0 0 0.5px var(--w-color-bg);
 }
 
-.WuiTextArea.WuiColor-neutral:not(.WuiVariant-solid):focus-within {
+.w-textarea.w-neutral:not(.w-solid):focus-within {
   box-shadow: inset 0 0 0 0.5px var(--color-primary-5);
   border-color: var(--color-primary-5);
 }
 
-.WuiTextArea.WuiVariant-solid.WuiColor-neutral:focus-within {
-  --WuiColor-bg: var(--color-primary-5) !important;
+.w-textarea.w-solid.w-neutral:focus-within {
+  --w-color-bg: var(--color-primary-5) !important;
 }
 
-.WuiTextArea.WuiVariant-soft,
-.WuiTextArea.WuiVariant-plain {
+.w-textarea.w-soft,
+.w-textarea.w-plain {
   border: 1px solid transparent;
 }
 
-.WuiTextArea.WuiVariant-soft:focus-within,
-.WuiTextArea.WuiVariant-plain:focus-within {
-  border-color: var(--WuiColor-bg);
+.w-textarea.w-soft:focus-within,
+.w-textarea.w-plain:focus-within {
+  border-color: var(--w-color-bg);
 }
 
-.WuiTextArea__input {
+.w-textarea__input {
   background-color: unset !important;
   border: none;
   color: inherit;
@@ -96,20 +96,20 @@
 }
 
 /* Chrome, Safari, Edge, Opera */
-.WuiTextArea__input::-webkit-outer-spin-button,
-.WuiTextArea__input::-webkit-inner-spin-button {
+.w-textarea__input::-webkit-outer-spin-button,
+.w-textarea__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-.WuiTextArea__input[type=number] {
+.w-textarea__input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-.WuiTextArea__prefix,
-.WuiTextArea__suffix {
+.w-textarea__prefix,
+.w-textarea__suffix {
   align-items: center;
   border-radius: inherit;
   cursor: default;
@@ -123,8 +123,8 @@
   overflow: hidden;
 }
 
-div.WuiTextArea__prefix>*,
-div.WuiTextArea__suffix>* {
+div.w-textarea__prefix>*,
+div.w-textarea__suffix>* {
   border-radius: inherit;
   line-height: 30px !important;
   width: 100% !important;

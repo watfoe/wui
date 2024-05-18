@@ -25,7 +25,7 @@
 		<Text
 			{color}
 			colorweight={color === 'neutral' ? '7' : undefined}
-			class="WuiInput__label"
+			class="w-input__label"
 			for={_for}
 			size="sm"
 			variant="label"

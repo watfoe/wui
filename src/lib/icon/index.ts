@@ -1,3 +1,3 @@
-import Icon, { type IconAttributes } from './index.svelte';
+import Icon from './index.svelte';
 export default Icon;
-export type { IconAttributes };
+export type { IconAttributes } from './index.svelte';

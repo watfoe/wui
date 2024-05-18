@@ -1,3 +1,3 @@
-import Avatar, { type AvatarAttributes } from './index.svelte';
+import Avatar from './index.svelte';
 export default Avatar;
-export type { AvatarAttributes };
+export type { AvatarAttributes } from './index.svelte';

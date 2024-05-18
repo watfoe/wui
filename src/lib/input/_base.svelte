@@ -137,7 +137,7 @@
 
 <Surface
 	align="center"
-	class="WuiInput {_class} {disabled ? 'WuiInput--disabled' : ''}"
+	class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
 	color={error ? 'danger' : color}
 	direction="row"
 	gap="xs"
@@ -167,14 +167,14 @@
 	{#if typeof prefix === 'string'}
 		<Icon color="inherit" {size}>{prefix}</Icon>
 	{:else if prefix}
-		<div class="WuiInput__prefix" style:width="calc(var(--height-{size}) - 4px)">
+		<div class="w-input__prefix" style:width="calc(var(--height-{size}) - 4px)">
 			{@render prefix()}
 		</div>
 	{/if}
 
 	<input
 		dir="ltr"
-		class="WuiInput__input"
+		class="w-input__input"
 		onblur={blur}
 		oninput={input}
 		onclick={(e) => {
@@ -191,7 +191,7 @@
 	{#if typeof suffix === 'string'}
 		<Icon color="inherit" {size}>{suffix}</Icon>
 	{:else if suffix}
-		<div class="WuiInput__suffix" style:min-width="calc(var(--height-{size}) - 6px)">
+		<div class="w-input__suffix" style:min-width="calc(var(--height-{size}) - 6px)">
 			{@render suffix()}
 		</div>
 	{/if}

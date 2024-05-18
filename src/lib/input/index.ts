@@ -1,3 +1,3 @@
-import Input, { type InputAttributes } from './index.svelte';
+import Input from './index.svelte';
 export default Input;
-export type { InputAttributes };
+export type { InputAttributes } from './index.svelte';

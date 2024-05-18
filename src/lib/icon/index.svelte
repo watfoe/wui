@@ -37,30 +37,27 @@
 <!-- Apply width to icon to avoid shifting -->
 <span
 	role="img"
-	class="material-symbols-rounded WuiIcon {_class}"
+	class="material-symbols-rounded w-icon {_class}"
 	style="font-variation-settings: 'fill' {fill
 		? 1
-		: 0}, 'wght' {weight}, 'grad' {grade}, 'opsz' 48;--WuiIcon-size:{SIZES[size]};{style}"
+		: 0}, 'wght' {weight}, 'grad' {grade}, 'opsz' 48;--w-icon-size:{SIZES[size]};{style}"
 	{...rest}
 >
 	{@render children()}
 </span>
 
 <style>
-	.WuiIcon {
-		--WuiIcon-size-sm: 1.125rem;
-		--WuiIcon-size-md: 1.25rem;
-		--WuiIcon-size-lg: 1.5rem;
+	.w-icon {
 		font-family: 'Material Symbols Rounded';
 		font-style: normal;
-		font-size: var(--WuiIcon-size, 1.25rem);
+		font-size: var(--w-icon-size, 1.25rem);
 		font-weight: normal;
 		font-feature-settings: 'liga';
 		display: inline-block;
 		direction: ltr;
 		line-height: 1;
 		letter-spacing: normal;
-		max-width: var(--WuiIcon-size, 1.25rem);
+		max-width: var(--w-icon-size, 1.25rem);
 		text-transform: none;
 		white-space: nowrap;
 		word-wrap: normal;

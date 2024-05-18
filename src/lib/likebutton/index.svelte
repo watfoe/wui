@@ -12,7 +12,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import Icon from '../icon';
 	import Surface, { type SurfaceAttributes } from '../surface';
 	import type { Snippet } from 'svelte';
@@ -91,7 +90,7 @@
 </script>
 
 <Surface
-	class="WuiLikeButton {_class}"
+	class="w-likebutton {_class}"
 	px={children ? px : undefined}
 	tabindex={tabindex || 0}
 	textsize={textsize || size}
@@ -127,3 +126,12 @@
 		{@render suffix()}
 	{/if}
 </Surface>
+
+<style>
+	:global(.w-likebutton) {
+		flex-shrink: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>

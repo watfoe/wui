@@ -17,6 +17,7 @@
 		selected = false,
 		size,
 		shape,
+		style = '',
 		variant,
 		width,
 		...rest
@@ -39,13 +40,13 @@
 
 <Button
 	aria-selected={selected}
-	class="WuiMenu__item"
 	color={color || ctx.color || (selected ? 'primary' : altColor)}
 	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
 	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}
 	role="menuitem"
 	size={size || ctx.size || 'md'}
 	shape={shape || ctx.shape || 'rounded'}
+	style="flex-shrink:0;{style}"
 	variant={variant || ctx.variant || (selected ? 'soft' : 'plain')}
 	width={width || (ctx.direction === 'row' ? undefined : '100%')}
 	{...rest}

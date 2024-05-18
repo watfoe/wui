@@ -1,3 +1,3 @@
-import Tooltip, { type TooltipAttributes } from './index.svelte';
+import Tooltip from './index.svelte';
 export default Tooltip;
-export type { TooltipAttributes };
+export type { TooltipAttributes } from './index.svelte';

@@ -62,8 +62,8 @@
 			"svelte": "./dist/listitem/index.js"
 		},
 		"./listbuttonitem": {
-			"types": "./dist/listbuttonitem.svelte.d.ts",
-			"svelte": "./dist/listbuttonitem.svelte"
+			"types": "./dist/listbuttonitem/index.svelte.d.ts",
+			"svelte": "./dist/listbuttonitem/index.svelte"
 		},
 		"./logo": {
 			"types": "./dist/logo/index.svelte.d.ts",
@@ -153,9 +153,9 @@
 			"types": "./dist/link/index.svelte.d.ts",
 			"svelte": "./dist/link/index.js"
 		},
-		"./link-like-button": {
-			"types": "./dist/link/linklikebutton/index.svelte.d.ts",
-			"svelte": "./dist/link/linklikebutton/index.js"
+		"./linklikebutton": {
+			"types": "./dist/linklikebutton/index.svelte.d.ts",
+			"svelte": "./dist/linklikebutton/index.js"
 		},
 		"./text": {
 			"types": "./dist/text/index.svelte.d.ts",

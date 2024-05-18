@@ -1,5 +1,4 @@
-import Select, { type SelectAttributes } from './index.svelte';
-import Option, { type OptionAttributes } from './option.svelte';
+import Select from './index.svelte';
 export default Select;
-export { Option };
-export type { SelectAttributes, OptionAttributes };
+export type { SelectAttributes }  from './index.svelte';
+export { default as Option, type OptionAttributes } from './option.svelte';

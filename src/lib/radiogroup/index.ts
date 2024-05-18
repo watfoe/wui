@@ -1,3 +1,3 @@
-import RadioGroup, { type RadioGroupAttributes } from './index.svelte';
+import RadioGroup from './index.svelte';
 export default RadioGroup;
-export type { RadioGroupAttributes };
+export type { RadioGroupAttributes } from './index.svelte';

@@ -16,12 +16,12 @@
 	}
 </script>
 
-<div {id} class="WuiTabPanels {_class || ''}" style:display="contents">
+<div {id} class="w-tabpanels {_class}" style:display="contents">
 	{@render children()}
 </div>
 
 <style>
-	.WuiTabPanels > :global(*:not([tabindex='0'])) {
+	.w-tabpanels > :global(*:not([tabindex='0'])) {
 		display: none !important;
 	}
 </style>

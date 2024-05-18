@@ -1,3 +1,3 @@
-import TextArea, { type TextAreaAttributes } from './index.svelte';
+import TextArea from './index.svelte';
 export default TextArea;
-export type { TextAreaAttributes };
+export type { TextAreaAttributes } from './index.svelte';

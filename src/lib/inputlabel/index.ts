@@ -1,3 +1,3 @@
-import InputLabel, { type InputLabelAttributes } from './index.svelte';
+import InputLabel from './index.svelte';
 export default InputLabel;
-export type { InputLabelAttributes };
+export type { InputLabelAttributes } from './index.svelte';

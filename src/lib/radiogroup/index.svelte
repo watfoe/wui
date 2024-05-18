@@ -53,7 +53,7 @@
 	});
 </script>
 
-<fieldset role="radiogroup" class="WuiRadioGroup {_class}" {hidden} {disabled}>
+<fieldset role="radiogroup" class="w-radiogroup {_class}" {hidden} {disabled}>
 	{#if label}
 		<InputLabel {description}>{label}</InputLabel>
 	{/if}
@@ -66,7 +66,7 @@
 </fieldset>
 
 <style>
-	.WuiRadioGroup {
+	.w-radiogroup {
 		border: 0;
 		outline: 0;
 		appearance: none;
@@ -76,7 +76,7 @@
 		width: auto;
 	}
 
-	.WuiRadioGroup :global(.WuiInput__label__root) {
+	.w-radiogroup :global(.w-input__label__root) {
 		max-width: unset !important;
 	}
 </style>

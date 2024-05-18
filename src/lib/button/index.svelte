@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import type { LikeButtonAttributes } from '$lib/utils';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	type LB = LikeButtonAttributes<HTMLButtonAttributes>;
@@ -15,7 +14,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import LikeButton from '../likebutton';
+	import LikeButton, { type LikeButtonAttributes } from '../likebutton';
 	import { untrack } from 'svelte';
 
 	let {
@@ -110,7 +109,7 @@
 	aria-haspopup={anchorfor ? 'true' : undefined}
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
-	class="{loading ? 'WuiButton--loading ' : ''} {_class}"
+	class="{loading ? 'w-btn--loading ' : ''} {_class}"
 	disabled={loading || disabled}
 	navigation={navigation === 'feedback' ? 'none' : navigation}
 	onclick={click}

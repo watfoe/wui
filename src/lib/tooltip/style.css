@@ -1,4 +1,4 @@
-.WuiTooltip {
+.w-tooltip {
 	position: relative !important;
 	display: inline-flex !important;
 	justify-content: center !important;
@@ -7,13 +7,13 @@
 	z-index: 9995;
 }
 
-.WuiTooltip .WuiTooltip__content {
+.w-tooltip .w-tooltip__content {
 	position: absolute;
 	white-space: nowrap;
 	display: none;
 }
 
-.WuiTooltip .WuiTooltip__content::after {
+.w-tooltip .w-tooltip__content::after {
 	content: '';
 	border: 5px solid transparent;
 	position: absolute;
@@ -22,78 +22,78 @@
 	border-style: solid;
 }
 
-.WuiTooltip:hover .WuiTooltip__content {
+.w-tooltip:hover .w-tooltip__content {
 	display: block;
 }
 
-.WuiTooltip-left .WuiTooltip__content {
+.w-tooltip-left .w-tooltip__content {
 	left: calc(100% + var(--space-xs));
 	top: auto;
 	bottom: auto;
 }
 
-.WuiTooltip-left .WuiTooltip__content::after {
+.w-tooltip-left .w-tooltip__content::after {
 	border-left-color: var(--WuiColor-bg);
 	top: 50%;
 	transform: translateY(-50%);
 }
 
-.WuiTooltip-right .WuiTooltip__content {
+.w-tooltip-right .w-tooltip__content {
 	right: calc(100% + var(--space-xs));
 	top: auto;
 	bottom: auto;
 }
 
-.WuiTooltip-right .WuiTooltip__content::after {
+.w-tooltip-right .w-tooltip__content::after {
 	border-right-color: var(--WuiColor-bg);
 	top: 50%;
 	transform: translateY(-50%);
 }
 
-.WuiTooltip-top .WuiTooltip__content {
+.w-tooltip-top .w-tooltip__content {
 	bottom: calc(100% + var(--space-xs));
 	margin: 0 auto;
 }
 
-.WuiTooltip-top .WuiTooltip__content::after {
+.w-tooltip-top .w-tooltip__content::after {
 	border-top-color: var(--WuiColor-bg);
 	left: 50%;
 	transform: translateX(-50%);
 	bottom: -10px
 }
 
-.WuiTooltip-bottom .WuiTooltip__content {
+.w-tooltip-bottom .w-tooltip__content {
 	top: calc(100% + var(--space-xs));
 }
 
-.WuiTooltip-bottom .WuiTooltip__content::after {
+.w-tooltip-bottom .w-tooltip__content::after {
 	border-bottom-color: var(--WuiColor-bg);
 	left: 50%;
 	transform: translateX(-50%);
 	top: -10px;
 }
 
-.WuiTooltip-top-start .WuiTooltip__content {
+.w-tooltip-top-start .w-tooltip__content {
 	bottom: calc(100% + var(--space-xs));
 	left: 0;
 }
 
-.WuiTooltip-top-end .WuiTooltip__content::after {
+.w-tooltip-top-end .w-tooltip__content::after {
 	bottom: calc(100% + var(--space-xs));
 	right: 0;
 }
 
-.WuiTooltip-top-end .WuiTooltip__content {
+.w-tooltip-top-end .w-tooltip__content {
 	bottom: calc(100% + var(--space-xs));
 	right: 0;
 }
 
-.WuiTooltip-bottom-start .WuiTooltip__content {
+.w-tooltip-bottom-start .w-tooltip__content {
 	top: calc(100% + var(--space-xs));
 	left: 0;
 }
 
-.WuiTooltip-bottom-end .WuiTooltip__content {
+.w-tooltip-bottom-end .w-tooltip__content {
 	top: calc(100% + var(--space-xs));
 	right: 0;
 }

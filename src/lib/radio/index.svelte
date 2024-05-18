@@ -86,7 +86,7 @@
 	element="label"
 	aria-checked={checked}
 	aria-label={typeof label === 'string' ? label : rest['aria-label']}
-	class="WuiRadio {_class}"
+	class="w-radio {_class}"
 	for={id}
 	gap={gap || size || ctx.size || 'md'}
 	textsize={textsize || size || ctx.size || 'md'}
@@ -124,7 +124,7 @@
 >
 	<input
 		{...rest}
-		class="WuiHidden"
+		class="w-hidden"
 		{checked}
 		name={name || ctx.name}
 		type="radio"
@@ -135,7 +135,7 @@
 	<Surface
 		element="span"
 		color={color || ctx.color || 'neutral'}
-		class="WuiRadio__thumb"
+		class="w-radio__thumb"
 		p={2}
 		shape={shape || ctx.shape || 'circle'}
 		variant={variant || ctx.variant || 'outlined'}

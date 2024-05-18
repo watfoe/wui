@@ -159,7 +159,7 @@
 	align="flex-start"
 	element="fieldset"
 	direction="column"
-	class="WuiTextArea__root WuiTextArea--{color} {_class}"
+	class="w-textarea__root w-textarea--{color} {_class}"
 	justify="flex-start"
 	{disabled}
 	{gap}
@@ -181,7 +181,7 @@
 
 	<Surface
 		align="flex-start"
-		class="WuiTextArea {_class}"
+		class="w-textarea {_class}"
 		color={error ? 'danger' : color}
 		direction="row"
 		gap="xs"
@@ -211,7 +211,7 @@
 			<Icon color="inherit" {size}>{prefix}</Icon>
 		{:else if prefix}
 			<div
-				class="WuiTextArea__prefix"
+				class="w-textarea__prefix"
 				style:height="calc(var(--height-{size}) - 4px)"
 				style:width="calc(var(--height-{size}) - 4px)"
 			>
@@ -220,12 +220,13 @@
 		{/if}
 
 		<textarea
-			class="WuiTextArea__input WuiText WuiText--body WuiText--{size}"
+			class="w-textarea__input"
 			style="text-align:{align};font-size:inherit;"
 			onblur={blur}
 			oninput={input}
 			style:width="100%"
 			style:height="100%"
+			style:font="inherit"
 			bind:this={textarea}
 			bind:value
 			{...rest}
@@ -235,7 +236,7 @@
 			<Icon color="inherit" {size}>{suffix}</Icon>
 		{:else if suffix}
 			<div
-				class="WuiTextArea__suffix"
+				class="w-textarea__suffix"
 				style:height="calc(var(--height-{size}) - 4px)"
 				style:width="calc(var(--height-{size}) - 4px)"
 			>

@@ -1,3 +1,3 @@
-import ListButtonItem, { type ListButtonItemAttributes } from './index.svelte';
+import ListButtonItem from './index.svelte';
 export default ListButtonItem;
-export type { ListButtonItemAttributes };
+export type { ListButtonItemAttributes } from './index.svelte';

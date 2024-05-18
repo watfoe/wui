@@ -1,3 +1,3 @@
-import Link, { type LinkAttributes } from './index.svelte';
+import Link from './index.svelte';
 export default Link;
-export type { LinkAttributes };
+export type { LinkAttributes } from './index.svelte';

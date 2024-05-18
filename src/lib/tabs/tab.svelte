@@ -35,7 +35,7 @@
 
 <Button
 	aria-selected={active}
-	class="WuiTab"
+	class="w-tab"
 	color={active ? color || ctx.color || 'primary' : 'neutral'}
 	navigation={ctx.navigation || 'horizontal'}
 	role="tab"

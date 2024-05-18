@@ -1,3 +1,3 @@
-import AvatarGroup, { type AvatarGroupAttributes } from './index.svelte';
+import AvatarGroup from './index.svelte';
 export default AvatarGroup;
-export type { AvatarGroupAttributes };
+export type { AvatarGroupAttributes } from './index.svelte';

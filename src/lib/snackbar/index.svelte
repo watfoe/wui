@@ -70,7 +70,7 @@
 
 <Surface
 	aria-label="Snackbar"
-	class="WuiSnackbar WuiSnackbar--{position} {openned ? 'WuiSnackbar--visible' : ''} {_class}"
+	class="w-snackbar w-snackbar--{position} {openned ? 'w-snackbar--visible' : ''} {_class}"
 	role="alertdialog"
 	textsize={textsize || size}
 	onclick={click}
@@ -101,7 +101,7 @@
 
 	{#if showclose}
 		<Button
-			class="WuiSnackbar__close-button"
+			class="w-snackbar__close-button"
 			prefix="close"
 			variant={variant === 'outlined' ? 'plain' : variant}
 			onclick={close}

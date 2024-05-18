@@ -1,40 +1,23 @@
-.WuiModal {
-  --WuiModal-minWidth: 400px;
+.w-modal {
   left: 50%;
   max-width: 100%;
   max-height: 100%;
-  min-width: var(--WuiModal-minWidth);
+  min-width: 400px;
   min-height: 50px;
   position: absolute;
-}
-
-.WuiModal--top {
-  top: var(--space-md);
   transform: translate(-50%, 0);
+  overflow: hidden;
 }
 
-.WuiModal--bottom {
-  bottom: var(--space-md);
-  transform: translate(-50%, 0);
+.w-modal--top {
+  top: var(--space-sm);
 }
 
-.WuiModal--center {
+.w-modal--bottom {
+  bottom: var(--space-sm);
+}
+
+.w-modal--center {
   top: 50%;
   transform: translate(-50%, -50%);
-}
-
-.WuiModal__header {
-  flex-shrink: 0;
-  max-height: fit-content;
-}
-
-.WuiModal__close-button {
-  flex-shrink: 0;
-  margin-left: auto;
-  user-select: none;
-}
-
-.WuiModal__body {
-  width: 100%;
-  overflow-y: auto;
 }

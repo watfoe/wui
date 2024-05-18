@@ -1,5 +1,4 @@
-/* prettier-ignore */
-.WuiSnackbar {
+.w-snackbar {
   display: none !important;
   flex-direction: row;
   justify-content: space-between;
@@ -11,65 +10,65 @@
   z-index: 9999;
 }
 
-.WuiSnackbar--visible {
+.w-snackbar--visible {
   display: flex !important;
 }
 
-.WuiSnackbar--top {
+.w-snackbar--top {
   top: var(--space-md);
   transform: translate(-50%, );
 }
 
-.WuiSnackbar--top-right {
+.w-snackbar--top-right {
   top: var(--space-md);
   right: var(--space-md);
   transform: translate(0, 0);
 }
 
-.WuiSnackbar--top-left {
+.w-snackbar--top-left {
   top: var(--space-md);
   left: var(--space-md);
   transform: translate(0, 0);
 }
 
-.WuiSnackbar--left {
+.w-snackbar--left {
   top: 50%;
   left: var(--space-md);
   transform: translate(0, -50%);
 }
 
-.WuiSnackbar--right {
+.w-snackbar--right {
   top: 50%;
   transform: translate(calc(100% + var(--space-md)), -50%);
   right: var(--space-md);
 }
 
-.WuiSnackbar--visible.WuiSnackbar--right {
+.w-snackbar--visible.w-snackbar--right {
   transform: translate(0, -50%);
 }
 
-.WuiSnackbar--bottom {
+.w-snackbar--bottom {
   bottom: var(--space-md);
 }
 
-.WuiSnackbar--bottom-right {
+.w-snackbar--bottom-right {
   bottom: var(--space-md);
   right: var(--space-md);
   /* transform: translate(0, 0); */
 }
 
-.WuiSnackbar--bottom-left {
+.w-snackbar--bottom-left {
   bottom: var(--space-md);
   left: var(--space-md);
   transform: translate(0, 0);
 }
 
-.WuiSnackbar--center {
+.w-snackbar--center {
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.WuiSnackbar__close-button {
+.w-snackbar__close-button {
   justify-self: flex-end;
   flex-shrink: 0;
   margin-left: auto;

@@ -173,9 +173,9 @@
 
 {#snippet _placeholder()}
 	{#if placeholder}
-		<span class="WuiSelect__combobox__placeholder">{placeholder}</span>
+		<span class="w-select__combobox__placeholder">{placeholder}</span>
 	{:else}
-		<span class="WuiSelect__combobox__placeholder">
+		<span class="w-select__combobox__placeholder">
 			Select {preset ? `a ${preset}` : 'an option'}
 		</span>
 	{/if}
@@ -184,7 +184,7 @@
 <Surface
 	align="flex-start"
 	justify="flex-start"
-	class="WuiSelect {_class}"
+	class="w-select {_class}"
 	direction="column"
 	element="fieldset"
 	{gap}
@@ -213,7 +213,7 @@
 	<Button
 		anchorfor={disabled ? undefined : id}
 		aria-expanded="false"
-		class="WuiSelect__combobox"
+		class="w-select__combobox"
 		color={error ? 'danger' : color}
 		justify="space-between"
 		navigation="feedback"
@@ -253,7 +253,7 @@
 		{/if}
 
 		{#snippet suffix()}
-			<Icon class="WuiSelect__combobox__icon" style="margin-left:auto">keyboard_arrow_down</Icon>
+			<Icon class="w-select__combobox__icon" style="margin-left:auto">keyboard_arrow_down</Icon>
 		{/snippet}
 	</Button>
 </Surface>
@@ -271,7 +271,7 @@
 		<Listbox
 			role="listbox"
 			aria-label="List of {preset} options"
-			class="WuiSelect__listbox"
+			class="w-select__listbox"
 			color="primary"
 			onchange={change}
 			{multiple}

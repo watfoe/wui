@@ -1,188 +1,181 @@
 [data-has-height="true"] {
-  height: var(--WuiSize-height);
+  height: var(--w-size-height);
 }
 
 [data-has-width="true"] {
-  width: var(--WuiSize-width, auto);
+  width: var(--w-size-width, auto);
 }
 
-.WuiVariant-solid {
-  background-color: var(--WuiColor-bg);
+.w-solid {
+  background-color: var(--w-color-bg);
 }
 
-.WuiVariant-soft,
-.WuiVariant-mixed {
-  background-color: var(--WuiColor-bg-soft);
+.w-soft,
+.w-mixed {
+  background-color: var(--w-color-bg-soft);
 }
 
-.WuiVariant-plain,
-.WuiVariant-none,
-.WuiVariant-outlined {
+.w-plain,
+.w-none,
+.w-outlined {
   background-color: inherit;
 }
 
-.WuiVariant-outlined,
-.WuiVariant-mixed {
-  border: 1px solid var(--WuiColor-bg);
+.w-outlined,
+.w-mixed {
+  border: 1px solid var(--w-color-bg);
 }
 
-.WuiClickable {
+.w-clickable {
   cursor: pointer;
 }
 
-.WuiClickable:disabled,
+.w-clickable:disabled,
 .WuiInput--disabled {
-  --WuiColor-bg: var(--color-neutral-2) !important;
-  --WuiColor-bg-soft: var(--color-neutral-2) !important;
-  --WuiColor-text: var(--color-neutral-6) !important;
+  --w-color-bg: var(--color-neutral-2) !important;
+  --w-color-bg-soft: var(--color-neutral-2) !important;
+  --w-color-text: var(--color-neutral-6) !important;
   cursor: default;
   pointer-events: none;
 }
 
-.WuiClickable.WuiVariant-solid:not(:disabled):hover,
-.WuiClickable.WuiVariant-solid:not(:disabled):focus-visible,
-.WuiClickable.WuiVariant-soft:not(:disabled):hover,
-.WuiClickable.WuiVariant-soft:not(:disabled):focus-visible {
+.w-clickable.w-solid:not(:disabled):hover,
+.w-clickable.w-solid:not(:disabled):focus-visible,
+.w-clickable.w-soft:not(:disabled):hover,
+.w-clickable.w-soft:not(:disabled):focus-visible {
   filter: brightness(0.94);
 }
 
-.WuiClickable.WuiVariant-solid:not(:disabled):active,
-.WuiClickable.WuiVariant-soft:not(:disabled):active,
-.WuiClickable.WuiVariant-outlined:not(:disabled):active,
-.WuiClickable.WuiVariant-plain:not(:disabled):active {
+.w-clickable.w-solid:not(:disabled):active,
+.w-clickable.w-soft:not(:disabled):active,
+.w-clickable.w-outlined:not(:disabled):active,
+.w-clickable.w-plain:not(:disabled):active {
   filter: brightness(0.89);
   transition: filter 0.2s ease-in-out;
 }
 
-.WuiClickable.WuiVariant-outlined:not(:disabled):hover,
-.WuiClickable.WuiVariant-outlined:not(:disabled):focus-visible,
-.WuiClickable.WuiVariant-plain:not(:disabled):hover,
-.WuiClickable.WuiVariant-plain:not(:disabled):focus-visible,
-.WuiClickable.WuiVariant-none:not(:disabled):hover,
-.WuiClickable.WuiVariant-none:not(:disabled):focus-visible {
-  background-color: var(--WuiColor-bg-soft);
+.w-clickable.w-outlined:not(:disabled):hover,
+.w-clickable.w-outlined:not(:disabled):focus-visible,
+.w-clickable.w-plain:not(:disabled):hover,
+.w-clickable.w-plain:not(:disabled):focus-visible,
+.w-clickable.w-none:not(:disabled):hover,
+.w-clickable.w-none:not(:disabled):focus-visible {
+  background-color: var(--w-color-bg-soft);
 }
 
-.WuiShape-rounded {
+.w-rounded {
   border-radius: var(--radius);
 }
 
-.WuiShape-pill {
+.w-pill {
   border-radius: 9999px;
 }
 
-.WuiShape-circle {
+.w-circle {
   border-radius: 50%;
 }
 
-.WuiShape-square {
+.w-square {
   border-radius: 0 !important;
 }
 
-.WuiText {
-  color: var(--WuiColor-text);
-  font-size: var(--WuiText-font-size, 1rem);
+.w-txt {
+  color: var(--w-color-text);
+  font-size: var(--w-txt-font-size, 1rem);
+  overflow-wrap: break-word;
 }
 
-.WuiText--label {
+.w-txt--label {
   line-height: 1.2;
 }
 
-.WuiText--a:hover {
+.w-txt--a:hover {
   text-decoration: underline;
 }
 
-.WuiText--inherit {
-  color: inherit;
-}
-
-.WuiText--align-left {
+.w-txt--align-left {
   text-align: left;
 }
 
-.WuiText--align-center {
+.w-txt--align-center {
   text-align: center;
 }
 
-.WuiText--align-right {
+.w-txt--align-right {
   text-align: right;
 }
 
-.WuiText--align-justify {
+.w-txt--align-justify {
   text-align: justify;
 }
 
-.WuiText--title.WuiText--sm {
-  --WuiText-font-size: 1.5rem;
+.w-txt--title.w-txt--sm {
+  --w-txt-font-size: 1.5rem;
 }
 
-.WuiText--title.WuiText--md {
-  --WuiText-font-size: 1.75rem;
+.w-txt--title.w-txt--md {
+  --w-txt-font-size: 1.75rem;
 }
 
-.WuiText--title.WuiText--lg {
-  --WuiText-font-size: 2rem;
+.w-txt--title.w-txt--lg {
+  --w-txt-font-size: 2rem;
 }
 
-.WuiText--heading.WuiText--sm {
-  --WuiText-font-size: 1rem;
+.w-txt--heading.w-txt--sm {
+  --w-txt-font-size: 1rem;
 }
 
-.WuiText--heading.WuiText--md {
-  --WuiText-font-size: 1.125rem;
+.w-txt--heading.w-txt--md {
+  --w-txt-font-size: 1.125rem;
 }
 
-.WuiText--heading.WuiText--lg {
-  --WuiText-font-size: 1.25rem;
+.w-txt--heading.w-txt--lg {
+  --w-txt-font-size: 1.25rem;
 }
 
-.WuiText--body.WuiText--xs,
-.WuiText--code.WuiText--xs,
-.WuiText--label.WuiText--xs,
-.WuiText--a.WuiText--xs {
-  --WuiText-font-size: 0.75rem;
+.w-txt--body.w-txt--xs,
+.w-txt--code.w-txt--xs,
+.w-txt--label.w-txt--xs,
+.w-txt--a.w-txt--xs {
+  --w-txt-font-size: 0.75rem;
 }
 
-.WuiText--body.WuiText--sm,
-.WuiText--code.WuiText--sm,
-.WuiText--label.WuiText--sm,
-.WuiText--a.WuiText--sm {
-  --WuiText-font-size: 0.8125rem;
+.w-txt--body.w-txt--sm,
+.w-txt--code.w-txt--sm,
+.w-txt--label.w-txt--sm,
+.w-txt--a.w-txt--sm {
+  --w-txt-font-size: 0.8125rem;
 }
 
-.WuiText--body.WuiText--md,
-.WuiText--code.WuiText--md,
-.WuiText--label.WuiText--md,
-.WuiText--a.WuiText--md {
-  --WuiText-font-size: 0.875rem;
+.w-txt--body.w-txt--md,
+.w-txt--code.w-txt--md,
+.w-txt--label.w-txt--md,
+.w-txt--a.w-txt--md {
+  --w-txt-font-size: 0.875rem;
 }
 
-.WuiText--body.WuiText--lg,
-.WuiText--code.WuiText--lg,
-.WuiText--label.WuiText--lg,
-.WuiText--a.WuiText--lg {
-  --WuiText-font-size: 1rem;
+.w-txt--body.w-txt--lg,
+.w-txt--code.w-txt--lg,
+.w-txt--label.w-txt--lg,
+.w-txt--a.w-txt--lg {
+  --w-txt-font-size: 1rem;
 }
 
-.WuiText--body.WuiText--xl,
-.WuiText--code.WuiText--xl,
-.WuiText--label.WuiText--xl,
-.WuiText--a.WuiText--xl {
-  --WuiText-font-size: 1.125rem;
+.w-txt--body.w-txt--xl,
+.w-txt--code.w-txt--xl,
+.w-txt--label.w-txt--xl,
+.w-txt--a.w-txt--xl {
+  --w-txt-font-size: 1.125rem;
 }
 
-.WuiText--code {
-  font-family: var(--WuiText-code-font-family, 'Fira Code', monospace);
+.bold {
+  font-weight: 600;
 }
 
-.WuiText--bold {
-  font-weight: 500;
-}
-
-.WuiText--italic {
+.italic {
   font-style: italic;
 }
 
-.WuiText--underline {
+.underline {
   text-decoration: underline;
 }

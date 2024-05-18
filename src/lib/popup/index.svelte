@@ -21,7 +21,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import Backdrop, { type BaseBackdropAttributes } from '../backdrop';
 	import Surface, { type SurfaceAttributes } from '../surface';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -189,7 +188,7 @@
 	<Surface
 		element="div"
 		aria-label="Popup"
-		class="WuiPopup {_class}"
+		class="w-popup {_class}"
 		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
 		colorweight={!colorweight && variant === 'outlined' && color === 'neutral' ? '2' : colorweight}
 		onclick={closeon === 'mouseout' || closeon === 'click-out'
@@ -209,3 +208,15 @@
 		{...rest}
 	/>
 </Backdrop>
+
+<style>
+	:global(.w-popup) {
+		max-height: calc(100vh - calc(var(--space-xs) * 2)) !important;
+		overflow-y: auto;
+		position: absolute;
+	}
+
+	:global(.w-popup.w-outlined) {
+		background-color: var(--color-surface);
+	}
+</style>

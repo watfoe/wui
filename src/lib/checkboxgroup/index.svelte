@@ -41,8 +41,7 @@
 		name,
 		size,
 		shape,
-		variant,
-		...rest
+		variant
 	}: CheckboxGroupAttributes = $props();
 
 	setContext('wui-checkbox-group-ctx', {
@@ -54,7 +53,7 @@
 	});
 </script>
 
-<fieldset class="WuiCheckboxGroup {_class}" {hidden} {disabled}>
+<fieldset class="w-checkboxgroup {_class}" {hidden} {disabled}>
 	{#if label}
 		<InputLabel {description}>{label}</InputLabel>
 	{/if}
@@ -67,7 +66,7 @@
 </fieldset>
 
 <style>
-	.WuiCheckboxGroup {
+	.w-checkboxgroup {
 		border: 0;
 		outline: 0;
 		appearance: none;
@@ -77,7 +76,7 @@
 		width: auto;
 	}
 
-	.WuiCheckboxGroup :global(.WuiInput__label__root) {
+	.w-checkboxgroup :global(.w-input__label__root) {
 		max-width: unset !important;
 	}
 </style>

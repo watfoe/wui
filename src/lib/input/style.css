@@ -1,67 +1,67 @@
-.WuiInput--neutral:focus-within .WuiInput__label {
+.w-input--neutral:focus-within .w-input__label {
   color: var(--color-primary-5);
 }
 
-.WuiInput__root:invalid .WuiInput__label {
+.w-input__root:invalid .w-input__label {
   color: var(--color-danger-5);
 }
 
-.WuiInput__root:disabled .WuiInput__label {
+.w-input__root:disabled .w-input__label {
   color: var(--color-neutral-5);
 }
 
-.WuiInput.WuiColor-neutral.WuiVariant-outlined,
-.WuiInput.WuiColor-neutral.WuiVariant-soft,
-.WuiInput.WuiColor-neutral.WuiVariant-plain {
+.w-input.w-neutral.w-outlined,
+.w-input.w-neutral.w-soft,
+.w-input.w-neutral.w-plain {
   color: var(--color-neutral-8);
 }
 
-.WuiInput.WuiVariant-plain.WuiColor-primary {
+.w-input.w-plain.w-primary {
   background-color: var(--color-primary-0);
 }
 
-.WuiInput.WuiVariant-plain.WuiColor-neutral,
-.WuiInput.WuiVariant-plain.WuiColor-black,
-.WuiInput.WuiVariant-plain.WuiColor-white {
+.w-input.w-plain.w-neutral,
+.w-input.w-plain.w-black,
+.w-input.w-plain.w-white {
   background-color: var(--color-neutral-0);
 }
 
-.WuiInput.WuiVariant-plain.WuiColor-success {
+.w-input.w-plain.w-success {
   background-color: var(--color-success-0);
 }
 
-.WuiInput.WuiVariant-plain.WuiColor-danger {
+.w-input.w-plain.w-danger {
   background-color: var(--color-danger-0);
 }
 
-.WuiInput.WuiVariant-plain.WuiColor-warning {
+.w-input.w-plain.w-warning {
   background-color: var(--color-warning-0);
 }
 
-.WuiInput:focus-within:not(.WuiVariant-solid):not(.WuiColor-neutral) {
-  box-shadow: inset 0 0 0 0.5px var(--WuiColor-bg);
+.w-input:focus-within:not(.w-solid):not(.w-neutral) {
+  box-shadow: inset 0 0 0 0.5px var(--w-color-bg);
 }
 
-.WuiInput.WuiColor-neutral:not(.WuiVariant-solid):focus-within {
+.w-input.w-neutral:not(.w-solid):focus-within {
   box-shadow: inset 0 0 0 0.5px var(--color-primary-5);
   border-color: var(--color-primary-5);
 }
 
-.WuiInput.WuiVariant-solid.WuiColor-neutral:focus-within {
-  --WuiColor-bg: var(--color-primary-5) !important;
+.w-input.w-solid.w-neutral:focus-within {
+  --w-color-bg: var(--color-primary-5) !important;
 }
 
-.WuiInput.WuiVariant-soft,
-.WuiInput.WuiVariant-plain {
+.w-input.w-soft,
+.w-input.w-plain {
   border: 1px solid transparent;
 }
 
-.WuiInput.WuiVariant-soft:focus-within,
-.WuiInput.WuiVariant-plain:focus-within {
-  border-color: var(--WuiColor-bg);
+.w-input.w-soft:focus-within,
+.w-input.w-plain:focus-within {
+  border-color: var(--w-color-bg);
 }
 
-.WuiInput__input {
+.w-input__input {
   background-color: unset !important;
   color: inherit;
   font: inherit;
@@ -71,20 +71,20 @@
 }
 
 /* Chrome, Safari, Edge, Opera */
-.WuiInput__input::-webkit-outer-spin-button,
-.WuiInput__input::-webkit-inner-spin-button {
+.w-input__input::-webkit-outer-spin-button,
+.w-input__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-.WuiInput__input[type=number] {
+.w-input__input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-.WuiInput__prefix,
-.WuiInput__suffix {
+.w-input__prefix,
+.w-input__suffix {
   align-items: center;
   border-radius: inherit;
   cursor: default;
@@ -98,8 +98,8 @@
   overflow: hidden;
 }
 
-div.WuiInput__prefix>*,
-div.WuiInput__suffix>* {
+div.w-input__prefix>*,
+div.w-input__suffix>* {
   border-radius: inherit;
   width: 100% !important;
   height: 100% !important;

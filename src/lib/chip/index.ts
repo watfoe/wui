@@ -1,3 +1,3 @@
-import Chip, { type ChipAttributes } from './index.svelte';
+import Chip from './index.svelte';
 export default Chip;
-export type { ChipAttributes };
+export type { ChipAttributes } from './index.svelte';

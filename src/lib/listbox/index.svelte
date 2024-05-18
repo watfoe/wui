@@ -14,7 +14,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import { setContext } from 'svelte';
 
 	let {
@@ -62,7 +61,7 @@
 <fieldset
 	role={rest.role || 'listbox'}
 	aria-label={rest['aria-label'] || 'Select an option'}
-	class="WuiListbox {rest.class || ''}"
+	class="w-listbox {rest.class || ''}"
 	style={rest.style || ''}
 	bind:this={listbox}
 	onchange={change}
@@ -71,3 +70,15 @@
 		{@render children()}
 	{/if}
 </fieldset>
+
+<style>
+	.w-listbox {
+		background-color: inherit;
+		border: 0;
+		border-radius: inherit;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		width: 100%;
+	}
+</style>

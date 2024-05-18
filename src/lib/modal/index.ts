@@ -1,3 +1,3 @@
-import Modal, { type ModalAttributes } from './index.svelte';
+import Modal from './index.svelte';
 export default Modal;
-export type { ModalAttributes };
+export type { ModalAttributes } from './index.svelte';

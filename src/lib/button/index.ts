@@ -1,3 +1,3 @@
-import Button, { type ButtonAttributes } from './index.svelte';
+import Button from './index.svelte';
 export default Button;
-export type { ButtonAttributes };
+export type { ButtonAttributes } from './index.svelte';

@@ -1,3 +1,3 @@
-import Badge, { type BadgeAttributes } from './index.svelte';
+import Badge from './index.svelte';
 export default Badge;
-export type { BadgeAttributes };
+export type { BadgeAttributes } from './index.svelte';

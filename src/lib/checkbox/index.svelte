@@ -84,7 +84,7 @@
 	element="label"
 	aria-checked={checked}
 	aria-label={typeof label === 'string' ? label : rest['aria-label']}
-	class="WuiCheckbox {_class}"
+	class="w-checkbox {_class}"
 	for={id}
 	gap={gap || size || ctx.size || 'md'}
 	textsize={textsize || size || ctx.size || 'md'}
@@ -122,7 +122,7 @@
 >
 	<input
 		{...rest}
-		class="WuiHidden"
+		class="w-hidden"
 		name={name || ctx.name}
 		tabindex="-1"
 		type="checkbox"
@@ -132,7 +132,7 @@
 
 	<Surface
 		element="span"
-		class="WuiCheckbox__thumb"
+		class="w-checkbox__thumb"
 		color={checked ? color || ctx.color || 'primary' : 'neutral'}
 		shape={shape || ctx.shape || 'rounded'}
 		variant={variant || ctx.variant || 'outlined'}

@@ -1,14 +1,14 @@
-.WuiButton--loading:disabled {
+.w-btn--loading:disabled {
   color: transparent !important;
   position: relative;
 }
 
-.WuiButton--loading:disabled * {
+.w-btn--loading:disabled * {
   background-color: transparent !important;
   color: transparent !important;
 }
 
-.WuiButton--loading::before {
+.w-btn--loading::before {
   content: '';
   border: 1.5px solid transparent;
   border-radius: 50%;

@@ -23,6 +23,7 @@
 		selected = $bindable(false),
 		shape,
 		size,
+		style = '',
 		value = $bindable(),
 		variant,
 		...rest
@@ -63,7 +64,6 @@
 
 <LikeButton
 	aria-selected={_checked}
-	class="WuiListbox__item"
 	color={_checked ? color || ctx.color || 'primary' : 'neutral'}
 	element="label"
 	for={id}
@@ -71,6 +71,7 @@
 	navigation="vertical"
 	size={size || ctx.size || 'md'}
 	shape={shape || ctx.shape || 'rounded'}
+	style="position:relative;{style}"
 	variant={_checked ? variant || ctx.variant || 'soft' : 'plain'}
 	onkeydown={keydown}
 	{px}

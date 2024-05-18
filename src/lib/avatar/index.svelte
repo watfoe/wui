@@ -9,7 +9,6 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import { getContext } from 'svelte';
 	import Icon from '../icon';
 	import Surface, { type SurfaceAttributes } from '../surface';
@@ -69,7 +68,7 @@
 	aria-label={alt || 'Avatar'}
 	align="center"
 	color={color || ctx.color || 'primary'}
-	class="WuiAvatar {_class}"
+	class="w-avatar {_class}"
 	element="div"
 	justify="center"
 	role="img"
@@ -101,7 +100,7 @@
 	{style}
 >
 	{#if src}
-		<img {src} {alt} class="WuiAvatar__img" {...rest} />
+		<img {src} {alt} class="w-avatar__img" {...rest} />
 	{:else if alt}
 		{alt[0].toUpperCase()}
 	{:else if !children}
@@ -110,3 +109,16 @@
 		{@render children()}
 	{/if}
 </Surface>
+
+<style>
+	:global(.w-avatar) {
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+
+	:global(.w-avatar__img) {
+		border-radius: inherit;
+		width: 100% !important;
+		height: 100% !important;
+	}
+</style>

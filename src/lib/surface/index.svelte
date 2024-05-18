@@ -76,13 +76,13 @@
 
 <svelte:element
 	this={element}
-	class="WuiText WuiText--{textvariant} WuiText--{textsize} {textbold
-		? 'WuiText--bold '
-		: ''}{textitalic ? 'WuiText--italic ' : ''}{textalign
-		? `WuiText--align-${textalign} `
-		: ''}{textunderline ? 'WuiText--underline ' : ''}{variant ? `WuiVariant-${variant} ` : ''}{color
-		? `WuiColor-${color} `
-		: ''}{shape ? `WuiShape-${shape} ` : ''}{clickable ? 'WuiClickable ' : ''}{_class}"
+	class="w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
+		? 'italic '
+		: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline ? 'underline ' : ''}{variant
+		? `w-${variant} `
+		: ''}{color ? `w-${color} ` : ''}{shape ? `w-${shape} ` : ''}{clickable
+		? 'w-clickable '
+		: ''}{_class}"
 	data-has-width={width ? 'true' : 'false'}
 	data-has-height={height ? 'true' : 'false'}
 	style="

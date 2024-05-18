@@ -1,3 +1,3 @@
-import Col, { type ColAttributes } from './index.svelte';
+import Col from './index.svelte';
 export default Col;
-export type { ColAttributes };
+export type { ColAttributes } from './index.svelte';

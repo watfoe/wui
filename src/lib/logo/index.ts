@@ -1,3 +1,3 @@
-import Logo, { type LogoAttributes } from './index.svelte';
+import Logo from './index.svelte';
 export default Logo;
-export type { LogoAttributes };
+export type { LogoAttributes } from './index.svelte';

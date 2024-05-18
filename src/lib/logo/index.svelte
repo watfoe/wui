@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	let { brand = 'watfoe', size = 100, ...rest }: LogoAttributes = $props();
+	let { brand = 'watfoe', size = 50, ...rest }: LogoAttributes = $props();
 </script>
 
 {#snippet brand_logo(url: string, size: number)}

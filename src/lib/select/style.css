@@ -1,62 +1,62 @@
-.WuiSelect:disabled .WuiInput__label {
+.w-select:disabled .w-input__label {
   color: var(--color-neutral-4);
 }
 
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-primary {
+.w-select__combobox.w-plain.w-primary {
   background-color: var(--color-primary-0);
 }
 
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-neutral,
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-black,
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-white {
+.w-select__combobox.w-plain.w-neutral,
+.w-select__combobox.w-plain.w-black,
+.w-select__combobox.w-plain.w-white {
   background-color: var(--color-neutral-0);
 }
 
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-success {
+.w-select__combobox.w-plain.w-success {
   background-color: var(--color-success-0);
 }
 
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-danger {
+.w-select__combobox.w-plain.w-danger {
   background-color: var(--color-danger-0);
 }
 
-.WuiSelect__combobox.WuiVariant-plain.WuiColor-warning {
+.w-select__combobox.w-plain.w-warning {
   background-color: var(--color-warning-0);
 }
 
-.WuiSelect__combobox.WuiVariant-soft,
-.WuiSelect__combobox.WuiVariant-plain {
+.w-select__combobox.w-soft,
+.w-select__combobox.w-plain {
   border: 1px solid transparent;
 }
 
-.WuiSelect__combobox.WuiVariant-soft:focus-within,
-.WuiSelect__combobox.WuiVariant-plain:focus-within {
-  border-color: var(--WuiColor-bg);
+.w-select__combobox.w-soft:focus-within,
+.w-select__combobox.w-plain:focus-within {
+  border-color: var(--w-color-bg);
 }
 
-.WuiSelect:focus-within .WuiSelect__combobox.WuiColor-neutral {
-  --WuiColor-bg: var(--color-primary-5) !important;
+.w-select:focus-within .w-select__combobox.w-neutral {
+  --w-color-bg: var(--color-primary-5) !important;
 }
 
-.WuiSelect:focus-within .WuiSelect__combobox:not(.WuiVariant-solid) {
-  box-shadow: inset 0 0 0 0.5px var(--WuiColor-bg);
+.w-select:focus-within .w-select__combobox:not(.w-solid) {
+  box-shadow: inset 0 0 0 0.5px var(--w-color-bg);
 }
 
-.WuiSelect__combobox__placeholder {
+.w-select__combobox__placeholder {
   opacity: 0.5;
 }
 
-/* .WuiSelect:focus-within .WuiSelect__combobox,
-.WuiSelect__combobox[aria-expanded='true'] {
+/* .w-select:focus-within .w-select__combobox,
+.w-select__combobox[aria-expanded='true'] {
   box-shadow: inset 0 0 0 0.5px var(--color-primary);
 } */
 
-.WuiSelect__combobox__icon {
+.w-select__combobox__icon {
   transition: transform 0.1s ease-in-out;
   opacity: 0.5;
 }
 
-.WuiSelect__combobox[aria-expanded='true'] .WuiSelect__combobox__icon {
+.w-select__combobox[aria-expanded='true'] .w-select__combobox__icon {
   opacity: 1;
   transform: rotate(-180deg);
 }

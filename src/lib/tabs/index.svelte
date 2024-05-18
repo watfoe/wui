@@ -51,8 +51,8 @@
 
 	$effect(() => {
 		untrack(() => {
-			const tabPanelsParent = document.querySelector(`#${_for}.WuiTabPanels`) as HTMLDivElement;
-			const tabButtons = tabs.querySelectorAll('.WuiTab');
+			const tabPanelsParent = document.querySelector(`#${_for}.w-tabpanels`) as HTMLDivElement;
+			const tabButtons = tabs.querySelectorAll('.w-tab');
 
 			if (!tabPanelsParent) {
 				throw new Error(`No tabpanels found with the id: '${_for}'`);
@@ -120,7 +120,7 @@
 <div
 	bind:this={tabs}
 	role="tablist"
-	class={bottomrule ? 'WuiTabs--bottom-ruled' : ''}
+	class={bottomrule ? 'w-tabs--bottom-ruled' : ''}
 	style:display="flex"
 	style:flex-direction="row"
 	style:gap="var(--space-{gap})"
@@ -130,11 +130,11 @@
 </div>
 
 <style>
-	.WuiTabs--bottom-ruled {
+	.w-tabs--bottom-ruled {
 		border-bottom: var(--line);
-		margin-bottom: var(--WuiTab-marginBottom, var(--space-md));
+		margin-bottom: var(--space-md);
 	}
-	.WuiTabs--bottom-ruled > :global(.WuiTab) {
+	.w-tabs--bottom-ruled > :global(.w-tab) {
 		border-bottom-left-radius: 0 !important;
 		border-bottom-right-radius: 0 !important;
 	}

@@ -1,3 +1,3 @@
-import LikeButton, { type LikeButtonAttributes } from './index.svelte';
+import LikeButton from './index.svelte';
 export default LikeButton;
-export type { LikeButtonAttributes };
+export type { LikeButtonAttributes } from './index.svelte';

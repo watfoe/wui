@@ -1,3 +1,3 @@
-import Popup, { type PopupAttributes } from './index.svelte';
+import Popup from './index.svelte';
 export default Popup;
-export type { PopupAttributes };
+export type { PopupAttributes } from './index.svelte';

@@ -51,7 +51,7 @@
 	align="flex-start"
 	element="fieldset"
 	direction="column"
-	class="WuiInput__root WuiInput--{color} {rest.class || ''}"
+	class="w-input__root w-input--{color} {rest.class || ''}"
 	{disabled}
 	{gap}
 	{justify}

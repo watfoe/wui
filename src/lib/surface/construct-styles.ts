@@ -23,11 +23,11 @@ export function construct_spacing_style(
 export function construct_size_style(which: 'height' | 'width', value?: string | number) {
 	if (value) {
 		if (typeof value === 'number') {
-			return `--WuiSize-${which}:${value}px;`;
+			return `--w-size-${which}:${value}px;`;
 		} else if (SPACES.includes(value)) {
-			return `--WuiSize-${which}:var(--height-${value});`;
+			return `--w-size-${which}:var(--height-${value});`;
 		} else {
-			return `--WuiSize-${which}:${value};`;
+			return `--w-size-${which}:${value};`;
 		}
 	}
 
@@ -55,8 +55,8 @@ export function construct_color_style(
 	if (variant === 'plain' || variant === 'none') {
 		// bg soft is used for hover effect
 		return `
-			--WuiColor-text: ${compute_color_value(textcolor || color || 'black', textweight)};
-			${clickable ? `--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});` : ''}
+			--w-color-text: ${compute_color_value(textcolor || color || 'black', textweight)};
+			${clickable ? `--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});` : ''}
 		`;
 	} else if (variant === 'soft') {
 		color = color || 'primary';
@@ -66,8 +66,8 @@ export function construct_color_style(
 		}
 
 		return `
-			--WuiColor-text: ${compute_color_value(textcolor || color, textweight)};
-			--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});
+			--w-color-text: ${compute_color_value(textcolor || color, textweight)};
+			--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});
 		`;
 	} else if (variant === 'solid') {
 		if (color === 'white') {
@@ -79,8 +79,8 @@ export function construct_color_style(
 		}
 
 		return `
-			--WuiColor-bg: ${compute_color_value(color, weight)};
-			--WuiColor-text: ${compute_color_value(textcolor || 'white', textweight)};
+			--w-color-bg: ${compute_color_value(color, weight)};
+			--w-color-text: ${compute_color_value(textcolor || 'white', textweight)};
 		`;
 	} else if (variant === 'outlined') {
 		if (color === 'neutral') {
@@ -93,17 +93,17 @@ export function construct_color_style(
 		// The bg color is used for the border color
 		// while the bg soft is used for the hover effect
 		return `
-			--WuiColor-bg: ${compute_color_value(color, weight)};
-			--WuiColor-text: ${compute_color_value(textcolor || color, textweight)};
-			${clickable ? `--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}
+			--w-color-bg: ${compute_color_value(color, weight)};
+			--w-color-text: ${compute_color_value(textcolor || color, textweight)};
+			${clickable ? `--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}
 		`;
 	} else if (variant === 'mixed') {
 		color = color || 'primary';
 
 		return `
-			--WuiColor-bg: ${compute_color_value(color, !weight && color === 'neutral' ? '3' : weight || '5')};
-			--WuiColor-text: ${compute_color_value(textcolor || color, textweight)};
-			--WuiColor-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');
+			--w-color-bg: ${compute_color_value(color, !weight && color === 'neutral' ? '3' : weight || '5')};
+			--w-color-text: ${compute_color_value(textcolor || color, textweight)};
+			--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');
 		`;
 	}
 

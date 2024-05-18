@@ -1,3 +1,3 @@
-import CheckboxGroup, { type CheckboxGroupAttributes } from './index.svelte';
+import CheckboxGroup from './index.svelte';
 export default CheckboxGroup;
-export type { CheckboxGroupAttributes };
+export type { CheckboxGroupAttributes } from './index.svelte';

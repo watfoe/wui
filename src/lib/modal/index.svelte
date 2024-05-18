@@ -58,11 +58,12 @@
 <Backdrop {id} bind:backdrop>
 	<Surface
 		aria-modal="true"
-		aria-label="Modal"
+		aria-label="modal"
 		color="white"
-		class="WuiModal WuiModal--{position} {_class}"
+		class="w-modal w-modal--{position} {_class}"
 		direction="column"
 		element="div"
+		justify="flex-start"
 		role="dialog"
 		variant="solid"
 		onclick={click}
@@ -73,7 +74,7 @@
 		{...rest}
 	>
 		{#if showclose || title || header}
-			<Row justify="space-between" class="WuiModal__header" width="100%">
+			<Row justify="space-between" width="100%">
 				{#if header}
 					{@render header()}
 				{:else if title}
@@ -86,8 +87,8 @@
 						color="neutral"
 						size="sm"
 						shape="circle"
-						class="WuiModal__close-button"
 						onclick={close}
+						ml="auto"
 					>
 						{#snippet prefix()}
 							<Icon size="md">close</Icon>
@@ -101,7 +102,7 @@
 			<Divider />
 		{/if}
 
-		<Col class="WuiModal__body">
+		<Col width="100%" style="overflow-y:auto">
 			{#if children}
 				{@render children()}
 			{/if}

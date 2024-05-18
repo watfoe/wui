@@ -81,7 +81,7 @@
 		validate();
 	}
 
-	function blur(e: Event) {
+	function blur() {
 		if (validateon === 'blur') {
 			validate();
 		}
@@ -116,7 +116,7 @@
 	}
 </script>
 
-<Row gap="sm">
+<Row align="flex-start" gap="sm">
 	<Select
 		placeholder="Month"
 		preset="month"
@@ -181,7 +181,7 @@
 		tabindex="-1"
 		aria-hidden="true"
 		{name}
-		class="WuiHidden"
+		class="w-hidden"
 		bind:this={input_el}
 		bind:value
 	/>

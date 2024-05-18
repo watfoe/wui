@@ -1,3 +1,3 @@
-import Divider, { type DividerAttributes } from './index.svelte';
+import Divider from './index.svelte';
 export default Divider;
-export type { DividerAttributes };
+export type { DividerAttributes }  from './index.svelte';

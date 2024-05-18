@@ -10,12 +10,10 @@
 </script>
 
 <script lang="ts">
-	import './style.css';
 	import Popup, { type PopupAttributes } from '../popup';
 	import { setContext } from 'svelte';
 
 	let {
-		class: _class = '',
 		color,
 		direction = 'column',
 		gap = 'ss',
@@ -41,13 +39,4 @@
 	}
 </script>
 
-<Popup
-	aria-label="Menu"
-	class="WuiMenu {_class}"
-	role="menu"
-	{color}
-	{direction}
-	{gap}
-	{shape}
-	{...rest}
-/>
+<Popup aria-label="menu" role="menu" {color} {direction} {gap} {shape} {...rest} />

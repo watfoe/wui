@@ -42,7 +42,7 @@
 	}: TooltipAttributes = $props();
 </script>
 
-<div class="WuiTooltip WuiTooltip-{position}">
+<div class="w-tooltip w-tooltip-{position}">
 	{#if children}
 		{@render children()}
 	{/if}
@@ -56,7 +56,7 @@
 		{shape}
 		{textsize}
 		{variant}
-		class="WuiTooltip__content"
+		class="w-tooltip__content"
 		{...rest}
 	>
 		{#if typeof title === 'string'}

@@ -1,9 +1,0 @@
-.WuiPopup {
-  max-height: calc(100vh - calc(var(--space-md) * 2)) !important;
-  overflow-y: auto;
-  position: absolute;
-}
-
-.WuiPopup.WuiVariant-outlined {
-  background-color: var(--color-surface);
-}

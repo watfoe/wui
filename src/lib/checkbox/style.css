@@ -1,4 +1,4 @@
-.WuiCheckbox {
+.w-checkbox {
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -6,18 +6,18 @@
   position: relative;
 }
 
-.WuiCheckbox__thumb {
+.w-checkbox__thumb {
   display: inline-flex;
 }
 
-.WuiCheckbox:hover input:not(:checked)+.WuiCheckbox__thumb {
-  box-shadow: inset 0 0 0 0.5px var(--WuiColor-bg);
+.w-checkbox:hover input:not(:checked)+.w-checkbox__thumb {
+  box-shadow: inset 0 0 0 0.5px var(--w-color-bg);
 }
 
-.WuiCheckbox .WuiCheckbox__thumb * {
+.w-checkbox .w-checkbox__thumb * {
   opacity: 0;
 }
 
-.WuiCheckbox input:checked+.WuiCheckbox__thumb * {
+.w-checkbox input:checked+.w-checkbox__thumb * {
   opacity: 1;
 }
