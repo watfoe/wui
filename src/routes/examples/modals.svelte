@@ -1,7 +1,7 @@
 <script>
 	import Button from '$lib/button';
-	import Col from '$lib/col';
 	import Modal from '$lib/modal';
+	import { TabPanel } from '$lib/tabs';
 
 	const positions = ['top', 'center', 'bottom'];
 </script>
@@ -10,7 +10,7 @@
 	<Modal id="{position}-modal" title="Some words in here for fun" {position}></Modal>
 {/snippet}
 
-<Col justify="center" gap="lg" width="100%" style="margin-top: 200px">
+<TabPanel align="center" justify="center" gap="lg">
 	{#each positions as position}
 		<Button anchorfor="{position}-modal" class="button" style="text-transform:capitalize">
 			{position}
@@ -18,4 +18,4 @@
 
 		{@render modal(position)}
 	{/each}
-</Col>
+</TabPanel>

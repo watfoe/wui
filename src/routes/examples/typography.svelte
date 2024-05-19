@@ -1,10 +1,10 @@
 <script>
-	import Col from '$lib/col';
 	import Row from '$lib/row';
+	import { TabPanel } from '$lib/tabs';
 	import Text from '$lib/text';
 </script>
 
-<Col gap="md" width="100%">
+<TabPanel align="flex-start" gap="md">
 	<Row align="flex-end" gap="md" width="100%">
 		<Text variant="title" size="lg">Large Title</Text>
 		<Text variant="title" size="md">Medium Title</Text>
@@ -28,4 +28,9 @@
 		<Text variant="label" size="md">Medium label</Text>
 		<Text variant="label" size="sm" color="danger">Small label</Text>
 	</Row>
-</Col>
+
+	<Row width={500}>
+		Rewind.ai - as someone who has horrific memory, it's intriguing to record everything in a
+		searchable format. A true second brain..
+	</Row>
+</TabPanel>

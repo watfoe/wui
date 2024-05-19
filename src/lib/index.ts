@@ -40,7 +40,7 @@ export {default as Row, type RowAttributes} from './row';
 export {WatfoeHeader, WatfoeContent} from './watfoe';
 
 export { default as Menu, MenuItem, type MenuAttributes, type MenuItemAttributes } from './menu';
-export { default as Tabs, Tab, TabPanels, type TabsAttributes, type TabPanelsAttributes } from './tabs';
+export { default as Tabs, Tab, TabPanels, TabPanel, type TabsAttributes, type TabPanelsAttributes, type TabPanelAttributes } from './tabs';
 
 export { default as Link, type LinkAttributes } from './link';
 export { default as LinkLikeButton, type LinkLikeButtonAttributes } from './linklikebutton';

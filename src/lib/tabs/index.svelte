@@ -51,18 +51,18 @@
 
 	$effect(() => {
 		untrack(() => {
-			const tabPanelsParent = document.querySelector(`#${_for}.w-tabpanels`) as HTMLDivElement;
+			const tabPanels = document.querySelectorAll(`[data-tabpanels-id=${_for}]`);
 			const tabButtons = tabs.querySelectorAll('.w-tab');
 
-			if (!tabPanelsParent) {
+			if (tabPanels.length === 0) {
 				throw new Error(`No tabpanels found with the id: '${_for}'`);
 			}
 
-			const tabPanels = tabPanelsParent.children;
+			// const tabPanels = tabPanelsParent.children;
 
 			tabButtons.forEach((tabButton, index) => {
 				const tabId = `${_for}-tab-${index}`;
-				const tabPanelId = `${_for}-tabpanel-${index}`;
+				const tabPanelId = `${_for}-${index}`;
 
 				tabButton.setAttribute('id', tabId);
 				tabButton.setAttribute('aria-controls', tabPanelId);
@@ -96,7 +96,6 @@
 
 					if (tabPanels[activeIndex]) {
 						tabPanels[activeIndex].setAttribute('tabindex', '-1');
-						dispatchEvent(tabPanels[activeIndex]);
 					}
 
 					dispatchEvent(tabButton);
@@ -112,8 +111,8 @@
 		});
 	});
 
-	function dispatchEvent(elem: Element) {
-		elem.dispatchEvent(new Event('select'));
+	function dispatchEvent(tab: Element) {
+		tab.dispatchEvent(new Event('select'));
 	}
 </script>
 

@@ -1,9 +1,9 @@
 <script>
 	import Button from '$lib/button';
-	import Col from '$lib/col';
 	import Divider from '$lib/divider';
 	import Menu, { MenuItem } from '$lib/menu';
 	import Row from '$lib/row';
+	import { TabPanel } from '$lib/tabs';
 
 	const positions = [
 		['left-start', 'top-start', 'top', 'top-end', 'right-start'],
@@ -22,7 +22,7 @@
 	</Menu>
 {/snippet}
 
-<Col justify="center" gap="lg" width="100%" style="margin-top: 200px">
+<TabPanel align="center" justify="center" gap="lg">
 	{#each positions as row}
 		<Row justify="space-between" width={840}>
 			{#each row as position}
@@ -34,4 +34,4 @@
 			{/each}
 		</Row>
 	{/each}
-</Col>
+</TabPanel>

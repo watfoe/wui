@@ -1,10 +1,10 @@
 <script>
 	import Button from '$lib/button';
-	import Col from '$lib/col';
 	import Row from '$lib/row';
+	import { TabPanel } from '$lib/tabs';
 </script>
 
-<Col gap="md" width="100%">
+<TabPanel gap="md">
 	<Row gap="md" width="100%">
 		<Button variant="solid" class="button">Primary Solid</Button>
 		<Button variant="outlined" class="button">Primary Outline</Button>
@@ -88,4 +88,4 @@
 		<Button variant="soft" prefix="person" loading />
 		<Button variant="plain" prefix="person" loading />
 	</Row>
-</Col>
+</TabPanel>

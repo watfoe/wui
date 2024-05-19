@@ -9,11 +9,12 @@
 	import Row from '$lib/row';
 	import Select from '$lib/select';
 	import Switch from '$lib/switch';
+	import { TabPanel } from '$lib/tabs';
 
 	let name = $state('');
 </script>
 
-<Col gap="lg" width="100%">
+<TabPanel gap="lg">
 	<Row align="flex-start" gap="md" width="100%">
 		<Input
 			type="text"
@@ -164,4 +165,4 @@
 		<Switch size="lg" color="success" />
 		<Switch color="warning" />
 	</Row>
-</Col>
+</TabPanel>

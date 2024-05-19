@@ -1,11 +1,11 @@
 <script>
 	import Avatar from '$lib/avatar';
 	import AvatarGroup from '$lib/avatargroup';
-	import Col from '$lib/col';
 	import Row from '$lib/row';
+	import { TabPanel } from '$lib/tabs';
 </script>
 
-<Col align="flex-start" gap="md" width="100%">
+<TabPanel gap="md">
 	<Row gap="md" width="100%">
 		<Avatar color="neutral" />
 		<Avatar color="success" alt="Jimmie Lovell" />
@@ -32,4 +32,4 @@
 		<Avatar alt="Jimmie Lovell" />
 		<Avatar size="sm">JL</Avatar>
 	</Row>
-</Col>
+</TabPanel>

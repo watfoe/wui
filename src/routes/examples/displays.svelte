@@ -2,7 +2,6 @@
 	import Badge from '$lib/badge';
 	import Button from '$lib/button';
 	import Chip from '$lib/chip';
-	import Col from '$lib/col';
 	import Divider from '$lib/divider';
 	import Icon from '$lib/icon';
 	import List from '$lib/list';
@@ -11,6 +10,7 @@
 	import Logo from '$lib/logo';
 	import Row from '$lib/row';
 	import Snackbar from '$lib/snackbar';
+	import { TabPanel } from '$lib/tabs';
 	import Tooltip from '$lib/tooltip';
 
 	let openned = $state(false);
@@ -20,7 +20,7 @@
 	}, 2000);
 </script>
 
-<Col gap="lg" width="100%">
+<TabPanel gap="lg">
 	<Row gap="lg" width="100%">
 		<Badge position="top-left">
 			<Icon>mail</Icon>
@@ -157,4 +157,4 @@
 	>
 		102 unread messages since last month.
 	</Snackbar>
-</Col>
+</TabPanel>

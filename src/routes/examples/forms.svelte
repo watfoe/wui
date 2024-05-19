@@ -7,6 +7,7 @@
 	import Select from '$lib/select';
 	import type { SurfaceAttributes } from '$lib/surface';
 	import Surface from '$lib/surface';
+	import { TabPanel } from '$lib/tabs';
 	import Text from '$lib/text';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
@@ -45,74 +46,76 @@
 	}
 </script>
 
-<Surface
-	align="center"
-	element="form"
-	color="neutral"
-	direction="column"
-	gap="xl"
-	method="post"
-	p="lg"
-	shape="rounded"
-	style="min-height: 602px;{style}"
-	variant="outlined"
-	width={400}
-	{...rest}
->
-	<Col gap="md">
-		<Text size="lg" variant="heading">{heading}</Text>
-		{#if subheading}
-			<Text size="md" variant="heading">{subheading}</Text>
-		{/if}
-	</Col>
+<TabPanel align="center" justify="center">
+	<Surface
+		align="center"
+		element="form"
+		color="neutral"
+		direction="column"
+		gap="xl"
+		method="post"
+		p="lg"
+		shape="rounded"
+		style="min-height: 602px;{style}"
+		variant="outlined"
+		width={400}
+		{...rest}
+	>
+		<Col gap="md">
+			<Text size="lg" variant="heading">{heading}</Text>
+			{#if subheading}
+				<Text size="md" variant="heading">{subheading}</Text>
+			{/if}
+		</Col>
 
-	<Col align="flex-end" gap="md" width="100%">
-		<Row align="flex-start" gap="sm" width="100%">
-			<Input label="First name" bind:value={firstname} required />
-			<Input label="Last name" bind:value={lastname} required />
+		<Col align="flex-end" gap="md" width="100%">
+			<Row align="flex-start" gap="sm" width="100%">
+				<Input label="First name" bind:value={firstname} required />
+				<Input label="Last name" bind:value={lastname} required />
+			</Row>
+
+			<Input type="date" label="Birthday" bind:value={birthdate} required>
+				{#snippet description()}
+					<Link href="https://support.watfoe.com/accounts/answers" target="_blank" size="xs">
+						Learn why we ask for your birthday
+					</Link>
+				{/snippet}
+			</Input>
+
+			<Select
+				label="Gender"
+				preset="gender"
+				selected={gender}
+				width="100%"
+				onchange={gender_changed}
+				bind:value={gender}
+				required
+			>
+				{#snippet description()}
+					<Link href="https://support.watfoe.com/accounts/answers" target="_blank" size="xs">
+						Learn why we ask for your gender
+					</Link>
+				{/snippet}
+			</Select>
+
+			{#if gender === 'custom'}
+				<Input
+					type="text"
+					label="What is your gender?"
+					width="100%"
+					bind:value={custom_gender}
+					required
+				/>
+				<Input type="text" label="Refer to me as" width="100%" bind:value={gender_pronoun} />
+			{/if}
+		</Col>
+
+		<Row justify="flex-end" width="100%">
+			<Button type="submit">Continue</Button>
 		</Row>
 
-		<Input type="date" label="Birthday" bind:value={birthdate} required>
-			{#snippet description()}
-				<Link href="https://support.watfoe.com/accounts/answers" target="_blank" size="xs">
-					Learn why we ask for your birthday
-				</Link>
-			{/snippet}
-		</Input>
-
-		<Select
-			label="Gender"
-			preset="gender"
-			selected={gender}
-			width="100%"
-			onchange={gender_changed}
-			bind:value={gender}
-			required
-		>
-			{#snippet description()}
-				<Link href="https://support.watfoe.com/accounts/answers" target="_blank" size="xs">
-					Learn why we ask for your gender
-				</Link>
-			{/snippet}
-		</Select>
-
-		{#if gender === 'custom'}
-			<Input
-				type="text"
-				label="What is your gender?"
-				width="100%"
-				bind:value={custom_gender}
-				required
-			/>
-			<Input type="text" label="Refer to me as" width="100%" bind:value={gender_pronoun} />
+		{#if footer}
+			{@render footer()}
 		{/if}
-	</Col>
-
-	<Row justify="flex-end" width="100%">
-		<Button type="submit">Continue</Button>
-	</Row>
-
-	{#if footer}
-		{@render footer()}
-	{/if}
-</Surface>
+	</Surface>
+</TabPanel>

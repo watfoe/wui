@@ -1,27 +1,20 @@
 <script context="module" lang="ts">
-	import type { Snippet } from 'svelte';
+	import { setContext, type Snippet } from 'svelte';
 
 	export interface TabPanelsAttributes {
 		id: string;
-		class?: string | null;
 		children: Snippet;
 	}
 </script>
 
 <script lang="ts">
-	let { id, children, class: _class = '' }: TabPanelsAttributes = $props();
+	let { id, children }: TabPanelsAttributes = $props();
 
 	if (!id) {
 		throw new Error('TabPanels must have an id attribute');
 	}
+
+	setContext('wui-tabpanels-ctx', { id });
 </script>
 
-<div {id} class="w-tabpanels {_class}" style:display="contents">
-	{@render children()}
-</div>
-
-<style>
-	.w-tabpanels > :global(*:not([tabindex='0'])) {
-		display: none !important;
-	}
-</style>
+{@render children()}
