@@ -1,22 +1,9 @@
-<script lang="ts" context="module">
-	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
-
-	export interface AvatarGroupAttributes extends HTMLAttributes<HTMLDivElement> {
-		children: Snippet;
-		class?: string;
-		color?: WuiColor;
-		size?: WuiSize;
-		variant?: WuiVariant;
-		shape?: Omit<WuiShape, 'pill'>;
-	}
-</script>
-
-<script lang="ts">
+<script>
 	import Row from '../row';
-	import { setContext, type Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import { setContext } from 'svelte';
 
-	const { children, color, size, variant, shape }: AvatarGroupAttributes = $props();
+	/** @type {import('./index.js').AvatarGroupAttributes} */
+	const { children, color, size, variant, shape } = $props();
 	setContext('wui-avatar-group-ctx', { color, size, variant, shape });
 </script>
 
