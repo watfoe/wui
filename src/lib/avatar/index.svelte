@@ -1,9 +1,18 @@
-<script>
+<script context="module" lang="ts">
+	import type { HTMLImgAttributes } from 'svelte/elements';
+	import type { WuiColor, WuiDimension, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+
+	export interface AvatarAttributes
+		extends Omit<SurfaceAttributes<Omit<HTMLImgAttributes, 'color'>>, 'element'> {
+		size?: WuiSize;
+	}
+</script>
+
+<script lang="ts">
 	import { getContext } from 'svelte';
 	import Icon from '../icon';
-	import Surface from '../surface';
+	import Surface, { type SurfaceAttributes } from '../surface';
 
-	/** @type {import('./index.js').AvatarAttributes} */
 	let {
 		alt,
 		color,
@@ -38,15 +47,17 @@
 		width,
 		style,
 		...rest
-	} = $props();
+	}: AvatarAttributes = $props();
 
-	/**
-	 * @type {{ color?: import('$lib/types').WuiColor, size?: import('$lib/types').WuiSize, variant?: import('$lib/types').WuiVariant, shape?: import('$lib/types').WuiShape }}
-	 */
-	let ctx = getContext('wui-avatar-group-ctx') || {};
+	let ctx: {
+		color?: WuiColor;
+		size?: WuiSize;
+		variant?: WuiVariant;
+		shape?: WuiShape;
+	} = getContext('wui-avatar-group-ctx') || {};
 
-	height = /** @type {import('$lib/types').WuiDimension} */ (height || size || ctx.size || 'md');
-	width = /** @type {import('$lib/types').WuiDimension} */ (width || size || ctx.size || 'md');
+	height = (height || size || ctx.size || 'md') as WuiDimension;
+	width = (width || size || ctx.size || 'md') as WuiDimension;
 
 	if (shape === 'pill') {
 		shape = 'circle';

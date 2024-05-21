@@ -21,155 +21,159 @@
 		"test:unit": "vitest"
 	},
 	"exports": {
-		"button": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		},
+		"./button": {
 			"types": "./dist/button/index.svelte.d.ts",
 			"svelte": "./dist/button/index.js"
 		},
-		"avatar": {
+		"./avatar": {
 			"types": "./dist/avatar/index.svelte.d.ts",
 			"svelte": "./dist/avatar/index.js"
 		},
-		"avatargroup": {
+		"./avatargroup": {
 			"types": "./dist/avatargroup/index.svelte.d.ts",
 			"svelte": "./dist/avatargroup/index.svelte"
 		},
-		"badge": {
+		"./badge": {
 			"types": "./dist/badge/index.svelte.d.ts",
 			"svelte": "./dist/badge/index.js"
 		},
-		"chip": {
+		"./chip": {
 			"types": "./dist/chip/index.svelte.d.ts",
 			"svelte": "./dist/chip/index.js"
 		},
-		"divider": {
+		"./divider": {
 			"types": "./dist/divider/index.svelte.d.ts",
 			"svelte": "./dist/divider/index.js"
 		},
-		"icon": {
+		"./icon": {
 			"types": "./dist/icon/index.svelte.d.ts",
 			"svelte": "./dist/icon/index.js"
 		},
-		"list": {
+		"./list": {
 			"types": "./dist/list/index.svelte.d.ts",
 			"svelte": "./dist/list/index.js"
 		},
-		"listitem": {
+		"./listitem": {
 			"types": "./dist/listitem/index.svelte.d.ts",
 			"svelte": "./dist/listitem/index.js"
 		},
-		"listbuttonitem": {
+		"./listbuttonitem": {
 			"types": "./dist/listbuttonitem/index.svelte.d.ts",
 			"svelte": "./dist/listbuttonitem/index.svelte"
 		},
-		"logo": {
+		"./logo": {
 			"types": "./dist/logo/index.svelte.d.ts",
 			"svelte": "./dist/logo/index.js"
 		},
-		"tooltip": {
+		"./tooltip": {
 			"types": "./dist/tooltip/index.svelte.d.ts",
 			"svelte": "./dist/tooltip/index.js"
 		},
-		"modal": {
+		"./modal": {
 			"types": "./dist/modal/index.svelte.d.ts",
 			"svelte": "./dist/modal/index.js"
 		},
-		"snackbar": {
+		"./snackbar": {
 			"types": "./dist/snackbar/index.svelte.d.ts",
 			"svelte": "./dist/snackbar/index.js"
 		},
-		"checkbox": {
+		"./checkbox": {
 			"types": "./dist/checkbox/index.svelte.d.ts",
 			"svelte": "./dist/checkbox/index.js"
 		},
-		"checkboxgroup": {
+		"./checkboxgroup": {
 			"types": "./dist/checkbox/index.svelte.d.ts",
 			"svelte": "./dist/checkbox/index.svelte"
 		},
-		"inputerror": {
+		"./inputerror": {
 			"types": "./dist/inputerror/index.svelte.d.ts",
 			"svelte": "./dist/inputerror/index.js"
 		},
-		"input": {
+		"./input": {
 			"types": "./dist/input/index.svelte.d.ts",
 			"svelte": "./dist/input/index.js"
 		},
-		"select": {
+		"./select": {
 			"types": "./dist/select/index.d.ts",
 			"svelte": "./dist/select/index.js"
 		},
-		"inputlabel": {
+		"./inputlabel": {
 			"types": "./dist/inputlabel/index.svelte.d.ts",
 			"svelte": "./dist/inputlabel/index.js"
 		},
-		"listbox": {
+		"./listbox": {
 			"types": "./dist/listbox/index.d.ts",
 			"svelte": "./dist/listbox/index.js"
 		},
-		"radio": {
+		"./radio": {
 			"types": "./dist/radio/index.svelte.d.ts",
 			"svelte": "./dist/radio/index.js"
 		},
-		"radiogroup": {
+		"./radiogroup": {
 			"types": "./dist/radiogroup/index.svelte.d.ts",
 			"svelte": "./dist/radiogroup/index.svelte"
 		},
-		"switch": {
+		"./switch": {
 			"types": "./dist/switch/index.svelte.d.ts",
 			"svelte": "./dist/switch/index.js"
 		},
-		"textarea": {
+		"./textarea": {
 			"types": "./dist/textarea/index.svelte.d.ts",
 			"svelte": "./dist/textarea/index.js"
 		},
-		"col": {
+		"./col": {
 			"types": "./dist/col/index.svelte.d.ts",
 			"svelte": "./dist/col/index.js"
 		},
-		"flex": {
+		"./flex": {
 			"types": "./dist/flex/index.svelte.d.ts",
 			"svelte": "./dist/flex/index.js"
 		},
-		"row": {
+		"./row": {
 			"types": "./dist/row/index.svelte.d.ts",
 			"svelte": "./dist/row/index.js"
 		},
-		"watfoe": {
+		"./watfoe": {
 			"types": "./dist/watfoe/index.d.ts",
 			"svelte": "./dist/watfoe/index.js"
 		},
-		"menu": {
+		"./menu": {
 			"types": "./dist/menu/index.d.ts",
 			"svelte": "./dist/menu/index.js"
 		},
-		"tabs": {
+		"./tabs": {
 			"types": "./dist/tabs/index.svelte.d.ts",
 			"svelte": "./dist/tabs/index.js"
 		},
-		"link": {
+		"./link": {
 			"types": "./dist/link/index.svelte.d.ts",
 			"svelte": "./dist/link/index.js"
 		},
-		"linklikebutton": {
+		"./linklikebutton": {
 			"types": "./dist/linklikebutton/index.svelte.d.ts",
 			"svelte": "./dist/linklikebutton/index.js"
 		},
-		"text": {
+		"./text": {
 			"types": "./dist/text/index.svelte.d.ts",
 			"svelte": "./dist/text/index.js"
 		},
-		"backdrop": {
+		"./backdrop": {
 			"types": "./dist/backdrop/index.svelte.d.ts",
 			"svelte": "./dist/backdrop/index.js"
 		},
-		"likebutton": {
+		"./likebutton": {
 			"types": "./dist/likebutton/index.svelte.d.ts",
 			"svelte": "./dist/likebutton/index.js"
 		},
-		"popup": {
+		"./popup": {
 			"types": "./dist/popup/index.svelte.d.ts",
 			"svelte": "./dist/popup/index.js"
 		},
-		"surface": {
+		"./surface": {
 			"types": "./dist/surface/index.svelte.d.ts",
 			"svelte": "./dist/surface/index.js"
 		}

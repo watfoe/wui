@@ -37,7 +37,6 @@
 	mx={vertical ? mx || m : undefined}
 	my={vertical ? undefined : my || m}
 	role="separator"
-	style="flex-shrink:0!important;flex-grow:0!important"
 	variant="solid"
 	{color}
 	{height}
