@@ -116,8 +116,9 @@
 	}
 </script>
 
-<Row align="flex-start" gap="sm">
+<Row align="flex-start" gap="sm" width="100%">
 	<Select
+		class="w-date-input"
 		placeholder="Month"
 		preset="month"
 		{id}
@@ -132,13 +133,13 @@
 		onblur={blur}
 		selected={month}
 		bind:value={month}
-		bind:error
-	/>
+		bind:error />
 
 	<BaseInput
 		type="number"
 		placeholder="Day"
 		align="center"
+		class="w-date-input"
 		masks={{ max: 31 }}
 		maxlength={2}
 		rules={{
@@ -153,13 +154,13 @@
 		onchange={change}
 		onblur={blur}
 		bind:value={day}
-		bind:error
-	/>
+		bind:error />
 
 	<BaseInput
 		type="number"
 		placeholder="Year"
 		align="center"
+		class="w-date-input"
 		maxlength={4}
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
@@ -173,8 +174,7 @@
 		onchange={change}
 		onblur={blur}
 		bind:value={year}
-		bind:error
-	/>
+		bind:error />
 
 	<input
 		{...rest}
@@ -183,6 +183,11 @@
 		{name}
 		class="w-hidden"
 		bind:this={input_el}
-		bind:value
-	/>
+		bind:value />
 </Row>
+
+<style>
+	:global(.w-date-input) {
+		flex: 0 0 calc(33.33% - var(--spacing-sm));
+	}
+</style>

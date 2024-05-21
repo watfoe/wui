@@ -18,6 +18,14 @@
 			justify?: WuiFlexJustify;
 			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
 		};
+
+	type InputSurfaceAttributes = SurfaceAttributes<HTMLInputAttributes> & {
+		element: 'input';
+	};
+
+	type OtherSurfaceAttributes = SurfaceAttributes<WuiSurfaceHTMLAttributes> & {
+		element?: Omit<string, 'input'>;
+	};
 </script>
 
 <script lang="ts">
@@ -28,6 +36,7 @@
 		construct_flex_style,
 		construct_spacing_style
 	} from './construct-styles';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	let {
 		align,
@@ -71,38 +80,91 @@
 		width,
 		wrap,
 		...rest
-	}: SurfaceAttributes<WuiSurfaceHTMLAttributes> = $props();
+	}: InputSurfaceAttributes | OtherSurfaceAttributes = $props();
 </script>
 
-<svelte:element
-	this={element}
-	class="w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
-		? 'italic '
-		: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline ? 'underline ' : ''}{variant
-		? `w-${variant} `
-		: ''}{color ? `w-${color} ` : ''}{shape ? `w-${shape} ` : ''}{clickable
-		? 'w-clickable '
-		: ''}{_class}"
-	data-has-width={width ? 'true' : 'false'}
-	data-has-height={height ? 'true' : 'false'}
-	style="
-		{construct_size_style('height', height)}
-		{construct_size_style('width', width)}
-		{construct_flex_style(direction, justify, align, self, wrap, gap)}
-		{construct_color_style(color, variant, colorweight, textcolor, textcolorweight, clickable)}
-		{construct_spacing_style('margin', 'top', mt || m || my)}
-		{construct_spacing_style('margin', 'right', mr || m || mx)}
-		{construct_spacing_style('margin', 'bottom', mb || m || my)}
-		{construct_spacing_style('margin', 'left', ml || m || mx)}
-		{construct_spacing_style('padding', 'top', pt || py || p)}
-		{construct_spacing_style('padding', 'right', pr || px || p)}
-		{construct_spacing_style('padding', 'bottom', pb || py || p)}
-		{construct_spacing_style('padding', 'left', pl || px || p)}
-		{style}
-	"
-	{...rest}
->
-	{#if children}
-		{@render children()}
-	{/if}
-</svelte:element>
+{#if element === 'input'}
+	<svelte:element
+		this={element}
+		class="w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
+			? 'italic '
+			: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline
+			? 'underline '
+			: ''}{variant ? `w-${variant} ` : ''}{color ? `w-${color} ` : ''}{shape
+			? `w-${shape} `
+			: ''}{clickable ? 'w-clickable ' : ''}{_class}"
+		data-w={width ? '1' : '0'}
+		data-h={height ? '1' : '0'}
+		style="{construct_size_style('height', height)}{construct_size_style(
+			'width',
+			width
+		)}{construct_color_style(
+			color,
+			variant,
+			colorweight,
+			textcolor,
+			textcolorweight,
+			clickable
+		)}{construct_spacing_style('margin', 'top', mt || m || my)}{construct_spacing_style(
+			'margin',
+			'right',
+			mr || m || mx
+		)}{construct_spacing_style('margin', 'bottom', mb || m || my)}{construct_spacing_style(
+			'margin',
+			'left',
+			ml || m || mx
+		)}{construct_spacing_style('padding', 'top', pt || py || p)}{construct_spacing_style(
+			'padding',
+			'right',
+			pr || px || p
+		)}{construct_spacing_style('padding', 'bottom', pb || py || p)}{construct_spacing_style(
+			'padding',
+			'left',
+			pl || px || p
+		)}{style}"
+		{...rest} />
+{:else}
+	<svelte:element
+		this={element}
+		class="w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
+			? 'italic '
+			: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline
+			? 'underline '
+			: ''}{variant ? `w-${variant} ` : ''}{color ? `w-${color} ` : ''}{shape
+			? `w-${shape} `
+			: ''}{clickable ? 'w-clickable ' : ''}{_class}"
+		data-w={width ? '1' : '0'}
+		data-h={height ? '1' : '0'}
+		style="{construct_size_style('height', height)}{construct_size_style(
+			'width',
+			width
+		)}{construct_color_style(
+			color,
+			variant,
+			colorweight,
+			textcolor,
+			textcolorweight,
+			clickable
+		)}{construct_flex_style(direction, justify, align, self, wrap, gap)}{construct_spacing_style(
+			'margin',
+			'top',
+			mt || m || my
+		)}{construct_spacing_style('margin', 'right', mr || m || mx)}{construct_spacing_style(
+			'margin',
+			'bottom',
+			mb || m || my
+		)}{construct_spacing_style('margin', 'left', ml || m || mx)}{construct_spacing_style(
+			'padding',
+			'top',
+			pt || py || p
+		)}{construct_spacing_style('padding', 'right', pr || px || p)}{construct_spacing_style(
+			'padding',
+			'bottom',
+			pb || py || p
+		)}{construct_spacing_style('padding', 'left', pl || px || p)}{style}"
+		{...rest}>
+		{#if children}
+			{@render children()}
+		{/if}
+	</svelte:element>
+{/if}

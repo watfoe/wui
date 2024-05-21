@@ -8,6 +8,7 @@
 
 .w-checkbox__thumb {
   display: inline-flex;
+  flex-shrink: 0;
 }
 
 .w-checkbox:hover input:not(:checked)+.w-checkbox__thumb {

@@ -135,35 +135,7 @@
 	}
 </script>
 
-<Surface
-	align="center"
-	class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
-	color={error ? 'danger' : color}
-	direction="row"
-	gap="xs"
-	justify="space-between"
-	disabled={true}
-	pr={typeof suffix === 'function' ? undefined : pr || px}
-	pl={typeof prefix === 'function' ? undefined : pl || px}
-	style="cursor:text;{style}"
-	{textcolor}
-	{textcolorweight}
-	{textsize}
-	{textweight}
-	{textbold}
-	{textitalic}
-	{textunderline}
-	{textvariant}
-	{height}
-	{p}
-	{py}
-	{pt}
-	{pb}
-	{shape}
-	{variant}
-	width="100%"
-	onclick={disabled ? undefined : () => input_el.focus()}
->
+{#snippet internal()}
 	{#if typeof prefix === 'string'}
 		<Icon color="inherit" {size}>{prefix}</Icon>
 	{:else if prefix}
@@ -185,8 +157,7 @@
 		bind:this={input_el}
 		bind:value
 		{disabled}
-		{...rest}
-	/>
+		{...rest} />
 
 	{#if typeof suffix === 'string'}
 		<Icon color="inherit" {size}>{suffix}</Icon>
@@ -195,4 +166,70 @@
 			{@render suffix()}
 		</div>
 	{/if}
-</Surface>
+{/snippet}
+
+{#if prefix || suffix}
+	<Surface
+		element="div"
+		align="center"
+		class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
+		color={error ? 'danger' : color}
+		direction="row"
+		gap="xs"
+		justify="space-between"
+		pr={typeof suffix === 'function' ? undefined : pr || px}
+		pl={typeof prefix === 'function' ? undefined : pl || px}
+		style="cursor:text;{style}"
+		{disabled}
+		{textcolor}
+		{textcolorweight}
+		{textsize}
+		{textweight}
+		{textbold}
+		{textitalic}
+		{textunderline}
+		{textvariant}
+		{height}
+		{p}
+		{py}
+		{pt}
+		{pb}
+		{shape}
+		{variant}
+		width="100%"
+		onclick={disabled ? undefined : () => input_el.focus()}>
+		{#if prefix || suffix}
+			{@render internal()}
+		{/if}
+	</Surface>
+{:else}
+	<Surface
+		element="input"
+		align="center"
+		class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
+		color={error ? 'danger' : color}
+		direction="row"
+		gap="xs"
+		justify="space-between"
+		pr={typeof suffix === 'function' ? undefined : pr || px}
+		pl={typeof prefix === 'function' ? undefined : pl || px}
+		style="cursor:text;{style}"
+		{disabled}
+		{textcolor}
+		{textcolorweight}
+		{textsize}
+		{textweight}
+		{textbold}
+		{textitalic}
+		{textunderline}
+		{textvariant}
+		{height}
+		{p}
+		{py}
+		{pt}
+		{pb}
+		{shape}
+		{variant}
+		width="100%"
+		onclick={disabled ? undefined : () => input_el.focus()} />
+{/if}

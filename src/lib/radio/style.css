@@ -2,10 +2,12 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   position: relative;
 }
 
 .w-radio__thumb {
+  flex-shrink: 0;
   cursor: pointer;
   display: block;
 }

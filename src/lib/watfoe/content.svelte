@@ -1,13 +1,24 @@
-<script lang="ts">
-	import Col, { type ColAttributes } from '../col';
-	const { class: _class = '', ...rest }: ColAttributes = $props();
+<script>
+	import Flex from '../flex/index.svelte';
+
+	/** @type {import('../flex').FlexAttributes} */
+	const { class: _class = '', direction = 'column', ...rest } = $props();
 </script>
 
-<Col class="watfoe-content {_class}" width="100%" p="lg" mt={50} {...rest} />
+<Flex
+	align="flex-start"
+	justify="flex-start"
+	class="watfoe-content {_class}"
+	{direction}
+	width="100%"
+	px="lg"
+	pb="sm"
+	mt={50}
+	{...rest} />
 
 <style>
 	:global(.watfoe-content) {
-		min-height: calc(100vh - 50px);
+		height: calc(100% - 50px);
 		overflow-y: auto;
 	}
 </style>

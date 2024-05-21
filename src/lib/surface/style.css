@@ -1,9 +1,9 @@
-[data-has-height="true"] {
-  height: var(--w-size-height);
+[data-h="1"] {
+  height: var(--w-height);
 }
 
-[data-has-width="true"] {
-  width: var(--w-size-width, auto);
+[data-w="1"] {
+  width: var(--w-width, auto);
 }
 
 .w-solid {
