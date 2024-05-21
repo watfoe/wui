@@ -6,7 +6,6 @@
 </script>
 
 <script lang="ts">
-	import Col from '../col';
 	import Text, { type TextAttributes } from '../text';
 	import type { Snippet } from 'svelte';
 
@@ -20,26 +19,25 @@
 	}: InputLabelAttributes = $props();
 </script>
 
-<Col align="flex-start" justify="flex-start" pl="sm" width="100%">
-	{#if children}
-		<Text
-			{color}
-			colorweight={color === 'neutral' ? '7' : undefined}
-			class="w-input__label"
-			for={_for}
-			size="sm"
-			variant="label"
-			{...rest}
-		>
-			{@render children()}
-		</Text>
-	{/if}
+{#if children}
+	<Text
+		{color}
+		colorweight={color === 'neutral' ? '7' : undefined}
+		class="w-input__label"
+		for={_for}
+		pl="sm"
+		size="sm"
+		variant="label"
+		{...rest}
+	>
+		{@render children()}
+	</Text>
+{/if}
 
-	{#if typeof description === 'string'}
-		<Text color="neutral" colorweight="6" for={_for} size="xs" variant="label">
-			{description}
-		</Text>
-	{:else if description}
-		{@render description()}
-	{/if}
-</Col>
+{#if typeof description === 'string'}
+	<Text color="neutral" colorweight="6" for={_for} pl="sm" size="xs" variant="label">
+		{description}
+	</Text>
+{:else if description}
+	{@render description()}
+{/if}

@@ -2,7 +2,7 @@
   color: var(--color-primary-5);
 }
 
-.w-input__root:invalid .w-input__label {
+.w-input__root:has(:invalid) .w-input__label {
   color: var(--color-danger-5);
 }
 
@@ -71,6 +71,8 @@
 }
 
 /* Chrome, Safari, Edge, Opera */
+input.w-input::-webkit-outer-spin-button,
+input.w-input::-webkit-inner-spin-button,
 .w-input__input::-webkit-outer-spin-button,
 .w-input__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -78,6 +80,7 @@
 }
 
 /* Firefox */
+input.w-input[type="number"],
 .w-input__input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;

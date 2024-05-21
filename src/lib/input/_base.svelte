@@ -124,6 +124,12 @@
 			value = _value;
 		}
 
+		// Similate bind:value when the element renders plain input field
+		// We can't bind:value to Surface component because it's not an input element
+		if (!prefix && !suffix) {
+			value = _value;
+		}
+
 		if (!required && _value === '' && error) {
 			// Clear error if input is empty and not required
 			error = undefined;
@@ -145,7 +151,6 @@
 	{/if}
 
 	<input
-		dir="ltr"
 		class="w-input__input"
 		onblur={blur}
 		oninput={input}
@@ -157,7 +162,8 @@
 		bind:this={input_el}
 		bind:value
 		{disabled}
-		{...rest} />
+		{...rest}
+	/>
 
 	{#if typeof suffix === 'string'}
 		<Icon color="inherit" {size}>{suffix}</Icon>
@@ -180,6 +186,7 @@
 		pr={typeof suffix === 'function' ? undefined : pr || px}
 		pl={typeof prefix === 'function' ? undefined : pl || px}
 		style="cursor:text;{style}"
+		width="100%"
 		{disabled}
 		{textcolor}
 		{textcolorweight}
@@ -196,8 +203,8 @@
 		{pb}
 		{shape}
 		{variant}
-		width="100%"
-		onclick={disabled ? undefined : () => input_el.focus()}>
+		onclick={disabled ? undefined : () => input_el.focus()}
+	>
 		{#if prefix || suffix}
 			{@render internal()}
 		{/if}
@@ -205,15 +212,16 @@
 {:else}
 	<Surface
 		element="input"
-		align="center"
 		class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
 		color={error ? 'danger' : color}
-		direction="row"
-		gap="xs"
-		justify="space-between"
-		pr={typeof suffix === 'function' ? undefined : pr || px}
-		pl={typeof prefix === 'function' ? undefined : pl || px}
-		style="cursor:text;{style}"
+		pr={pr || px}
+		pl={pl || px}
+		onblur={blur}
+		oninput={input}
+		style="text-align:{align};{style}"
+		width="100%"
+		bind:_this={input_el}
+		{value}
 		{disabled}
 		{textcolor}
 		{textcolorweight}
@@ -230,6 +238,6 @@
 		{pb}
 		{shape}
 		{variant}
-		width="100%"
-		onclick={disabled ? undefined : () => input_el.focus()} />
+		{...rest}
+	/>
 {/if}

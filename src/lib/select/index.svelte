@@ -186,7 +186,7 @@
 	justify="flex-start"
 	class="w-select {_class}"
 	direction="column"
-	element="fieldset"
+	element="div"
 	{gap}
 	{m}
 	{mx}

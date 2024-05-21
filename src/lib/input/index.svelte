@@ -49,7 +49,7 @@
 
 <Surface
 	align="flex-start"
-	element="fieldset"
+	element="div"
 	direction="column"
 	class="w-input__root w-input--{color} {rest.class || ''}"
 	{disabled}

@@ -12,6 +12,7 @@
 		WuiSurface &
 		WuiFlexKeys &
 		WuiSurfaceTextAttributes & {
+			_this?: HTMLElement;
 			children?: Snippet;
 			clickable?: boolean;
 			element?: string;
@@ -39,6 +40,7 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	let {
+		_this = $bindable(),
 		align,
 		element = 'div',
 		color,
@@ -122,7 +124,9 @@
 			'left',
 			pl || px || p
 		)}{style}"
-		{...rest} />
+		bind:this={_this}
+		{...rest}
+	/>
 {:else}
 	<svelte:element
 		this={element}
@@ -162,7 +166,8 @@
 			'bottom',
 			pb || py || p
 		)}{construct_spacing_style('padding', 'left', pl || px || p)}{style}"
-		{...rest}>
+		{...rest}
+	>
 		{#if children}
 			{@render children()}
 		{/if}
