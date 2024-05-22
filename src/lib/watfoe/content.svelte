@@ -19,7 +19,7 @@
 
 <style>
 	:global(.watfoe-content) {
-		height: calc(100% - 50px);
+		min-height: calc(100% - 50px);
 		overflow-y: auto;
 	}
 </style>

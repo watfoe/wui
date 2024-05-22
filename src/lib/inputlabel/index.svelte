@@ -22,7 +22,7 @@
 {#if children}
 	<Text
 		{color}
-		colorweight={color === 'neutral' ? '7' : undefined}
+		colorweight={color === 'neutral' ? '8' : undefined}
 		class="w-input__label"
 		for={_for}
 		pl="sm"
@@ -35,7 +35,7 @@
 {/if}
 
 {#if typeof description === 'string'}
-	<Text color="neutral" colorweight="6" for={_for} pl="sm" size="xs" variant="label">
+	<Text color="neutral" colorweight="7" for={_for} pl="sm" size="xs" variant="label">
 		{description}
 	</Text>
 {:else if description}

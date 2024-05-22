@@ -88,6 +88,7 @@
 	let input_el: HTMLInputElement | undefined = $state();
 	let listbox: HTMLFieldSetElement | undefined = $state();
 	let listbox_value: string | undefined = $state();
+	let submit_event_removed = false;
 
 	const id = Math.random().toString(36).substring(2, 9);
 
@@ -100,17 +101,7 @@
 
 		untrack(() => {
 			if (required && validateon === 'submit') {
-				// Get the form element that this input is in
-				const form = input_el?.closest('form');
-				form?.addEventListener(
-					'submit',
-					(e) => {
-						e.preventDefault();
-						_validate();
-					},
-					// Capture phase to ensure that this event listener is the first to run
-					true
-				);
+				validate_on_submit();
 			}
 		});
 	});
@@ -143,6 +134,23 @@
 		if (error) {
 			_validate();
 		}
+	}
+
+	function try_form_submit(e: SubmitEvent) {
+		_validate();
+		if (error) {
+			e.preventDefault();
+		} else {
+			// Remove the event listener after the form is submitted successfully
+			(e.currentTarget as HTMLFormElement).removeEventListener('submit', try_form_submit, true);
+			submit_event_removed = true;
+		}
+	}
+
+	function validate_on_submit() {
+		const form = input_el?.closest('form');
+		// Capture phase to ensure that this event listener is the first to run
+		form?.addEventListener('submit', try_form_submit, true);
 	}
 
 	function _validate() {

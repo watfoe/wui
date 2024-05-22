@@ -37,6 +37,7 @@
 	}: DateInputAttributes = $props();
 
 	let input_el: HTMLInputElement;
+	let submit_event_removed = false;
 
 	$effect.pre(() => {
 		untrack(() => {
@@ -57,15 +58,27 @@
 			}
 
 			if (rules && validateon === 'submit') {
-				// Get the form element that this input is in
-				const form = input_el?.closest('form');
-				form?.addEventListener('submit', (e: Event) => {
-					e.preventDefault();
-					validate();
-				});
+				validate_on_submit();
 			}
 		});
 	});
+
+	function try_form_submit(e: SubmitEvent) {
+		validate();
+		if (error) {
+			e.preventDefault();
+		} else {
+			// Remove the event listener after the form is submitted successfully
+			(e.currentTarget as HTMLFormElement).removeEventListener('submit', try_form_submit, true);
+			submit_event_removed = true;
+		}
+	}
+
+	function validate_on_submit() {
+		const form = input_el?.closest('form');
+		// Capture phase to ensure that this event listener is the first to run
+		form?.addEventListener('submit', try_form_submit, true);
+	}
 
 	const DATE_FORMART_TO_LOCALE = {
 		'mm/dd/yyyy': 'en-US',
@@ -76,6 +89,12 @@
 	};
 
 	function change(e: Event) {
+		if (submit_event_removed && rules && validateon === 'submit') {
+			// Re-add the event listener if it was removed
+			validate_on_submit();
+			submit_event_removed = false;
+		}
+
 		e.stopImmediatePropagation();
 		validate();
 	}
@@ -117,65 +136,62 @@
 
 <Row align="flex-start" gap="sm" width="100%">
 	<Select
-		class="w-date-input"
 		placeholder="Month"
 		preset="month"
-		{id}
-		{required}
-		{variant}
-		{color}
-		{size}
-		{shape}
-		{disabled}
+		selected={month}
 		validateon={validateon === 'input' ? 'change' : validateon}
 		onchange={change}
 		onblur={blur}
-		selected={month}
 		bind:value={month}
 		bind:error
+		{color}
+		{disabled}
+		{id}
+		{required}
+		{size}
+		{shape}
+		{variant}
 	/>
 
 	<BaseInput
 		type="number"
 		placeholder="DD"
 		align="center"
-		class="w-date-input"
 		masks={{ max: 31 }}
 		maxlength={2}
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
 		}}
-		{variant}
-		{color}
-		{size}
-		{shape}
-		{validateon}
-		{disabled}
-		onchange={change}
+		oninput={change}
 		onblur={blur}
 		bind:value={day}
 		bind:error
+		{color}
+		{disabled}
+		{size}
+		{shape}
+		{validateon}
+		{variant}
 	/>
 
 	<BaseInput
 		type="number"
 		placeholder="YYYY"
 		align="center"
-		class="w-date-input"
 		maxlength={4}
 		rules={{
 			required: required ? 'Please enter a valid date' : undefined
 		}}
-		{variant}
-		{color}
-		{size}
-		{shape}
-		{validateon}
-		{disabled}
-		onchange={change}
+		oninput={change}
 		onblur={blur}
 		bind:value={year}
 		bind:error
+		{color}
+		{disabled}
+		{size}
+		{shape}
+		{validateon}
+		{variant}
 	/>
 
 	<input
@@ -188,9 +204,3 @@
 		bind:value
 	/>
 </Row>
-
-<style>
-	:global(.w-date-input) {
-		flex: 0 0 calc(33.33% - var(--spacing-sm));
-	}
-</style>

@@ -52,6 +52,8 @@
 	}: BaseInputAttributes = $props();
 
 	let input_el: HTMLInputElement;
+	let submit_event_removed = false;
+
 	height = size as WuiDimension;
 
 	$effect(() => {
@@ -66,24 +68,27 @@
 			}
 
 			if (rules && validateon === 'submit') {
-				// Get the form element that this input is in
-				const form = input_el?.closest('form');
-				form?.addEventListener(
-					'submit',
-					(e) => {
-						_validate(input_el?.value!);
-						if (error) {
-							e.preventDefault();
-							// Stop the event from propagating to other event listeners
-							e.stopPropagation();
-						}
-					},
-					// Capture phase to ensure that this event listener is the first to run
-					true
-				);
+				validate_on_submit();
 			}
 		});
 	});
+
+	function try_form_submit(e: SubmitEvent) {
+		_validate(input_el?.value!);
+		if (error) {
+			e.preventDefault();
+		} else {
+			// Remove the event listener after the form is submitted successfully
+			(e.currentTarget as HTMLFormElement).removeEventListener('submit', try_form_submit, true);
+			submit_event_removed = true;
+		}
+	}
+
+	function validate_on_submit() {
+		const form = input_el?.closest('form');
+		// Capture phase to ensure that this event listener is the first to run
+		form?.addEventListener('submit', try_form_submit, true);
+	}
 
 	function _validate(_value: string) {
 		try {
@@ -117,6 +122,12 @@
 	}
 
 	function input(e: Event & { currentTarget: HTMLInputElement }) {
+		if (submit_event_removed && rules && validateon === 'submit') {
+			// Re-add the event listener if it was removed
+			validate_on_submit();
+			submit_event_removed = false;
+		}
+
 		let _value = e.currentTarget.value;
 
 		if (masks) {
@@ -124,7 +135,7 @@
 			value = _value;
 		}
 
-		// Similate bind:value when the element renders plain input field
+		// Simulate bind:value when the element renders plain input field
 		// We can't bind:value to Surface component because it's not an input element
 		if (!prefix && !suffix) {
 			value = _value;

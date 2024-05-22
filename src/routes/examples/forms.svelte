@@ -59,6 +59,7 @@
 		style="min-height: 602px;{style}"
 		variant="outlined"
 		width={400}
+		action="http://localhost:8000/auth/basic_information"
 		{...rest}
 	>
 		<Col gap="md">
@@ -82,7 +83,7 @@
 				{/snippet}
 			</Input>
 
-			<Select
+			<!-- <Select
 				label="Gender"
 				preset="gender"
 				selected={gender}
@@ -96,7 +97,7 @@
 						Learn why we ask for your gender
 					</Link>
 				{/snippet}
-			</Select>
+			</Select> -->
 
 			{#if gender === 'custom'}
 				<Input

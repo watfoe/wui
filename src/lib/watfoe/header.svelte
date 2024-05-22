@@ -47,9 +47,7 @@
 	</Row>
 
 	<Row justify="flex-end" gap="md">
-		<Button color="black" textsize="md" prefix="language" size="sm" variant="plain">EN</Button>
 		<Button color="black" textsize="md" prefix="apps" size="sm" variant="plain">Apps</Button>
-
 		<LinkLikeButton href={urls?.signin} color="black" textsize="md" size="sm" variant="plain">
 			Sign in
 		</LinkLikeButton>
