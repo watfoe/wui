@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	export interface PopupAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'onclose'>,
+		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'onclose'>,
 			Omit<BaseBackdropAttributes, 'closeon'> {
 		id?: string;
 		position?:
@@ -21,8 +21,8 @@
 </script>
 
 <script lang="ts">
-	import Backdrop, { type BaseBackdropAttributes } from '../backdrop';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Backdrop, type BaseBackdropAttributes } from '../backdrop';
+	import { Surface, type SurfaceAttributes } from '../surface';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
@@ -32,6 +32,7 @@
 		color = 'neutral',
 		colorweight,
 		direction = 'column',
+		element = 'div',
 		id,
 		onopen,
 		onclose,
@@ -186,7 +187,6 @@
 	bind:opened
 >
 	<Surface
-		element="div"
 		aria-label="Popup"
 		class="w-popup {_class}"
 		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
@@ -201,6 +201,7 @@
 			: undefined}
 		{color}
 		{direction}
+		{element}
 		{role}
 		{p}
 		{shape}

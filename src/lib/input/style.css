@@ -86,6 +86,22 @@ input.w-input[type="number"],
   appearance: textfield;
 }
 
+::-webkit-input-placeholder {
+  color: var(--w-color-bg);
+}
+
+::-moz-placeholder {
+  color: var(--w-color-bg);
+}
+
+::-ms-placeholder {
+  color: var(--w-color-bg);
+}
+
+::placeholder {
+  color: var(--w-color-bg);
+}
+
 .w-input__prefix,
 .w-input__suffix {
   align-items: center;

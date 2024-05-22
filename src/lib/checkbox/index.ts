@@ -1,3 +1,1 @@
-import Checkbox from './index.svelte';
-export default Checkbox;
-export type { CheckboxAttributes } from './index.svelte';
+export { default as Checkbox, type CheckboxAttributes } from './index.svelte';

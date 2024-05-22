@@ -1,5 +1,5 @@
 import type { WuiSize } from '$lib/types';
-import type { SurfaceAttributes } from '$lib/utils/surface/index.svelte';
+import type { SurfaceAttributes } from '../surface';
 import type { Snippet } from 'svelte';
 import type { HTMLInputAttributes, HTMLTextareaAttributes } from 'svelte/elements';
 
@@ -54,6 +54,8 @@ export class ValidationError extends Error {
     super(message);
   }
 }
+
+export type DateFormat = 'mm/dd/yyyy' | 'dd/mm/yyyy' | 'yyyy/mm/dd' | 'yyyy-mm-dd' | 'dd-mm-yyyy';
 
 export function mask(value: string, masks: InputMasks) {
   // Do mind the ordering of the masks as it may result in unexpected
@@ -120,4 +122,33 @@ export function validate(value: string, rules: InputRules) {
       throw new ValidationError((error as { message: string }).message);
     }
   }
+}
+
+export function splitDate(value: string, format: DateFormat) {
+  if (format === 'mm/dd/yyyy') {
+    const [_month, _day, _year] = value.split('/');
+    return _r(_day, _month, _year);
+  } else if (format === 'dd/mm/yyyy') {
+    const [_day, _month, _year] = value.split('/');
+    return _r(_day, _month, _year);
+  } else if (format === 'yyyy/mm/dd') {
+    const [_year, _month, _day] = value.split('/');
+    return _r(_day, _month, _year);
+  } else if (format === 'yyyy-mm-dd') {
+    const [_year, _month, _day] = value.split('-');
+    return _r(_day, _month, _year);
+  } else if (format === 'dd-mm-yyyy') {
+    const [_day, _month, _year] = value.split('-');
+    return _r(_day, _month, _year);
+  }
+
+  function _r(_day: string, _month: string, _year: string): string[] {
+    // remove leading zeros
+    _month = _month.replace(/^0+/, '');
+    return [_day, _month, _year];
+  }
+}
+
+export function splitDateTime(date: string): string[] {
+  return date.split('T');
 }

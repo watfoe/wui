@@ -1,3 +1,1 @@
-import Surface from './index.svelte';
-export default Surface;
-export type { SurfaceAttributes } from './index.svelte';
+export { default as Surface, type SurfaceAttributes } from './index.svelte';

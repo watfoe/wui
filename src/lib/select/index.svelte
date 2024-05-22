@@ -21,16 +21,16 @@
 
 <script lang="ts">
 	import './style.css';
-	import Button from '../button';
-	import InputLabel from '../inputlabel';
-	import Listbox from '../listbox';
-	import Icon from '../icon';
+	import { Button } from '../button';
+	import { InputLabel } from '../inputlabel';
+	import { Listbox } from '../listbox';
+	import { Icon } from '../icon';
 	import CountryPreset from './presets/country-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
-	import Popup from '../popup';
-	import Surface from '../surface';
-	import { validate, type ValidationError } from '../input/_common_';
+	import { Popup } from '../popup';
+	import { Surface } from '../surface';
+	import { validate, type ValidationError } from '../input/_utils';
 	import { untrack, type Snippet } from 'svelte';
 
 	let {

@@ -1,5 +1,5 @@
 <script>
-	import Flex from '../flex/index.svelte';
+	import { Flex } from '../flex';
 
 	/** @type {import('../flex').FlexAttributes} */
 	const { class: _class = '', direction = 'column', ...rest } = $props();
@@ -14,7 +14,8 @@
 	px="lg"
 	pb="sm"
 	mt={50}
-	{...rest} />
+	{...rest}
+/>
 
 <style>
 	:global(.watfoe-content) {

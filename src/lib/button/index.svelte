@@ -14,7 +14,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import LikeButton, { type LikeButtonAttributes } from '../likebutton';
+	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 	import { untrack } from 'svelte';
 
 	let {

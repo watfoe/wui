@@ -12,7 +12,7 @@
 </script>
 
 <script lang="ts">
-	import Row from '../row';
+	import { Row } from '../row';
 	import { setContext, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 

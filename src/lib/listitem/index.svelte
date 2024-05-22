@@ -19,7 +19,7 @@
 
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
 		color,

@@ -14,14 +14,14 @@
 
 <script lang="ts">
 	import './style.css';
-	import Col from '../col';
-	import Backdrop from '../backdrop';
-	import Button from '../button';
-	import Divider from '../divider';
-	import Icon from '../icon';
-	import Text from '../text';
-	import Row from '../row';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Col } from '../col';
+	import { Backdrop } from '../backdrop';
+	import { Button } from '../button';
+	import { Divider } from '../divider';
+	import { Icon } from '../icon';
+	import { Text } from '../text';
+	import { Row } from '../row';
+	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
 		children,

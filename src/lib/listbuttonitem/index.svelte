@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import LikeButton, { type LikeButtonAttributes } from '../likebutton';
+	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 	import { getContext } from 'svelte';
 
 	let {

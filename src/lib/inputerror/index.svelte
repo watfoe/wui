@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Text from '../text';
-	import type { ValidationError } from '../input/_common_';
+	import { Text } from '../text';
+	import type { ValidationError } from '../input/_utils';
 
 	let { error }: { error: ValidationError | string } = $props();
 

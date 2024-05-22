@@ -1,2 +1,1 @@
-import InputError from './index.svelte';
-export default InputError;
+export { default as InputError } from './index.svelte';

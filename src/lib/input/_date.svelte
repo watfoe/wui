@@ -10,11 +10,10 @@
 
 <script lang="ts">
 	import BaseInput, { type BaseInputAttributes } from './_base.svelte';
-	import Row from '../row';
-	import Select from '../select';
-	import { ValidationError } from './_common_';
+	import { Row } from '../row';
+	import { Select } from '../select';
+	import { ValidationError, splitDate, type DateFormat } from './_utils';
 	import { untrack } from 'svelte';
-	import { splitDate, type DateFormat } from './date/_date';
 
 	let day = $state('');
 	let month = $state('');
@@ -133,11 +132,12 @@
 		onblur={blur}
 		selected={month}
 		bind:value={month}
-		bind:error />
+		bind:error
+	/>
 
 	<BaseInput
 		type="number"
-		placeholder="Day"
+		placeholder="DD"
 		align="center"
 		class="w-date-input"
 		masks={{ max: 31 }}
@@ -154,11 +154,12 @@
 		onchange={change}
 		onblur={blur}
 		bind:value={day}
-		bind:error />
+		bind:error
+	/>
 
 	<BaseInput
 		type="number"
-		placeholder="Year"
+		placeholder="YYYY"
 		align="center"
 		class="w-date-input"
 		maxlength={4}
@@ -174,7 +175,8 @@
 		onchange={change}
 		onblur={blur}
 		bind:value={year}
-		bind:error />
+		bind:error
+	/>
 
 	<input
 		{...rest}
@@ -183,7 +185,8 @@
 		{name}
 		class="w-hidden"
 		bind:this={input_el}
-		bind:value />
+		bind:value
+	/>
 </Row>
 
 <style>

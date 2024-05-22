@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Button from '../button';
-	import Logo from '../logo';
-	import Row from '../row';
-	import LinkLikeButton from '../linklikebutton';
-	import Text from '../text';
+	import { Button } from '../button';
+	import { Logo } from '../logo';
+	import { Row } from '../row';
+	import { LinkLikeButton } from '../linklikebutton';
+	import { Text } from '../text';
 	import type { FlexAttributes } from '../flex';
 	import type { Snippet } from 'svelte';
 

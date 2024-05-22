@@ -3,9 +3,9 @@
 </script>
 
 <script lang="ts">
-	import Text, { type TextAttributes } from '../text';
+	import { Text, type TextAttributes } from '../text';
 
-	let { color = 'primary', ...rest }: LinkAttributes = $props();
+	let { color = 'primary', underline = false, ...rest }: LinkAttributes = $props();
 </script>
 
-<Text {color} variant="a" {...rest} />
+<Text {color} {underline} variant="a" {...rest} />

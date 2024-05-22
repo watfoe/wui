@@ -1,3 +1,1 @@
-import Text from './index.svelte';
-export default Text;
-export type { TextAttributes } from './index.svelte';
+export { default as Text, type TextAttributes } from './index.svelte';

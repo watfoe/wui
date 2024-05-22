@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Month } from '../../domains/_/date';
 	import Option from '../option.svelte';
 
 	interface MonthPresetAttributes {
@@ -7,7 +6,20 @@
 	}
 
 	const { selected }: MonthPresetAttributes = $props();
-	const months = Month.list();
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
 </script>
 
 {#each months as month, i}

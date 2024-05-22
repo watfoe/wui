@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import Flex, { type FlexAttributes } from '../flex';
+	import { Flex, type FlexAttributes } from '../flex';
 
 	let { ...rest }: RowAttributes = $props();
 </script>

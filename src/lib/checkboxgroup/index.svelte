@@ -24,8 +24,8 @@
 
 <script lang="ts">
 	import './style.css';
-	import Flex from '../flex';
-	import InputLabel from '../inputlabel';
+	import { Flex } from '../flex';
+	import { InputLabel } from '../inputlabel';
 	import { setContext } from 'svelte';
 
 	let {

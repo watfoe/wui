@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Button from '$lib/button';
-	import Checkbox from '$lib/checkbox';
-	import Col from '$lib/col';
-	import Input from '$lib/input';
-	import Menu, { MenuItem } from '$lib/menu';
-	import Radio from '$lib/radio';
-	import RadioGroup from '$lib/radiogroup';
-	import Row from '$lib/row';
-	import Select from '$lib/select';
-	import Switch from '$lib/switch';
+	import { Button } from '$lib/button';
+	import { Checkbox } from '$lib/checkbox';
+	import { Col } from '$lib/col';
+	import { Input } from '$lib/input';
+	import { Menu, MenuItem } from '$lib/menu';
+	import { Radio } from '$lib/radio';
+	import { RadioGroup } from '$lib/radiogroup';
+	import { Row } from '$lib/row';
+	import { Select } from '$lib/select';
+	import { Switch } from '$lib/switch';
 	import { TabPanel } from '$lib/tabs';
 
 	let name = $state('');

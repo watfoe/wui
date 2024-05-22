@@ -25,7 +25,7 @@
 <script lang="ts">
 	import './style.css';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
 		children,
@@ -37,7 +37,7 @@
 		textsize = 'sm',
 		title,
 		shape = 'rounded',
-		variant = 'outlined',
+		variant = 'solid',
 		...rest
 	}: TooltipAttributes = $props();
 </script>

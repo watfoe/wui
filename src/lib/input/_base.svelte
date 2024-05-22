@@ -6,9 +6,9 @@
 <script lang="ts">
 	import './style.css';
 	import type { WuiDimension } from '$lib/types';
-	import { validate, mask, ValidationError, type BaseProps } from './_common_';
-	import Icon from '../icon';
-	import Surface from '../surface';
+	import { validate, mask, ValidationError, type BaseProps } from './_utils';
+	import { Icon } from '../icon';
+	import { Surface } from '../surface';
 	import { untrack } from 'svelte';
 
 	let {

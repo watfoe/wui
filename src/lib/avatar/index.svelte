@@ -10,8 +10,8 @@
 
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Icon from '../icon';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Icon } from '../icon';
+	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
 		alt,

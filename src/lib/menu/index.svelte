@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import Popup, { type PopupAttributes } from '../popup';
+	import { Popup, type PopupAttributes } from '../popup';
 	import { setContext } from 'svelte';
 
 	let {

@@ -1,10 +1,9 @@
 <script>
 	import '$lib/styles/global.css';
-
-	import Col from '$lib/col';
+	import { Col } from '$lib/col';
 	import { WatfoeContent, WatfoeHeader } from '$lib/watfoe';
-	import Text from '$lib/text';
-	import LinkLikeButton from '$lib/linklikebutton';
+	import { Text } from '$lib/text';
+	import { LinkLikeButton } from '$lib/linklikebutton';
 
 	const { children } = $props();
 
@@ -65,7 +64,8 @@
 		pr="sm"
 		pt="md"
 		width={300}
-		style="border-right:var(--line);overflow-y:auto">
+		style="border-right:var(--line);overflow-y:auto"
+	>
 		<Text ml="md" bold>Getting started</Text>
 		<LinkLikeButton
 			color="neutral"
@@ -75,7 +75,8 @@
 			pl="md"
 			size="sm"
 			variant="plain"
-			width="100%">
+			width="100%"
+		>
 			Installation
 		</LinkLikeButton>
 
@@ -94,7 +95,8 @@
 					pl="md"
 					size="sm"
 					variant="plain"
-					width="100%">
+					width="100%"
+				>
 					{component.name}
 				</LinkLikeButton>
 			{/each}

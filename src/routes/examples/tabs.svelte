@@ -7,7 +7,7 @@
 	import Inputs from './inputs.svelte';
 	import Typography from './typography.svelte';
 	import Menus from './menus.svelte';
-	import Tabs, { Tab, TabPanels } from '$lib/tabs';
+	import { Tabs, Tab, TabPanels } from '$lib/tabs';
 </script>
 
 <Tabs for="tab-panels-0" selected={4}>

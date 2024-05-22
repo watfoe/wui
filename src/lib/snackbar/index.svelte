@@ -26,11 +26,11 @@
 <script lang="ts">
 	import './style.css';
 	import type { Snippet } from 'svelte';
-	import Col from '../col';
-	import Button from '../button';
-	import Icon from '../icon';
-	import Text from '../text';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Col } from '../col';
+	import { Button } from '../button';
+	import { Icon } from '../icon';
+	import { Text } from '../text';
+	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
 		align = 'flex-start',

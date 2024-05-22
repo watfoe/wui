@@ -1,6 +1,6 @@
 <script>
-	import Button from '$lib/button';
-	import Row from '$lib/row';
+	import { Button } from '$lib/button';
+	import { Row } from '$lib/row';
 	import { TabPanel } from '$lib/tabs';
 </script>
 

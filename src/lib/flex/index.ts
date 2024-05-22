@@ -1,3 +1,1 @@
-import Flex from './index.svelte';
-export default Flex;
-export type { FlexAttributes } from './index.svelte';
+export { default as Flex, type FlexAttributes } from './index.svelte';

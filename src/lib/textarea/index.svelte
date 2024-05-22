@@ -13,11 +13,11 @@
 
 <script lang="ts">
 	import './style.css';
-	import InputError from '../inputerror';
-	import Icon from '../icon';
-	import InputLabel from '../inputlabel';
-	import Surface from '../surface';
-	import { validate, mask, ValidationError, type BaseProps } from '../input/_common_';
+	import { InputError } from '../inputerror';
+	import { Icon } from '../icon';
+	import { InputLabel } from '../inputlabel';
+	import { Surface } from '../surface';
+	import { validate, mask, ValidationError, type BaseProps } from '../input/_utils';
 	import { untrack, type Snippet } from 'svelte';
 
 	let {

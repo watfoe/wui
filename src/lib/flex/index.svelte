@@ -5,7 +5,8 @@
 </script>
 
 <script lang="ts">
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Surface, type SurfaceAttributes } from '../surface';
+
 	let { direction = 'row', ...rest }: FlexAttributes = $props();
 </script>
 

@@ -21,7 +21,7 @@
 </script>
 
 <script lang="ts">
-	import LikeButton from '../likebutton';
+	import { LikeButton } from '../likebutton';
 
 	let {
 		_this = $bindable(),

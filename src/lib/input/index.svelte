@@ -10,15 +10,15 @@
 
 <script lang="ts">
 	import './style.css';
-	import InputLabel from '../inputlabel';
-	import InputError from '../inputerror';
+	import { InputLabel } from '../inputlabel';
+	import { InputError } from '../inputerror';
 	import BaseInput, { type BaseInputAttributes } from './_base.svelte';
 	import DateInput from './_date.svelte';
 	import EmailInput from './_email.svelte';
 	import PasswordInput from './_password.svelte';
 	import PhoneInput from './_phone.svelte';
 	import SearchInput from './_search.svelte';
-	import Surface from '../surface';
+	import { Surface } from '../surface';
 	import type { Snippet } from 'svelte';
 
 	let {

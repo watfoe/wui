@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import Button, { type ButtonAttributes } from '../button';
+	import { Button, type ButtonAttributes } from '../button';
 	import { getContext } from 'svelte';
 
 	let {

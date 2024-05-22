@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
 		color = 'neutral',

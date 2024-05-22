@@ -1,7 +1,7 @@
 <script>
-	import Row from '$lib/row';
+	import { Row } from '$lib/row';
 	import { TabPanel } from '$lib/tabs';
-	import Text from '$lib/text';
+	import { Text } from '$lib/text';
 </script>
 
 <TabPanel align="flex-start" gap="md">

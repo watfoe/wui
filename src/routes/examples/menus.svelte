@@ -1,8 +1,8 @@
 <script>
-	import Button from '$lib/button';
-	import Divider from '$lib/divider';
-	import Menu, { MenuItem } from '$lib/menu';
-	import Row from '$lib/row';
+	import { Button } from '$lib/button';
+	import { Divider } from '$lib/divider';
+	import { Menu, MenuItem } from '$lib/menu';
+	import { Row } from '$lib/row';
 	import { TabPanel } from '$lib/tabs';
 
 	const positions = [

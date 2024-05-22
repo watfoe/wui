@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
-	import Button, { type ButtonAttributes } from '../button';
+	import { Button, type ButtonAttributes } from '../button';
 	import { type LikeButtonAttributes } from '../likebutton';
 	import { getContext } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';

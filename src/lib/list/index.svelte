@@ -16,7 +16,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import Flex from '../flex';
+	import { Flex } from '../flex';
 
 	let {
 		color = 'neutral',

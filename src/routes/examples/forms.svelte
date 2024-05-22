@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Button from '$lib/button';
-	import Col from '$lib/col';
-	import Input from '$lib/input';
-	import Link from '$lib/link';
-	import Row from '$lib/row';
-	import Select from '$lib/select';
+	import { Button } from '$lib/button';
+	import { Col } from '$lib/col';
+	import { Input } from '$lib/input';
+	import { Link } from '$lib/link';
+	import { Row } from '$lib/row';
+	import { Select } from '$lib/select';
 	import type { SurfaceAttributes } from '$lib/surface';
-	import Surface from '$lib/surface';
+	import { Surface } from '$lib/surface';
 	import { TabPanel } from '$lib/tabs';
-	import Text from '$lib/text';
+	import { Text } from '$lib/text';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 

@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import Text, { type TextAttributes } from '../text';
+	import { Text, type TextAttributes } from '../text';
 	import type { Snippet } from 'svelte';
 
 	let {

@@ -83,6 +83,7 @@
   color: var(--w-color-text);
   font-size: var(--w-txt-font-size, 1rem);
   overflow-wrap: break-word;
+  text-decoration: none;
 }
 
 .w-txt--label {

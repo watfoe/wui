@@ -18,7 +18,7 @@
 
 <script lang="ts">
 	import './style.css';
-	import Surface, { type SurfaceAttributes } from '../surface';
+	import { Surface, type SurfaceAttributes } from '../surface';
 	import { getContext, type Snippet } from 'svelte';
 
 	let {

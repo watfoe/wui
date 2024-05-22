@@ -1,6 +1,6 @@
 <script>
-	import Button from '$lib/button';
-	import Modal from '$lib/modal';
+	import { Button } from '$lib/button';
+	import { Modal } from '$lib/modal';
 	import { TabPanel } from '$lib/tabs';
 
 	const positions = ['top', 'center', 'bottom'];

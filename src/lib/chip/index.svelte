@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import LikeButton, { type LikeButtonAttributes } from '../likebutton';
+	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 
 	let {
 		height,

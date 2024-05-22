@@ -1,7 +1,7 @@
 <script>
-	import Avatar from '$lib/avatar';
-	import AvatarGroup from '$lib/avatargroup';
-	import Row from '$lib/row';
+	import { Avatar } from '$lib/avatar';
+	import { AvatarGroup } from '$lib/avatargroup';
+	import { Row } from '$lib/row';
 	import { TabPanel } from '$lib/tabs';
 </script>
 

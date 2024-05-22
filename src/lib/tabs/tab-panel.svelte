@@ -4,8 +4,8 @@
 	export interface TabPanelAttributes extends FlexAttributes {}
 </script>
 
-<script>
-	import Flex, { type FlexAttributes } from '../flex';
+<script lang="ts">
+	import { Flex, type FlexAttributes } from '../flex';
 	let {
 		align = 'flex-start',
 		children,
