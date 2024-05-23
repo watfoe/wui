@@ -39,4 +39,4 @@
 	}
 </script>
 
-<Popup aria-label="menu" role="menu" {color} {direction} {gap} {shape} {...rest} />
+<Popup element="menu" {color} {direction} {gap} {shape} {...rest} />

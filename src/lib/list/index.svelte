@@ -16,7 +16,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { Flex } from '../flex';
+	import { Surface } from '../surface';
 
 	let {
 		color = 'neutral',
@@ -44,4 +44,12 @@
 	});
 </script>
 
-<Flex align="flex-start" justify="flex-start" {color} {shape} {direction} {...rest} />
+<Surface
+	element="ul"
+	align="flex-start"
+	justify="flex-start"
+	{color}
+	{shape}
+	{direction}
+	{...rest}
+/>

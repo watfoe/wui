@@ -36,7 +36,7 @@
 </script>
 
 <LikeButton
-	element="div"
+	element="li"
 	aria-selected={selected}
 	tabindex="0"
 	color={color || ctx.color || (selected ? 'neutral' : altColor)}

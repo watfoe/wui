@@ -1,18 +1,21 @@
 <script lang="ts" context="module">
 	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
-	export interface MenuItemAttributes extends ButtonAttributes {
+	import type { HTMLLiAttributes } from 'svelte/elements';
+	export interface MenuItemAttributes
+		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {
 		selected?: boolean;
 	}
 </script>
 
 <script lang="ts">
-	import { Button, type ButtonAttributes } from '../button';
+	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 	import { getContext } from 'svelte';
 
 	let {
 		color,
 		justify,
 		navigation,
+		px = 'sm',
 		role = 'listitem',
 		selected = false,
 		size,
@@ -38,7 +41,8 @@
 	}
 </script>
 
-<Button
+<LikeButton
+	element="li"
 	aria-selected={selected}
 	color={color || ctx.color || (selected ? 'primary' : altColor)}
 	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
@@ -49,5 +53,6 @@
 	style="flex-shrink:0;{style}"
 	variant={variant || ctx.variant || (selected ? 'soft' : 'plain')}
 	width={width || (ctx.direction === 'row' ? undefined : '100%')}
+	{px}
 	{...rest}
 />
