@@ -26,6 +26,7 @@
 			{ name: 'Icon', path: '/components/icon' },
 			{ name: 'List', path: '/components/list' },
 			{ name: 'Logo', path: '/components/logo' },
+			{ name: 'Progress', path: '/components/progress' },
 			{ name: 'Tooltip', path: '/components/tooltip' }
 		],
 		FEEDBACK: [
