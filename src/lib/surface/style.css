@@ -134,38 +134,23 @@
   --w-txt-font-size: 1.25rem;
 }
 
-.w-txt--body.w-txt--xs,
-.w-txt--code.w-txt--xs,
-.w-txt--label.w-txt--xs,
-.w-txt--a.w-txt--xs {
+.w-txt--xs {
   --w-txt-font-size: 0.75rem;
 }
 
-.w-txt--body.w-txt--sm,
-.w-txt--code.w-txt--sm,
-.w-txt--label.w-txt--sm,
-.w-txt--a.w-txt--sm {
+.w-txt--sm {
   --w-txt-font-size: 0.8125rem;
 }
 
-.w-txt--body.w-txt--md,
-.w-txt--code.w-txt--md,
-.w-txt--label.w-txt--md,
-.w-txt--a.w-txt--md {
-  --w-txt-font-size: 0.9rem;
+.w-txt--md {
+  --w-txt-font-size: 0.875rem;
 }
 
-.w-txt--body.w-txt--lg,
-.w-txt--code.w-txt--lg,
-.w-txt--label.w-txt--lg,
-.w-txt--a.w-txt--lg {
+.w-txt--lg {
   --w-txt-font-size: 1rem;
 }
 
-.w-txt--body.w-txt--xl,
-.w-txt--code.w-txt--xl,
-.w-txt--label.w-txt--xl,
-.w-txt--a.w-txt--xl {
+.w-txt--xl {
   --w-txt-font-size: 1.125rem;
 }
 

@@ -37,6 +37,7 @@
 <!-- Apply width to icon to avoid shifting -->
 <span
 	role="img"
+	aria-label="icon"
 	class="material-symbols-rounded w-icon {_class}"
 	style="font-variation-settings: 'fill' {fill
 		? 1

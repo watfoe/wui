@@ -31,7 +31,7 @@
 		children,
 		for: _for,
 		navigation,
-		gap = 'md',
+		gap = 'sm',
 		selected,
 		size,
 		shape,
