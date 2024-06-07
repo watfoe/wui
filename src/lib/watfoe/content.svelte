@@ -12,7 +12,6 @@
 	{direction}
 	width="100%"
 	px="lg"
-	pb="sm"
 	mt={50}
 	{...rest}
 />

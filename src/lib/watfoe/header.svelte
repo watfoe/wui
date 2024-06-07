@@ -51,7 +51,15 @@
 		<LinkLikeButton href={urls?.signin} color="black" textsize="md" size="sm" variant="plain">
 			Sign in
 		</LinkLikeButton>
-		<LinkLikeButton href={urls?.signup} color="primary" textsize="md" size="sm" variant="solid">
+		<LinkLikeButton
+			href={urls?.signup}
+			color="primary"
+			shape="pill"
+			px="md"
+			textsize="md"
+			size="sm"
+			variant="solid"
+		>
 			Create account
 		</LinkLikeButton>
 	</Row>

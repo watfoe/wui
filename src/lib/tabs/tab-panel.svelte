@@ -46,6 +46,7 @@
 <style>
 	:global(.w-tabpanel) {
 		flex-grow: 1;
+		overflow: auto;
 	}
 	:global(.w-tabpanel:not([tabindex='0'])) {
 		display: none !important;

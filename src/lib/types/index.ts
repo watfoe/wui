@@ -14,7 +14,7 @@ import type {
 // TODO: Think about a size multiplier for the sizes
 export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'white' | 'black' | 'inherit';
 export type WuiColorWeight = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
-export type WuiSize = 'sm' | 'md' | 'lg';
+export type WuiSize = 'ss' | 'xs' | 'sm' | 'md' | 'lg'| 'xl'| 'xx';
 export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'mixed' | 'none';
 export type WuiShape = 'rounded' | 'circle' | 'pill' | 'square';
 
@@ -24,7 +24,7 @@ export type WuiFlexAlign = 'flex-start' | 'flex-end' | 'center' | 'space-between
 export type WuiFlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type WuiFlexJustify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 export type WuiFlexAlignSelf = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
-export type WuiFlexGap = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none';
+export type WuiFlexGap = WuiSize | 'none';
 export type WuiFlexWrap = 'wrap' | 'nowrap';
 
 export interface WuiFlexKeys {
@@ -37,13 +37,9 @@ export interface WuiFlexKeys {
 }
 
 export type WuiTextAlign = 'left' | 'center' | 'right' | 'justify' | 'inherit';
-
-export type WuiTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
+export type WuiTextSize = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'inherit' | number;
 export type WuiTextWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
-
 export type WuiTextVariant = 'a' | 'heading' | 'title' | 'body' | 'code' | 'label';
-
 export type WuiSpacing = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none' | 'auto' | 'inherit' | number;
 
 export interface WuiMargin {

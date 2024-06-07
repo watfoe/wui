@@ -81,18 +81,13 @@
   --space-xl: 2.125rem;
   --space-xx: 3.4375rem;
 
-  --height-ss: 1.75rem;
-  /* 28px */
+  --height-ss: 1.5rem;
+  --height-xs: 1.75rem;
   --height-sm: 2.125rem;
-  /* 34px */
   --height-md: 2.375rem;
-  /* 38px */
   --height-lg: 3rem;
-  /* 48px */
   --height-xl: 3.5rem;
-  /* 55px */
   --height-xx: 4rem;
-  /* 64px */
 
   --radius: 3px;
 
@@ -162,9 +157,9 @@ body {
   line-height: 1.5;
   margin: 0 !important;
   overflow: auto;
+  -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   tab-size: 4;
 }

@@ -123,7 +123,6 @@
 	style:display="flex"
 	style:flex-direction="row"
 	style:gap="var(--space-{gap})"
-	style:width="100%"
 >
 	{@render children()}
 </div>

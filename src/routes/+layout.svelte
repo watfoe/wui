@@ -1,5 +1,6 @@
 <script>
 	import '$lib/styles/global.css';
+	import './style.css';
 	import { Col } from '$lib/col';
 	import { WatfoeContent, WatfoeHeader } from '$lib/watfoe';
 	import { Text } from '$lib/text';
@@ -11,6 +12,7 @@
 		INPUTS: [
 			{ name: 'Button', path: '/components/button' },
 			{ name: 'Checkbox', path: '/components/checkbox' },
+			{ name: 'Form', path: '/components/form' },
 			{ name: 'Input', path: '/components/input' },
 			{ name: 'Listbox', path: '/components/listbox' },
 			{ name: 'Radio', path: '/components/radio' },
@@ -57,21 +59,24 @@
 	};
 </script>
 
-<WatfoeHeader subtitle="Ui" style="border-bottom:var(--line)" />
-<WatfoeContent direction="row" pl="sm" style="overflow-y:hidden">
+<WatfoeHeader subtitle="Ui" />
+<WatfoeContent direction="row" gap="xs" px="ss" style="height:calc(100% - 50px)">
 	<Col
 		align="flex-start"
+		color="neutral"
+		colorweight="0"
 		height="100%"
-		pr="sm"
+		p="xs"
 		pt="md"
+		shape="rounded"
+		variant="soft"
 		width={300}
-		style="border-right:var(--line);overflow-y:auto"
+		style="overflow-y:auto"
 	>
 		<Text ml="md" bold>Getting started</Text>
 		<LinkLikeButton
 			color="neutral"
 			href="/installation"
-			height={28}
 			justify="flex-start"
 			pl="md"
 			size="sm"
@@ -91,7 +96,6 @@
 				<LinkLikeButton
 					color="black"
 					href={component.path}
-					height={28}
 					justify="flex-start"
 					pl="md"
 					size="sm"
@@ -104,7 +108,18 @@
 		{/each}
 	</Col>
 
-	<Col align="flex-start" height="100%" width="100%" pl="lg" pt="sm" style="overflow-y:auto">
+	<Col
+		align="flex-start"
+		color="neutral"
+		colorweight="0"
+		height="100%"
+		width="100%"
+		px="lg"
+		pt="sm"
+		shape="rounded"
+		style="overflow-y:auto"
+		variant="soft"
+	>
 		{@render children()}
 	</Col>
 </WatfoeContent>

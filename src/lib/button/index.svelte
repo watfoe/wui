@@ -24,7 +24,8 @@
 		loading = false,
 		disabled = false,
 		navigation,
-		px = 'sm',
+		size,
+		px = size || 'md',
 		type = 'button',
 		onclick,
 		onkeydown,
@@ -116,6 +117,7 @@
 	onmouseover={mouseover}
 	onkeydown={keydown}
 	{px}
+	{size}
 	{type}
 	{...rest}
 />

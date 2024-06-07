@@ -4,7 +4,7 @@
 	export interface CheckboxAttributes
 		extends Omit<SurfaceAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element' | 'textvariant'> {
 		checked?: boolean;
-		label: Snippet | string;
+		label?: Snippet | string;
 		size?: WuiSize;
 	}
 </script>
@@ -133,7 +133,7 @@
 	<Surface
 		element="span"
 		class="w-checkbox__thumb"
-		color={checked ? color || ctx.color || 'primary' : 'neutral'}
+		color={color || ctx.color || 'primary'}
 		shape={shape || ctx.shape || 'rounded'}
 		variant={variant || ctx.variant || 'outlined'}
 		height={SIZES[size || ctx.size || 'md']}
@@ -144,7 +144,7 @@
 
 	{#if typeof label === 'string'}
 		{label}
-	{:else}
+	{:else if label}
 		{@render label()}
 	{/if}
 </Surface>
