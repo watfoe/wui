@@ -26,6 +26,7 @@
 
 <Surface
 	element="div"
+	role="progressbar"
 	class="w-loader w-loader--{shape} {determinate && shape === 'linear'
 		? 'w-loader--determinate'
 		: ''}"

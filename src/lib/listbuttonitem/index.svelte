@@ -43,7 +43,7 @@
 	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
 	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}
 	size={size || ctx.size || 'md'}
-	shape={shape || ctx.shape || 'square'}
+	shape={shape || ctx.shape || 'sharp'}
 	variant={variant || ctx.variant || (selected ? 'soft' : 'plain')}
 	width={width || (ctx.direction === 'row' ? undefined : '100%')}
 	{px}

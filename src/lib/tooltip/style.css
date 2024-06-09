@@ -10,7 +10,7 @@
 .w-tooltip .w-tooltip__content {
 	position: absolute;
 	white-space: nowrap;
-	display: none;
+	display: none !important;
 }
 
 .w-tooltip .w-tooltip__content::after {
@@ -23,7 +23,7 @@
 }
 
 .w-tooltip:hover .w-tooltip__content {
-	display: block;
+	display: flex !important;
 }
 
 .w-tooltip-left .w-tooltip__content {

@@ -14,7 +14,7 @@
 	</Row>
 
 	<Row gap="md" width="100%">
-		<Avatar variant="solid" shape="square" />
+		<Avatar variant="solid" shape="sharp" />
 		<Avatar alt="Jimmie Lovell" variant="outlined" />
 		<Avatar variant="soft">JL</Avatar>
 		<Avatar variant="plain" />

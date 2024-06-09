@@ -12,7 +12,7 @@
 		<Button variant="plain" class="button">Primary Plain</Button>
 
 		<Button variant="solid" prefix="person" shape="circle" />
-		<Button variant="outlined" prefix="person" shape="square" />
+		<Button variant="outlined" prefix="person" shape="sharp" />
 		<Button variant="soft" prefix="person" />
 		<Button variant="plain" prefix="person" />
 	</Row>

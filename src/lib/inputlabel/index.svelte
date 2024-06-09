@@ -28,7 +28,7 @@
 		pl="sm"
 		size="sm"
 		variant="label"
-		{...rest}
+		style="line-height:1.2"
 	>
 		{@render children()}
 	</Text>

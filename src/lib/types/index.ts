@@ -16,7 +16,7 @@ export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'danger' 
 export type WuiColorWeight = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 export type WuiSize = 'ss' | 'xs' | 'sm' | 'md' | 'lg'| 'xl'| 'xx';
 export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'mixed' | 'none';
-export type WuiShape = 'rounded' | 'circle' | 'pill' | 'square';
+export type WuiShape = 'rounded' | 'circle' | 'pill' | 'sharp';
 
 export type WuiDimension = WuiSize | '100%' | '75%' | '50%' | '25%' | 'auto' | 'inherit' | number;
 
@@ -39,8 +39,8 @@ export interface WuiFlexKeys {
 export type WuiTextAlign = 'left' | 'center' | 'right' | 'justify' | 'inherit';
 export type WuiTextSize = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'inherit' | number;
 export type WuiTextWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
-export type WuiTextVariant = 'a' | 'heading' | 'title' | 'body' | 'code' | 'label';
-export type WuiSpacing = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none' | 'auto' | 'inherit' | number;
+export type WuiTextVariant = 'a' | 'heading' | 'title' | 'body' | 'label';
+export type WuiSpacing = 'ss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xx' | 'none' | number;
 
 export interface WuiMargin {
   m?: WuiSpacing;
@@ -65,7 +65,7 @@ export interface WuiPadding {
 export interface WuiSurface extends WuiMargin, WuiPadding {
   color?: WuiColor;
   colorweight?: WuiColorWeight;
-  gap?: WuiFlexGap;
+  gap?: WuiSpacing;
   height?: WuiDimension;
   shape?: WuiShape;
   variant?: WuiVariant;

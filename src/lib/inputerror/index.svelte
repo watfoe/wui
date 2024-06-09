@@ -13,6 +13,6 @@
 	}
 </script>
 
-<Text color="danger" size="xs" ml="ss" style="line-height:1.2" variant="body">
+<Text color="danger" size="sm" ml="ss" style="line-height:1.2" variant="body">
 	{error_to_string(error)}
 </Text>

@@ -5,6 +5,7 @@
 	import { WatfoeContent, WatfoeHeader } from '$lib/watfoe';
 	import { Text } from '$lib/text';
 	import { LinkLikeButton } from '$lib/linklikebutton';
+	import { Surface } from '$lib/surface';
 
 	const { children } = $props();
 
@@ -61,9 +62,11 @@
 
 <WatfoeHeader subtitle="Ui" />
 <WatfoeContent direction="row" gap="xs" px="ss" style="height:calc(100% - 50px)">
-	<Col
+	<Surface
+		element="nav"
 		align="flex-start"
 		color="neutral"
+		direction="column"
 		colorweight="0"
 		height="100%"
 		p="xs"
@@ -106,12 +109,14 @@
 				</LinkLikeButton>
 			{/each}
 		{/each}
-	</Col>
+	</Surface>
 
-	<Col
+	<Surface
+		element="content"
 		align="flex-start"
 		color="neutral"
 		colorweight="0"
+		direction="column"
 		height="100%"
 		width="100%"
 		px="lg"
@@ -121,5 +126,5 @@
 		variant="soft"
 	>
 		{@render children()}
-	</Col>
+	</Surface>
 </WatfoeContent>

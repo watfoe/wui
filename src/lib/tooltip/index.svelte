@@ -4,7 +4,7 @@
 	import type { Snippet } from 'svelte';
 
 	export interface TooltipAttributes
-		extends Omit<SurfaceAttributes<Omit<HTMLAttributes<HTMLSpanElement>, 'title'>>, 'element'> {
+		extends Omit<LikeButtonAttributes<Omit<HTMLAttributes<HTMLSpanElement>, 'title'>>, 'element'> {
 		title: Snippet | string;
 		position?:
 			| 'top'
@@ -25,19 +25,16 @@
 <script lang="ts">
 	import './style.css';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { Surface, type SurfaceAttributes } from '../surface';
+	import { LikeButton, type LikeButtonAttributes } from '$lib/likebutton';
 
 	let {
 		children,
 		color = 'neutral',
-		colorweight = '6',
 		px = 'sm',
-		py = 'xs',
 		position = 'bottom',
 		textsize = 'sm',
+		size = 'sm',
 		title,
-		shape = 'rounded',
-		variant = 'solid',
 		...rest
 	}: TooltipAttributes = $props();
 </script>
@@ -46,16 +43,13 @@
 	{#if children}
 		{@render children()}
 	{/if}
-	<Surface
+	<LikeButton
 		element="span"
 		role="tooltip"
 		{color}
-		{colorweight}
 		{px}
-		{py}
-		{shape}
+		{size}
 		{textsize}
-		{variant}
 		class="w-tooltip__content"
 		{...rest}
 	>
@@ -64,5 +58,5 @@
 		{:else}
 			{@render title()}
 		{/if}
-	</Surface>
+	</LikeButton>
 </div>

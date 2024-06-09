@@ -6,6 +6,7 @@
 	import { Text } from '../text';
 	import type { FlexAttributes } from '../flex';
 	import type { Snippet } from 'svelte';
+	import { Surface } from '$lib/surface';
 
 	interface WatfoeHeaderAttributes extends FlexAttributes {
 		class?: string;
@@ -23,8 +24,10 @@
 	};
 </script>
 
-<Row
+<Surface
+	element="header"
 	class="watfoe-header {_class}"
+	direction="row"
 	height={50}
 	justify="space-between"
 	mb="xs"
@@ -46,9 +49,19 @@
 		</Row>
 	</Row>
 
-	<Row justify="flex-end" gap="md">
-		<Button color="black" textsize="md" prefix="apps" size="sm" variant="plain">Apps</Button>
-		<LinkLikeButton href={urls?.signin} color="black" textsize="md" size="sm" variant="plain">
+	<Row justify="flex-end" gap="sm">
+		<Button color="black" textsize="md" prefix="apps" px="md" shape="pill" size="sm" variant="plain"
+			>Apps</Button
+		>
+		<LinkLikeButton
+			href={urls?.signin}
+			color="black"
+			px="md"
+			textsize="md"
+			shape="pill"
+			size="sm"
+			variant="plain"
+		>
 			Sign in
 		</LinkLikeButton>
 		<LinkLikeButton
@@ -63,7 +76,7 @@
 			Create account
 		</LinkLikeButton>
 	</Row>
-</Row>
+</Surface>
 
 <style>
 	:global(.watfoe-header) {

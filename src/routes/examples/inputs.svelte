@@ -65,7 +65,7 @@
 			type="password"
 			variant="outlined"
 			placeholder="Enter your password"
-			shape="square"
+			shape="sharp"
 			color="success"
 			label="Password"
 			class="input"
@@ -145,7 +145,7 @@
 		</RadioGroup>
 
 		<Col gap="sm">
-			<Select preset="country" selected="KE" style="width: 300px" variant="solid" shape="square" />
+			<Select preset="country" selected="KE" style="width: 300px" variant="solid" shape="sharp" />
 			<Select preset="gender" style="width: 300px" />
 			<Select preset="month" style="width: 300px" />
 		</Col>

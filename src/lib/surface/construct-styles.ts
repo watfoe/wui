@@ -49,7 +49,7 @@ export function construct_color_style(
 	if (!textweight && (textcolor === 'neutral' || color === 'neutral')) {
 		textweight = '8';
 	} else {
-		textweight = textweight || '5';
+		textweight = textweight || '6';
 	}
 
 	if (variant === 'plain' || variant === 'none') {
@@ -78,7 +78,7 @@ export function construct_color_style(
 			weight = weight || '3';
 		} else {
 			color = color || 'primary';
-			weight = weight || '5';
+			weight = weight || '6';
 		}
 
 		// The bg color is used for the border color
@@ -86,7 +86,7 @@ export function construct_color_style(
 		return `--w-color-bg: ${compute_color_value(color, weight)};--w-color-text: ${compute_color_value(textcolor || color, textweight)};${clickable ? `--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}`;
 	} else if (variant === 'mixed') {
 		color = color || 'primary';
-		return `--w-color-bg: ${compute_color_value(color, !weight && color === 'neutral' ? '3' : weight || '5')};--w-color-text: ${compute_color_value(textcolor || color, textweight)};--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');`;
+		return `--w-color-bg: ${compute_color_value(color, !weight && color === 'neutral' ? '3' : weight || '6')};--w-color-text: ${compute_color_value(textcolor || color, textweight)};--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');`;
 	}
 
 	return '';
@@ -100,7 +100,7 @@ export function compute_color_value(color: WuiColor, weight?: WuiColorWeight) {
 	} else if (color === 'inherit') {
 		return 'inherit';
 	} else {
-		return `var(--color-${color}-${weight || '5'})`;
+		return `var(--color-${color}-${weight || '6'})`;
 	}
 }
 
@@ -113,7 +113,7 @@ export function construct_flex_style(
 	gap?: WuiFlexGap
 ) {
 	if (direction || justify || align || wrap || gap) {
-		return `display:flex;align-items:${align || 'center'};${justify ? `justify-content:${justify};` : ''}${wrap ? 'flex-wrap:wrap;' : ''}${direction ? `flex-direction:${direction};` : ''}${self ? `align-self:${self};` : ''}${gap ? `gap:var(--space-${gap});` : ''}`;
+		return `display:flex;align-items:${align || 'center'};${justify ? `justify-content:${justify};` : ''}${wrap ? 'flex-wrap:wrap;' : ''}${direction ? `flex-direction:${direction};` : ''}${self ? `align-self:${self};` : ''}${gap && gap !== 'none' ? `gap:${typeof gap === 'number' ? gap+'px' : `var(--space-${gap})`};` : ''}`;
 	}
 	return '';
 }

@@ -1,11 +1,3 @@
-@font-face {
-  font-family: 'Material Symbols Rounded';
-  font-style: normal;
-  font-weight: 300 400;
-  font-display: block;
-  src: url('https://cdn.watfoe.com/fonts/material-symbols-rounded.woff2') format('woff2');
-}
-
 :root {
   --color-primary-0: #F7FBFD;
   --color-primary-1: #e6f4fa;
@@ -151,17 +143,11 @@
 
 html,
 body {
-  font-feature-settings: normal;
   min-width: 100vw;
   height: 100%;
-  line-height: 1.5;
   margin: 0 !important;
   overflow: auto;
   -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -moz-tab-size: 4;
-  tab-size: 4;
 }
 
 .w-hidden {

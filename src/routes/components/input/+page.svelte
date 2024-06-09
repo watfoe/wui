@@ -59,7 +59,7 @@
 			type="password"
 			variant="outlined"
 			placeholder="Enter your password"
-			shape="square"
+			shape="sharp"
 			color="success"
 			label="Password"
 			class="input"

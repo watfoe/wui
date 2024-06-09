@@ -1,11 +1,12 @@
-<script>
-	import { Flex } from '../flex';
+<script lang="ts">
+	import { Surface } from '$lib/surface';
+	import type { FlexAttributes } from '../flex';
 
-	/** @type {import('../flex').FlexAttributes} */
-	const { class: _class = '', direction = 'column', ...rest } = $props();
+	const { class: _class = '', direction = 'column', ...rest }: FlexAttributes = $props();
 </script>
 
-<Flex
+<Surface
+	element="main"
 	align="flex-start"
 	justify="flex-start"
 	class="watfoe-content {_class}"

@@ -15,6 +15,8 @@
 </script>
 
 <script lang="ts">
+	import './style.css';
+
 	let {
 		color = 'inherit',
 		class: _class = '',
@@ -46,25 +48,3 @@
 >
 	{@render children()}
 </span>
-
-<style>
-	.w-icon {
-		font-family: 'Material Symbols Rounded';
-		font-style: normal;
-		font-size: var(--w-icon-size, 1.25rem);
-		font-weight: normal;
-		font-feature-settings: 'liga';
-		display: inline-block;
-		direction: ltr;
-		line-height: 1;
-		letter-spacing: normal;
-		max-width: var(--w-icon-size, 1.25rem);
-		text-transform: none;
-		white-space: nowrap;
-		word-wrap: normal;
-		text-rendering: optimizeLegibility;
-		overflow-x: hidden;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-</style>
