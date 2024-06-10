@@ -15,6 +15,7 @@
 		align = 'left',
 		class: _class = '',
 		color,
+		colorweight,
 		disabled,
 		error = $bindable(),
 		height,
@@ -191,6 +192,8 @@
 		align="center"
 		class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
 		color={error ? 'danger' : color}
+		colorweight={colorweight ||
+			(!error && color === 'neutral' && variant === 'outlined' ? '4' : undefined)}
 		direction="row"
 		gap="xs"
 		justify="space-between"

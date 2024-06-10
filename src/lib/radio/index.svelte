@@ -5,14 +5,17 @@
 	export interface RadioAttributes
 		extends Omit<SurfaceAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element' | 'textvariant'> {
 		checked?: boolean;
-		label: Snippet | string;
+		indicator?: Snippet | string;
+		label?: Snippet | string;
 		size?: WuiSize;
 	}
 
 	const SIZES = {
-		sm: 18,
-		md: 22,
-		lg: 26
+		xs: 18,
+		sm: 20,
+		md: 24,
+		lg: 28,
+		xl: 34
 	};
 </script>
 
@@ -20,6 +23,8 @@
 	import './style.css';
 	import { Surface, type SurfaceAttributes } from '../surface';
 	import { getContext, type Snippet } from 'svelte';
+	import { Icon } from '$lib/icon';
+	import { on } from 'svelte/events';
 
 	let {
 		// Radio attributes
@@ -28,12 +33,13 @@
 		name,
 		size,
 		// Surface attributes
-		align,
+		align = 'center',
 		color,
 		colorweight,
 		class: _class = '',
-		direction,
-		gap,
+		direction = 'row',
+		indicator,
+		gap = 'md',
 		height,
 		justify,
 		m,
@@ -79,6 +85,13 @@
 	} = getContext('wui-radio-group-ctx') || {};
 
 	const id = Math.random().toString(36).substring(2, 15);
+
+	color = color || ctx.color || 'neutral';
+
+	function change(event: Event & { currentTarget: HTMLInputElement }) {
+		checked = (event.target as HTMLInputElement).checked;
+		onchange?.(event);
+	}
 </script>
 
 <Surface
@@ -86,15 +99,14 @@
 	element="label"
 	aria-checked={checked}
 	aria-label={typeof label === 'string' ? label : rest['aria-label']}
-	class="w-radio {_class}"
+	class="w-radio{indicator ? ' w-radio--with-indicator' : ''} {_class}"
 	for={id}
-	gap={gap || size || ctx.size || 'md'}
 	textsize={textsize || size || ctx.size || 'md'}
 	variant="none"
 	{align}
-	{colorweight}
 	{direction}
 	{height}
+	{gap}
 	{justify}
 	{m}
 	{mx}
@@ -123,29 +135,38 @@
 	{wrap}
 >
 	<input
-		{...rest}
 		class="w-hidden"
-		{checked}
 		name={name || ctx.name}
 		type="radio"
 		bind:value
+		{checked}
 		{id}
+		onchange={change}
+		{...rest}
 	/>
 
 	<Surface
 		element="span"
-		color={color || ctx.color || 'neutral'}
+		colorweight={colorweight || (color === 'neutral' && variant === 'outlined' ? '5' : undefined)}
 		class="w-radio__thumb"
-		p={2}
 		shape={shape || ctx.shape || 'circle'}
 		variant={variant || ctx.variant || 'outlined'}
 		height={SIZES[size || ctx.size || 'md']}
 		width={SIZES[size || ctx.size || 'md']}
-	/>
+		{color}
+	>
+		{#if typeof indicator === 'string'}
+			<Icon class="w-radio__thumb__indicator" color="inherit" {size}>{indicator}</Icon>
+		{:else if indicator}
+			<div class="w-radio__thumb__indicator">
+				{@render indicator()}
+			</div>
+		{/if}
+	</Surface>
 
 	{#if typeof label === 'string'}
 		{label}
-	{:else}
+	{:else if label}
 		{@render label()}
 	{/if}
 </Surface>

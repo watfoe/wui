@@ -73,9 +73,11 @@
 	const id = Math.random().toString(36).substring(2, 15);
 
 	const SIZES = {
-		sm: 18,
-		md: 22,
-		lg: 26
+		xs: 18,
+		sm: 20,
+		md: 24,
+		lg: 28,
+		xl: 34
 	};
 </script>
 
@@ -86,7 +88,7 @@
 	aria-label={typeof label === 'string' ? label : rest['aria-label']}
 	class="w-checkbox {_class}"
 	for={id}
-	gap={gap || size || ctx.size || 'md'}
+	gap={gap || 'md'}
 	textsize={textsize || size || ctx.size || 'md'}
 	variant="none"
 	{align}
@@ -132,6 +134,8 @@
 
 	<Surface
 		element="span"
+		align="center"
+		justify="center"
 		class="w-checkbox__thumb"
 		color={color || ctx.color || 'primary'}
 		shape={shape || ctx.shape || 'rounded'}
@@ -139,7 +143,7 @@
 		height={SIZES[size || ctx.size || 'md']}
 		width={SIZES[size || ctx.size || 'md']}
 	>
-		<Icon {size} weight="500" style="width:100%;height:100%;line-height:1">check</Icon>
+		<Icon color="inherit" class="w-checkbox__thumb__indicator" {size}>check</Icon>
 	</Surface>
 
 	{#if typeof label === 'string'}

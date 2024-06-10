@@ -17,6 +17,8 @@
 	import { Col } from '$lib/col';
 	import { List } from '$lib/list';
 	import { ListButtonItem } from '$lib/listbuttonitem';
+	import { Radio } from '$lib/radio';
+	import { RadioGroup } from '$lib/radiogroup';
 	import { Row, type RowAttributes } from '$lib/row';
 	import { Switch } from '$lib/switch';
 	import { Text } from '$lib/text';
@@ -27,14 +29,15 @@
 
 	const variants = ['solid', 'outlined', 'soft', 'plain'];
 	const colors: WuiColor[] = ['primary', 'neutral', 'success', 'warning', 'danger', 'black'];
-	const sizes = ['ss', 'xs', 'sm', 'md', 'lg', 'xl', 'xx'];
+	const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 	const shapes = ['sharp', 'rounded', 'pill', 'circle'];
 </script>
 
 {#snippet listbuttonitem(category: 'variant' | 'color' | 'size' | 'shape', value: string, selected: string)}
 	<ListButtonItem
 		px="md"
-		size="ss"
+		size="xs"
+		textsize="sm"
 		variant={value === selected ? 'solid' : 'outlined'}
 		color={value === selected ? 'primary' : 'neutral'}
 		shape="pill"
@@ -84,19 +87,22 @@
 
 		<Col align="flex-start" gap="sm" width="100%">
 			<Text size="sm" bold>color</Text>
-			<CheckboxGroup direction="row">
+			<RadioGroup direction="row">
 				{#each colors as color}
 					<Tooltip title={color} {color} size="xs">
-						<Checkbox
-							shape="circle"
-							variant="solid"
+						<Radio
+							indicator="check"
+							name="color"
+							value={color}
 							size="md"
+							variant="solid"
 							{color}
 							checked={values.color === color}
+							onchange={() => (values.color = color)}
 						/>
 					</Tooltip>
 				{/each}
-			</CheckboxGroup>
+			</RadioGroup>
 		</Col>
 
 		<Col align="flex-start" gap="sm" width="100%">

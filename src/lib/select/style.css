@@ -2,6 +2,10 @@
   color: var(--color-neutral-4);
 }
 
+.w-select__combobox {
+  overflow-x: hidden
+}
+
 .w-select__combobox.w-plain.w-primary {
   background-color: var(--color-primary-0);
 }
@@ -35,7 +39,7 @@
 }
 
 .w-select:focus-within .w-select__combobox.w-neutral {
-  --w-color-bg: var(--color-primary-5) !important;
+  --w-color-bg: var(--color-primary-6) !important;
 }
 
 .w-select:focus-within .w-select__combobox:not(.w-solid) {

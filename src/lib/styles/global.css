@@ -65,21 +65,17 @@
   --color-outline: var(--color-neutral-3);
   --color-hairline: var(--color-neutral-3);
 
-  --space-ss: 0.1875rem;
   --space-xs: 0.3125rem;
   --space-sm: 0.5rem;
   --space-md: 0.8125rem;
   --space-lg: 1.3125rem;
   --space-xl: 2.125rem;
-  --space-xx: 3.4375rem;
 
-  --height-ss: 1.5rem;
-  --height-xs: 1.75rem;
+  --height-xs: 1.5rem;
   --height-sm: 2.125rem;
   --height-md: 2.375rem;
   --height-lg: 3rem;
   --height-xl: 3.5rem;
-  --height-xx: 4rem;
 
   --radius: 3px;
 

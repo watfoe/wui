@@ -61,7 +61,7 @@
 </script>
 
 <WatfoeHeader subtitle="Ui" />
-<WatfoeContent direction="row" gap="xs" px="ss" style="height:calc(100% - 50px)">
+<WatfoeContent direction="row" gap="xs" px={3} style="height:calc(100% - 50px)">
 	<Surface
 		element="nav"
 		align="flex-start"
@@ -118,6 +118,7 @@
 		colorweight="0"
 		direction="column"
 		height="100%"
+		textcolor="black"
 		width="100%"
 		px="lg"
 		pt="sm"

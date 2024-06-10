@@ -19,7 +19,6 @@
 	let {
 		bold = false,
 		children,
-		class: _class = '',
 		color = 'primary',
 		direction = 'row',
 		element = 'button',
@@ -94,7 +93,6 @@
 </script>
 
 <Surface
-	class="w-likebutton {_class}"
 	px={children ? px : undefined}
 	tabindex={tabindex || 0}
 	textsize={textsize || size}
@@ -130,12 +128,3 @@
 		{@render suffix()}
 	{/if}
 </Surface>
-
-<style>
-	:global(.w-likebutton) {
-		flex-shrink: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-</style>

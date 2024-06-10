@@ -123,3 +123,9 @@ div.w-input__suffix>* {
   width: 100% !important;
   height: 100% !important;
 }
+
+.w-input__label,
+.w-input__description,
+.w-input__error {
+  line-height: 1;
+}

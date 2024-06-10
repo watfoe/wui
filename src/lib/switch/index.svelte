@@ -1,11 +1,19 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type { WuiColor, WuiDimension, WuiShape, WuiSize, WuiVariant } from '$lib/types';
+	import type {
+		WuiColor,
+		WuiColorWeight,
+		WuiDimension,
+		WuiShape,
+		WuiSize,
+		WuiVariant
+	} from '$lib/types';
 
 	export interface SwitchAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		_this?: HTMLInputElement;
 		checked?: boolean;
 		color?: WuiColor;
+		colorweight?: WuiColorWeight;
 		name?: string;
 		required?: boolean;
 		size?: WuiSize;
@@ -14,9 +22,11 @@
 	}
 
 	const SIZES = {
-		sm: 18,
-		md: 22,
-		lg: 26
+		xs: 18,
+		sm: 20,
+		md: 24,
+		lg: 28,
+		xl: 34
 	};
 </script>
 
@@ -27,6 +37,7 @@
 		_this = $bindable(),
 		checked = $bindable(false),
 		color = 'neutral',
+		colorweight,
 		size = 'md',
 		shape = 'pill',
 		value,
@@ -34,7 +45,6 @@
 		...rest
 	}: SwitchAttributes = $props();
 
-	const width = `calc(${SIZES[size] + 'px'} * 2 - 6px)` as WuiDimension;
 	const id = Math.random().toString(36);
 
 	if (shape === 'circle') {
@@ -51,8 +61,9 @@
 	p={2}
 	style="display:inline-block;position:relative"
 	variant={checked && variant === 'outlined' ? 'mixed' : variant}
+	width={`calc(${SIZES[size] + 'px'} * 2 - 6px)`}
+	colorweight={colorweight || (color === 'neutral' && !checked ? '3' : undefined)}
 	{shape}
-	{width}
 >
 	<input {...rest} type="checkbox" {id} class="w-hidden" bind:this={_this} bind:checked />
 	<span class="w-switch__thumb" style:transform="translateX({checked ? '100%' : '0'})"></span>

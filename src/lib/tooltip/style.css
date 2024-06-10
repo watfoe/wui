@@ -13,14 +13,14 @@
 	display: none !important;
 }
 
-.w-tooltip .w-tooltip__content::after {
+/* .w-tooltip .w-tooltip__content::after {
 	content: '';
 	border: 5px solid transparent;
 	position: absolute;
 	width: 0;
 	height: 0;
 	border-style: solid;
-}
+} */
 
 .w-tooltip:hover .w-tooltip__content {
 	display: flex !important;
@@ -32,22 +32,10 @@
 	bottom: auto;
 }
 
-.w-tooltip-left .w-tooltip__content::after {
-	border-left-color: var(--WuiColor-bg);
-	top: 50%;
-	transform: translateY(-50%);
-}
-
 .w-tooltip-right .w-tooltip__content {
 	right: calc(100% + var(--space-xs));
 	top: auto;
 	bottom: auto;
-}
-
-.w-tooltip-right .w-tooltip__content::after {
-	border-right-color: var(--WuiColor-bg);
-	top: 50%;
-	transform: translateY(-50%);
 }
 
 .w-tooltip-top .w-tooltip__content {
@@ -55,32 +43,13 @@
 	margin: 0 auto;
 }
 
-.w-tooltip-top .w-tooltip__content::after {
-	border-top-color: var(--WuiColor-bg);
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: -10px
-}
-
 .w-tooltip-bottom .w-tooltip__content {
 	top: calc(100% + var(--space-xs));
-}
-
-.w-tooltip-bottom .w-tooltip__content::after {
-	border-bottom-color: var(--WuiColor-bg);
-	left: 50%;
-	transform: translateX(-50%);
-	top: -10px;
 }
 
 .w-tooltip-top-start .w-tooltip__content {
 	bottom: calc(100% + var(--space-xs));
 	left: 0;
-}
-
-.w-tooltip-top-end .w-tooltip__content::after {
-	bottom: calc(100% + var(--space-xs));
-	right: 0;
 }
 
 .w-tooltip-top-end .w-tooltip__content {

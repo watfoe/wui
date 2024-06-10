@@ -75,7 +75,7 @@ export function construct_color_style(
 		return `--w-color-bg: ${compute_color_value(color, weight)};--w-color-text: ${compute_color_value(textcolor || 'white', textweight)};`;
 	} else if (variant === 'outlined') {
 		if (color === 'neutral') {
-			weight = weight || '3';
+			weight = weight || '2';
 		} else {
 			color = color || 'primary';
 			weight = weight || '6';
@@ -86,7 +86,7 @@ export function construct_color_style(
 		return `--w-color-bg: ${compute_color_value(color, weight)};--w-color-text: ${compute_color_value(textcolor || color, textweight)};${clickable ? `--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}`;
 	} else if (variant === 'mixed') {
 		color = color || 'primary';
-		return `--w-color-bg: ${compute_color_value(color, !weight && color === 'neutral' ? '3' : weight || '6')};--w-color-text: ${compute_color_value(textcolor || color, textweight)};--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');`;
+		return `--w-color-bg:${compute_color_value(color, !weight && color === 'neutral' ? '2' : weight || '6')};--w-color-text: ${compute_color_value(textcolor || color, textweight)};--w-color-bg-soft:var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');`;
 	}
 
 	return '';

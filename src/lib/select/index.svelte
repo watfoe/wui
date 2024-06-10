@@ -78,7 +78,7 @@
 		value = $bindable(),
 		validateon = 'submit',
 		variant = 'outlined',
-		width = '100%',
+		width,
 		onvalidate,
 		...rest
 	}: SelectAttributes = $props();
@@ -261,7 +261,7 @@
 		{/if}
 
 		{#snippet suffix()}
-			<Icon class="w-select__combobox__icon" style="margin-left:auto">keyboard_arrow_down</Icon>
+			<Icon class="w-select__combobox__icon">keyboard_arrow_down</Icon>
 		{/snippet}
 	</Button>
 </Surface>

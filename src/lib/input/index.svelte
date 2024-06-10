@@ -23,10 +23,11 @@
 
 	let {
 		color = 'neutral',
+		class: _class = '',
 		description,
 		disabled,
 		error = $bindable(),
-		gap,
+		gap = 2,
 		hidden,
 		justify,
 		label,
@@ -51,7 +52,7 @@
 	align="flex-start"
 	element="div"
 	direction="column"
-	class="w-input__root w-input--{color} {rest.class || ''}"
+	class="w-input__root w-input--{color} {_class}"
 	{disabled}
 	{gap}
 	{justify}

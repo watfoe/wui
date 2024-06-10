@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import { Col } from '$lib/col';
 	import { Button } from '$lib/button';
 	import { Row } from '$lib/row';
-	import Playground from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
 	import { Text } from '$lib/text';
 
-	let values = $state({
+	let values: PlaygroundAttributes['values'] = $state({
 		variant: 'solid',
 		color: 'primary',
 		size: 'md',
@@ -15,8 +15,12 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Wui Button Component</title>
+</svelte:head>
+
 <Col align="flex-start" gap="md" width="100%">
-	<Text variant="title" size="sm">Button</Text>
+	<Text variant="heading" size="lg">Button</Text>
 	<Playground bind:values>
 		<Row gap="lg">
 			<Button

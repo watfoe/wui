@@ -16,7 +16,7 @@
 	let {
 		color,
 		direction = 'column',
-		gap = 'ss',
+		gap = 3,
 		itemcolor,
 		itemsize,
 		itemshape,

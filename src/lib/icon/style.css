@@ -7,17 +7,18 @@
 }
 
 .w-icon {
+  align-items: center;
   border-radius: inherit;
+  flex: 0 0 var(--w-icon-size, 1.25rem);
   font-family: 'Material Symbols Rounded';
   font-style: normal;
   font-size: var(--w-icon-size, 1.25rem);
   font-weight: normal;
   font-feature-settings: 'liga';
-  display: inline-block;
+  display: inline-flex;
   direction: ltr;
-  line-height: 1;
+  justify-content: center;
   width: var(--w-icon-size, 1.25rem);
-  text-align: center;
   text-transform: none;
   white-space: nowrap;
   word-wrap: normal;

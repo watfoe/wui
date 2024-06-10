@@ -1,15 +1,76 @@
 <script lang="ts">
-	import { Checkbox } from '$lib/checkbox';
 	import { Col } from '$lib/col';
 	import { Row } from '$lib/row';
+	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import { Text } from '$lib/text';
+	import { Checkbox } from '$lib/checkbox';
+
+	let values: PlaygroundAttributes['values'] = $state({
+		variant: 'outlined',
+		color: 'primary',
+		size: 'md',
+		shape: 'rounded',
+		disabled: false,
+		loading: false
+	});
 </script>
 
-<Col gap="lg">
-	<Row gap="lg" width="100%">
-		<Checkbox label="Primary small radio" name="checkbox" size="sm" color="primary" />
-		<Checkbox label="Neutral medium checkbox" name="checkbox" size="md" />
-		<Checkbox label="Large success checkbox" name="checkbox" size="lg" color="success" />
-		<Checkbox label="Warning checkbox" name="checkbox" color="warning" />
-		<Checkbox label="Danger checkbox" name="checkbox" color="danger" />
-	</Row>
+<Col align="flex-start" gap="md" width="100%">
+	<Text variant="title" size="sm">Checkbox</Text>
+	<Playground bind:values>
+		<Checkbox
+			color={values.color}
+			label="Label"
+			variant={values.variant}
+			size={values.size}
+			shape={values.shape}
+			disabled={values.disabled}
+		/>
+	</Playground>
+
+	<Text variant="heading" mt={34} size="md">Label position</Text>
+	<Playground bind:values>
+		<Row align="flex-start" gap={55}>
+			<Checkbox
+				color={values.color}
+				label="Label"
+				variant={values.variant}
+				size={values.size}
+				shape={values.shape}
+				disabled={values.disabled}
+			/>
+
+			<Checkbox
+				color={values.color}
+				direction="column"
+				gap="xs"
+				label="Label"
+				variant={values.variant}
+				size={values.size}
+				shape={values.shape}
+				disabled={values.disabled}
+			/>
+
+			<Checkbox
+				color={values.color}
+				direction="column-reverse"
+				gap="xs"
+				label="Label"
+				variant={values.variant}
+				size={values.size}
+				shape={values.shape}
+				disabled={values.disabled}
+			/>
+
+			<Checkbox
+				color={values.color}
+				direction="row-reverse"
+				label="Label"
+				variant={values.variant}
+				size={values.size}
+				shape={values.shape}
+				disabled={values.disabled}
+			/>
+		</Row>
+	</Playground>
 </Col>

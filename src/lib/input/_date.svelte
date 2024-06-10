@@ -142,6 +142,8 @@
 		validateon={validateon === 'input' ? 'change' : validateon}
 		onchange={change}
 		onblur={blur}
+		width="100%"
+		style="min-width:33.3%"
 		bind:value={month}
 		bind:error
 		{color}

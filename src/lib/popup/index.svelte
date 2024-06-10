@@ -37,7 +37,7 @@
 		onopen,
 		onclose,
 		opened = $bindable(false),
-		p = 'ss',
+		p = 3,
 		position = 'bottom-start',
 		role = 'popup',
 		shape = 'rounded',

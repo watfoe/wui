@@ -88,7 +88,7 @@
 		{@render prefix()}
 	{/if}
 
-	<Col align="flex-start" justify="flex-start" gap="ss" width="100%">
+	<Col align="flex-start" justify="flex-start" gap={3} width="100%">
 		{#if title}
 			<Text color="inherit" variant="heading" bold={false} {size}>
 				{title}
