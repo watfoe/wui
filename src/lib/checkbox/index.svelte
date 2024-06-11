@@ -18,6 +18,7 @@
 	let {
 		// Checkbox attributes
 		checked = $bindable(false),
+		disabled,
 		label,
 		name,
 		size,
@@ -125,6 +126,7 @@
 	<input
 		{...rest}
 		class="w-hidden"
+		{disabled}
 		name={name || ctx.name}
 		tabindex="-1"
 		type="checkbox"
@@ -137,11 +139,12 @@
 		align="center"
 		justify="center"
 		class="w-checkbox__thumb"
-		color={color || ctx.color || 'primary'}
+		color={disabled ? 'neutral' : color || ctx.color || 'primary'}
 		shape={shape || ctx.shape || 'rounded'}
 		variant={variant || ctx.variant || 'outlined'}
 		height={SIZES[size || ctx.size || 'md']}
 		width={SIZES[size || ctx.size || 'md']}
+		{disabled}
 	>
 		<Icon color="inherit" class="w-checkbox__thumb__indicator" {size}>check</Icon>
 	</Surface>

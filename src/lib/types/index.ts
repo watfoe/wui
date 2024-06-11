@@ -43,13 +43,13 @@ export type WuiTextVariant = 'a' | 'heading' | 'title' | 'body' | 'label';
 export type WuiSpacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'none' | number;
 
 export interface WuiMargin {
-  m?: WuiSpacing;
-  mx?: WuiSpacing;
-  my?: WuiSpacing;
-  mt?: WuiSpacing;
-  mr?: WuiSpacing;
-  mb?: WuiSpacing;
-  ml?: WuiSpacing;
+  m?: WuiSpacing | 'auto';
+  mx?: WuiSpacing | 'auto';
+  my?: WuiSpacing | 'auto';
+  mt?: WuiSpacing | 'auto';
+  mr?: WuiSpacing | 'auto';
+  mb?: WuiSpacing | 'auto';
+  ml?: WuiSpacing | 'auto';
 }
 
 export interface WuiPadding {

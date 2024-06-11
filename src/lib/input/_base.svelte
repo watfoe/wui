@@ -5,7 +5,6 @@
 
 <script lang="ts">
 	import './style.css';
-	import type { WuiDimension } from '$lib/types';
 	import { validate, mask, ValidationError, type BaseProps } from './_utils';
 	import { Icon } from '../icon';
 	import { Surface } from '../surface';
@@ -54,8 +53,6 @@
 
 	let input_el: HTMLInputElement;
 	let submit_event_removed = false;
-
-	height = size as WuiDimension;
 
 	$effect(() => {
 		input_el?.setCustomValidity(
@@ -190,27 +187,31 @@
 	<Surface
 		element="div"
 		align="center"
-		class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
-		color={error ? 'danger' : color}
+		class="w-input {_class}"
+		color={error ? 'danger' : disabled ? 'neutral' : color}
 		colorweight={colorweight ||
-			(!error && color === 'neutral' && variant === 'outlined' ? '4' : undefined)}
+			(!error && color === 'neutral' && variant === 'outlined'
+				? '4'
+				: variant === 'plain'
+					? '0'
+					: undefined)}
 		direction="row"
 		gap="xs"
+		height={height || size}
 		justify="space-between"
 		pr={typeof suffix === 'function' ? undefined : pr || px}
 		pl={typeof prefix === 'function' ? undefined : pl || px}
+		textsize={textsize || size}
 		style="cursor:text;{style}"
 		width="100%"
 		{disabled}
 		{textcolor}
 		{textcolorweight}
-		{textsize}
 		{textweight}
 		{textbold}
 		{textitalic}
 		{textunderline}
 		{textvariant}
-		{height}
 		{p}
 		{py}
 		{pt}
@@ -226,26 +227,32 @@
 {:else}
 	<Surface
 		element="input"
-		class="w-input {_class} {disabled ? 'w-input--disabled' : ''}"
-		color={error ? 'danger' : color}
+		class="w-input {_class}"
+		color={error ? 'danger' : disabled ? 'neutral' : color}
+		colorweight={colorweight ||
+			(!error && color === 'neutral' && variant === 'outlined'
+				? '4'
+				: variant === 'plain'
+					? '0'
+					: undefined)}
+		height={height || size}
 		pr={pr || px}
 		pl={pl || px}
 		onblur={blur}
 		oninput={input}
 		style="text-align:{align};{style}"
+		textsize={textsize || size}
 		width="100%"
 		bind:_this={input_el}
 		{value}
 		{disabled}
 		{textcolor}
 		{textcolorweight}
-		{textsize}
 		{textweight}
 		{textbold}
 		{textitalic}
 		{textunderline}
 		{textvariant}
-		{height}
 		{p}
 		{py}
 		{pt}

@@ -1,31 +1,58 @@
 <script lang="ts">
-	import { Button } from '$lib/button';
 	import { Col } from '$lib/col';
+	import { Button } from '$lib/button';
 	import { Input } from '$lib/input';
 	import { Menu, MenuItem } from '$lib/menu';
-	import { Row } from '$lib/row';
+	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import { Text } from '$lib/text';
 
-	let name = $state('');
+	let values: PlaygroundAttributes['values'] = $state({
+		color: 'primary',
+		variant: 'outlined',
+		size: 'md',
+		shape: 'rounded',
+		disabled: false
+	});
 </script>
 
-<Col gap="lg">
-	<Row align="flex-start" gap="md" width="100%">
-		<Input
-			type="text"
-			variant="solid"
-			color="primary"
-			label="Name"
-			class="input"
-			bind:value={name}
-		/>
-		<Input type="text" variant="outlined" color="primary" label="Name" class="input" />
-		<Input type="text" variant="soft" color="primary" label="Name" class="input" />
-		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
-	</Row>
+<svelte:head>
+	<title>Wui Input Component</title>
+</svelte:head>
 
-	<Row align="flex-start" gap="md" width="100%">
-		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
-		<Input type="email" variant="outlined" label="Email" class="input" validateon="input" required>
+<Col align="flex-start" gap="md" width="100%">
+	<Text variant="heading" size="lg">Input</Text>
+	<Playground bind:values>
+		<Input
+			color={values?.color}
+			variant={values?.variant}
+			size={values?.size}
+			shape={values?.shape}
+			disabled={values?.disabled}
+			label="Label"
+			placeholder="Placeholder"
+			width={300}
+		/>
+	</Playground>
+
+	<Text variant="heading" size="sm">Label</Text>
+	<Playground>
+		<Input label="Label" />
+	</Playground>
+
+	<Text variant="heading" size="sm">Types</Text>
+	<Playground>
+		<Input type="text" label="Text (default)" />
+		<Input type="email" label="Email" />
+		<Input type="phone" label="Phone" />
+		<Input type="password" label="Password" />
+		<Input type="date" label="Date" />
+		<Input type="search" label="Search" />
+	</Playground>
+
+	<Text variant="heading" size="sm">Prefix & Suffix</Text>
+	<Playground>
+		<Input type="text" prefix="search" />
+		<Input>
 			{#snippet suffix()}
 				<Button
 					color="neutral"
@@ -40,63 +67,5 @@
 				</Menu>
 			{/snippet}
 		</Input>
-		<Input type="email" variant="soft" label="Email" class="input" validateon="input" required />
-		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
-	</Row>
-
-	<Row align="flex-start" gap="md" width="100%">
-		<Input
-			type="password"
-			variant="solid"
-			placeholder="Enter your password"
-			color="success"
-			label="Password"
-			class="input"
-			validateon="blur"
-			required
-		/>
-		<Input
-			type="password"
-			variant="outlined"
-			placeholder="Enter your password"
-			shape="sharp"
-			color="success"
-			label="Password"
-			class="input"
-			validateon="blur"
-			required
-		/>
-		<Input
-			type="password"
-			variant="soft"
-			color="success"
-			label="Password"
-			class="input"
-			validateon="blur"
-			required
-		/>
-		<Input
-			type="password"
-			variant="plain"
-			color="success"
-			label="Password"
-			class="input"
-			validateon="blur"
-			required
-		/>
-	</Row>
-
-	<Row align="flex-start" gap="md" width="100%">
-		<Input
-			type="search"
-			variant="solid"
-			textvariant="heading"
-			color="warning"
-			label="Search"
-			class="input"
-		/>
-		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
-		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
-		<Input type="search" variant="plain" color="warning" label="Search" class="input" />
-	</Row>
+	</Playground>
 </Col>

@@ -50,9 +50,9 @@
 
 <Surface
 	align="flex-start"
-	element="div"
+	element="fieldset"
 	direction="column"
-	class="w-input__root w-input--{color} {_class}"
+	class="w-input__root {_class}"
 	{disabled}
 	{gap}
 	{justify}

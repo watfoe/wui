@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	export interface PlaygroundAttributes extends RowAttributes {
-		values: {
+		values?: {
 			variant?: WuiVariant;
 			color?: WuiColor;
 			size?: WuiSize;
@@ -12,8 +12,6 @@
 </script>
 
 <script lang="ts">
-	import { Checkbox } from '$lib/checkbox';
-	import { CheckboxGroup } from '$lib/checkboxgroup';
 	import { Col } from '$lib/col';
 	import { List } from '$lib/list';
 	import { ListButtonItem } from '$lib/listbuttonitem';
@@ -25,7 +23,7 @@
 	import { Tooltip } from '$lib/tooltip';
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	let { values = $bindable({}), children, ...rest }: PlaygroundAttributes = $props();
+	let { values = $bindable(), children, ...rest }: PlaygroundAttributes = $props();
 
 	const variants = ['solid', 'outlined', 'soft', 'plain'];
 	const colors: WuiColor[] = ['primary', 'neutral', 'success', 'warning', 'danger', 'black'];
@@ -55,6 +53,8 @@
 		align="center"
 		color="white"
 		justify="center"
+		gap="xl"
+		p="xl"
 		shape="rounded"
 		width="100%"
 		height="100%"
@@ -65,72 +65,87 @@
 		{/if}
 	</Col>
 
-	<Col
-		align="flex-start"
-		color="primary"
-		colorweight="0"
-		textcolor="black"
-		gap="lg"
-		shape="rounded"
-		variant="soft"
-		p="md"
-	>
-		<Text variant="heading" size="sm">Playground</Text>
-		<Col align="flex-start" gap="sm" width="100%">
-			<Text size="sm" bold>variant</Text>
-			<List direction="row" gap="xs">
-				{#each variants as variant}
-					{@render listbuttonitem('variant', variant, values.variant!)}
-				{/each}
-			</List>
+	{#if values}
+		<Col
+			align="flex-start"
+			color="primary"
+			colorweight="0"
+			textcolor="black"
+			gap="lg"
+			shape="rounded"
+			variant="soft"
+			p="md"
+		>
+			<Text variant="heading" size="sm">Playground</Text>
+
+			{#if values.variant}
+				<Col align="flex-start" gap="sm" width="100%">
+					<Text size="sm" bold>variant</Text>
+					<List direction="row" gap="xs">
+						{#each variants as variant}
+							{@render listbuttonitem('variant', variant, values.variant!)}
+						{/each}
+					</List>
+				</Col>
+			{/if}
+
+			{#if values.color}
+				<Col align="flex-start" gap="sm" width="100%">
+					<Text size="sm" bold>color</Text>
+					<RadioGroup direction="row">
+						{#each colors as color}
+							<Tooltip title={color} {color} size="xs">
+								<Radio
+									indicator="check"
+									name="color"
+									value={color}
+									size="md"
+									variant="solid"
+									{color}
+									checked={values.color === color}
+									onchange={() => (values.color = color)}
+								/>
+							</Tooltip>
+						{/each}
+					</RadioGroup>
+				</Col>
+			{/if}
+
+			{#if values.size}
+				<Col align="flex-start" gap="sm" width="100%">
+					<Text size="sm" bold>size</Text>
+					<List direction="row" gap="xs">
+						{#each sizes as size}
+							{@render listbuttonitem('size', size, values.size!)}
+						{/each}
+					</List>
+				</Col>
+			{/if}
+
+			{#if values.shape}
+				<Col align="flex-start" gap="sm" width="100%">
+					<Text size="sm" bold>shape</Text>
+					<List direction="row" gap="xs">
+						{#each shapes as shape}
+							{@render listbuttonitem('shape', shape, values.shape!)}
+						{/each}
+					</List>
+				</Col>
+			{/if}
+
+			{#if values.disabled !== undefined}
+				<Row justify="space-between" width="100%">
+					<Text size="sm" bold>disabled</Text>
+					<Switch size="sm" bind:checked={values.disabled} />
+				</Row>
+			{/if}
+
+			{#if values.loading !== undefined}
+				<Row justify="space-between" width="100%">
+					<Text size="sm" bold>loading</Text>
+					<Switch size="sm" bind:checked={values.loading} />
+				</Row>
+			{/if}
 		</Col>
-
-		<Col align="flex-start" gap="sm" width="100%">
-			<Text size="sm" bold>color</Text>
-			<RadioGroup direction="row">
-				{#each colors as color}
-					<Tooltip title={color} {color} size="xs">
-						<Radio
-							indicator="check"
-							name="color"
-							value={color}
-							size="md"
-							variant="solid"
-							{color}
-							checked={values.color === color}
-							onchange={() => (values.color = color)}
-						/>
-					</Tooltip>
-				{/each}
-			</RadioGroup>
-		</Col>
-
-		<Col align="flex-start" gap="sm" width="100%">
-			<Text size="sm" bold>size</Text>
-			<List direction="row" gap="xs">
-				{#each sizes as size}
-					{@render listbuttonitem('size', size, values.size!)}
-				{/each}
-			</List>
-		</Col>
-
-		<Col align="flex-start" gap="sm" width="100%">
-			<Text size="sm" bold>shape</Text>
-			<List direction="row" gap="xs">
-				{#each shapes as shape}
-					{@render listbuttonitem('shape', shape, values.shape!)}
-				{/each}
-			</List>
-		</Col>
-
-		<Row justify="space-between" width="100%">
-			<Text size="sm" bold>disabled</Text>
-			<Switch size="sm" bind:checked={values.disabled} />
-		</Row>
-
-		<Row justify="space-between" width="100%">
-			<Text size="sm" bold>loading</Text>
-			<Switch size="sm" bind:checked={values.loading} />
-		</Row>
-	</Col>
+	{/if}
 </Row>

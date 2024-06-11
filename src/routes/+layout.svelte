@@ -76,7 +76,7 @@
 		width={300}
 		style="overflow-y:auto"
 	>
-		<Text ml="md" bold>Getting started</Text>
+		<Text ml="md" mb="xs" bold>Getting started</Text>
 		<LinkLikeButton
 			color="neutral"
 			href="/installation"

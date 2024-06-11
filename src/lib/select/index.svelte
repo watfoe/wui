@@ -32,6 +32,7 @@
 	import { Surface } from '../surface';
 	import { validate, type ValidationError } from '../input/_utils';
 	import { untrack, type Snippet } from 'svelte';
+	import { LikeButton } from '$lib/likebutton';
 
 	let {
 		color = 'neutral',
@@ -41,7 +42,7 @@
 		description,
 		disabled,
 		error = $bindable(),
-		gap,
+		gap = 2,
 		hidden,
 		label,
 		multiple = false,
@@ -190,11 +191,11 @@
 {/snippet}
 
 <Surface
+	element="fieldset"
 	align="flex-start"
 	justify="flex-start"
 	class="w-select {_class}"
 	direction="column"
-	element="div"
 	{gap}
 	{m}
 	{mx}

@@ -40,13 +40,6 @@
 		...rest
 	}: LikeButtonAttributes<any> = $props();
 
-	height = height || (size as WuiDimension);
-	width = !width && !children ? (size as WuiDimension) : width;
-
-	if (shape === 'circle') {
-		shape = 'pill';
-	}
-
 	// Keyboard accessibility
 	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
 		const key = e.key;
@@ -97,15 +90,15 @@
 	tabindex={tabindex || 0}
 	textsize={textsize || size}
 	onkeydown={keydown}
-	{height}
-	{width}
+	height={height || size}
+	shape={shape === 'circle' ? 'pill' : shape}
+	width={!width && !children ? size : width}
 	{color}
 	{direction}
 	{element}
 	{gap}
 	{justify}
 	{style}
-	{shape}
 	{variant}
 	{...rest}
 	clickable

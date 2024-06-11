@@ -34,7 +34,7 @@
 		variant?: WuiVariant;
 	} = getContext('wui-menu-ctx') || {};
 
-	const altColor = (color || ctx.color) === 'primary' ? 'neutral' : color || ctx.color || 'neutral';
+	const altColor = (color || ctx.color) === 'primary' ? 'black' : color || ctx.color || 'black';
 
 	if (shape === 'circle') {
 		shape = 'pill';
