@@ -1,7 +1,6 @@
 <script>
 	import '$lib/styles/global.css';
 	import './style.css';
-	import { Col } from '$lib/col';
 	import { WatfoeContent, WatfoeHeader } from '$lib/watfoe';
 	import { Text } from '$lib/text';
 	import { LinkLikeButton } from '$lib/linklikebutton';
@@ -12,6 +11,7 @@
 	const components = {
 		INPUTS: [
 			{ name: 'Button', path: '/components/button' },
+			{ name: 'Calendar', path: '/components/calendar' },
 			{ name: 'Checkbox', path: '/components/checkbox' },
 			{ name: 'Form', path: '/components/form' },
 			{ name: 'Input', path: '/components/input' },

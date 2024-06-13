@@ -1,0 +1,1 @@
+export {default as Calendar, type CalendarAttributes} from './index.svelte';

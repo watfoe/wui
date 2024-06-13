@@ -11,7 +11,7 @@
 		multiple?: boolean;
 		name?: string;
 		onvalidate?: (error?: ValidationError) => void;
-		preset?: 'country' | 'month' | 'gender';
+		preset?: 'country' | 'day' | 'month' | 'gender';
 		required?: boolean;
 		selected?: string;
 		validateon?: 'change' | 'blur' | 'submit';
@@ -26,13 +26,13 @@
 	import { Listbox } from '../listbox';
 	import { Icon } from '../icon';
 	import CountryPreset from './presets/country-preset.svelte';
+	import DayPreset from './presets/day-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
 	import { Popup } from '../popup';
 	import { Surface } from '../surface';
 	import { validate, type ValidationError } from '../input/_utils';
 	import { untrack, type Snippet } from 'svelte';
-	import { LikeButton } from '$lib/likebutton';
 
 	let {
 		color = 'neutral',
@@ -92,6 +92,11 @@
 	let submit_event_removed = false;
 
 	const id = Math.random().toString(36).substring(2, 9);
+
+	// convert selected to string
+	if (selected) {
+		selected += '';
+	}
 
 	$effect(() => {
 		if (error || !error) {
@@ -272,8 +277,7 @@
 		{id}
 		{color}
 		{shape}
-		colorweight={!colorweight && variant === 'plain' ? '0' : colorweight}
-		variant={variant === 'plain' ? 'soft' : variant}
+		variant={variant === 'plain' ? 'outlined' : 'outlined'}
 		onopen={popup_opened}
 		onclose={popup_closed}
 	>
@@ -291,6 +295,8 @@
 		>
 			{#if preset === 'country'}
 				<CountryPreset {selected} />
+			{:else if preset === 'day'}
+				<DayPreset {selected} />
 			{:else if preset === 'month'}
 				<MonthPreset {selected} />
 			{:else if preset === 'gender'}

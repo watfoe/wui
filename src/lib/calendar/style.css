@@ -1,0 +1,28 @@
+.Wcal-root {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.Wcal-root:not(.Wcal-root--min) {
+  grid-template-rows: var(--height-sm) 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.Wcal-root:not(.Wcal-root--min) .Wcal__cell:not(:nth-child(7n)) {
+  border-right: 1px solid var(--color-neutral-1);
+}
+
+.Wcal-root:not(.Wcal-root--min) .Wcal__cell:not(:nth-child(-n+7)) {
+  border-top: 1px solid var(--color-neutral-1);
+}
+
+.Wcal__cell__body__events-container {
+  overflow: hidden;
+}
+
+.Wcal__cell__value {
+  text-align: center;
+}
+
+.Wcal__year-view__month-title {
+  padding-left: var(--space-sm);
+}
