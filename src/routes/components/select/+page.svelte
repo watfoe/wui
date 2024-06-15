@@ -12,8 +12,7 @@
 		color: 'primary',
 		size: 'md',
 		shape: 'rounded',
-		disabled: false,
-		loading: false
+		disabled: false
 	});
 </script>
 
@@ -27,6 +26,7 @@
 			size={values.size}
 			shape={values.shape}
 			disabled={values.disabled}
+			width={300}
 		>
 			<Option value="primary">Primary</Option>
 			<Option value="secondary">Secondary</Option>
@@ -37,8 +37,8 @@
 	</Playground>
 </Col>
 
-<Col gap="lg">
-	<Select preset="country" selected="KE" style="width: 300px" variant="solid" shape="sharp" />
-	<Select preset="gender" style="width: 300px" />
-	<Select preset="month" style="width: 300px" />
-</Col>
+<Playground>
+	<Select preset="country" selected="KE" width={300} variant="solid" shape="sharp" />
+	<Select preset="gender" width={300} />
+	<Select preset="month" width={300} />
+</Playground>

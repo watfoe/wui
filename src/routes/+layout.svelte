@@ -114,17 +114,11 @@
 	<Surface
 		element="content"
 		align="flex-start"
-		color="neutral"
-		colorweight="0"
 		direction="column"
 		height="100%"
-		textcolor="black"
 		width="100%"
 		px="lg"
-		pt="sm"
-		shape="rounded"
 		style="overflow-y:auto"
-		variant="soft"
 	>
 		{@render children()}
 	</Surface>

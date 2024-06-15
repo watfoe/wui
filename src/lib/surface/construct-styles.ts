@@ -54,15 +54,13 @@ export function construct_color_style(
 
 	if (variant === 'plain' || variant === 'none') {
 		// bg soft is used for hover effect
-		return `--w-color-text: ${compute_color_value(textcolor || color || 'black', textweight)};${clickable ? `--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});` : ''}`;
+		return `--w-color-text:${compute_color_value(textcolor || color || 'black', textweight)};${clickable ? `--w-color-bg-soft:var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});` : ''}`;
 	} else if (variant === 'soft') {
 		color = color || 'primary';
-
 		if (!textweight && color === 'neutral') {
 			textweight = '8';
 		}
-
-		return `--w-color-text: ${compute_color_value(textcolor || color, textweight)};--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});`;
+		return `--w-color-text:${compute_color_value(textcolor || color, textweight)};--w-color-bg-soft:var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-${weight || '1'});`;
 	} else if (variant === 'solid') {
 		if (color === 'white') {
 			textcolor = 'black';
@@ -71,7 +69,6 @@ export function construct_color_style(
 		} else {
 			color = color || 'primary';
 		}
-
 		return `--w-color-bg: ${compute_color_value(color, weight)};--w-color-text: ${compute_color_value(textcolor || 'white', textweight)};`;
 	} else if (variant === 'outlined') {
 		if (color === 'neutral') {
@@ -80,7 +77,6 @@ export function construct_color_style(
 			color = color || 'primary';
 			weight = weight || '6';
 		}
-
 		// The bg color is used for the border color
 		// while the bg soft is used for the hover effect
 		return `--w-color-bg: ${compute_color_value(color, weight)};--w-color-text: ${compute_color_value(textcolor || color, textweight)};${clickable ? `--w-color-bg-soft: var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}`;

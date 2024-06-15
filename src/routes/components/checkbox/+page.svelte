@@ -10,67 +10,37 @@
 		color: 'primary',
 		size: 'md',
 		shape: 'rounded',
-		disabled: false,
-		loading: false
+		disabled: false
 	});
 </script>
+
+<svelte:head>
+	<title>Wui Checkbox Component</title>
+</svelte:head>
 
 <Col align="flex-start" gap="md" width="100%">
 	<Text variant="title" size="sm">Checkbox</Text>
 	<Playground bind:values>
 		<Checkbox
-			color={values.color}
+			color={values?.color}
 			label="Label"
-			variant={values.variant}
-			size={values.size}
-			shape={values.shape}
-			disabled={values.disabled}
+			variant={values?.variant}
+			size={values?.size}
+			shape={values?.shape}
+			disabled={values?.disabled}
 		/>
 	</Playground>
 
 	<Text variant="heading" mt={34} size="md">Label position</Text>
-	<Playground bind:values>
+	<Playground>
 		<Row align="flex-start" gap={55}>
-			<Checkbox
-				color={values.color}
-				label="Label"
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
-				disabled={values.disabled}
-			/>
+			<Checkbox label="Label" />
 
-			<Checkbox
-				color={values.color}
-				direction="column"
-				gap="xs"
-				label="Label"
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
-				disabled={values.disabled}
-			/>
+			<Checkbox direction="column" gap="xs" label="Label" />
 
-			<Checkbox
-				color={values.color}
-				direction="column-reverse"
-				gap="xs"
-				label="Label"
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
-				disabled={values.disabled}
-			/>
+			<Checkbox direction="column-reverse" gap="xs" label="Label" />
 
-			<Checkbox
-				color={values.color}
-				direction="row-reverse"
-				label="Label"
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
-				disabled={values.disabled}
-			/>
+			<Checkbox direction="row-reverse" label="Label" />
 		</Row>
 	</Playground>
 </Col>

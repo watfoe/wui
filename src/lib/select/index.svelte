@@ -6,6 +6,7 @@
 		extends Omit<LikeButtonAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element'> {
 		description?: Snippet | string;
 		disabled?: boolean;
+		indicator?: string;
 		error?: ValidationError | string;
 		label?: Snippet | string;
 		multiple?: boolean;
@@ -21,9 +22,8 @@
 
 <script lang="ts">
 	import './style.css';
-	import { Button } from '../button';
+	import { LikeButton } from '../likebutton';
 	import { InputLabel } from '../inputlabel';
-	import { Listbox } from '../listbox';
 	import { Icon } from '../icon';
 	import CountryPreset from './presets/country-preset.svelte';
 	import DayPreset from './presets/day-preset.svelte';
@@ -32,7 +32,8 @@
 	import { Popup } from '../popup';
 	import { Surface } from '../surface';
 	import { validate, type ValidationError } from '../input/_utils';
-	import { untrack, type Snippet } from 'svelte';
+	import { setContext, untrack, type Snippet } from 'svelte';
+	import { on } from 'svelte/events';
 
 	let {
 		color = 'neutral',
@@ -53,14 +54,8 @@
 		mr,
 		mb,
 		ml,
-		p,
-		px,
-		py,
-		pt,
 		pr = 2,
-		pb,
 		pl = 7,
-		prefix,
 		placeholder,
 		preset,
 		required,
@@ -68,35 +63,31 @@
 		shape,
 		size,
 		style,
-		textcolor,
-		textcolorweight,
-		textsize,
-		textweight,
-		textbold,
-		textitalic,
-		textunderline,
-		textvariant,
 		value = $bindable(),
 		validateon = 'submit',
 		variant = 'outlined',
 		width,
+		onchange,
 		onvalidate,
 		...rest
 	}: SelectAttributes = $props();
 
 	let opened = $state(false);
-	let selections = $state([] as HTMLLabelElement[]);
+	let selections = $state([] as HTMLLIElement[]);
 	let input_el: HTMLInputElement | undefined = $state();
-	let listbox: HTMLFieldSetElement | undefined = $state();
-	let listbox_value: string | undefined = $state();
-	let submit_event_removed = false;
+	let closest_form: HTMLFormElement;
+	let form_submit_listener: (() => void) | undefined = undefined;
+	let prev_item_cb: (() => void) | undefined = undefined;
 
 	const id = Math.random().toString(36).substring(2, 9);
 
-	// convert selected to string
-	if (selected) {
-		selected += '';
-	}
+	setContext('wui-select-ctx', {
+		color,
+		multiple,
+		size,
+		shape,
+		select
+	});
 
 	$effect(() => {
 		if (error || !error) {
@@ -105,6 +96,8 @@
 			);
 		}
 
+		closest_form = input_el?.closest('form')!;
+
 		untrack(() => {
 			if (required && validateon === 'submit') {
 				validate_on_submit();
@@ -112,29 +105,20 @@
 		});
 	});
 
-	function change(e: Event & { currentTarget: HTMLFieldSetElement }) {
-		const label = (e.target as HTMLInputElement).parentElement as HTMLLabelElement;
-		// Create a clone of the label element
-		const label_clone = label.cloneNode(true) as HTMLLabelElement;
-		// Remove the input child from the label element
-		const children = label_clone.children;
-
-		// The input element can be the first or second (if a prefix was added to the option)
-		// child of the label element
-		if (children[0] instanceof HTMLInputElement) {
-			children[0].remove();
-		} else {
-			children[1].remove();
+	function select(option: HTMLLIElement, c: () => void) {
+		if (prev_item_cb) {
+			prev_item_cb();
 		}
+		prev_item_cb = c;
 
 		if (multiple) {
-			selections.push(label_clone);
+			selections.push(option);
 		} else {
-			selections = [label_clone];
+			selections = [option];
 		}
 
-		input_el!.value = listbox_value!;
-		value = listbox_value;
+		value = option.dataset['value'] || '';
+		input_el!.value = value!;
 		input_el!.dispatchEvent(new Event('change'));
 
 		if (error) {
@@ -142,21 +126,24 @@
 		}
 	}
 
-	function try_form_submit(e: SubmitEvent) {
-		_validate();
-		if (error) {
-			e.preventDefault();
-		} else {
-			// Remove the event listener after the form is submitted successfully
-			(e.currentTarget as HTMLFormElement).removeEventListener('submit', try_form_submit, true);
-			submit_event_removed = true;
-		}
-	}
-
 	function validate_on_submit() {
-		const form = input_el?.closest('form');
-		// Capture phase to ensure that this event listener is the first to run
-		form?.addEventListener('submit', try_form_submit, true);
+		if (closest_form) {
+			form_submit_listener = on(
+				closest_form!,
+				'submit',
+				(e) => {
+					_validate();
+					if (error) {
+						e.preventDefault();
+					} else if (form_submit_listener) {
+						form_submit_listener();
+						form_submit_listener = undefined;
+					}
+				},
+				// Capture phase to ensure that this event listener runs before form submission
+				{ capture: true }
+			);
+		}
 	}
 
 	function _validate() {
@@ -196,7 +183,7 @@
 {/snippet}
 
 <Surface
-	element="fieldset"
+	element="div"
 	align="flex-start"
 	justify="flex-start"
 	class="w-select {_class}"
@@ -215,44 +202,34 @@
 >
 	{#if label}
 		<InputLabel
+			{id}
 			color={error ? 'danger' : opened && color === 'neutral' ? 'primary' : color}
-			for={id}
-			{description}>{label}</InputLabel
+			{description}
 		>
+			{label}
+		</InputLabel>
 	{/if}
 
-	<!-- The input controls the tabindex -->
-	<input type="hidden" bind:this={input_el} bind:value {...rest} />
+	<input type="hidden" bind:this={input_el} bind:value tabindex="-1" {onchange} />
 
-	<Button
+	<LikeButton
 		anchorfor={disabled ? undefined : id}
-		aria-expanded="false"
+		aria-labeledby={label ? id : undefined}
 		class="w-select__combobox"
 		color={error ? 'danger' : color}
+		colorweight={colorweight || variant === 'plain' ? '0' : undefined}
+		element="div"
 		justify="space-between"
-		navigation="feedback"
-		tabindex={-1}
-		textsize={textsize || size}
-		type="button"
+		role="combobox"
+		tabindex="0"
+		variant={variant === 'plain' ? 'soft' : variant}
 		width="100%"
 		{disabled}
-		{p}
-		{px}
-		{py}
-		{pt}
 		{pr}
-		{pb}
 		{pl}
 		{size}
 		{shape}
-		{textcolor}
-		{textcolorweight}
-		{textweight}
-		{textbold}
-		{textitalic}
-		{textunderline}
-		{textvariant}
-		{variant}
+		{...rest}
 	>
 		{#if selections.length > 0}
 			{#if multiple}
@@ -262,48 +239,36 @@
 			{:else}
 				{@html selections[0].innerHTML}
 			{/if}
-		{:else}
+		{:else if !selected}
 			{@render _placeholder()}
 		{/if}
 
 		{#snippet suffix()}
 			<Icon class="w-select__combobox__icon">keyboard_arrow_down</Icon>
 		{/snippet}
-	</Button>
-</Surface>
+	</LikeButton>
 
-{#if !disabled}
-	<Popup
-		{id}
-		{color}
-		{shape}
-		variant={variant === 'plain' ? 'outlined' : 'outlined'}
-		onopen={popup_opened}
-		onclose={popup_closed}
-	>
-		<Listbox
+	{#if !disabled}
+		<Popup
 			role="listbox"
-			aria-label="List of {preset} options"
-			class="w-select__listbox"
-			color="primary"
-			onchange={change}
-			{multiple}
-			{size}
+			variant={variant === 'plain' || variant === 'none' ? 'outlined' : variant}
+			onopen={popup_opened}
+			onclose={popup_closed}
+			{id}
+			{color}
 			{shape}
-			bind:listbox
-			bind:value={listbox_value}
 		>
 			{#if preset === 'country'}
 				<CountryPreset {selected} />
 			{:else if preset === 'day'}
 				<DayPreset {selected} />
 			{:else if preset === 'month'}
-				<MonthPreset {selected} />
+				<MonthPreset selected={selected + ''} />
 			{:else if preset === 'gender'}
 				<GenderPreset {selected} />
 			{:else if children}
 				{@render children()}
 			{/if}
-		</Listbox>
-	</Popup>
-{/if}
+		</Popup>
+	{/if}
+</Surface>

@@ -166,6 +166,7 @@
 			'bottom',
 			pb || py || p
 		)}{construct_spacing_style('padding', 'left', pl || px || p)}{style}"
+		bind:this={_this}
 		{...rest}
 	>
 		{#if children}

@@ -10,7 +10,7 @@
 }
 
 .w-radio:not(.w-radio--with-indicator) .w-radio__thumb {
-  padding: 3px;
+  padding: 5px;
 }
 
 .w-radio__thumb__indicator {

@@ -1,22 +1,46 @@
 <script lang="ts">
 	import { Col } from '$lib/col';
-	import { Radio } from '$lib/radio';
-	import { RadioGroup } from '$lib/radiogroup';
 	import { Row } from '$lib/row';
+	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import { Text } from '$lib/text';
+	import { Radio } from '$lib/radio';
+
+	let values: PlaygroundAttributes['values'] = $state({
+		variant: 'outlined',
+		color: 'primary',
+		size: 'md',
+		shape: 'circle',
+		disabled: false
+	});
 </script>
 
-<Col gap="lg">
-	<Row gap="lg" width="100%">
-		<Radio label="Primary small radio" name="radio" size="sm" color="primary" checked />
-		<Radio label="Neutral medium radio" name="radio" size="md" />
-		<Radio label="Large success radio" name="radio" size="lg" color="success" />
-		<Radio label="Warning radio" name="radio" color="warning" />
-		<Radio label="Danger radio" name="radio" color="danger" />
-	</Row>
+<svelte:head>
+	<title>Wui Radio component</title>
+</svelte:head>
 
-	<RadioGroup label="This is a radio group" description="And this is the radio group description">
-		<Radio name="acctype" label="Personal" />
-		<Radio name="acctype" label="Business" />
-		<Radio name="acctype" label="Other" />
-	</RadioGroup>
+<Col align="flex-start" gap="md" width="100%">
+	<Text variant="title" size="sm">Radio</Text>
+	<Playground bind:values>
+		<Radio
+			color={values?.color}
+			label="Label"
+			variant={values?.variant}
+			size={values?.size}
+			shape={values?.shape}
+			disabled={values?.disabled}
+		/>
+	</Playground>
+
+	<Text variant="heading" mt={34} size="md">Label position</Text>
+	<Playground>
+		<Row align="flex-start" gap={55}>
+			<Radio label="Label" />
+
+			<Radio direction="column" gap="xs" label="Label" />
+
+			<Radio direction="column-reverse" gap="xs" label="Label" />
+
+			<Radio direction="row-reverse" label="Label" />
+		</Row>
+	</Playground>
 </Col>

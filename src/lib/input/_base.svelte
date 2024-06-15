@@ -9,6 +9,7 @@
 	import { Icon } from '../icon';
 	import { Surface } from '../surface';
 	import { untrack } from 'svelte';
+	import { on } from 'svelte/events';
 
 	let {
 		align = 'left',
@@ -52,12 +53,15 @@
 	}: BaseInputAttributes = $props();
 
 	let input_el: HTMLInputElement;
-	let submit_event_removed = false;
+	let closest_form: HTMLFormElement;
+	let form_submit_listener: (() => void) | undefined = undefined;
 
 	$effect(() => {
 		input_el?.setCustomValidity(
 			error === undefined ? '' : typeof error === 'string' ? error : error?.message
 		);
+
+		closest_form = input_el?.closest('form')!;
 
 		untrack(() => {
 			if (required && !rules?.required) {
@@ -71,21 +75,24 @@
 		});
 	});
 
-	function try_form_submit(e: SubmitEvent) {
-		_validate(input_el?.value!);
-		if (error) {
-			e.preventDefault();
-		} else {
-			// Remove the event listener after the form is submitted successfully
-			(e.currentTarget as HTMLFormElement).removeEventListener('submit', try_form_submit, true);
-			submit_event_removed = true;
-		}
-	}
-
 	function validate_on_submit() {
-		const form = input_el?.closest('form');
-		// Capture phase to ensure that this event listener is the first to run
-		form?.addEventListener('submit', try_form_submit, true);
+		if (closest_form) {
+			form_submit_listener = on(
+				closest_form!,
+				'submit',
+				(e) => {
+					_validate(input_el?.value!);
+					if (error) {
+						e.preventDefault();
+					} else if (form_submit_listener) {
+						form_submit_listener();
+						form_submit_listener = undefined;
+					}
+				},
+				// Capture phase to ensure that this event listener is the first to run
+				{ capture: true }
+			);
+		}
 	}
 
 	function _validate(_value: string) {
@@ -120,10 +127,9 @@
 	}
 
 	function input(e: Event & { currentTarget: HTMLInputElement }) {
-		if (submit_event_removed && rules && validateon === 'submit') {
+		if (form_submit_listener === null && rules && validateon === 'submit') {
 			// Re-add the event listener if it was removed
 			validate_on_submit();
-			submit_event_removed = false;
 		}
 
 		let _value = e.currentTarget.value;
@@ -202,7 +208,9 @@
 		pr={typeof suffix === 'function' ? undefined : pr || px}
 		pl={typeof prefix === 'function' ? undefined : pl || px}
 		textsize={textsize || size}
+		shape={shape === 'circle' ? 'pill' : shape}
 		style="cursor:text;{style}"
+		variant={variant === 'plain' ? 'soft' : variant}
 		width="100%"
 		{disabled}
 		{textcolor}
@@ -216,8 +224,6 @@
 		{py}
 		{pt}
 		{pb}
-		{shape}
-		{variant}
 		onclick={disabled ? undefined : () => input_el.focus()}
 	>
 		{#if prefix || suffix}
@@ -240,8 +246,10 @@
 		pl={pl || px}
 		onblur={blur}
 		oninput={input}
+		shape={shape === 'circle' ? 'pill' : shape}
 		style="text-align:{align};{style}"
 		textsize={textsize || size}
+		variant={variant === 'plain' ? 'soft' : variant}
 		width="100%"
 		bind:_this={input_el}
 		{value}
@@ -257,8 +265,6 @@
 		{py}
 		{pt}
 		{pb}
-		{shape}
-		{variant}
 		{...rest}
 	/>
 {/if}

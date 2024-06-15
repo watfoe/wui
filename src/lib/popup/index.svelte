@@ -188,7 +188,6 @@
 	bind:opened
 >
 	<Surface
-		aria-label="Popup"
 		class="w-popup {_class}"
 		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
 		colorweight={!colorweight && variant === 'outlined' && color === 'neutral' ? '2' : colorweight}

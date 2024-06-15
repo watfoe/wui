@@ -1,8 +1,11 @@
 <script context="module" lang="ts">
-	import type { WuiDimension, WuiFlexJustify, WuiSize } from '$lib/types';
+	import type { WuiFlexJustify, WuiSize } from '$lib/types';
 
 	export type LikeButtonAttributes<A> = SurfaceAttributes<Omit<A, 'prefix'>> & {
+		anchorfor?: string;
+		anchoron?: 'click' | 'mouseover';
 		bold?: boolean;
+		disabled?: boolean;
 		justify?: WuiFlexJustify;
 		navigation?: 'horizontal' | 'vertical' | 'mixed' | 'none';
 		prefix?: Snippet | string;
@@ -14,13 +17,17 @@
 <script lang="ts">
 	import { Icon } from '../icon';
 	import { Surface, type SurfaceAttributes } from '../surface';
-	import type { Snippet } from 'svelte';
+	import { untrack, type Snippet } from 'svelte';
 
 	let {
+		_this = $bindable(),
+		anchorfor,
+		anchoron = 'click',
 		bold = false,
 		children,
 		color = 'primary',
 		direction = 'row',
+		disabled = false,
 		element = 'button',
 		gap = 'sm',
 		height,
@@ -36,30 +43,88 @@
 		textsize,
 		variant = 'solid',
 		width,
+		onclick,
 		onkeydown,
+		onmouseover,
 		...rest
 	}: LikeButtonAttributes<any> = $props();
+
+	let feedback: HTMLDialogElement;
+	let feedbackExpanded = $state(false);
+
+	$effect(() => {
+		untrack(() => {
+			if (anchorfor) {
+				const _feedback = document.getElementById(anchorfor);
+
+				if (_feedback instanceof HTMLDialogElement) {
+					feedback = _feedback;
+					feedback.onclose = () => {
+						feedbackExpanded = false;
+					};
+				} else {
+					throw new Error(`"anchorfor" attribute must be a valid dialog id`);
+				}
+			}
+		});
+	});
+
+	function click(e: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		if (disabled) {
+			return;
+		}
+
+		if (feedback && anchoron === 'click') {
+			show_feedback(e.currentTarget);
+		}
+
+		onclick?.(e);
+	}
+
+	function mouseover(e: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		if (disabled) {
+			return;
+		}
+
+		if (feedback && anchoron === 'mouseover') {
+			show_feedback(e.currentTarget);
+		}
+
+		onmouseover?.(e);
+	}
 
 	// Keyboard accessibility
 	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
 		const key = e.key;
-		if (navigation !== 'none') {
-			if (
-				(navigation === 'horizontal' && key === 'ArrowRight') ||
-				(navigation === 'vertical' && key === 'ArrowDown') ||
-				(navigation === 'mixed' && (key === 'ArrowRight' || key === 'ArrowDown'))
-			) {
-				navigate_down(e.currentTarget as HTMLElement);
-			} else if (
-				(navigation === 'vertical' && key === 'ArrowUp') ||
-				(navigation === 'horizontal' && key === 'ArrowLeft') ||
-				(navigation === 'mixed' && (key === 'ArrowUp' || key === 'ArrowLeft'))
-			) {
-				navigate_up(e.currentTarget as HTMLElement);
-			}
+		if (feedback && (key === 'ArrowDown' || key === 'ArrowUp')) {
+			show_feedback(e.currentTarget as HTMLButtonElement);
+		} else if (
+			(navigation === 'horizontal' && key === 'ArrowRight') ||
+			(navigation === 'vertical' && key === 'ArrowDown') ||
+			(navigation === 'mixed' && (key === 'ArrowRight' || key === 'ArrowDown'))
+		) {
+			navigate_down(e.currentTarget as HTMLElement);
+		} else if (
+			(navigation === 'vertical' && key === 'ArrowUp') ||
+			(navigation === 'horizontal' && key === 'ArrowLeft') ||
+			(navigation === 'mixed' && (key === 'ArrowUp' || key === 'ArrowLeft'))
+		) {
+			navigate_up(e.currentTarget as HTMLElement);
 		}
 
 		onkeydown?.(e);
+	}
+
+	function show_feedback(btn: HTMLElement) {
+		feedback.dispatchEvent(
+			new CustomEvent('open', {
+				detail: {
+					anchor: btn
+				}
+			})
+		);
+
+		feedbackExpanded = true;
 	}
 
 	function navigate_down(target: HTMLElement) {
@@ -86,15 +151,21 @@
 </script>
 
 <Surface
+	aria-haspopup={anchorfor ? 'true' : undefined}
+	aria-expanded={anchorfor ? feedbackExpanded : undefined}
+	aria-controls={anchorfor || undefined}
 	px={children ? px : undefined}
 	tabindex={tabindex || 0}
 	textsize={textsize || size}
-	onkeydown={keydown}
 	height={height || size}
 	shape={shape === 'circle' ? 'pill' : shape}
 	width={!width && !children ? size : width}
+	onclick={click}
+	onmouseover={mouseover}
+	onkeydown={keydown}
 	{color}
 	{direction}
+	{disabled}
 	{element}
 	{gap}
 	{justify}
@@ -102,6 +173,7 @@
 	{variant}
 	{...rest}
 	clickable
+	bind:_this
 >
 	{#if typeof prefix === 'string'}
 		<Icon {size}>{prefix}</Icon>
@@ -114,7 +186,7 @@
 	{/if}
 
 	{#if typeof suffix === 'string'}
-		<Icon {size} style={justify === 'space-between' && prefix ? 'margin-left:auto' : undefined}>
+		<Icon {size} style={justify === 'space-between' ? 'margin-left:auto' : undefined}>
 			{suffix}
 		</Icon>
 	{:else if suffix}
