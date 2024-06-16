@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Jimmie Lovell<jimmieomlovell@gmail.com>",
-	"version": "0.0.63",
+	"version": "0.0.64",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -32,7 +32,7 @@
 		},
 		"./avatargroup": {
 			"types": "./dist/avatargroup/index.d.ts",
-			"svelte": "./dist/avatargroup/index.svelte"
+			"svelte": "./dist/avatargroup/index.js"
 		},
 		"./badge": {
 			"types": "./dist/badge/index.d.ts",
@@ -64,7 +64,7 @@
 		},
 		"./listbuttonitem": {
 			"types": "./dist/listbuttonitem/index.d.ts",
-			"svelte": "./dist/listbuttonitem/index.svelte"
+			"svelte": "./dist/listbuttonitem/index.js"
 		},
 		"./logo": {
 			"types": "./dist/logo/index.d.ts",
@@ -91,8 +91,8 @@
 			"svelte": "./dist/checkbox/index.js"
 		},
 		"./checkboxgroup": {
-			"types": "./dist/checkbox/index.d.ts",
-			"svelte": "./dist/checkbox/index.svelte"
+			"types": "./dist/checkboxgroup/index.d.ts",
+			"svelte": "./dist/checkboxgroup/index.js"
 		},
 		"./inputerror": {
 			"types": "./dist/inputerror/index.d.ts",
@@ -116,7 +116,7 @@
 		},
 		"./radiogroup": {
 			"types": "./dist/radiogroup/index.d.ts",
-			"svelte": "./dist/radiogroup/index.svelte"
+			"svelte": "./dist/radiogroup/index.js"
 		},
 		"./switch": {
 			"types": "./dist/switch/index.d.ts",
