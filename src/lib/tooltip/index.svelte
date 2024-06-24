@@ -29,7 +29,7 @@
 
 	let {
 		children,
-		color = 'neutral',
+		color = 'black',
 		px = 'sm',
 		position = 'bottom',
 		textsize = 'sm',

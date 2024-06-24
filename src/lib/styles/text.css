@@ -1,0 +1,78 @@
+.w-txt {
+  color: var(--w-clr-fg);
+  font-size: var(--w-font-size, 1rem);
+  overflow-wrap: break-word;
+  text-decoration: none;
+}
+
+.w-txt--a:hover {
+  text-decoration: underline;
+}
+
+.w-txt--align-left {
+  text-align: left;
+}
+
+.w-txt--align-center {
+  text-align: center;
+}
+
+.w-txt--align-right {
+  text-align: right;
+}
+
+.w-txt--align-justify {
+  text-align: justify;
+}
+
+.w-txt--title.w-txt--sm {
+  --w-font-size: 1.5rem;
+}
+
+.w-txt--title.w-txt--md {
+  --w-font-size: 1.75rem;
+}
+
+.w-txt--title.w-txt--lg {
+  --w-font-size: 2rem;
+}
+
+.w-txt--lg,
+.w-txt--heading.w-txt--sm {
+  --w-font-size: 1rem;
+}
+
+.w-txt--xl,
+.w-txt--heading.w-txt--md {
+  --w-font-size: 1.125rem;
+}
+
+.w-txt--xx,
+.w-txt--heading.w-txt--lg {
+  --w-font-size: 1.25rem;
+}
+
+.w-txt--ss,
+.w-txt--xs {
+  --w-font-size: 0.75rem;
+}
+
+.w-txt--sm {
+  --w-font-size: 0.8125rem;
+}
+
+.w-txt--md {
+  --w-font-size: 0.875rem;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}

@@ -1,13 +1,6 @@
 <script context="module" lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
-	import type {
-		WuiColor,
-		WuiColorWeight,
-		WuiDimension,
-		WuiShape,
-		WuiSize,
-		WuiVariant
-	} from '$lib/types';
+	import type { WuiColor, WuiColorWeight, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface SwitchAttributes extends Omit<HTMLInputAttributes, 'size'> {
 		_this?: HTMLInputElement;
@@ -71,7 +64,7 @@
 
 <style>
 	.w-switch__thumb {
-		background-color: var(--w-color-bg);
+		background-color: var(--w-clr-bg);
 		border-radius: inherit;
 		display: block;
 		height: 100%;
@@ -80,6 +73,6 @@
 	}
 
 	:global(.w-solid .w-switch__thumb) {
-		background-color: var(--w-color-on-bg);
+		background-color: var(--w-clr-on-bg);
 	}
 </style>

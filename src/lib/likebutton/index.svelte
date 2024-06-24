@@ -25,6 +25,7 @@
 		anchoron = 'click',
 		bold = false,
 		children,
+		class: _class = '',
 		color = 'primary',
 		direction = 'row',
 		disabled = false,
@@ -154,6 +155,7 @@
 	aria-haspopup={anchorfor ? 'true' : undefined}
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
+	class="likebutton {_class}"
 	px={children ? px : undefined}
 	tabindex={tabindex || 0}
 	textsize={textsize || size}
@@ -193,3 +195,10 @@
 		{@render suffix()}
 	{/if}
 </Surface>
+
+<style>
+	:global(.likebutton.w-0) {
+		/* Prevents from flex-shrinking */
+		min-height: var(--w-h);
+	}
+</style>

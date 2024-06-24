@@ -3,7 +3,6 @@
 		WuiFlexKeys,
 		WuiFlexJustify,
 		WuiSurface,
-		WuiSurfaceHTMLAttributes,
 		WuiSurfaceTextAttributes
 	} from '$lib/types';
 	import { type Snippet } from 'svelte';
@@ -19,25 +18,23 @@
 			justify?: WuiFlexJustify;
 			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
 		};
-
-	type InputSurfaceAttributes = SurfaceAttributes<HTMLInputAttributes> & {
-		element: 'input';
-	};
-
-	type OtherSurfaceAttributes = SurfaceAttributes<WuiSurfaceHTMLAttributes> & {
-		element?: Omit<string, 'input'>;
-	};
 </script>
 
 <script lang="ts">
 	import './style.css';
+	import '../styles/flex.css';
+	import '../styles/text.css';
+	import '../styles/size.css';
+
 	import {
 		construct_color_style,
 		construct_size_style,
-		construct_flex_style,
-		construct_spacing_style
+		construct_spacing_class,
+		construct_flex_class,
+		construct_size_class,
+		construct_spacing_style,
+		construct_flex_gap_style
 	} from './construct-styles';
-	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	let {
 		_this = $bindable(),
@@ -82,95 +79,62 @@
 		width,
 		wrap,
 		...rest
-	}: InputSurfaceAttributes | OtherSurfaceAttributes = $props();
+	}: SurfaceAttributes<any> = $props();
 </script>
 
-{#if element === 'input'}
-	<svelte:element
-		this={element}
-		class="w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
-			? 'italic '
-			: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline
-			? 'underline '
-			: ''}{variant ? `w-${variant} ` : ''}{color ? `w-${color} ` : ''}{shape
-			? `w-${shape} `
-			: ''}{clickable ? 'w-clickable ' : ''}{_class}"
-		data-w={width ? '1' : '0'}
-		data-h={height ? '1' : '0'}
-		style="{construct_size_style('height', height)}{construct_size_style(
-			'width',
-			width
-		)}{construct_color_style(
-			color,
-			variant,
-			colorweight,
-			textcolor,
-			textcolorweight,
-			clickable
-		)}{construct_spacing_style('margin', 'top', mt || m || my)}{construct_spacing_style(
-			'margin',
-			'right',
-			mr || m || mx
-		)}{construct_spacing_style('margin', 'bottom', mb || m || my)}{construct_spacing_style(
-			'margin',
-			'left',
-			ml || m || mx
-		)}{construct_spacing_style('padding', 'top', pt || py || p)}{construct_spacing_style(
-			'padding',
-			'right',
-			pr || px || p
-		)}{construct_spacing_style('padding', 'bottom', pb || py || p)}{construct_spacing_style(
-			'padding',
-			'left',
-			pl || px || p
-		)}{style}"
-		bind:this={_this}
-		{...rest}
-	/>
-{:else}
-	<svelte:element
-		this={element}
-		class="w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
-			? 'italic '
-			: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline
-			? 'underline '
-			: ''}{variant ? `w-${variant} ` : ''}{color ? `w-${color} ` : ''}{shape
-			? `w-${shape} `
-			: ''}{clickable ? 'w-clickable ' : ''}{_class}"
-		data-w={width ? '1' : '0'}
-		data-h={height ? '1' : '0'}
-		style="{construct_size_style('height', height)}{construct_size_style(
-			'width',
-			width
-		)}{construct_color_style(
-			color,
-			variant,
-			colorweight,
-			textcolor,
-			textcolorweight,
-			clickable
-		)}{construct_flex_style(direction, justify, align, self, wrap, gap)}{construct_spacing_style(
-			'margin',
-			'top',
-			mt || m || my
-		)}{construct_spacing_style('margin', 'right', mr || m || mx)}{construct_spacing_style(
-			'margin',
-			'bottom',
-			mb || m || my
-		)}{construct_spacing_style('margin', 'left', ml || m || mx)}{construct_spacing_style(
-			'padding',
-			'top',
-			pt || py || p
-		)}{construct_spacing_style('padding', 'right', pr || px || p)}{construct_spacing_style(
-			'padding',
-			'bottom',
-			pb || py || p
-		)}{construct_spacing_style('padding', 'left', pl || px || p)}{style}"
-		bind:this={_this}
-		{...rest}
-	>
-		{#if children}
-			{@render children()}
-		{/if}
-	</svelte:element>
-{/if}
+<svelte:element
+	this={element}
+	class="{construct_flex_class(direction, justify, align, self, wrap, gap)}{construct_size_class(
+		'h',
+		height
+	)}{construct_size_class('w', width)}{construct_spacing_class(
+		'margin',
+		mt,
+		mr,
+		mb,
+		ml,
+		m,
+		mx,
+		my
+	)}{construct_spacing_class(
+		'padding',
+		pt,
+		pr,
+		pb,
+		pl,
+		p,
+		px,
+		py
+	)}w-txt w-txt--{textvariant} w-txt--{textsize} {textbold ? 'bold ' : ''}{textitalic
+		? 'italic '
+		: ''}{textalign ? `w-txt--align-${textalign} ` : ''}{textunderline ? 'underline ' : ''}{variant
+		? `w-${variant} `
+		: ''}{color ? `w-${color} ` : ''}{shape ? `w-${shape} ` : ''}{clickable
+		? 'w-clickable '
+		: ''}{_class}"
+	style="{construct_color_style(
+		color,
+		variant,
+		colorweight,
+		textcolor,
+		textcolorweight,
+		clickable
+	)}{construct_size_style('h', height)}{construct_size_style('w', width)}{construct_spacing_style(
+		'margin',
+		mt,
+		mr,
+		mb,
+		ml,
+		m,
+		mx,
+		my
+	)}{construct_spacing_style('padding', pt, pr, pb, pl, p, px, py)}{construct_flex_gap_style(
+		gap
+	)}{style}"
+	bind:this={_this}
+	{...rest}
+>
+	{#if children}
+		{@render children()}
+	{/if}
+</svelte:element>

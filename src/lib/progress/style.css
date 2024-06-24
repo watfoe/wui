@@ -1,7 +1,7 @@
 .w-loader--circular {
   background-color: transparent;
-  border: 3px solid var(--w-color-bg, transparent);
-  border-top-color: var(--w-color-text);
+  border: 3px solid var(--w-clr-bg, transparent);
+  border-top-color: var(--w-clr-fg);
   border-radius: 50%;
   width: 34px;
   height: 34px;
@@ -9,12 +9,12 @@
 }
 
 .w-loader--circular.w-soft {
-  border-color: var(--w-color-bg-soft);
-  border-top-color: var(--w-color-text);
+  border-color: var(--w-clr-bg-soft);
+  border-top-color: var(--w-clr-text);
 }
 
 .w-loader--circular.w-outlined {
-  box-shadow: inset 0 0 0 1px var(--w-color-bg), 0 0 0 1px var(--w-color-text);
+  box-shadow: inset 0 0 0 1px var(--w-clr-bg), 0 0 0 1px var(--w-clr-fg);
   border-bottom-color: transparent;
   border-left-color: transparent;
   border-right-color: transparent;
@@ -32,14 +32,14 @@
 .w-loader--linear::after {
   content: '';
   border-radius: 2px;
-  background-color: var(--w-color-text);
+  background-color: var(--w-clr-fg);
   display: block;
   height: 100%;
   width: 0;
 }
 
 .w-loader--linear.w-outlined::after {
-  background-color: var(--w-color-bg);
+  background-color: var(--w-clr-bg);
 }
 
 .w-loader--linear:not(.w-loader--determinate)::after {
