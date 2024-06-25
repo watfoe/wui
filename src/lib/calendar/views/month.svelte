@@ -16,15 +16,13 @@
 
 	let weeks = $derived(month.weeks());
 
-	$effect(() => {
+	$effect.pre(() => {
 		// Add empty weeks to make the calendar 6 weeks tall
 		if (weeks.length < 6) {
 			let week = new Week(weeks.length, month);
 			weeks.push(week);
 		}
 	});
-
-	$inspect(month);
 </script>
 
 <Surface

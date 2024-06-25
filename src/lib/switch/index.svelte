@@ -54,7 +54,7 @@
 	p={2}
 	variant={checked && variant === 'outlined' ? 'mixed' : variant}
 	width={`calc(${SIZES[size] + 'px'} * 2 - 6px)`}
-	colorweight={colorweight || (color === 'neutral' && !checked ? '5' : undefined)}
+	{colorweight}
 	{shape}
 >
 	<input {...rest} type="checkbox" {id} class="w-hidden" bind:this={_this} bind:checked />

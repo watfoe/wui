@@ -26,7 +26,7 @@
 		align,
 		color,
 		colorweight,
-		class: _class = '',
+		class: _class,
 		direction,
 		gap,
 		height,
@@ -87,7 +87,7 @@
 	element="label"
 	aria-checked={checked}
 	aria-label={typeof label === 'string' ? label : rest['aria-label']}
-	class="w-checkbox {_class}"
+	class="w-checkbox{_class ? ` ${_class}` : ''}"
 	for={id}
 	gap={gap || 'md'}
 	textsize={textsize || size || ctx.size || 'md'}
@@ -139,11 +139,12 @@
 		justify="center"
 		class="w-checkbox__thumb"
 		color={disabled ? 'neutral' : color || ctx.color || 'neutral'}
-		colorweight={colorweight || '6'}
+		colorweight={colorweight || (variant === 'plain' ? '0' : undefined)}
 		shape={shape || ctx.shape || 'rounded'}
 		variant={variant || ctx.variant || 'outlined'}
 		height={SIZES[size || ctx.size || 'md']}
 		width={SIZES[size || ctx.size || 'md']}
+		clickable
 		{disabled}
 	>
 		<Icon color="inherit" class="w-checkbox__thumb__indicator" {size}>check</Icon>

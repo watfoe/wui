@@ -13,7 +13,7 @@
 
 	let {
 		align = 'left',
-		class: _class = '',
+		class: _class,
 		color,
 		colorweight,
 		disabled,
@@ -233,14 +233,9 @@
 {:else}
 	<Surface
 		element="input"
-		class="w-input {_class}"
+		class="w-input{_class ? ` ${_class}` : ''}"
 		color={error ? 'danger' : disabled ? 'neutral' : color}
-		colorweight={colorweight ||
-			(!error && color === 'neutral' && variant === 'outlined'
-				? '4'
-				: variant === 'plain'
-					? '0'
-					: undefined)}
+		colorweight={colorweight || (variant === 'plain' ? '0' : undefined)}
 		height={height || size}
 		pr={pr || px}
 		pl={pl || px}

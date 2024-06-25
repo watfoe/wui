@@ -142,7 +142,7 @@ export function construct_color_style(
 	}
 
 	if (!textweight && (textcolor === 'neutral' || color === 'neutral')) {
-		textweight = '8';
+		textweight = '7';
 	} else {
 		textweight = textweight || '6';
 	}
@@ -164,20 +164,17 @@ export function construct_color_style(
 		} else {
 			color = color || 'primary';
 		}
-		return `--w-clr-bg: ${compute_color_value(color, weight)};--w-clr-fg:${compute_color_value(textcolor || 'white', textweight)};`;
-	} else if (variant === 'outlined') {
+		return `--w-clr-bg: ${compute_color_value(color, weight)};--w-clr-fg:${compute_color_value(textcolor || 'white', textweight)};--w-clr-bg-soft: ${compute_color_value(color, '7')};`;
+	} else if (variant === 'outlined' || variant === 'mixed') {
 		if (color === 'neutral') {
-			weight = weight || '2';
+			weight = weight || '4';
 		} else {
 			color = color || 'primary';
 			weight = weight || '6';
 		}
 		// The bg color is used for the border color
-		// while the bg soft is used for the hover effect
+		// while the bg soft is used for the hover effect for outlined surfaces and background color for mixed surfaces
 		return `--w-clr-bg:${compute_color_value(color, weight)};--w-clr-fg:${compute_color_value(textcolor || color, textweight)};${clickable ? `--w-clr-bg-soft:var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-1);` : ''}`;
-	} else if (variant === 'mixed') {
-		color = color || 'primary';
-		return `--w-clr-bg:${compute_color_value(color, !weight && color === 'neutral' ? '2' : weight || '6')};--w-clr-fg:${compute_color_value(textcolor || color, textweight)};--w-clr-bg-soft:var(--color-${color === 'black' || color === 'white' ? 'neutral' : color}-'1');`;
 	}
 
 	return '';

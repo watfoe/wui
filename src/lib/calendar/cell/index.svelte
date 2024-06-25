@@ -22,19 +22,18 @@
 		showlabel,
 		minified,
 		size,
-		value,
-		...rest
+		value
 	}: CalendarDayCellAttributes = $props();
 
 	let isToday = $state(day.isToday());
 	let date = $state(day.date());
 	let isPhantom = $state(day.isPhantom());
 
-	// $effect(() => {
-	// 	isToday = day.isToday();
-	// 	date = day.date();
-	// 	isPhantom = day.isPhantom();
-	// });
+	$effect.pre(() => {
+		isToday = day.isToday();
+		date = day.date();
+		isPhantom = day.isPhantom();
+	});
 </script>
 
 {#snippet header_snip(showlabel)}

@@ -147,13 +147,13 @@
 
 	<Surface
 		element="span"
-		colorweight={colorweight || (color === 'neutral' && variant === 'outlined' ? '5' : undefined)}
 		class="w-radio__thumb"
 		shape={shape || ctx.shape || 'circle'}
 		variant={variant || ctx.variant || 'outlined'}
 		height={SIZES[size || ctx.size || 'md']}
 		width={SIZES[size || ctx.size || 'md']}
 		{color}
+		{colorweight}
 	>
 		{#if typeof indicator === 'string'}
 			<Icon class="w-radio__thumb__indicator" color="inherit" {size}>{indicator}</Icon>

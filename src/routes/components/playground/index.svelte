@@ -25,13 +25,17 @@
 
 	let { values = $bindable(), children, ...rest }: PlaygroundAttributes = $props();
 
-	const variants = ['solid', 'outlined', 'soft', 'plain'];
+	const variants = ['solid', 'outlined', 'soft', 'plain', 'mixed'];
 	const colors: WuiColor[] = ['primary', 'neutral', 'success', 'warning', 'danger', 'black'];
 	const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 	const shapes = ['sharp', 'rounded', 'pill', 'circle'];
 </script>
 
-{#snippet listbuttonitem(category: 'variant' | 'color' | 'size' | 'shape', value: string, selected: string)}
+{#snippet listbuttonitem(
+	category: 'variant' | 'color' | 'size' | 'shape',
+	value: string,
+	selected: string
+)}
 	<ListButtonItem
 		px="md"
 		size="xs"

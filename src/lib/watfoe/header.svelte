@@ -40,7 +40,7 @@
 		<Logo size={50} />
 
 		<Row align="center" gap="sm">
-			<Text color="primary" size="md" variant="heading">Watfoe</Text>
+			<Text color="black" size="md" variant="heading">Watfoe</Text>
 			{#if typeof subtitle === 'string'}
 				<Text color="neutral" size="md" variant="heading">{subtitle}</Text>
 			{:else if subtitle}
@@ -66,7 +66,7 @@
 		</LinkLikeButton>
 		<LinkLikeButton
 			href={urls?.signup}
-			color="primary"
+			color="black"
 			shape="pill"
 			px="md"
 			textsize="md"

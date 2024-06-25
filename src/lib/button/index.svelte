@@ -14,7 +14,7 @@
 	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 
 	let {
-		class: _class = '',
+		class: _class,
 		loading = false,
 		disabled = false,
 		size,
@@ -26,7 +26,7 @@
 
 <LikeButton
 	element="button"
-	class="{loading ? 'w-btn--loading ' : ''} {_class}"
+	class="{loading ? 'w-btn--loading ' : ''}{_class ? ` ${_class}` : ''}"
 	disabled={disabled || loading}
 	{px}
 	{size}
