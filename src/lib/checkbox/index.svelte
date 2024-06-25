@@ -93,7 +93,6 @@
 	textsize={textsize || size || ctx.size || 'md'}
 	variant="none"
 	{align}
-	{colorweight}
 	{direction}
 	{height}
 	{justify}
@@ -139,7 +138,8 @@
 		align="center"
 		justify="center"
 		class="w-checkbox__thumb"
-		color={disabled ? 'neutral' : color || ctx.color || 'primary'}
+		color={disabled ? 'neutral' : color || ctx.color || 'neutral'}
+		colorweight={colorweight || '6'}
 		shape={shape || ctx.shape || 'rounded'}
 		variant={variant || ctx.variant || 'outlined'}
 		height={SIZES[size || ctx.size || 'md']}

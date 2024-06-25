@@ -52,10 +52,9 @@
 	for={id}
 	height={SIZES[size]}
 	p={2}
-	style="display:inline-block;position:relative"
 	variant={checked && variant === 'outlined' ? 'mixed' : variant}
 	width={`calc(${SIZES[size] + 'px'} * 2 - 6px)`}
-	colorweight={colorweight || (color === 'neutral' && !checked ? '3' : undefined)}
+	colorweight={colorweight || (color === 'neutral' && !checked ? '5' : undefined)}
 	{shape}
 >
 	<input {...rest} type="checkbox" {id} class="w-hidden" bind:this={_this} bind:checked />
@@ -63,6 +62,10 @@
 </LikeButton>
 
 <style>
+	:global(.w-switch) {
+		display: inline-block;
+		position: relative;
+	}
 	.w-switch__thumb {
 		background-color: var(--w-clr-bg);
 		border-radius: inherit;
@@ -72,7 +75,7 @@
 		width: calc(100% / 2);
 	}
 
-	:global(.w-solid .w-switch__thumb) {
-		background-color: var(--w-clr-on-bg);
+	:global(.w-switch .w-switch__thumb) {
+		background-color: var(--w-clr-fg);
 	}
 </style>
