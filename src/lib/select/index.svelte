@@ -231,17 +231,19 @@
 		{shape}
 		{...rest}
 	>
-		{#if selections.length > 0}
-			{#if multiple}
-				{#each selections as selection}
-					{@html selection.innerHTML}
-				{/each}
-			{:else}
-				{@html selections[0].innerHTML}
+		<Surface element="div" gap="sm" class="w-select__text-wrapper">
+			{#if selections.length > 0}
+				{#if multiple}
+					{#each selections as selection}
+						{@html selection.innerHTML}
+					{/each}
+				{:else}
+					{@html selections[0].innerHTML}
+				{/if}
+			{:else if !selected}
+				{@render _placeholder()}
 			{/if}
-		{:else if !selected}
-			{@render _placeholder()}
-		{/if}
+		</Surface>
 
 		{#snippet suffix()}
 			<Icon class="w-select__combobox__icon">keyboard_arrow_down</Icon>

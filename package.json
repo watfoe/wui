@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Jimmie Lovell<jimmieomlovell@gmail.com>",
-	"version": "0.0.67",
+	"version": "0.0.68",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"

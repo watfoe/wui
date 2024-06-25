@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Button } from '../button';
 	import { Logo } from '../logo';
 	import { Row } from '../row';
 	import { LinkLikeButton } from '../linklikebutton';
@@ -7,6 +6,7 @@
 	import type { FlexAttributes } from '../flex';
 	import type { Snippet } from 'svelte';
 	import { Surface } from '$lib/surface';
+	import { Input } from '$lib/input';
 
 	interface WatfoeHeaderAttributes extends FlexAttributes {
 		class?: string;
@@ -28,11 +28,10 @@
 	element="header"
 	class="watfoe-header {_class}"
 	direction="row"
-	height={50}
+	height={60}
 	justify="space-between"
 	mb="xs"
 	px="lg"
-	py="sm"
 	width="100%"
 	{...rest}
 >
@@ -40,39 +39,22 @@
 		<Logo size={50} />
 
 		<Row align="center" gap="sm">
-			<Text color="black" size="md" variant="heading">Watfoe</Text>
+			<Text color="black" size="lg" variant="heading">Watfoe</Text>
 			{#if typeof subtitle === 'string'}
-				<Text color="neutral" size="md" variant="heading">{subtitle}</Text>
+				<Text color="neutral" size="lg" variant="heading">{subtitle}</Text>
 			{:else if subtitle}
 				{@render subtitle()}
 			{/if}
 		</Row>
 	</Row>
 
+	<Input type="search" variant="soft" shape="pill" textsize="md" width={480} />
+
 	<Row justify="flex-end" gap="sm">
-		<Button color="black" textsize="md" prefix="apps" px="md" shape="pill" size="sm" variant="plain"
-			>Apps</Button
-		>
-		<LinkLikeButton
-			href={urls?.signin}
-			color="black"
-			px="md"
-			textsize="md"
-			shape="pill"
-			size="sm"
-			variant="plain"
-		>
+		<LinkLikeButton href={urls?.signin} color="black" shape="pill" variant="plain">
 			Sign in
 		</LinkLikeButton>
-		<LinkLikeButton
-			href={urls?.signup}
-			color="black"
-			shape="pill"
-			px="md"
-			textsize="md"
-			size="sm"
-			variant="solid"
-		>
+		<LinkLikeButton href={urls?.signup} color="black" shape="pill" variant="solid">
 			Create account
 		</LinkLikeButton>
 	</Row>

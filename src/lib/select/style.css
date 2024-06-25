@@ -34,3 +34,9 @@
   opacity: 1;
   transform: rotate(-180deg);
 }
+
+.w-select__text-wrapper {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

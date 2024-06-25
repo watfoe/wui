@@ -13,13 +13,13 @@
 	{direction}
 	width="100%"
 	px="lg"
-	mt={50}
+	mt={60}
 	{...rest}
 />
 
 <style>
 	:global(.watfoe-content) {
-		min-height: calc(100% - 50px);
+		min-height: calc(100% - 60px);
 		overflow-y: auto;
 	}
 </style>
