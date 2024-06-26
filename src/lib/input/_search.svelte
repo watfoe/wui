@@ -36,7 +36,7 @@
 	bind:error
 >
 	{#snippet prefix()}
-		<Icon {color} {size} style="opacity:0.7">search</Icon>
+		<Icon {color} {size} style="opacity:0.6">search</Icon>
 	{/snippet}
 	{#snippet suffix()}
 		<Button

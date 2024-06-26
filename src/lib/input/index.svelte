@@ -27,7 +27,7 @@
 		description,
 		disabled,
 		error = $bindable(),
-		gap = 2,
+		gap = 3,
 		hidden,
 		justify,
 		label,

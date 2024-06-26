@@ -29,10 +29,10 @@
 
 	let {
 		children,
-		color = 'black',
-		px = 'sm',
+		color = 'neutral',
+		colorweight,
+		px,
 		position = 'bottom',
-		textsize = 'sm',
 		size = 'sm',
 		title,
 		...rest
@@ -46,10 +46,10 @@
 	<LikeButton
 		element="span"
 		role="tooltip"
+		colorweight={colorweight || color === 'neutral' ? '8' : undefined}
+		px={px || size}
 		{color}
-		{px}
 		{size}
-		{textsize}
 		class="w-tooltip__content"
 		{...rest}
 	>

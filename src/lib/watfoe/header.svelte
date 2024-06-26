@@ -7,19 +7,21 @@
 	import type { Snippet } from 'svelte';
 	import { Surface } from '$lib/surface';
 	import { Input } from '$lib/input';
+	import { Button } from '$lib/button';
+	import { Tooltip } from '$lib/tooltip';
 
 	interface WatfoeHeaderAttributes extends FlexAttributes {
 		class?: string;
 		subtitle?: Snippet | string;
 		urls?: {
-			signin?: string;
+			login?: string;
 			signup?: string;
 		};
 	}
 
 	let { class: _class = '', subtitle, urls, ...rest }: WatfoeHeaderAttributes = $props();
 	urls = {
-		signin: urls?.signin || 'https://auth.watfoe.com/signin',
+		login: urls?.login || 'https://auth.watfoe.com/login',
 		signup: urls?.signup || 'https://auth.watfoe.com/create-account'
 	};
 </script>
@@ -31,7 +33,8 @@
 	height={60}
 	justify="space-between"
 	mb="xs"
-	px="lg"
+	pl="lg"
+	pr="md"
 	width="100%"
 	{...rest}
 >
@@ -48,15 +51,20 @@
 		</Row>
 	</Row>
 
-	<Input type="search" variant="soft" shape="pill" textsize="md" width={480} />
+	<Input
+		type="search"
+		variant="soft"
+		shape="pill"
+		textsize="md"
+		width={500}
+		class="watfoe-header__search"
+	/>
 
 	<Row justify="flex-end" gap="sm">
-		<LinkLikeButton href={urls?.signin} color="black" shape="pill" variant="plain">
-			Sign in
-		</LinkLikeButton>
-		<LinkLikeButton href={urls?.signup} color="black" shape="pill" variant="solid">
-			Create account
-		</LinkLikeButton>
+		<Tooltip title="Watfoe Apps" size="xs">
+			<Button color="black" shape="pill" variant="plain" prefix="apps" />
+		</Tooltip>
+		<LinkLikeButton href={urls?.login} color="black" shape="pill" px="lg">Log in</LinkLikeButton>
 	</Row>
 </Surface>
 
@@ -66,5 +74,11 @@
 		position: fixed;
 		top: 0;
 		z-index: 9999;
+	}
+
+	:global(.watfoe-header__search) {
+		position: absolute;
+		left: 50%;
+		translate: -50%;
 	}
 </style>

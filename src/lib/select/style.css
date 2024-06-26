@@ -8,16 +8,11 @@
 
 .w-select__combobox.w-soft[aria-expanded='true'],
 .w-select__combobox.w-plain[aria-expanded='true'] {
-  box-shadow: inset 0 0 0 1px var(--w-clr-fg);
   border-color: var(--w-clr-fg);
 }
 
 .w-select__combobox.w-neutral[aria-expanded='true'] {
   --w-clr-bg: var(--color-primary-6) !important;
-}
-
-.w-select__combobox.w-outlined[aria-expanded='true'] {
-  box-shadow: inset 0 0 0 0.5px var(--w-clr-bg);
 }
 
 .w-select__combobox__placeholder {
