@@ -22,13 +22,12 @@
 </script>
 
 {#if children}
-	<Col align="flex-start" gap={2} px="sm" width="100%">
+	<Col align="flex-start" gap={2} px={3} width="100%">
 		<Text
 			{color}
 			colorweight={color === 'neutral' ? '8' : undefined}
 			class="w-input__label"
 			for={_for}
-			size="sm"
 			variant="label"
 			style="line-height:1"
 		>

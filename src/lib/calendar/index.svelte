@@ -57,6 +57,7 @@
 						textcolor="black"
 						variant="none"
 						selected={month_idx}
+						showindicator={false}
 						bind:value={month_idx}
 						textbold
 					/>

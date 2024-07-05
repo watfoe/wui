@@ -6,7 +6,7 @@
 		extends Omit<LikeButtonAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element'> {
 		description?: Snippet | string;
 		disabled?: boolean;
-		indicator?: string;
+		indicator?: Snippet | string;
 		error?: ValidationError | string;
 		label?: Snippet | string;
 		multiple?: boolean;
@@ -15,6 +15,7 @@
 		preset?: 'country' | 'day' | 'month' | 'gender';
 		required?: boolean;
 		selected?: string;
+		showindicator?: boolean;
 		validateon?: 'change' | 'blur' | 'submit';
 		value?: string;
 	}
@@ -45,6 +46,7 @@
 		error = $bindable(),
 		gap = 3,
 		hidden,
+		indicator = 'keyboard_arrow_down',
 		label,
 		multiple = false,
 		m,
@@ -60,6 +62,7 @@
 		preset,
 		required,
 		selected = $bindable(),
+		showindicator = true,
 		shape,
 		size,
 		style,
@@ -81,12 +84,15 @@
 
 	const id = Math.random().toString(36).substring(2, 9);
 
-	setContext('wui-select-ctx', {
-		color,
-		multiple,
-		size,
-		shape,
-		select
+	$effect.pre(() => {
+		setContext('wui-select-ctx', {
+			color,
+			multiple,
+			size,
+			shape,
+			variant,
+			select
+		});
 	});
 
 	$effect(() => {
@@ -219,34 +225,33 @@
 		color={error ? 'danger' : color}
 		colorweight={colorweight || variant === 'plain' ? '0' : undefined}
 		element="div"
-		justify="space-between"
+		justify="flex-start"
 		role="combobox"
 		tabindex="0"
 		variant={variant === 'plain' ? 'soft' : variant}
 		width="100%"
 		{disabled}
-		{pr}
 		{pl}
 		{size}
 		{shape}
 		{...rest}
 	>
-		<Surface element="div" gap="sm" class="w-select__text-wrapper">
-			{#if selections.length > 0}
-				{#if multiple}
-					{#each selections as selection}
-						{@html selection.innerHTML}
-					{/each}
-				{:else}
-					{@html selections[0].innerHTML}
-				{/if}
-			{:else if !selected}
-				{@render _placeholder()}
+		{#if selections.length > 0}
+			{#if multiple}
+				{#each selections as selection}
+					{@html selection.innerHTML}
+				{/each}
+			{:else}
+				{@html selections[0].innerHTML}
 			{/if}
-		</Surface>
+		{:else if !selected}
+			{@render _placeholder()}
+		{/if}
 
 		{#snippet suffix()}
-			<Icon class="w-select__combobox__icon">keyboard_arrow_down</Icon>
+			{#if showindicator && typeof indicator === 'string'}
+				<Icon class="w-select__combobox__icon">{indicator}</Icon>
+			{/if}
 		{/snippet}
 	</LikeButton>
 
@@ -258,7 +263,7 @@
 			onclose={popup_closed}
 			{id}
 			{color}
-			{shape}
+			shape={shape === 'circle' || shape === 'pill' ? 'rounded' : shape}
 		>
 			{#if preset === 'country'}
 				<CountryPreset {selected} />

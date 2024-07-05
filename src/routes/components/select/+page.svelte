@@ -9,9 +9,9 @@
 
 	let values: PlaygroundAttributes['values'] = $state({
 		variant: 'outlined',
-		color: 'primary',
+		color: 'neutral',
 		size: 'md',
-		shape: 'rounded',
+		shape: 'sharp',
 		disabled: false
 	});
 </script>

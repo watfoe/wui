@@ -20,7 +20,7 @@
 		};
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="A extends HTMLAttributes<HTMLElement>">
 	import './style.css';
 	import '../styles/flex.css';
 	import '../styles/text.css';
@@ -35,6 +35,7 @@
 		construct_spacing_style,
 		construct_flex_gap_style
 	} from './construct-styles';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
 		_this = $bindable(),
@@ -79,7 +80,7 @@
 		width,
 		wrap,
 		...rest
-	}: SurfaceAttributes<any> = $props();
+	}: SurfaceAttributes<A> = $props();
 </script>
 
 <!-- Svelte throws warning on self-closing tags -->

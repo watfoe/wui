@@ -142,7 +142,7 @@ export function construct_color_style(
 	}
 
 	if (!textweight && (textcolor === 'neutral' || color === 'neutral')) {
-		textweight = '7';
+		textweight = '8';
 	} else {
 		textweight = textweight || '6';
 	}

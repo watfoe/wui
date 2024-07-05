@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	import type { WuiFlexJustify, WuiSize } from '$lib/types';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	export type LikeButtonAttributes<A> = SurfaceAttributes<Omit<A, 'prefix'>> & {
 		anchorfor?: string;
@@ -14,7 +15,7 @@
 	};
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="A extends HTMLAttributes<HTMLElement>">
 	import { Icon } from '../icon';
 	import { Surface, type SurfaceAttributes } from '../surface';
 	import { untrack, type Snippet } from 'svelte';
@@ -36,7 +37,6 @@
 		prefix,
 		suffix,
 		shape = 'rounded',
-		style = '',
 		size = 'md',
 		px,
 		tabindex,
@@ -47,7 +47,7 @@
 		onkeydown,
 		onmouseover,
 		...rest
-	}: LikeButtonAttributes<any> = $props();
+	}: LikeButtonAttributes<A> = $props();
 
 	let feedback: HTMLDialogElement;
 	let feedbackExpanded = $state(false);
@@ -69,7 +69,7 @@
 		});
 	});
 
-	function click(e: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+	function click(e: MouseEvent & { currentTarget: EventTarget & HTMLElement }) {
 		if (disabled) {
 			return;
 		}
@@ -81,7 +81,7 @@
 		onclick?.(e);
 	}
 
-	function mouseover(e: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+	function mouseover(e: MouseEvent & { currentTarget: EventTarget & HTMLElement }) {
 		if (disabled) {
 			return;
 		}
@@ -94,7 +94,7 @@
 	}
 
 	// Keyboard accessibility
-	function keydown(e: KeyboardEvent & { currentTarget: EventTarget }) {
+	function keydown(e: KeyboardEvent & { currentTarget: EventTarget & HTMLElement }) {
 		const key = e.key;
 		if (feedback && (key === 'ArrowDown' || key === 'ArrowUp')) {
 			show_feedback(e.currentTarget as HTMLButtonElement);
@@ -133,7 +133,7 @@
 			next.focus();
 		} else if (target?.previousElementSibling) {
 			// There are other siblings
-			const first = target.parentElement?.firstElementChild as HTMLButtonElement;
+			const first = target.parentElement?.firstElementChild as HTMLElement;
 			first?.focus();
 		}
 	}
@@ -144,7 +144,7 @@
 			prev.focus();
 		} else if (target.nextElementSibling) {
 			// There are other siblings
-			const last = target.parentElement?.lastElementChild as HTMLButtonElement;
+			const last = target.parentElement?.lastElementChild as HTMLElement;
 			last?.focus();
 		}
 	}
@@ -169,7 +169,6 @@
 	{element}
 	{gap}
 	{justify}
-	{style}
 	{variant}
 	{...rest}
 	clickable

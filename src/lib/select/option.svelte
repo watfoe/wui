@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import type { WuiShape, WuiSize } from '$lib/types';
+	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { getContext, untrack } from 'svelte';
 
 	export interface ListboxItemAttributes
@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+	import { Icon } from '$lib/icon';
 	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 	import type { HTMLLiAttributes } from 'svelte/elements';
 
@@ -32,10 +33,12 @@
 	}: ListboxItemAttributes = $props();
 
 	const ctx: {
+		color: WuiColor;
 		multiple: boolean;
 		size: WuiSize;
 		shape: WuiShape;
 		select: (target: HTMLLIElement, c: () => void) => void;
+		variant: WuiVariant;
 	} = getContext('wui-select-ctx') || {};
 
 	$effect(() => {
@@ -64,14 +67,16 @@
 
 <LikeButton
 	aria-selected={selected}
-	color={color || 'inherit'}
+	color={(color || ctx.color) === 'neutral' && (variant || ctx.variant) !== 'solid'
+		? 'black'
+		: color || ctx.color || 'black'}
 	element="li"
 	justify="flex-start"
 	navigation="vertical"
 	role="option"
 	size={size || ctx.size || 'md'}
-	shape={shape || ctx.shape || 'rounded'}
-	variant={variant || 'plain'}
+	shape={(shape || ctx.shape) === 'sharp' ? 'sharp' : 'rounded'}
+	variant={ctx.variant === 'outlined' ? 'plain' : ctx.variant === 'mixed' ? 'soft' : ctx.variant}
 	onkeydown={keydown}
 	onclick={select}
 	data-value={value}

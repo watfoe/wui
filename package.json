@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Jimmie Lovell<jimmieomlovell@gmail.com>",
-	"version": "0.0.69",
+	"version": "0.0.70",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -185,31 +185,31 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.165"
+		"svelte": "^5.0.0-next.174"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^3.0.1",
-		"@sveltejs/kit": "^2.5.17",
+		"@sveltejs/adapter-static": "^3.0.2",
+		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/package": "^2.3.2",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
-		"@typescript-eslint/eslint-plugin": "^7.13.1",
-		"@typescript-eslint/parser": "^7.13.1",
+		"@typescript-eslint/eslint-plugin": "^7.15.0",
+		"@typescript-eslint/parser": "^7.15.0",
 		"browserslist": "^4.23.1",
-		"eslint": "^9.5.0",
+		"eslint": "^9.6.0",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.40.0",
+		"eslint-plugin-svelte": "^2.41.0",
 		"lightningcss": "^1.25.1",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.5",
 		"publint": "^0.2.8",
-		"svelte": "5.0.0-next.165",
-		"svelte-check": "^3.8.1",
+		"svelte": "5.0.0-next.174",
+		"svelte-check": "^3.8.4",
 		"tslib": "^2.6.3",
-		"typescript": "^5.5.2",
-		"vite": "^5.3.1"
+		"typescript": "^5.5.3",
+		"vite": "^5.3.3"
 	},
 	"dependencies": {
-		"libphonenumber-js": "^1.11.2"
+		"libphonenumber-js": "^1.11.4"
 	},
 	"type": "module",
 	"publishConfig": {

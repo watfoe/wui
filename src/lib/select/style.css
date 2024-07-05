@@ -3,7 +3,10 @@
 }
 
 .w-select__combobox {
-  overflow-x: hidden
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .w-select__combobox.w-soft[aria-expanded='true'],
