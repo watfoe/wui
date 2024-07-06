@@ -249,6 +249,36 @@
   padding-right: var(--w-p-r);
 }
 
+.p-a {
+  padding: auto;
+}
+
+.py-a {
+  padding-bottom: auto;
+  padding-top: auto;
+}
+
+.pb-a {
+  padding-bottom: auto;
+}
+
+.pt-a {
+  padding-top: auto;
+}
+
+.px-a {
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.pl-a {
+  padding-left: auto;
+}
+
+.pr-a {
+  padding-right: auto;
+}
+
 .m-xl,
 .mx-xl,
 .ml-xl {
@@ -397,4 +427,34 @@
 
 .mr-0 {
   margin-right: var(--w-m-r);
+}
+
+.m-a {
+  margin: auto;
+}
+
+.my-a {
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.mb-a {
+  margin-bottom: auto;
+}
+
+.mt-a {
+  margin-top: auto;
+}
+
+.mx-a {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+.mr-a {
+  margin-right: auto;
 }

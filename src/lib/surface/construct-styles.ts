@@ -32,28 +32,28 @@ export function construct_spacing_class(
 	l = l || x || a;
 
 	if (t && t === r && r === b && b === l) {
-		return `${_abbr}-${typeof t === 'number' ? '0' : t} `;
+		return `${_abbr}-${typeof t === 'number' ? '0' : t === 'auto' ? 'a' : t} `;
 	}
 
 	if (t && t === b) {
-		_class = `${_abbr}y-${typeof t === 'number' ? '0' : t} `;
+		_class = `${_abbr}y-${typeof t === 'number' ? '0' : t === 'auto' ? 'a' : t} `;
 	} else {
 		if (t) {
-			_class = `${_abbr}t-${typeof t === 'number' ? '0' : t} `;
+			_class = `${_abbr}t-${typeof t === 'number' ? '0' : t === 'auto' ? 'a' : t} `;
 		}
 		if (b) {
-			_class += `${_abbr}b-${typeof b === 'number' ? '0' : b} `;
+			_class += `${_abbr}b-${typeof b === 'number' ? '0' : b === 'auto' ? 'a' : b} `;
 		}
 	}
 
 	if (l && l === r) {
-		_class += `${_abbr}x-${typeof l === 'number' ? '0' : l} `;
+		_class += `${_abbr}x-${typeof l === 'number' ? '0' : l === 'auto' ? 'a' : l} `;
 	} else {
 		if (r) {
-			_class += `${_abbr}r-${typeof r === 'number' ? '0' : r} `;
+			_class += `${_abbr}r-${typeof r === 'number' ? '0' : r === 'auto' ? 'a' : r} `;
 		}
 		if (l) {
-			_class += `${_abbr}l-${typeof l === 'number' ? '0' : l} `;
+			_class += `${_abbr}l-${typeof l === 'number' ? '0' : l === 'auto' ? 'a' : l} `;
 		}
 	}
 
