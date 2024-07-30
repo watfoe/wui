@@ -1,16 +1,15 @@
 <script context="module" lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { type LikeButtonAttributes } from '../likebutton';
 
 	export interface SelectAttributes
-		extends Omit<LikeButtonAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element'> {
+		extends Omit<LikeButtonAttributes<'div'>, 'element' | 'onchange'> {
 		description?: Snippet | string;
-		disabled?: boolean;
 		indicator?: Snippet | string;
 		error?: ValidationError | string;
 		label?: Snippet | string;
 		multiple?: boolean;
-		name?: string;
+		name?: HTMLSelectElement['name'];
+		onchange?: HTMLInputAttributes['onchange'];
 		onvalidate?: (error?: ValidationError) => void;
 		preset?: 'country' | 'day' | 'month' | 'gender';
 		required?: boolean;
@@ -35,6 +34,7 @@
 	import { validate, type ValidationError } from '../input/_utils';
 	import { setContext, untrack, type Snippet } from 'svelte';
 	import { on } from 'svelte/events';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	let {
 		color = 'neutral',
@@ -219,15 +219,15 @@
 	<input type="hidden" bind:this={input_el} bind:value tabindex="-1" {onchange} />
 
 	<LikeButton
+		element="div"
 		anchorfor={disabled ? undefined : id}
-		aria-labeledby={label ? id : undefined}
+		aria-labelledby={label ? id : undefined}
 		class="w-select__combobox"
 		color={error ? 'danger' : color}
 		colorweight={colorweight || variant === 'plain' ? '0' : undefined}
-		element="div"
 		justify="flex-start"
 		role="combobox"
-		tabindex="0"
+		tabindex={0}
 		variant={variant === 'plain' ? 'soft' : variant}
 		width="100%"
 		{disabled}

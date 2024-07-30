@@ -1,21 +1,21 @@
 <script context="module" lang="ts">
 	import type { WuiFlexJustify, WuiSize } from '$lib/types';
-	import type { HTMLAttributes } from 'svelte/elements';
 
-	export type LikeButtonAttributes<A> = SurfaceAttributes<Omit<A, 'prefix'>> & {
-		anchorfor?: string;
-		anchoron?: 'click' | 'mouseover';
-		bold?: boolean;
-		disabled?: boolean;
-		justify?: WuiFlexJustify;
-		navigation?: 'horizontal' | 'vertical' | 'mixed' | 'none';
-		prefix?: Snippet | string;
-		suffix?: Snippet | string;
-		size?: WuiSize;
-	};
+	export type LikeButtonAttributes<E extends keyof svelteHTML.IntrinsicElements> =
+		SurfaceAttributes<E> & {
+			anchorfor?: string;
+			anchoron?: 'click' | 'mouseover';
+			bold?: boolean;
+			disabled?: boolean;
+			justify?: WuiFlexJustify;
+			navigation?: 'horizontal' | 'vertical' | 'mixed' | 'none';
+			prefix?: Snippet | string;
+			suffix?: Snippet | string;
+			size?: WuiSize;
+		};
 </script>
 
-<script lang="ts" generics="A extends HTMLAttributes<HTMLElement>">
+<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements = 'button'">
 	import { Icon } from '../icon';
 	import { Surface, type SurfaceAttributes } from '../surface';
 	import { untrack, type Snippet } from 'svelte';
@@ -29,7 +29,7 @@
 		color = 'primary',
 		direction = 'row',
 		disabled = false,
-		element = 'button',
+		element,
 		gap = 'sm',
 		height,
 		justify = 'center',
@@ -47,7 +47,7 @@
 		onkeydown,
 		onmouseover,
 		...rest
-	}: LikeButtonAttributes<A> = $props();
+	}: LikeButtonAttributes<E> = $props();
 
 	let feedback: HTMLDialogElement;
 	let feedbackExpanded = $state(false);
@@ -154,6 +154,7 @@
 	aria-haspopup={anchorfor ? 'true' : undefined}
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
+	element={element || 'button'}
 	px={children ? px : undefined}
 	tabindex={tabindex || 0}
 	textsize={textsize || size}
@@ -166,7 +167,6 @@
 	{color}
 	{direction}
 	{disabled}
-	{element}
 	{gap}
 	{justify}
 	{variant}

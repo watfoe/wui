@@ -7,20 +7,22 @@
 	} from '$lib/types';
 	import { type Snippet } from 'svelte';
 
-	export type SurfaceAttributes<A> = A &
-		WuiSurface &
-		WuiFlexKeys &
-		WuiSurfaceTextAttributes & {
-			_this?: HTMLElement;
-			children?: Snippet;
-			clickable?: boolean;
-			element?: string;
-			justify?: WuiFlexJustify;
-			navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
-		};
+	export type SurfaceAttributes<E extends keyof svelteHTML.IntrinsicElements> =
+		SvelteHTMLElements[E] &
+			WuiSurface &
+			WuiFlexKeys &
+			WuiSurfaceTextAttributes & {
+				_this?: HTMLElement;
+				children?: Snippet;
+				clickable?: boolean;
+				disabled?: boolean;
+				element?: E;
+				justify?: WuiFlexJustify;
+				navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
+			};
 </script>
 
-<script lang="ts" generics="A extends HTMLAttributes<HTMLElement>">
+<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements = 'div'">
 	import './style.css';
 	import '../styles/flex.css';
 	import '../styles/text.css';
@@ -35,12 +37,12 @@
 		construct_spacing_style,
 		construct_flex_gap_style
 	} from './construct-styles';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import type { SvelteHTMLElements } from 'svelte/elements';
 
 	let {
 		_this = $bindable(),
 		align,
-		element = 'div',
+		element,
 		color,
 		colorweight,
 		class: _class,
@@ -80,13 +82,13 @@
 		width,
 		wrap,
 		...rest
-	}: SurfaceAttributes<A> = $props();
+	}: SurfaceAttributes<E> = $props();
 </script>
 
 <!-- Svelte throws warning on self-closing tags -->
-{#if element === 'input'}
+{#if element === 'input' || element === 'textarea' || element === 'img'}
 	<svelte:element
-		this={'input'}
+		this={element}
 		class="{construct_flex_class(direction, justify, align, self, wrap, gap)}{construct_size_class(
 			'h',
 			height
@@ -139,7 +141,7 @@
 	/>
 {:else}
 	<svelte:element
-		this={element}
+		this={element || 'div'}
 		class="{construct_flex_class(direction, justify, align, self, wrap, gap)}{construct_size_class(
 			'h',
 			height

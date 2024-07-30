@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { Button, type ButtonAttributes } from '../button';
-	import { type LikeButtonAttributes } from '../likebutton';
 	import { getContext } from 'svelte';
-	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	let {
 		color,
@@ -18,7 +16,7 @@
 	let active = $state(false);
 	let ctx: {
 		color?: WuiColor;
-		navigation: LikeButtonAttributes<HTMLButtonAttributes>['navigation'];
+		navigation: ButtonAttributes['navigation'];
 		size?: WuiSize;
 		shape?: WuiShape;
 		variant?: WuiVariant;

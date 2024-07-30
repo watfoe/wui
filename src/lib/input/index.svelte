@@ -4,7 +4,7 @@
 		name?: string;
 		description?: Snippet | string;
 		hidden?: boolean;
-		type?: 'date' | 'email' | 'name' | 'number' | 'password' | 'phone' | 'search' | 'text';
+		type?: HTMLInputTypeAttribute | 'name';
 	};
 </script>
 
@@ -12,7 +12,7 @@
 	import './style.css';
 	import { InputLabel } from '../inputlabel';
 	import { InputError } from '../inputerror';
-	import BaseInput, { type BaseInputAttributes } from './_base.svelte';
+	import BaseInput from './_base.svelte';
 	import DateInput from './_date.svelte';
 	import EmailInput from './_email.svelte';
 	import PasswordInput from './_password.svelte';
@@ -20,6 +20,8 @@
 	import SearchInput from './_search.svelte';
 	import { Surface } from '../surface';
 	import type { Snippet } from 'svelte';
+	import type { HTMLInputTypeAttribute } from 'svelte/elements';
+	import type { BaseInputAttributes } from './_utils';
 
 	let {
 		color = 'neutral',
@@ -88,7 +90,7 @@
 		/>
 	{:else if type === 'password'}
 		<PasswordInput secure {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
-	{:else if type === 'phone'}
+	{:else if type === 'tel'}
 		<PhoneInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
 	{:else if type === 'search'}
 		<SearchInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />

@@ -9,10 +9,10 @@
 </script>
 
 <script lang="ts">
-	import BaseInput, { type BaseInputAttributes } from './_base.svelte';
+	import BaseInput from './_base.svelte';
 	import { Row } from '../row';
 	import { Select } from '../select';
-	import { ValidationError, splitDate, type DateFormat } from './_utils';
+	import { ValidationError, splitDate, type BaseInputAttributes, type DateFormat } from './_utils';
 	import { untrack } from 'svelte';
 
 	let day = $state('');

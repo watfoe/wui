@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import type { HTMLAnchorAttributes, HTMLAttributes, HTMLLabelAttributes } from 'svelte/elements';
 	import type {
 		WuiColor,
 		WuiColorWeight,
@@ -10,8 +9,8 @@
 		WuiVariant
 	} from '$lib/types';
 
-	type TextSurfaceAttributes<A> = Omit<
-		SurfaceAttributes<A>,
+	export type BaseTextAttributes<E extends keyof svelteHTML.IntrinsicElements> = Omit<
+		SurfaceAttributes<E>,
 		| 'element'
 		| 'textalign'
 		| 'textbold'
@@ -23,28 +22,7 @@
 		| 'textvariant'
 		| 'align'
 		| 'variant'
-	>;
-
-	export type TextAnchorAttributes = TextSurfaceAttributes<HTMLAnchorAttributes> & {
-		variant: 'a';
-	};
-	export type TextLabelAttributes = TextSurfaceAttributes<HTMLLabelAttributes> & {
-		variant: 'label';
-	};
-	export type TextHeadingAttributes = TextSurfaceAttributes<HTMLAttributes<HTMLHeadingElement>> & {
-		variant: 'heading' | 'title';
-	};
-	export type TextBodyAttributes = TextSurfaceAttributes<HTMLAttributes<HTMLSpanElement>> & {
-		variant?: 'body';
-	};
-
-	type BaseTextAttributes =
-		| TextLabelAttributes
-		| TextHeadingAttributes
-		| TextBodyAttributes
-		| TextAnchorAttributes;
-
-	export type TextAttributes = BaseTextAttributes & {
+	> & {
 		align?: WuiTextAlign;
 		bold?: boolean;
 		italic?: boolean;
@@ -56,12 +34,32 @@
 		surfacecolor?: WuiColor;
 		surfacecolorweight?: WuiColorWeight;
 	};
+
+	export type TextAnchorAttributes = BaseTextAttributes<'a'> & {
+		variant: 'a';
+	};
+	export type TextLabelAttributes = BaseTextAttributes<'label'> & {
+		variant: 'label';
+	};
+	export type TextHeadingAttributes = BaseTextAttributes<'h1'> & {
+		variant: 'heading' | 'title';
+	};
+	export type TextBodyAttributes = BaseTextAttributes<'span'> & {
+		variant?: 'body';
+	};
+
+	export type TextAttributes =
+		| TextLabelAttributes
+		| TextHeadingAttributes
+		| TextBodyAttributes
+		| TextAnchorAttributes;
 </script>
 
 <script lang="ts">
 	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
+		_this = $bindable(),
 		align,
 		bold,
 		color = 'inherit',
@@ -92,7 +90,6 @@
 		},
 		body: 'span',
 		label: 'label',
-		code: 'code',
 		a: 'a'
 	};
 
@@ -111,7 +108,6 @@
 </script>
 
 <Surface
-	{element}
 	textalign={align}
 	textsize={size}
 	textbold={bold || variant === 'heading' || variant === 'title'}
@@ -125,5 +121,7 @@
 	color={surfacecolor}
 	colorweight={surfacecolorweight}
 	variant={surfacevariant}
+	{element}
 	{...rest}
+	bind:_this
 />

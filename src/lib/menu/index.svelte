@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface MenuAttributes extends Omit<PopupAttributes, 'role' | 'aria-label'> {
+	export interface MenuAttributes extends Omit<PopupAttributes<'menu'>, 'role' | 'aria-label'> {
 		itemsize?: WuiSize;
 		itemcolor?: WuiColor;
 		itemshape?: WuiShape;

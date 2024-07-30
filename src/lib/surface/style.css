@@ -14,7 +14,7 @@
 .WuiInput--disabled {
   --w-clr-bg: var(--color-neutral-2) !important;
   --w-clr-bg-soft: var(--color-neutral-2) !important;
-  --w-clr-fg: var(--color-neutral-6) !important;
+  --w-clr-fg: var(--color-neutral-8) !important;
   cursor: default;
   pointer-events: none;
 }

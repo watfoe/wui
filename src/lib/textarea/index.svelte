@@ -1,13 +1,9 @@
 <script context="module" lang="ts">
-	import type { HTMLTextareaAttributes } from 'svelte/elements';
-
-	export type TextAreaAttributes = Omit<BaseProps<HTMLTextareaAttributes>, 'id'> & {
+	export type TextAreaAttributes = Omit<BaseInputAttributes<'textarea'>, 'id'> & {
 		label?: Snippet | string;
 		name?: string;
 		description?: Snippet | string;
 		hidden?: boolean;
-		textarea?: HTMLTextAreaElement;
-		type?: 'date' | 'email' | 'name' | 'number' | 'password' | 'pin' | 'phone' | 'search' | 'text';
 	};
 </script>
 
@@ -17,10 +13,11 @@
 	import { Icon } from '../icon';
 	import { InputLabel } from '../inputlabel';
 	import { Surface } from '../surface';
-	import { validate, mask, ValidationError, type BaseProps } from '../input/_utils';
+	import { validate, mask, ValidationError, type BaseInputAttributes } from '../input/_utils';
 	import { untrack, type Snippet } from 'svelte';
 
 	let {
+		_this = $bindable(),
 		align = 'left',
 		class: _class = '',
 		color = 'neutral',
@@ -61,7 +58,6 @@
 		textitalic,
 		textunderline,
 		textvariant,
-		textarea = $bindable(),
 		validateon = 'submit',
 		value = $bindable(),
 		variant = 'outlined',
@@ -75,7 +71,7 @@
 	const id = Math.random().toString(36).substring(2, 15);
 
 	$effect(() => {
-		textarea?.setCustomValidity(
+		_this?.setCustomValidity(
 			error === undefined ? '' : typeof error === 'string' ? error : error?.message
 		);
 
@@ -87,11 +83,11 @@
 
 			if (rules && validateon === 'submit') {
 				// Get the form element that this input is in
-				const form = textarea?.closest('form');
+				const form = _this?.closest('form');
 				form?.addEventListener(
 					'submit',
 					(e) => {
-						_validate(textarea?.value!);
+						_validate(_this?.value!);
 						if (error) {
 							e.preventDefault();
 							// Stop the event from propagating to other event listeners
@@ -227,7 +223,7 @@
 			style:width="100%"
 			style:height="100%"
 			style:font="inherit"
-			bind:this={textarea}
+			bind:this={_this}
 			bind:value
 			{...rest}
 		></textarea>

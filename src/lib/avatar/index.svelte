@@ -1,9 +1,7 @@
 <script context="module" lang="ts">
-	import type { HTMLImgAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiDimension, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface AvatarAttributes
-		extends Omit<SurfaceAttributes<Omit<HTMLImgAttributes, 'color'>>, 'element'> {
+	export interface AvatarAttributes extends Omit<SurfaceAttributes<'img'>, 'element'> {
 		size?: WuiSize;
 	}
 </script>
@@ -14,6 +12,7 @@
 	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
+		_this = $bindable(),
 		alt,
 		color,
 		class: _class = '',
@@ -98,6 +97,7 @@
 	{textvariant}
 	{width}
 	{style}
+	bind:_this
 >
 	{#if src}
 		<img {src} {alt} class="w-avatar__img" {...rest} />

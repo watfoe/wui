@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Icon } from '$lib/icon';
 	import { Button } from '../button';
-	import BaseInput, { type BaseInputAttributes } from './_base.svelte';
+	import BaseInput from './_base.svelte';
+	import type { BaseInputAttributes } from './_utils';
 
 	let {
 		color = 'neutral',

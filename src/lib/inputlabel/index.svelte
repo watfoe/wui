@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
-	// TODO: Fix me
-	export interface InputLabelAttributes extends Omit<TextAttributes, 'variant'> {
+	export interface InputLabelAttributes extends BaseTextAttributes<'label'> {
 		description?: Snippet | string;
 	}
 </script>
@@ -8,17 +7,10 @@
 <script lang="ts">
 	import { Col } from '$lib/col';
 
-	import { Text, type TextAttributes } from '../text';
+	import { Text, type BaseTextAttributes } from '../text';
 	import type { Snippet } from 'svelte';
 
-	let {
-		color,
-		description,
-		for: _for,
-		children,
-		style = '',
-		...rest
-	}: InputLabelAttributes = $props();
+	let { color, description, for: _for, children }: InputLabelAttributes = $props();
 </script>
 
 {#if children}

@@ -1,14 +1,12 @@
 <script context="module" lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	export interface ChipAttributes
-		extends Omit<LikeButtonAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {}
+	export interface ChipAttributes extends Omit<LikeButtonAttributes<'div'>, 'element'> {}
 </script>
 
 <script lang="ts">
 	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
 
 	let {
+		_this = $bindable(),
 		height,
 		px = 'sm',
 		size = 'md',
@@ -18,9 +16,11 @@
 	}: ChipAttributes = $props();
 
 	const SIZES = {
-		sm: 18,
-		md: 22,
-		lg: 26
+		xs: 18,
+		sm: 20,
+		md: 24,
+		lg: 28,
+		xl: 34
 	};
 </script>
 
@@ -32,4 +32,5 @@
 	{shape}
 	{variant}
 	{...rest}
+	bind:_this
 />

@@ -9,9 +9,8 @@
 	import { Surface } from '$lib/surface';
 	import { Text } from '$lib/text';
 	import type { Snippet } from 'svelte';
-	import type { HTMLFormAttributes } from 'svelte/elements';
 
-	interface AuthFormAttributes extends SurfaceAttributes<HTMLFormAttributes> {
+	interface AuthFormAttributes extends SurfaceAttributes<'form'> {
 		heading: string;
 		subheading?: string;
 		enableprevious?: boolean;

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '../button';
-	import BaseInput, { type BaseInputAttributes } from './_base.svelte';
+	import BaseInput from './_base.svelte';
+	import type { BaseInputAttributes } from './_utils';
 
 	interface PasswordInputAttributes extends BaseInputAttributes {
 		secure: boolean;

@@ -1,7 +1,5 @@
 <script context="module" lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
-	export interface DividerAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'size'> {
+	export interface DividerAttributes extends Omit<SurfaceAttributes<'div'>, 'element' | 'size'> {
 		size?: number;
 		vertical?: boolean;
 	}

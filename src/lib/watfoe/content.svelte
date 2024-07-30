@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { Surface } from '$lib/surface';
-	import type { FlexAttributes } from '../flex';
+	import { Surface, type SurfaceAttributes } from '$lib/surface';
 
-	const { class: _class = '', direction = 'column', ...rest }: FlexAttributes = $props();
+	const { class: _class = '', direction = 'column', ...rest }: SurfaceAttributes<'main'> = $props();
 </script>
 
 <Surface

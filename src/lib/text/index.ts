@@ -1,1 +1,1 @@
-export { default as Text, type TextAttributes } from './index.svelte';
+export { default as Text, type BaseTextAttributes, type TextAttributes } from './index.svelte';

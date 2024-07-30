@@ -1,11 +1,6 @@
-<script context="module" lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
-	export interface BaseInputAttributes extends BaseProps<HTMLInputAttributes> {}
-</script>
-
 <script lang="ts">
 	import './style.css';
-	import { validate, mask, ValidationError, type BaseProps } from './_utils';
+	import { validate, mask, ValidationError, type BaseInputAttributes } from './_utils';
 	import { Icon } from '../icon';
 	import { Surface } from '../surface';
 	import { untrack } from 'svelte';

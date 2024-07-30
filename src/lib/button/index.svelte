@@ -1,9 +1,5 @@
 <script context="module" lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
-
-	type LB = LikeButtonAttributes<HTMLButtonAttributes>;
-
-	export interface ButtonAttributes extends Omit<LB, 'element' | 'navigation'> {
+	export interface ButtonAttributes extends Omit<LikeButtonAttributes<'button'>, 'element'> {
 		disabled?: boolean;
 		loading?: boolean;
 	}
@@ -12,6 +8,7 @@
 <script lang="ts">
 	import './style.css';
 	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
+	import type { Snippet } from 'svelte';
 
 	let {
 		class: _class,
@@ -19,6 +16,7 @@
 		disabled = false,
 		size,
 		px = size || 'md',
+		prefix,
 		type = 'button',
 		...rest
 	}: ButtonAttributes = $props();
@@ -28,6 +26,7 @@
 	element="button"
 	class="{loading ? 'w-btn--loading ' : ''}{_class ? ` ${_class}` : ''}"
 	disabled={disabled || loading}
+	{prefix}
 	{px}
 	{size}
 	{type}

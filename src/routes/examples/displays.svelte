@@ -102,7 +102,7 @@
 	</Row>
 
 	<Row gap="lg" width="100%">
-		<List variant="outlined" p={5} gap="ss">
+		<List variant="outlined" p={5} gap="xs">
 			<ListItem>Item 1: some grocery stuff</ListItem>
 			<ListItem>Item 2</ListItem>
 			<ListItem>Item 3</ListItem>
@@ -129,7 +129,7 @@
 			<List
 				direction="row"
 				variant="soft"
-				p="ss"
+				p="xs"
 				color="black"
 				gap="sm"
 				shape="rounded"

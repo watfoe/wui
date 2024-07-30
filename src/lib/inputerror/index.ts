@@ -1,1 +1,1 @@
-export { default as InputError } from './index.svelte';
+export { default as InputError, type InputErrorAttributes } from './index.svelte';

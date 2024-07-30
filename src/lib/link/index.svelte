@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
-	export type LinkAttributes = TextAttributes & {};
+	export type LinkAttributes = BaseTextAttributes<'a'> & {};
 </script>
 
 <script lang="ts">
-	import { Text, type TextAttributes } from '../text';
+	import { Text, type BaseTextAttributes } from '../text';
 
 	let { color = 'primary', underline = false, ...rest }: LinkAttributes = $props();
 </script>

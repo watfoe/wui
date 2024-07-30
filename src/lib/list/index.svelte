@@ -2,8 +2,7 @@
 	import { type SurfaceAttributes } from '../surface';
 	import type { WuiColor, WuiListMarker, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface ListAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
+	export interface ListAttributes extends Omit<SurfaceAttributes<'ul'>, 'element'> {
 		itemcolor?: WuiColor;
 		itemshape?: WuiShape;
 		itemsize?: WuiSize;
@@ -15,7 +14,6 @@
 
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { Surface } from '../surface';
 
 	let {

@@ -1,7 +1,5 @@
 <script context="module" lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
-	export interface FlexAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {}
+	export interface FlexAttributes extends Omit<SurfaceAttributes<'div'>, 'element'> {}
 </script>
 
 <script lang="ts">

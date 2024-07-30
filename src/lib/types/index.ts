@@ -1,16 +1,3 @@
-import type {
-  HTMLAnchorAttributes,
-  HTMLAttributes,
-  HTMLButtonAttributes,
-  HTMLFieldsetAttributes,
-  HTMLFormAttributes,
-  HTMLInputAttributes,
-  HTMLLabelAttributes,
-  HTMLLiAttributes,
-  HTMLTableAttributes,
-  HTMLTextareaAttributes
-} from "svelte/elements";
-
 // TODO: Think about a size multiplier for the sizes
 export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'white' | 'black' | 'inherit';
 export type WuiColorWeight = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
@@ -85,48 +72,3 @@ export interface WuiSurfaceTextAttributes {
 }
 
 export type WuiListMarker = 'disc' | 'circle' | 'square' | 'decimal' | 'decimal-leading-zero' | 'lower-roman' | 'upper-roman' | 'lower-greek' | 'lower-latin' | 'upper-latin' | 'armenian' | 'georgian' | 'lower-alpha' | 'upper-alpha' | 'none';
-
-export type WuiSurfaceHTMLAttributes =
-  | HTMLAnchorAttributes
-  | HTMLButtonAttributes
-  | HTMLAttributes<HTMLDivElement>
-  | HTMLFieldsetAttributes
-  | HTMLFormAttributes
-  | HTMLAttributes<HTMLHeadingElement>
-  | HTMLInputAttributes
-  | HTMLLiAttributes
-  | HTMLLabelAttributes
-  | HTMLAttributes<HTMLOListElement>
-  | HTMLAttributes<HTMLParagraphElement>
-  | HTMLAttributes<HTMLSpanElement>
-  | HTMLAttributes<HTMLTableCellElement>
-  | HTMLAttributes<HTMLTableColElement>
-  | HTMLTableAttributes
-  | HTMLAttributes<HTMLTableRowElement>
-  | HTMLTextareaAttributes
-  | HTMLAttributes<HTMLUListElement>;
-
-export type WuiSurfaceElement =
-  | 'a'
-  | 'button'
-  | 'div'
-  | 'fieldset'
-  | 'form'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'input'
-  | 'li'
-  | 'label'
-  | 'ol'
-  | 'p'
-  | 'span'
-  | 'table'
-  | 'td'
-  | 'textarea'
-  | 'th'
-  | 'tr'
-  | 'ul;'

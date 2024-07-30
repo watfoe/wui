@@ -19,14 +19,19 @@
 	<Text variant="title" size="sm">Avatar</Text>
 	<Playground bind:values>
 		<Row gap="lg">
-			<Avatar color={values.color} variant={values.variant} size={values.size} shape={values.shape}>
+			<Avatar
+				color={values?.color}
+				variant={values?.variant}
+				size={values?.size}
+				shape={values?.shape}
+			>
 				JL
 			</Avatar>
 			<Avatar
-				color={values.color}
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
+				color={values?.color}
+				variant={values?.variant}
+				size={values?.size}
+				shape={values?.shape}
 			/>
 		</Row>
 	</Playground>

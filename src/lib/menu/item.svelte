@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
 	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
-	import type { HTMLLiAttributes } from 'svelte/elements';
-	export interface MenuItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {
+	export interface MenuItemAttributes extends Omit<LikeButtonAttributes<'li'>, 'element'> {
 		selected?: boolean;
 	}
 </script>

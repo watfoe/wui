@@ -1,8 +1,6 @@
 <script context="module" lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
-	export interface ModalAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
+	export interface ModalAttributes extends Omit<SurfaceAttributes<'div'>, 'element'> {
 		divider?: boolean;
 		header?: Snippet;
 		id: string;

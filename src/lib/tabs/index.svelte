@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import { type LikeButtonAttributes } from '../likebutton';
 	import {
 		type WuiColor,
 		type WuiShape,
@@ -8,7 +7,7 @@
 		type WuiVariant
 	} from '$lib/types';
 	import { setContext, untrack, type Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import type { ButtonAttributes } from '$lib/button';
 
 	export interface TabsAttributes {
 		bottomrule?: boolean;
@@ -16,7 +15,7 @@
 		children: Snippet;
 		for: string;
 		gap?: WuiSpacing;
-		navigation?: LikeButtonAttributes<HTMLAttributes<HTMLDivElement>>['navigation'];
+		navigation?: ButtonAttributes['navigation'];
 		size?: WuiSize;
 		shape?: Omit<WuiShape, 'circle' | 'pill'>;
 		selected?: number;

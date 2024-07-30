@@ -35,6 +35,7 @@
 			// @ts-ignore
 			backdrop?.addEventListener('open', open);
 			backdrop?.addEventListener('close', (e) => {
+				// @ts-ignore
 				onclose?.(e);
 			});
 

@@ -1,9 +1,8 @@
 <script context="module" lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface RadioAttributes
-		extends Omit<SurfaceAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element' | 'textvariant'> {
+		extends Omit<SurfaceAttributes<'input'>, 'element' | 'textvariant' | 'size'> {
 		checked?: boolean;
 		indicator?: Snippet | string;
 		label?: Snippet | string;
@@ -24,7 +23,6 @@
 	import { Surface, type SurfaceAttributes } from '../surface';
 	import { getContext, type Snippet } from 'svelte';
 	import { Icon } from '$lib/icon';
-	import { on } from 'svelte/events';
 
 	let {
 		// Radio attributes

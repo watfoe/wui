@@ -1,8 +1,7 @@
 <script context="module" lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	export interface CheckboxAttributes
-		extends Omit<SurfaceAttributes<Omit<HTMLInputAttributes, 'size'>>, 'element' | 'textvariant'> {
+		extends Omit<SurfaceAttributes<'input'>, 'element' | 'textvariant' | 'size'> {
 		checked?: boolean;
 		label?: Snippet | string;
 		size?: WuiSize;

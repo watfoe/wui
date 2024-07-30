@@ -1,8 +1,7 @@
 <script context="module" lang="ts">
 	import { type WuiColor, type WuiShape, type WuiVariant } from '$lib/types';
 	import type { Snippet } from 'svelte';
-	export interface BadgeAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element'> {
+	export interface BadgeAttributes extends Omit<SurfaceAttributes<'div'>, 'element'> {
 		'aria-label'?: string;
 		children: Snippet;
 		content?: Snippet | string | number;
@@ -25,7 +24,6 @@
 <script lang="ts">
 	import './style.css';
 	import { Surface, type SurfaceAttributes } from '../surface';
-	import type { HTMLAttributes } from 'svelte/elements';
 	let {
 		content,
 		children,

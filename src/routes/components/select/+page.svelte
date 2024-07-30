@@ -20,12 +20,12 @@
 	<Text variant="title" size="sm">Select</Text>
 	<Playground bind:values>
 		<Select
-			color={values.color}
+			color={values?.color}
 			label="Select a color"
-			variant={values.variant}
-			size={values.size}
-			shape={values.shape}
-			disabled={values.disabled}
+			variant={values?.variant}
+			size={values?.size}
+			shape={values?.shape}
+			disabled={values?.disabled}
 			width={300}
 		>
 			<Option value="primary">Primary</Option>

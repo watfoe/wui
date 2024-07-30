@@ -24,24 +24,24 @@
 	<Playground bind:values>
 		<Row gap="lg">
 			<Button
-				color={values.color}
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
-				loading={values.loading}
-				disabled={values.disabled}
+				color={values?.color}
+				variant={values?.variant}
+				size={values?.size}
+				shape={values?.shape}
+				loading={values?.loading}
+				disabled={values?.disabled}
 			>
 				Hello, World!
 			</Button>
 
 			<Button
-				color={values.color}
-				variant={values.variant}
-				size={values.size}
-				shape={values.shape}
+				color={values?.color}
+				variant={values?.variant}
+				size={values?.size}
+				shape={values?.shape}
 				prefix="menu"
-				loading={values.loading}
-				disabled={values.disabled}
+				loading={values?.loading}
+				disabled={values?.disabled}
 			/>
 		</Row>
 	</Playground>

@@ -2,22 +2,17 @@
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { getContext, untrack } from 'svelte';
 
-	export interface ListboxItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {
-		_this?: HTMLLIElement;
+	export interface OptionAttributes extends Omit<LikeButtonAttributes<'li'>, 'element'> {
 		selected?: boolean;
 		value?: string;
 	}
 </script>
 
 <script lang="ts">
-	import { Icon } from '$lib/icon';
 	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
-	import type { HTMLLiAttributes } from 'svelte/elements';
 
 	let {
 		_this = $bindable(),
-		children,
 		color,
 		px = 'sm',
 		selected = $bindable(false),
@@ -30,7 +25,7 @@
 		onclick,
 		onchange,
 		...rest
-	}: ListboxItemAttributes = $props();
+	}: OptionAttributes = $props();
 
 	const ctx: {
 		color: WuiColor;
@@ -85,8 +80,4 @@
 	{px}
 	{style}
 	{...rest}
->
-	{#if children}
-		{@render children()}
-	{/if}
-</LikeButton>
+/>

@@ -1,8 +1,5 @@
 <script context="module" lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	export interface ProgressAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'shape'> {
+	export interface ProgressAttributes extends Omit<SurfaceAttributes<'div'>, 'element' | 'shape'> {
 		shape?: 'circular' | 'linear';
 		determinate?: boolean;
 		value?: number;

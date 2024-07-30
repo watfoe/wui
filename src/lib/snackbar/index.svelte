@@ -2,8 +2,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { WuiFlexAlign, WuiSize } from '$lib/types';
 
-	export interface SnackbarAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'element' | 'prefix'> {
+	export interface SnackbarAttributes extends Omit<SurfaceAttributes<'div'>, 'element' | 'prefix'> {
 		align?: WuiFlexAlign;
 		openned?: boolean;
 		position?:

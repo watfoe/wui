@@ -1,9 +1,7 @@
 <script lang="ts" context="module">
-	import type { HTMLLiAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
-	export interface ListButtonItemAttributes
-		extends Omit<LikeButtonAttributes<HTMLLiAttributes>, 'element'> {
+	export interface ListButtonItemAttributes extends Omit<LikeButtonAttributes<'li'>, 'element'> {
 		selected?: boolean;
 	}
 </script>
@@ -38,7 +36,7 @@
 <LikeButton
 	element="li"
 	aria-selected={selected}
-	tabindex="0"
+	tabindex={0}
 	color={color || ctx.color || (selected ? 'neutral' : altColor)}
 	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
 	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}

@@ -1,29 +1,27 @@
 <script context="module" lang="ts">
-	export interface PopupAttributes
-		extends Omit<SurfaceAttributes<HTMLAttributes<HTMLDivElement>>, 'onclose'>,
-			Omit<BaseBackdropAttributes, 'closeon'> {
-		id?: string;
-		position?:
-			| 'top'
-			| 'bottom'
-			| 'left'
-			| 'right'
-			| 'top-start'
-			| 'top-end'
-			| 'bottom-start'
-			| 'bottom-end'
-			| 'left-start'
-			| 'left-end'
-			| 'right-start'
-			| 'right-end';
-		closeon?: 'mouseout' | 'click-mouseout' | 'click-in' | 'click-in-out' | 'click-out' | 'none';
-	}
+	export type PopupAttributes<E extends keyof svelteHTML.IntrinsicElements> = SurfaceAttributes<E> &
+		Omit<BaseBackdropAttributes, 'closeon'> & {
+			id?: string;
+			position?:
+				| 'top'
+				| 'bottom'
+				| 'left'
+				| 'right'
+				| 'top-start'
+				| 'top-end'
+				| 'bottom-start'
+				| 'bottom-end'
+				| 'left-start'
+				| 'left-end'
+				| 'right-start'
+				| 'right-end';
+			closeon?: 'mouseout' | 'click-mouseout' | 'click-in' | 'click-in-out' | 'click-out' | 'none';
+		};
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements = 'div'">
 	import { Backdrop, type BaseBackdropAttributes } from '../backdrop';
 	import { Surface, type SurfaceAttributes } from '../surface';
-	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
 		backdrop = $bindable(),
@@ -33,7 +31,7 @@
 		colorweight,
 		direction = 'column',
 		textcolor = 'black',
-		element = 'div',
+		element,
 		id,
 		onopen,
 		onclose,
@@ -45,7 +43,7 @@
 		style = '',
 		variant = 'outlined',
 		...rest
-	}: PopupAttributes = $props();
+	}: PopupAttributes<E> = $props();
 
 	const spacing = 2;
 
@@ -188,6 +186,7 @@
 	bind:opened
 >
 	<Surface
+		element={element || 'div'}
 		class="w-popup {_class}"
 		style="left:{rect.left}px;top:{rect.top}px;min-width:{rect.width}px;{style}"
 		colorweight={!colorweight && variant === 'outlined' && color === 'neutral' ? '2' : colorweight}
@@ -201,7 +200,6 @@
 			: undefined}
 		{color}
 		{direction}
-		{element}
 		{role}
 		{p}
 		{shape}

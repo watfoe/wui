@@ -10,7 +10,7 @@
 		WuiVariant
 	} from '$lib/types';
 
-	export interface ListItemAttributes extends Omit<SurfaceAttributes<HTMLLiAttributes>, 'element'> {
+	export interface ListItemAttributes extends Omit<SurfaceAttributes<'li'>, 'element'> {
 		color?: WuiColor;
 		size?: WuiSize;
 		marker?: WuiListMarker;
@@ -49,6 +49,7 @@
 	color={color || ctx.color || 'black'}
 	shape={shape || ctx.shape}
 	style="list-style-type:{marker || ctx.marker || 'circle'};{style}"
+	tabindex={0}
 	variant={variant || ctx.variant}
 	width={ctx.direction === 'row' ? undefined : '100%'}
 	{height}

@@ -53,7 +53,7 @@
 	height={SIZES[size]}
 	p={2}
 	variant={checked && variant === 'outlined' ? 'mixed' : variant}
-	width={`calc(${SIZES[size] + 'px'} * 2 - 6px)`}
+	width={`calc(${SIZES[size] + 'px'} * 2 - 6px)` as WuiSize}
 	{colorweight}
 	{shape}
 >

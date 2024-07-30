@@ -4,7 +4,7 @@
 	import type { Snippet } from 'svelte';
 
 	export interface TooltipAttributes
-		extends Omit<LikeButtonAttributes<Omit<HTMLAttributes<HTMLSpanElement>, 'title'>>, 'element'> {
+		extends Omit<LikeButtonAttributes<'span'>, 'title' | 'element'> {
 		title: Snippet | string;
 		position?:
 			| 'top'
@@ -24,7 +24,6 @@
 
 <script lang="ts">
 	import './style.css';
-	import type { HTMLAttributes } from 'svelte/elements';
 	import { LikeButton, type LikeButtonAttributes } from '$lib/likebutton';
 
 	let {

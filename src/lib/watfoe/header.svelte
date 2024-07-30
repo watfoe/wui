@@ -3,15 +3,13 @@
 	import { Row } from '../row';
 	import { LinkLikeButton } from '../linklikebutton';
 	import { Text } from '../text';
-	import type { FlexAttributes } from '../flex';
 	import type { Snippet } from 'svelte';
-	import { Surface } from '$lib/surface';
+	import { Surface, type SurfaceAttributes } from '$lib/surface';
 	import { Input } from '$lib/input';
 	import { Button } from '$lib/button';
 	import { Tooltip } from '$lib/tooltip';
 
-	interface WatfoeHeaderAttributes extends FlexAttributes {
-		class?: string;
+	interface WatfoeHeaderAttributes extends SurfaceAttributes<'header'> {
 		subtitle?: Snippet | string;
 		urls?: {
 			login?: string;

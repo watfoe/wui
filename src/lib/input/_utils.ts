@@ -36,7 +36,7 @@ export interface InputRules {
   rule?(value: string): void;
 }
 
-export type BaseProps<A = HTMLInputAttributes | HTMLTextareaAttributes> = Omit<SurfaceAttributes<Omit<A, 'size' | 'prefix'>>, 'element' | 'align' | 'justfiy' | 'direction' | 'wrap'> & {
+export type BaseInputAttributes<E extends keyof svelteHTML.IntrinsicElements = 'input'> = Omit<SurfaceAttributes<E>, 'element' | 'align' | 'justfiy' | 'direction' | 'wrap' | 'size' | 'prefix'> & {
   align?: 'left' | 'center' | 'right'; // Controls the alignment of the input value
   error?: ValidationError | string;
   masks?: InputMasks;
