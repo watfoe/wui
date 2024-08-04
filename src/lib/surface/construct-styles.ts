@@ -107,23 +107,27 @@ export function construct_spacing_style(
 }
 
 export function construct_size_class(which: 'h' | 'w', value?: string | number) {
-	// @ts-expect-error
-	let _class = SIZE_MAP[value];
-	if (_class && value !== 'auto') {
-		return `${which}-${_class} `;
-	} else if (value) {
-		return `${which}-0 `;
+	if (value) {
+		// @ts-expect-error
+		let _class = SIZE_MAP[value];
+		if (_class) {
+			return `${which}-${_class} `;
+		} else {
+			return `${which}-0 `;
+		}
 	}
 
 	return '';
 }
 
 export function construct_size_style(which: 'h' | 'w', value?: string | number) {
-	if (typeof value === 'number') {
-		return `--w-${which}:${value}px;`;
-		// @ts-expect-error
-	} else if (!SIZE_MAP[value] && value) {
-		return `--w-${which}:${value};`;
+	// @ts-expect-error
+	if (value && !SIZE_MAP[value]) {
+		if (isNaN(Number(value))) {
+			return `--w-${which}:${value};`;
+		} else {
+			return `--w-${which}:${value}px;`;
+		}
 	}
 
 	return '';

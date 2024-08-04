@@ -2,7 +2,8 @@
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { getContext, untrack } from 'svelte';
 
-	export interface OptionAttributes extends Omit<LikeButtonAttributes<'li'>, 'element'> {
+	export interface OptionAttributes extends Omit<LikeButtonAttributes<'li'>, 'element' | '_this'> {
+		_this?: HTMLLIElement;
 		selected?: boolean;
 		value?: string;
 	}

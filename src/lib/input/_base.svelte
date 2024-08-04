@@ -155,7 +155,7 @@
 	{#if typeof prefix === 'string'}
 		<Icon color="inherit" {size}>{prefix}</Icon>
 	{:else if prefix}
-		<div class="w-input__prefix" style:width="calc(var(--height-{size}) - 4px)">
+		<div class="w-input__prefix" style:min-width="calc(var(--height-{size}) - 6px)">
 			{@render prefix()}
 		</div>
 	{/if}

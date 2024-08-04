@@ -16,7 +16,7 @@
 	import DateInput from './_date.svelte';
 	import EmailInput from './_email.svelte';
 	import PasswordInput from './_password.svelte';
-	import PhoneInput from './_phone.svelte';
+	import TelInput from './_tel.svelte';
 	import SearchInput from './_search.svelte';
 	import { Surface } from '../surface';
 	import type { Snippet } from 'svelte';
@@ -40,6 +40,7 @@
 		mr,
 		mb,
 		ml,
+		size,
 		type = 'text',
 		value = $bindable(),
 		variant = 'outlined',
@@ -69,19 +70,20 @@
 	{width}
 >
 	{#if label}
-		<InputLabel for={id} {color} {description}>{label}</InputLabel>
+		<InputLabel for={id} {color} {description} {size}>{label}</InputLabel>
 	{/if}
 
 	{#if type === 'date'}
-		<DateInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
+		<DateInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{:else if type === 'email'}
-		<EmailInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
+		<EmailInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{:else if type === 'name'}
 		<BaseInput
 			{...rest}
 			{disabled}
 			{id}
 			{color}
+			{size}
 			{variant}
 			autocomplete="name"
 			autocapitalize="words"
@@ -89,13 +91,23 @@
 			bind:value
 		/>
 	{:else if type === 'password'}
-		<PasswordInput secure {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
+		<PasswordInput
+			secure
+			{...rest}
+			{disabled}
+			{id}
+			{color}
+			{size}
+			{variant}
+			bind:error
+			bind:value
+		/>
 	{:else if type === 'tel'}
-		<PhoneInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
+		<TelInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{:else if type === 'search'}
-		<SearchInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
+		<SearchInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{:else}
-		<BaseInput {...rest} {disabled} {id} {color} {variant} bind:error bind:value />
+		<BaseInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{/if}
 
 	{#if error}

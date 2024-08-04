@@ -43,7 +43,7 @@
 	<Playground>
 		<Input type="text" label="Text (default)" />
 		<Input type="email" label="Email" />
-		<Input type="phone" label="Phone" />
+		<Input type="tel" label="Phone" />
 		<Input type="password" label="Password" />
 		<Input type="date" label="Date" />
 		<Input type="search" label="Search" />

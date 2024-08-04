@@ -208,9 +208,10 @@
 >
 	{#if label}
 		<InputLabel
-			{id}
 			color={error ? 'danger' : opened && color === 'neutral' ? 'primary' : color}
+			for={id}
 			{description}
+			{size}
 		>
 			{label}
 		</InputLabel>
@@ -226,6 +227,7 @@
 		color={error ? 'danger' : color}
 		colorweight={colorweight || variant === 'plain' ? '0' : undefined}
 		justify="flex-start"
+		pr={pr || (showindicator ? undefined : pl)}
 		role="combobox"
 		tabindex={0}
 		variant={variant === 'plain' ? 'soft' : variant}

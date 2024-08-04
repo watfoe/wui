@@ -5,7 +5,9 @@ export type WuiSize = 'xs' | 'sm' | 'md' | 'lg'| 'xl';
 export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'mixed' | 'none';
 export type WuiShape = 'rounded' | 'circle' | 'pill' | 'sharp';
 
-export type WuiDimension = WuiSize | '100%' | '75%' | '50%' | '25%' | 'auto' | 'inherit' | number;
+export type WuiDimensionWithCalcOrVar = `calc(${string})` | `var(${string})`;
+export type WuiDimensionWithUnit = `${string}px` | `${string}em` | `${string}rem` | `${string}vh` | `${string}vw` | `${string}vmin` | `${string}vmax` | `${string}%` | `${string}fr`;
+export type WuiDimension = WuiSize | 'auto' | 'inherit' | WuiDimensionWithUnit | WuiDimensionWithCalcOrVar | number;
 
 export type WuiFlexAlign = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
 export type WuiFlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
