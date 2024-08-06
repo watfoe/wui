@@ -7,12 +7,14 @@
 			shape?: WuiShape;
 			disabled?: boolean;
 			loading?: boolean;
+			label?: string;
 		};
 	}
 </script>
 
 <script lang="ts">
 	import { Col } from '$lib/col';
+	import { Input } from '$lib/input';
 	import { List } from '$lib/list';
 	import { ListButtonItem } from '$lib/listbuttonitem';
 	import { Radio } from '$lib/radio';
@@ -149,6 +151,10 @@
 					<Text size="sm" bold>loading</Text>
 					<Switch size="sm" bind:checked={values.loading} />
 				</Row>
+			{/if}
+
+			{#if values.label}
+				<Input bind:value={values.label} label="Label" size="xs" />
 			{/if}
 		</Col>
 	{/if}

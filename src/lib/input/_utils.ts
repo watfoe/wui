@@ -1,7 +1,6 @@
 import type { WuiSize } from '$lib/types';
 import type { SurfaceAttributes } from '../surface';
 import type { Snippet } from 'svelte';
-import type { HTMLInputAttributes, HTMLTextareaAttributes } from 'svelte/elements';
 
 export interface InputMasks {
   cast?: 'string' | 'number';
@@ -85,7 +84,6 @@ export function validate(value: string, rules: InputRules) {
   } else if (!rules?.required && (value.length === 0 || value === undefined)) {
     return;
   }
-
 
   if (rules?.minlength && value.length < rules?.minlength.value) {
     throw new ValidationError(rules?.minlength.message);

@@ -11,7 +11,8 @@
 		variant: 'outlined',
 		size: 'md',
 		shape: 'rounded',
-		disabled: false
+		disabled: false,
+		label: 'Label'
 	});
 </script>
 
@@ -28,7 +29,7 @@
 			size={values?.size}
 			shape={values?.shape}
 			disabled={values?.disabled}
-			label="Label"
+			label={values?.label}
 			placeholder="Placeholder"
 			width={300}
 		/>

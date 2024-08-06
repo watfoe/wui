@@ -15,6 +15,7 @@
 	import { Surface } from '../surface';
 	import { validate, mask, ValidationError, type BaseInputAttributes } from '../input/_utils';
 	import { untrack, type Snippet } from 'svelte';
+	import { LikeButton } from '$lib/likebutton';
 
 	let {
 		_this = $bindable(),
@@ -24,7 +25,7 @@
 		description,
 		disabled,
 		error = $bindable(),
-		gap,
+		gap = 3,
 		height = 89,
 		hidden,
 		label,
@@ -169,22 +170,22 @@
 	{hidden}
 	{width}
 >
-	<!-- This might seem repetitive but with how the Label is defined, it ensures that it
-  doesn't leave an unintended empty description helper text -->
 	{#if label}
-		<InputLabel for={id} {description}>{label}</InputLabel>
+		<InputLabel for={id} {color} {description} {size}>{label}</InputLabel>
 	{/if}
 
-	<Surface
+	<LikeButton
 		align="flex-start"
 		class="w-textarea {_class}"
 		color={error ? 'danger' : color}
+		clickable={false}
 		direction="row"
 		gap="xs"
+		height="auto"
 		justify="space-between"
 		textsize={textsize || size}
 		width="100%"
-		{height}
+		{disabled}
 		{p}
 		{px}
 		{py}
@@ -221,7 +222,6 @@
 			onblur={blur}
 			oninput={input}
 			style:width="100%"
-			style:height="100%"
 			style:font="inherit"
 			bind:this={_this}
 			bind:value
@@ -239,7 +239,7 @@
 				{@render suffix()}
 			</div>
 		{/if}
-	</Surface>
+	</LikeButton>
 
 	{#if error}
 		<InputError {error} />

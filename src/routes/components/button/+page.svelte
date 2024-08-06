@@ -11,7 +11,8 @@
 		size: 'md',
 		shape: 'rounded',
 		disabled: false,
-		loading: false
+		loading: false,
+		label: 'Hello, world!'
 	});
 </script>
 
@@ -31,7 +32,7 @@
 				loading={values?.loading}
 				disabled={values?.disabled}
 			>
-				Hello, World!
+				{values?.label}
 			</Button>
 
 			<Button

@@ -13,7 +13,7 @@
 	let { color, description, for: _for, ...rest }: InputLabelAttributes = $props();
 </script>
 
-<Col align="flex-start" gap={2} px={3} width="100%">
+{#snippet label(px?: number)}
 	<Text
 		{color}
 		colorweight={color === 'neutral' ? '8' : undefined}
@@ -21,21 +21,29 @@
 		for={_for}
 		variant="label"
 		style="line-height:1"
+		{px}
 		{...rest}
 	/>
+{/snippet}
 
-	{#if typeof description === 'string'}
-		<Text
-			color="neutral"
-			colorweight={color === 'neutral' ? '7' : undefined}
-			class="w-input__description"
-			for={_for}
-			size="xs"
-			variant="label"
-		>
-			{description}
-		</Text>
-	{:else if description}
-		{@render description()}
-	{/if}
-</Col>
+{#if description}
+	<Col align="flex-start" gap={2} px={3} width="100%">
+		{@render label()}
+		{#if typeof description === 'string'}
+			<Text
+				color="neutral"
+				colorweight={color === 'neutral' ? '7' : undefined}
+				class="w-input__description"
+				for={_for}
+				size="xs"
+				variant="label"
+			>
+				{description}
+			</Text>
+		{:else}
+			{@render description()}
+		{/if}
+	</Col>
+{:else}
+	{@render label(3)}
+{/if}

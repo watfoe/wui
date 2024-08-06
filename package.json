@@ -1,7 +1,7 @@
 {
 	"name": "@watfoe/wui",
 	"author": "Jimmie Lovell<jimmieomlovell@gmail.com>",
-	"version": "0.0.72",
+	"version": "0.0.73",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/watfoe/wui.git"
@@ -185,7 +185,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^5.0.0-next.208"
+		"svelte": "^5.0.0-next.210"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.2",
@@ -202,7 +202,7 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
 		"publint": "^0.2.9",
-		"svelte": "5.0.0-next.208",
+		"svelte": "5.0.0-next.210",
 		"svelte-check": "^3.8.5",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.4",

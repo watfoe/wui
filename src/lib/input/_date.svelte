@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export interface DateInputAttributes extends BaseInputAttributes {
+	export interface DateInputAttributes extends Omit<BaseInputAttributes, 'prefix' | 'suffix'> {
 		value?: string;
 		defaultmonth?: string;
 		defaultday?: string;
@@ -9,11 +9,12 @@
 </script>
 
 <script lang="ts">
-	import BaseInput from './_base.svelte';
 	import { Row } from '../row';
 	import { Select } from '../select';
 	import { ValidationError, splitDate, type BaseInputAttributes, type DateFormat } from './_utils';
 	import { untrack } from 'svelte';
+	import Option from '$lib/select/option.svelte';
+	import { MONTHS } from '$lib/domains';
 
 	let day = $state('');
 	let month = $state('');
@@ -21,11 +22,29 @@
 
 	let {
 		color,
+		defaultday,
+		defaultmonth,
+		defaultyear,
 		disabled,
 		error = $bindable(),
 		id,
 		format = 'yyyy-mm-dd',
+		height,
+		m,
+		mx,
+		my,
+		mb,
+		ml,
+		mt,
+		mr,
 		name,
+		p,
+		px,
+		py,
+		pb,
+		pl,
+		pt,
+		pr,
 		required,
 		rules,
 		size,
@@ -33,6 +52,7 @@
 		validateon = 'submit',
 		value = $bindable(),
 		variant,
+		width = '100%',
 		...rest
 	}: DateInputAttributes = $props();
 
@@ -134,20 +154,21 @@
 	}
 </script>
 
-<Row align="flex-start" gap="sm" width="100%">
+<Row align="flex-start" gap="sm" {m} {mx} {my} {mb} {ml} {mt} {mr} {p} {pb} {pl} {pt} {pr} {width}>
 	<Select
 		placeholder="Month"
 		preset="month"
-		selected={month}
+		selected={defaultmonth}
 		validateon={validateon === 'input' ? 'change' : validateon}
 		onchange={change}
 		onblur={blur}
 		width="100%"
-		style="min-width:33.3%"
+		style="width:33.3%"
 		bind:value={month}
 		bind:error
 		{color}
 		{disabled}
+		{height}
 		{id}
 		{required}
 		{size}
@@ -155,44 +176,48 @@
 		{variant}
 	/>
 
-	<BaseInput
-		type="number"
-		placeholder="DD"
-		align="center"
-		masks={{ max: 31 }}
-		maxlength={2}
-		rules={{
-			required: required ? 'Please enter a valid date' : undefined
-		}}
-		oninput={change}
+	<Select
+		placeholder="Day"
+		selected={defaultday}
+		validateon={validateon === 'input' ? 'change' : validateon}
+		onchange={change}
 		onblur={blur}
+		width="100%"
+		style="width:33.3%"
 		bind:value={day}
 		bind:error
 		{color}
 		{disabled}
+		{height}
+		{id}
+		{required}
 		{size}
 		{shape}
-		{validateon}
 		{variant}
-	/>
+	>
+		{#each Array.from({ length: month ? MONTHS[month].max : 31 }, (_, i) => i + 1) as day}
+			<Option value={day + ''}>{day}</Option>
+		{/each}
+	</Select>
 
-	<BaseInput
-		type="number"
-		placeholder="YYYY"
-		align="center"
-		maxlength={4}
-		rules={{
-			required: required ? 'Please enter a valid date' : undefined
-		}}
-		oninput={change}
+	<Select
+		placeholder="Year"
+		preset="year"
+		selected={defaultyear}
+		validateon={validateon === 'input' ? 'change' : validateon}
+		onchange={change}
 		onblur={blur}
+		width="100%"
+		style="width:33.3%"
 		bind:value={year}
 		bind:error
 		{color}
 		{disabled}
+		{height}
+		{id}
+		{required}
 		{size}
 		{shape}
-		{validateon}
 		{variant}
 	/>
 

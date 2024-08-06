@@ -210,7 +210,7 @@
 
 <style>
 	:global(.w-popup) {
-		max-height: calc(100vh - calc(var(--space-xs) * 2)) !important;
+		max-height: calc(100vh - calc(var(--space-xs) * 2));
 		overflow-y: auto;
 		position: absolute;
 	}

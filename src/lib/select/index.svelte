@@ -11,7 +11,7 @@
 		name?: HTMLSelectElement['name'];
 		onchange?: HTMLInputAttributes['onchange'];
 		onvalidate?: (error?: ValidationError) => void;
-		preset?: 'country' | 'day' | 'month' | 'gender';
+		preset?: 'country' | 'day' | 'month' | 'gender' | 'year';
 		required?: boolean;
 		selected?: string;
 		showindicator?: boolean;
@@ -29,6 +29,7 @@
 	import DayPreset from './presets/day-preset.svelte';
 	import MonthPreset from './presets/month-preset.svelte';
 	import GenderPreset from './presets/gender-preset.svelte';
+	import YearPreset from './presets/year-preset.svelte';
 	import { Popup } from '../popup';
 	import { Surface } from '../surface';
 	import { validate, type ValidationError } from '../input/_utils';
@@ -261,22 +262,25 @@
 		<Popup
 			role="listbox"
 			variant={variant === 'plain' || variant === 'none' ? 'outlined' : variant}
+			shape={shape === 'circle' || shape === 'pill' ? 'rounded' : shape}
+			style="max-height: calc(var(--height-md) * 13);"
 			onopen={popup_opened}
 			onclose={popup_closed}
 			{id}
 			{color}
-			shape={shape === 'circle' || shape === 'pill' ? 'rounded' : shape}
 		>
 			{#if preset === 'country'}
 				<CountryPreset {selected} />
 			{:else if preset === 'day'}
 				<DayPreset {selected} />
 			{:else if preset === 'month'}
-				<MonthPreset selected={selected + ''} />
+				<MonthPreset {selected} />
 			{:else if preset === 'gender'}
 				<GenderPreset {selected} />
 			{:else if children}
 				{@render children()}
+			{:else if preset === 'year'}
+				<YearPreset {selected} />
 			{/if}
 		</Popup>
 	{/if}
