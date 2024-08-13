@@ -27,9 +27,9 @@
 <LikeButton
 	element="div"
 	height={height || SIZES[size]}
-	style="line-height:1"
 	{px}
 	{shape}
+	{size}
 	{variant}
 	{...rest}
 	bind:_this

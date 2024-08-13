@@ -8,15 +8,31 @@
 			disabled?: boolean;
 			loading?: boolean;
 			label?: string;
+			position?:
+				| 'left-start'
+				| 'top-start'
+				| 'top'
+				| 'top-end'
+				| 'right-start'
+				| 'left'
+				| 'right'
+				| 'left-end'
+				| 'bottom-start'
+				| 'bottom'
+				| 'bottom-end'
+				| 'right-end';
 		};
 	}
 </script>
 
 <script lang="ts">
+	import { Button } from '$lib/button';
+
 	import { Col } from '$lib/col';
 	import { Input } from '$lib/input';
 	import { List } from '$lib/list';
 	import { ListButtonItem } from '$lib/listbuttonitem';
+	import { type MenuAttributes } from '$lib/menu';
 	import { Radio } from '$lib/radio';
 	import { RadioGroup } from '$lib/radiogroup';
 	import { Row, type RowAttributes } from '$lib/row';
@@ -31,6 +47,12 @@
 	const colors: WuiColor[] = ['primary', 'neutral', 'success', 'warning', 'danger', 'black'];
 	const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 	const shapes = ['sharp', 'rounded', 'pill', 'circle'];
+
+	const positions = [
+		['left-start', 'top-start', 'top', 'top-end', 'right-start'],
+		['left', 'right'],
+		['left-end', 'bottom-start', 'bottom', 'bottom-end', 'right-end']
+	];
 </script>
 
 {#snippet listbuttonitem(
@@ -86,7 +108,7 @@
 
 			{#if values.variant}
 				<Col align="flex-start" gap="sm" width="100%">
-					<Text size="sm" bold>variant</Text>
+					<Text size="sm" bold>Variant</Text>
 					<List direction="row" gap="xs">
 						{#each variants as variant}
 							{@render listbuttonitem('variant', variant, values.variant!)}
@@ -97,7 +119,7 @@
 
 			{#if values.color}
 				<Col align="flex-start" gap="sm" width="100%">
-					<Text size="sm" bold>color</Text>
+					<Text size="sm" bold>Color</Text>
 					<RadioGroup direction="row">
 						{#each colors as color}
 							<Tooltip title={color} {color} size="xs">
@@ -119,7 +141,7 @@
 
 			{#if values.size}
 				<Col align="flex-start" gap="sm" width="100%">
-					<Text size="sm" bold>size</Text>
+					<Text size="sm" bold>Size</Text>
 					<List direction="row" gap="xs">
 						{#each sizes as size}
 							{@render listbuttonitem('size', size, values.size!)}
@@ -130,7 +152,7 @@
 
 			{#if values.shape}
 				<Col align="flex-start" gap="sm" width="100%">
-					<Text size="sm" bold>shape</Text>
+					<Text size="sm" bold>Shape</Text>
 					<List direction="row" gap="xs">
 						{#each shapes as shape}
 							{@render listbuttonitem('shape', shape, values.shape!)}
@@ -141,16 +163,37 @@
 
 			{#if values.disabled !== undefined}
 				<Row justify="space-between" width="100%">
-					<Text size="sm" bold>disabled</Text>
+					<Text size="sm" bold>Disabled</Text>
 					<Switch size="sm" bind:checked={values.disabled} />
 				</Row>
 			{/if}
 
 			{#if values.loading !== undefined}
 				<Row justify="space-between" width="100%">
-					<Text size="sm" bold>loading</Text>
+					<Text size="sm" bold>Loading</Text>
 					<Switch size="sm" bind:checked={values.loading} />
 				</Row>
+			{/if}
+
+			{#if values.position}
+				<Col align="center" justify="center" gap="sm" width="450px">
+					<Text align="left" size="sm" width="100%" bold>Position</Text>
+					{#each positions as row}
+						<Row justify="space-between" width="100%">
+							{#each row as position}
+								<Button
+									color={position === values?.position ? 'primary' : 'neutral'}
+									size="xs"
+									variant={position === values?.position ? 'solid' : 'outlined'}
+									width="86px"
+									onclick={() => (values.position = position as MenuAttributes['position'])}
+								>
+									{position}
+								</Button>
+							{/each}
+						</Row>
+					{/each}
+				</Col>
 			{/if}
 
 			{#if values.label}

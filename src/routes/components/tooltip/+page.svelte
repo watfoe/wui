@@ -2,28 +2,25 @@
 	import { Col } from '$lib/col';
 	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
 	import { Text } from '$lib/text';
-	import { Progress } from '$lib/progress';
+	import { Tooltip } from '$lib/tooltip';
+	import { Button } from '$lib/button';
 
 	let values: PlaygroundAttributes['values'] = $state({
 		color: 'primary',
 		size: 'md',
-		variant: 'soft'
+		label: 'This is a tooltip'
 	});
 </script>
 
 <svelte:head>
-	<title>Wui Progress Component</title>
+	<title>Wui Tooltip Component</title>
 </svelte:head>
 
 <Col align="flex-start" gap="md" width="100%">
-	<Text variant="heading" size="lg">Progress</Text>
+	<Text variant="heading" size="lg">Tooltip</Text>
 	<Playground bind:values>
-		<Progress
-			shape="circular"
-			color={values?.color}
-			size={values?.size}
-			variant={values?.variant}
-		/>
-		<Progress shape="linear" color={values?.color} size={values?.size} variant={values?.variant} />
+		<Tooltip color={values?.color} size={values?.size} title={values?.label!}>
+			<Button>Hover to show tooltip</Button>
+		</Tooltip>
 	</Playground>
 </Col>

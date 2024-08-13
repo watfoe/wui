@@ -1,37 +1,41 @@
-<script>
+<script lang="ts">
 	import { Col } from '$lib/col';
 	import { Button } from '$lib/button';
 	import { Divider } from '$lib/divider';
 	import { Menu, MenuItem } from '$lib/menu';
-	import { Row } from '$lib/row';
+	import { Text } from '$lib/text';
+	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
 
-	const positions = [
-		['left-start', 'top-start', 'top', 'top-end', 'right-start'],
-		['left', 'right'],
-		['left-end', 'bottom-start', 'bottom', 'bottom-end', 'right-end']
-	];
+	let values: PlaygroundAttributes['values'] = $state({
+		color: 'neutral',
+		size: 'md',
+		shape: 'rounded',
+		variant: 'outlined',
+		position: 'left-start'
+	});
 </script>
 
-{#snippet menu(position)}
-	<Menu id="{position}-menu" {position}>
-		<MenuItem prefix="home">Home</MenuItem>
-		<MenuItem prefix="apps" selected>Dashboard</MenuItem>
-		<MenuItem prefix="settings">Settings</MenuItem>
-		<Divider colorweight="2" />
-		<MenuItem prefix="logout" color="danger">Logout</MenuItem>
-	</Menu>
-{/snippet}
+<svelte:head>
+	<title>Wui Menu Component</title>
+</svelte:head>
 
-<Col align="center" justify="center" gap="lg">
-	{#each positions as row}
-		<Row justify="space-between" width={840}>
-			{#each row as position}
-				<Button anchorfor="{position}-menu" class="button" style="text-transform:capitalize">
-					{position}
-				</Button>
+<Col align="flex-start" gap="md" width="100%">
+	<Text variant="heading" size="lg">Menu</Text>
+	<Playground bind:values>
+		<Button anchorfor="{values?.position}-menu">Show Menu</Button>
 
-				{@render menu(position)}
-			{/each}
-		</Row>
-	{/each}
+		<Menu
+			id="{values?.position}-menu"
+			color={values?.color}
+			shape={values?.shape}
+			variant={values?.variant}
+			position={values?.position}
+		>
+			<MenuItem prefix="home">Home</MenuItem>
+			<MenuItem prefix="apps" selected>Dashboard</MenuItem>
+			<MenuItem prefix="settings">Settings</MenuItem>
+			<Divider colorweight="2" />
+			<MenuItem prefix="logout" color="danger">Logout</MenuItem>
+		</Menu>
+	</Playground>
 </Col>

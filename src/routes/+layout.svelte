@@ -15,7 +15,6 @@
 			{ name: 'Checkbox', path: '/components/checkbox' },
 			{ name: 'Form', path: '/components/form' },
 			{ name: 'Input', path: '/components/input' },
-			{ name: 'Listbox', path: '/components/listbox' },
 			{ name: 'Radio', path: '/components/radio' },
 			{ name: 'Select', path: '/components/select' },
 			{ name: 'Switch', path: '/components/switch' },

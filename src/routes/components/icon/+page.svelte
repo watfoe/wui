@@ -2,28 +2,24 @@
 	import { Col } from '$lib/col';
 	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
 	import { Text } from '$lib/text';
-	import { Progress } from '$lib/progress';
+	import { Icon } from '$lib/icon';
 
 	let values: PlaygroundAttributes['values'] = $state({
 		color: 'primary',
 		size: 'md',
-		variant: 'soft'
+		label: 'home'
 	});
 </script>
 
 <svelte:head>
-	<title>Wui Progress Component</title>
+	<title>Wui Icon Component</title>
 </svelte:head>
 
 <Col align="flex-start" gap="md" width="100%">
-	<Text variant="heading" size="lg">Progress</Text>
+	<Text variant="heading" size="lg">Icon</Text>
 	<Playground bind:values>
-		<Progress
-			shape="circular"
-			color={values?.color}
-			size={values?.size}
-			variant={values?.variant}
-		/>
-		<Progress shape="linear" color={values?.color} size={values?.size} variant={values?.variant} />
+		<Icon color={values?.color} size={values?.size}>
+			{values?.label}
+		</Icon>
 	</Playground>
 </Col>

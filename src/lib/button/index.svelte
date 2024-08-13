@@ -8,7 +8,6 @@
 <script lang="ts">
 	import './style.css';
 	import { LikeButton, type LikeButtonAttributes } from '../likebutton';
-	import type { Snippet } from 'svelte';
 
 	let {
 		class: _class,
