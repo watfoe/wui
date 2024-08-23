@@ -35,8 +35,8 @@
 	}: CalendarAttributes = $props();
 
 	let date = new Date();
-	let month_idx = $state(date.getMonth());
-	let year = $state(date.getFullYear());
+	let month_idx = $state(date.getMonth() + '');
+	let year = $state(date.getFullYear() + '');
 	let month = $derived(new Month(parseInt(month_idx), parseInt(year)));
 
 	function prev() {}

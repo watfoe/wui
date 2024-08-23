@@ -1,6 +1,6 @@
 # wui
 
-This is a library of svelte components that feature the implementation of watfoe's design system.
+An ergonomic suite of svelte components that feature the implementation of watfoe design system.
 
 ## subpackages
 

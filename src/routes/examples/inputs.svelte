@@ -93,14 +93,7 @@
 	</Row>
 
 	<Row align="flex-start" gap="md" width="100%">
-		<Input
-			type="search"
-			variant="solid"
-			textvariant="heading"
-			color="warning"
-			label="Search"
-			class="input"
-		/>
+		<Input type="search" variant="solid" color="warning" label="Search" class="input" />
 		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="plain" color="warning" label="Search" class="input" />

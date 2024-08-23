@@ -13,16 +13,16 @@
 			WuiFlexKeys &
 			WuiSurfaceTextAttributes & {
 				_this?: HTMLElement;
-				children?: Snippet;
 				clickable?: boolean;
 				disabled?: boolean;
 				element?: E;
 				justify?: WuiFlexJustify;
 				navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
+				prefix?: Snippet | string;
 			};
 </script>
 
-<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements = 'div'">
+<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements">
 	import './style.css';
 	import '../styles/flex.css';
 	import '../styles/text.css';
