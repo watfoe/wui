@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WuiColor, WuiColorWeight, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 

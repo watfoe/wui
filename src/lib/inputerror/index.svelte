@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export interface InputErrorAttributes extends BaseTextAttributes<'span'> {
 		error: ValidationError | string;
 	}

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { WuiColor, WuiFlexDirection, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	export interface MenuItemAttributes extends Omit<LikeButtonAttributes<'li'>, 'element'> {
 		selected?: boolean;

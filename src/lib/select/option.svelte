@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 	import { getContext, untrack } from 'svelte';
 

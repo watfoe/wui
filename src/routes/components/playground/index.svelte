@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	export interface PlaygroundAttributes extends RowAttributes {
 		values?: {
 			variant?: WuiVariant;

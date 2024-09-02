@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import type { WuiFlexJustify, WuiSize } from '$lib/types';
 
 	export type LikeButtonAttributes<E extends keyof svelteHTML.IntrinsicElements> =

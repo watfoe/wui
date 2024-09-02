@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export type PopupAttributes<E extends keyof svelteHTML.IntrinsicElements> = SurfaceAttributes<E> &
 		Omit<BaseBackdropAttributes, 'closeon'> & {
 			id?: string;

@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export interface LogoAttributes {
 		brand?: 'watfoe' | 'apple' | 'facebook' | 'github' | 'google' | 'microsoft';
 		class?: string;

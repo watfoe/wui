@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import { type LikeButtonAttributes } from '../likebutton';
 
 	export interface SelectAttributes

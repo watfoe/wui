@@ -1,6 +1,6 @@
 <!-- TODO: Should it be a popover instead of a tooltip? -->
 
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { Snippet } from 'svelte';
 
 	export interface TooltipAttributes

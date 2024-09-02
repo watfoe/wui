@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import type { WuiColor, WuiSize, WuiTextWeight } from '$lib/types';
 	import type { Snippet } from 'svelte';
 

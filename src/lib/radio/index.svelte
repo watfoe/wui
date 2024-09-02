@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	export interface RadioAttributes

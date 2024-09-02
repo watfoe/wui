@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export interface DateInputAttributes extends Omit<BaseInputAttributes, 'prefix' | 'suffix'> {
 		value?: string;
 		defaultmonth?: string;
