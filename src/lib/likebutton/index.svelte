@@ -1,8 +1,9 @@
 <script lang="ts" module>
 	import type { WuiFlexJustify, WuiSize } from '$lib/types';
+	import type { SvelteHTMLElements } from 'svelte/elements';
 
-	export type LikeButtonAttributes<E extends keyof svelteHTML.IntrinsicElements> =
-		SurfaceAttributes<E> & {
+	export type LikeButtonAttributes<TagName extends keyof SvelteHTMLElements> =
+		SurfaceAttributes<TagName> & {
 			anchorfor?: string;
 			anchoron?: 'click' | 'mouseover';
 			bold?: boolean;
@@ -15,7 +16,7 @@
 		};
 </script>
 
-<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements = 'button'">
+<script lang="ts" generics="TagName extends keyof SvelteHTMLElements">
 	import { Icon } from '../icon';
 	import { Surface, type SurfaceAttributes } from '../surface';
 	import { untrack, type Snippet } from 'svelte';
@@ -29,7 +30,7 @@
 		color = 'primary',
 		direction = 'row',
 		disabled = false,
-		element,
+		element = 'button',
 		gap = 'sm',
 		height,
 		justify = 'center',
@@ -47,7 +48,7 @@
 		onkeydown,
 		onmouseover,
 		...rest
-	}: LikeButtonAttributes<E> = $props();
+	}: LikeButtonAttributes<TagName> = $props();
 
 	let feedback: HTMLDialogElement;
 	let feedbackExpanded = $state(false);
@@ -154,7 +155,7 @@
 	aria-haspopup={anchorfor ? 'true' : undefined}
 	aria-expanded={anchorfor ? feedbackExpanded : undefined}
 	aria-controls={anchorfor || undefined}
-	element={element || 'button'}
+	{element}
 	px={children ? px : undefined}
 	tabindex={tabindex || 0}
 	textsize={textsize || size}

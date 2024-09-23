@@ -28,11 +28,12 @@
 	element="header"
 	class="watfoe-header {_class}"
 	direction="row"
-	height={60}
+	height={70}
 	justify="space-between"
 	mb="xs"
 	pl="lg"
 	pr="md"
+	pb={10}
 	width="100%"
 	{...rest}
 >

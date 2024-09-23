@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export type TextAreaAttributes = Omit<BaseInputAttributes<'textarea'>, 'id'> & {
 		label?: Snippet | string;
 		name?: string;

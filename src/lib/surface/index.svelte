@@ -6,23 +6,23 @@
 		WuiSurfaceTextAttributes
 	} from '$lib/types';
 	import { type Snippet } from 'svelte';
+	import type { SvelteHTMLElements } from 'svelte/elements';
 
-	export type SurfaceAttributes<E extends keyof svelteHTML.IntrinsicElements> =
-		SvelteHTMLElements[E] &
+	export type SurfaceAttributes<TagName extends keyof SvelteHTMLElements> =
+		SvelteHTMLElements[TagName] &
 			WuiSurface &
 			WuiFlexKeys &
 			WuiSurfaceTextAttributes & {
 				_this?: HTMLElement;
 				clickable?: boolean;
 				disabled?: boolean;
-				element?: E;
+				element?: keyof SvelteHTMLElements;
 				justify?: WuiFlexJustify;
-				navigation?: 'vertical' | 'horizontal' | 'mixed' | 'none';
 				prefix?: Snippet | string;
 			};
 </script>
 
-<script lang="ts" generics="E extends keyof svelteHTML.IntrinsicElements">
+<script lang="ts" generics="TagName extends keyof SvelteHTMLElements">
 	import './style.css';
 	import '../styles/flex.css';
 	import '../styles/text.css';
@@ -37,12 +37,11 @@
 		construct_spacing_style,
 		construct_flex_gap_style
 	} from './construct-styles';
-	import type { SvelteHTMLElements } from 'svelte/elements';
 
 	let {
 		_this = $bindable(),
 		align,
-		element,
+		element = 'div',
 		color,
 		colorweight,
 		class: _class,
@@ -82,7 +81,7 @@
 		width,
 		wrap,
 		...rest
-	}: SurfaceAttributes<E> = $props();
+	}: SurfaceAttributes<TagName> = $props();
 </script>
 
 <!-- Svelte throws warning on self-closing tags -->
@@ -141,7 +140,7 @@
 	/>
 {:else}
 	<svelte:element
-		this={element || 'div'}
+		this={element}
 		class="{construct_flex_class(direction, justify, align, self, wrap, gap)}{construct_size_class(
 			'h',
 			height

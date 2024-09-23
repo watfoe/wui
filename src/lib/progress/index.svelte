@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export interface ProgressAttributes
 		extends Omit<SurfaceAttributes<'div'>, 'element' | 'shape' | 'width'> {
 		shape?: 'circular' | 'linear';

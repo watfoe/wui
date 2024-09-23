@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { Day } from '$lib/domains';
 	import { LikeButton } from '$lib/likebutton';
 	import { Text, type TextAttributes } from '$lib/text';
@@ -36,7 +36,7 @@
 	});
 </script>
 
-{#snippet header_snip(showlabel)}
+{#snippet header_snip(showlabel: CalendarDayCellAttributes['showlabel'])}
 	{#if showlabel === 'short'}
 		{day.short()}
 	{:else if showlabel === 'abbr'}

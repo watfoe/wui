@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import { type WuiColor, type WuiShape, type WuiVariant } from '$lib/types';
 	import type { Snippet } from 'svelte';
 	export interface BadgeAttributes extends Omit<SurfaceAttributes<'div'>, 'element'> {

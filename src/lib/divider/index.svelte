@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	export interface DividerAttributes extends Omit<SurfaceAttributes<'div'>, 'element' | 'size'> {
 		size?: number;
 		vertical?: boolean;

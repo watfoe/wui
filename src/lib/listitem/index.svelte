@@ -1,5 +1,4 @@
-<script lang="ts" context="module">
-	import type { HTMLLiAttributes } from 'svelte/elements';
+<script lang="ts" module>
 	import type {
 		WuiColor,
 		WuiDimension,
