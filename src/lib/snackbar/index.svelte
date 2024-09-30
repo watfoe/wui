@@ -32,7 +32,7 @@
 	import { Surface, type SurfaceAttributes } from '../surface';
 
 	let {
-		align = 'flex-start',
+		align = 'start',
 		children,
 		class: _class = '',
 		color = 'neutral',
@@ -87,7 +87,7 @@
 		{@render prefix()}
 	{/if}
 
-	<Col align="flex-start" justify="flex-start" gap={3} width="100%">
+	<Col align="start" justify="start" gap={3} width="100%">
 		{#if title}
 			<Text color="inherit" variant="heading" bold={false} {size}>
 				{title}

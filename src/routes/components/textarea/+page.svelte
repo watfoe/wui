@@ -19,7 +19,7 @@
 	<title>Wui Textarea Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">TextArea</Text>
 	<Playground bind:values>
 		<TextArea

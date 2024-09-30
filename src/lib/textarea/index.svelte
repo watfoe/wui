@@ -153,11 +153,11 @@
 </script>
 
 <Surface
-	align="flex-start"
+	align="start"
 	element="fieldset"
 	direction="column"
 	class="w-textarea__root w-textarea--{color} {_class}"
-	justify="flex-start"
+	justify="start"
 	{disabled}
 	{gap}
 	{m}
@@ -175,14 +175,14 @@
 	{/if}
 
 	<LikeButton
-		align="flex-start"
+		align="start"
 		class="w-textarea {_class}"
-		color={error ? 'danger' : color}
+		color={error ? 'error' : color}
 		clickable={false}
 		direction="row"
 		gap="xs"
 		height="auto"
-		justify="space-between"
+		justify="between"
 		textsize={textsize || size}
 		width="100%"
 		{disabled}

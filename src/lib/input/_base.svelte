@@ -189,7 +189,7 @@
 		element="div"
 		align="center"
 		class="w-input {_class}"
-		color={error ? 'danger' : disabled ? 'neutral' : color}
+		color={error ? 'error' : disabled ? 'neutral' : color}
 		colorweight={colorweight ||
 			(!error && color === 'neutral' && variant === 'outlined'
 				? '4'
@@ -199,7 +199,7 @@
 		direction="row"
 		gap="xs"
 		height={height || size}
-		justify="space-between"
+		justify="between"
 		pr={typeof suffix === 'function' ? undefined : pr || px}
 		pl={typeof prefix === 'function' ? undefined : pl || px}
 		textsize={textsize || size}
@@ -229,7 +229,7 @@
 	<Surface
 		element="input"
 		class="w-input{_class ? ` ${_class}` : ''}"
-		color={error ? 'danger' : disabled ? 'neutral' : color}
+		color={error ? 'error' : disabled ? 'neutral' : color}
 		colorweight={colorweight || (variant === 'plain' ? '0' : undefined)}
 		height={height || size}
 		pr={pr || px}

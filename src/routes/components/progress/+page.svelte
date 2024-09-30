@@ -15,7 +15,7 @@
 	<title>Wui Progress Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Progress</Text>
 	<Playground bind:values>
 		<Progress

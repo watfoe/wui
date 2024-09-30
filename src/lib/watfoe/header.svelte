@@ -29,7 +29,7 @@
 	class="watfoe-header {_class}"
 	direction="row"
 	height={70}
-	justify="space-between"
+	justify="between"
 	mb="xs"
 	pl="lg"
 	pr="md"
@@ -59,7 +59,7 @@
 		class="watfoe-header__search"
 	/>
 
-	<Row justify="flex-end" gap="sm">
+	<Row justify="end" gap="sm">
 		<Tooltip title="Watfoe Apps" size="xs">
 			<Button color="black" shape="pill" variant="plain" prefix="apps" />
 		</Tooltip>

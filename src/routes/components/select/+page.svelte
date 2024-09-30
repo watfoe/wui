@@ -16,7 +16,7 @@
 	});
 </script>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="title" size="sm">Select</Text>
 	<Playground bind:values>
 		<Select
@@ -32,7 +32,7 @@
 			<Option value="secondary">Secondary</Option>
 			<Option value="success">Success</Option>
 			<Option value="warning">Warning</Option>
-			<Option value="danger">Danger</Option>
+			<Option value="error">error</Option>
 		</Select>
 	</Playground>
 </Col>

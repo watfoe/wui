@@ -15,7 +15,7 @@
 </script>
 
 <TabPanel gap="lg">
-	<Row align="flex-start" gap="md" width="100%">
+	<Row align="start" gap="md" width="100%">
 		<Input
 			type="text"
 			variant="solid"
@@ -29,7 +29,7 @@
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
 
-	<Row align="flex-start" gap="md" width="100%">
+	<Row align="start" gap="md" width="100%">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
 		<Input type="email" variant="outlined" label="Email" class="input" validateon="input" required>
 			{#snippet suffix()}
@@ -50,7 +50,7 @@
 		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
 	</Row>
 
-	<Row align="flex-start" gap="md" width="100%">
+	<Row align="start" gap="md" width="100%">
 		<Input
 			type="password"
 			variant="solid"
@@ -92,14 +92,14 @@
 		/>
 	</Row>
 
-	<Row align="flex-start" gap="md" width="100%">
+	<Row align="start" gap="md" width="100%">
 		<Input type="search" variant="solid" color="warning" label="Search" class="input" />
 		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="plain" color="warning" label="Search" class="input" />
 	</Row>
 
-	<Row align="flex-start" gap="md" width="100%">
+	<Row align="start" gap="md" width="100%">
 		<Input
 			type="date"
 			variant="solid"
@@ -129,7 +129,7 @@
 		<Radio label="Neutral medium radio" name="radio" size="md" />
 		<Radio label="Large success radio" name="radio" size="lg" color="success" />
 		<Radio label="Warning radio" name="radio" color="warning" />
-		<Radio label="Danger radio" name="radio" color="danger" />
+		<Radio label="error radio" name="radio" color="error" />
 
 		<RadioGroup label="This is a radio group" description="And this is the radio group description">
 			<Radio name="acctype" label="Personal" />
@@ -149,7 +149,7 @@
 		<Checkbox label="Neutral medium checkbox" name="checkbox" size="md" />
 		<Checkbox label="Large success checkbox" name="checkbox" size="lg" color="success" />
 		<Checkbox label="Warning checkbox" name="checkbox" color="warning" />
-		<Checkbox label="Danger checkbox" name="checkbox" color="danger" />
+		<Checkbox label="error checkbox" name="checkbox" color="error" />
 	</Row>
 
 	<Row gap="md" width="100%">

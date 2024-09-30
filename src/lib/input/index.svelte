@@ -52,7 +52,7 @@
 </script>
 
 <Surface
-	align="flex-start"
+	align="start"
 	element="fieldset"
 	direction="column"
 	class="w-input__root w-input--{color} {_class}"

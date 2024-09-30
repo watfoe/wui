@@ -18,13 +18,13 @@
 		<MenuItem prefix="apps" selected>Dashboard</MenuItem>
 		<MenuItem prefix="settings">Settings</MenuItem>
 		<Divider colorweight="2" />
-		<MenuItem prefix="logout" color="danger">Logout</MenuItem>
+		<MenuItem prefix="logout" color="error">Logout</MenuItem>
 	</Menu>
 {/snippet}
 
 <TabPanel align="center" justify="center" gap="lg">
 	{#each positions as row}
-		<Row justify="space-between" width={840}>
+		<Row justify="between" width={840}>
 			{#each row as position}
 				<Button anchorfor="{position}-menu" class="button" style="text-transform:capitalize">
 					{position}

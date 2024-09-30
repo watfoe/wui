@@ -198,24 +198,25 @@ export function compute_color_value(color: WuiColor, weight?: WuiColorWeight) {
 
 export function construct_flex_class(
 	direction?: WuiFlexDirection,
-	justify?: WuiFlexJustify,
-	align?: WuiFlexAlign,
+	justify: WuiFlexJustify = 'start',
+	align: WuiFlexAlign = 'center',
 	self?: WuiFlexAlignSelf,
 	wrap?: WuiFlexWrap,
 	gap?: WuiFlexGap
 ) {
 	if (direction || justify || align || wrap || gap) {
 		let _class = 'f';
-		_class += direction ? abbr(direction) : 'r';
-		_class += wrap ? '-w' : '';
-		_class += justify ? `-${abbr(justify)}` : '-fs';
-		_class += align ? ` fi-${abbr(align)}` : ' fi-c';
-		_class += self ? ` fs-${abbr(self)}` : '';
-		_class += gap ? ` fg-${typeof gap === 'number' ? '0' : gap}` : '';
+		if (direction) _class += ` f${abbr(direction)}`;
+		if (wrap) _class += wrap ? ' f-wrap' : '';
+		if (justify) _class += ` fj${abbr(justify)}`;
+		if (align) _class += ` fi${abbr(align)}`;
+		if (self) _class += ` fs${abbr(self)}`;
+		if (gap) _class += ` fg-${typeof gap === 'number' ? '0' : gap}`;
 		return _class + ' ';
 	} else if (self) {
-		return `fs-${abbr(self)} `;
+		return `fs${abbr(self)} `;
 	}
+
 	return '';
 }
 

@@ -42,12 +42,4 @@
 	});
 </script>
 
-<Surface
-	element="ul"
-	align="flex-start"
-	justify="flex-start"
-	{color}
-	{shape}
-	{direction}
-	{...rest}
-/>
+<Surface element="ul" align="start" justify="start" {color} {shape} {direction} {...rest} />

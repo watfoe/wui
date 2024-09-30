@@ -15,7 +15,7 @@
 	<title>Wui Icon Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Icon</Text>
 	<Playground bind:values>
 		<Icon color={values?.color} size={values?.size}>

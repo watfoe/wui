@@ -44,7 +44,7 @@
 	let { values = $bindable(), children, ...rest }: PlaygroundAttributes = $props();
 
 	const variants = ['solid', 'outlined', 'soft', 'plain', 'mixed'];
-	const colors: WuiColor[] = ['primary', 'neutral', 'success', 'warning', 'danger', 'black'];
+	const colors: WuiColor[] = ['primary', 'neutral', 'success', 'warning', 'error', 'black'];
 	const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 	const shapes = ['sharp', 'rounded', 'pill', 'circle'];
 
@@ -95,7 +95,7 @@
 
 	{#if values}
 		<Col
-			align="flex-start"
+			align="start"
 			color="primary"
 			colorweight="0"
 			textcolor="black"
@@ -107,7 +107,7 @@
 			<Text variant="heading" size="sm">Playground</Text>
 
 			{#if values.variant}
-				<Col align="flex-start" gap="sm" width="100%">
+				<Col align="start" gap="sm" width="100%">
 					<Text size="sm" bold>Variant</Text>
 					<List direction="row" gap="xs">
 						{#each variants as variant}
@@ -118,7 +118,7 @@
 			{/if}
 
 			{#if values.color}
-				<Col align="flex-start" gap="sm" width="100%">
+				<Col align="start" gap="sm" width="100%">
 					<Text size="sm" bold>Color</Text>
 					<RadioGroup direction="row">
 						{#each colors as color}
@@ -140,7 +140,7 @@
 			{/if}
 
 			{#if values.size}
-				<Col align="flex-start" gap="sm" width="100%">
+				<Col align="start" gap="sm" width="100%">
 					<Text size="sm" bold>Size</Text>
 					<List direction="row" gap="xs">
 						{#each sizes as size}
@@ -151,7 +151,7 @@
 			{/if}
 
 			{#if values.shape}
-				<Col align="flex-start" gap="sm" width="100%">
+				<Col align="start" gap="sm" width="100%">
 					<Text size="sm" bold>Shape</Text>
 					<List direction="row" gap="xs">
 						{#each shapes as shape}
@@ -162,14 +162,14 @@
 			{/if}
 
 			{#if values.disabled !== undefined}
-				<Row justify="space-between" width="100%">
+				<Row justify="between" width="100%">
 					<Text size="sm" bold>Disabled</Text>
 					<Switch size="sm" bind:checked={values.disabled} />
 				</Row>
 			{/if}
 
 			{#if values.loading !== undefined}
-				<Row justify="space-between" width="100%">
+				<Row justify="between" width="100%">
 					<Text size="sm" bold>Loading</Text>
 					<Switch size="sm" bind:checked={values.loading} />
 				</Row>
@@ -179,7 +179,7 @@
 				<Col align="center" justify="center" gap="sm" width="450px">
 					<Text align="left" size="sm" width="100%" bold>Position</Text>
 					{#each positions as row}
-						<Row justify="space-between" width="100%">
+						<Row justify="between" width="100%">
 							{#each row as position}
 								<Button
 									color={position === values?.position ? 'primary' : 'neutral'}

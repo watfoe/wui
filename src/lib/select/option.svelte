@@ -67,7 +67,7 @@
 		? 'black'
 		: color || ctx.color || 'black'}
 	element="li"
-	justify="flex-start"
+	justify="start"
 	navigation="vertical"
 	role="option"
 	size={size || ctx.size || 'md'}

@@ -1,5 +1,5 @@
 // TODO: Think about a size multiplier for the sizes
-export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'danger' | 'white' | 'black' | 'inherit';
+export type WuiColor = 'primary' | 'neutral' | 'success' | 'warning' | 'error' | 'white' | 'black' | 'inherit';
 export type WuiColorWeight = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 export type WuiSize = 'xs' | 'sm' | 'md' | 'lg'| 'xl';
 export type WuiVariant = 'solid' | 'soft' | 'outlined' | 'plain' | 'mixed' | 'none';
@@ -9,10 +9,10 @@ export type WuiDimensionWithCalcOrVar = `calc(${string})` | `var(${string})`;
 export type WuiDimensionWithUnit = `${string}px` | `${string}em` | `${string}rem` | `${string}vh` | `${string}vw` | `${string}vmin` | `${string}vmax` | `${string}%` | `${string}fr`;
 export type WuiDimension = WuiSize | 'auto' | 'inherit' | WuiDimensionWithUnit | WuiDimensionWithCalcOrVar | number;
 
-export type WuiFlexAlign = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
+export type WuiFlexAlign = 'start' | 'end' | 'center' | 'auto' | 'normal';
 export type WuiFlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
-export type WuiFlexJustify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
-export type WuiFlexAlignSelf = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+export type WuiFlexJustify = 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'auto' | 'normal';
+export type WuiFlexAlignSelf = 'start' | 'end' | 'center' | 'baseline' | 'stretch' | 'auto' | 'normal';
 export type WuiFlexGap = WuiSpacing;
 export type WuiFlexWrap = 'wrap' | 'nowrap';
 

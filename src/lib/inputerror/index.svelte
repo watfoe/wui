@@ -19,6 +19,6 @@
 	}
 </script>
 
-<Text color="danger" class="w-input__error" size="sm" px={3} variant="body" {...rest}>
+<Text color="error" class="w-input__error" size="sm" px={3} variant="body" {...rest}>
 	{error_to_string(error)}
 </Text>

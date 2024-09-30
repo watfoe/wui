@@ -19,7 +19,7 @@
 	<title>Wui Listbox Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">List</Text>
 	<Playground bind:values>
 		<List
@@ -42,11 +42,11 @@
 		<List
 			variant="outlined"
 			p="sm"
-			color="danger"
+			color="error"
 			gap="md"
 			shape="rounded"
 			itemvariant="solid"
-			itemcolor="danger"
+			itemcolor="error"
 			itemshape="pill"
 			itemsize="sm"
 		>
@@ -54,7 +54,7 @@
 			<ListButtonItem prefix="check">Item 2</ListButtonItem>
 			<ListButtonItem color="black">Item 3</ListButtonItem>
 			<ListButtonItem color="primary">Item 4</ListButtonItem>
-			<Divider color="danger" />
+			<Divider color="error" />
 			<List
 				direction="row"
 				variant="soft"

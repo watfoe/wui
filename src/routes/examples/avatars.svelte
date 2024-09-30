@@ -10,7 +10,7 @@
 		<Avatar color="neutral" />
 		<Avatar color="success" alt="Jimmie Lovell" />
 		<Avatar color="warning">JL</Avatar>
-		<Avatar color="danger" />
+		<Avatar color="error" />
 	</Row>
 
 	<Row gap="md" width="100%">
@@ -20,7 +20,7 @@
 		<Avatar variant="plain" />
 	</Row>
 
-	<AvatarGroup color="danger" shape="rounded">
+	<AvatarGroup color="error" shape="rounded">
 		<Avatar />
 		<Avatar alt="Jimmie Lovell" />
 		<Avatar>JL</Avatar>

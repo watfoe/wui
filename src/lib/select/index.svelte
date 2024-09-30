@@ -191,8 +191,8 @@
 
 <Surface
 	element="div"
-	align="flex-start"
-	justify="flex-start"
+	align="start"
+	justify="start"
 	class="w-select {_class}"
 	direction="column"
 	{gap}
@@ -209,7 +209,7 @@
 >
 	{#if label}
 		<InputLabel
-			color={error ? 'danger' : opened && color === 'neutral' ? 'primary' : color}
+			color={error ? 'error' : opened && color === 'neutral' ? 'primary' : color}
 			for={id}
 			{description}
 			{size}
@@ -225,9 +225,9 @@
 		anchorfor={disabled ? undefined : id}
 		aria-labelledby={label ? id : undefined}
 		class="w-select__combobox"
-		color={error ? 'danger' : color}
+		color={error ? 'error' : color}
 		colorweight={colorweight || variant === 'plain' ? '0' : undefined}
-		justify="flex-start"
+		justify="start"
 		pr={pr || (showindicator ? undefined : pl)}
 		role="combobox"
 		tabindex={0}

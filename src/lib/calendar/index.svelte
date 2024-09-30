@@ -45,7 +45,7 @@
 </script>
 
 {#if controls}
-	<Row justify="space-between" gap="lg" width="100%">
+	<Row justify="between" gap="lg" width="100%">
 		{#if controls.month || controls.year}
 			<Row color="neutral" shape="rounded" variant="soft">
 				{#if controls.month}

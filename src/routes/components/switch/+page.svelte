@@ -17,7 +17,7 @@
 	<title>Wui Switch Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Switch</Text>
 	<Playground bind:values>
 		<Switch

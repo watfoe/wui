@@ -61,7 +61,7 @@
 		class="w-modal w-modal--{position} {_class}"
 		direction="column"
 		element="div"
-		justify="flex-start"
+		justify="start"
 		role="dialog"
 		variant="solid"
 		onclick={click}
@@ -72,7 +72,7 @@
 		{...rest}
 	>
 		{#if showclose || title || header}
-			<Row justify="space-between" width="100%">
+			<Row justify="between" width="100%">
 				{#if header}
 					{@render header()}
 				{:else if title}

@@ -31,7 +31,7 @@
 		<Badge position="bottom-right" color="warning">
 			<Icon>mail</Icon>
 		</Badge>
-		<Badge position="bottom-left" color="danger">
+		<Badge position="bottom-left" color="error">
 			<Icon>mail</Icon>
 		</Badge>
 
@@ -57,7 +57,7 @@
 			<Icon>mail</Icon>
 		</Badge>
 
-		<Badge content="200" max={99} color="danger">
+		<Badge content="200" max={99} color="error">
 			<Icon>mail</Icon>
 		</Badge>
 	</Row>
@@ -90,7 +90,7 @@
 	<Row gap="lg" width="100%">
 		<Chip>Chip</Chip>
 		<Chip color="black">Chip</Chip>
-		<Chip color="danger" variant="solid">Chip</Chip>
+		<Chip color="error" variant="solid">Chip</Chip>
 		<Chip color="warning" variant="mixed">Chip</Chip>
 	</Row>
 
@@ -113,11 +113,11 @@
 		<List
 			variant="outlined"
 			p="sm"
-			color="danger"
+			color="error"
 			gap="md"
 			shape="rounded"
 			itemvariant="solid"
-			itemcolor="danger"
+			itemcolor="error"
 			itemshape="pill"
 			itemsize="sm"
 		>
@@ -125,7 +125,7 @@
 			<ListButtonItem prefix="check">Item 2</ListButtonItem>
 			<ListButtonItem color="black">Item 3</ListButtonItem>
 			<ListButtonItem color="primary">Item 4</ListButtonItem>
-			<Divider color="danger" />
+			<Divider color="error" />
 			<List
 				direction="row"
 				variant="soft"

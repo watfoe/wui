@@ -54,15 +54,15 @@
 	</Row>
 
 	<Row gap="md" width="100%">
-		<Button variant="solid" color="danger" class="button">Danger Solid</Button>
-		<Button variant="outlined" color="danger" class="button">Danger Outline</Button>
-		<Button variant="soft" color="danger" class="button">Danger Soft</Button>
-		<Button variant="plain" color="danger" class="button">Danger Plain</Button>
+		<Button variant="solid" color="error" class="button">error Solid</Button>
+		<Button variant="outlined" color="error" class="button">error Outline</Button>
+		<Button variant="soft" color="error" class="button">error Soft</Button>
+		<Button variant="plain" color="error" class="button">error Plain</Button>
 
-		<Button variant="solid" color="danger" prefix="person" />
-		<Button variant="outlined" color="danger" prefix="person" />
-		<Button variant="soft" color="danger" prefix="person" />
-		<Button variant="plain" color="danger" prefix="person" />
+		<Button variant="solid" color="error" prefix="person" />
+		<Button variant="outlined" color="error" prefix="person" />
+		<Button variant="soft" color="error" prefix="person" />
+		<Button variant="plain" color="error" prefix="person" />
 	</Row>
 
 	<Row gap="md" width="100%">
@@ -78,10 +78,10 @@
 	</Row>
 
 	<Row gap="md" width="100%">
-		<Button variant="solid" class="button" loading>Danger Solid</Button>
-		<Button variant="outlined" class="button" loading>Danger Outline</Button>
-		<Button variant="soft" class="button" loading>Danger Soft</Button>
-		<Button variant="plain" class="button" loading>Danger Plain</Button>
+		<Button variant="solid" class="button" loading>error Solid</Button>
+		<Button variant="outlined" class="button" loading>error Outline</Button>
+		<Button variant="soft" class="button" loading>error Soft</Button>
+		<Button variant="plain" class="button" loading>error Plain</Button>
 
 		<Button variant="solid" prefix="person" loading />
 		<Button variant="outlined" prefix="person" loading />

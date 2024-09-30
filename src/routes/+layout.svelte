@@ -63,7 +63,7 @@
 <WatfoeContent direction="row" gap="xs" px={3} style="height:calc(100% - 70px)">
 	<Surface
 		element="nav"
-		align="flex-start"
+		align="start"
 		color="neutral"
 		direction="column"
 		colorweight="0"
@@ -79,7 +79,7 @@
 		<LinkLikeButton
 			color="neutral"
 			href="/installation"
-			justify="flex-start"
+			justify="start"
 			pl="md"
 			size="sm"
 			variant="plain"
@@ -98,9 +98,9 @@
 				<LinkLikeButton
 					color="black"
 					href={component.path}
-					justify="flex-start"
+					justify="start"
 					pl="md"
-					size="sm"
+					size="md"
 					variant="plain"
 					width="100%"
 				>
@@ -112,7 +112,7 @@
 
 	<Surface
 		element="content"
-		align="flex-start"
+		align="start"
 		direction="column"
 		height="100%"
 		width="100%"

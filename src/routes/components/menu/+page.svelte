@@ -19,7 +19,7 @@
 	<title>Wui Menu Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Menu</Text>
 	<Playground bind:values>
 		<Button anchorfor="{values?.position}-menu">Show Menu</Button>
@@ -35,7 +35,7 @@
 			<MenuItem prefix="apps" selected>Dashboard</MenuItem>
 			<MenuItem prefix="settings">Settings</MenuItem>
 			<Divider colorweight="2" />
-			<MenuItem prefix="logout" color="danger">Logout</MenuItem>
+			<MenuItem prefix="logout" color="error">Logout</MenuItem>
 		</Menu>
 	</Playground>
 </Col>

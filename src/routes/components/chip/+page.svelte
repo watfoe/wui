@@ -16,7 +16,7 @@
 	<title>Wui Chip Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Chip</Text>
 	<Playground bind:values>
 		<Chip color={values?.color} shape={values?.shape} size={values?.size} variant={values?.variant}>

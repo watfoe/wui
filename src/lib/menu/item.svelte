@@ -43,7 +43,7 @@
 	element="li"
 	aria-selected={selected}
 	color={color || ctx.color || (selected ? 'primary' : altColor)}
-	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
+	justify={justify || (ctx.direction === 'row' ? 'center' : 'start')}
 	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}
 	role="menuitem"
 	size={size || ctx.size || 'md'}

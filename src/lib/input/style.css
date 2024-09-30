@@ -3,7 +3,7 @@
 }
 
 .w-input__root:has(:invalid) .w-input__label {
-  color: var(--color-danger-6);
+  color: var(--color-error-6);
 }
 
 .w-input__root:disabled .w-input__label {

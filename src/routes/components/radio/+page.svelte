@@ -18,7 +18,7 @@
 	<title>Wui Radio component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="title" size="sm">Radio</Text>
 	<Playground bind:values>
 		<Radio
@@ -33,7 +33,7 @@
 
 	<Text variant="heading" mt={34} size="md">Label position</Text>
 	<Playground>
-		<Row align="flex-start" gap={55}>
+		<Row align="start" gap={55}>
 			<Radio label="Label" />
 
 			<Radio direction="column" gap="xs" label="Label" />

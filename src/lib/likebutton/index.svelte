@@ -186,7 +186,7 @@
 	{/if}
 
 	{#if typeof suffix === 'string'}
-		<Icon {size} style={justify === 'space-between' ? 'margin-left:auto' : undefined}>
+		<Icon {size} style={justify === 'between' ? 'margin-left:auto' : undefined}>
 			{suffix}
 		</Icon>
 	{:else if suffix}

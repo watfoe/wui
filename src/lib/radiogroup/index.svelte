@@ -58,7 +58,7 @@
 		<InputLabel {description}>{label}</InputLabel>
 	{/if}
 
-	<Flex align="flex-start" justify="flex-start" {direction} {gap}>
+	<Flex align="start" justify="start" {direction} {gap}>
 		{#if children}
 			{@render children()}
 		{/if}

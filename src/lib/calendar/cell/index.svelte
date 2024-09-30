@@ -50,7 +50,7 @@
 	element="div"
 	role="cell"
 	aria-label="{day.name()}, {day.month().name()} {day.date()} {day.year()}"
-	align={minified ? 'center' : 'flex-start'}
+	align={minified ? 'center' : 'start'}
 	justify="center"
 	class="Wcal__cell"
 	color="black"

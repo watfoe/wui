@@ -20,7 +20,7 @@
 	<title>Wui Button Component</title>
 </svelte:head>
 
-<Col align="flex-start" gap="md" width="100%">
+<Col align="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Button</Text>
 	<Playground bind:values>
 		<Row gap="lg">

@@ -7,11 +7,11 @@
 <script lang="ts">
 	import { Flex, type FlexAttributes } from '../flex';
 	let {
-		align = 'flex-start',
+		align = 'start',
 		children,
 		class: _class = '',
 		direction = 'column',
-		justify = 'flex-start',
+		justify = 'start',
 		height = '100%',
 		width = '100%',
 		...rest

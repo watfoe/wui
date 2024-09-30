@@ -66,8 +66,8 @@
 		{/if}
 	</Col>
 
-	<Col align="flex-end" gap="md" width="100%">
-		<Row align="flex-start" gap="sm" width="100%">
+	<Col align="end" gap="md" width="100%">
+		<Row align="start" gap="sm" width="100%">
 			<Input label="First name" bind:value={firstname} required />
 			<Input label="Last name" bind:value={lastname} required />
 		</Row>
@@ -108,7 +108,7 @@
 		{/if}
 	</Col>
 
-	<Row justify="flex-end" width="100%">
+	<Row justify="end" width="100%">
 		<Button type="submit">Continue</Button>
 	</Row>
 

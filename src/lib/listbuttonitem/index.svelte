@@ -38,7 +38,7 @@
 	aria-selected={selected}
 	tabindex={0}
 	color={color || ctx.color || (selected ? 'neutral' : altColor)}
-	justify={justify || (ctx.direction === 'row' ? 'center' : 'flex-start')}
+	justify={justify || (ctx.direction === 'row' ? 'center' : 'start')}
 	navigation={navigation || (ctx.direction === 'row' ? 'horizontal' : 'vertical')}
 	size={size || ctx.size || 'md'}
 	shape={shape || ctx.shape || 'sharp'}

@@ -1,123 +1,76 @@
-.f,
-.fc,
-.fc-fs,
-.fc-sb,
-.fc-sa,
-.fc-fe,
-.fc-c,
-.fc-w,
-.fc-w-fs,
-.fc-w-sb,
-.fc-w-sa,
-.fc-w-fe,
-.fc-w-c,
-.fr,
-.fr-fs,
-.fr-sb,
-.fr-sa,
-.fr-fe,
-.fr-c,
-.fr-w,
-.fr-w-fs,
-.fr-w-sb,
-.fr-w-sa,
-.fr-w-fe,
-.fr-w-c {
+.f {
   display: flex
 }
 
-.fr,
-.fr-fs,
-.fr-sb,
-.fr-sa,
-.fr-fe,
-.fr-c {
+.fr {
   flex-flow: row
 }
 
-.fr-w,
-.fr-w-fs,
-.fr-w-sb,
-.fr-w-sa,
-.fr-w-se,
-.fr-w-c {
-  flex-flow: row wrap
+.frr {
+  flex-flow: row-reverse
 }
 
-.fc,
-.fc-fs,
-.fc-sb,
-.fc-sa,
-.fc-fe,
-.fc-c {
+.fwrap {
+  flex-wrap: wrap;
+}
+
+.fc {
   flex-flow: column
 }
 
-.fc-w,
-.fc-w-fs,
-.fc-w-sb,
-.fc-w-sa,
-.fc-w-fe,
-.fc-w-c {
-  flex-flow: column wrap
+.fcr {
+  flex-flow: column-reverse
 }
 
-.fr-fs,
-.fr-w-fs,
-.fc-fs,
-.fc-w-fs {
+.fjs {
   justify-content: flex-start
 }
 
-.fr-sb,
-.fr-w-sb,
-.fc-sb,
-.fc-w-sb {
+.fjb {
   justify-content: space-between
 }
 
-.fr-sa,
-.fr-w-sa,
-.fc-sa,
-.fc-w-sa {
+.fja {
   justify-content: space-around
 }
 
-.fr-fe,
-.fr-w-fe,
-.fc-fe,
-.fc-w-fe {
+.fje {
   justify-content: flex-end
 }
 
-.fr-c,
-.fr-w-c,
-.fc-c,
-.fc-w-c {
+.fjc {
   justify-content: center
 }
 
-.fi-fs {
+.fis {
   align-items: flex-start
 }
 
-.fi-c {
+.fic {
   align-items: center
 }
 
-.fi-fe {
+.fie {
   align-items: flex-end
 }
 
-.fs-fs {
+.fsb {
+  align-self: baseline
+}
+
+.fss {
   align-self: flex-start
 }
 
-.fs-c {
+.fsn {
+  align-self: normal
+}
+
+.fsc {
   align-self: center
 }
 
-.fs-fe {
+.fse {
   align-self: flex-end
 }
 

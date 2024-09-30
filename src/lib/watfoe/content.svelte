@@ -6,8 +6,8 @@
 
 <Surface
 	element="main"
-	align="flex-start"
-	justify="flex-start"
+	align="start"
+	justify="start"
 	class="watfoe-content {_class}"
 	{direction}
 	width="100%"
