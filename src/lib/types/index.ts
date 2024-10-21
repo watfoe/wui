@@ -17,9 +17,10 @@ export type WuiFlexGap = WuiSpacing;
 export type WuiFlexWrap = 'wrap' | 'nowrap';
 
 export interface WuiFlexKeys {
-  align?: WuiFlexAlign;
   direction?: WuiFlexDirection;
+  content?: WuiFlexAlign;
   justify?: WuiFlexJustify;
+  items?: WuiFlexAlign;
   self?: WuiFlexAlignSelf;
   gap?: WuiSpacing;
   wrap?: 'wrap' | 'nowrap';

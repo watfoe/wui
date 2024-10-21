@@ -44,9 +44,9 @@
 	}
 </script>
 
-<TabPanel align="center" justify="center">
+<TabPanel items="center" justify="center">
 	<Surface
-		align="center"
+		items="center"
 		element="form"
 		color="neutral"
 		direction="column"
@@ -67,8 +67,8 @@
 			{/if}
 		</Col>
 
-		<Col align="end" gap="md" width="100%">
-			<Row align="start" gap="sm" width="100%">
+		<Col items="end" gap="md" width="100%">
+			<Row items="start" gap="sm" width="100%">
 				<Input label="First name" bind:value={firstname} required />
 				<Input label="Last name" bind:value={lastname} required />
 			</Row>

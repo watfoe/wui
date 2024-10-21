@@ -63,7 +63,7 @@
 <WatfoeContent direction="row" gap="xs" px={3} style="height:calc(100% - 70px)">
 	<Surface
 		element="nav"
-		align="start"
+		items="start"
 		color="neutral"
 		direction="column"
 		colorweight="0"
@@ -112,7 +112,7 @@
 
 	<Surface
 		element="content"
-		align="start"
+		items="start"
 		direction="column"
 		height="100%"
 		width="100%"

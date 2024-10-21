@@ -187,7 +187,7 @@
 {#if prefix || suffix}
 	<Surface
 		element="div"
-		align="center"
+		items="center"
 		class="w-input {_class}"
 		color={error ? 'error' : disabled ? 'neutral' : color}
 		colorweight={colorweight ||

@@ -6,7 +6,7 @@
 
 <Surface
 	element="main"
-	align="start"
+	items="start"
 	justify="start"
 	class="watfoe-content {_class}"
 	{direction}

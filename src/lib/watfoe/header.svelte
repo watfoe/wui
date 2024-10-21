@@ -37,10 +37,10 @@
 	width="100%"
 	{...rest}
 >
-	<Row align="center" gap="md">
+	<Row items="center" gap="md">
 		<Logo size={50} />
 
-		<Row align="center" gap="sm">
+		<Row items="center" gap="sm">
 			<Text color="black" size="lg" variant="heading">Watfoe</Text>
 			{#if typeof subtitle === 'string'}
 				<Text color="neutral" size="lg" variant="heading">{subtitle}</Text>

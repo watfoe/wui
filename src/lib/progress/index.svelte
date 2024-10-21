@@ -13,6 +13,7 @@
 	import './style.css';
 	import { Surface, type SurfaceAttributes } from '../surface';
 	import type { WuiSize } from '$lib/types';
+	import { Row } from '$lib/row';
 
 	let {
 		color = 'primary',
@@ -47,3 +48,5 @@
 			: '100%')}
 	{variant}
 />
+
+<Row justify="center"></Row>

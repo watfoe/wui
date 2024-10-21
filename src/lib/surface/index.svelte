@@ -40,7 +40,7 @@
 
 	let {
 		_this = $bindable(),
-		align,
+		items,
 		element = 'div',
 		color,
 		colorweight,
@@ -88,7 +88,7 @@
 {#if element === 'input' || element === 'textarea' || element === 'img'}
 	<svelte:element
 		this={element}
-		class="{construct_flex_class(direction, justify, align, self, wrap, gap)}{construct_size_class(
+		class="{construct_flex_class(direction, justify, items, self, wrap, gap)}{construct_size_class(
 			'h',
 			height
 		)}{construct_size_class('w', width)}{construct_spacing_class(
@@ -141,7 +141,7 @@
 {:else}
 	<svelte:element
 		this={element}
-		class="{construct_flex_class(direction, justify, align, self, wrap, gap)}{construct_size_class(
+		class="{construct_flex_class(direction, justify, items, self, wrap, gap)}{construct_size_class(
 			'h',
 			height
 		)}{construct_size_class('w', width)}{construct_spacing_class(

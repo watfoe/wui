@@ -87,7 +87,7 @@
 		{@render prefix()}
 	{/if}
 
-	<Col align="start" justify="start" gap={3} width="100%">
+	<Col items="start" justify="start" gap={3} width="100%">
 		{#if title}
 			<Text color="inherit" variant="heading" bold={false} {size}>
 				{title}

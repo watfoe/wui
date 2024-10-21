@@ -147,7 +147,7 @@
 	</Row>
 
 	<Snackbar
-		align="center"
+		items="center"
 		title="Notification alert"
 		position="right"
 		prefix="notifications"

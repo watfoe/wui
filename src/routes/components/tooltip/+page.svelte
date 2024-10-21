@@ -16,7 +16,7 @@
 	<title>Wui Tooltip Component</title>
 </svelte:head>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Tooltip</Text>
 	<Playground bind:values>
 		<Tooltip color={values?.color} size={values?.size} title={values?.label!}>

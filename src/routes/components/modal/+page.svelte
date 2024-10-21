@@ -10,7 +10,7 @@
 	<Modal id="{position}-modal" title="Some words in here for fun" {position}></Modal>
 {/snippet}
 
-<Col align="center" justify="center" gap="lg">
+<Col items="center" justify="center" gap="lg">
 	{#each positions as position}
 		<Button anchorfor="{position}-modal" class="button" style="text-transform:capitalize">
 			{position}

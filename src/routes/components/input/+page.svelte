@@ -20,7 +20,7 @@
 	<title>Wui Input Component</title>
 </svelte:head>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Input</Text>
 	<Playground bind:values>
 		<Input

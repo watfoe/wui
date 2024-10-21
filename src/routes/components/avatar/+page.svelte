@@ -15,7 +15,7 @@
 	});
 </script>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="title" size="sm">Avatar</Text>
 	<Playground bind:values>
 		<Row gap="lg">

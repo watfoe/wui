@@ -22,7 +22,7 @@
 	</Menu>
 {/snippet}
 
-<TabPanel align="center" justify="center" gap="lg">
+<TabPanel items="center" justify="center" gap="lg">
 	{#each positions as row}
 		<Row justify="between" width={840}>
 			{#each row as position}

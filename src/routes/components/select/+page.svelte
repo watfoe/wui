@@ -16,7 +16,7 @@
 	});
 </script>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="title" size="sm">Select</Text>
 	<Playground bind:values>
 		<Select
