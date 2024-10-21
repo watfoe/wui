@@ -42,7 +42,7 @@
 
 <LikeButton
 	aria-label={alt || 'Avatar'}
-	align="center"
+	items="center"
 	color={color || ctx.color || 'primary'}
 	element="div"
 	justify="center"

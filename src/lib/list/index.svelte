@@ -42,4 +42,4 @@
 	});
 </script>
 
-<Surface element="ul" align="start" justify="start" {color} {shape} {direction} {...rest} />
+<Surface element="ul" items="start" justify="start" {color} {shape} {direction} {...rest} />

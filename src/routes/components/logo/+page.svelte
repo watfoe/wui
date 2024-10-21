@@ -9,7 +9,7 @@
 	<title>Wui Logo Component</title>
 </svelte:head>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Logo</Text>
 	<Playground>
 		<Logo />

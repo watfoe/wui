@@ -134,7 +134,7 @@
 
 	<Surface
 		element="span"
-		align="center"
+		items="center"
 		justify="center"
 		class="w-checkbox__thumb"
 		color={disabled ? 'neutral' : color || ctx.color || 'neutral'}

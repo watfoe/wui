@@ -191,7 +191,7 @@
 
 <Surface
 	element="div"
-	align="start"
+	items="start"
 	justify="start"
 	class="w-select {_class}"
 	direction="column"

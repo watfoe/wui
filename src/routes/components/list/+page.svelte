@@ -19,7 +19,7 @@
 	<title>Wui Listbox Component</title>
 </svelte:head>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">List</Text>
 	<Playground bind:values>
 		<List

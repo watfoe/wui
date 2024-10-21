@@ -154,7 +154,7 @@
 	}
 </script>
 
-<Row align="start" gap="sm" {m} {mx} {my} {mb} {ml} {mt} {mr} {p} {pb} {pl} {pt} {pr} {width}>
+<Row items="start" gap="sm" {m} {mx} {my} {mb} {ml} {mt} {mr} {p} {pb} {pl} {pt} {pr} {width}>
 	<Select
 		placeholder="Month"
 		preset="month"

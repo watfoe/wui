@@ -15,7 +15,7 @@
 </script>
 
 <TabPanel gap="lg">
-	<Row align="start" gap="md" width="100%">
+	<Row items="start" gap="md" width="100%">
 		<Input
 			type="text"
 			variant="solid"
@@ -29,7 +29,7 @@
 		<Input type="text" variant="plain" color="primary" label="Name" class="input" />
 	</Row>
 
-	<Row align="start" gap="md" width="100%">
+	<Row items="start" gap="md" width="100%">
 		<Input type="email" variant="solid" label="Email" class="input" validateon="input" />
 		<Input type="email" variant="outlined" label="Email" class="input" validateon="input" required>
 			{#snippet suffix()}
@@ -50,7 +50,7 @@
 		<Input type="email" variant="plain" label="Email" class="input" validateon="input" />
 	</Row>
 
-	<Row align="start" gap="md" width="100%">
+	<Row items="start" gap="md" width="100%">
 		<Input
 			type="password"
 			variant="solid"
@@ -92,14 +92,14 @@
 		/>
 	</Row>
 
-	<Row align="start" gap="md" width="100%">
+	<Row items="start" gap="md" width="100%">
 		<Input type="search" variant="solid" color="warning" label="Search" class="input" />
 		<Input type="search" variant="outlined" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="soft" color="warning" label="Search" class="input" required />
 		<Input type="search" variant="plain" color="warning" label="Search" class="input" />
 	</Row>
 
-	<Row align="start" gap="md" width="100%">
+	<Row items="start" gap="md" width="100%">
 		<Input
 			type="date"
 			variant="solid"

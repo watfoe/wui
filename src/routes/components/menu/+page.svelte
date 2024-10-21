@@ -19,7 +19,7 @@
 	<title>Wui Menu Component</title>
 </svelte:head>
 
-<Col align="start" gap="md" width="100%">
+<Col items="start" gap="md" width="100%">
 	<Text variant="heading" size="lg">Menu</Text>
 	<Playground bind:values>
 		<Button anchorfor="{values?.position}-menu">Show Menu</Button>

@@ -199,17 +199,17 @@ export function compute_color_value(color: WuiColor, weight?: WuiColorWeight) {
 export function construct_flex_class(
 	direction?: WuiFlexDirection,
 	justify: WuiFlexJustify = 'start',
-	align: WuiFlexAlign = 'center',
+	items: WuiFlexAlign = 'center',
 	self?: WuiFlexAlignSelf,
 	wrap?: WuiFlexWrap,
 	gap?: WuiFlexGap
 ) {
-	if (direction || justify || align || wrap || gap) {
+	if (direction || justify || items || wrap || gap) {
 		let _class = 'f';
 		if (direction) _class += ` f${abbr(direction)}`;
 		if (wrap) _class += wrap ? ' f-wrap' : '';
 		if (justify) _class += ` fj${abbr(justify)}`;
-		if (align) _class += ` fi${abbr(align)}`;
+		if (items) _class += ` fi${abbr(items)}`;
 		if (self) _class += ` fs${abbr(self)}`;
 		if (gap) _class += ` fg-${typeof gap === 'number' ? '0' : gap}`;
 		return _class + ' ';

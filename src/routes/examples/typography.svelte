@@ -4,26 +4,26 @@
 	import { Text } from '$lib/text';
 </script>
 
-<TabPanel align="start" gap="md">
-	<Row align="end" gap="md" width="100%">
+<TabPanel items="start" gap="md">
+	<Row items="end" gap="md" width="100%">
 		<Text variant="title" size="lg">Large Title</Text>
 		<Text variant="title" size="md">Medium Title</Text>
 		<Text variant="title" size="sm" color="error">Small Title</Text>
 	</Row>
 
-	<Row align="end" gap="md" width="100%">
+	<Row items="end" gap="md" width="100%">
 		<Text variant="heading" size="lg">Large heading</Text>
 		<Text variant="heading" size="md">Medium heading</Text>
 		<Text variant="heading" size="sm">Small heading</Text>
 	</Row>
 
-	<Row align="end" gap="md" width="100%">
+	<Row items="end" gap="md" width="100%">
 		<Text variant="body" size="lg">Large body</Text>
 		<Text variant="body" size="md">Medium body</Text>
 		<Text variant="body" size="sm" color="error">Small body</Text>
 	</Row>
 
-	<Row align="end" gap="md" width="100%">
+	<Row items="end" gap="md" width="100%">
 		<Text variant="label" size="lg">Large label</Text>
 		<Text variant="label" size="md">Medium label</Text>
 		<Text variant="label" size="sm" color="error">Small label</Text>

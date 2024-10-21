@@ -153,7 +153,7 @@
 </script>
 
 <Surface
-	align="start"
+	items="start"
 	element="fieldset"
 	direction="column"
 	class="w-textarea__root w-textarea--{color} {_class}"
@@ -175,7 +175,7 @@
 	{/if}
 
 	<LikeButton
-		align="start"
+		items="start"
 		class="w-textarea {_class}"
 		color={error ? 'error' : color}
 		clickable={false}

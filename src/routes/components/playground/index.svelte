@@ -78,7 +78,7 @@
 
 <Row color="neutral" shape="rounded" variant="outlined" width="100%" {...rest}>
 	<Col
-		align="center"
+		items="center"
 		color="white"
 		justify="center"
 		gap="xl"
@@ -95,7 +95,7 @@
 
 	{#if values}
 		<Col
-			align="start"
+			items="start"
 			color="primary"
 			colorweight="0"
 			textcolor="black"
@@ -107,7 +107,7 @@
 			<Text variant="heading" size="sm">Playground</Text>
 
 			{#if values.variant}
-				<Col align="start" gap="sm" width="100%">
+				<Col items="start" gap="sm" width="100%">
 					<Text size="sm" bold>Variant</Text>
 					<List direction="row" gap="xs">
 						{#each variants as variant}
@@ -118,7 +118,7 @@
 			{/if}
 
 			{#if values.color}
-				<Col align="start" gap="sm" width="100%">
+				<Col items="start" gap="sm" width="100%">
 					<Text size="sm" bold>Color</Text>
 					<RadioGroup direction="row">
 						{#each colors as color}
@@ -140,7 +140,7 @@
 			{/if}
 
 			{#if values.size}
-				<Col align="start" gap="sm" width="100%">
+				<Col items="start" gap="sm" width="100%">
 					<Text size="sm" bold>Size</Text>
 					<List direction="row" gap="xs">
 						{#each sizes as size}
@@ -151,7 +151,7 @@
 			{/if}
 
 			{#if values.shape}
-				<Col align="start" gap="sm" width="100%">
+				<Col items="start" gap="sm" width="100%">
 					<Text size="sm" bold>Shape</Text>
 					<List direction="row" gap="xs">
 						{#each shapes as shape}
@@ -176,8 +176,8 @@
 			{/if}
 
 			{#if values.position}
-				<Col align="center" justify="center" gap="sm" width="450px">
-					<Text align="left" size="sm" width="100%" bold>Position</Text>
+				<Col items="center" justify="center" gap="sm" width="450px">
+					<Text items="left" size="sm" width="100%" bold>Position</Text>
 					{#each positions as row}
 						<Row justify="between" width="100%">
 							{#each row as position}

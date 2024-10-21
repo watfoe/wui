@@ -27,7 +27,7 @@
 {/snippet}
 
 {#if description}
-	<Col align="start" gap={2} px={3} width="100%">
+	<Col items="start" gap={2} px={3} width="100%">
 		{@render label()}
 		{#if typeof description === 'string'}
 			<Text
