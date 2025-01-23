@@ -4,7 +4,7 @@
 	import { Divider } from '$lib/divider';
 	import { Menu, MenuItem } from '$lib/menu';
 	import { Text } from '$lib/text';
-	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../../../lib/playground/index.svelte';
 
 	let values: PlaygroundAttributes['values'] = $state({
 		color: 'neutral',

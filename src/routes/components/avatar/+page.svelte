@@ -2,7 +2,7 @@
 	import { Avatar } from '$lib/avatar';
 	import { Col } from '$lib/col';
 	import { Row } from '$lib/row';
-	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../../../lib/playground/index.svelte';
 	import { Text } from '$lib/text';
 
 	let values: PlaygroundAttributes['values'] = $state({

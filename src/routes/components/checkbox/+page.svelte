@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Col } from '$lib/col';
 	import { Row } from '$lib/row';
-	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../../../lib/playground/index.svelte';
 	import { Text } from '$lib/text';
 	import { Checkbox } from '$lib/checkbox';
 
