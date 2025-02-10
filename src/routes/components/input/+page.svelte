@@ -3,7 +3,7 @@
 	import { Button } from '$lib/button';
 	import { Input } from '$lib/input';
 	import { Menu, MenuItem } from '$lib/menu';
-	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../../../lib/playground/index.svelte';
 	import { Text } from '$lib/text';
 
 	let values: PlaygroundAttributes['values'] = $state({

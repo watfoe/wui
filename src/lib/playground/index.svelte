@@ -28,17 +28,17 @@
 <script lang="ts">
 	import { Button } from '$lib/button';
 
-	import { Col } from '$lib/col';
-	import { Input } from '$lib/input';
-	import { List } from '$lib/list';
-	import { ListButtonItem } from '$lib/listbuttonitem';
-	import { type MenuAttributes } from '$lib/menu';
-	import { Radio } from '$lib/radio';
-	import { RadioGroup } from '$lib/radiogroup';
-	import { Row, type RowAttributes } from '$lib/row';
-	import { Switch } from '$lib/switch';
-	import { Text } from '$lib/text';
-	import { Tooltip } from '$lib/tooltip';
+	import { Col } from '../col';
+	import { Input } from '../input';
+	import { List } from '../list';
+	import { ListButtonItem } from '../listbuttonitem';
+	import { type MenuAttributes } from '../menu';
+	import { Radio } from '../radio';
+	import { RadioGroup } from '../radiogroup';
+	import { Row, type RowAttributes } from '../row';
+	import { Switch } from '../switch';
+	import { Text } from '../text';
+	import { Tooltip } from '../tooltip';
 	import type { WuiColor, WuiShape, WuiSize, WuiVariant } from '$lib/types';
 
 	let { values = $bindable(), children, ...rest }: PlaygroundAttributes = $props();
@@ -76,13 +76,21 @@
 	</ListButtonItem>
 {/snippet}
 
-<Row color="neutral" shape="rounded" variant="outlined" width="100%" {...rest}>
+<Row
+	color="neutral"
+	shape="rounded"
+	variant="outlined"
+	colorweight="2"
+	mb={34}
+	width="100%"
+	{...rest}
+>
 	<Col
 		items="center"
 		color="white"
 		justify="center"
 		gap="xl"
-		p="xl"
+		p="md"
 		shape="rounded"
 		width="100%"
 		height="100%"
@@ -177,7 +185,7 @@
 
 			{#if values.position}
 				<Col items="center" justify="center" gap="sm" width="450px">
-					<Text items="left" size="sm" width="100%" bold>Position</Text>
+					<Text items="start" size="sm" width="100%" bold>Position</Text>
 					{#each positions as row}
 						<Row justify="between" width="100%">
 							{#each row as position}

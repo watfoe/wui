@@ -3,8 +3,10 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	extensions: ['.svelte', '.md', '.svx'],
+
 	preprocess: [
-		vitePreprocess()
+		vitePreprocess(),
 	],
 
 	kit: {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Col } from '$lib/col';
-	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../../../lib/playground/index.svelte';
 	import { Text } from '$lib/text';
 	import { Chip } from '$lib/chip';
 

@@ -2,7 +2,7 @@
 	import { Col } from '$lib/col';
 	import { Button } from '$lib/button';
 	import { Row } from '$lib/row';
-	import Playground, { type PlaygroundAttributes } from '../playground/index.svelte';
+	import Playground, { type PlaygroundAttributes } from '../../../lib/playground/index.svelte';
 	import { Text } from '$lib/text';
 	import { Select } from '$lib/select';
 	import Option from '$lib/select/option.svelte';
