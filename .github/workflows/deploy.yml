@@ -1,0 +1,79 @@
+name: Build and Deploy to production servers
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ${{ secrets.REGISTRY_NAME }}
+  IMAGE_NAME: "wui"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Build container image
+        run: |
+          DOCKER_BUILDKIT=1 docker build --tag $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) \
+                      --tag $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest --file .docker/Dockerfile .
+
+      - name: Log in to DigitalOcean Container Registry
+        run: doctl registry login --expiry-seconds 180
+
+      - name: Push image to DigitalOcean Container Registry
+        run: |
+          docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+          docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to Server
+        run: |
+          IMAGE_TAG=$(echo $GITHUB_SHA | head -c7)
+          ssh -o StrictHostKeyChecking=no root@${{ vars.SERVER_DNS_OR_IP }} "
+          # Login to registry
+          doctl registry login --expiry-seconds 180
+
+          # Pull the new image
+          docker pull ${{ secrets.REGISTRY_NAME }}/wui:${IMAGE_TAG}
+
+          # Stop existing container (if it exists)
+          docker stop wui-container || true
+          docker rm wui-container || true
+
+          # Run new container
+          docker run -d --name wui-container --network="host" --restart unless-stopped --health-cmd 'curl -f http://localhost:5000 || exit 1' --health-interval 30s --health-timeout 10s --health-retries 3 -p 5000:5000  ${{ secrets.REGISTRY_NAME }}/wui:${IMAGE_TAG}
+
+          # Verify container is running
+          if ! docker ps | grep -q wui-container; then
+          echo 'Container failed to start'
+          docker logs wui-container
+          exit 1
+          fi
+
+          # Clean up old images
+          docker image prune -af --filter 'until=24h'
+          "
