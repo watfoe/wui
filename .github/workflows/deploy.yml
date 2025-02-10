@@ -25,7 +25,7 @@ jobs:
       - name: Build container image
         run: |
           DOCKER_BUILDKIT=1 docker build --tag $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) \
-                      --tag $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest --file .docker/Dockerfile .
+                      --tag $(echo $REGISTRY)/$(echo $IMAGE_NAME):latest .
 
       - name: Log in to DigitalOcean Container Registry
         run: doctl registry login --expiry-seconds 180
