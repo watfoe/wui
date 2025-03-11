@@ -1,63 +1,89 @@
-@font-face {
-  font-family: "Inter";
-  src: url(https://cdn.watfoe.com/fonts/Inter.ttf) format("truetype");
-}
-
 :root {
-  --color-primary-0: #F7FBFD;
-  --color-primary-1: #e6f4fa;
-  --color-primary-2: #99d3eb;
-  --color-primary-3: #66bee0;
-  --color-primary-4: #33a8d6;
-  --color-primary-5: #0092cc;
-  --color-primary-6: #0075a3;
-  --color-primary-7: #00587a;
-  --color-primary-8: #003a52;
-  --color-primary-9: #001d29;
+  --color-primary-0: #F8FCFE;
+  --color-primary-1: #E9F6FC;
+  --color-primary-2: #A2DBF0;
+  --color-primary-3: #75C8E6;
+  --color-primary-4: #47B5DC;
+  --color-primary-5: #1A9ED0;
+  --color-primary-6: #0D84B2;
+  --color-primary-7: #066891;
+  --color-primary-8: #04465F;
+  --color-primary-9: #02232F;
 
-  --color-success-0: #fbfcf8;
-  --color-success-1: #f1f5eb;
-  --color-success-2: #c9d6ad;
-  --color-success-3: #adc285;
-  --color-success-4: #92ad5c;
-  --color-success-5: #779933;
-  --color-success-6: #5f7a29;
-  --color-success-7: #475c1f;
-  --color-success-8: #303d14;
-  --color-success-9: #181f0a;
+  --color-info-0: #F7FBFD;
+  --color-info-1: #E6F4FA;
+  --color-info-2: #9DD7ED;
+  --color-info-3: #70C5E5;
+  --color-info-4: #42B3DB;
+  --color-info-5: #159BDA;
+  --color-info-6: #0C7FB4;
+  --color-info-7: #086694;
+  --color-info-8: #054460;
+  --color-info-9: #022331;
 
-  --color-warning-0: #fffcf7;
-  --color-warning-1: #fbf4e6;
-  --color-warning-2: #eed399;
-  --color-warning-3: #e5bd66;
-  --color-warning-4: #dda733;
-  --color-warning-5: #d49100;
-  --color-warning-6: #aa7400;
-  --color-warning-7: #7f5700;
-  --color-warning-8: #553a00;
-  --color-warning-9: #2a1d00;
+  --color-success-0: #FCFDF9;
+  --color-success-1: #F2F6ED;
+  --color-success-2: #D1DEB6;
+  --color-success-3: #B8CD93;
+  --color-success-4: #A0BC6F;
+  --color-success-5: #87AA4A;
+  --color-success-6: #6A883B;
+  --color-success-7: #51682D;
+  --color-success-8: #38471F;
+  --color-success-9: #1D240F;
 
-  --color-neutral-0: #fcfcfc;
-  --color-neutral-1: #f5f6f7;
-  --color-neutral-2: #d9dbde;
-  --color-neutral-3: #c5cace;
-  --color-neutral-4: #b2b8bd;
-  --color-neutral-5: #9fa6ad;
-  --color-neutral-6: #7f858a;
-  --color-neutral-7: #5f6468;
-  --color-neutral-8: #404245;
-  --color-neutral-9: #202123;
+  --color-warning-0: #FFFDF9;
+  --color-warning-1: #FCF6E9;
+  --color-warning-2: #F3DAA4;
+  --color-warning-3: #EBC976;
+  --color-warning-4: #E3B847;
+  --color-warning-5: #DBA619;
+  --color-warning-6: #B08515;
+  --color-warning-7: #856410;
+  --color-warning-8: #5A430B;
+  --color-warning-9: #2F2305;
 
-  --color-error-0: #fff8f8;
-  --color-error-1: #ffebeb;
-  --color-error-2: #ffadad;
-  --color-error-3: #ff8585;
-  --color-error-4: #ff5c5c;
-  --color-error-5: #ff3333;
-  --color-error-6: #cc2929;
-  --color-error-7: #991f1f;
-  --color-error-8: #661414;
-  --color-error-9: #330a0a;
+  --color-neutral-0: #FCFCFC;
+  --color-neutral-1: #F6F6F7;
+  --color-neutral-2: #DDDFE1;
+  --color-neutral-3: #C8CCD0;
+  --color-neutral-4: #B4B9BE;
+  --color-neutral-5: #A0A7AD;
+  --color-neutral-6: #82878C;
+  --color-neutral-7: #63676B;
+  --color-neutral-8: #424447;
+  --color-neutral-9: #232426;
+
+  --color-error-0: #FFF9F9;
+  --color-error-1: #FFEDED;
+  --color-error-2: #FFB5B5;
+  --color-error-3: #FF8E8E;
+  --color-error-4: #FF6868;
+  --color-error-5: #FF4242;
+  --color-error-6: #D53636;
+  --color-error-7: #AA2A2A;
+  --color-error-8: #771D1D;
+  --color-error-9: #420F0F;
+
+  --color-accent-0: #FAF8FD;
+  --color-accent-1: #F0E6FA;
+  --color-accent-2: #D4BFED;
+  --color-accent-3: #BE9EE3;
+  --color-accent-4: #A77CD9;
+  --color-accent-5: #905BCF;
+  --color-accent-6: #7349A6;
+  --color-accent-7: #56377D;
+  --color-accent-8: #3A2453;
+  --color-accent-9: #1D122A;
+
+  --color-border-light: #E5E7E9;
+  --color-border-medium: #CED1D4;
+  --color-border-dark: #AFB3B7;
+  --color-shadow-light: rgba(45, 49, 55, 0.05);
+  --color-shadow-medium: rgba(45, 49, 55, 0.1);
+  --color-shadow-dark: rgba(35, 39, 45, 0.15);
+  --color-overlay: rgba(35, 39, 45, 0.5);
+  --color-focus-ring: rgba(26, 158, 208, 0.45);
 
   --color-surface: var(--color-white);
 
@@ -88,7 +114,7 @@
 * {
   border: 0;
   box-sizing: border-box;
-  font-family: Inter, sans-serif;
+  font-family: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   font-optical-sizing: auto;
   padding: 0;
   margin: 0;

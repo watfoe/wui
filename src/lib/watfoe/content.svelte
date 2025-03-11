@@ -6,19 +6,22 @@
 
 <Surface
 	element="main"
+	variant="soft"
+	color="neutral"
+	colorweight="0"
 	items="start"
 	justify="start"
 	class="watfoe-content {_class}"
 	{direction}
 	width="100%"
 	px="lg"
-	mt={70}
+	mt={80}
 	{...rest}
 />
 
 <style>
 	:global(.watfoe-content) {
-		min-height: calc(100% - 80px);
+		max-height: calc(100% - 80px) !important;
 		overflow-y: auto;
 	}
 </style>

@@ -8,16 +8,27 @@
 	import { Input } from '$lib/input';
 	import { Button } from '$lib/button';
 	import { Tooltip } from '$lib/tooltip';
+	import { Icon } from '$lib/icon';
+	import type { WuiColor } from '$lib/types';
 
 	interface WatfoeHeaderAttributes extends SurfaceAttributes<'header'> {
 		subtitle?: Snippet | string;
+		subtitlecolor?: WuiColor;
 		urls?: {
 			login?: string;
 			signup?: string;
 		};
+		showsearch?: boolean;
 	}
 
-	let { class: _class = '', subtitle, urls, ...rest }: WatfoeHeaderAttributes = $props();
+	let {
+		class: _class = '',
+		subtitle,
+		subtitlecolor = 'neutral',
+		urls,
+		showsearch = true,
+		...rest
+	}: WatfoeHeaderAttributes = $props();
 	urls = {
 		login: urls?.login || 'https://auth.watfoe.com/login',
 		signup: urls?.signup || 'https://auth.watfoe.com/create-account'
@@ -26,9 +37,12 @@
 
 <Surface
 	element="header"
+	variant="soft"
+	color="neutral"
+	colorweight="0"
 	class="watfoe-header {_class}"
 	direction="row"
-	height={70}
+	height={80}
 	justify="between"
 	mb="xs"
 	pl="lg"
@@ -43,25 +57,32 @@
 		<Row items="center" gap="sm">
 			<Text color="black" size="lg" variant="heading">Watfoe</Text>
 			{#if typeof subtitle === 'string'}
-				<Text color="neutral" size="lg" variant="heading">{subtitle}</Text>
+				<Text color={subtitlecolor} size="lg" variant="heading">{subtitle}</Text>
 			{:else if subtitle}
 				{@render subtitle()}
 			{/if}
 		</Row>
 	</Row>
 
-	<Input
-		type="search"
-		variant="soft"
-		shape="pill"
-		textsize="md"
-		width={500}
-		class="watfoe-header__search"
-	/>
+	{#if showsearch}
+		<Input
+			type="search"
+			color="neutral"
+			colorweight="2"
+			variant="outlined"
+			textsize="md"
+			width={600}
+			class="watfoe-header__search"
+		/>
+	{/if}
 
-	<Row justify="end" gap="sm">
+	<Row justify="end" gap="md">
 		<Tooltip title="Watfoe Apps" size="xs">
-			<Button color="black" shape="pill" variant="plain" prefix="apps" />
+			<Button color="black" shape="circle" variant="plain">
+				<slot:prefix>
+					<Icon size="lg">apps</Icon>
+				</slot:prefix>
+			</Button>
 		</Tooltip>
 		<LinkLikeButton href={urls?.login} color="black" shape="pill" px="lg">Log in</LinkLikeButton>
 	</Row>
@@ -69,7 +90,6 @@
 
 <style>
 	:global(.watfoe-header) {
-		background-color: var(--color-surface);
 		position: fixed;
 		top: 0;
 		z-index: 9999;

@@ -64,15 +64,12 @@
 	<Surface
 		element="nav"
 		items="start"
-		color="neutral"
 		direction="column"
-		colorweight="0"
 		height="100%"
 		p="xs"
 		pt="md"
 		shape="rounded"
-		variant="soft"
-		width={300}
+		width={280}
 		style="overflow-y:auto"
 	>
 		<Text ml="md" mb="xs" bold>Getting started</Text>
@@ -81,7 +78,7 @@
 			href="/installation"
 			justify="start"
 			pl="md"
-			size="sm"
+			size="md"
 			variant="plain"
 			width="100%"
 		>

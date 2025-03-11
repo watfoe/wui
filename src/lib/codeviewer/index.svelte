@@ -2,61 +2,102 @@
 	import { Row } from '$lib/row';
 	import { Button } from '$lib/button';
 
-	let { code }: { code: string } = $props();
+	let { code }: { code: string; language?: string } = $props();
 	let copied = $state(false);
+	let editorElement: HTMLElement;
+	let editor: any;
 
-	function formatCode(code: string): string {
-		const lines = code.split('\n');
-		const minIndent = lines
-			.filter((line) => line.trim())
-			.reduce((min, line) => {
-				const indent = line.match(/^\s*/)[0].length;
-				return Math.min(min, indent);
-			}, Infinity);
+	$effect(() => {
+		if (window.CodeMirror && editorElement) {
+			editor = window.CodeMirror(editorElement, {
+				value: code,
+				mode: 'jsx',
+				theme: 'monokai',
+				lineNumbers: false,
+				lineWrapping: true,
+				tabSize: 4,
+				indentWithTabs: true,
+				autofocus: false
+			});
 
-		return lines
-			.map((line) => line.slice(minIndent))
-			.join('\n')
-			.trim();
-	}
+			editor.on('change', (instance: any) => {
+				code = instance.getValue();
+			});
+		}
+	});
 
 	async function copyCode() {
-		await navigator.clipboard.writeText(code);
+		if (editor) {
+			await navigator.clipboard.writeText(editor.getValue());
+		} else {
+			await navigator.clipboard.writeText(code);
+		}
 		copied = true;
 		setTimeout(() => (copied = false), 2000);
 	}
-
-	let formattedCode = $derived(formatCode(code));
 </script>
+
+<svelte:head>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css"
+	/>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css"
+	/>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"
+	></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"
+	></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/jsx/jsx.min.js"
+	></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"
+	></script>
+</svelte:head>
 
 <Row
 	items="start"
 	justify="between"
 	variant="solid"
-	color="black"
-	gap="xl"
-	p="md"
+	color="neutral"
+	colorweight="9"
+	gap="sm"
+	p="sm"
 	shape="rounded"
 	width="100%"
 >
-	<pre><code>{formattedCode}</code></pre>
-	<Button variant="soft" color="neutral" size="xs" onclick={copyCode}>
-		{copied ? 'Copied' : 'Copy'}
-	</Button>
+	<div class="editor-container" bind:this={editorElement}></div>
+	<Button
+		variant="soft"
+		color="neutral"
+		size="xs"
+		onclick={copyCode}
+		prefix={copied ? 'check' : 'content_copy'}
+	/>
 </Row>
 
 <style>
-	pre {
-		margin: 0;
-		padding: 0;
-		background: transparent;
-		overflow-x: auto;
+	.editor-container {
+		width: 100%;
+		height: auto;
+		overflow: hidden;
 	}
 
-	code {
-		font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	:global(.CodeMirror) {
+		background-color: transparent !important;
+		height: auto !important;
+		font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 		font-size: 14px;
 		line-height: 1.5;
-		text-shadow: none;
+		border-radius: 4px;
+	}
+
+	:global(.CodeMirror-cursor) {
+		border-left: 2px solid #fff;
 	}
 </style>
