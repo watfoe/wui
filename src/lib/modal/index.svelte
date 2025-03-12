@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
 	import type { Snippet } from 'svelte';
 	export interface ModalAttributes extends Omit<SurfaceAttributes<'div'>, 'element'> {
 		divider?: boolean;

@@ -18,7 +18,7 @@
 			login?: string;
 			signup?: string;
 		};
-		showsearch?: boolean;
+		hidesearch?: boolean;
 	}
 
 	let {
@@ -26,7 +26,7 @@
 		subtitle,
 		subtitlecolor = 'neutral',
 		urls,
-		showsearch = true,
+		hidesearch = false,
 		...rest
 	}: WatfoeHeaderAttributes = $props();
 	urls = {
@@ -64,7 +64,7 @@
 		</Row>
 	</Row>
 
-	{#if showsearch}
+	{#if !hidesearch}
 		<Input
 			type="search"
 			color="neutral"
@@ -79,9 +79,9 @@
 	<Row justify="end" gap="md">
 		<Tooltip title="Watfoe Apps" size="xs">
 			<Button color="black" shape="circle" variant="plain">
-				<slot:prefix>
+				{#snippet prefix()}
 					<Icon size="lg">apps</Icon>
-				</slot:prefix>
+				{/snippet}
 			</Button>
 		</Tooltip>
 		<LinkLikeButton href={urls?.login} color="black" shape="pill" px="lg">Log in</LinkLikeButton>

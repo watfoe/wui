@@ -16,7 +16,7 @@
 	import DateInput from './_date.svelte';
 	import EmailInput from './_email.svelte';
 	import PasswordInput from './_password.svelte';
-	import TelInput from './_tel.svelte';
+	import PhoneInput from './_phone.svelte';
 	import SearchInput from './_search.svelte';
 	import { Surface } from '../surface';
 	import type { Snippet } from 'svelte';
@@ -102,8 +102,8 @@
 			bind:error
 			bind:value
 		/>
-	{:else if type === 'tel'}
-		<TelInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
+	{:else if type === 'phone'}
+		<PhoneInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{:else if type === 'search'}
 		<SearchInput {...rest} {disabled} {id} {color} {size} {variant} bind:error bind:value />
 	{:else}

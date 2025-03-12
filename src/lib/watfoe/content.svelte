@@ -21,7 +21,7 @@
 
 <style>
 	:global(.watfoe-content) {
-		max-height: calc(100% - 80px) !important;
+		height: calc(100% - 80px) !important;
 		overflow-y: auto;
 	}
 </style>
