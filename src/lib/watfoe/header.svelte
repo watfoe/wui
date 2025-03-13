@@ -1,14 +1,10 @@
 <script lang="ts">
 	import { Logo } from '../logo';
 	import { Row } from '../row';
-	import { LinkLikeButton } from '../linklikebutton';
 	import { Text } from '../text';
 	import type { Snippet } from 'svelte';
 	import { Surface, type SurfaceAttributes } from '$lib/surface';
 	import { Input } from '$lib/input';
-	import { Button } from '$lib/button';
-	import { Tooltip } from '$lib/tooltip';
-	import { Icon } from '$lib/icon';
 	import type { WuiColor } from '$lib/types';
 
 	interface WatfoeHeaderAttributes extends SurfaceAttributes<'header'> {
@@ -19,6 +15,7 @@
 			signup?: string;
 		};
 		hidesearch?: boolean;
+		actions?: Snippet;
 	}
 
 	let {
@@ -27,6 +24,7 @@
 		subtitlecolor = 'neutral',
 		urls,
 		hidesearch = false,
+		actions,
 		...rest
 	}: WatfoeHeaderAttributes = $props();
 	urls = {
@@ -76,16 +74,11 @@
 		/>
 	{/if}
 
-	<Row justify="end" gap="md">
-		<Tooltip title="Watfoe Apps" size="xs">
-			<Button color="black" shape="circle" variant="plain">
-				{#snippet prefix()}
-					<Icon size="lg">apps</Icon>
-				{/snippet}
-			</Button>
-		</Tooltip>
-		<LinkLikeButton href={urls?.login} color="black" shape="pill" px="lg">Log in</LinkLikeButton>
-	</Row>
+	{#if actions}
+		<Row justify="end" gap="md">
+			{@render actions()}
+		</Row>
+	{/if}
 </Surface>
 
 <style>
